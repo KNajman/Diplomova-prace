@@ -159,6 +159,11 @@ dkms.conf
 !*.elf
 !*.bmm
 !*.xmp
+#MATLAB
+!*.m
+!*.mlx
+#Markdown
+!*.md
 
 ### XilinxVivado ###
 #.xci: IP-core property file with core container disabled
