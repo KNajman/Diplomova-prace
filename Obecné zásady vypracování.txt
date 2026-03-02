@@ -1,0 +1,55 @@
+Závěrečné práce
+Vypracování závěrečné práce bude jedním z nejdůležitějších milníků vašeho studia. Díky němu budete o významný krok blíž titulu před jménem (možná i za jménem). Ačkoliv si v rámci studovaného oboru můžete vybrat téma, kterému se ve své závěrčné práci budete věnovat, musíte dodržet jisté postupy. Každá fakulta si je určuje sama, ale některé platí obecně.
+
+Abyste věděli, do čehio jdete, doporučujeme nahlédnout do repozitáře závěrečných prací. Můžete si tu přečíst práce absolventů nebo svých spolužáků.
+
+Zadání práce
+Téma a vedoucího své závěrečné práce si musíte zvolit včas! Každá katedra má vlastní termíny, proto sledujte aktuality na jejím webu.
+
+Práci vám zadává univerzita. Oficiálně od nás dostanete úkol, jehož vyřešením prokážete, že ovládáte studovaný obor.
+
+Zadání probíhá v IS STAG a může mít různé varianty. Někdy vedoucí vypíše konkrétní zadání, ke kterému se jen přihlásíte. Jindy se na přesném znění domlouváte, do IS STAG je vyplňujete vy a vedoucí je schvaluje. Přístupy fakult se liší, je třeba se informovat, která varianta platí u vás.
+
+Výsledné zadání pak v IS STAG schválí vedoucí práce, garant studijního programu a děkan. Tím je váš úkol stanoven.
+
+Než začnete psát
+Předtím, než se pustíte do psaní své závěrečné práce, prostudujte si Směrnici rektora o jednotné úpravě a zveřejňování bakalářských, diplomových, disertačních, rigorózních a habilitačních prací. Její dodržení je zásadní.
+
+Během psaní 
+Dobře víme, že to nejhorší na psaní závěrečné práce je začít. Jakmile ale začnete, věříme, že už vám to půjde hezky od ruky. Jen nezapomeňte zálohovat a jednotlivé části konzultujte se svým vedoucím práce! Odevzdat ke kontrole všechno najednou opravdu není dobrý nápad, radši posílejte vypracované části práce postupně, ať se váš vedoucí neutopí v moři textu.
+
+Formální úpravu práce upravuje už zmíněná směrnice rektora, pročtěte si ji. Rozsah práce určuje vaše fakulta. 
+
+Obecná struktura závěrečné práce:
+
+titulní list, zadání práce a prohlášení; tyto úvodní stránky vygeneruje IS STAG; není třeba je podepisovat a skenovat, vložte je v podobě, ve které jste si je stáhli z IS STAG,
+poděkování (nepovinné),
+anotace v českém a anglickém jazyce; pokud není jazykem bakalářské práce čeština nebo angličtina, navíc anotace v jazyce práce,
+klíčová slova v každém jazyce, ve kterém je obsažena anotace,
+obsah,
+seznam použitých zkratek podle abecedy,
+vlastní text práce,
+seznam literatury a použitých zdrojů,
+seznam příloh,
+přílohy.
+Pamatujte, že hlavním smyslem textu závěrečné práce je dokumentovat, co jste udělali. Vlastní text sice obvykle začíná úvodem do řešené problematiky, ale nevěnujte mu příliš prostoru. Popište a zdůvodněte především metody, které jste použili, rozhodnutí, která jste učinili, a výsledky, jichž jste dosáhli.
+
+Podstatné je splnění zadání práce. Před dokončením si je určitě ještě jednou přečtěte a zkontrolujte, že text pokrývá všechny jeho body. Jestliže jste některý bod zadání nesplnili, nepokoušejte se to zamlčet. Raději popište důvody, které k tomu vedly.
+
+TIP studentů: Když se zaseknete a nevíte, jak dál, zajděte za svým vedoucím nebo jiným vyučujícím, mohou vám poradit a nasměrovat vás. Za zkoušku rozhodně nic nedáte, oni vám hlavu neukousnou.
+
+Nezapomínejte při psaní na typografická pravidla a správný způsob citování zdrojů.
+
+Vytváříte-li závěrečnou práci v LaTeXu, je k dispozici implementace vizuálního stylu TUL pro LaTeX.
+
+Odevzdání závěrečné práce
+Před odevzdáním
+Zkontrolujte si, že máte v IS STAG vyplněny všechny potřebné informace. 
+Svou práci ve formátu PDF nahrajte do IS STAG.
+Mohou existovat další významné součásti, které text práce neobsahuje. Například zdrojové kódy vyvinutých programů, technické výkresy, videozáznamy představení a podobně. Pokud takové materiály existují, zabalte všechny do jednoho souboru formátu ZIP (velikost max. 50 MB) a nahrajte do IS STAG jako přílohu závěrečné práce.
+Práci si nechte vytisknout a svázat ve formátu A4 do desek v tmavé barvě. Desky musí uvádět přesný, oficiální název univerzity a fakulty, název a typ závěrečné práce. Nezapomeňte uvést také své jméno, logo univerzity, místo a rok vypracování. 
+Dodržte termín odevzdání a hlavně nenechávajte tisk až na úplně poslední chvíli. 
+Vlastní odevzdání
+Přístupy jednotlivých fakult a kateder se liší. Obvykle práci odevzdáváte vedoucímu, který vám na oplátku udělí příslušný zápočet. Někde se ale práce odevzdávají na sekretariát katedry. Některé fakulty zavedly předběžnou kontrolu prací studijním oddělením.
+
+Zkrátka, zeptejte se vedoucího práce, případně na studijním oddělení, jak máte konkrétně postupovat.

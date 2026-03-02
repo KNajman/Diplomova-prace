@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl2008 xil_defaultlib  \
+"../../../../DP.srcs/sources_1/imports/_DP/konvoluce.vhd" \
+"../../../../DP.srcs/sim_1/new/tb_generic_2D_convolution.vhd" \
+
+# Do not sort compile order
+nosort
