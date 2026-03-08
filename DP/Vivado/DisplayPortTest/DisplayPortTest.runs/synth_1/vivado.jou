@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Mar  6 18:19:45 2026
+# Process ID         : 4316
+# Current directory  : D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/synth_1
+# Command line       : vivado.exe -log display_port_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source display_port_wrapper.tcl
+# Log file           : D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/synth_1/display_port_wrapper.vds
+# Journal file       : D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/synth_1\vivado.jou
+# Running On         : N166A
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
+# CPU Frequency      : 2112 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 12723 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 26145 MB
+# Available Virtual  : 13958 MB
+#-----------------------------------------------------------
+source display_port_wrapper.tcl -notrace

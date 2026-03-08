@@ -1,0 +1,4 @@
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_fsbl/build/CMakeFiles/fsbl.elf.dir
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_fsbl/build/CMakeFiles/print_build_info.dir
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_fsbl/build/CMakeFiles/edit_cache.dir
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_fsbl/build/CMakeFiles/rebuild_cache.dir

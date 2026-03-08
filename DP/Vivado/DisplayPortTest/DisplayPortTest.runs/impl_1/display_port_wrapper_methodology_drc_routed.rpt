@@ -1,0 +1,52 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Mar  6 18:31:56 2026
+| Host         : N166A running 64-bit major release  (build 9200)
+| Command      : report_methodology -file display_port_wrapper_methodology_drc_routed.rpt -pb display_port_wrapper_methodology_drc_routed.pb -rpx display_port_wrapper_methodology_drc_routed.rpx
+| Design       : display_port_wrapper
+| Device       : xck26-sfvc784-2LV-c
+| Speed File   : -2LV
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 3
++----------+------------------+----------------------------------------------------+--------+
+| Rule     | Severity         | Description                                        | Checks |
++----------+------------------+----------------------------------------------------+--------+
+| TIMING-2 | Critical Warning | Invalid primary clock source pin                   | 1      |
+| TIMING-4 | Critical Warning | Invalid primary clock redefinition on a clock tree | 1      |
+| CLKC-56  | Advisory         | MMCME4 with global clock driver has no LOC         | 1      |
++----------+------------------+----------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-2#1 Critical Warning
+Invalid primary clock source pin  
+A primary clock display_port_i/clk_wiz/inst/clk_in1 is created on an inappropriate pin display_port_i/clk_wiz/inst/clk_in1. It is recommended to create a primary clock only on a proper clock source (input port or primitive output pin with no timing arc)
+Related violations: <none>
+
+TIMING-4#1 Critical Warning
+Invalid primary clock redefinition on a clock tree  
+Invalid clock redefinition on a clock tree. The primary clock display_port_i/clk_wiz/inst/clk_in1 is defined downstream of clock clk_pl_0 and overrides its insertion delay and/or waveform definition
+Related violations: <none>
+
+CLKC-56#1 Advisory
+MMCME4 with global clock driver has no LOC  
+The MMCME4_ADV cell display_port_i/clk_wiz/inst/mmcme4_adv_inst CLKIN1 or CLKIN2 pin is driven by global Clock buffer(s) display_port_i/zynq_ultra_ps_e_0/U0/buffer_pl_clk_0.PL_CLK_0_BUFG and does not have a LOC constraint. It is recommended to LOC the MMCM and use the CLOCK_DEDICATED_ROUTE constraint on the net(s) driven by the global Clock buffer(s).
+Related violations: <none>
+
+

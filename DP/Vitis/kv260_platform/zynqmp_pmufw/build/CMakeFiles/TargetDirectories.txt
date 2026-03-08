@@ -1,0 +1,4 @@
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_pmufw/build/CMakeFiles/pmufw.elf.dir
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_pmufw/build/CMakeFiles/print_build_info.dir
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_pmufw/build/CMakeFiles/edit_cache.dir
+D:/Repos/_DP/DP/Vitis/kv260_platform/zynqmp_pmufw/build/CMakeFiles/rebuild_cache.dir

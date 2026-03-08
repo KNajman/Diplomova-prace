@@ -38,9 +38,9 @@ entity RGB2YUV is
         DATA_WIDTH       : natural range 8 to 16 := 8; -- Bitová šířka jedné barvy
         
         -- Přesnost desetinných koeficientu (tzv. fractional bits).
-        -- Doporučená hodnota pro Xilinx DSP48 (18-bitový vstup) je 16.
+        -- Doporučená hodnota pro Xilinx DSP48 (18-bitový vstup) je 16. TODO: UltraScale+ DPS
         -- 0.587 * 2^16 = 38470, což se krásně vejde do 18-bit znaménkového koeficientu.
-        COEFF_FRACT_BITS : natural range 8 to 20 := 8,
+        COEFF_FRACT_BITS : natural range 8 to 20 := 8;
         
         COLOR_STANDARD   : color_std_t := BT_601 -- Výběr barevného standardu: "BT_601", "BT_709", nebo "BT_2020"
     );
@@ -170,6 +170,10 @@ begin
         variable r_s : sfixed(DATA_WIDTH downto 0);
         variable g_s : sfixed(DATA_WIDTH downto 0);
         variable b_s : sfixed(DATA_WIDTH downto 0);
+        
+        variable y_res : sfixed(DATA_WIDTH downto 0);
+        variable u_res : sfixed(DATA_WIDTH downto 0);
+        variable v_res : sfixed(DATA_WIDTH downto 0);
     begin
         if rising_edge(clk) then
             if rst = '1' then
@@ -230,11 +234,38 @@ begin
                 if valid_pipe(2) = '1' then
                     -- to_ufixed() elegantně provede ořez na rozsah (DATA_WIDTH-1 downto 0) 
                     -- s využitím standardizovaného zaokrouhlení a ošetření přetečení/podtečení.
-                    yuv_out_reg(DATA_WIDTH * 3 - 1 downto DATA_WIDTH * 2) <= to_slv(to_ufixed(y_mac_reg, DATA_WIDTH - 1, 0, fixed_round, fixed_saturate));
-                    yuv_out_reg(DATA_WIDTH * 2 - 1 downto DATA_WIDTH)     <= to_slv(to_ufixed(u_mac_reg, DATA_WIDTH - 1, 0, fixed_round, fixed_saturate));
-                    yuv_out_reg(DATA_WIDTH - 1 downto 0)                  <= to_slv(to_ufixed(v_mac_reg, DATA_WIDTH - 1, 0, fixed_round, fixed_saturate));
-                end if;
+                    -- yuv_out_reg(DATA_WIDTH * 3 - 1 downto DATA_WIDTH * 2) <= to_slv(to_ufixed(y_mac_reg, DATA_WIDTH - 1, 0, fixed_round, fixed_saturate));
+                    -- yuv_out_reg(DATA_WIDTH * 2 - 1 downto DATA_WIDTH)     <= to_slv(to_ufixed(u_mac_reg, DATA_WIDTH - 1, 0, fixed_round, fixed_saturate));
+                    -- yuv_out_reg(DATA_WIDTH - 1 downto 0)                  <= to_slv(to_ufixed(v_mac_reg, DATA_WIDTH - 1, 0, fixed_round, fixed_saturate));
 
+                    -- 1. Krok: Zaokrouhlení a saturace na sfixed(8 downto 0)
+                    -- Funkce resize s parametrem fixed_saturate ořeže hodnoty > 255 přesně na +255.
+                    y_res := resize(y_mac_reg, DATA_WIDTH, 0, overflow_style => fixed_saturate, round_style => fixed_round);
+                    u_res := resize(u_mac_reg, DATA_WIDTH, 0, overflow_style => fixed_saturate, round_style => fixed_round);
+                    v_res := resize(v_mac_reg, DATA_WIDTH, 0, overflow_style => fixed_saturate, round_style => fixed_round);
+
+                    -- 2. Krok: Kontrola podtečení (záporných hodnot) a převod na std_logic_vector
+                    -- Y složka
+                    if y_res(DATA_WIDTH) = '1' then -- Test znaménkového bitu (je-li '1', číslo je záporné)
+                        yuv_out_reg(DATA_WIDTH * 3 - 1 downto DATA_WIDTH * 2) <= (others => '0');
+                    else
+                        yuv_out_reg(DATA_WIDTH * 3 - 1 downto DATA_WIDTH * 2) <= to_slv(y_res(DATA_WIDTH - 1 downto 0));
+                    end if;
+
+                    -- U složka
+                    if u_res(DATA_WIDTH) = '1' then
+                        yuv_out_reg(DATA_WIDTH * 2 - 1 downto DATA_WIDTH) <= (others => '0');
+                    else
+                        yuv_out_reg(DATA_WIDTH * 2 - 1 downto DATA_WIDTH) <= to_slv(u_res(DATA_WIDTH - 1 downto 0));
+                    end if;
+
+                    -- V složka
+                    if v_res(DATA_WIDTH) = '1' then
+                        yuv_out_reg(DATA_WIDTH - 1 downto 0) <= (others => '0');
+                    else
+                        yuv_out_reg(DATA_WIDTH - 1 downto 0) <= to_slv(v_res(DATA_WIDTH - 1 downto 0));
+                    end if;
+                end if;
             end if;
         end if;
     end process;
