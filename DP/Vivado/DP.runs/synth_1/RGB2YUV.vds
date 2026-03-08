@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Mon Mar  2 21:50:10 2026
-# Process ID         : 22084
+# Start of session at: Fri Mar  6 01:40:28 2026
+# Process ID         : 28556
 # Current directory  : D:/Repos/_DP/DP/Vivado/DP.runs/synth_1
 # Command line       : vivado.exe -log RGB2YUV.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source RGB2YUV.tcl
 # Log file           : D:/Repos/_DP/DP/Vivado/DP.runs/synth_1/RGB2YUV.vds
@@ -19,15 +19,15 @@
 # Host memory        : 12723 MB
 # Swap memory        : 11811 MB
 # Total Virtual      : 24534 MB
-# Available Virtual  : 2884 MB
+# Available Virtual  : 2782 MB
 #-----------------------------------------------------------
 source RGB2YUV.tcl -notrace
-create_project: Time (s): cpu = 00:00:29 ; elapsed = 00:00:35 . Memory (MB): peak = 531.199 ; gain = 218.594
+create_project: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 530.273 ; gain = 217.137
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Repos/_DP/DP/ip_repo'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/najma/AppData/Roaming/Xilinx/ip_repo'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDDesignTools/2025.2/Vivado/data/ip'.
-update_ip_catalog: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 535.148 ; gain = 3.949
+update_ip_catalog: Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 537.516 ; gain = 7.242
 Command: read_checkpoint -auto_incremental -incremental D:/Repos/_DP/DP/Vivado/DP.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from D:/Repos/_DP/DP/Vivado/DP.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -35,63 +35,55 @@ Command: synth_design -top RGB2YUV -part xck26-sfvc784-2LV-c
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xck26'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 25396
+INFO: [Synth 8-7075] Helper process launched with PID 11220
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:15 ; elapsed = 00:00:21 . Memory (MB): peak = 1084.660 ; gain = 534.184
+Starting Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 1082.066 ; gain = 533.379
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'RGB2YUV' [D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/RGB2YUV.vhd:44]
-INFO: [Synth 8-256] done synthesizing module 'RGB2YUV' (0#1) [D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/RGB2YUV.vhd:44]
+INFO: [Synth 8-638] synthesizing module 'RGB2YUV' [D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/RGB2YUV.vhd:61]
+INFO: [Synth 8-256] done synthesizing module 'RGB2YUV' (0#1) [D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/RGB2YUV.vhd:61]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:20 ; elapsed = 00:00:27 . Memory (MB): peak = 1207.355 ; gain = 656.879
+Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1219.523 ; gain = 670.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1207.355 ; gain = 656.879
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1219.523 ; gain = 670.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xck26-sfvc784-2LV-c
+INFO: [Device 21-403] Loading part xck26-sfvc784-2LV-c
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-INFO: [Device 21-403] Loading part xck26-sfvc784-2LV-c
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1207.355 ; gain = 656.879
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1219.523 ; gain = 670.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Start Preparing Guide Design
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 1219.523 ; gain = 670.836
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6895] The reference checkpoint D:/Repos/_DP/DP/Vivado/DP.srcs/utils_1/imports/synth_1/design_1_wrapper.dcp is not suitable for use with incremental synthesis for this design. Please regenerate the checkpoint for this design with -incremental_synth switch in the same Vivado session that synth_design has been run. Synthesis will continue with the default flow
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1207.355 ; gain = 656.879
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1207.355 ; gain = 656.879
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:32 . Memory (MB): peak = 1207.355 ; gain = 656.879
----------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : 
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   21 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 3     
 +---Registers : 
 	               24 Bit    Registers := 1     
+	               20 Bit    Registers := 3     
+	               17 Bit    Registers := 2     
+	               15 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input   24 Bit        Muxes := 5     
-	   2 Input    8 Bit        Muxes := 2     
+	   2 Input   24 Bit        Muxes := 3     
+	   2 Input   20 Bit        Muxes := 8     
+	   2 Input    9 Bit        Muxes := 15    
+	   3 Input    9 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -108,69 +100,21 @@ No constraint files found.
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-DSP Report: Generating DSP plusOp, operation Mode is: C+(A:0x3fffeb2f)*B.
-DSP Report: operator plusOp is absorbed into DSP plusOp.
-DSP Report: operator ARG is absorbed into DSP plusOp.
-DSP Report: Generating DSP plusOp, operation Mode is: PCIN+(A:0x3fff94d1)*B.
-DSP Report: operator plusOp is absorbed into DSP plusOp.
-DSP Report: operator ARG is absorbed into DSP plusOp.
-DSP Report: Generating DSP plusOp, operation Mode is: C+(A:0x3fffd4ce)*B.
-DSP Report: operator plusOp is absorbed into DSP plusOp.
-DSP Report: operator ARG is absorbed into DSP plusOp.
-DSP Report: Generating DSP plusOp, operation Mode is: PCIN+(A:0x3fffab32)*B.
-DSP Report: operator plusOp is absorbed into DSP plusOp.
-DSP Report: operator ARG is absorbed into DSP plusOp.
-DSP Report: Generating DSP ARG, operation Mode is: (A:0x1d2f)*B.
-DSP Report: operator ARG is absorbed into DSP ARG.
-DSP Report: Generating DSP yuv_out_reg0, operation Mode is: PCIN+(A:0x4c8b)*B.
-DSP Report: operator yuv_out_reg0 is absorbed into DSP yuv_out_reg0.
-DSP Report: operator ARG is absorbed into DSP yuv_out_reg0.
-DSP Report: Generating DSP yuv_out_reg0, operation Mode is: PCIN+(A:0x9646)*B.
-DSP Report: operator yuv_out_reg0 is absorbed into DSP yuv_out_reg0.
-DSP Report: operator ARG is absorbed into DSP yuv_out_reg0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:01:48 . Memory (MB): peak = 2026.762 ; gain = 1476.285
----------------------------------------------------------------------------------
- Sort Area is  ARG_5 : 0 0 : 438 1546 : Used 1 time 0
- Sort Area is  ARG_5 : 0 1 : 573 1546 : Used 1 time 0
- Sort Area is  ARG_5 : 0 2 : 535 1546 : Used 1 time 0
- Sort Area is  plusOp_3 : 0 0 : 647 1141 : Used 1 time 0
- Sort Area is  plusOp_3 : 0 1 : 494 1141 : Used 1 time 0
- Sort Area is  plusOp_0 : 0 0 : 528 1022 : Used 1 time 0
- Sort Area is  plusOp_0 : 0 1 : 494 1022 : Used 1 time 0
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+------------+-----------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping           | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+-----------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|RGB2YUV     | C+(A:0x3fffeb2f)*B    | 9      | 14     | 26     | -      | 29     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+(A:0x3fff94d1)*B | 16     | 9      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | C+(A:0x3fffd4ce)*B    | 9      | 15     | 26     | -      | 29     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+(A:0x3fffab32)*B | 16     | 9      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | (A:0x1d2f)*B          | 9      | 14     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+(A:0x4c8b)*B     | 16     | 9      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+(A:0x9646)*B     | 17     | 9      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+------------+-----------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-
-Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:54 . Memory (MB): peak = 2023.289 ; gain = 1474.602
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:01:49 . Memory (MB): peak = 2026.762 ; gain = 1476.285
+Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:54 . Memory (MB): peak = 2023.289 ; gain = 1474.602
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:52 ; elapsed = 00:01:49 . Memory (MB): peak = 2026.762 ; gain = 1476.285
+Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:55 . Memory (MB): peak = 2023.289 ; gain = 1474.602
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -188,55 +132,41 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
-
-DSP Final Report (the ' indicates corresponding REG is set)
-+------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|RGB2YUV     | C+A*B       | 8      | 18     | 23     | -      | 0      | 0    | 0    | 0    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+A*B    | 30     | 8      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | C+A*B       | 8      | 18     | 23     | -      | 0      | 0    | 0    | 0    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+A*B    | 30     | 8      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | A*B         | 8      | 13     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+A*B    | 15     | 8      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|RGB2YUV     | PCIN+A*B    | 16     | 8      | -      | -      | 29     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-
 
 Report BlackBoxes: 
 +-+--------------+----------+
@@ -245,54 +175,53 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+--------+------+
-|      |Cell    |Count |
-+------+--------+------+
-|1     |BUFG    |     1|
-|2     |CARRY8  |     8|
-|3     |DSP48E2 |     7|
-|4     |LUT1    |     5|
-|5     |LUT2    |    73|
-|6     |LUT3    |     3|
-|7     |LUT4    |     8|
-|8     |LUT5    |    19|
-|9     |FDRE    |    25|
-|10    |IBUF    |    28|
-|11    |OBUF    |    26|
-+------+--------+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |    35|
+|3     |LUT1   |    15|
+|4     |LUT2   |   126|
+|5     |LUT3   |    38|
+|6     |LUT4   |    80|
+|7     |LUT5   |    57|
+|8     |LUT6   |   118|
+|9     |FDRE   |   171|
+|10    |FDSE   |    38|
+|11    |IBUF   |    28|
+|12    |OBUF   |    26|
++------+-------+------+
 
 Report Instance Areas: 
 +------+---------+-------+------+
 |      |Instance |Module |Cells |
 +------+---------+-------+------+
-|1     |top      |       |   203|
+|1     |top      |       |   733|
 +------+---------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 1 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
-Synthesis Optimization Complete : Time (s): cpu = 00:01:07 ; elapsed = 00:02:05 . Memory (MB): peak = 2195.891 ; gain = 1645.414
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
+Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 2193.078 ; gain = 1644.391
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2210.590 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 44 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2206.836 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 64 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2325.238 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2319.898 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 36 instances were transformed.
+  A total of 29 instances were transformed.
   BUFG => BUFGCE: 1 instance 
-  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 7 instances
   IBUF => IBUF (IBUFCTRL, INBUF): 28 instances
 
-Synth Design complete | Checksum: 647a0ed4
+Synth Design complete | Checksum: f32aface
 INFO: [Common 17-83] Releasing license: Synthesis
-22 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+23 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:15 ; elapsed = 00:02:33 . Memory (MB): peak = 2325.238 ; gain = 1782.074
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2325.238 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:01:10 . Memory (MB): peak = 2319.898 ; gain = 1777.012
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2319.898 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/DP.runs/synth_1/RGB2YUV.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file RGB2YUV_utilization_synth.rpt -pb RGB2YUV_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar  2 21:54:07 2026...
+INFO: [Common 17-206] Exiting Vivado at Fri Mar  6 01:43:03 2026...

@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Mar  6 18:46:28 2026
+# Process ID         : 15052
+# Current directory  : C:/DP_Proj
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent16412 C:\DP_Proj\DisplayPortTest.xpr
+# Log file           : C:/DP_Proj/vivado.log
+# Journal file       : C:/DP_Proj\vivado.jou
+# Running On         : N166A
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
+# CPU Frequency      : 2112 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 12723 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 26145 MB
+# Available Virtual  : 14521 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/DP_Proj/DisplayPortTest.xpr
+update_compile_order -fileset sources_1
+write_hw_platform -hw -include_bit -force -file C:/DP_Proj/display_port_wrapper.xsa
+set_property pfm_name {Xillinx:kv260:Kria:0.0} [get_files -all {C:/DP_Proj/DisplayPortTest.srcs/sources_1/bd/display_port/display_port.bd}]
+set_property platform.uses_pr {true} [current_project]
+file mkdir C:/DP_Proj
+write_hw_platform -hw -include_bit -force -file C:/DP_Proj/display_port_wrapper.xsa
+upgrade_project -migrate_to_inline_hdl
+set_property pfm_name {Xillinx:kv260:Kria:0.0} [get_files -all {C:/DP_Proj/DisplayPortTest.srcs/sources_1/bd/display_port/display_port.bd}]
+set_property platform.uses_pr {true} [current_project]
+file mkdir C:/DP_Proj
+write_hw_platform -hw -include_bit -force -file C:/DP_Proj/display_port_wrapper.xsa
+write_hw_platform -hw -include_bit -force -file C:/XSA_Export/display_port_wrapper.xsa
+write_hw_platform -hw -include_bit -force -file C:/XSA_Export/display_port_wrapper.xsa

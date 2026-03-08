@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="MPSoC_ext_platform_part_axi_intc_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_axi_intc_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_axi_smartconnect_lpd_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_axi_smartconnect_lpd_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_axi_vip_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_axi_vip_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_axi_vip_1_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_axi_vip_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="MPSoC_ext_platform_part_axi_vip_0_0_synth_1"/>
+	</Run>
+	<Run Id="MPSoC_ext_platform_part_axi_vip_pltf_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_axi_vip_pltf_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_clk_wiz_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_clk_wiz_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_proc_sys_reset_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_proc_sys_reset_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_proc_sys_reset_1_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_proc_sys_reset_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_proc_sys_reset_2_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_proc_sys_reset_2_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_ps_e_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_ps_e_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_smartconnect_axifull_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_smartconnect_axifull_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_smartconnect_axihpm0fpd_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_smartconnect_axihpm0fpd_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="MPSoC_ext_platform_part_smartconnect_axilite_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/DisplayPortTest/DisplayPortTest.runs/MPSoC_ext_platform_part_smartconnect_axilite_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+		<Parameter Name="general.shortenLongPath" Val="true" Type="bool"/>
+		<Parameter Name="general.usePosixSpawnForFork" Val="true" Type="bool"/>
+	</Parameters>
+	<ProductInfo Name="vivado"/>
+</Runs>
+
