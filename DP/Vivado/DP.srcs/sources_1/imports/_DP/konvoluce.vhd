@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all; -- Knihovna není syntetizovatelná, v návrhu pouze pro výpočet konstant pro log2 a ceil
 
-entity generic_2D_convolution is
+entity generická_2d_konvoluce is
     generic(
         IMAGE_WIDTH   : natural := 10; -- Počet sloupců (cols) - délka řádku
         IMAGE_HEIGHT  : natural := 10; -- Počet řádků (rows) - nutné pro počítání konce snímku
@@ -32,9 +32,9 @@ entity generic_2D_convolution is
         pixel_out_valid : out std_logic; -- Signál pro validitu výstupního pixelu
         pixel_out_ready : in  std_logic -- Signál od master zařízení, že je připraveno přijmout další pixel
     );
-end entity generic_2D_convolution;
+end entity generická_2d_konvoluce;
 
-architecture Behavioral of generic_2D_convolution is
+architecture Behavioral of generická_2d_konvoluce is
 
     -- KONSTANTY PRO DYNAMICKÝ VÝPOČET ROZMĚRŮ A ŠÍŘEK
 
