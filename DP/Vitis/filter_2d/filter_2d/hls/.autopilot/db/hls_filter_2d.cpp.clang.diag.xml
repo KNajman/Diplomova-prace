@@ -1,0 +1,21 @@
+<dict>
+  <key>main-file</key>
+  <string>hls_filter_2d.cpp</string>
+  <key>diagnostics</key>
+  <array>
+    <dict>
+      <key>level</key>
+      <string>fatal error</string>
+      <key>filename</key>
+      <string>hls_filter_2d.cpp</string>
+      <key>line</key>
+      <integer>1</integer>
+      <key>column</key>
+      <integer>10</integer>
+      <key>message</key>
+      <string>&apos;vybrane_algoritmy.hpp&apos; file not found</string>
+      <key>ID</key>
+      <integer>974</integer>
+    </dict>
+  </array>
+</dict>

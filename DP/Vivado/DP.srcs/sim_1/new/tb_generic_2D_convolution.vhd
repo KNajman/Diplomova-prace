@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
+use work.dp_pkg.all;
 
 entity tb_generic_2D_convolution is
     -- Testbench nemá porty
@@ -147,7 +148,7 @@ begin
             PADDING_VALUE => 0
         )
         port map(
-            aclk             => clk,
+            clk             => clk,
             rst             => rst,
             pixel_in        => in_pixel_3x3,
             pixel_in_valid  => in_valid_3x3,
@@ -248,7 +249,7 @@ begin
             input_image(i) <= integer(round(rand_real * 255.0));
         end loop;
 
-        wait for 1 ns;
+        wait for 10 ns;
 
         -- B) Není potřeba žádné speciální úpravy pro identitu, očekáváme stejný obrázek jako výstup
         expected_image <= sw_convolution_3x3(input_image, 10, 10, KERNEL_3x3_IDENTITY);
@@ -257,6 +258,7 @@ begin
 
         -- C) Nasypeme data do RTL hardwaru
         push_image;
+        wait for 1 ns;
         wait_for_check;
 
         -- =====================================================================

@@ -1,0 +1,38 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.662144",
+   "Default View_TopLeft":"-82,3",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace inst DataMover -pg 1 -lvl 2 -x 700 -y 380 -defaultsOSRD
+preplace inst ZYNEK -pg 1 -lvl 2 -x 700 -y 620 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 190 -y 270 -defaultsOSRD
+preplace inst CDMA -pg 1 -lvl 4 -x 1540 -y 550 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 3 -x 1200 -y 340 -defaultsOSRD
+preplace inst rst_ZYNEK_99M -pg 1 -lvl 1 -x 190 -y 620 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 4 -x 1540 -y 160 -defaultsOSRD
+preplace inst axi_dma_1 -pg 1 -lvl 4 -x 1540 -y 390 -defaultsOSRD
+preplace netloc ZYNEK_pl_resetn0 1 0 3 10 510 370J 730 1000
+preplace netloc rst_ZYNEK_99M_peripheral_aresetn 1 1 3 380 220 1010 220 1340
+preplace netloc clk_wiz_0_clk_out1 1 1 1 390 250n
+preplace netloc clk_wiz_0_clk_out2 1 1 3 400 210 1040 210 1370
+preplace netloc ZYNEK_pl_clk0 1 0 3 20 520 360 720 1060
+preplace netloc ZYNEK_M_AXI_HPM1_FPD 1 2 1 1020 280n
+preplace netloc axi_smc_M00_AXI 1 3 1 1360 320n
+preplace netloc axi_smc_M01_AXI 1 3 1 1350 90n
+preplace netloc axi_smc_M02_AXI 1 3 1 N 360
+preplace netloc DataMover_M_AXI_MM2S 1 2 1 1000 300n
+preplace netloc DataMover_M_AXI_S2MM 1 2 1 1030 320n
+preplace netloc ZYNEK_M_AXI_HPM0_FPD 1 2 1 1050 340n
+levelinfo -pg 1 -10 190 700 1200 1540 1710
+pagesize -pg 1 -db -bbox -sgen -10 0 1710 840
+"
+}
+{
+   "da_axi4_cnt":"6",
+   "da_board_cnt":"4",
+   "da_clkrst_cnt":"4",
+   "da_mb_cnt":"2",
+   "da_zynq_ultra_ps_e_cnt":"2"
+}

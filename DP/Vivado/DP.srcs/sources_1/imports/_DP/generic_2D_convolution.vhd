@@ -1,17 +1,19 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.conv_pkg.all;
+use work.dp_pkg.all;
 
 entity generic_2D_convolution is
     generic(
-        DATA_WIDTH   : natural range 1 to 4096 := 640; -- Bitová šířka jedné barvy
-        IMAGE_HEIGHT : natural range 1 to 4096 := 480;
+        IMAGE_WIDTH   : natural := 10; -- Bitová šířka jedné barvy
+        IMAGE_HEIGHT : natural := 10;
+        PIXEL_WIDTH  : positive := 8;
+
         KERNEL_SIZE  : natural := 3;
-        PIXEL_WIDTH  : natural := 8;
-        KERNEL_WIDTH : natural := 8;
+        KERNEL_WIDTH : positive := 8;
+
         MODE         : string  := "SAME"; 
-        BORDER_VALUE : natural := 0
+        PADDING_VALUE : natural := 0
     );
     port(
         clk             : in  std_logic;
@@ -24,6 +26,7 @@ entity generic_2D_convolution is
         
         -- Kernel Input (AXI rozhraní musí být vždy 1D vektor)
         kernel_in       : in  std_logic_vector((KERNEL_SIZE * KERNEL_SIZE * KERNEL_WIDTH) - 1 downto 0);
+        -- kernel_in     : in  signed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(KERNEL_WIDTH - 1 downto 0); -- IGNORE: Původní port, který jsme nahradili vektorem pro AXI
         
         -- AXI-Stream Output
         pixel_out       : out std_logic_vector(PIXEL_WIDTH - 1 downto 0);
@@ -32,7 +35,7 @@ entity generic_2D_convolution is
     );
 end entity generic_2D_convolution;
 
-architecture Behavioral of generic_2D_convolution is
+architecture RTL of generic_2D_convolution is
 
     -- Konstanty z balíčku
     constant MAX_C : natural := get_max_dim(IMAGE_WIDTH, KERNEL_SIZE, MODE);
@@ -56,19 +59,24 @@ architecture Behavioral of generic_2D_convolution is
 
 begin
 
-    -- Dekódování 1D vstupu pro jádro do 2D matice (provede se pouze v TOPu)
+    ----------------------------------------------------------------------------
+    -- PŘEVOD vektoru kernel_in do 2D matice kernel_2d
+    ----------------------------------------------------------------------------
+
     process(kernel_in)
-        variable idx : natural;
+    variable idx : natural range 0 to (KERNEL_SIZE * KERNEL_SIZE) - 1;
     begin
         for r in 0 to KERNEL_SIZE - 1 loop
             for c in 0 to KERNEL_SIZE - 1 loop
                 idx := r * KERNEL_SIZE + c;
-                kernel_2d(r, c) <= signed(kernel_in((idx + 1) * KERNEL_WIDTH - 1 downto idx * KERNEL_WIDTH));
+               kernel_2d(r, c) <= signed(kernel_in((idx + 1) * KERNEL_WIDTH - 1 downto idx * KERNEL_WIDTH));
             end loop;
         end loop;
     end process;
 
-    -- Logika detekce reálných pixelů vs Padding
+    ----------------------------------------------------------------------------
+    -- PADDING LOGIKA a detekce reálných pixelů
+     ---------------------------------------------------------------------------
     process(r_cnt, c_cnt)
     begin
         if MODE = "SAME" then
@@ -79,7 +87,7 @@ begin
                 is_real_pixel <= '0';
             end if;
         else
-            is_real_pixel <= '1';
+            is_real_pixel <= '1';-- Ve "VALID" módu jsou všechny zpracovávané pixely reálné (žádný padding)
         end if;
     end process;
 
@@ -93,7 +101,12 @@ begin
             elsif pipeline_en = '1' then
                 if c_cnt = MAX_C - 1 then
                     c_cnt <= 0;
-                    if r_cnt = MAX_R - 1 then r_cnt <= 0; else r_cnt <= r_cnt + 1; end if;
+                    
+                    if r_cnt = MAX_R - 1 then
+                        r_cnt <= 0;
+                    else
+                        r_cnt <= r_cnt + 1;
+                    end if;
                 else
                     c_cnt <= c_cnt + 1;
                 end if;
@@ -101,7 +114,10 @@ begin
         end if;
     end process;
 
-    -- AXI-Stream Handshake
+    -- =========================================================================
+    -- Řízení toku dat (AXI-Stream Handshake)
+    -- =========================================================================
+
     pipeline_en <= '1' when (pixel_out_ready = '1' or mac_out_valid = '0') and 
                             (is_real_pixel = '0' or pixel_in_valid = '1') else '0';
                             
@@ -115,7 +131,7 @@ begin
             KERNEL_SIZE  => KERNEL_SIZE,
             PIXEL_WIDTH  => PIXEL_WIDTH,
             MODE         => MODE,
-            BORDER_VALUE => BORDER_VALUE
+            PADDING_VALUE => PADDING_VALUE
         )
         port map(
             clk             => clk,
@@ -132,7 +148,7 @@ begin
         generic map(
             KERNEL_SIZE  => KERNEL_SIZE,
             PIXEL_WIDTH  => PIXEL_WIDTH,
-            KERNEL_WIDTH => KERNEL_WIDTH
+            KERNEL_PIXEL_WIDTH => KERNEL_WIDTH
         )
         port map(
             clk             => clk,
@@ -147,20 +163,5 @@ begin
 
     -- Výstup z TOP modulu
     pixel_out <= mac_out_pixel;
-    
-    process(clk)
-    begin
-        if rising_edge(clk) then
-            if rst = '1' then
-                pixel_out_valid <= '0';
-            else
-                if pipeline_en = '1' then
-                    pixel_out_valid <= mac_out_valid;
-                elsif pixel_out_ready = '1' then
-                    pixel_out_valid <= '0';
-                end if;
-            end if;
-        end if;
-    end process;
-
-end Behavioral;
+    pixel_out_valid <= mac_out_valid;
+end RTL;
