@@ -1,0 +1,172 @@
+
+
+================================================================
+== Vitis HLS Report for 'hls_color_space_convert_top'
+================================================================
+* Date:           Sat Mar 28 14:30:09 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 14 2025)
+* Project:        hls_color_space_convert
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xck26-sfvc784-2LV-c
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.420 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------------+--------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                       |                                            |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                        Instance                       |                   Module                   |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-------------------------------------------------------+--------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_hls_color_space_convert_template_3_8_3_8_s_fu_176  |hls_color_space_convert_template_3_8_3_8_s  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +-------------------------------------------------------+--------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|       2|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        0|    12|    1010|    1309|    0|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       0|      44|    -|
+|Register         |        -|     -|     293|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|    12|    1303|    1355|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |      288|  1248|  234240|  117120|   64|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|    ~0|      ~0|       1|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+    |                        Instance                       |                   Module                   | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+    |control_s_axi_U                                        |control_s_axi                               |        0|   0|  376|  552|    0|
+    |grp_hls_color_space_convert_template_3_8_3_8_s_fu_176  |hls_color_space_convert_template_3_8_3_8_s  |        0|  12|  634|  757|    0|
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                  |                                            |        0|  12| 1010| 1309|    0|
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                               Variable Name                               | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |grp_hls_color_space_convert_template_3_8_3_8_s_fu_176_m_axis_video_TREADY  |       and|   0|  0|   2|           1|           1|
+    +---------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                                      |          |   0|  0|   2|           1|           1|
+    +---------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  26|          5|    1|          5|
+    |m_axis_video_TDATA_int_regslice   |   9|          2|   32|         64|
+    |s_axis_video_TREADY_int_regslice  |   9|          2|    1|          2|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  44|          9|   34|         71|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+    |                                Name                                | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                           |   4|   0|    4|          0|
+    |coeffs_0_0_read_reg_222                                             |  16|   0|   16|          0|
+    |coeffs_0_1_read_reg_227                                             |  16|   0|   16|          0|
+    |coeffs_0_2_read_reg_232                                             |  16|   0|   16|          0|
+    |coeffs_1_0_read_reg_237                                             |  16|   0|   16|          0|
+    |coeffs_1_1_read_reg_242                                             |  16|   0|   16|          0|
+    |coeffs_1_2_read_reg_247                                             |  16|   0|   16|          0|
+    |coeffs_2_0_read_reg_252                                             |  16|   0|   16|          0|
+    |coeffs_2_1_read_reg_257                                             |  16|   0|   16|          0|
+    |coeffs_2_2_read_reg_262                                             |  16|   0|   16|          0|
+    |grp_hls_color_space_convert_template_3_8_3_8_s_fu_176_ap_start_reg  |   1|   0|    1|          0|
+    |height_read_reg_212                                                 |  32|   0|   32|          0|
+    |m_axis_video_TDATA_reg                                              |  32|   0|   32|          0|
+    |offsets_0_read_reg_267                                              |  16|   0|   16|          0|
+    |offsets_1_read_reg_272                                              |  16|   0|   16|          0|
+    |offsets_2_read_reg_277                                              |  16|   0|   16|          0|
+    |width_read_reg_217                                                  |  32|   0|   32|          0|
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                               | 293|   0|  293|          0|
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+-----------------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |        Source Object        |    C Type    |
++-----------------------+-----+-----+------------+-----------------------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|                      control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|                      control|        scalar|
+|s_axi_control_AWADDR   |   in|    7|       s_axi|                      control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|                      control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|                      control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|                      control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|                      control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|                      control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|                      control|        scalar|
+|s_axi_control_ARADDR   |   in|    7|       s_axi|                      control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|                      control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|                      control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|                      control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|                      control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|                      control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|                      control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|                      control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|  hls_color_space_convert_top|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|  hls_color_space_convert_top|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|  hls_color_space_convert_top|  return value|
+|s_axis_video_TDATA     |   in|   32|        axis|                 s_axis_video|       pointer|
+|s_axis_video_TVALID    |   in|    1|        axis|                 s_axis_video|       pointer|
+|s_axis_video_TREADY    |  out|    1|        axis|                 s_axis_video|       pointer|
+|m_axis_video_TDATA     |  out|   32|        axis|                 m_axis_video|       pointer|
+|m_axis_video_TVALID    |  out|    1|        axis|                 m_axis_video|       pointer|
+|m_axis_video_TREADY    |   in|    1|        axis|                 m_axis_video|       pointer|
++-----------------------+-----+-----+------------+-----------------------------+--------------+
+

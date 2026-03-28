@@ -1,0 +1,59 @@
+<pragmas>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<48, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<16, true>::RType<8, false>::mult operator*<16, true, 8, false>(ap_int_base<16, true> const&, ap_int_base<8, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool operator><48, true>(ap_int_base<48, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<49, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<8>::ap_uint<48>(ap_int<48> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<48>::ap_int(int)" off="0" region="0" recursive="0"/>
+<pragma file="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\etc/ap_common.h" line="530" pragmaType="inline" parentfunction="ssdm_int<8, false>::ssdm_int(unsigned char)" off="0" region="0" recursive="0"/>
+<pragma file="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\etc/ap_common.h" line="522" pragmaType="inline" parentfunction="ssdm_int<32, true>::ssdm_int(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool operator<<48, true>(ap_int_base<48, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, false>::ap_int_base<48, true>(ap_int_base<48, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<48>::ap_int<48, true>(ap_int_base<48, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<24, true>::ap_int_base<16, true>(ap_int_base<16, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<24, true>::ap_int_base<8, false>(ap_int_base<8, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<1>::ap_uint(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_int_base<48, true>::operator><32, true>(ap_int_base<32, true> const&) const" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<48, true>::ap_int_base<49, true>(ap_int_base<49, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\etc/ap_common.h" line="522" pragmaType="inline" parentfunction="_ZN8ssdm_intILi48ELb1EEC2EDB48_" off="0" region="0" recursive="0"/>
+<pragma file="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\etc/ap_common.h" line="530" pragmaType="inline" parentfunction="_ZN8ssdm_intILi1ELb0EEC2EDU1_" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<48>::ap_int<49>(ap_int<49> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<24>::ap_int<24, true>(ap_int_base<24, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\etc/ap_common.h" line="522" pragmaType="inline" parentfunction="_ZN8ssdm_intILi24ELb1EEC2EDB24_" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_int_base<48, true>::operator<<32, true>(ap_int_base<32, true> const&) const" off="0" region="0" recursive="0"/>
+<pragma file="hls_color_space_convert.cpp" line="129" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="axis" port="s_axis_video" register="1" register_mode="both" name="" depth="-1"/>
+<pragma file="hls_color_space_convert.cpp" line="130" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="axis" port="m_axis_video" register="1" register_mode="both" name="" depth="-1"/>
+<pragma file="hls_color_space_convert.cpp" line="134" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="s_axilite" port="coeffs" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="hls_color_space_convert.cpp" line="135" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="s_axilite" port="offsets" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="hls_color_space_convert.cpp" line="136" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="s_axilite" port="width" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="hls_color_space_convert.cpp" line="137" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="s_axilite" port="height" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="hls_color_space_convert.cpp" line="143" pragmaType="interface" parentfunction="hls_color_space_convert_top" mode="s_axilite" port="" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="hls_color_space_convert.cpp" line="62" pragmaType="pipeline" parentfunction="hls_color_space_convert_template" off="0" ii="1" rewind="0" style=""/>
+<pragma file="hls_color_space_convert.cpp" line="72" pragmaType="unroll" parentfunction="hls_color_space_convert_template" factor="-1" skip_exit_check="0"/>
+<pragma file="hls_color_space_convert.cpp" line="39" pragmaType="aggregate" parentfunction="hls_color_space_convert_template" compact="1" variable="in_stream"/>
+<pragma file="hls_color_space_convert.cpp" line="40" pragmaType="aggregate" parentfunction="hls_color_space_convert_template" compact="1" variable="out_stream"/>
+<pragma file="hls_color_space_convert.cpp" line="44" pragmaType="array_partition" parentfunction="hls_color_space_convert_template" dim="0" factor="0" mode="complete" dynamic="0" variable="coeffs"/>
+<pragma file="hls_color_space_convert.cpp" line="45" pragmaType="array_partition" parentfunction="hls_color_space_convert_template" dim="1" factor="0" mode="complete" dynamic="0" variable="offsets"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<48, true>::RType<48, true>::arg1 operator>><48, true>(ap_int_base<48, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<24, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<1, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<49>::ap_int<49, true>(ap_int_base<49, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="write" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<48, true>::RType<16, true>::plus operator+<48, true, 16, true>(ap_int_base<48, true> const&, ap_int_base<16, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<49, true>::ap_int_base<48, true>(ap_int_base<48, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<49, true>::ap_int_base<16, true>(ap_int_base<16, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\etc/ap_common.h" line="522" pragmaType="inline" parentfunction="_ZN8ssdm_intILi49ELb1EEC2EDB49_" off="0" region="0" recursive="0"/>
+<pragma file="./hls_color_space_convert.hpp" line="40" pragmaType="inline" parentfunction="color_pixel<3, 8>::color_pixel()" off="0" region="0" recursive="0"/>
+<pragma file="./hls_color_space_convert.hpp" line="42" pragmaType="unroll" parentfunction="color_pixel<3, 8>::color_pixel()" factor="-1" skip_exit_check="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<8>::ap_uint(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<48, true>& ap_int_base<48, true>::operator+=<24, true>(ap_int_base<24, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+</pragmas>
