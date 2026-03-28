@@ -1,0 +1,1 @@
+xsim {hls_color_space_convert_top} -testplusarg UVM_VERBOSITY=UVM_NONE -testplusarg UVM_TESTNAME=hls_color_space_convert_top_test_lib -testplusarg UVM_TIMEOUT=20000000000000 -autoloadwcfg -tclbatch {hls_color_space_convert_top.tcl}
