@@ -1,0 +1,1231 @@
+<profile>
+    <ReportVersion>
+        <Version>2025.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>zynquplus</ProductFamily>
+        <Part>xck26-sfvc784-2LV-c</Part>
+        <TopModelName>hls_filter_2d</TopModelName>
+        <TargetClockPeriod>10.00</TargetClockPeriod>
+        <ClockUncertainty>2.70</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>no</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>6.716</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>15</Best-caseLatency>
+            <Average-caseLatency>33554446</Average-caseLatency>
+            <Worst-caseLatency>67108878</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.150 us</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.336 sec</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.671 sec</Worst-caseRealTimeLatency>
+            <Interval-min>16</Interval-min>
+            <Interval-max>67108879</Interval-max>
+            <PerformancePragma>-</PerformancePragma>
+        </SummaryOfOverallLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>hls_filter_2d.cpp:7</SourceLocation>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>16</BRAM_18K>
+            <DSP>19</DSP>
+            <FF>2603</FF>
+            <LUT>3184</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>288</BRAM_18K>
+            <DSP>1248</DSP>
+            <FF>234240</FF>
+            <LUT>117120</LUT>
+            <URAM>64</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>s_axi_control_AWVALID</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_AWREADY</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_AWADDR</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>9</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_WVALID</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_WREADY</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_WDATA</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_WSTRB</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>4</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_ARVALID</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_ARREADY</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_ARADDR</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>9</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_RVALID</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_RREADY</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_RDATA</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_RRESP</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>2</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_BVALID</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_BREADY</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axi_control_BRESP</name>
+            <Object>control</Object>
+            <Type>scalar</Type>
+            <IOProtocol>s_axi</IOProtocol>
+            <Dir>out</Dir>
+            <Bits>2</Bits>
+            <Attribute>unknown</Attribute>
+            <CType>int</CType>
+            <HasCtrl>1</HasCtrl>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>hls_filter_2d</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst_n</name>
+            <Object>hls_filter_2d</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>interrupt</name>
+            <Object>hls_filter_2d</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>unknown</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_video_TDATA</name>
+            <Object>s_axis_video</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>24</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_video_TVALID</name>
+            <Object>s_axis_video</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_video_TREADY</name>
+            <Object>s_axis_video</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>m_axis_video_TDATA</name>
+            <Object>m_axis_video</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>24</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>m_axis_video_TVALID</name>
+            <Object>m_axis_video</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>m_axis_video_TREADY</name>
+            <Object>m_axis_video</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="3">
+            <ModuleName>hls_filter_2d</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364</InstName>
+                    <ModuleName>hls_filter_2d_Pipeline_VITIS_LOOP_50_1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>364</ID>
+                    <BindInstances>line_buffer_3_U line_buffer_2_U line_buffer_1_U line_buffer_U icmp_ln60_fu_774_p2 i_3_fu_780_p2 icmp_ln80_fu_819_p2 icmp_ln87_fu_828_p2 x_4_fu_833_p2 x_5_fu_839_p3 icmp_ln96_fu_786_p2 img_x_fu_1129_p2 img_y_fu_866_p2 icmp_ln111_fu_880_p2 xor_ln111_fu_885_p2 icmp_ln111_1_fu_1142_p2 xor_ln111_1_fu_1147_p2 or_ln111_fu_1153_p2 or_ln111_1_fu_891_p2 or_ln111_2_fu_1647_p2 val_58_fu_1651_p3 img_x_6_fu_1159_p2 icmp_ln111_2_fu_1172_p2 xor_ln111_2_fu_1177_p2 or_ln111_3_fu_1183_p2 or_ln111_4_fu_1659_p2 val_59_fu_1663_p3 icmp_ln111_3_fu_897_p2 xor_ln111_3_fu_1189_p2 or_ln111_5_fu_1675_p2 val_60_fu_1679_p3 img_x_7_fu_1194_p2 icmp_ln111_4_fu_1199_p2 xor_ln111_4_fu_1204_p2 or_ln111_6_fu_1691_p2 val_62_fu_1695_p3 img_x_8_fu_1210_p2 icmp_ln111_5_fu_1215_p2 xor_ln111_5_fu_1220_p2 or_ln111_7_fu_1703_p2 val_63_fu_1707_p3 img_y_6_fu_902_p2 icmp_ln111_6_fu_916_p2 xor_ln111_6_fu_921_p2 or_ln111_8_fu_927_p2 or_ln111_9_fu_1226_p2 val_64_fu_1231_p3 or_ln111_10_fu_1243_p2 val_65_fu_1248_p3 or_ln111_11_fu_1256_p2 val_66_fu_1261_p3 or_ln111_12_fu_1273_p2 val_68_fu_1278_p3 or_ln111_13_fu_1286_p2 val_69_fu_1291_p3 icmp_ln111_7_fu_933_p2 xor_ln111_7_fu_1303_p2 or_ln111_14_fu_1308_p2 val_70_fu_1314_p3 or_ln111_15_fu_1326_p2 val_71_fu_1332_p3 or_ln111_16_fu_1340_p2 val_72_fu_1346_p3 or_ln111_17_fu_1354_p2 val_74_fu_1360_p3 or_ln111_18_fu_1372_p2 val_75_fu_1378_p3 img_y_7_fu_938_p2 icmp_ln111_8_fu_944_p2 xor_ln111_8_fu_1385_p2 or_ln111_19_fu_1390_p2 val_76_fu_1396_p3 or_ln111_20_fu_1408_p2 val_77_fu_1414_p3 or_ln111_21_fu_1422_p2 val_78_fu_1428_p3 or_ln111_22_fu_1436_p2 val_80_fu_1442_p3 or_ln111_23_fu_1450_p2 val_81_fu_1456_p3 img_y_8_fu_949_p2 icmp_ln111_9_fu_955_p2 xor_ln111_9_fu_960_p2 or_ln111_24_fu_1467_p2 val_82_fu_1472_p3 or_ln111_25_fu_1484_p2 val_83_fu_1489_p3 or_ln111_26_fu_1497_p2 val_84_fu_1502_p3 or_ln111_27_fu_1510_p2 val_86_fu_1515_p3 or_ln111_28_fu_1523_p2 val_87_fu_1528_p3 mac_muladd_8ns_8s_17s_18_4_1_U20 mac_muladd_8ns_8s_17s_18_4_1_U20 mul_8ns_8s_16_1_1_U2 mac_muladd_8ns_8s_16s_17_4_1_U11 mac_muladd_8ns_8s_16s_17_4_1_U11 mul_8ns_8s_16_1_1_U3 mac_muladd_8ns_8s_16s_17_4_1_U12 mac_muladd_8ns_8s_16s_17_4_1_U12 mul_8ns_8s_16_1_1_U4 mac_muladd_8ns_8s_17s_18_4_1_U21 mac_muladd_8ns_8s_17s_18_4_1_U21 mac_muladd_8ns_8s_16s_17_4_1_U13 mac_muladd_8ns_8s_16s_17_4_1_U13 mac_muladd_8ns_8s_16s_17_4_1_U14 mac_muladd_8ns_8s_16s_17_4_1_U14 mac_muladd_8ns_8s_17s_18_4_1_U22 mac_muladd_8ns_8s_17s_18_4_1_U22 mac_muladd_8ns_8s_16s_17_4_1_U15 mac_muladd_8ns_8s_16s_17_4_1_U15 mul_8ns_8s_16_1_1_U5 mac_muladd_8ns_8s_16s_17_4_1_U16 mac_muladd_8ns_8s_16s_17_4_1_U16 mul_8ns_8s_16_1_1_U6 mul_8ns_8s_16_1_1_U7 mac_muladd_8ns_8s_17s_18_4_1_U23 mac_muladd_8ns_8s_17s_18_4_1_U23 mul_8ns_8s_16_1_1_U8 mac_muladd_8ns_8s_17s_18_4_1_U24 mac_muladd_8ns_8s_17s_18_4_1_U24 mac_muladd_8ns_8s_16s_17_4_1_U17 mac_muladd_8ns_8s_16s_17_4_1_U17 mac_muladd_8ns_8s_17s_18_4_1_U25 mac_muladd_8ns_8s_17s_18_4_1_U25 mul_8ns_8s_16_1_1_U9 mac_muladd_8ns_8s_17s_18_4_1_U26 mac_muladd_8ns_8s_17s_18_4_1_U26 mac_muladd_8ns_8s_16s_17_4_1_U18 mac_muladd_8ns_8s_16s_17_4_1_U18 mac_muladd_8ns_8s_16s_17_4_1_U19 mac_muladd_8ns_8s_16s_17_4_1_U19 mul_8ns_8s_16_1_1_U10 mac_muladd_8ns_8s_16s_17_4_1_U15 mac_muladd_8ns_8s_17s_18_4_1_U20 mac_muladd_8ns_8s_16s_17_4_1_U12 mac_muladd_8ns_8s_17s_18_4_1_U23 add_ln115_4_fu_1900_p2 mac_muladd_8ns_8s_16s_17_4_1_U13 mac_muladd_8ns_8s_17s_18_4_1_U25 mac_muladd_8ns_8s_16s_17_4_1_U11 mac_muladd_8ns_8s_17s_18_4_1_U21 add_ln115_9_fu_1916_p2 add_ln115_10_fu_1926_p2 mac_muladd_8ns_8s_16s_17_4_1_U18 mac_muladd_8ns_8s_17s_18_4_1_U22 mac_muladd_8ns_8s_16s_17_4_1_U16 mac_muladd_8ns_8s_17s_18_4_1_U26 add_ln115_15_fu_1942_p2 mac_muladd_8ns_8s_16s_17_4_1_U17 mac_muladd_8ns_8s_17s_18_4_1_U24 mac_muladd_8ns_8s_16s_17_4_1_U14 mac_muladd_8ns_8s_16s_17_4_1_U19 add_ln115_20_fu_1888_p2 add_ln115_21_fu_1958_p2 add_ln115_22_fu_1968_p2 sum_fu_1978_p2 mul_21s_32s_52_1_1_U1 ashr_ln121_fu_1992_p2 sum_2_fu_2001_p2 sum_3_fu_2018_p3 icmp_ln128_fu_2036_p2 icmp_ln139_fu_976_p2 icmp_ln139_1_fu_982_p2 icmp_ln139_2_fu_997_p2 icmp_ln140_fu_1003_p2 and_ln139_fu_1008_p2 and_ln139_1_fu_1014_p2 and_ln139_2_fu_1020_p2 icmp_ln154_fu_1540_p2 out_paket_data_fu_2046_p3 or_ln149_fu_1026_p2 out_paket_user_fu_1032_p2 icmp_ln161_fu_1038_p2 out_y_fu_1043_p2 out_x_fu_1049_p2 out_x_1_fu_1055_p3 out_y_1_fu_1063_p3 icmp_ln50_fu_792_p2</BindInstances>
+                </Instance>
+            </InstancesList>
+            <BindInstances>mul_13ns_13ns_26_1_1_U74 flush_cycles_fu_440_p2 total_cycles_fu_454_p2 add_ln87_fu_461_p2 add_ln139_fu_471_p2 add_ln140_fu_478_p2 add_ln154_fu_485_p2 control_s_axi_U</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>hls_filter_2d_Pipeline_VITIS_LOOP_50_1</Name>
+            <Loops>
+                <VITIS_LOOP_50_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>10.00</TargetClockPeriod>
+                    <ClockUncertainty>2.70</ClockUncertainty>
+                    <EstimatedClockPeriod>6.716</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12</Best-caseLatency>
+                    <Average-caseLatency>33554443</Average-caseLatency>
+                    <Worst-caseLatency>67108875</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.120 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.336 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.671 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>2 ~ 67108865</PipelineInitiationInterval>
+                    <PipelineType>loop pipeline stpstp (delay=0 clock cycles(s))</PipelineType>
+                    <PerformancePragma>-</PerformancePragma>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_50_1>
+                        <Name>VITIS_LOOP_50_1</Name>
+                        <Slack>7.30</Slack>
+                        <TripCount>
+                            <range>
+                                <min>2</min>
+                                <max>67108865</max>
+                            </range>
+                        </TripCount>
+                        <isPerfectNested>0</isPerfectNested>
+                        <Latency>10 ~ 67108873</Latency>
+                        <AbsoluteTimeLatency>0.100 us ~ 0.671 sec</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>10</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <PerformancePragma>-</PerformancePragma>
+                        <InstanceList/>
+                    </VITIS_LOOP_50_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>hls_filter_2d.cpp:50</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <VITIS_LOOP_50_1>
+                            <Name>VITIS_LOOP_50_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>hls_filter_2d.cpp:50</SourceLocation>
+                        </VITIS_LOOP_50_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>16</BRAM_18K>
+                    <AVAIL_BRAM>288</AVAIL_BRAM>
+                    <UTIL_BRAM>5</UTIL_BRAM>
+                    <DSP>18</DSP>
+                    <AVAIL_DSP>1248</AVAIL_DSP>
+                    <UTIL_DSP>1</UTIL_DSP>
+                    <FF>1637</FF>
+                    <AVAIL_FF>234240</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>2361</LUT>
+                    <AVAIL_LUT>117120</AVAIL_LUT>
+                    <UTIL_LUT>2</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>64</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="line_buffer_3_U" SOURCE="hls_filter_2d.cpp:33" STORAGESIZE="8 7680 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="line_buffer_3" VISIBLE="true"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="line_buffer_2_U" SOURCE="hls_filter_2d.cpp:33" STORAGESIZE="8 7680 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="line_buffer_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="line_buffer_1_U" SOURCE="hls_filter_2d.cpp:33" STORAGESIZE="8 7680 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="line_buffer_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="line_buffer_U" SOURCE="hls_filter_2d.cpp:33" STORAGESIZE="8 7680 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="line_buffer" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln60_fu_774_p2" SOURCE="hls_filter_2d.cpp:60" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln60" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="i_3_fu_780_p2" SOURCE="hls_filter_2d.cpp:50" STORAGESUBTYPE="" URAM="0" VARIABLE="i_3" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln80_fu_819_p2" SOURCE="hls_filter_2d.cpp:80" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln80" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln87_fu_828_p2" SOURCE="hls_filter_2d.cpp:87" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln87" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="x_4_fu_833_p2" SOURCE="hls_filter_2d.cpp:90" STORAGESUBTYPE="" URAM="0" VARIABLE="x_4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="x_5_fu_839_p3" SOURCE="hls_filter_2d.cpp:87" STORAGESUBTYPE="" URAM="0" VARIABLE="x_5" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln96_fu_786_p2" SOURCE="hls_filter_2d.cpp:96" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln96" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_x_fu_1129_p2" SOURCE="hls_filter_2d.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="img_x" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_y_fu_866_p2" SOURCE="hls_filter_2d.cpp:106" STORAGESUBTYPE="" URAM="0" VARIABLE="img_y" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_fu_880_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_fu_885_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_1_fu_1142_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_1_fu_1147_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_fu_1153_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_1_fu_891_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_2_fu_1647_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_58_fu_1651_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_58" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_x_6_fu_1159_p2" SOURCE="hls_filter_2d.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="img_x_6" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_2_fu_1172_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_2_fu_1177_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_3_fu_1183_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_3" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_4_fu_1659_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_59_fu_1663_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_59" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_3_fu_897_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_3" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_3_fu_1189_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_3" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_5_fu_1675_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_5" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_60_fu_1679_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_60" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_x_7_fu_1194_p2" SOURCE="hls_filter_2d.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="img_x_7" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_4_fu_1199_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_4_fu_1204_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_6_fu_1691_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_6" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_62_fu_1695_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_62" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_x_8_fu_1210_p2" SOURCE="hls_filter_2d.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="img_x_8" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_5_fu_1215_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_5" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_5_fu_1220_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_5" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_7_fu_1703_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_7" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_63_fu_1707_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_63" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_y_6_fu_902_p2" SOURCE="hls_filter_2d.cpp:106" STORAGESUBTYPE="" URAM="0" VARIABLE="img_y_6" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_6_fu_916_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_6" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_6_fu_921_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_6" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_8_fu_927_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_8" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_9_fu_1226_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_9" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_64_fu_1231_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_64" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_10_fu_1243_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_10" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_65_fu_1248_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_65" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_11_fu_1256_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_11" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_66_fu_1261_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_66" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_12_fu_1273_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_12" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_68_fu_1278_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_68" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_13_fu_1286_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_13" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_69_fu_1291_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_69" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_7_fu_933_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_7" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_7_fu_1303_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_7" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_14_fu_1308_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_14" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_70_fu_1314_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_70" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_15_fu_1326_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_15" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_71_fu_1332_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_71" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_16_fu_1340_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_16" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_72_fu_1346_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_72" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_17_fu_1354_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_17" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_74_fu_1360_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_74" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_18_fu_1372_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_18" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_75_fu_1378_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_75" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_y_7_fu_938_p2" SOURCE="hls_filter_2d.cpp:106" STORAGESUBTYPE="" URAM="0" VARIABLE="img_y_7" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_8_fu_944_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_8" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_8_fu_1385_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_8" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_19_fu_1390_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_19" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_76_fu_1396_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_76" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_20_fu_1408_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_20" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_77_fu_1414_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_77" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_21_fu_1422_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_21" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_78_fu_1428_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_78" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_22_fu_1436_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_22" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_80_fu_1442_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_80" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_23_fu_1450_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_23" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_81_fu_1456_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_81" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="img_y_8_fu_949_p2" SOURCE="hls_filter_2d.cpp:106" STORAGESUBTYPE="" URAM="0" VARIABLE="img_y_8" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln111_9_fu_955_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln111_9" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln111_9_fu_960_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln111_9" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_24_fu_1467_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_24" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_82_fu_1472_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_82" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_25_fu_1484_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_25" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_83_fu_1489_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_83" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_26_fu_1497_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_26" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_84_fu_1502_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_84" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_27_fu_1510_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_27" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_86_fu_1515_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_86" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln111_28_fu_1523_p2" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln111_28" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="val_87_fu_1528_p3" SOURCE="hls_filter_2d.cpp:111" STORAGESUBTYPE="" URAM="0" VARIABLE="val_87" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U20" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U20" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U11" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U11" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U3" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_3" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U12" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U12" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U4" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_5" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U21" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_6" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U21" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_6" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U13" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_7" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U13" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_7" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U14" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_8" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U14" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_8" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U22" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_9" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U22" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_9" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U15" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_10" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U15" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_10" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U5" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_11" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U16" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_12" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U16" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_12" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U6" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_13" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U7" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_14" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U23" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_15" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U23" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_15" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U8" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_16" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U24" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_17" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U24" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_17" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U17" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_18" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U17" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_18" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U25" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_19" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U25" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_19" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U9" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_20" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U26" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_21" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U26" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_21" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U18" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_22" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U18" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_22" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U19" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_23" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U19" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln115_23" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8s_16_1_1_U10" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln115_24" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U15" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U20" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U12" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U23" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_3" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_4_fu_1900_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U13" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_5" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U25" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_6" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U11" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_7" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U21" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_8" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_9_fu_1916_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_9" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_10_fu_1926_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_10" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U18" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_11" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U22" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_12" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U16" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_13" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U26" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_14" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_15_fu_1942_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_15" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U17" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_16" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_17s_18_4_1_U24" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_17" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U14" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_18" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_8ns_8s_16s_17_4_1_U19" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_19" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_20_fu_1888_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_20" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_21_fu_1958_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_21" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln115_22_fu_1968_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln115_22" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="sum_fu_1978_p2" SOURCE="hls_filter_2d.cpp:115" STORAGESUBTYPE="" URAM="0" VARIABLE="sum" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_21s_32s_52_1_1_U1" SOURCE="hls_filter_2d.cpp:121" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln121" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ashr" DSP="0" ID="" IMPL="auto_pipe" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="ashr" PRAGMA="" RTLNAME="ashr_ln121_fu_1992_p2" SOURCE="hls_filter_2d.cpp:121" STORAGESUBTYPE="" URAM="0" VARIABLE="ashr_ln121" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="sum_2_fu_2001_p2" SOURCE="hls_filter_2d.cpp:122" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="sum_3_fu_2018_p3" SOURCE="hls_filter_2d.cpp:126" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_3" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln128_fu_2036_p2" SOURCE="hls_filter_2d.cpp:128" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln128" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln139_fu_976_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln139" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln139_1_fu_982_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln139_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln139_2_fu_997_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln139_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln140_fu_1003_p2" SOURCE="hls_filter_2d.cpp:140" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln140" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="and" PRAGMA="" RTLNAME="and_ln139_fu_1008_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln139" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="and" PRAGMA="" RTLNAME="and_ln139_1_fu_1014_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln139_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="and" PRAGMA="" RTLNAME="and_ln139_2_fu_1020_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln139_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln154_fu_1540_p2" SOURCE="hls_filter_2d.cpp:154" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln154" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="out_paket_data_fu_2046_p3" SOURCE="hls_filter_2d.cpp:147" STORAGESUBTYPE="" URAM="0" VARIABLE="out_paket_data" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln149_fu_1026_p2" SOURCE="hls_filter_2d.cpp:149" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln149" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="seteq" PRAGMA="" RTLNAME="out_paket_user_fu_1032_p2" SOURCE="hls_filter_2d.cpp:149" STORAGESUBTYPE="" URAM="0" VARIABLE="out_paket_user" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln161_fu_1038_p2" SOURCE="hls_filter_2d.cpp:161" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln161" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="out_y_fu_1043_p2" SOURCE="hls_filter_2d.cpp:163" STORAGESUBTYPE="" URAM="0" VARIABLE="out_y" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="add" PRAGMA="" RTLNAME="out_x_fu_1049_p2" SOURCE="hls_filter_2d.cpp:165" STORAGESUBTYPE="" URAM="0" VARIABLE="out_x" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="out_x_1_fu_1055_p3" SOURCE="hls_filter_2d.cpp:161" STORAGESUBTYPE="" URAM="0" VARIABLE="out_x_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="select" PRAGMA="" RTLNAME="out_y_1_fu_1063_p3" SOURCE="hls_filter_2d.cpp:161" STORAGESUBTYPE="" URAM="0" VARIABLE="out_y_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_50_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln50_fu_792_p2" SOURCE="hls_filter_2d.cpp:50" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln50" VISIBLE="false"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>hls_filter_2d</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>10.00</TargetClockPeriod>
+                    <ClockUncertainty>2.70</ClockUncertainty>
+                    <EstimatedClockPeriod>6.716</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>15</Best-caseLatency>
+                    <Average-caseLatency>33554446</Average-caseLatency>
+                    <Worst-caseLatency>67108878</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.150 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.336 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.671 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>16 ~ 67108879</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                    <PerformancePragma>-</PerformancePragma>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>hls_filter_2d.cpp:7</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>16</BRAM_18K>
+                    <AVAIL_BRAM>288</AVAIL_BRAM>
+                    <UTIL_BRAM>5</UTIL_BRAM>
+                    <DSP>19</DSP>
+                    <AVAIL_DSP>1248</AVAIL_DSP>
+                    <UTIL_DSP>1</UTIL_DSP>
+                    <FF>2603</FF>
+                    <AVAIL_FF>234240</AVAIL_FF>
+                    <UTIL_FF>1</UTIL_FF>
+                    <LUT>3184</LUT>
+                    <AVAIL_LUT>117120</AVAIL_LUT>
+                    <UTIL_LUT>2</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>64</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_13ns_13ns_26_1_1_U74" SOURCE="hls_filter_2d.cpp:41" STORAGESUBTYPE="" URAM="0" VARIABLE="total_pixels" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="flush_cycles_fu_440_p2" SOURCE="hls_filter_2d.cpp:42" STORAGESUBTYPE="" URAM="0" VARIABLE="flush_cycles" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="total_cycles_fu_454_p2" SOURCE="hls_filter_2d.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="total_cycles" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln87_fu_461_p2" SOURCE="hls_filter_2d.cpp:87" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln87" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln139_fu_471_p2" SOURCE="hls_filter_2d.cpp:139" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln139" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln140_fu_478_p2" SOURCE="hls_filter_2d.cpp:140" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln140" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln154_fu_485_p2" SOURCE="hls_filter_2d.cpp:154" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln154" VISIBLE="true"/>
+                <BindNode BINDTYPE="adapter" BRAM="0" BUNDLEDNAME="control" DISPNAME="bind_adapter " DSP="0" ID="" IMPL="" LATENCY="" LOOP="" OPTYPE="" PRAGMA="" RTLNAME="control_s_axi_U" SOURCE="" STORAGESIZE="" STORAGESUBTYPE="s_axilite" STORAGEUSAGE="interface" URAM="0" VARIABLE=""/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands>
+        <config_cosim rtl="vhdl"/>
+        <config_csim clean="0"/>
+    </UserConfigCommands>
+    <Args>
+        <Arg ArgName="s_axis_video" index="0" direction="in" srcType="stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;" srcSize="24">
+            <hwRefs>
+                <hwRef type="interface" interface="s_axis_video" name="" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="m_axis_video" index="1" direction="out" srcType="stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;" srcSize="24">
+            <hwRefs>
+                <hwRef type="interface" interface="m_axis_video" name="" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="width" index="2" direction="in" srcType="ap_uint&lt;13&gt;" srcSize="16">
+            <hwRefs>
+                <hwRef type="register" interface="s_axi_control" name="width" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="height" index="3" direction="in" srcType="ap_uint&lt;13&gt;" srcSize="16">
+            <hwRefs>
+                <hwRef type="register" interface="s_axi_control" name="height" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="kernel" index="4" direction="in" srcType="ap_int&lt;8&gt;*" srcSize="8">
+            <hwRefs>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+                <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="inv_divisor" index="5" direction="in" srcType="ap_int&lt;32&gt;" srcSize="32">
+            <hwRefs>
+                <hwRef type="register" interface="s_axi_control" name="inv_divisor" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="fraction_bits" index="6" direction="in" srcType="ap_uint&lt;5&gt;" srcSize="8">
+            <hwRefs>
+                <hwRef type="register" interface="s_axi_control" name="fraction_bits" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="delta" index="7" direction="in" srcType="ap_int&lt;32&gt;" srcSize="32">
+            <hwRefs>
+                <hwRef type="register" interface="s_axi_control" name="delta" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="borderType" index="8" direction="in" srcType="ap_uint&lt;1&gt;" srcSize="8">
+            <hwRefs>
+                <hwRef type="register" interface="s_axi_control" name="borderType" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="s_axi_control" type="axi4lite" busTypeName="aximm" mode="slave" dataWidth="32" addrWidth="9" portPrefix="s_axi_control_" paramPrefix="C_S_AXI_CONTROL_">
+            <ports>
+                <port>s_axi_control_ARADDR</port>
+                <port>s_axi_control_ARREADY</port>
+                <port>s_axi_control_ARVALID</port>
+                <port>s_axi_control_AWADDR</port>
+                <port>s_axi_control_AWREADY</port>
+                <port>s_axi_control_AWVALID</port>
+                <port>s_axi_control_BREADY</port>
+                <port>s_axi_control_BRESP</port>
+                <port>s_axi_control_BVALID</port>
+                <port>s_axi_control_RDATA</port>
+                <port>s_axi_control_RREADY</port>
+                <port>s_axi_control_RRESP</port>
+                <port>s_axi_control_RVALID</port>
+                <port>s_axi_control_WDATA</port>
+                <port>s_axi_control_WREADY</port>
+                <port>s_axi_control_WSTRB</port>
+                <port>s_axi_control_WVALID</port>
+            </ports>
+            <registers>
+                <register offset="0x00" name="CTRL" access="RW" description="Control signals" range="32">
+                    <fields>
+                        <field offset="0" width="1" name="AP_START" access="RW" description="Control signal Register for 'ap_start'."/>
+                        <field offset="1" width="1" name="AP_DONE" access="R" description="Control signal Register for 'ap_done'."/>
+                        <field offset="2" width="1" name="AP_IDLE" access="R" description="Control signal Register for 'ap_idle'."/>
+                        <field offset="3" width="1" name="AP_READY" access="R" description="Control signal Register for 'ap_ready'."/>
+                        <field offset="4" width="3" name="RESERVED_1" access="R" description="Reserved.  0s on read."/>
+                        <field offset="7" width="1" name="AUTO_RESTART" access="RW" description="Control signal Register for 'auto_restart'."/>
+                        <field offset="8" width="1" name="RESERVED_2" access="R" description="Reserved.  0s on read."/>
+                        <field offset="9" width="1" name="INTERRUPT" access="R" description="Control signal Register for 'interrupt'."/>
+                        <field offset="10" width="22" name="RESERVED_3" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x04" name="GIER" access="RW" description="Global Interrupt Enable Register" range="32">
+                    <fields>
+                        <field offset="0" width="1" name="Enable" access="RW" description="Master enable for the device interrupt output to the system interrupt controller: 0 = Disabled, 1 = Enabled"/>
+                        <field offset="1" width="31" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x08" name="IP_IER" access="RW" description="IP Interrupt Enable Register" range="32">
+                    <fields>
+                        <field offset="0" width="1" name="CHAN0_INT_EN" access="RW" description="Enable Channel 0 (ap_done) Interrupt.  0 = Disabled, 1 = Enabled."/>
+                        <field offset="1" width="1" name="CHAN1_INT_EN" access="RW" description="Enable Channel 1 (ap_ready) Interrupt.  0 = Disabled, 1 = Enabled."/>
+                        <field offset="2" width="30" name="RESERVED_0" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x0c" name="IP_ISR" access="RW" description="IP Interrupt Status Register" range="32">
+                    <fields>
+                        <field offset="0" width="1" name="CHAN0_INT_ST" access="RTOW" description="Channel 0 (ap_done) Interrupt Status. 0 = No Channel 0 interrupt, 1 = Channel 0 interrupt."/>
+                        <field offset="1" width="1" name="CHAN1_INT_ST" access="RTOW" description="Channel 1 (ap_ready) Interrupt Status. 0 = No Channel 1 interrupt, 1 = Channel 1 interrupt."/>
+                        <field offset="2" width="30" name="RESERVED_0" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x10" name="width" access="W" description="Data signal of width" range="32">
+                    <fields>
+                        <field offset="0" width="13" name="width" access="W" description="Bit 12 to 0 of width"/>
+                        <field offset="13" width="19" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x18" name="height" access="W" description="Data signal of height" range="32">
+                    <fields>
+                        <field offset="0" width="13" name="height" access="W" description="Bit 12 to 0 of height"/>
+                        <field offset="13" width="19" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x20" name="kernel_0_0" access="W" description="Data signal of kernel_0_0" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_0_0" access="W" description="Bit 7 to 0 of kernel_0_0"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x28" name="kernel_0_1" access="W" description="Data signal of kernel_0_1" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_0_1" access="W" description="Bit 7 to 0 of kernel_0_1"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x30" name="kernel_0_2" access="W" description="Data signal of kernel_0_2" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_0_2" access="W" description="Bit 7 to 0 of kernel_0_2"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x38" name="kernel_0_3" access="W" description="Data signal of kernel_0_3" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_0_3" access="W" description="Bit 7 to 0 of kernel_0_3"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x40" name="kernel_0_4" access="W" description="Data signal of kernel_0_4" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_0_4" access="W" description="Bit 7 to 0 of kernel_0_4"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x48" name="kernel_1_0" access="W" description="Data signal of kernel_1_0" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_1_0" access="W" description="Bit 7 to 0 of kernel_1_0"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x50" name="kernel_1_1" access="W" description="Data signal of kernel_1_1" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_1_1" access="W" description="Bit 7 to 0 of kernel_1_1"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x58" name="kernel_1_2" access="W" description="Data signal of kernel_1_2" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_1_2" access="W" description="Bit 7 to 0 of kernel_1_2"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x60" name="kernel_1_3" access="W" description="Data signal of kernel_1_3" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_1_3" access="W" description="Bit 7 to 0 of kernel_1_3"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x68" name="kernel_1_4" access="W" description="Data signal of kernel_1_4" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_1_4" access="W" description="Bit 7 to 0 of kernel_1_4"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x70" name="kernel_2_0" access="W" description="Data signal of kernel_2_0" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_2_0" access="W" description="Bit 7 to 0 of kernel_2_0"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x78" name="kernel_2_1" access="W" description="Data signal of kernel_2_1" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_2_1" access="W" description="Bit 7 to 0 of kernel_2_1"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x80" name="kernel_2_2" access="W" description="Data signal of kernel_2_2" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_2_2" access="W" description="Bit 7 to 0 of kernel_2_2"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x88" name="kernel_2_3" access="W" description="Data signal of kernel_2_3" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_2_3" access="W" description="Bit 7 to 0 of kernel_2_3"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x90" name="kernel_2_4" access="W" description="Data signal of kernel_2_4" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_2_4" access="W" description="Bit 7 to 0 of kernel_2_4"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0x98" name="kernel_3_0" access="W" description="Data signal of kernel_3_0" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_3_0" access="W" description="Bit 7 to 0 of kernel_3_0"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xa0" name="kernel_3_1" access="W" description="Data signal of kernel_3_1" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_3_1" access="W" description="Bit 7 to 0 of kernel_3_1"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xa8" name="kernel_3_2" access="W" description="Data signal of kernel_3_2" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_3_2" access="W" description="Bit 7 to 0 of kernel_3_2"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xb0" name="kernel_3_3" access="W" description="Data signal of kernel_3_3" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_3_3" access="W" description="Bit 7 to 0 of kernel_3_3"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xb8" name="kernel_3_4" access="W" description="Data signal of kernel_3_4" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_3_4" access="W" description="Bit 7 to 0 of kernel_3_4"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xc0" name="kernel_4_0" access="W" description="Data signal of kernel_4_0" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_4_0" access="W" description="Bit 7 to 0 of kernel_4_0"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xc8" name="kernel_4_1" access="W" description="Data signal of kernel_4_1" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_4_1" access="W" description="Bit 7 to 0 of kernel_4_1"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xd0" name="kernel_4_2" access="W" description="Data signal of kernel_4_2" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_4_2" access="W" description="Bit 7 to 0 of kernel_4_2"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xd8" name="kernel_4_3" access="W" description="Data signal of kernel_4_3" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_4_3" access="W" description="Bit 7 to 0 of kernel_4_3"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xe0" name="kernel_4_4" access="W" description="Data signal of kernel_4_4" range="32">
+                    <fields>
+                        <field offset="0" width="8" name="kernel_4_4" access="W" description="Bit 7 to 0 of kernel_4_4"/>
+                        <field offset="8" width="24" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xe8" name="inv_divisor" access="W" description="Data signal of inv_divisor" range="32">
+                    <fields>
+                        <field offset="0" width="32" name="inv_divisor" access="W" description="Bit 31 to 0 of inv_divisor"/>
+                    </fields>
+                </register>
+                <register offset="0xf0" name="fraction_bits" access="W" description="Data signal of fraction_bits" range="32">
+                    <fields>
+                        <field offset="0" width="5" name="fraction_bits" access="W" description="Bit 4 to 0 of fraction_bits"/>
+                        <field offset="5" width="27" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+                <register offset="0xf8" name="delta" access="W" description="Data signal of delta" range="32">
+                    <fields>
+                        <field offset="0" width="32" name="delta" access="W" description="Bit 31 to 0 of delta"/>
+                    </fields>
+                </register>
+                <register offset="0x100" name="borderType" access="W" description="Data signal of borderType" range="32">
+                    <fields>
+                        <field offset="0" width="1" name="borderType" access="W" description="Bit 0 to 0 of borderType"/>
+                        <field offset="1" width="31" name="RESERVED" access="R" description="Reserved.  0s on read."/>
+                    </fields>
+                </register>
+            </registers>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="16" argName="width"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="24" argName="height"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="32" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="40" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="48" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="56" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="64" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="72" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="80" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="88" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="96" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="104" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="112" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="120" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="128" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="136" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="144" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="152" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="160" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="168" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="176" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="184" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="192" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="200" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="208" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="216" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="224" argName="kernel"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="232" argName="inv_divisor"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="240" argName="fraction_bits"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="248" argName="delta"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="256" argName="borderType"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_BUSIF">s_axi_control:s_axis_video:m_axis_video</busParam>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst_n</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst_n" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_LOW</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst_n">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst_n</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="interrupt" type="interrupt" busTypeName="interrupt" mode="master" dataWidth="1">
+            <busParams>
+                <busParam busParamName="SENSITIVITY">LEVEL_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="interrupt">INTERRUPT</portMap>
+            </portMaps>
+            <ports>
+                <port>interrupt</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="s_axis_video" type="axi4stream" busTypeName="axis" mode="slave" direction="in" dataWidth="24" portPrefix="s_axis_video_">
+            <ports>
+                <port>s_axis_video_TDATA</port>
+                <port>s_axis_video_TREADY</port>
+                <port>s_axis_video_TVALID</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="axis" register_option="1" register_mode="both" argName="s_axis_video"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="m_axis_video" type="axi4stream" busTypeName="axis" mode="master" direction="out" dataWidth="24" portPrefix="m_axis_video_">
+            <ports>
+                <port>m_axis_video_TDATA</port>
+                <port>m_axis_video_TREADY</port>
+                <port>m_axis_video_TVALID</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="axis" register_option="1" register_mode="both" argName="m_axis_video"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="S_AXILITE Interfaces">
+                <table>
+                    <keys size="5">Interface, Data Width, Address Width, Offset, Register</keys>
+                    <column name="s_axi_control">32, 9, 16, 0</column>
+                </table>
+            </item>
+            <item name="S_AXILITE Registers">
+                <table>
+                    <keys size="7">Interface, Register, Offset, Width, Access, Description, Bit Fields</keys>
+                    <column name="s_axi_control">CTRL, 0x00, 32, RW, Control signals, 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT</column>
+                    <column name="s_axi_control">GIER, 0x04, 32, RW, Global Interrupt Enable Register, 0=Enable</column>
+                    <column name="s_axi_control">IP_IER, 0x08, 32, RW, IP Interrupt Enable Register, 0=CHAN0_INT_EN 1=CHAN1_INT_EN</column>
+                    <column name="s_axi_control">IP_ISR, 0x0c, 32, RW, IP Interrupt Status Register, 0=CHAN0_INT_ST 1=CHAN1_INT_ST</column>
+                    <column name="s_axi_control">width, 0x10, 32, W, Data signal of width, </column>
+                    <column name="s_axi_control">height, 0x18, 32, W, Data signal of height, </column>
+                    <column name="s_axi_control">kernel_0_0, 0x20, 32, W, Data signal of kernel_0_0, </column>
+                    <column name="s_axi_control">kernel_0_1, 0x28, 32, W, Data signal of kernel_0_1, </column>
+                    <column name="s_axi_control">kernel_0_2, 0x30, 32, W, Data signal of kernel_0_2, </column>
+                    <column name="s_axi_control">kernel_0_3, 0x38, 32, W, Data signal of kernel_0_3, </column>
+                    <column name="s_axi_control">kernel_0_4, 0x40, 32, W, Data signal of kernel_0_4, </column>
+                    <column name="s_axi_control">kernel_1_0, 0x48, 32, W, Data signal of kernel_1_0, </column>
+                    <column name="s_axi_control">kernel_1_1, 0x50, 32, W, Data signal of kernel_1_1, </column>
+                    <column name="s_axi_control">kernel_1_2, 0x58, 32, W, Data signal of kernel_1_2, </column>
+                    <column name="s_axi_control">kernel_1_3, 0x60, 32, W, Data signal of kernel_1_3, </column>
+                    <column name="s_axi_control">kernel_1_4, 0x68, 32, W, Data signal of kernel_1_4, </column>
+                    <column name="s_axi_control">kernel_2_0, 0x70, 32, W, Data signal of kernel_2_0, </column>
+                    <column name="s_axi_control">kernel_2_1, 0x78, 32, W, Data signal of kernel_2_1, </column>
+                    <column name="s_axi_control">kernel_2_2, 0x80, 32, W, Data signal of kernel_2_2, </column>
+                    <column name="s_axi_control">kernel_2_3, 0x88, 32, W, Data signal of kernel_2_3, </column>
+                    <column name="s_axi_control">kernel_2_4, 0x90, 32, W, Data signal of kernel_2_4, </column>
+                    <column name="s_axi_control">kernel_3_0, 0x98, 32, W, Data signal of kernel_3_0, </column>
+                    <column name="s_axi_control">kernel_3_1, 0xa0, 32, W, Data signal of kernel_3_1, </column>
+                    <column name="s_axi_control">kernel_3_2, 0xa8, 32, W, Data signal of kernel_3_2, </column>
+                    <column name="s_axi_control">kernel_3_3, 0xb0, 32, W, Data signal of kernel_3_3, </column>
+                    <column name="s_axi_control">kernel_3_4, 0xb8, 32, W, Data signal of kernel_3_4, </column>
+                    <column name="s_axi_control">kernel_4_0, 0xc0, 32, W, Data signal of kernel_4_0, </column>
+                    <column name="s_axi_control">kernel_4_1, 0xc8, 32, W, Data signal of kernel_4_1, </column>
+                    <column name="s_axi_control">kernel_4_2, 0xd0, 32, W, Data signal of kernel_4_2, </column>
+                    <column name="s_axi_control">kernel_4_3, 0xd8, 32, W, Data signal of kernel_4_3, </column>
+                    <column name="s_axi_control">kernel_4_4, 0xe0, 32, W, Data signal of kernel_4_4, </column>
+                    <column name="s_axi_control">inv_divisor, 0xe8, 32, W, Data signal of inv_divisor, </column>
+                    <column name="s_axi_control">fraction_bits, 0xf0, 32, W, Data signal of fraction_bits, </column>
+                    <column name="s_axi_control">delta, 0xf8, 32, W, Data signal of delta, </column>
+                    <column name="s_axi_control">borderType, 0x100, 32, W, Data signal of borderType, </column>
+                </table>
+            </item>
+            <item name="AXIS">
+                <table>
+                    <keys size="6">Interface, Direction, Register Mode, TDATA, TREADY, TVALID</keys>
+                    <column name="m_axis_video">out, both, 24, 1, 1</column>
+                    <column name="s_axis_video">in, both, 24, 1, 1</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst_n">reset, ap_rst_n</column>
+                    <column name="interrupt">interrupt, interrupt</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, </column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="s_axis_video">in, stream&lt;axi_stream_video&lt;color_pixel&lt;1 8&gt; &gt; 0&gt;&amp;</column>
+                    <column name="m_axis_video">out, stream&lt;axi_stream_video&lt;color_pixel&lt;1 8&gt; &gt; 0&gt;&amp;</column>
+                    <column name="width">in, ap_uint&lt;13&gt;</column>
+                    <column name="height">in, ap_uint&lt;13&gt;</column>
+                    <column name="kernel">in, ap_int&lt;8&gt;*</column>
+                    <column name="inv_divisor">in, ap_int&lt;32&gt;</column>
+                    <column name="fraction_bits">in, ap_uint&lt;5&gt;</column>
+                    <column name="delta">in, ap_int&lt;32&gt;</column>
+                    <column name="borderType">in, ap_uint&lt;1&gt;</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="4">Argument, HW Interface, HW Type, HW Info</keys>
+                    <column name="s_axis_video">s_axis_video, interface, </column>
+                    <column name="m_axis_video">m_axis_video, interface, </column>
+                    <column name="width">s_axi_control, register, name=width offset=0x10 range=32</column>
+                    <column name="height">s_axi_control, register, name=height offset=0x18 range=32</column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="kernel">s_axi_control, interface, </column>
+                    <column name="inv_divisor">s_axi_control, register, name=inv_divisor offset=0xe8 range=32</column>
+                    <column name="fraction_bits">s_axi_control, register, name=fraction_bits offset=0xf0 range=32</column>
+                    <column name="delta">s_axi_control, register, name=delta offset=0xf8 range=32</column>
+                    <column name="borderType">s_axi_control, register, name=borderType offset=0x100 range=32</column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport>
+        <Pragma type="interface" location="hls_filter_2d.cpp:16" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="axis port = s_axis_video"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:17" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="axis port = m_axis_video"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:20" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = width bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:21" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = height bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:22" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = kernel bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:23" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = inv_divisor bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:24" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = fraction_bits bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:25" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = delta bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:26" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = borderType bundle = control"/>
+        <Pragma type="interface" location="hls_filter_2d.cpp:27" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
+        <Pragma type="array_partition" location="hls_filter_2d.cpp:30" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="variable = kernel complete dim = 0"/>
+        <Pragma type="array_partition" location="hls_filter_2d.cpp:34" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="variable = line_buffer complete dim = 1"/>
+        <Pragma type="array_partition" location="hls_filter_2d.cpp:38" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="variable = window complete dim = 0"/>
+        <Pragma type="pipeline" location="hls_filter_2d.cpp:51" status="valid" parentFunction="hls_filter_2d" variable="" isDirective="0" options="II = 1"/>
+        <Pragma type="inline" location="hls_filter_2d.hpp:63" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="hls_filter_2d.hpp:65" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="hls_filter_2d.hpp:75" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="hls_filter_2d.hpp:77" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="hls_filter_2d.hpp:91" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="hls_filter_2d.hpp:94" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="hls_filter_2d.hpp:103" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="hls_filter_2d.hpp:107" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="hls_filter_2d.hpp:118" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
+    </PragmaReport>
+</profile>

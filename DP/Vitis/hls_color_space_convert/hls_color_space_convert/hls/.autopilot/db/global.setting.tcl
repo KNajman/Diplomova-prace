@@ -43,12 +43,12 @@ set TargetInfo xck26:-sfvc784:-2LV-c
 set SourceFiles {sc {} c ../../hls_color_space_convert.cpp}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile {}
-set TBFiles {verilog {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_hsv.cpp} bc {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_hsv.cpp} vhdl {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_hsv.cpp} sc {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_hsv.cpp} cas {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_hsv.cpp} c {}}
+set TBFiles {verilog {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp} bc {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp} sc {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp} vhdl {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp} c {} cas {D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_main.cpp}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
-set TBTops {verilog {} bc {} vhdl {} sc {} cas {} c {}}
-set TBInstNames {verilog {} bc {} vhdl {} sc {} cas {} c {}}
+set TBTops {verilog {} bc {} sc {} vhdl {} c {} cas {}}
+set TBInstNames {verilog {} bc {} sc {} vhdl {} c {} cas {}}
 set XDCFiles {}
 set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_gate" 0}
 set TBTVFileNotFound {}
