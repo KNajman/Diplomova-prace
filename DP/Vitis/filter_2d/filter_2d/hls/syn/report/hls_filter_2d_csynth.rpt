@@ -1,0 +1,203 @@
+
+
+================================================================
+== Vitis HLS Report for 'hls_filter_2d'
+================================================================
+* Date:           Tue Mar 31 11:30:39 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 14 2025)
+* Project:        filter_2d
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xck26-sfvc784-2LV-c
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.716 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+----------+----------+-----------+-----+----------+---------+
+    |  Latency (cycles)  |  Latency (absolute)  |    Interval    | Pipeline|
+    |   min   |    max   |    min   |    max    | min |    max   |   Type  |
+    +---------+----------+----------+-----------+-----+----------+---------+
+    |       15|  67108878|  0.150 us|  0.671 sec|   16|  67108879|       no|
+    +---------+----------+----------+-----------+-----+----------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------------+----------------------------------------+---------+----------+----------+-----------+-----+-----+-------------------+
+        |                                                   |                                        |  Latency (cycles)  |  Latency (absolute)  |  Interval |      Pipeline     |
+        |                      Instance                     |                 Module                 |   min   |    max   |    min   |    max    | min | max |        Type       |
+        +---------------------------------------------------+----------------------------------------+---------+----------+----------+-----------+-----+-----+-------------------+
+        |grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364  |hls_filter_2d_Pipeline_VITIS_LOOP_50_1  |       12|  67108875|  0.120 us|  0.671 sec|    0|    0|  loop pipeline stp|
+        +---------------------------------------------------+----------------------------------------+---------+----------+----------+-----------+-----+-----+-------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     142|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |       16|    19|    2155|    2998|    0|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       0|      44|    -|
+|Register         |        -|     -|     448|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |       16|    19|    2603|    3184|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |      288|  1248|  234240|  117120|   64|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        5|     1|       1|       2|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------------+----------------------------------------+---------+----+------+------+-----+
+    |                      Instance                     |                 Module                 | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +---------------------------------------------------+----------------------------------------+---------+----+------+------+-----+
+    |control_s_axi_U                                    |control_s_axi                           |        0|   0|   518|   632|    0|
+    |grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364  |hls_filter_2d_Pipeline_VITIS_LOOP_50_1  |       16|  18|  1637|  2361|    0|
+    |mul_13ns_13ns_26_1_1_U74                           |mul_13ns_13ns_26_1_1                    |        0|   1|     0|     5|    0|
+    +---------------------------------------------------+----------------------------------------+---------+----+------+------+-----+
+    |Total                                              |                                        |       16|  19|  2155|  2998|    0|
+    +---------------------------------------------------+----------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                             Variable Name                             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |add_ln139_fu_471_p2                                                    |         +|   0|  0|  21|          14|           3|
+    |add_ln140_fu_478_p2                                                    |         +|   0|  0|  21|          14|           3|
+    |add_ln154_fu_485_p2                                                    |         +|   0|  0|  21|          14|           3|
+    |add_ln87_fu_461_p2                                                     |         +|   0|  0|  21|          14|           2|
+    |flush_cycles_fu_440_p2                                                 |         +|   0|  0|  22|          15|           2|
+    |total_cycles_fu_454_p2                                                 |         +|   0|  0|  34|          27|          27|
+    |grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364_m_axis_video_TREADY  |       and|   0|  0|   2|           1|           1|
+    +-----------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                                  |          |   0|  0| 142|          99|          41|
+    +-----------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  26|          5|    1|          5|
+    |m_axis_video_TDATA_int_regslice   |   9|          2|   24|         48|
+    |s_axis_video_TREADY_int_regslice  |   9|          2|    1|          2|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  44|          9|   26|         55|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |                              Name                              | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |add_ln139_reg_673                                               |  14|   0|   14|          0|
+    |add_ln140_reg_678                                               |  14|   0|   14|          0|
+    |add_ln154_reg_683                                               |  14|   0|   14|          0|
+    |add_ln87_reg_668                                                |  14|   0|   14|          0|
+    |ap_CS_fsm                                                       |   4|   0|    4|          0|
+    |borderType_read_reg_492                                         |   1|   0|    1|          0|
+    |delta_read_reg_497                                              |  32|   0|   32|          0|
+    |flush_cycles_reg_658                                            |  14|   0|   15|          1|
+    |fraction_bits_read_reg_502                                      |   5|   0|    5|          0|
+    |grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364_ap_start_reg  |   1|   0|    1|          0|
+    |height_read_reg_512                                             |  13|   0|   13|          0|
+    |inv_divisor_read_reg_507                                        |  32|   0|   32|          0|
+    |kernel_0_0_read_reg_533                                         |   8|   0|    8|          0|
+    |kernel_0_1_read_reg_538                                         |   8|   0|    8|          0|
+    |kernel_0_2_read_reg_543                                         |   8|   0|    8|          0|
+    |kernel_0_3_read_reg_548                                         |   8|   0|    8|          0|
+    |kernel_0_4_read_reg_553                                         |   8|   0|    8|          0|
+    |kernel_1_0_read_reg_558                                         |   8|   0|    8|          0|
+    |kernel_1_1_read_reg_563                                         |   8|   0|    8|          0|
+    |kernel_1_2_read_reg_568                                         |   8|   0|    8|          0|
+    |kernel_1_3_read_reg_573                                         |   8|   0|    8|          0|
+    |kernel_1_4_read_reg_578                                         |   8|   0|    8|          0|
+    |kernel_2_0_read_reg_583                                         |   8|   0|    8|          0|
+    |kernel_2_1_read_reg_588                                         |   8|   0|    8|          0|
+    |kernel_2_2_read_reg_593                                         |   8|   0|    8|          0|
+    |kernel_2_3_read_reg_598                                         |   8|   0|    8|          0|
+    |kernel_2_4_read_reg_603                                         |   8|   0|    8|          0|
+    |kernel_3_0_read_reg_608                                         |   8|   0|    8|          0|
+    |kernel_3_1_read_reg_613                                         |   8|   0|    8|          0|
+    |kernel_3_2_read_reg_618                                         |   8|   0|    8|          0|
+    |kernel_3_3_read_reg_623                                         |   8|   0|    8|          0|
+    |kernel_3_4_read_reg_628                                         |   8|   0|    8|          0|
+    |kernel_4_0_read_reg_633                                         |   8|   0|    8|          0|
+    |kernel_4_1_read_reg_638                                         |   8|   0|    8|          0|
+    |kernel_4_2_read_reg_643                                         |   8|   0|    8|          0|
+    |kernel_4_3_read_reg_648                                         |   8|   0|    8|          0|
+    |kernel_4_4_read_reg_653                                         |   8|   0|    8|          0|
+    |m_axis_video_TDATA_reg                                          |  24|   0|   24|          0|
+    |total_cycles_reg_663                                            |  27|   0|   27|          0|
+    |total_pixels_reg_527                                            |  26|   0|   26|          0|
+    |width_read_reg_519                                              |  13|   0|   13|          0|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                           | 448|   0|  449|          1|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+---------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  | Source Object |    C Type    |
++-----------------------+-----+-----+------------+---------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|        control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|        control|        scalar|
+|s_axi_control_AWADDR   |   in|    9|       s_axi|        control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|        control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|        control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|        control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|        control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|        control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|        control|        scalar|
+|s_axi_control_ARADDR   |   in|    9|       s_axi|        control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|        control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|        control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|        control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|        control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|        control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|        control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|        control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|  hls_filter_2d|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|  hls_filter_2d|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|  hls_filter_2d|  return value|
+|s_axis_video_TDATA     |   in|   24|        axis|   s_axis_video|       pointer|
+|s_axis_video_TVALID    |   in|    1|        axis|   s_axis_video|       pointer|
+|s_axis_video_TREADY    |  out|    1|        axis|   s_axis_video|       pointer|
+|m_axis_video_TDATA     |  out|   24|        axis|   m_axis_video|       pointer|
+|m_axis_video_TVALID    |  out|    1|        axis|   m_axis_video|       pointer|
+|m_axis_video_TREADY    |   in|    1|        axis|   m_axis_video|       pointer|
++-----------------------+-----+-----+------------+---------------+--------------+
+

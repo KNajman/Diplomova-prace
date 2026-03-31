@@ -1,0 +1,174 @@
+
+
+================================================================
+== Synthesis Summary Report of 'hls_hsv_2_rgb'
+================================================================
++ General Information: 
+    * Date:           Sat Mar 28 14:43:11 2026
+    * Version:        2025.2 (Build 6295257 on Nov 14 2025)
+    * Project:        hls_hsv_2_rgb
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: zynquplus
+    * Target device:  xck26-sfvc784-2LV-c
+    
+
+* Performance & Resource Estimates: 
++-----------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+----------+-----------+-----+
+|     Modules     | Issue|               | Iteration|         | Trip |          |      Latency     |      |      |    |          |           |     |
+|     & Loops     | Type | Violation Type|  Latency | Interval| Count| Pipelined| (cycles)|  (ns)  | Slack| BRAM | DSP|    FF    |    LUT    | URAM|
++-----------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+----------+-----------+-----+
+|+ hls_hsv_2_rgb  |     -|              -|         -|        1|     -|       yes|        2|  20.000|  0.98|     -|   -|  70 (~0%)|  629 (~0%)|    -|
++-----------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+----------+-----------+-----+
+    Name Prefix: '+' for module, 'o' for loop, '*' for dataflow
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+
+| Interface     | Data Width | Address Width |
++---------------+------------+---------------+
+| s_axi_control | 32         | 4             |
++---------------+------------+---------------+
+
+* AXIS
++------------+-----------+---------------+-------+--------+--------+
+| Interface  | Direction | Register Mode | TDATA | TREADY | TVALID |
++------------+-----------+---------------+-------+--------+--------+
+| in_stream  | in        | both          | 32    | 1      | 1      |
+| out_stream | out       | both          | 32    | 1      | 1      |
++------------+-----------+---------------+-------+--------+--------+
+
+* TOP LEVEL CONTROL
++-----------+--------------+----------+
+| Interface | Type         | Ports    |
++-----------+--------------+----------+
+| ap_clk    | clock        | ap_clk   |
+| ap_rst_n  | reset        | ap_rst_n |
+| ap_ctrl   | ap_ctrl_none |          |
++-----------+--------------+----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++------------+-----------+--------------------------------------------------+
+| Argument   | Direction | Datatype                                         |
++------------+-----------+--------------------------------------------------+
+| in_stream  | in        | stream<axi_stream_video<color_pixel<3, 9> >, 0>& |
+| out_stream | out       | stream<axi_stream_video<color_pixel<3, 8> >, 0>& |
++------------+-----------+--------------------------------------------------+
+
+* SW-to-HW Mapping
++------------+--------------+-----------+
+| Argument   | HW Interface | HW Type   |
++------------+--------------+-----------+
+| in_stream  | in_stream    | interface |
+| out_stream | out_stream   | interface |
++------------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------+-----+--------+--------------+-----------+------------------------+---------+
+| Name                     | DSP | Pragma | Variable     | Op        | Impl                   | Latency |
++--------------------------+-----+--------+--------------+-----------+------------------------+---------+
+| + hls_hsv_2_rgb          | 0   |        |              |           |                        |         |
+|   icmp_ln289_fu_201_p2   |     |        | icmp_ln289   | seteq     | auto                   | 0       |
+|   h_mult_fu_151_p2       |     |        | h_mult       | sub       | fabric                 | 0       |
+|   h_scaled_fu_171_p2     |     |        | h_scaled     | add       | fabric                 | 0       |
+|   xor_ln306_fu_206_p2    |     |        | xor_ln306    | xor       | auto                   | 0       |
+|   mul_8ns_8ns_16_1_1_U1  |     |        | mul_ln306    | mul       | auto                   | 0       |
+|   mul_8ns_8ns_16_1_1_U2  |     |        | mul_ln308    | mul       | auto                   | 0       |
+|   xor_ln309_fu_308_p2    |     |        | xor_ln309    | xor       | auto                   | 0       |
+|   mul_8ns_8ns_16_1_1_U3  |     |        | mul_ln309    | mul       | auto                   | 0       |
+|   xor_ln311_fu_360_p2    |     |        | xor_ln311    | xor       | auto                   | 0       |
+|   mul_8ns_8ns_16_1_1_U4  |     |        | mul_ln311    | mul       | auto                   | 0       |
+|   xor_ln312_fu_411_p2    |     |        | xor_ln312    | xor       | auto                   | 0       |
+|   mul_8ns_8ns_16_1_1_U5  |     |        | mul_ln312    | mul       | auto                   | 0       |
+|   icmp_ln315_fu_463_p2   |     |        | icmp_ln315   | seteq     | auto                   | 0       |
+|   xor_ln289_fu_468_p2    |     |        | xor_ln289    | xor       | auto                   | 0       |
+|   and_ln315_fu_474_p2    |     |        | and_ln315    | and       | auto                   | 0       |
+|   icmp_ln315_1_fu_480_p2 |     |        | icmp_ln315_1 | seteq     | auto                   | 0       |
+|   and_ln315_1_fu_485_p2  |     |        | and_ln315_1  | and       | auto                   | 0       |
+|   icmp_ln315_2_fu_491_p2 |     |        | icmp_ln315_2 | seteq     | auto                   | 0       |
+|   icmp_ln315_3_fu_496_p2 |     |        | icmp_ln315_3 | seteq     | auto                   | 0       |
+|   or_ln315_fu_501_p2     |     |        | or_ln315     | or        | auto                   | 0       |
+|   and_ln315_2_fu_507_p2  |     |        | and_ln315_2  | and       | auto                   | 0       |
+|   sparsemux_9_3_8_1_1_U6 |     |        | r_1_0_0_s    | sparsemux | onehotencoding_realdef | 0       |
+|   and_ln315_3_fu_546_p2  |     |        | and_ln315_3  | and       | auto                   | 0       |
+|   icmp_ln315_4_fu_552_p2 |     |        | icmp_ln315_4 | seteq     | auto                   | 0       |
+|   and_ln315_4_fu_557_p2  |     |        | and_ln315_4  | and       | auto                   | 0       |
+|   or_ln315_1_fu_563_p2   |     |        | or_ln315_1   | or        | auto                   | 0       |
+|   or_ln315_2_fu_569_p2   |     |        | or_ln315_2   | or        | auto                   | 0       |
+|   sparsemux_9_3_8_1_1_U7 |     |        | g_1_0_0_s    | sparsemux | onehotencoding_realdef | 0       |
+|   and_ln315_5_fu_608_p2  |     |        | and_ln315_5  | and       | auto                   | 0       |
+|   or_ln315_3_fu_614_p2   |     |        | or_ln315_3   | or        | auto                   | 0       |
+|   or_ln315_4_fu_620_p2   |     |        | or_ln315_4   | or        | auto                   | 0       |
+|   or_ln315_5_fu_626_p2   |     |        | or_ln315_5   | or        | auto                   | 0       |
+|   and_ln315_6_fu_632_p2  |     |        | and_ln315_6  | and       | auto                   | 0       |
+|   sparsemux_9_3_8_1_1_U8 |     |        | b_1_0_0_s    | sparsemux | onehotencoding_realdef | 0       |
++--------------------------+-----+--------+--------------+-----------+------------------------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + hls_hsv_2_rgb   |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+-------------------------------------------+----------------------------------------------------------------------------------+
+| Type            | Options                                   | Location                                                                         |
++-----------------+-------------------------------------------+----------------------------------------------------------------------------------+
+| AGGREGATE       | variable = in_stream compact = bit        | in hls_color_space_convert_template (hls_color_space_convert.cpp:39)             |
+| AGGREGATE       | variable = out_stream compact = bit       | in hls_color_space_convert_template (hls_color_space_convert.cpp:40)             |
+| ARRAY_PARTITION | variable = coeffs complete dim = 0        | in hls_color_space_convert_template (hls_color_space_convert.cpp:44)             |
+| ARRAY_PARTITION | variable = offsets complete dim = 1       | in hls_color_space_convert_template (hls_color_space_convert.cpp:45)             |
+| PIPELINE        | II = 1                                    | in hls_color_space_convert_template (hls_color_space_convert.cpp:62)             |
+| UNROLL          |                                           | in hls_color_space_convert_template (hls_color_space_convert.cpp:72)             |
+| INTERFACE       | axis port = s_axis_video                  | in hls_color_space_convert_top (hls_color_space_convert.cpp:129)                 |
+| INTERFACE       | axis port = m_axis_video                  | in hls_color_space_convert_top (hls_color_space_convert.cpp:130)                 |
+| INTERFACE       | s_axilite port = coeffs bundle = control  | in hls_color_space_convert_top (hls_color_space_convert.cpp:134)                 |
+| INTERFACE       | s_axilite port = offsets bundle = control | in hls_color_space_convert_top (hls_color_space_convert.cpp:135)                 |
+| INTERFACE       | s_axilite port = width bundle = control   | in hls_color_space_convert_top (hls_color_space_convert.cpp:136)                 |
+| INTERFACE       | s_axilite port = height bundle = control  | in hls_color_space_convert_top (hls_color_space_convert.cpp:137)                 |
+| INTERFACE       | s_axilite port = return bundle = control  | in hls_color_space_convert_top (hls_color_space_convert.cpp:143)                 |
+| PIPELINE        | II = 1                                    | in hls_rgb_2_hsv (hls_color_space_convert.cpp:180)                               |
+| AGGREGATE       | variable = in_stream                      | in hls_rgb_2_hsv (hls_color_space_convert.cpp:181)                               |
+| AGGREGATE       | variable = out_stream                     | in hls_rgb_2_hsv (hls_color_space_convert.cpp:182)                               |
+| INTERFACE       | axis port = in_stream                     | in hls_rgb_2_hsv (hls_color_space_convert.cpp:185)                               |
+| INTERFACE       | axis port = out_stream                    | in hls_rgb_2_hsv (hls_color_space_convert.cpp:187)                               |
+| INTERFACE       | s_axilite port = return bundle = control  | in hls_rgb_2_hsv (hls_color_space_convert.cpp:188)                               |
+| INTERFACE       | ap_ctrl_none port = return                | in hls_rgb_2_hsv (hls_color_space_convert.cpp:190)                               |
+| PIPELINE        | II = 1                                    | in hls_hsv_2_rgb (hls_color_space_convert.cpp:266)                               |
+| AGGREGATE       | variable = in_stream                      | in hls_hsv_2_rgb (hls_color_space_convert.cpp:267)                               |
+| AGGREGATE       | variable = out_stream                     | in hls_hsv_2_rgb (hls_color_space_convert.cpp:268)                               |
+| INTERFACE       | axis port = in_stream                     | in hls_hsv_2_rgb (hls_color_space_convert.cpp:269)                               |
+| INTERFACE       | axis port = out_stream                    | in hls_hsv_2_rgb (hls_color_space_convert.cpp:270)                               |
+| INTERFACE       | s_axilite port = return bundle = control  | in hls_hsv_2_rgb (hls_color_space_convert.cpp:271)                               |
+| INTERFACE       | ap_ctrl_none port = return                | in hls_hsv_2_rgb (hls_color_space_convert.cpp:272)                               |
+| INLINE          |                                           | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:40)       |
+| UNROLL          |                                           | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:42)       |
+| INLINE          |                                           | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:52)       |
+| UNROLL          |                                           | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:54)       |
+| INLINE          |                                           | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:68)       |
+| UNROLL          |                                           | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:71)       |
+| INLINE          |                                           | in operator ap_uint<num_channels * pixel_width> (hls_color_space_convert.hpp:80) |
+| UNROLL          |                                           | in operator ap_uint<num_channels * pixel_width> (hls_color_space_convert.hpp:84) |
+| INLINE          |                                           | in operator unsigned int (hls_color_space_convert.hpp:95)                        |
++-----------------+-------------------------------------------+----------------------------------------------------------------------------------+
+
+

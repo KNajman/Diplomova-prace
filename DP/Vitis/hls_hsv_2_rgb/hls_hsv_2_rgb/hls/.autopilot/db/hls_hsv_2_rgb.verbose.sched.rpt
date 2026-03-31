@@ -1,0 +1,230 @@
+
+
+================================================================
+== Vitis HLS Report for 'hls_hsv_2_rgb'
+================================================================
+* Date:           Sat Mar 28 14:43:09 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 14 2025)
+* Project:        hls_hsv_2_rgb
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xck26-sfvc784-2LV-c
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.317 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        2|  20.000 ns|  20.000 ns|    1|    1|      yes|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.67>
+ST_1 : Operation 4 [1/1] ( I:0.07ns O:0.07ns )   --->   "%in_stream_read = read i32 @_ssdm_op_Read.axis.volatile.i32P128A, i32 %in_stream" [hls_color_space_convert.cpp:274]   --->   Operation 4 'read' 'in_stream_read' <Predicate = true> <Delay = 0.07> <CoreInst = "regslice">   --->   Core 147 'regslice' <Latency = 0> <II = 1> <Delay = 0.65> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%s = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %in_stream_read, i32 9, i32 16" [hls_color_space_convert.cpp:278]   --->   Operation 5 'partselect' 's' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%v = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %in_stream_read, i32 18, i32 25" [hls_color_space_convert.cpp:279]   --->   Operation 6 'partselect' 'v' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%trunc_ln291 = trunc i32 %in_stream_read" [hls_color_space_convert.cpp:291]   --->   Operation 7 'trunc' 'trunc_ln291' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_shl = bitconcatenate i11 @_ssdm_op_BitConcatenate.i11.i8.i3, i8 %trunc_ln291, i3 0" [hls_color_space_convert.cpp:291]   --->   Operation 8 'bitconcatenate' 'p_shl' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%tmp_1 = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i8.i1, i8 %trunc_ln291, i1 0" [hls_color_space_convert.cpp:291]   --->   Operation 9 'bitconcatenate' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%zext_ln291 = zext i9 %tmp_1" [hls_color_space_convert.cpp:291]   --->   Operation 10 'zext' 'zext_ln291' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.79ns)   --->   "%h_mult = sub i11 %p_shl, i11 %zext_ln291" [hls_color_space_convert.cpp:291]   --->   Operation 11 'sub' 'h_mult' <Predicate = true> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%lshr_ln = partselect i3 @_ssdm_op_PartSelect.i3.i11.i32.i32, i11 %h_mult, i32 8, i32 10" [hls_color_space_convert.cpp:292]   --->   Operation 12 'partselect' 'lshr_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%zext_ln292 = zext i3 %lshr_ln" [hls_color_space_convert.cpp:292]   --->   Operation 13 'zext' 'zext_ln292' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.79ns)   --->   "%h_scaled = add i11 %zext_ln292, i11 %h_mult" [hls_color_space_convert.cpp:292]   --->   Operation 14 'add' 'h_scaled' <Predicate = true> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%region = partselect i3 @_ssdm_op_PartSelect.i3.i11.i32.i32, i11 %h_scaled, i32 8, i32 10" [hls_color_space_convert.cpp:295]   --->   Operation 15 'partselect' 'region' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%f = trunc i11 %h_scaled" [hls_color_space_convert.cpp:299]   --->   Operation 16 'trunc' 'f' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%tmp = partselect i2 @_ssdm_op_PartSelect.i2.i32.i32.i32, i32 %in_stream_read, i32 27, i32 28" [hls_color_space_convert.cpp:361]   --->   Operation 17 'partselect' 'tmp' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 6.31>
+ST_2 : Operation 18 [1/1] (0.76ns)   --->   "%icmp_ln289 = icmp_eq  i8 %s, i8 0" [hls_color_space_convert.cpp:289]   --->   Operation 18 'icmp' 'icmp_ln289' <Predicate = true> <Delay = 0.76> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.33ns)   --->   "%xor_ln306 = xor i8 %s, i8 255" [hls_color_space_convert.cpp:306]   --->   Operation 19 'xor' 'xor_ln306' <Predicate = true> <Delay = 0.33> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%zext_ln306 = zext i8 %v" [hls_color_space_convert.cpp:306]   --->   Operation 20 'zext' 'zext_ln306' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%zext_ln306_1 = zext i8 %xor_ln306" [hls_color_space_convert.cpp:306]   --->   Operation 21 'zext' 'zext_ln306_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (1.65ns)   --->   "%mul_ln306 = mul i16 %zext_ln306_1, i16 %zext_ln306" [hls_color_space_convert.cpp:306]   --->   Operation 22 'mul' 'mul_ln306' <Predicate = true> <Delay = 1.65> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 23 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln306 = add i16 %mul_ln306, i16 1" [hls_color_space_convert.cpp:306]   --->   Operation 23 'add' 'add_ln306' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%lshr_ln1 = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %mul_ln306, i32 8, i32 15" [hls_color_space_convert.cpp:306]   --->   Operation 24 'partselect' 'lshr_ln1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln306_2 = zext i8 %lshr_ln1" [hls_color_space_convert.cpp:306]   --->   Operation 25 'zext' 'zext_ln306_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln306_1 = add i16 %add_ln306, i16 %zext_ln306_2" [hls_color_space_convert.cpp:306]   --->   Operation 26 'add' 'add_ln306_1' <Predicate = true> <Delay = 0.68> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%p = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %add_ln306_1, i32 8, i32 15" [hls_color_space_convert.cpp:306]   --->   Operation 27 'partselect' 'p' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%zext_ln308 = zext i8 %s" [hls_color_space_convert.cpp:308]   --->   Operation 28 'zext' 'zext_ln308' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%zext_ln308_1 = zext i8 %f" [hls_color_space_convert.cpp:308]   --->   Operation 29 'zext' 'zext_ln308_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (1.65ns)   --->   "%mul_ln308 = mul i16 %zext_ln308_1, i16 %zext_ln308" [hls_color_space_convert.cpp:308]   --->   Operation 30 'mul' 'mul_ln308' <Predicate = true> <Delay = 1.65> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln308 = add i16 %mul_ln308, i16 1" [hls_color_space_convert.cpp:308]   --->   Operation 31 'add' 'add_ln308' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%lshr_ln2 = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %mul_ln308, i32 8, i32 15" [hls_color_space_convert.cpp:308]   --->   Operation 32 'partselect' 'lshr_ln2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%zext_ln308_2 = zext i8 %lshr_ln2" [hls_color_space_convert.cpp:308]   --->   Operation 33 'zext' 'zext_ln308_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln308_1 = add i16 %add_ln308, i16 %zext_ln308_2" [hls_color_space_convert.cpp:308]   --->   Operation 34 'add' 'add_ln308_1' <Predicate = true> <Delay = 0.68> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%trunc_ln = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %add_ln308_1, i32 8, i32 15" [hls_color_space_convert.cpp:309]   --->   Operation 35 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 36 [1/1] (0.33ns)   --->   "%xor_ln309 = xor i8 %trunc_ln, i8 255" [hls_color_space_convert.cpp:309]   --->   Operation 36 'xor' 'xor_ln309' <Predicate = true> <Delay = 0.33> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln309 = zext i8 %xor_ln309" [hls_color_space_convert.cpp:309]   --->   Operation 37 'zext' 'zext_ln309' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 38 [1/1] (1.65ns)   --->   "%mul_ln309 = mul i16 %zext_ln309, i16 %zext_ln306" [hls_color_space_convert.cpp:309]   --->   Operation 38 'mul' 'mul_ln309' <Predicate = true> <Delay = 1.65> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 39 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln309 = add i16 %mul_ln309, i16 1" [hls_color_space_convert.cpp:309]   --->   Operation 39 'add' 'add_ln309' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%lshr_ln3 = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %mul_ln309, i32 8, i32 15" [hls_color_space_convert.cpp:309]   --->   Operation 40 'partselect' 'lshr_ln3' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.00ns)   --->   "%zext_ln309_1 = zext i8 %lshr_ln3" [hls_color_space_convert.cpp:309]   --->   Operation 41 'zext' 'zext_ln309_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln309_1 = add i16 %add_ln309, i16 %zext_ln309_1" [hls_color_space_convert.cpp:309]   --->   Operation 42 'add' 'add_ln309_1' <Predicate = true> <Delay = 0.68> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 43 [1/1] (0.00ns)   --->   "%q = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %add_ln309_1, i32 8, i32 15" [hls_color_space_convert.cpp:309]   --->   Operation 43 'partselect' 'q' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 44 [1/1] (0.33ns)   --->   "%xor_ln311 = xor i8 %f, i8 255" [hls_color_space_convert.cpp:311]   --->   Operation 44 'xor' 'xor_ln311' <Predicate = true> <Delay = 0.33> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%zext_ln311 = zext i8 %xor_ln311" [hls_color_space_convert.cpp:311]   --->   Operation 45 'zext' 'zext_ln311' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 46 [1/1] (1.65ns)   --->   "%mul_ln311 = mul i16 %zext_ln311, i16 %zext_ln308" [hls_color_space_convert.cpp:311]   --->   Operation 46 'mul' 'mul_ln311' <Predicate = true> <Delay = 1.65> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 47 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln311 = add i16 %mul_ln311, i16 1" [hls_color_space_convert.cpp:311]   --->   Operation 47 'add' 'add_ln311' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 48 [1/1] (0.00ns)   --->   "%lshr_ln4 = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %mul_ln311, i32 8, i32 15" [hls_color_space_convert.cpp:311]   --->   Operation 48 'partselect' 'lshr_ln4' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "%zext_ln311_1 = zext i8 %lshr_ln4" [hls_color_space_convert.cpp:311]   --->   Operation 49 'zext' 'zext_ln311_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 50 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln311_1 = add i16 %add_ln311, i16 %zext_ln311_1" [hls_color_space_convert.cpp:311]   --->   Operation 50 'add' 'add_ln311_1' <Predicate = true> <Delay = 0.68> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%trunc_ln1 = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %add_ln311_1, i32 8, i32 15" [hls_color_space_convert.cpp:312]   --->   Operation 51 'partselect' 'trunc_ln1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 52 [1/1] (0.33ns)   --->   "%xor_ln312 = xor i8 %trunc_ln1, i8 255" [hls_color_space_convert.cpp:312]   --->   Operation 52 'xor' 'xor_ln312' <Predicate = true> <Delay = 0.33> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 53 [1/1] (0.00ns)   --->   "%zext_ln312 = zext i8 %xor_ln312" [hls_color_space_convert.cpp:312]   --->   Operation 53 'zext' 'zext_ln312' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 54 [1/1] (1.65ns)   --->   "%mul_ln312 = mul i16 %zext_ln312, i16 %zext_ln306" [hls_color_space_convert.cpp:312]   --->   Operation 54 'mul' 'mul_ln312' <Predicate = true> <Delay = 1.65> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 55 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln312 = add i16 %mul_ln312, i16 1" [hls_color_space_convert.cpp:312]   --->   Operation 55 'add' 'add_ln312' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%lshr_ln5 = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %mul_ln312, i32 8, i32 15" [hls_color_space_convert.cpp:312]   --->   Operation 56 'partselect' 'lshr_ln5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%zext_ln312_1 = zext i8 %lshr_ln5" [hls_color_space_convert.cpp:312]   --->   Operation 57 'zext' 'zext_ln312_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 58 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln312_1 = add i16 %add_ln312, i16 %zext_ln312_1" [hls_color_space_convert.cpp:312]   --->   Operation 58 'add' 'add_ln312_1' <Predicate = true> <Delay = 0.68> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 59 [1/1] (0.00ns)   --->   "%t = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %add_ln312_1, i32 8, i32 15" [hls_color_space_convert.cpp:312]   --->   Operation 59 'partselect' 't' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 60 [1/1] (0.67ns)   --->   "%icmp_ln315 = icmp_eq  i3 %region, i3 1" [hls_color_space_convert.cpp:315]   --->   Operation 60 'icmp' 'icmp_ln315' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 61 [1/1] (0.28ns)   --->   "%xor_ln289 = xor i1 %icmp_ln289, i1 1" [hls_color_space_convert.cpp:289]   --->   Operation 61 'xor' 'xor_ln289' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 62 [1/1] (0.28ns)   --->   "%and_ln315 = and i1 %icmp_ln315, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 62 'and' 'and_ln315' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 63 [1/1] (0.67ns)   --->   "%icmp_ln315_1 = icmp_eq  i3 %region, i3 4" [hls_color_space_convert.cpp:315]   --->   Operation 63 'icmp' 'icmp_ln315_1' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 64 [1/1] (0.28ns)   --->   "%and_ln315_1 = and i1 %icmp_ln315_1, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 64 'and' 'and_ln315_1' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 65 [1/1] (0.67ns)   --->   "%icmp_ln315_2 = icmp_eq  i3 %region, i3 2" [hls_color_space_convert.cpp:315]   --->   Operation 65 'icmp' 'icmp_ln315_2' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 66 [1/1] (0.67ns)   --->   "%icmp_ln315_3 = icmp_eq  i3 %region, i3 3" [hls_color_space_convert.cpp:315]   --->   Operation 66 'icmp' 'icmp_ln315_3' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 67 [1/1] (0.00ns) (grouped into LUT with out node and_ln315_2)   --->   "%or_ln315 = or i1 %icmp_ln315_2, i1 %icmp_ln315_3" [hls_color_space_convert.cpp:315]   --->   Operation 67 'or' 'or_ln315' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 68 [1/1] (0.28ns) (out node of the LUT)   --->   "%and_ln315_2 = and i1 %or_ln315, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 68 'and' 'and_ln315_2' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 69 [1/1] (0.00ns)   --->   "%sel_tmp = bitconcatenate i3 @_ssdm_op_BitConcatenate.i3.i1.i1.i1, i1 %and_ln315, i1 %and_ln315_1, i1 %and_ln315_2" [hls_color_space_convert.cpp:315]   --->   Operation 69 'bitconcatenate' 'sel_tmp' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 70 [1/1] (0.47ns)   --->   "%r_1_0_0_s = sparsemux i8 @_ssdm_op_SparseMux.ap_auto.4i8.i8.i3, i3 4, i8 %q, i3 2, i8 %t, i3 1, i8 %p, i3 0, i8 %v, i8 0, i3 %sel_tmp" [hls_color_space_convert.cpp:309]   --->   Operation 70 'sparsemux' 'r_1_0_0_s' <Predicate = true> <Delay = 0.47> <CoreInst = "OneHotSparseMux_HasDef">   --->   Core 152 'OneHotSparseMux_HasDef' <Latency = 0> <II = 1> <Delay = 0.47> <FuncUnit> <Opcode : 'sparsemux'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 71 [1/1] (0.28ns)   --->   "%and_ln315_3 = and i1 %icmp_ln315_3, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 71 'and' 'and_ln315_3' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 72 [1/1] (0.67ns)   --->   "%icmp_ln315_4 = icmp_eq  i3 %region, i3 0" [hls_color_space_convert.cpp:315]   --->   Operation 72 'icmp' 'icmp_ln315_4' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 73 [1/1] (0.28ns)   --->   "%and_ln315_4 = and i1 %icmp_ln315_4, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 73 'and' 'and_ln315_4' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 74 [1/1] (0.00ns) (grouped into LUT with out node or_ln315_2)   --->   "%or_ln315_1 = or i1 %icmp_ln315, i1 %icmp_ln315_2" [hls_color_space_convert.cpp:315]   --->   Operation 74 'or' 'or_ln315_1' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 75 [1/1] (0.28ns) (out node of the LUT)   --->   "%or_ln315_2 = or i1 %or_ln315_1, i1 %icmp_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 75 'or' 'or_ln315_2' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 76 [1/1] (0.00ns)   --->   "%sel_tmp1 = bitconcatenate i3 @_ssdm_op_BitConcatenate.i3.i1.i1.i1, i1 %and_ln315_3, i1 %and_ln315_4, i1 %or_ln315_2" [hls_color_space_convert.cpp:315]   --->   Operation 76 'bitconcatenate' 'sel_tmp1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 77 [1/1] (0.47ns)   --->   "%g_1_0_0_s = sparsemux i8 @_ssdm_op_SparseMux.ap_auto.4i8.i8.i3, i3 4, i8 %q, i3 2, i8 %t, i3 1, i8 %v, i3 0, i8 %p, i8 0, i3 %sel_tmp1" [hls_color_space_convert.cpp:309]   --->   Operation 77 'sparsemux' 'g_1_0_0_s' <Predicate = true> <Delay = 0.47> <CoreInst = "OneHotSparseMux_HasDef">   --->   Core 152 'OneHotSparseMux_HasDef' <Latency = 0> <II = 1> <Delay = 0.47> <FuncUnit> <Opcode : 'sparsemux'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 78 [1/1] (0.28ns)   --->   "%and_ln315_5 = and i1 %icmp_ln315_2, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 78 'and' 'and_ln315_5' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 79 [1/1] (0.00ns) (grouped into LUT with out node or_ln315_4)   --->   "%or_ln315_3 = or i1 %icmp_ln315_3, i1 %icmp_ln315_1" [hls_color_space_convert.cpp:315]   --->   Operation 79 'or' 'or_ln315_3' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 80 [1/1] (0.28ns) (out node of the LUT)   --->   "%or_ln315_4 = or i1 %or_ln315_3, i1 %icmp_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 80 'or' 'or_ln315_4' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 81 [1/1] (0.00ns) (grouped into LUT with out node and_ln315_6)   --->   "%or_ln315_5 = or i1 %icmp_ln315_4, i1 %icmp_ln315" [hls_color_space_convert.cpp:315]   --->   Operation 81 'or' 'or_ln315_5' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 82 [1/1] (0.28ns) (out node of the LUT)   --->   "%and_ln315_6 = and i1 %or_ln315_5, i1 %xor_ln289" [hls_color_space_convert.cpp:315]   --->   Operation 82 'and' 'and_ln315_6' <Predicate = true> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 83 [1/1] (0.00ns)   --->   "%sel_tmp2 = bitconcatenate i3 @_ssdm_op_BitConcatenate.i3.i1.i1.i1, i1 %and_ln315_5, i1 %or_ln315_4, i1 %and_ln315_6" [hls_color_space_convert.cpp:315]   --->   Operation 83 'bitconcatenate' 'sel_tmp2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 84 [1/1] (0.47ns)   --->   "%b_1_0_0_s = sparsemux i8 @_ssdm_op_SparseMux.ap_auto.4i8.i8.i3, i3 4, i8 %t, i3 2, i8 %v, i3 1, i8 %p, i3 0, i8 %q, i8 0, i3 %sel_tmp2" [hls_color_space_convert.cpp:312]   --->   Operation 84 'sparsemux' 'b_1_0_0_s' <Predicate = true> <Delay = 0.47> <CoreInst = "OneHotSparseMux_HasDef">   --->   Core 152 'OneHotSparseMux_HasDef' <Latency = 0> <II = 1> <Delay = 0.47> <FuncUnit> <Opcode : 'sparsemux'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 85 [1/1] (0.00ns)   --->   "%or_ln361_7 = bitconcatenate i26 @_ssdm_op_BitConcatenate.i26.i2.i8.i8.i8, i2 %tmp, i8 %b_1_0_0_s, i8 %g_1_0_0_s, i8 %r_1_0_0_s" [hls_color_space_convert.cpp:361]   --->   Operation 85 'bitconcatenate' 'or_ln361_7' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 86 [1/1] (0.00ns)   --->   "%zext_ln361 = zext i26 %or_ln361_7" [hls_color_space_convert.cpp:361]   --->   Operation 86 'zext' 'zext_ln361' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 87 [2/2] (0.49ns)   --->   "%write_ln361 = write void @_ssdm_op_Write.axis.volatile.i32P128A, i32 %out_stream, i32 %zext_ln361" [hls_color_space_convert.cpp:361]   --->   Operation 87 'write' 'write_ln361' <Predicate = true> <Delay = 0.49> <CoreInst = "regslice">   --->   Core 147 'regslice' <Latency = 0> <II = 1> <Delay = 0.65> <Adapter> <Opcode : 'read' 'write'>
+
+State 3 <SV = 2> <Delay = 0.49>
+ST_3 : Operation 88 [1/1] (0.00ns)   --->   "%specpipeline_ln266 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, i32 4294967295, void @empty_1" [hls_color_space_convert.cpp:266]   --->   Operation 88 'specpipeline' 'specpipeline_ln266' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 89 [1/1] (0.00ns)   --->   "%spectopmodule_ln263 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_4" [hls_color_space_convert.cpp:263]   --->   Operation 89 'spectopmodule' 'spectopmodule_ln263' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 90 [1/1] (0.00ns)   --->   "%specinterface_ln263 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0" [hls_color_space_convert.cpp:263]   --->   Operation 90 'specinterface' 'specinterface_ln263' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 91 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in_stream, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 91 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 92 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in_stream"   --->   Operation 92 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 93 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %out_stream, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 93 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 94 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %out_stream"   --->   Operation 94 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 95 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0"   --->   Operation 95 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 96 [1/2] ( I:0.49ns O:0.49ns )   --->   "%write_ln361 = write void @_ssdm_op_Write.axis.volatile.i32P128A, i32 %out_stream, i32 %zext_ln361" [hls_color_space_convert.cpp:361]   --->   Operation 96 'write' 'write_ln361' <Predicate = true> <Delay = 0.49> <CoreInst = "regslice">   --->   Core 147 'regslice' <Latency = 0> <II = 1> <Delay = 0.65> <Adapter> <Opcode : 'read' 'write'>
+ST_3 : Operation 97 [1/1] (0.00ns)   --->   "%ret_ln362 = ret" [hls_color_space_convert.cpp:362]   --->   Operation 97 'ret' 'ret_ln362' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10.000ns, clock uncertainty: 2.700ns.
+
+ <State 1>: 1.675ns
+The critical path consists of the following:
+	axis read operation ('in_stream_read', hls_color_space_convert.cpp:274) on port 'in_stream' (hls_color_space_convert.cpp:274) [11]  (0.079 ns)
+	'sub' operation 11 bit ('h_mult', hls_color_space_convert.cpp:291) [19]  (0.798 ns)
+	'add' operation 11 bit ('h_scaled', hls_color_space_convert.cpp:292) [22]  (0.798 ns)
+
+ <State 2>: 6.317ns
+The critical path consists of the following:
+	'xor' operation 8 bit ('xor_ln311', hls_color_space_convert.cpp:311) [50]  (0.335 ns)
+	'mul' operation 16 bit ('mul_ln311', hls_color_space_convert.cpp:311) [52]  (1.650 ns)
+	'add' operation 16 bit ('add_ln311', hls_color_space_convert.cpp:311) [53]  (0.000 ns)
+	'add' operation 16 bit ('add_ln311_1', hls_color_space_convert.cpp:311) [56]  (0.687 ns)
+	'xor' operation 8 bit ('xor_ln312', hls_color_space_convert.cpp:312) [58]  (0.335 ns)
+	'mul' operation 16 bit ('mul_ln312', hls_color_space_convert.cpp:312) [60]  (1.650 ns)
+	'add' operation 16 bit ('add_ln312', hls_color_space_convert.cpp:312) [61]  (0.000 ns)
+	'add' operation 16 bit ('add_ln312_1', hls_color_space_convert.cpp:312) [64]  (0.687 ns)
+	'sparsemux' operation 8 bit ('r_1_0_0_s', hls_color_space_convert.cpp:309) [76]  (0.476 ns)
+	axis write operation ('write_ln361', hls_color_space_convert.cpp:361) on port 'out_stream' (hls_color_space_convert.cpp:361) [94]  (0.000 ns)
+	blocking operation 0.497 ns on control path)
+
+ <State 3>: 0.497ns
+The critical path consists of the following:
+	axis write operation ('write_ln361', hls_color_space_convert.cpp:361) on port 'out_stream' (hls_color_space_convert.cpp:361) [94]  (0.497 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

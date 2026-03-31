@@ -1,0 +1,24 @@
+
+
+Implementation tool: Xilinx Vivado v.2025.2
+Project:             filter_2d
+Solution:            hls
+Device target:       xck26-sfvc784-2LV-c
+Report date:         Tue Mar 31 12:19:10 +0200 2026
+
+#=== Post-Implementation Resource usage ===
+SLICE:            0
+LUT:           1076
+FF:            1255
+DSP:             29
+BRAM:            16
+URAM:             0
+LATCH:            0
+SRL:              5
+CLB:            236
+
+#=== Final timing ===
+CP required:                     10.000
+CP achieved post-synthesis:      5.423
+CP achieved post-implementation: 6.548
+Timing met
