@@ -1,0 +1,56 @@
+<design_size title="Design Size Report">
+    <item name="Total Instructions per Compilation Phase">
+        <table>
+            <keys size="4">Phase, Step, Instructions, Description</keys>
+            <column name="Compile/Link">, 2226, After all functions are compiled and linked into a single design</column>
+            <column name="">, , </column>
+            <column name="Unroll/Inline">, , After user unroll and inline pragmas are applied</column>
+            <column name="">(1) unroll, 1152, user unroll pragmas are applied</column>
+            <column name="">(2) simplification,   832, simplification of applied user unroll pragmas</column>
+            <column name="">(3) inline,   912, user inline pragmas are applied</column>
+            <column name="">(4) simplification,   754, simplification of applied user inline pragmas</column>
+            <column name="">, , </column>
+            <column name="Array/Struct">, , After user array partition and struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(1) array partition,   231, user array partition pragmas are applied</column>
+            <column name="">(2) simplification,   229, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
+            <column name="">(3) aggregate/disaggregate,   229, user struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(4) array reshape,   229, apply array reshape pragmas</column>
+            <column name="">(5) access patterns,   230, array access pattern optmizations</column>
+            <column name="">, , </column>
+            <column name="Performance">, , After transformations are applied to meet performance pragma targets</column>
+            <column name="">(1) loop simplification,   230, loop and instruction simplification</column>
+            <column name="">(2) parallelization,   181, loops are unrolled or pipelined to meet performance targets</column>
+            <column name="">(3) array partition,   170, arrays are partitioned to meet performance targets</column>
+            <column name="">(4) simplification,   134, simplification of design after performance transformations</column>
+            <column name="">, , </column>
+            <column name="HW Transforms">, , After hardware transfomations</column>
+            <column name="">(1) lowering,   137, initial conversion to HW specific instructions</column>
+            <column name="">(2) optimizations,   149, high level synthesis optimizations</column>
+        </table>
+    </item>
+    <item name="Instructions per Function for each Compilation Phase">
+        <hiertable>
+            <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
+            <rows>
+                <row id="0" col0="hls_filter_median_3x3" col1="hls_filter_median.cpp:3" col2="2226" col3="754" col4="230" col5="134" col6="149">
+                    <row id="6" col0="operator ap_uint" col1="hls_filter_median.hpp:102" col2="83" col3="" col4="" col5="" col6=""/>
+                    <row id="1" col0="sort_three&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:168" col2="995" col2_disp=" 995 (5 calls)" col3="616" col3_disp="616 (7 calls)" col4="112" col4_disp="112 (7 calls)" col5="" col6="">
+                        <row id="4" col0="hls_min&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:154" col2="300" col2_disp=" 300 (15 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="7" col0="hls_max&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:162" col2="300" col2_disp=" 300 (15 calls)" col3="" col4="" col5="" col6=""/>
+                    </row>
+                    <row id="2" col0="axi_stream_video" col1="hls_filter_median.hpp:46" col2="44" col3="" col4="" col5="" col6="">
+                        <row id="5" col0="color_pixel" col1="hls_filter_median.hpp:62" col2="39" col3="" col4="" col5="" col6=""/>
+                    </row>
+                    <row id="3" col0="color_pixel" col1="hls_filter_median.hpp:74" col2="77" col3="" col4="" col5="" col6=""/>
+                </row>
+            </rows>
+            <notes/>
+        </hiertable>
+    </item>
+    <item name="Design Size Message Settings">
+        <table>
+            <keys size="3">Message Setting, Value, Description</keys>
+            <column name="config_compile -design_size_maximum_warning">100000, Show a warning when total design instructions exceeds this value</column>
+        </table>
+    </item>
+</design_size>

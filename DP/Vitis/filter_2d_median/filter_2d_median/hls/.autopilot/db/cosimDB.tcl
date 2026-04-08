@@ -1,0 +1,59 @@
+
+
+set RtlHierarchyInfo {[
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "5", "6", "7", "8"],
+		"CDFG" : "hls_filter_median_3x3",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "6", "EstimateLatencyMax" : "67092487",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "s_axis_video", "Type" : "Axis", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "1", "SubInstance" : "grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56", "Port" : "s_axis_video", "Inst_start_state" : "2", "Inst_end_state" : "3"}]},
+			{"Name" : "m_axis_video", "Type" : "Axis", "Direction" : "O",
+				"SubConnect" : [
+					{"ID" : "1", "SubInstance" : "grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56", "Port" : "m_axis_video", "Inst_start_state" : "2", "Inst_end_state" : "3"}]},
+			{"Name" : "width", "Type" : "None", "Direction" : "I"},
+			{"Name" : "height", "Type" : "None", "Direction" : "I"}]},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56", "Parent" : "0", "Child" : ["2", "3", "4"],
+		"CDFG" : "hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "3", "EstimateLatencyMax" : "67092484",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "mul_ln31", "Type" : "None", "Direction" : "I"},
+			{"Name" : "s_axis_video", "Type" : "Axis", "Direction" : "I",
+				"BlockSignal" : [
+					{"Name" : "s_axis_video_TDATA_blk_n", "Type" : "RtlSignal"}]},
+			{"Name" : "add_ln117", "Type" : "None", "Direction" : "I"},
+			{"Name" : "m_axis_video", "Type" : "Axis", "Direction" : "O",
+				"BlockSignal" : [
+					{"Name" : "m_axis_video_TDATA_blk_n", "Type" : "RtlSignal"}]}],
+		"Loop" : [
+			{"Name" : "VITIS_LOOP_31_1", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter3", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter2", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56.line_buffer_1_U", "Parent" : "1"},
+	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56.line_buffer_U", "Parent" : "1"},
+	{"ID" : "4", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56.flow_control_loop_pipe_sequential_init_U", "Parent" : "1"},
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.control_s_axi_U", "Parent" : "0"},
+	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_13ns_13ns_26_1_1_U6", "Parent" : "0"},
+	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.regslice_both_s_axis_video_U", "Parent" : "0"},
+	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.regslice_both_m_axis_video_U", "Parent" : "0"}]}

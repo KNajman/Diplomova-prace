@@ -1,0 +1,60 @@
+
+
+set RtlHierarchyInfo {[
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "3", "4", "5", "6"],
+		"CDFG" : "hls_threshold_gray",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "-1", "EstimateLatencyMax" : "-1",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "s_axis_video", "Type" : "Axis", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "1", "SubInstance" : "grp_hls_threshold_gray_Pipeline_VITIS_LOOP_24_1_fu_78", "Port" : "s_axis_video", "Inst_start_state" : "2", "Inst_end_state" : "3"}]},
+			{"Name" : "m_axis_video", "Type" : "Axis", "Direction" : "O",
+				"SubConnect" : [
+					{"ID" : "1", "SubInstance" : "grp_hls_threshold_gray_Pipeline_VITIS_LOOP_24_1_fu_78", "Port" : "m_axis_video", "Inst_start_state" : "2", "Inst_end_state" : "3"}]},
+			{"Name" : "thresh_val", "Type" : "None", "Direction" : "I"},
+			{"Name" : "thresh_type", "Type" : "None", "Direction" : "I"},
+			{"Name" : "width", "Type" : "None", "Direction" : "I"},
+			{"Name" : "height", "Type" : "None", "Direction" : "I"}]},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_hls_threshold_gray_Pipeline_VITIS_LOOP_24_1_fu_78", "Parent" : "0", "Child" : ["2"],
+		"CDFG" : "hls_threshold_gray_Pipeline_VITIS_LOOP_24_1",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "-1", "EstimateLatencyMax" : "-1",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "total_pixels", "Type" : "None", "Direction" : "I"},
+			{"Name" : "m_axis_video", "Type" : "Axis", "Direction" : "O",
+				"BlockSignal" : [
+					{"Name" : "m_axis_video_TDATA_blk_n", "Type" : "RtlSignal"}]},
+			{"Name" : "s_axis_video", "Type" : "Axis", "Direction" : "I",
+				"BlockSignal" : [
+					{"Name" : "s_axis_video_TDATA_blk_n", "Type" : "RtlSignal"}]},
+			{"Name" : "thresh_val", "Type" : "None", "Direction" : "I"},
+			{"Name" : "thresh_type", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "VITIS_LOOP_24_1", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter0", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_hls_threshold_gray_Pipeline_VITIS_LOOP_24_1_fu_78.flow_control_loop_pipe_sequential_init_U", "Parent" : "1"},
+	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.control_s_axi_U", "Parent" : "0"},
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_32s_32s_32_1_1_U6", "Parent" : "0"},
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.regslice_both_s_axis_video_U", "Parent" : "0"},
+	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.regslice_both_m_axis_video_U", "Parent" : "0"}]}
