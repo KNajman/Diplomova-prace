@@ -21,18 +21,18 @@ use IEEE.FIXED_PKG.ALL;                 -- pro typy sfixed, ufixed a jejich mate
 
 entity RGB2HSV is
     generic(
-        DATA_WIDTH       : natural range 8 to 16 := 8; -- Bitová šířka jedné barvy
-        COEFF_FRACT_BITS : natural range 8 to 20 := 8;
+        G_DATA_WIDTH       : natural range 8 to 16 := 8; -- Bitová šířka jedné barvy
+        G_COEFF_FRACT_BITS : natural range 8 to 20 := 8 -- Počet bitů pro zlomkovou část koeficientů (např. 8 pro Q8.8)
     );
     Port(
         clk           : in  STD_LOGIC;
         rst           : in  STD_LOGIC; -- active low reset
         -- Slave AXI-Stream Input
-        rgb_in        : in  STD_LOGIC_VECTOR(DATA_WIDTH * 3 - 1 downto 0); -- RGB v jednom vektoru (R[23:16], G[15:8], B[7:0] pro 8-bit)
+        rgb_in        : in  STD_LOGIC_VECTOR(G_DATA_WIDTH * 3 - 1 downto 0); -- RGB v jednom vektoru (R[23:16], G[15:8], B[7:0] pro 8-bit)
         rgb_in_valid  : in  STD_LOGIC;
         rgb_in_ready  : out STD_LOGIC;
         -- Master AXI-Stream Output
-        hsv_out       : out STD_LOGIC_VECTOR(DATA_WIDTH * 3 - 1 downto 0); -- HSV v jednom vektoru (H[23:16], S[15:8], V[7:0] pro 8-bit)
+        hsv_out       : out STD_LOGIC_VECTOR(G_DATA_WIDTH * 3 - 1 downto 0); -- HSV v jednom vektoru (H[23:16], S[15:8], V[7:0] pro 8-bit)
         hsv_out_valid : out STD_LOGIC;
         hsv_out_ready : in  STD_LOGIC
     );
@@ -40,20 +40,20 @@ end RGB2HSV;
 
 architecture RTL of RGB2HSV is
     -- Interní signály pro rozdělení vstupního vektoru na R, G, B
-    signal r, g, b : unsigned(DATA_WIDTH - 1 downto 0);
+    signal r, g, b : unsigned(G_DATA_WIDTH - 1 downto 0);
     
     -- Signály pro výstupní H, S, V
-    signal h, s, v : unsigned(DATA_WIDTH - 1 downto 0);
+    signal h, s, v : unsigned(G_DATA_WIDTH - 1 downto 0);
     
     -- Signály pro mezivýpočty
-    signal max_rgb, min_rgb : unsigned(DATA_WIDTH - 1 downto 0);
-    signal delta : unsigned(DATA_WIDTH - 1 downto 0);
+    signal max_rgb, min_rgb : unsigned(G_DATA_WIDTH - 1 downto 0);
+    signal delta : unsigned(G_DATA_WIDTH - 1 downto 0);
 
 begin
     -- Rozdělení vstupního vektoru na R, G, B
-    r <= unsigned(rgb_in(DATA_WIDTH * 3 - 1 downto DATA_WIDTH * 2));
-    g <= unsigned(rgb_in(DATA_WIDTH * 2 - 1 downto DATA_WIDTH));
-    b <= unsigned(rgb_in(DATA_WIDTH - 1 downto 0));
+    r <= unsigned(rgb_in(G_DATA_WIDTH * 3 - 1 downto G_DATA_WIDTH * 2));
+    g <= unsigned(rgb_in(G_DATA_WIDTH * 2 - 1 downto G_DATA_WIDTH));
+    b <= unsigned(rgb_in(G_DATA_WIDTH - 1 downto 0));
 
     -- Výpočet max, min a delta
     process(r, g, b)
@@ -73,15 +73,15 @@ begin
         else
             -- Výpočet H
             if max_rgb = r then
-                h <= (g - b) * COEFF_FRACT_BITS / delta; -- H = (G - B) / delta
+                h <= (g - b) * G_COEFF_FRACT_BITS / delta; -- H = (G - B) / delta
             elsif max_rgb = g then
-                h <= (b - r) * COEFF_FRACT_BITS / delta + (COEFF_FRACT_BITS / 3); -- H = (B - R) / delta + 120°
+                h <= (b - r) * G_COEFF_FRACT_BITS / delta + (G_COEFF_FRACT_BITS / 3); -- H = (B - R) / delta + 120°
             else
-                h <= (r - g) * COEFF_FRACT_BITS / delta + (2 * COEFF_FRACT_BITS / 3); -- H = (R - G) / delta + 240°
+                h <= (r - g) * G_COEFF_FRACT_BITS / delta + (2 * G_COEFF_FRACT_BITS / 3); -- H = (R - G) / delta + 240°
             end if;
 
             -- Výpočet S
-            s <= (delta * COEFF_FRACT_BITS) / max_rgb; -- S = delta / max
+            s <= (delta * G_COEFF_FRACT_BITS) / max_rgb; -- S = delta / max
 
             -- Výpočet V
             v <= max_rgb; -- V = max

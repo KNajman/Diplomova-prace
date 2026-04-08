@@ -1,7 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.dp_pkg.all;
+
+use work.vid_processing_pkg.all;
 
 entity mac_pipeline is
     generic(
