@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.dp_pkg.all;
+use work.vid_processing_pkg.all;
 
 entity sliding_window is
     generic(
@@ -19,7 +19,7 @@ entity sliding_window is
         pixel_in      : in  std_logic_vector(PIXEL_WIDTH - 1 downto 0);
         is_real_pixel : in  std_logic;
         -- VHDL-2008: Port je přímo 2D matice se specifikovanými rozměry!
-        window_out    : out signed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
+        window_out    : out sfixed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
         window_valid  : out std_logic
     );
 end entity sliding_window;
