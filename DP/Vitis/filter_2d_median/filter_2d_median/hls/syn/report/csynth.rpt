@@ -1,0 +1,237 @@
+
+
+================================================================
+== Synthesis Summary Report of 'hls_filter_median_3x3'
+================================================================
++ General Information: 
+    * Date:           Tue Mar 31 17:11:28 2026
+    * Version:        2025.2 (Build 6295257 on Nov 14 2025)
+    * Project:        filter_2d_median
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: zynquplus
+    * Target device:  xck26-sfvc784-2LV-c
+    
+
+* Performance & Resource Estimates: 
++---------------------------------------------------+------+---------------+----------+----------+----------+----------+----------+-----------+------+--------+---------+-----------+-----------+-----+
+|                      Modules                      | Issue|               | Iteration|          |   Trip   |          |        Latency       |      |        |         |           |           |     |
+|                      & Loops                      | Type | Violation Type|  Latency | Interval |   Count  | Pipelined| (cycles) |    (ns)   | Slack|  BRAM  |   DSP   |     FF    |    LUT    | URAM|
++---------------------------------------------------+------+---------------+----------+----------+----------+----------+----------+-----------+------+--------+---------+-----------+-----------+-----+
+|+ hls_filter_median_3x3                            |     -|              -|         -|  67092488|         -|        no|  67092487|  6.709e+08|  0.51|  8 (2%)|  1 (~0%)|  460 (~0%)|  1369 (1%)|    -|
+| + hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1  |     -|              -|         -|         -|         -|       yes|  67092484|  6.709e+08|  1.04|  8 (2%)|        -|  317 (~0%)|  1205 (1%)|    -|
+|  o VITIS_LOOP_31_1                                |     -|              -|         3|         1|  67092481|       yes|  67092482|  6.709e+08|  7.30|       -|        -|          -|          -|    -|
++---------------------------------------------------+------+---------------+----------+----------+----------+----------+----------+-----------+------+--------+---------+-----------+-----------+-----+
+    Name Prefix: '+' for module, 'o' for loop, '*' for dataflow
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 5             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | width    | 0x10   | 32    | W      | Data signal of width             |                                                                      |
+| s_axi_control | height   | 0x18   | 32    | W      | Data signal of height            |                                                                      |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++--------------+-----------+---------------+-------+--------+--------+
+| Interface    | Direction | Register Mode | TDATA | TREADY | TVALID |
++--------------+-----------+---------------+-------+--------+--------+
+| m_axis_video | out       | both          | 24    | 1      | 1      |
+| s_axis_video | in        | both          | 24    | 1      | 1      |
++--------------+-----------+---------------+-------+--------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++--------------+-----------+--------------------------------------------------+
+| Argument     | Direction | Datatype                                         |
++--------------+-----------+--------------------------------------------------+
+| s_axis_video | in        | stream<axi_stream_video<color_pixel<1, 8> >, 0>& |
+| m_axis_video | out       | stream<axi_stream_video<color_pixel<1, 8> >, 0>& |
+| width        | in        | ap_uint<13>                                      |
+| height       | in        | ap_uint<13>                                      |
++--------------+-----------+--------------------------------------------------+
+
+* SW-to-HW Mapping
++--------------+---------------+-----------+----------------------------------+
+| Argument     | HW Interface  | HW Type   | HW Info                          |
++--------------+---------------+-----------+----------------------------------+
+| s_axis_video | s_axis_video  | interface |                                  |
+| m_axis_video | m_axis_video  | interface |                                  |
+| width        | s_axi_control | register  | name=width offset=0x10 range=32  |
+| height       | s_axi_control | register  | name=height offset=0x18 range=32 |
++--------------+---------------+-----------+----------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++---------------------------------------------------+-----+--------+---------------+--------+----------+---------+
+| Name                                              | DSP | Pragma | Variable      | Op     | Impl     | Latency |
++---------------------------------------------------+-----+--------+---------------+--------+----------+---------+
+| + hls_filter_median_3x3                           | 1   |        |               |        |          |         |
+|   add_ln117_fu_70_p2                              |     |        | add_ln117     | add    | fabric   | 0       |
+|   mul_13ns_13ns_26_1_1_U6                         | 1   |        | mul_ln31      | mul    | auto     | 0       |
+|  + hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1 | 0   |        |               |        |          |         |
+|    icmp_ln31_fu_242_p2                            |     |        | icmp_ln31     | seteq  | auto     | 0       |
+|    i_1_fu_247_p2                                  |     |        | i_1           | add    | fabric   | 0       |
+|    addr_cmp8_fu_262_p2                            |     |        | addr_cmp8     | seteq  | auto     | 0       |
+|    c_fu_403_p3                                    |     |        | c             | select | auto_sel | 0       |
+|    addr_cmp_fu_271_p2                             |     |        | addr_cmp      | seteq  | auto     | 0       |
+|    c_1_fu_413_p3                                  |     |        | c_1           | select | auto_sel | 0       |
+|    icmp_ln155_fu_431_p2                           |     |        | icmp_ln155    | setlt  | auto     | 0       |
+|    tmp_min1_fu_437_p3                             |     |        | tmp_min1      | select | auto_sel | 0       |
+|    icmp_ln163_fu_445_p2                           |     |        | icmp_ln163    | setgt  | auto     | 0       |
+|    tmp_max1_fu_451_p3                             |     |        | tmp_max1      | select | auto_sel | 0       |
+|    icmp_ln155_1_fu_459_p2                         |     |        | icmp_ln155_1  | setlt  | auto     | 0       |
+|    min_fu_465_p3                                  |     |        | min           | select | auto_sel | 0       |
+|    icmp_ln163_1_fu_473_p2                         |     |        | icmp_ln163_1  | setgt  | auto     | 0       |
+|    tmp_max2_fu_479_p3                             |     |        | tmp_max2      | select | auto_sel | 0       |
+|    icmp_ln155_2_fu_487_p2                         |     |        | icmp_ln155_2  | setlt  | auto     | 0       |
+|    med_fu_493_p3                                  |     |        | med           | select | auto_sel | 0       |
+|    icmp_ln163_2_fu_501_p2                         |     |        | icmp_ln163_2  | setgt  | auto     | 0       |
+|    max_fu_507_p3                                  |     |        | max           | select | auto_sel | 0       |
+|    icmp_ln155_3_fu_515_p2                         |     |        | icmp_ln155_3  | setlt  | auto     | 0       |
+|    tmp_min1_1_fu_521_p3                           |     |        | tmp_min1_1    | select | auto_sel | 0       |
+|    icmp_ln163_3_fu_529_p2                         |     |        | icmp_ln163_3  | setgt  | auto     | 0       |
+|    tmp_max1_1_fu_535_p3                           |     |        | tmp_max1_1    | select | auto_sel | 0       |
+|    icmp_ln155_4_fu_543_p2                         |     |        | icmp_ln155_4  | setlt  | auto     | 0       |
+|    min_3_fu_549_p3                                |     |        | min_3         | select | auto_sel | 0       |
+|    icmp_ln163_4_fu_557_p2                         |     |        | icmp_ln163_4  | setgt  | auto     | 0       |
+|    tmp_max2_1_fu_563_p3                           |     |        | tmp_max2_1    | select | auto_sel | 0       |
+|    icmp_ln155_5_fu_571_p2                         |     |        | icmp_ln155_5  | setlt  | auto     | 0       |
+|    med_3_fu_577_p3                                |     |        | med_3         | select | auto_sel | 0       |
+|    icmp_ln163_5_fu_585_p2                         |     |        | icmp_ln163_5  | setgt  | auto     | 0       |
+|    max_3_fu_591_p3                                |     |        | max_3         | select | auto_sel | 0       |
+|    icmp_ln155_6_fu_599_p2                         |     |        | icmp_ln155_6  | setlt  | auto     | 0       |
+|    tmp_min1_2_fu_605_p3                           |     |        | tmp_min1_2    | select | auto_sel | 0       |
+|    icmp_ln163_6_fu_613_p2                         |     |        | icmp_ln163_6  | setgt  | auto     | 0       |
+|    tmp_max1_2_fu_619_p3                           |     |        | tmp_max1_2    | select | auto_sel | 0       |
+|    icmp_ln155_7_fu_627_p2                         |     |        | icmp_ln155_7  | setlt  | auto     | 0       |
+|    min_4_fu_633_p3                                |     |        | min_4         | select | auto_sel | 0       |
+|    icmp_ln163_7_fu_641_p2                         |     |        | icmp_ln163_7  | setgt  | auto     | 0       |
+|    tmp_max2_2_fu_647_p3                           |     |        | tmp_max2_2    | select | auto_sel | 0       |
+|    icmp_ln155_8_fu_655_p2                         |     |        | icmp_ln155_8  | setlt  | auto     | 0       |
+|    med_4_fu_661_p3                                |     |        | med_4         | select | auto_sel | 0       |
+|    icmp_ln163_8_fu_669_p2                         |     |        | icmp_ln163_8  | setgt  | auto     | 0       |
+|    max_4_fu_675_p3                                |     |        | max_4         | select | auto_sel | 0       |
+|    icmp_ln155_9_fu_683_p2                         |     |        | icmp_ln155_9  | setlt  | auto     | 0       |
+|    tmp_min1_3_fu_689_p3                           |     |        | tmp_min1_3    | select | auto_sel | 0       |
+|    icmp_ln163_9_fu_697_p2                         |     |        | icmp_ln163_9  | setgt  | auto     | 0       |
+|    tmp_max1_3_fu_703_p3                           |     |        | tmp_max1_3    | select | auto_sel | 0       |
+|    icmp_ln163_10_fu_711_p2                        |     |        | icmp_ln163_10 | setgt  | auto     | 0       |
+|    tmp_max2_3_fu_717_p3                           |     |        | tmp_max2_3    | select | auto_sel | 0       |
+|    icmp_ln163_11_fu_725_p2                        |     |        | icmp_ln163_11 | setgt  | auto     | 0       |
+|    a_6_fu_731_p3                                  |     |        | a_6           | select | auto_sel | 0       |
+|    icmp_ln155_10_fu_739_p2                        |     |        | icmp_ln155_10 | setlt  | auto     | 0       |
+|    tmp_min1_4_fu_745_p3                           |     |        | tmp_min1_4    | select | auto_sel | 0       |
+|    icmp_ln163_12_fu_753_p2                        |     |        | icmp_ln163_12 | setgt  | auto     | 0       |
+|    tmp_max1_4_fu_759_p3                           |     |        | tmp_max1_4    | select | auto_sel | 0       |
+|    icmp_ln163_13_fu_767_p2                        |     |        | icmp_ln163_13 | setgt  | auto     | 0       |
+|    tmp_max2_4_fu_773_p3                           |     |        | tmp_max2_4    | select | auto_sel | 0       |
+|    icmp_ln155_11_fu_839_p2                        |     |        | icmp_ln155_11 | setlt  | auto     | 0       |
+|    b_10_fu_843_p3                                 |     |        | b_10          | select | auto_sel | 0       |
+|    icmp_ln155_12_fu_781_p2                        |     |        | icmp_ln155_12 | setlt  | auto     | 0       |
+|    tmp_min1_5_fu_787_p3                           |     |        | tmp_min1_5    | select | auto_sel | 0       |
+|    icmp_ln155_13_fu_795_p2                        |     |        | icmp_ln155_13 | setlt  | auto     | 0       |
+|    c_6_fu_801_p3                                  |     |        | c_6           | select | auto_sel | 0       |
+|    icmp_ln155_14_fu_849_p2                        |     |        | icmp_ln155_14 | setlt  | auto     | 0       |
+|    tmp_min1_6_fu_854_p3                           |     |        | tmp_min1_6    | select | auto_sel | 0       |
+|    icmp_ln163_14_fu_861_p2                        |     |        | icmp_ln163_14 | setgt  | auto     | 0       |
+|    tmp_max1_5_fu_866_p3                           |     |        | tmp_max1_5    | select | auto_sel | 0       |
+|    icmp_ln163_15_fu_873_p2                        |     |        | icmp_ln163_15 | setgt  | auto     | 0       |
+|    tmp_max2_5_fu_878_p3                           |     |        | tmp_max2_5    | select | auto_sel | 0       |
+|    icmp_ln155_15_fu_885_p2                        |     |        | icmp_ln155_15 | setlt  | auto     | 0       |
+|    final_med_fu_891_p3                            |     |        | final_med     | select | auto_sel | 0       |
+|    icmp_ln99_fu_297_p2                            |     |        | icmp_ln99     | setne  | auto     | 0       |
+|    icmp_ln99_1_fu_313_p2                          |     |        | icmp_ln99_1   | setne  | auto     | 0       |
+|    and_ln99_fu_319_p2                             |     |        | and_ln99      | and    | auto     | 0       |
+|    icmp_ln117_fu_329_p2                           |     |        | icmp_ln117    | seteq  | auto     | 0       |
+|    y_4_fu_334_p2                                  |     |        | y_4           | add    | fabric   | 0       |
+|    x_4_fu_340_p2                                  |     |        | x_4           | add    | fabric   | 0       |
+|    x_5_fu_346_p3                                  |     |        | x_5           | select | auto_sel | 0       |
+|    y_5_fu_354_p3                                  |     |        | y_5           | select | auto_sel | 0       |
++---------------------------------------------------+-----+--------+---------------+--------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++---------------------------------------------------+---------------+-----------+------+------+--------+---------------+------+---------+------------------+
+| Name                                              | Usage         | Type      | BRAM | URAM | Pragma | Variable      | Impl | Latency | Bitwidth, Depth, |
+|                                                   |               |           |      |      |        |               |      |         | Banks            |
++---------------------------------------------------+---------------+-----------+------+------+--------+---------------+------+---------+------------------+
+| + hls_filter_median_3x3                           |               |           | 8    | 0    |        |               |      |         |                  |
+|   control_s_axi_U                                 | interface     | s_axilite |      |      |        |               |      |         |                  |
+|  + hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1 |               |           | 8    | 0    |        |               |      |         |                  |
+|    line_buffer_1_U                                | ram_s2p array |           | 4    |      |        | line_buffer_1 | auto | 1       | 8, 7680, 1       |
+|    line_buffer_U                                  | ram_s2p array |           | 4    |      |        | line_buffer   | auto | 1       | 8, 7680, 1       |
++---------------------------------------------------+---------------+-----------+------+------+--------+---------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Inferred Pragmas
++-----------------+----------------------------------+------------------------------------------------------------------+------------------------------------------+
+| Type            | Options                          | Location                                                         | Inferred From                            |
++-----------------+----------------------------------+------------------------------------------------------------------+------------------------------------------+
+| INLINE          |                                  | function in sort_three<ap_uint<8> > (hls_filter_median.hpp:168)  | pipeline hls_filter_median.cpp:32        |
+| ARRAY_PARTITION | dim=1 type=complete variable=min | variable min in hls_filter_median_3x3 (hls_filter_median.cpp:70) | syn.array_partition.complete_threshold=4 |
++-----------------+----------------------------------+------------------------------------------------------------------+------------------------------------------+
+
+* Valid Pragma Syntax
++-----------------+------------------------------------------+-----------------------------------------------------------------------------+
+| Type            | Options                                  | Location                                                                    |
++-----------------+------------------------------------------+-----------------------------------------------------------------------------+
+| INTERFACE       | axis port = s_axis_video                 | in hls_filter_median_3x3 (hls_filter_median.cpp:10)                         |
+| INTERFACE       | axis port = m_axis_video                 | in hls_filter_median_3x3 (hls_filter_median.cpp:11)                         |
+| INTERFACE       | s_axilite port = width bundle = control  | in hls_filter_median_3x3 (hls_filter_median.cpp:12)                         |
+| INTERFACE       | s_axilite port = height bundle = control | in hls_filter_median_3x3 (hls_filter_median.cpp:13)                         |
+| INTERFACE       | s_axilite port = return bundle = control | in hls_filter_median_3x3 (hls_filter_median.cpp:14)                         |
+| ARRAY_PARTITION | variable = line_buffer complete dim = 1  | in hls_filter_median_3x3 (hls_filter_median.cpp:18)                         |
+| ARRAY_PARTITION | variable = window complete dim = 0       | in hls_filter_median_3x3 (hls_filter_median.cpp:22)                         |
+| PIPELINE        | ii=1                                     | in hls_filter_median_3x3 (hls_filter_median.cpp:32)                         |
+| UNROLL          |                                          | in hls_filter_median_3x3 (hls_filter_median.cpp:43)                         |
+| UNROLL          |                                          | in hls_filter_median_3x3 (hls_filter_median.cpp:45)                         |
+| UNROLL          |                                          | in hls_filter_median_3x3 (hls_filter_median.cpp:52)                         |
+| UNROLL          |                                          | in hls_filter_median_3x3 (hls_filter_median.cpp:60)                         |
+| UNROLL          |                                          | in hls_filter_median_3x3 (hls_filter_median.cpp:75)                         |
+| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (hls_filter_median.hpp:63)        |
+| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (hls_filter_median.hpp:65)        |
+| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (hls_filter_median.hpp:75)        |
+| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (hls_filter_median.hpp:77)        |
+| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (hls_filter_median.hpp:91)        |
+| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (hls_filter_median.hpp:94)        |
+| INLINE          |                                          | in operator ap_uint<num_channels * pixel_width> (hls_filter_median.hpp:103) |
+| UNROLL          |                                          | in operator ap_uint<num_channels * pixel_width> (hls_filter_median.hpp:107) |
+| INLINE          |                                          | in operator unsigned int (hls_filter_median.hpp:118)                        |
++-----------------+------------------------------------------+-----------------------------------------------------------------------------+
+
+

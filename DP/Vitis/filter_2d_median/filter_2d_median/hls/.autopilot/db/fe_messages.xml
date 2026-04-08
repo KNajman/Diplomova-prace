@@ -629,6 +629,9 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_filter_median.hpp:118:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator unsigned int" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="directive:1:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="hls_filter_median_3x3" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=hls_filter_median_3x3" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_median.cpp:10:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_median_3x3" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port = s_axis_video" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
@@ -667,5 +670,137 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_median.cpp:75:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_median_3x3" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:46:8" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel()' into 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()'">
+        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel()" Callee-DebugLoc="File ./hls_filter_median.hpp Line 62 Column 0" Caller="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Caller-DebugLoc="File ./hls_filter_median.hpp Line 46 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="hls_filter_median.cpp:101:31" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel(ap_uint&lt;8&gt;)' into 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel(ap_uint&lt;8&gt;)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 74 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="hls_filter_median.cpp:39:42" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::operator ap_uint&lt;8&gt;() const' into 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="color_pixel&lt;1, 8&gt;::operator ap_uint&lt;8&gt;() const" Callee-DebugLoc="File ./hls_filter_median.hpp Line 102 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:106:25" msg_body="Loop 'VITIS_LOOP_106_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_106_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_median.cpp:42:26" msg_body="Loop 'VITIS_LOOP_42_2' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_42_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_median.cpp:44:30" msg_body="Loop 'VITIS_LOOP_44_3' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_44_3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_median.cpp:51:26" msg_body="Loop 'VITIS_LOOP_51_4' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_51_4"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_median.cpp:59:26" msg_body="Loop 'VITIS_LOOP_59_5' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_59_5"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_median.cpp:74:26" msg_body="Loop 'VITIS_LOOP_74_6' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_74_6"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:76:26" msg_body="Loop 'VITIS_LOOP_76_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_76_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:64:28" msg_body="Loop 'VITIS_LOOP_64_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_64_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_106_1' (./hls_filter_median.hpp:106:25) in function 'hls_filter_median_3x3' completely with a factor of 1">
+        <args Factor="1" LoopLoc="./hls_filter_median.hpp:106:25" LoopName="VITIS_LOOP_106_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_42_2' (hls_filter_median.cpp:42:26) in function 'hls_filter_median_3x3' completely with a factor of 3">
+        <args Factor="3" LoopLoc="hls_filter_median.cpp:42:26" LoopName="VITIS_LOOP_42_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_44_3' (hls_filter_median.cpp:44:30) in function 'hls_filter_median_3x3' completely with a factor of 2">
+        <args Factor="2" LoopLoc="hls_filter_median.cpp:44:30" LoopName="VITIS_LOOP_44_3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_51_4' (hls_filter_median.cpp:51:26) in function 'hls_filter_median_3x3' completely with a factor of 2">
+        <args Factor="2" LoopLoc="hls_filter_median.cpp:51:26" LoopName="VITIS_LOOP_51_4"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_59_5' (hls_filter_median.cpp:59:26) in function 'hls_filter_median_3x3' completely with a factor of 1">
+        <args Factor="1" LoopLoc="hls_filter_median.cpp:59:26" LoopName="VITIS_LOOP_59_5"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_74_6' (hls_filter_median.cpp:74:26) in function 'hls_filter_median_3x3' completely with a factor of 3">
+        <args Factor="3" LoopLoc="hls_filter_median.cpp:74:26" LoopName="VITIS_LOOP_74_6"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Unrolling loop 'VITIS_LOOP_76_1' (./hls_filter_median.hpp:76:26) in function 'hls_filter_median_3x3' completely with a factor of 1">
+        <args Factor="1" LoopLoc="./hls_filter_median.hpp:76:26" LoopName="VITIS_LOOP_76_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:46:0" msg_body="Unrolling loop 'VITIS_LOOP_64_1' (./hls_filter_median.hpp:64:28) in function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video' completely with a factor of 1">
+        <args Factor="1" LoopLoc="./hls_filter_median.hpp:64:28" LoopName="VITIS_LOOP_64_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="hls_filter_median.cpp:81:9" msg_body="Duplicating function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="hls_filter_median.cpp:84:9" msg_body="Duplicating function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="hls_filter_median.cpp:87:9" msg_body="Duplicating function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="hls_filter_median.cpp:91:9" msg_body="Duplicating function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:168:0" msg_body="Inlining function 'ap_uint&lt;8&gt; hls_min&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)' into 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)'">
+        <args Callee="ap_uint&lt;8&gt; hls_min&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 154 Column 0" Caller="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)" Caller-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:168:0" msg_body="Inlining function 'ap_uint&lt;8&gt; hls_max&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)' into 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)'">
+        <args Callee="ap_uint&lt;8&gt; hls_max&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 162 Column 0" Caller="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)" Caller-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:168:0" msg_body="Inlining function 'ap_uint&lt;8&gt; hls_min&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)' into 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)'">
+        <args Callee="ap_uint&lt;8&gt; hls_min&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 154 Column 0" Caller="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)" Caller-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:168:0" msg_body="Inlining function 'ap_uint&lt;8&gt; hls_max&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)' into 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)'">
+        <args Callee="ap_uint&lt;8&gt; hls_max&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 162 Column 0" Caller="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)" Caller-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="hls_filter_median.cpp:8:0" msg_body="Inlining function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()' into 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Callee-DebugLoc="File ./hls_filter_median.hpp Line 46 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_median.cpp:17:26" msg_body="Applying array_partition to 'line_buffer': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="line_buffer"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_median.cpp:76:13" msg_body="Automatically inlining function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)' to improve effectiveness of pipeline pragma in function 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION_VERBOSE_PASSED" msg_id="214-335" msg_severity="INFO" msg_loc="./hls_filter_median.hpp:168:0" msg_body="inline   1 sort_three&lt;ap_uint&lt;8&gt; &gt; hls_filter_median.cpp:32:1">
+        <args PragmaFunction="sort_three&lt;ap_uint&lt;8&gt; &gt;" PragmaIsAuto="1" PragmaSrcLoc="hls_filter_median.cpp:32:1" PragmaSrcLoc-DebugLoc="File hls_filter_median.cpp Line 32 Column 1" PragmaType="inline"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_median.cpp:81:9" msg_body="Automatically inlining function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)' to improve effectiveness of pipeline pragma in function 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_median.cpp:84:9" msg_body="Automatically inlining function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)' to improve effectiveness of pipeline pragma in function 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_median.cpp:87:9" msg_body="Automatically inlining function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)' to improve effectiveness of pipeline pragma in function 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_median.cpp:91:9" msg_body="Automatically inlining function 'void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)' to improve effectiveness of pipeline pragma in function 'hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)'">
+        <args Callee="void sort_three&lt;ap_uint&lt;8&gt; &gt;(ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;, ap_uint&lt;8&gt;&amp;) (.63)" Callee-DebugLoc="File ./hls_filter_median.hpp Line 168 Column 0" Caller="hls_filter_median_3x3(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;)" Caller-DebugLoc="File hls_filter_median.cpp Line 8 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION_VERBOSE_PASSED" msg_id="214-335" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:30" msg_body="array_partition dim=1 type=complete variable=min 1 hls_filter_median_3x3 hls_filter_median.cpp:70:30 config_array_partition -complete_threshold 4min">
+        <args PragmaFunction="hls_filter_median_3x3" PragmaInferReason="config_array_partition -complete_threshold 4" PragmaIsAuto="1" PragmaOptions="dim=1 type=complete variable=min" PragmaType="array_partition" VarLoc="hls_filter_median.cpp:70:30" VarName="min"/>
+    </msg>
+    <msg msg_groups="AUTOMATION PRAGMA_MISC" msg_id="214-421" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:30" msg_body="Partitioning small array 'min' due to array size.">
+        <args Value="min"/>
+    </msg>
+    <msg msg_groups="AUTOMATION_VERBOSE_PASSED" msg_id="214-335" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:38" msg_body="array_partition dim=1 type=complete variable=med 1 hls_filter_median_3x3 hls_filter_median.cpp:70:38 config_array_partition -complete_threshold 4med">
+        <args PragmaFunction="hls_filter_median_3x3" PragmaInferReason="config_array_partition -complete_threshold 4" PragmaIsAuto="1" PragmaOptions="dim=1 type=complete variable=med" PragmaType="array_partition" VarLoc="hls_filter_median.cpp:70:38" VarName="med"/>
+    </msg>
+    <msg msg_groups="AUTOMATION PRAGMA_MISC" msg_id="214-421" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:38" msg_body="Partitioning small array 'med' due to array size.">
+        <args Value="med"/>
+    </msg>
+    <msg msg_groups="AUTOMATION_VERBOSE_PASSED" msg_id="214-335" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:46" msg_body="array_partition dim=1 type=complete variable=max 1 hls_filter_median_3x3 hls_filter_median.cpp:70:46 config_array_partition -complete_threshold 4max">
+        <args PragmaFunction="hls_filter_median_3x3" PragmaInferReason="config_array_partition -complete_threshold 4" PragmaIsAuto="1" PragmaOptions="dim=1 type=complete variable=max" PragmaType="array_partition" VarLoc="hls_filter_median.cpp:70:46" VarName="max"/>
+    </msg>
+    <msg msg_groups="AUTOMATION PRAGMA_MISC" msg_id="214-421" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:46" msg_body="Partitioning small array 'max' due to array size.">
+        <args Value="max"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:30" msg_body="Applying array_partition to 'min': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="min"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:38" msg_body="Applying array_partition to 'med': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="med"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_median.cpp:70:46" msg_body="Applying array_partition to 'max': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="max"/>
     </msg>
 </xilinx:hls_fe_msgs>

@@ -1,0 +1,71 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:43:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:45:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:57:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:59:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:72:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:75:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:87:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator ap_uint&lt;NUM_CHANNELS * PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:90:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator ap_uint&lt;NUM_CHANNELS * PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:102:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator unsigned int" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_threshold.hpp:25:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold" ARG_PragmaIsValid="1" ARG_PragmaOptions="II = 1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="directive:1:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=hls_threshold_gray" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:11:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port = s_axis_video" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:12:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port = m_axis_video" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:13:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = thresh_val bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:14:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = thresh_type bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:15:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = width bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:16:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = height bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_threshold.cpp:17:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_threshold_gray" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = return bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="./hls_video_types.hpp:18:8" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel()' into 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()'">
+        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel()" Callee-DebugLoc="File ./hls_video_types.hpp Line 42 Column 0" Caller="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Caller-DebugLoc="File ./hls_video_types.hpp Line 18 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_video_types.hpp:44:26" msg_body="Loop 'VITIS_LOOP_44_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_44_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="./hls_video_types.hpp:18:0" msg_body="Unrolling loop 'VITIS_LOOP_44_1' (./hls_video_types.hpp:44:26) in function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video' completely with a factor of 1">
+        <args Factor="1" LoopLoc="./hls_video_types.hpp:44:26" LoopName="VITIS_LOOP_44_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="./hls_threshold.hpp:19:0" msg_body="Inlining function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()' into 'void hls_threshold&lt;8&gt;(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;8&gt;, ap_uint&lt;2&gt;, ap_uint&lt;32&gt;, ap_uint&lt;32&gt;)'">
+        <args Callee="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Callee-DebugLoc="File ./hls_video_types.hpp Line 18 Column 0" Caller="void hls_threshold&lt;8&gt;(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;8&gt;, ap_uint&lt;2&gt;, ap_uint&lt;32&gt;, ap_uint&lt;32&gt;)" Caller-DebugLoc="File ./hls_threshold.hpp Line 19 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="hls_threshold.cpp:9:0" msg_body="Inlining function 'void hls_threshold&lt;8&gt;(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;8&gt;, ap_uint&lt;2&gt;, ap_uint&lt;32&gt;, ap_uint&lt;32&gt;)' into 'hls_threshold_gray(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;8&gt;, ap_uint&lt;2&gt;, ap_uint&lt;32&gt;, ap_uint&lt;32&gt;)'">
+        <args Callee="void hls_threshold&lt;8&gt;(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;8&gt;, ap_uint&lt;2&gt;, ap_uint&lt;32&gt;, ap_uint&lt;32&gt;)" Callee-DebugLoc="File ./hls_threshold.hpp Line 19 Column 0" Caller="hls_threshold_gray(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;8&gt;, ap_uint&lt;2&gt;, ap_uint&lt;32&gt;, ap_uint&lt;32&gt;)" Caller-DebugLoc="File hls_threshold.cpp Line 9 Column 0"/>
+    </msg>
+</xilinx:hls_fe_msgs>
