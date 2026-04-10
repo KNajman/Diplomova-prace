@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_rgb_2_hsv'
 ================================================================
-* Date:           Sat Mar 28 14:53:36 2026
+* Date:           Fri Apr 10 08:46:54 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_rgb_2_hsv
@@ -163,10 +163,10 @@ Target clock period: 10.000ns, clock uncertainty: 2.700ns.
  <State 1>: 4.397ns
 The critical path consists of the following:
 	axis read operation ('in_stream_read', hls_color_space_convert.cpp:192) on port 'in_stream' (hls_color_space_convert.cpp:192) [12]  (0.079 ns)
-	'icmp' operation 1 bit ('icmp_ln201', hls_color_space_convert.cpp:201) [18]  (0.765 ns)
-	'select' operation 8 bit ('max_rg', hls_color_space_convert.cpp:201) [19]  (0.393 ns)
-	'icmp' operation 1 bit ('icmp_ln205', hls_color_space_convert.cpp:205) [22]  (0.765 ns)
-	'select' operation 8 bit ('Cmax', hls_color_space_convert.cpp:205) [23]  (0.393 ns)
+	'icmp' operation 1 bit ('icmp_ln200', hls_color_space_convert.cpp:200) [16]  (0.765 ns)
+	'select' operation 8 bit ('min_rg', hls_color_space_convert.cpp:200) [17]  (0.393 ns)
+	'icmp' operation 1 bit ('icmp_ln204', hls_color_space_convert.cpp:204) [20]  (0.765 ns)
+	'select' operation 8 bit ('Cmin', hls_color_space_convert.cpp:204) [21]  (0.393 ns)
 	'sub' operation 8 bit ('delta', hls_color_space_convert.cpp:207) [24]  (0.765 ns)
 	'getelementptr' operation 8 bit ('INV_TBL_addr_1', hls_color_space_convert.cpp:240) [52]  (0.000 ns)
 	'load' operation 17 bit ('INV_TBL_load_1', hls_color_space_convert.cpp:240) on array 'INV_TBL' [53]  (1.237 ns)

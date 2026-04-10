@@ -57,13 +57,8 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
-set_param power.BramSDPPropagationFix 1
 set_param general.usePosixSpawnForFork 1
-set_param physdb.placeDBImplUsesPlaceStorage 0
-set_param power.enableUnconnectedCarry8PinPower 1
-set_param power.enableCarry8RouteBelPower 1
-set_param synth.incrementalSynthesisCache C:/Users/najma/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-5116-N166A/incrSyn
-set_param power.enableLutRouteBelPower 1
+set_param synth.incrementalSynthesisCache C:/Users/najma/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-18188-N166A/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Board 49-26}  -suppress 

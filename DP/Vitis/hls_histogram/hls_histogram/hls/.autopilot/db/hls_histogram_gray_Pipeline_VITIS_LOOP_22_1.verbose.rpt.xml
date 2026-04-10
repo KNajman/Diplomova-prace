@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_histogram_gray_Pipeline_VITIS_LOOP_22_1'" level="0">
-<item name = "Date">Sat Apr  4 19:27:01 2026
+<item name = "Date">Fri Apr 10 08:56:57 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">hls_histogram</item>

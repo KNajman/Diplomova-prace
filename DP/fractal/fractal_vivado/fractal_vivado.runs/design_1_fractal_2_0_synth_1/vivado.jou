@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon Jan 13 13:18:56 2025
+# Process ID         : 27376
+# Current directory  : C:/work/2024/HSC/fractal/fractal_vivado/fractal_vivado.runs/design_1_fractal_2_0_synth_1
+# Command line       : vivado.exe -log design_1_fractal_2_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_fractal_2_0.tcl
+# Log file           : C:/work/2024/HSC/fractal/fractal_vivado/fractal_vivado.runs/design_1_fractal_2_0_synth_1/design_1_fractal_2_0.vds
+# Journal file       : C:/work/2024/HSC/fractal/fractal_vivado/fractal_vivado.runs/design_1_fractal_2_0_synth_1\vivado.jou
+# Running On         : NORMANDI
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 9 3950X 16-Core Processor            
+# CPU Frequency      : 3500 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 32
+# Host memory        : 68624 MB
+# Swap memory        : 10200 MB
+# Total Virtual      : 78825 MB
+# Available Virtual  : 42742 MB
+#-----------------------------------------------------------
+source design_1_fractal_2_0.tcl -notrace

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_filter_2d'" level="0">
-<item name = "Date">Tue Mar 31 11:30:39 2026
+<item name = "Date">Fri Apr 10 08:08:02 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">filter_2d</item>
@@ -31,7 +31,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364">hls_filter_2d_Pipeline_VITIS_LOOP_50_1, 12, 67108875, 0.120 us, 0.671 sec, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_51_1_fu_364">hls_filter_2d_Pipeline_VITIS_LOOP_51_1, 12, 67108875, 0.120 us, 0.671 sec, 0, 0, loop pipeline stp</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -63,7 +63,7 @@
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="control_s_axi_U">control_s_axi, 0, 0, 518, 632, 0</column>
-<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364">hls_filter_2d_Pipeline_VITIS_LOOP_50_1, 16, 18, 1637, 2361, 0</column>
+<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_51_1_fu_364">hls_filter_2d_Pipeline_VITIS_LOOP_51_1, 16, 18, 1637, 2361, 0</column>
 <column name="mul_13ns_13ns_26_1_1_U74">mul_13ns_13ns_26_1_1, 0, 1, 0, 5, 0</column>
 </table>
 </item>
@@ -81,13 +81,13 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln139_fu_471_p2">+, 0, 0, 21, 14, 3</column>
-<column name="add_ln140_fu_478_p2">+, 0, 0, 21, 14, 3</column>
-<column name="add_ln154_fu_485_p2">+, 0, 0, 21, 14, 3</column>
-<column name="add_ln87_fu_461_p2">+, 0, 0, 21, 14, 2</column>
+<column name="add_ln140_fu_471_p2">+, 0, 0, 21, 14, 3</column>
+<column name="add_ln141_fu_478_p2">+, 0, 0, 21, 14, 3</column>
+<column name="add_ln155_fu_485_p2">+, 0, 0, 21, 14, 3</column>
+<column name="add_ln88_fu_461_p2">+, 0, 0, 21, 14, 2</column>
 <column name="flush_cycles_fu_440_p2">+, 0, 0, 22, 15, 2</column>
 <column name="total_cycles_fu_454_p2">+, 0, 0, 34, 27, 27</column>
-<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364_m_axis_video_TREADY">and, 0, 0, 2, 1, 1</column>
+<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_51_1_fu_364_m_axis_video_TREADY">and, 0, 0, 2, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -99,16 +99,16 @@
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln139_reg_673">14, 0, 14, 0</column>
-<column name="add_ln140_reg_678">14, 0, 14, 0</column>
-<column name="add_ln154_reg_683">14, 0, 14, 0</column>
-<column name="add_ln87_reg_668">14, 0, 14, 0</column>
+<column name="add_ln140_reg_673">14, 0, 14, 0</column>
+<column name="add_ln141_reg_678">14, 0, 14, 0</column>
+<column name="add_ln155_reg_683">14, 0, 14, 0</column>
+<column name="add_ln88_reg_668">14, 0, 14, 0</column>
 <column name="ap_CS_fsm">4, 0, 4, 0</column>
 <column name="borderType_read_reg_492">1, 0, 1, 0</column>
 <column name="delta_read_reg_497">32, 0, 32, 0</column>
 <column name="flush_cycles_reg_658">14, 0, 15, 1</column>
 <column name="fraction_bits_read_reg_502">5, 0, 5, 0</column>
-<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_50_1_fu_364_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_51_1_fu_364_ap_start_reg">1, 0, 1, 0</column>
 <column name="height_read_reg_512">13, 0, 13, 0</column>
 <column name="inv_divisor_read_reg_507">32, 0, 32, 0</column>
 <column name="kernel_0_0_read_reg_533">8, 0, 8, 0</column>

@@ -33,15 +33,15 @@
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
                 <row id="0" col0="hls_filter_median_3x3" col1="hls_filter_median.cpp:3" col2="2226" col3="754" col4="230" col5="134" col6="149">
-                    <row id="6" col0="operator ap_uint" col1="hls_filter_median.hpp:102" col2="83" col3="" col4="" col5="" col6=""/>
-                    <row id="1" col0="sort_three&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:168" col2="995" col2_disp=" 995 (5 calls)" col3="616" col3_disp="616 (7 calls)" col4="112" col4_disp="112 (7 calls)" col5="" col6="">
-                        <row id="4" col0="hls_min&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:154" col2="300" col2_disp=" 300 (15 calls)" col3="" col4="" col5="" col6=""/>
-                        <row id="7" col0="hls_max&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:162" col2="300" col2_disp=" 300 (15 calls)" col3="" col4="" col5="" col6=""/>
+                    <row id="4" col0="operator ap_uint" col1="hls_filter_median.hpp:102" col2="83" col3="" col4="" col5="" col6=""/>
+                    <row id="5" col0="sort_three&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:168" col2="995" col2_disp=" 995 (5 calls)" col3="616" col3_disp="616 (7 calls)" col4="112" col4_disp="112 (7 calls)" col5="" col6="">
+                        <row id="6" col0="hls_min&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:154" col2="300" col2_disp=" 300 (15 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="3" col0="hls_max&lt;ap_uint&lt;8&gt; &gt;" col1="hls_filter_median.hpp:162" col2="300" col2_disp=" 300 (15 calls)" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="2" col0="axi_stream_video" col1="hls_filter_median.hpp:46" col2="44" col3="" col4="" col5="" col6="">
-                        <row id="5" col0="color_pixel" col1="hls_filter_median.hpp:62" col2="39" col3="" col4="" col5="" col6=""/>
+                    <row id="1" col0="axi_stream_video" col1="hls_filter_median.hpp:46" col2="44" col3="" col4="" col5="" col6="">
+                        <row id="7" col0="color_pixel" col1="hls_filter_median.hpp:62" col2="39" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="3" col0="color_pixel" col1="hls_filter_median.hpp:74" col2="77" col3="" col4="" col5="" col6=""/>
+                    <row id="2" col0="color_pixel" col1="hls_filter_median.hpp:74" col2="77" col3="" col4="" col5="" col6=""/>
                 </row>
             </rows>
             <notes/>

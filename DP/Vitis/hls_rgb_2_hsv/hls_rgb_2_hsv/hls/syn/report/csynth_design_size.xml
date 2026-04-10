@@ -33,8 +33,8 @@
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
                 <row id="0" col0="hls_rgb_2_hsv" col1="hls_color_space_convert.cpp:178" col2="2360" col3="115" col4="162" col5="162" col6="160">
-                    <row id="1" col0="axi_stream_video" col1="hls_color_space_convert.hpp:23" col2="44" col3="" col4="" col5="" col6="">
-                        <row id="2" col0="color_pixel" col1="hls_color_space_convert.hpp:39" col2="39" col3="" col4="" col5="" col6=""/>
+                    <row id="2" col0="axi_stream_video" col1="hls_color_space_convert.hpp:23" col2="44" col3="" col4="" col5="" col6="">
+                        <row id="1" col0="color_pixel" col1="hls_color_space_convert.hpp:39" col2="39" col3="" col4="" col5="" col6=""/>
                     </row>
                 </row>
             </rows>
