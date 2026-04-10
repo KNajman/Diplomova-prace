@@ -19,3 +19,12 @@
 
 _ide/logs
 _ide/.wsdata
+
+
+### Vitis ###
+
+#Do not ignore C/C++ source files
+!*.c
+!*.cpp
+!*.h
+!*.hpp
