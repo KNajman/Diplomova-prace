@@ -33,9 +33,9 @@
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
                 <row id="0" col0="hls_threshold_gray" col1="hls_threshold.cpp:6" col2="578" col3="53" col4="40" col5="39" col6="55">
-                    <row id="2" col0="hls_threshold&lt;8&gt;" col1="hls_threshold.hpp:15" col2="559" col3="" col4="" col5="" col6="">
+                    <row id="3" col0="hls_threshold&lt;8&gt;" col1="hls_threshold.hpp:15" col2="559" col3="" col4="" col5="" col6="">
                         <row id="1" col0="axi_stream_video" col1="hls_video_types.hpp:18" col2="44" col3="" col4="" col5="" col6="">
-                            <row id="3" col0="color_pixel" col1="hls_video_types.hpp:42" col2="39" col3="" col4="" col5="" col6=""/>
+                            <row id="2" col0="color_pixel" col1="hls_video_types.hpp:42" col2="39" col3="" col4="" col5="" col6=""/>
                         </row>
                     </row>
                 </row>

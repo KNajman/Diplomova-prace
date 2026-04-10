@@ -93,6 +93,14 @@ dkms.conf
 .history
 .ionide
 
+### Vitis ###
+
+#Do not ignore C/C++ source files
+!*.c
+!*.cpp
+!*.h
+!*.hpp
+
 ### Vivado ###
 #########################################################################################################
 ##	This is an example .gitignore file for Vivado, please treat it as an example as

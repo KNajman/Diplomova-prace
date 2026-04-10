@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="fractal" location="C:/work/2024/HSC/fractal/vitis/fractal" platform="C:/work/2024/HSC/fractal/vitis/design_1_wrapper_6x1/export/design_1_wrapper_6x1/design_1_wrapper_6x1.xpfm" platformUID="xilinx:zcu106::0.0(custom)" systemProject="fractal_system" sysConfig="design_1_wrapper_6x1" runtime="cpp" cpu="standalone_psu_cortexa53_0" cpuInstance="psu_cortexa53_0" os="standalone" mssSignature="af24521b4e6e78e52e37d17b9a256852">
+  <configuration name="Debug" id="xilinx.gnu.arm.a53.exe.debug.1886578054" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.arm.a53.exe.release.305925383">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="hello_world"/>
+</sdkproject:SdkProject>

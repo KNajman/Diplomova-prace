@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Tue Mar 31 11:46:14 2026
-# Process ID         : 1572
+# Start of session at: Fri Apr 10 08:13:14 2026
+# Process ID         : 8064
 # Current directory  : D:/Repos/_DP/DP/Vitis/filter_2d/filter_2d/hls/sim/vhdl
 # Command line       : xsim.exe -mode tcl -source {xsim.dir/hls_filter_2d/xsim_script.tcl}
 # Log file           : D:/Repos/_DP/DP/Vitis/filter_2d/filter_2d/hls/sim/vhdl/xsim.log
@@ -17,9 +17,9 @@
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 12723 MB
-# Swap memory        : 13421 MB
-# Total Virtual      : 26145 MB
-# Available Virtual  : 9953 MB
+# Swap memory        : 12348 MB
+# Total Virtual      : 25071 MB
+# Available Virtual  : 13527 MB
 #-----------------------------------------------------------
 source xsim.dir/hls_filter_2d/xsim_script.tcl
 source hls_filter_2d.tcl
