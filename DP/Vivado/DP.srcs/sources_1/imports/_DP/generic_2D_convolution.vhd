@@ -1,7 +1,23 @@
+----------------------------------------------------------------------------------
+-- Company: Technical University of Liberec
+-- Engineer: Bc. Karel Najman
+-- 
+-- Create Year: 2026
+-- Design Name: 
+-- Module Name: RGB2HSV - Behavioral
+-- Project Name: DP
+-- Target Devices: KV260 (Zynq UltraScale+ MPSoC)
+-- Tool Versions: Vivado 2025.2
+-- Description: Plně generický převodník RGB -> HSV optimalizovaný pro DSP bloky.
+--              Využívá moderní knihovnu VHDL-2008 IEEE.FIXED_PKG pro 
+--              čistou a elegantní DSP aritmetiku s nativní saturací a zaokrouhlením.
+----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.dp_pkg.all;
+
+use work.video_processing_pkg.all;
 
 entity generic_2D_convolution is
     generic(
