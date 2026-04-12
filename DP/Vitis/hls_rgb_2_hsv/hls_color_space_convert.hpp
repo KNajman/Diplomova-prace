@@ -3,8 +3,6 @@
 
 // Standardní knihovny pro C
 #include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 // pro HLS
 #include <ap_int.h>
