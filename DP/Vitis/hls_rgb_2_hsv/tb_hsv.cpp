@@ -1,94 +1,160 @@
 #include "hls_color_space_convert.hpp"
 
+#include "opencv2/opencv.hpp"
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
+#include <cstdlib>
+
+#include <opencv2/opencv.hpp>
+
 /*
 =================================================================================
     REFERENČNÍ MODELY (GOLDEN)
 =================================================================================
 */
 
-// Golden model aktualizovaný pro FULL SCALE (0-255)
-void golden_rgb2hsv(uint8_t r, uint8_t g, uint8_t b, uint8_t *h, uint8_t *s,
-                    uint8_t *v) {
-  double r_norm = r / 255.0;
-  double g_norm = g / 255.0;
-  double b_norm = b / 255.0;
+/**
+ * @brief Převádí barvu z barevného prostoru RGB do HSV (kompatibilní s OpenCV
+ * 8-bit).
+ * * Tato funkce implementuje převod ze standardního 8bitového RGB do 8bitového
+ * HSV formátu, který přesně odpovídá chování knihovny OpenCV pro datový typ
+ * CV_8U. Standardní úhel Hue (0-360) je komprimován dělením dvěma, aby se vešel
+ * do jednoho bajtu.
+ * * @param[in]  rgb Vstupní pole 3 hodnot reprezentující červenou, zelenou a
+ * modrou složku. Rozsah: R = 0-255, G = 0-255, B = 0-255.
+ * @param[out] hsv Výstupní pole 3 hodnot reprezentující Hue, Saturation a
+ * Value. Rozsah: H = 0-179 (OpenCV specifikum), S = 0-255, V = 0-255.
+ */
+void golden_rgb2hsv(uint8_t rgb[3], uint8_t hsv[3]) {
+  uint8_t r = rgb[0];
+  uint8_t g = rgb[1];
+  uint8_t b = rgb[2];
 
-  double cmax = fmax(r_norm, fmax(g_norm, b_norm));
-  double cmin = fmin(r_norm, fmin(g_norm, b_norm));
-  double delta = cmax - cmin;
+  uint8_t cmax = std::max({r, g, b});
+  uint8_t cmin = std::min({r, g, b});
+  uint8_t delta = cmax - cmin;
 
-  // Světlost (Value)
-  *v = (uint8_t)round(cmax * 255.0);
+  // Value
+  uint8_t v = cmax;
 
-  // Sytost (Saturation)
-  if (cmax == 0.0) {
-    *s = 0;
-  } else {
-    *s = (uint8_t)round((delta / cmax) * 255.0);
+  // Saturation
+  uint8_t s = (cmax != 0) ? (delta * 255) / cmax : 0;
+
+  // Hue
+  int h =
+      0; // Musí být znaménkový int kvůli výpočtu a detekci záporných hodnot!
+
+  if (delta == 0) {
+    h = 0;
+  } else if (cmax == r) {
+    h = 30 * (g - b) / delta; // Pro OpenCV používáme 30 místo 60
+  } else if (cmax == g) {
+    h = 30 * (b - r) / delta + 60; // 60 místo 120
+  } else if (cmax == b) {
+    h = 30 * (r - g) / delta + 120; // 120 místo 240
   }
 
-  // Odstín (Hue) v rozsahu 0-255
-  double h_calc = 0.0;
-  if (delta == 0.0) {
-    h_calc = 0.0;
-  } else if (cmax == r_norm) {
-    h_calc = 60.0 * fmod(((g_norm - b_norm) / delta), 6.0);
-  } else if (cmax == g_norm) {
-    h_calc = 60.0 * (((b_norm - r_norm) / delta) + 2.0);
-  } else if (cmax == b_norm) {
-    h_calc = 60.0 * (((r_norm - g_norm) / delta) + 4.0);
+  // Oprava záporného úhlu (při cmax == r a g < b)
+  if (h < 0) {
+    h += 180; // Standardně se přidává 360, v OpenCV rozsahu (0-179) přidáme 180
   }
 
-  if (h_calc < 0.0)
-    h_calc += 360.0;
-
-  // Převod z 360° do 256 dílků (Full Scale)
-  *h = (uint8_t)round((h_calc * 255.0) / 360.0);
+  hsv[0] = (uint8_t)h;
+  hsv[1] = s;
+  hsv[2] = v;
 }
 
-// Referenční SW model pro převod HSV (0-255) zpět na RGB (0-255)
-void golden_hsv2rgb(uint8_t h, uint8_t s, uint8_t v, uint8_t *r, uint8_t *g,
-                    uint8_t *b) {
-  // Převod H zpět do stupňů (0-360) a S, V do rozsahu 0.0 - 1.0
-  double h_deg = (h * 360.0) / 255.0;
-  double s_norm = s / 255.0;
-  double v_norm = v / 255.0;
+/**
+ * @brief Převádí barvu z barevného prostoru HSV do RGB (kompatibilní s OpenCV
+ * 8-bit).
+ * * Funkce provádí inverzní transformaci k funkci `golden_rgb2hsv`. Očekává na
+ * vstupu 8bitové hodnoty specifické pro knihovnu OpenCV, kde má složka Hue
+ * poloviční rozsah oproti standardnímu úhlovému vyjádření.
+ * * @param[in]  hsv Vstupní pole 3 hodnot reprezentující Hue, Saturation a
+ * Value. Rozsah: H = 0-179 (OpenCV specifikum), S = 0-255, V = 0-255.
+ * @param[out] rgb Výstupní pole 3 hodnot reprezentující červenou, zelenou a
+ * modrou složku. Rozsah: R = 0-255, G = 0-255, B = 0-255.
+ */
+void golden_hsv2rgb(uint8_t hsv[3], uint8_t rgb[3]) {
+  uint8_t h = hsv[0];
+  uint8_t s = hsv[1];
+  uint8_t v = hsv[2];
 
-  double c = v_norm * s_norm;
-  double x = c * (1.0 - fabs(fmod(h_deg / 60.0, 2.0) - 1.0));
-  double m = v_norm - c;
+  uint8_t r = 0, g = 0, b = 0;
 
-  double r_prime = 0, g_prime = 0, b_prime = 0;
-
-  if (h_deg >= 0 && h_deg < 60) {
-    r_prime = c;
-    g_prime = x;
-    b_prime = 0;
-  } else if (h_deg >= 60 && h_deg < 120) {
-    r_prime = x;
-    g_prime = c;
-    b_prime = 0;
-  } else if (h_deg >= 120 && h_deg < 180) {
-    r_prime = 0;
-    g_prime = c;
-    b_prime = x;
-  } else if (h_deg >= 180 && h_deg < 240) {
-    r_prime = 0;
-    g_prime = x;
-    b_prime = c;
-  } else if (h_deg >= 240 && h_deg < 300) {
-    r_prime = x;
-    g_prime = 0;
-    b_prime = c;
+  if (s == 0) {
+    r = g = b = v; // Šedá barva
   } else {
-    r_prime = c;
-    g_prime = 0;
-    b_prime = x;
+    // Pro OpenCV (rozsah 0-179) má jeden ze 6 regionů velikost přesně 30
+    // jednotek
+    uint8_t region = h / 30; // Výsledek bude 0 až 5
+
+    // Zbytek po dělení převedený na rozsah 0-255 pro interpolaci
+    uint32_t remainder = (h % 30) * 255 / 30;
+
+    uint8_t p = (v * (255 - s)) / 255;
+    uint8_t q = (v * (255 - (s * remainder) / 255)) / 255;
+    uint8_t t = (v * (255 - (s * (255 - remainder)) / 255)) / 255;
+
+    switch (region) {
+    case 0:
+      r = v;
+      g = t;
+      b = p;
+      break;
+    case 1:
+      r = q;
+      g = v;
+      b = p;
+      break;
+    case 2:
+      r = p;
+      g = v;
+      b = t;
+      break;
+    case 3:
+      r = p;
+      g = q;
+      b = v;
+      break;
+    case 4:
+      r = t;
+      g = p;
+      b = v;
+      break;
+    default:
+      r = v;
+      g = p;
+      b = q;
+      break; // case 5
+    }
   }
 
-  *r = (uint8_t)round((r_prime + m) * 255.0);
-  *g = (uint8_t)round((g_prime + m) * 255.0);
-  *b = (uint8_t)round((b_prime + m) * 255.0);
+  rgb[0] = r;
+  rgb[1] = g;
+  rgb[2] = b;
+}
+
+// Využití OpenCV pro převod RGB -> HSV z tvých polí
+void opencv_rgb2hsv(uint8_t rgb[3], uint8_t hsv[3]) {
+  // Vytvoříme OpenCV matice o velikosti 1x1 pixel
+  // CV_8UC3 = 8-bit unsigned integer, 3 kanály
+  // Jako čtvrtý parametr předáme ukazatel na tvá existující data
+  cv::Mat mat_rgb(1, 1, CV_8UC3, rgb);
+  cv::Mat mat_hsv(1, 1, CV_8UC3, hsv);
+
+  // Přímé volání OpenCV převodu
+  cv::cvtColor(mat_rgb, mat_hsv, cv::COLOR_RGB2HSV);
+}
+
+// Využití OpenCV pro převod HSV -> RGB do tvých polí
+void opencv_hsv2rgb(uint8_t hsv[3], uint8_t rgb[3]) {
+  cv::Mat mat_hsv(1, 1, CV_8UC3, hsv);
+  cv::Mat mat_rgb(1, 1, CV_8UC3, rgb);
+
+  // Přímé volání OpenCV převodu (inverzní)
+  cv::cvtColor(mat_hsv, mat_rgb, cv::COLOR_HSV2RGB);
 }
 
 // Pomocná struktura pro definici testovacích vektorů
@@ -246,7 +312,6 @@ int test_hsv2rgb() {
     int diff_r = abs((int)hw_out.data.channel[0] - (int)gold_r);
     int diff_g = abs((int)hw_out.data.channel[1] - (int)gold_g);
     int diff_b = abs((int)hw_out.data.channel[2] - (int)gold_b);
-
 
     bool pass = (diff_r <= 1 && diff_g <= 1 && diff_b <= 1) &&
                 (hw_out.user == tuser && hw_out.last == tlast);

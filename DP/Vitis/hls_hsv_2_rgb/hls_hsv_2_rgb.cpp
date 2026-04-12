@@ -1,6 +1,5 @@
 #include "hls_color_space_convert.hpp"
 
-
 /*
  Constexpr pro vygenerování ROM tabulky během kompilace.
  Nahrazuje extrémně hardwarovou děličku pamětí (BRAM/LUTRAM)
@@ -16,9 +15,7 @@ struct InvTable {
       // } else {
       //   data[i] = 65536 / i;
       // }
-      data[i] = (i == 0)
-                    ? 0
-                    : (65536 + (i >> 1)) / i; // Zaokrouhlení pro lepší přesnost
+      data[i] = (i == 0)? 0 : (65536 + (i >> 1)) / i; // Zaokrouhlení pro lepší přesnost
     }
   }
 };
@@ -136,11 +133,11 @@ void hls_hsv_2_rgb(hls::stream<axis_hsv> &in_stream,
   }
 
   if (s != 0) {
-    //Násobení šesti rozdělí 256 do rozsahu 0-1530.
+    // Násobení šesti rozdělí 256 do rozsahu 0-1530.
     ap_uint<12> h_mult = h * 6;
     ap_uint<12> h_scaled = h_mult + (h_mult >> 8);
 
-    //Horní 3 bity jsou číslo výseče (0-5).
+    // Horní 3 bity jsou číslo výseče (0-5).
     ap_uint<3> region = h_scaled >> 8;
 
     // Spodních 8 bitů je automaticky zbytek (fraction) namapovaný

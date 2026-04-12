@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xck26-sfvc784-2LV-c" LaunchTime="1775681731" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/design_1_wrapper.dcp">
-  <File Type="REPORTS-TCL" Name="color_space_conversion_reports.tcl"/>
-  <File Type="RDS-UTIL" Name="color_space_conversion_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="color_space_conversion_utilization_synth.pb"/>
-  <File Type="PA-TCL" Name="color_space_conversion.tcl"/>
-  <File Type="RDS-RDS" Name="color_space_conversion.vds"/>
-  <File Type="RDS-DCP" Name="color_space_conversion.dcp"/>
+<GenRun Id="synth_1" LaunchPart="xck26-sfvc784-2LV-c" LaunchTime="1776005921" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/design_1_wrapper.dcp">
+  <File Type="PA-TCL" Name="hsv_2_rgb.tcl"/>
+  <File Type="REPORTS-TCL" Name="hsv_2_rgb_reports.tcl"/>
+  <File Type="RDS-RDS" Name="hsv_2_rgb.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="hsv_2_rgb_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="hsv_2_rgb_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="hsv_2_rgb_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="hsv_2_rgb.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="hsv_2_rgb_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="hsv_2_rgb_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/_DP/video_processing_pkg.vhd">
@@ -14,9 +17,14 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/_DP/sliding_window.vhd">
+    <File Path="$PSRCDIR/sources_1/new/rgb_2_hsv.vhd">
       <FileInfo SFType="VHDL2008">
-        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/hsv_2_rgb.vhd">
+      <FileInfo SFType="VHDL2008">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -30,6 +38,13 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/color_space_conversion.vhdl">
       <FileInfo SFType="VHDL2008">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/_DP/sliding_window.vhd">
+      <FileInfo SFType="VHDL2008">
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -86,7 +101,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="color_space_conversion"/>
+      <Option Name="TopModule" Val="hsv_2_rgb"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">

@@ -66,7 +66,7 @@
     <Option Name="DSABoardId" Val="board"/>
     <Option Name="DSAName" Val="Video_Stream_Test_Platform"/>
     <Option Name="DSAVersion" Val="1.0"/>
-    <Option Name="WTXSimLaunchSim" Val="82"/>
+    <Option Name="WTXSimLaunchSim" Val="114"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -104,9 +104,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/_DP/sliding_window.vhd">
+      <File Path="$PSRCDIR/sources_1/new/rgb_2_hsv.vhd">
         <FileInfo SFType="VHDL2008">
-          <Attr Name="UserDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/hsv_2_rgb.vhd">
+        <FileInfo SFType="VHDL2008">
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -124,6 +129,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/_DP/sliding_window.vhd">
+        <FileInfo SFType="VHDL2008">
+          <Attr Name="UserDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/_DP/mac_pipeline.vhd">
         <FileInfo SFType="VHDL2008">
           <Attr Name="UserDisabled" Val="1"/>
@@ -133,12 +145,14 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/_DP/generic_2D_convolution.vhd">
         <FileInfo SFType="VHDL2008">
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/axis_convolution_wrapper.vhd">
         <FileInfo SFType="VHDL2008">
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -159,6 +173,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/bd/design_DMA_2C/design_DMA_2C.bd">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -173,7 +188,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="color_space_conversion"/>
+        <Option Name="TopModule" Val="hsv_2_rgb"/>
         <Vhdl_Define Name="vhdl_version" Val="VHDL"/>
         <Vhdl_Define Name="2008"/>
       </Config>
@@ -204,9 +219,15 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_rgb_hsv_and_hsv_rgb.vhd">
+        <FileInfo SFType="VHDL2008">
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="tb_color_space_conversion"/>
+        <Option Name="TopModule" Val="tb_color_conversions"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>

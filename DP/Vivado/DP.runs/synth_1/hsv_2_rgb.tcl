@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "D:/Repos/_DP/DP/Vivado/DP.runs/synth_1/color_space_conversion.tcl"
+  variable script "D:/Repos/_DP/DP/Vivado/DP.runs/synth_1/hsv_2_rgb.tcl"
   variable category "vivado_synth"
 }
 
@@ -57,8 +57,14 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
+set_param power.BramSDPPropagationFix 1
 set_param general.usePosixSpawnForFork 1
-set_param synth.incrementalSynthesisCache C:/Users/najma/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-18188-N166A/incrSyn
+set_param chipscope.maxJobs 2
+set_param physdb.placeDBImplUsesPlaceStorage 0
+set_param power.enableUnconnectedCarry8PinPower 1
+set_param power.enableCarry8RouteBelPower 1
+set_param synth.incrementalSynthesisCache C:/Users/najma/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17820-N166A/incrSyn
+set_param power.enableLutRouteBelPower 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Board 49-26}  -suppress 
@@ -74,10 +80,7 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property board_part xilinx.com:kv260_som:part0:1.4 [current_project]
 set_property board_connections {som240_1_connector xilinx.com:kv260_carrier:som240_1_connector:1.3} [current_project]
-set_property ip_repo_paths {
-  d:/Repos/_DP/DP/ip_repo/axi_convolution_core_1_0
-  d:/Repos/_DP/DP/ip_repo
-} [current_project]
+set_property ip_repo_paths d:/Repos/_DP/DP/ip_repo [current_project]
 update_ip_catalog
 set_property ip_output_repo d:/Repos/_DP/DP/Vivado/DP.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
@@ -86,6 +89,8 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -vhdl2008 -library xil_defaultlib {
   D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/imports/_DP/video_processing_pkg.vhd
+  D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/rgb_2_hsv.vhd
+  D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/hsv_2_rgb.vhd
   D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/new/color_space_conversion.vhdl
 }
 OPTRACE "Adding files" END { }
@@ -103,7 +108,7 @@ read_checkpoint -auto_incremental -incremental D:/Repos/_DP/DP/Vivado/DP.srcs/ut
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top color_space_conversion -part xck26-sfvc784-2LV-c
+synth_design -top hsv_2_rgb -part xck26-sfvc784-2LV-c
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"
@@ -113,10 +118,10 @@ if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef color_space_conversion.dcp
+write_checkpoint -force -noxdef hsv_2_rgb.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-generate_parallel_reports -reports { "report_utilization -file color_space_conversion_utilization_synth.rpt -pb color_space_conversion_utilization_synth.pb"  } 
+generate_parallel_reports -reports { "report_utilization -file hsv_2_rgb_utilization_synth.rpt -pb hsv_2_rgb_utilization_synth.pb"  } 
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

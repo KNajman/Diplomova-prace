@@ -4,4 +4,6 @@
   <Mappings Location="Common Libraries/IEEE Synopsys" Library="ieee"/>
   <Mappings Location="Common Libraries" Library="not mapped"/>
   <Mappings Location="Common Libraries/STD" Library="std"/>
+  <Mappings Location="DP.srcs/sources_1/imports/_DP/video_processing_pkg.vhd" Library="work"/>
+  <Mappings Location="DP.srcs/sources_1/new" Library="work"/>
 </com.sigasi.hdt.shared.librarymapping.model:LibraryMappings>

@@ -7,4 +7,4 @@ REM Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 REM Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 REM
 
-vivado -log color_space_conversion.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source color_space_conversion.tcl
+vivado -log hsv_2_rgb.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source hsv_2_rgb.tcl
