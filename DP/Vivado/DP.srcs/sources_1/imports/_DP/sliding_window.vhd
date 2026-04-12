@@ -5,11 +5,11 @@ use work.vid_processing_pkg.all;
 
 entity sliding_window is
     generic(
-        IMAGE_WIDTH   : natural;
-        IMAGE_HEIGHT  : natural;
-        KERNEL_SIZE   : natural;
-        PIXEL_WIDTH   : natural;
-        MODE          : string;
+        IMAGE_WIDTH   : positive;
+        IMAGE_HEIGHT  : positive;
+        KERNEL_SIZE   : positive;
+        PIXEL_WIDTH   : positive;
+        MODE          : MODE;
         PADDING_VALUE : natural
     );
     port(
@@ -30,8 +30,8 @@ architecture Behavioral of sliding_window is
     constant MAX_R : natural := get_max_dim(IMAGE_HEIGHT, KERNEL_SIZE, MODE);
 
     -- VHDL-2008: Lokální signály vytvořené rovnou jako 2D matice
-    signal line_buffers : signed_matrix_t(0 to KERNEL_SIZE - 2, 0 to MAX_C - 1)(PIXEL_WIDTH downto 0)       := (others => (others => (others => '0')));
-    signal window       : signed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0) := (others => (others => (others => '0')));
+    signal line_buffers : sfixed_matrix_t(0 to KERNEL_SIZE - 2, 0 to MAX_C - 1)(PIXEL_WIDTH downto 0)       := (others => (others => (others => '0')));
+    signal window       : sfixed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0) := (others => (others => (others => '0')));
 
     -- Čítače
     signal r_cnt : natural range 0 to MAX_R := 0;

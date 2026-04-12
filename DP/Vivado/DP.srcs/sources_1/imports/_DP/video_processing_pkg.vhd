@@ -18,6 +18,8 @@ package vid_processing_pkg is
     constant CB_CH : natural := 1;
     constant CR_CH : natural := 2;
 
+    type MODE is (SAME, VALID);
+
     -- =========================================================================
     -- TYPY PRO PIXELY A DATA (VHDL-2008 neomezená pole)
     -- =========================================================================
@@ -31,6 +33,7 @@ package vid_processing_pkg is
 
     -- Matice pro transformace (např. 3x3 koeficienty pro RGB to YCbCr)
     type sfixed_matrix_t is array (natural range <>, natural range <>) of sfixed;
+    type signed_vector_t is array (natural range <>) of signed;
 
     -- =========================================================================
     -- POMOCNÉ FUNKCE PRO VÝPOČTY (DSP & ŠÍŘKA SBĚRNIC)
@@ -48,6 +51,8 @@ package vid_processing_pkg is
 
     -- Funkce pro aproximaci dělení maximální hodnotou (pro normalizaci v HSV) DIV255
     function div_maxval(x : unsigned; w : natural) return unsigned;
+    -- Funkce pro výpočet maximální dimenze výstupu na základě režimu SAME/VALID
+    function get_max_dim(IMAGE_WIDTH : positive; KERNEL_SIZE : positive; MODE : MODE) return natural;
 
 end package vid_processing_pkg;
 
@@ -106,6 +111,15 @@ package body vid_processing_pkg is
         shift := resize(x((2 * w) - 1 downto w), (2 * w) + 1);
         x_ext := resize(x, (2 * w) + 1) + 1 + shift;
         return x_ext((2 * w) - 1 downto w);
+    end function;
+
+    function get_max_dim(IMAGE_WIDTH : positive; KERNEL_SIZE : positive; MODE : MODE) return natural is
+        variable max_dim : natural;  
+    begin
+        with MODE select
+            max_dim := IMAGE_WIDTH + (KERNEL_SIZE - 1) when SAME,
+                       IMAGE_WIDTH - (KERNEL_SIZE - 1) when VALID;
+        return max_dim;
     end function;
 
 end package body vid_processing_pkg;
