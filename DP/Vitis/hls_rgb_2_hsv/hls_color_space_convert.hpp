@@ -35,9 +35,9 @@ template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
    Výchozí konstruktor (Inicializace nulou)
   */
   color_pixel() {
-    #pragma HLS INLINE
+#pragma HLS INLINE
     for (int i = 0; i < NUM_CHANNELS; i++) {
-    #pragma HLS UNROLL
+#pragma HLS UNROLL
       channel[i] = 0;
     }
   }
@@ -47,9 +47,9 @@ template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
    Načte široké číslo a pomocí bitového řezu ho rozseká do kanálů.
   */
   color_pixel(ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data) {
-    #pragma HLS INLINE
+#pragma HLS INLINE
     for (int i = 0; i < NUM_CHANNELS; i++) {
-    #pragma HLS UNROLL
+#pragma HLS UNROLL
       /* Extrakce konkrétních bitů: např. pro 8bit kanály:
        i=0 -> bity 7:0
        i=1 -> bity 15:8
@@ -63,10 +63,10 @@ template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
    Vhodné pro testbench a inicializaci hexadecimálním kódem.
   */
   color_pixel(unsigned int cpu_data) {
-    #pragma HLS INLINE
-    ap_uint<NUM_CHANNELS *PIXEL_WIDTH> packed_data = cpu_data;
+#pragma HLS INLINE
+    ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = cpu_data;
     for (int i = 0; i < NUM_CHANNELS; i++) {
-    #pragma HLS UNROLL
+#pragma HLS UNROLL
       channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
     }
   }
@@ -74,12 +74,12 @@ template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
   /*
    Přetypování na ap_uint (Zabalení pro AXI-Stream / HW)
   */
-  operator ap_uint<NUM_CHANNELS * PIXEL_WIDTH>() const {
-  #pragma HLS INLINE
-      ap_uint<NUM_CHANNELS *PIXEL_WIDTH> packed_data = 0;
+  operator ap_uint<NUM_CHANNELS *PIXEL_WIDTH>() const {
+#pragma HLS INLINE
+    ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = 0;
 
-      for (int i = 0; i < NUM_CHANNELS; i++) {
-  #pragma HLS UNROLL
+    for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
       packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH) = channel[i];
     }
 
@@ -91,7 +91,7 @@ template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
   */
   operator unsigned int() const {
 #pragma HLS INLINE
-    ap_uint<NUM_CHANNELS *PIXEL_WIDTH> packed = *this;
+    ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed = *this;
     return static_cast<unsigned int>(packed);
   }
 };
@@ -120,17 +120,19 @@ using axis_hsv = axi_stream_video<hsv_pixel>;
 void hls_color_space_convert_top(
     hls::stream<axis_rgb> &s_axis_video,   // Vstupní stream (např. RGB)
     hls::stream<axis_ycbcr> &m_axis_video, // Výstupní stream (např. YCbCr)
-    ap_int<16> coeffs[3][3],  // Matice 3x3
-    ap_int<16> offsets[3],    // 3 offsety
+    ap_int<16> coeffs[3][3],               // Matice 3x3
+    ap_int<16> offsets[3],                 // 3 offsety
     int width, int height);
 
 /* Z RGB do HSV a zpět - tyto funkce jsou složitější kvůli nelineární povaze
  HSV, ale stále zpracovávají pixel po pixelu bez potřeby ukládání celých
  obrazů v paměti.*/
-void hls_rgb_2_hsv(hls::stream<axis_rgb> &s_axis_video, hls::stream<axis_hsv> &m_axis_video);
+void hls_rgb_2_hsv(hls::stream<axis_rgb> &s_axis_video,
+                   hls::stream<axis_hsv> &m_axis_video);
 
 /* Zpětná neztrátová konverze z HSV do RGB, která zachovává přesnost a
 / minimalizuje využití hardwarových prostředků.
 */
-void hls_hsv_2_rgb(hls::stream<axis_hsv> &s_axis_video, hls::stream<axis_rgb> &m_axis_video);
+void hls_hsv_2_rgb(hls::stream<axis_hsv> &s_axis_video,
+                   hls::stream<axis_rgb> &m_axis_video);
 #endif // HLS_COLOR_SPACE_CONVERT_HPP
