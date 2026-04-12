@@ -15,8 +15,8 @@ entity mac_pipeline is
         rst             : in  std_logic;
         pipeline_en     : in  std_logic;
         -- VHDL-2008: Čisté 2D matice na vstupech
-        window_in       : in  sfixed_pixel_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
-        kernel_in       : in  sfixed_pixel_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(KERNEL_PIXEL_WIDTH - 1 downto 0);
+        window_in       : in  sfixed_pixel_t(0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
+        kernel_in       : in  sfixed_pixel_t(0 to KERNEL_SIZE - 1)(KERNEL_PIXEL_WIDTH - 1 downto 0);
         window_valid_in : in  std_logic;
         pixel_out       : out std_logic_vector(PIXEL_WIDTH - 1 downto 0);
         mac_valid_out   : out std_logic
