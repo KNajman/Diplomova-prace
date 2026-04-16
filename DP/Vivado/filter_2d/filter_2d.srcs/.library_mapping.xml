@@ -4,7 +4,5 @@
   <Mappings Location="Common Libraries/IEEE Synopsys" Library="ieee"/>
   <Mappings Location="Common Libraries" Library="not mapped"/>
   <Mappings Location="Common Libraries/STD" Library="std"/>
-  <Mappings Location="DP/Vivado/DP.srcs/sources_1" Library="work"/>
-  <Mappings Location="DP/Vivado/rgb_2_hsv/rgb_2_hsv.srcs/sources_1" Library="work"/>
-<Mappings Location="DP/Vivado/hsv_2_rgb/hsv_2_rgb.srcs/sources_1" Library="work"/>
+  <Mappings Location="" Library="work"/>
 </com.sigasi.hdt.shared.librarymapping.model:LibraryMappings>

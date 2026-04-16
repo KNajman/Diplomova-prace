@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 use IEEE.FIXED_PKG.ALL;
 
 -- Použití našeho nového balíčku pro snadnou práci s pixely
-use work.vid_processing_pkg.all;
+use work.video_processing_pkg.all;
 
 entity tb_color_space_conversion is
 -- Testbench nemá žádné porty

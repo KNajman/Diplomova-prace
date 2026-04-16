@@ -2,9 +2,9 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-use work.vid_processing_pkg.all;
+use work.video_processing_pkg.all;
 
-entity mac_pipeline is
+entity old_mac_pipeline is
     generic(
         KERNEL_SIZE  : natural;
         PIXEL_WIDTH  : natural;
@@ -15,15 +15,15 @@ entity mac_pipeline is
         rst             : in  std_logic;
         pipeline_en     : in  std_logic;
         -- VHDL-2008: Čisté 2D matice na vstupech
-        window_in       : in  sfixed_pixel_t(0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
-        kernel_in       : in  sfixed_pixel_t(0 to KERNEL_SIZE - 1)(KERNEL_PIXEL_WIDTH - 1 downto 0);
+        window_in       : in  t_sfixed_array(0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
+        kernel_in       : in  t_sfixed_array(0 to KERNEL_SIZE - 1)(KERNEL_PIXEL_WIDTH - 1 downto 0);
         window_valid_in : in  std_logic;
         pixel_out       : out std_logic_vector(PIXEL_WIDTH - 1 downto 0);
         mac_valid_out   : out std_logic
     );
-end entity mac_pipeline;
+end entity old_mac_pipeline;
 
-architecture RTL of mac_pipeline is
+architecture RTL of old_mac_pipeline is
     attribute use_dsp : string;
 
     constant NUM_ELEMENTS  : natural  := KERNEL_SIZE * KERNEL_SIZE;
@@ -34,7 +34,7 @@ architecture RTL of mac_pipeline is
     constant ACC_WIDTH  : natural := get_acc_width(PIXEL_WIDTH, KERNEL_PIXEL_WIDTH, KERNEL_SIZE);
 
     -- VHDL-2008: Pipeline registry zapsané přes 1D pole signálů (typ definován v package)
-    signal mult_regs : signed_vector_t(0 to ADDER_ELEMENTS - 1)(MULT_WIDTH - 1 downto 0) := (others => (others => '0'));
+    signal mult_regs : t_signed_matrix(0 to ADDER_ELEMENTS - 1)(MULT_WIDTH - 1 downto 0) := (others => (others => '0'));
     attribute use_dsp of mult_regs : signal is "yes";
     signal sum_out   : signed(ACC_WIDTH - 1 downto 0)                                   := (others => '0');
 
