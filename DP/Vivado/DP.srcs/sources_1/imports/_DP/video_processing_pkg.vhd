@@ -4,36 +4,30 @@ use IEEE.NUMERIC_STD.ALL;
 use IEEE.MATH_REAL.ALL;
 use IEEE.FIXED_PKG.ALL;
 
-package vid_processing_pkg is
+package video_processing_pkg is
 
     -- =========================================================================
     -- PRŮMYSLOVÉ KONSTANTY PRO INDEXACI KANÁLŮ
     -- =========================================================================
-    -- Pomáhá čitelnosti kódu: pixel(G_CH) je jasnější než pixel(1)
-    constant R_CH : natural := 0;
-    constant G_CH : natural := 1;
-    constant B_CH : natural := 2;
 
-    constant Y_CH  : natural := 0;
-    constant CB_CH : natural := 1;
-    constant CR_CH : natural := 2;
-
-    type MODE is (SAME, VALID);
+    type T_MODE is (SAME, VALID);
 
     -- =========================================================================
     -- TYPY PRO PIXELY A DATA (VHDL-2008 neomezená pole)
     -- =========================================================================
 
     -- Pixel jako pole kanálů (např. array(0 to 2) of std_logic_vector(7 downto 0))
-    type pixel_t is array (natural range <>) of std_logic_vector;
+    type t_pixel is array (natural range <>) of std_logic_vector;
 
     -- Typy pro Fixed-Point aritmetiku (pro koeficienty a vnitřní výpočty)
-    type ufixed_pixel_t is array (natural range <>) of ufixed;
-    type sfixed_pixel_t is array (natural range <>) of sfixed;
+    -- 
+    type t_ufixed_array is array (natural range <>) of ufixed;
+    type t_sfixed_array is array (natural range <>) of sfixed;
 
-    -- Matice pro transformace (např. 3x3 koeficienty pro RGB to YCbCr)
-    type sfixed_matrix_t is array (natural range <>, natural range <>) of sfixed;
-    type signed_vector_t is array (natural range <>) of signed;
+    type t_sfixed_matrix   is array (natural range <>, natural range <>) of sfixed;
+    type t_ufixed_matrix   is array (natural range <>, natural range <>) of ufixed;
+    type t_signed_matrix   is array (natural range <>, natural range <>) of signed;
+    type t_unsigned_matrix is array (natural range <>, natural range <>) of unsigned;
 
     -- =========================================================================
     -- POMOCNÉ FUNKCE PRO VÝPOČTY (DSP & ŠÍŘKA SBĚRNIC)
@@ -41,7 +35,7 @@ package vid_processing_pkg is
     function log2_ceil(n : positive) return natural;
 
     -- Funkce pro bezpečné přebalení (Flatten) pole kanálů do jednoho vektoru (pro AXI TDATA)
-    function pack_pixel(p : pixel_t; bits : positive) return std_logic_vector;
+    function pack_pixel(p : t_pixel; bits : positive) return std_logic_vector;
 
     -- Funkce pro výpočet max a min (pro operace jako RGB to HSV)
     function max(a, b : unsigned) return unsigned;
@@ -52,11 +46,11 @@ package vid_processing_pkg is
     -- Funkce pro aproximaci dělení maximální hodnotou (pro normalizaci v HSV) DIV255
     function div_maxval(x : unsigned; w : natural) return unsigned;
     -- Funkce pro výpočet maximální dimenze výstupu na základě režimu SAME/VALID
-    function get_max_dim(IMAGE_WIDTH : positive; KERNEL_SIZE : positive; MODE : MODE) return natural;
+    function get_max_dim(IMAGE_WIDTH : positive; KERNEL_SIZE : positive; MODE : T_MODE) return natural;
 
-end package vid_processing_pkg;
+end package video_processing_pkg;
 
-package body vid_processing_pkg is
+package body video_processing_pkg is
 
     function log2_ceil(n : positive) return natural is
     begin
@@ -67,7 +61,7 @@ package body vid_processing_pkg is
         end if;
     end function;
 
-    function pack_pixel(p : pixel_t; bits : positive) return std_logic_vector is
+    function pack_pixel(p : t_pixel; bits : positive) return std_logic_vector is
         variable res : std_logic_vector((p'length * bits) - 1 downto 0);
     begin
         for i in p'range loop
@@ -113,13 +107,13 @@ package body vid_processing_pkg is
         return x_ext((2 * w) - 1 downto w);
     end function;
 
-    function get_max_dim(IMAGE_WIDTH : positive; KERNEL_SIZE : positive; MODE : MODE) return natural is
-        variable max_dim : natural;  
+    function get_max_dim(IMAGE_WIDTH : positive; KERNEL_SIZE : positive; MODE : T_MODE) return natural is
+        variable max_dim : natural;
     begin
-        with MODE select
-            max_dim := IMAGE_WIDTH + (KERNEL_SIZE - 1) when SAME,
-                       IMAGE_WIDTH - (KERNEL_SIZE - 1) when VALID;
+        with MODE select max_dim :=
+            IMAGE_WIDTH + (KERNEL_SIZE - 1) when SAME,
+            IMAGE_WIDTH - (KERNEL_SIZE - 1) when VALID;
         return max_dim;
     end function;
 
-end package body vid_processing_pkg;
+end package body video_processing_pkg;

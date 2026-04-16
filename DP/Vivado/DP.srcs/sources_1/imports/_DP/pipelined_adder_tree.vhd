@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.vid_processing_pkg.all;
+use work.video_processing_pkg.all;
 
 entity pipelined_adder_array is
     generic(
@@ -14,7 +14,7 @@ entity pipelined_adder_array is
         clk     : in  std_logic;
         rst     : in  std_logic;
         en      : in  std_logic;
-        data_in : in  signed_vector_t(0 to NUM_INPUTS - 1)(DATA_WIDTH - 1 downto 0);
+        data_in : in  t_signed_matrix(0 to NUM_INPUTS - 1)(DATA_WIDTH - 1 downto 0);
         sum_out : out signed(OUT_WIDTH - 1 downto 0)
     );
 end entity pipelined_adder_array;

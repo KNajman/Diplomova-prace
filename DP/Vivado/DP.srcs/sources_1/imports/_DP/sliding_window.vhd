@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.vid_processing_pkg.all;
+use work.video_processing_pkg.all;
 
-entity sliding_window is
+entity old_sliding_window is
     generic(
         IMAGE_WIDTH   : positive;
         IMAGE_HEIGHT  : positive;
@@ -19,19 +19,19 @@ entity sliding_window is
         pixel_in      : in  std_logic_vector(PIXEL_WIDTH - 1 downto 0);
         is_real_pixel : in  std_logic;
         -- VHDL-2008: Port je přímo 2D matice se specifikovanými rozměry!
-        window_out    : out sfixed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
+        window_out    : out t_sfixed_matrix(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0);
         window_valid  : out std_logic
     );
-end entity sliding_window;
+end entity old_sliding_window;
 
-architecture Behavioral of sliding_window is
+architecture RTL of old_sliding_window is
 
     constant MAX_C : natural := get_max_dim(IMAGE_WIDTH, KERNEL_SIZE, MODE);
     constant MAX_R : natural := get_max_dim(IMAGE_HEIGHT, KERNEL_SIZE, MODE);
 
     -- VHDL-2008: Lokální signály vytvořené rovnou jako 2D matice
-    signal line_buffers : sfixed_matrix_t(0 to KERNEL_SIZE - 2, 0 to MAX_C - 1)(PIXEL_WIDTH downto 0)       := (others => (others => (others => '0')));
-    signal window       : sfixed_matrix_t(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0) := (others => (others => (others => '0')));
+    signal line_buffers : t_sfixed_matrix(0 to KERNEL_SIZE - 2, 0 to MAX_C - 1)(PIXEL_WIDTH downto 0)       := (others => (others => (others => '0')));
+    signal window       : t_sfixed_matrix(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(PIXEL_WIDTH downto 0) := (others => (others => (others => '0')));
 
     -- Čítače
     signal r_cnt : natural range 0 to MAX_R := 0;
@@ -43,7 +43,7 @@ begin
     window_out <= window;
 
     process(clk)
-        variable cur_pix : signed(PIXEL_WIDTH downto 0);
+        variable cur_pix : t_sfixed_array(PIXEL_WIDTH downto 0);
     begin
         if rising_edge(clk) then
             if rst = '1' then
@@ -56,9 +56,9 @@ begin
 
                 -- Vstupní multiplexor (Reálný pixel vs Padding)
                 if is_real_pixel = '1' then
-                    cur_pix := signed('0' & pixel_in);
+                    cur_pix := t_sfixed_array('0' & pixel_in);
                 else
-                    cur_pix := to_signed(integer(PADDING_VALUE), PIXEL_WIDTH + 1);
+                    cur_pix := to_sfixed(PADDING_VALUE, PIXEL_WIDTH + 1, 0); -- Padding jako pevná hodnota
                 end if;
 
                 -- Aktualizace souřadnic
@@ -102,4 +102,4 @@ begin
         end if;
     end process;
 
-end Behavioral;
+end RTL;

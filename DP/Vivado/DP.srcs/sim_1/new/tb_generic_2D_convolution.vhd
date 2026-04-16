@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
-use work.vid_processing_pkg.all;
+use work.video_processing_pkg.all;
 
 entity tb_generic_2D_convolution is
     -- Testbench nemá porty
