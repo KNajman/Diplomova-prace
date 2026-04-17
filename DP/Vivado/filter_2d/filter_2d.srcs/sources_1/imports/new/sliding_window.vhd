@@ -1,29 +1,11 @@
 ----------------------------------------------------------------------------------
--- Company: Technical University of Liberec
--- Engineer: Bc. Karel Najman
--- 
--- Create Year: 2026
--- Design Name: 
--- Module Name: 
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 2D Sliding Window with Auto-Flushing and Zero-Overhead Padding
--- Architecture:RTL
--- Math: IEEE.fixed_pkg used for fractional arithmetic with automatic saturation 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-
+-- Modul: 2D Sliding Window s podporou AXI-Stream TLAST/TUSER a Frame Done
+-- Architektura: Nativní "VALID" mód (neřeší umělý padding, propouští čistá data)
+----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- Zapnutí VHDL-2008 fixed-point magie
 use ieee.fixed_float_types.all;
 use ieee.fixed_pkg.all;
 
@@ -31,126 +13,121 @@ use work.video_processing_pkg.all;
 
 entity sliding_window is
     generic(
-        IMAGE_WIDTH     : positive;
-        IMAGE_HEIGHT    : positive;
-        KERNEL_SIZE     : positive;
-        -- Formát pixelu z mac_pipeline (typicky 8-bit unsigned -> 7 downto 0)
-        G_PIXEL_HIGH    : integer;
-        G_PIXEL_LOW     : integer;
-        G_PADDING_MODE  : T_MODE;
-        G_PADDING_VALUE : natural
+        IMAGE_WIDTH  : positive;
+        IMAGE_HEIGHT : positive;
+        KERNEL_SIZE  : positive;
+        G_PIXEL_HIGH : integer;
+        G_PIXEL_LOW  : integer
+        -- G_PADDING parametry jsme zcela odstranili, HW jede nativně!
     );
     port(
         aclk             : in  std_logic;
         aresetn          : in  std_logic;
         pipeline_en      : in  std_logic;
-        -- Vstupní AXI-Stream-like rozhraní
         pixel_in         : in  std_logic_vector(G_PIXEL_HIGH - G_PIXEL_LOW downto 0);
-        pixel_valid_in   : in  std_logic;
-        -- Výstup připravený přímo pro MAC Pipeline (1D flattened array)
-        -- window_out       : out t_ufixed_array(0 to (KERNEL_SIZE * KERNEL_SIZE) - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW);
+        pixel_in_valid   : in  std_logic;
+        pixel_in_tlast   : in  std_logic;
+        pixel_in_tuser   : in  std_logic_vector(0 downto 0);
         window_out       : out std_logic_vector((KERNEL_SIZE * KERNEL_SIZE * (G_PIXEL_HIGH - G_PIXEL_LOW + 1)) - 1 downto 0);
-        window_valid_out : out std_logic
+        window_out_valid : out std_logic;
+        window_out_tlast : out std_logic;
+        window_out_tuser : out std_logic_vector(0 downto 0)
     );
 end entity sliding_window;
 
 architecture RTL of sliding_window is
-    -- Konstanty pro řízení cyklů (nyní využívají opravenou funkci get_max_dim z KROKU 1)
-    constant MAX_C : natural := get_max_dim(IMAGE_WIDTH, KERNEL_SIZE, G_PADDING_MODE);
-    constant MAX_R : natural := get_max_dim(IMAGE_HEIGHT, KERNEL_SIZE, G_PADDING_MODE);
 
-    -- =========================================================================
-    -- Paměťové struktury
-    -- =========================================================================
-    -- Řádkové buffery (Line Buffers) ukládající celé řádky obrazu
-    signal line_buffers : t_ufixed_matrix(0 to KERNEL_SIZE - 2, 0 to MAX_C - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW) := (others => (others => (others => '0')));
+    -- Využíváme elegantní t_ufixed_matrix (tvůj super nápad!)
+    signal window       : t_ufixed_matrix(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW) := (others => (others => (others => '0')));
+    signal line_buffers : t_ufixed_matrix(0 to KERNEL_SIZE - 2, 0 to IMAGE_WIDTH - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW) := (others => (others => (others => '0')));
 
-    -- Samotné 2D okno
-    signal window : t_ufixed_matrix(0 to KERNEL_SIZE - 1, 0 to KERNEL_SIZE - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW) := (others => (others => (others => '0')));
+    signal frame_done : std_logic := '1';
 
-    -- Čítače souřadnic
-    signal r_cnt : natural range 0 to MAX_R := 0;
-    signal c_cnt : natural range 0 to MAX_C := 0;
+    -- Zpoždění přesně do středu okna (aby TLAST/TUSER lícovaly s MAC výpočtem)
+    constant C_SW_LATENCY : natural := (KERNEL_SIZE / 2) * IMAGE_WIDTH + (KERNEL_SIZE / 2);
+    signal   sw_clken     : std_logic;
 
 begin
 
+    sw_clken <= pipeline_en and pixel_in_valid;
+
+    Inst_delay_line_tlast : entity work.delay_line
+        generic map(G_DELAY => C_SW_LATENCY, G_WIDTH => 1)
+        port map(aclk => aclk, aresetn => aresetn, clken => sw_clken, d_in(0) => pixel_in_tlast, d_out(0) => window_out_tlast);
+
+    Inst_delay_line_tuser : entity work.delay_line
+        generic map(G_DELAY => C_SW_LATENCY, G_WIDTH => 1)
+        port map(aclk => aclk, aresetn => aresetn, clken => sw_clken, d_in => pixel_in_tuser, d_out => window_out_tuser);
+
     process(aclk)
-        -- Vnitřní proměnná pro aktuálně zpracovávaný pixel
         variable cur_pix : ufixed(G_PIXEL_HIGH downto G_PIXEL_LOW);
+        variable v_r_cnt : natural range 0 to IMAGE_HEIGHT - 1 := 0;
+        variable v_c_cnt : natural range 0 to IMAGE_WIDTH - 1  := 0;
     begin
         if rising_edge(aclk) then
             if aresetn = '0' then
-                r_cnt            <= 0;
-                c_cnt            <= 0;
-                window_valid_out <= '0';
+                v_r_cnt          := 0;
+                v_c_cnt          := 0;
+                frame_done       <= '1';
+                window_out_valid <= '0';
                 window           <= (others => (others => (others => '0')));
-            -- Line buffery se typicky neresetují kvůli úspoře zdrojů, 
-            -- ale v simulaci je vhodné to zvážit. Pro FPGA je necháme neresetované.
+            -- Line buffers neresetujeme pro úsporu routingu ve FPGA (je to RAM)
 
-            elsif pipeline_en = '1' then
+            elsif (pipeline_en = '1') and (pixel_in_valid = '1') then
 
-                -- =====================================================================
-                -- 1. Výběr aktuálního pixelu (Reálný vstup vs. Okrajový Padding)
-                -- =====================================================================
-                if pixel_valid_in = '1' then
-                    -- Přímá konverze příchozího std_logic_vector na unsigned a následně na ufixed
-                    cur_pix := to_ufixed(unsigned(pixel_in), G_PIXEL_HIGH, G_PIXEL_LOW);
-                else
-                    -- Bezpečná konverze integer paddingu na ufixed
-                    cur_pix := to_ufixed(G_PADDING_VALUE, G_PIXEL_HIGH, G_PIXEL_LOW);
+                cur_pix := to_ufixed(unsigned(pixel_in), G_PIXEL_HIGH, G_PIXEL_LOW);
+
+                -- Synchronizace přes TUSER (Záchrana při výpadku AXI komunikace)
+                if pixel_in_tuser = "1" then
+                    v_r_cnt    := 0;
+                    v_c_cnt    := 0;
+                    frame_done <= '0';
                 end if;
 
-                -- =====================================================================
-                -- 2. Aktualizace souřadnic pixelů
-                -- =====================================================================
-                if c_cnt = MAX_C - 1 then
-                    c_cnt <= 0;
-                    if r_cnt = MAX_R - 1 then
-                        r_cnt <= 0;
-                    else
-                        r_cnt <= r_cnt + 1;
-                    end if;
-                else
-                    c_cnt <= c_cnt + 1;
-                end if;
+                -- 1. Posun a aktualizace 2D okna
+                window(KERNEL_SIZE - 1, KERNEL_SIZE - 1) <= cur_pix;
+                for r in 0 to KERNEL_SIZE - 2 loop
+                    window(r, KERNEL_SIZE - 1) <= line_buffers(r, v_c_cnt);
+                end loop;
 
-                -- =====================================================================
-                -- 3. Posun 2D okna (Sliding Window posun v ose X)
-                -- =====================================================================
                 for r in 0 to KERNEL_SIZE - 1 loop
-                    for c in 0 to KERNEL_SIZE - 2 loop
-                        window(r, c) <= window(r, c + 1);
+                    for c in 1 to KERNEL_SIZE - 1 loop
+                        window(r, c - 1) <= window(r, c);
                     end loop;
                 end loop;
 
-                -- Napojení nejnovějších dat na pravý okraj okna
-                window(0, KERNEL_SIZE - 1) <= cur_pix;
-                for r in 1 to KERNEL_SIZE - 1 loop
-                    window(r, KERNEL_SIZE - 1) <= line_buffers(r - 1, c_cnt);
-                end loop;
-
-                -- =====================================================================
-                -- 4. Zápis a posun do řádkových bufferů (Line Buffers v ose Y)
-                -- =====================================================================
-                line_buffers(0, c_cnt) <= cur_pix;
+                -- 2. Aktualizace řádkových bufferů (Line Buffers)
+                line_buffers(0, v_c_cnt) <= cur_pix;
                 for r in 1 to KERNEL_SIZE - 2 loop
-                    line_buffers(r, c_cnt) <= line_buffers(r - 1, c_cnt);
+                    line_buffers(r, v_c_cnt) <= line_buffers(r - 1, v_c_cnt);
                 end loop;
 
-                -- =====================================================================
-                -- 5. Nastavení validity (Plné okno)
-                -- =====================================================================
-                -- Okno dává smysl až po naplnění prvních (KERNEL_SIZE - 1) řádků a sloupců
-                if (r_cnt >= KERNEL_SIZE - 1) and (c_cnt >= KERNEL_SIZE - 1) then
-                    window_valid_out <= '1';
+                -- 3. Vyhodnocení validity okna (Až po naplnění prvních řádků/sloupců)
+                if (v_r_cnt >= KERNEL_SIZE - 1) and (v_c_cnt >= KERNEL_SIZE - 1) and (frame_done = '0') then
+                    window_out_valid <= '1';
                 else
-                    window_valid_out <= '0';
+                    window_out_valid <= '0';
+                end if;
+
+                -- 4. Výpočet souřadnic pro PŘÍŠTÍ takt
+                if frame_done = '0' then
+                    if v_c_cnt = IMAGE_WIDTH - 1 then
+                        v_c_cnt := 0;
+                        if v_r_cnt < IMAGE_HEIGHT - 1 then
+                            v_r_cnt := v_r_cnt + 1;
+                        else
+                            frame_done <= '1'; -- Obraz dokončen
+                        end if;
+                    else
+                        v_c_cnt := v_c_cnt + 1;
+                    end if;
                 end if;
 
             end if;
         end if;
     end process;
 
+    -- Použití čisté konverzní funkce z našeho balíčku
     window_out <= pack_ufixed_matrix(window);
 
 end architecture RTL;

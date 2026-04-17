@@ -1,100 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xck26-sfvc784-2LV-c" LaunchTime="1776375459">
-  <File Type="ROUTE-PWR" Name="filter_2d_power_routed.rpt"/>
-  <File Type="PA-TCL" Name="filter_2d.tcl"/>
-  <File Type="ROUTE-PWR-SUM" Name="filter_2d_power_summary_routed.pb"/>
-  <File Type="OPT-RQA-PB" Name="filter_2d_rqa_opted.pb"/>
   <File Type="REPORTS-TCL" Name="filter_2d_reports.tcl"/>
-  <File Type="INIT-TIMING" Name="filter_2d_timing_summary_init.rpt"/>
-  <File Type="OPT-DCP" Name="filter_2d_opt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="filter_2d_power_summary_routed.pb"/>
+  <File Type="BITSTR-MMI" Name="filter_2d.mmi"/>
   <File Type="OPT-DRC" Name="filter_2d_drc_opted.rpt"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="filter_2d_routed_bb.dcp"/>
-  <File Type="OPT-UTIL" Name="filter_2d_utilization_opted.rpt"/>
-  <File Type="ROUTE-TIMING-PB" Name="filter_2d_timing_summary_routed.pb"/>
-  <File Type="OPT-UTIL-PB" Name="filter_2d_utilization_opted.pb"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="filter_2d_methodology_drc_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="filter_2d.hwdef"/>
-  <File Type="OPT-TIMING" Name="filter_2d_timing_summary_opted.rpt"/>
-  <File Type="PWROPT-DCP" Name="filter_2d_pwropt.dcp"/>
-  <File Type="PWROPT-DRC" Name="filter_2d_drc_pwropted.rpt"/>
-  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="filter_2d.nts"/>
-  <File Type="PWROPT-TIMING" Name="filter_2d_timing_summary_pwropted.rpt"/>
-  <File Type="PLACE-DCP" Name="filter_2d_placed.dcp"/>
-  <File Type="PLACE-IO" Name="filter_2d_io_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="filter_2d_clock_utilization_placed.rpt"/>
+  <File Type="BG-DRC" Name="filter_2d.drc"/>
+  <File Type="ROUTE-STATUS-PB" Name="filter_2d_route_status.pb"/>
+  <File Type="BG-BGN" Name="filter_2d.bgn"/>
   <File Type="PLACE-UTIL" Name="filter_2d_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="filter_2d_utilization_placed.pb"/>
-  <File Type="PLACE-CTRL" Name="filter_2d_control_sets_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="filter_2d_incremental_reuse_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="filter_2d_incremental_reuse_pre_placed.rpt"/>
-  <File Type="NOC_SOLUTION_FILE" Name="filter_2d.ncr"/>
-  <File Type="PLACE-TIMING" Name="filter_2d_timing_summary_placed.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="filter_2d_power_routed.rpx"/>
-  <File Type="PLACE-RQA-PB" Name="filter_2d_rqa_placed.pb"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="filter_2d_postplace_pwropt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="filter_2d_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="PHYSOPT-DCP" Name="filter_2d_physopt.dcp"/>
-  <File Type="PHYSOPT-DRC" Name="filter_2d_drc_physopted.rpt"/>
-  <File Type="PHYSOPT-TIMING" Name="filter_2d_timing_summary_physopted.rpt"/>
-  <File Type="ROUTE-UTIL" Name="filter_2d_utilization_routed.rpt"/>
-  <File Type="ROUTE-ERROR-DCP" Name="filter_2d_routed_error.dcp"/>
-  <File Type="ROUTE-DCP" Name="filter_2d_routed.dcp"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="filter_2d_timing_summary_routed.rpt"/>
-  <File Type="ROUTE-UTIL-PB" Name="filter_2d_utilization_routed.pb"/>
-  <File Type="ROUTE-DRC" Name="filter_2d_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="filter_2d_drc_routed.pb"/>
-  <File Type="ROUTE-DRC-RPX" Name="filter_2d_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="filter_2d_methodology_drc_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="filter_2d_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="filter_2d_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-RQS-PB" Name="filter_2d_rqs_routed.pb"/>
-  <File Type="ROUTE-STATUS" Name="filter_2d_route_status.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="filter_2d_route_status.pb"/>
-  <File Type="ROUTE-TIMING-RPX" Name="filter_2d_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-SIMILARITY" Name="filter_2d_incremental_reuse_routed.rpt"/>
-  <File Type="ROUTE-CLK" Name="filter_2d_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW" Name="filter_2d_bus_skew_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW-PB" Name="filter_2d_bus_skew_routed.pb"/>
-  <File Type="ROUTE-BUS-SKEW-RPX" Name="filter_2d_bus_skew_routed.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="filter_2d_postroute_physopt.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="filter_2d_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="filter_2d_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="filter_2d_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="filter_2d_timing_summary_postroute_physopted.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="filter_2d_bus_skew_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="filter_2d_bus_skew_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="filter_2d_bus_skew_postroute_physopted.rpx"/>
-  <File Type="BG-BIT" Name="filter_2d.bit"/>
+  <File Type="PLACE-IO" Name="filter_2d_io_placed.rpt"/>
   <File Type="BG-BIN" Name="filter_2d.bin"/>
+  <File Type="PLACE-CTRL" Name="filter_2d_control_sets_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="filter_2d_power_routed.rpx"/>
   <File Type="BITSTR-MSK" Name="filter_2d.msk"/>
   <File Type="BITSTR-RBT" Name="filter_2d.rbt"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="filter_2d_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="filter_2d_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="filter_2d_route_status.rpt"/>
+  <File Type="PA-TCL" Name="filter_2d.tcl"/>
+  <File Type="ROUTE-PWR" Name="filter_2d_power_routed.rpt"/>
+  <File Type="ROUTE-DRC" Name="filter_2d_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="filter_2d_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="filter_2d_drc_routed.pb"/>
+  <File Type="BITSTR-SYSDEF" Name="filter_2d.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="filter_2d_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="filter_2d_methodology_drc_routed.rpx"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="filter_2d.ltx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="filter_2d_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-SIMILARITY" Name="filter_2d_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="filter_2d.vdi"/>
+  <File Type="ROUTE-CLK" Name="filter_2d_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="filter_2d_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="filter_2d_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="filter_2d_bus_skew_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="filter_2d_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="filter_2d_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="filter_2d_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="filter_2d_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="filter_2d_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="filter_2d.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="filter_2d_bus_skew_postroute_physopted.pb"/>
   <File Type="BITSTR-NKY" Name="filter_2d.nky"/>
   <File Type="BITSTR-BMM" Name="filter_2d_bd.bmm"/>
-  <File Type="BITSTR-MMI" Name="filter_2d.mmi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="OPT-HWDEF" Name="filter_2d.hwdef"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="filter_2d_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-DCP" Name="filter_2d_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="filter_2d_routed_error.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="filter_2d_routed_bb.dcp"/>
+  <File Type="ROUTE-TIMING-PB" Name="filter_2d_timing_summary_routed.pb"/>
+  <File Type="OPT-DCP" Name="filter_2d_opt.dcp"/>
+  <File Type="PLACE-DCP" Name="filter_2d_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="filter_2d_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="filter_2d_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="filter_2d_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="filter_2d_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="filter_2d_postroute_physopt_bb.dcp"/>
   <File Type="PDI-FILE" Name="filter_2d.pdi"/>
   <File Type="BOOT-PDI-FILE" Name="filter_2d_boot.pdi"/>
   <File Type="PL-PDI-FILE" Name="filter_2d_pld.pdi"/>
   <File Type="RCFI_FILE" Name="filter_2d.rcfi"/>
   <File Type="CFI_FILE" Name="filter_2d.cfi"/>
   <File Type="RNPI_FILE" Name="filter_2d.rnpi"/>
-  <File Type="RCDO-FILE" Name="filter_2d.rcdo"/>
-  <File Type="MARKER-RNPI-FILE" Name="filter_2d_markers.rnpi"/>
-  <File Type="MARKER-RCDO-FILE" Name="filter_2d_markers.rcdo"/>
-  <File Type="BOOT_RNPI_FILE" Name="filter_2d_boot.rnpi"/>
-  <File Type="BOOT_MARKER_RNPI_FILE" Name="filter_2d_boot_markers.rnpi"/>
-  <File Type="PL_RNPI_FILE" Name="filter_2d_pld.rnpi"/>
-  <File Type="PL_MARKER_RNPI_FILE" Name="filter_2d_pld_markers.rnpi"/>
-  <File Type="PL_MASK_RNPI_FILE" Name="filter_2d_pld_mask.rnpi"/>
-  <File Type="PL_SHUTDOWN_RNPI_FILE" Name="filter_2d_pld_shutdown.rnpi"/>
-  <File Type="PL_UNMASK_RNPI_FILE" Name="filter_2d_pld_unmask.rnpi"/>
-  <File Type="PL-RCDO-FILE" Name="filter_2d_pld.rcdo"/>
-  <File Type="PL-CLEAR-RCDO-FILE" Name="filter_2d_pld_clear.rcdo"/>
-  <File Type="PL_MARKER_RCDO_FILE" Name="filter_2d_pld_markers.rcdo"/>
-  <File Type="PL_MASK_RCDO_FILE" Name="filter_2d_pld_mask.rcdo"/>
-  <File Type="PL_UNMASK_MARKER_RCDO_FILE" Name="filter_2d_pld_unmask_markers.rcdo"/>
-  <File Type="PL_UNMASK_RCDO_FILE" Name="filter_2d_pld_unmask.rcdo"/>
   <File Type="NPI_FILE" Name="filter_2d.npi"/>
   <File Type="RBD_FILE" Name="filter_2d.rbd"/>
+  <File Type="ROUTE-RQS" Name="filter_2d_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="filter_2d_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <File Type="MMI-FILE" Name="filter_2d.mmi"/>
   <File Type="BIF-FILE" Name="filter_2d.bif"/>
   <File Type="BOOT-BIF-FILE" Name="filter_2d_boot.bif"/>
@@ -102,17 +77,24 @@
   <File Type="LTX-FILE" Name="filter_2d.ltx"/>
   <File Type="BOOT-LTX-FILE" Name="filter_2d_boot.ltx"/>
   <File Type="PL-LTX-FILE" Name="filter_2d_pld.ltx"/>
-  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="filter_2d.ltx"/>
-  <File Type="BITSTR-SYSDEF" Name="filter_2d.sysdef"/>
-  <File Type="BG-BGN" Name="filter_2d.bgn"/>
-  <File Type="BG-DRC" Name="filter_2d.drc"/>
-  <File Type="RDI-RDI" Name="filter_2d.vdi"/>
-  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="ROUTE-RQS" Name="filter_2d_routed.rqs"/>
-  <File Type="POSTROUTE-PHYSOPT-RQS" Name="filter_2d_postroute_physopted.rqs"/>
-  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <File Type="RCDO-FILE" Name="filter_2d.rcdo"/>
+  <File Type="MARKER-RCDO-FILE" Name="filter_2d_markers.rcdo"/>
+  <File Type="PL-RCDO-FILE" Name="filter_2d_pld.rcdo"/>
+  <File Type="MARKER-RNPI-FILE" Name="filter_2d_markers.rnpi"/>
+  <File Type="BOOT_RNPI_FILE" Name="filter_2d_boot.rnpi"/>
+  <File Type="PL_RNPI_FILE" Name="filter_2d_pld.rnpi"/>
+  <File Type="BOOT_MARKER_RNPI_FILE" Name="filter_2d_boot_markers.rnpi"/>
+  <File Type="PL_MARKER_RNPI_FILE" Name="filter_2d_pld_markers.rnpi"/>
+  <File Type="PL_MASK_RNPI_FILE" Name="filter_2d_pld_mask.rnpi"/>
+  <File Type="PL_SHUTDOWN_RNPI_FILE" Name="filter_2d_pld_shutdown.rnpi"/>
+  <File Type="PL_UNMASK_RNPI_FILE" Name="filter_2d_pld_unmask.rnpi"/>
+  <File Type="PL-CLEAR-RCDO-FILE" Name="filter_2d_pld_clear.rcdo"/>
+  <File Type="PL_MARKER_RCDO_FILE" Name="filter_2d_pld_markers.rcdo"/>
+  <File Type="PL_MASK_RCDO_FILE" Name="filter_2d_pld_mask.rcdo"/>
+  <File Type="PL_UNMASK_MARKER_RCDO_FILE" Name="filter_2d_pld_unmask_markers.rcdo"/>
+  <File Type="PL_UNMASK_RCDO_FILE" Name="filter_2d_pld_unmask.rcdo"/>
+  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="filter_2d.nts"/>
+  <File Type="NOC_SOLUTION_FILE" Name="filter_2d.ncr"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/new/video_processing_pkg.vhd">
@@ -184,5 +166,6 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
   </Strategy>
 </GenRun>

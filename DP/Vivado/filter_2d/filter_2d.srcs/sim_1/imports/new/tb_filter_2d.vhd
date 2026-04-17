@@ -21,111 +21,104 @@ end entity tb_filter_2d;
 
 architecture SIM of tb_filter_2d is
 
-    -- =========================================================================
-    -- NASTAVENÍ TESTBENCHE (Odpovídá generikům ve filter_2d)
-    -- =========================================================================
-    constant C_MODE : T_MODE := SAME;
-    
-    -- čtvercový obraz pro jednoduchost (10x10) -> 100 pixelů, což je dostatečné pro testování, a rychlé pro simulaci
-    constant C_IMG_W   : positive := 12; -- 12 místo 10 kvůli SAME režimu (padding přidává 1 pixel na každou stranu)
-    constant C_IMG_H   : positive := C_IMG_W;
+-- =========================================================================
+-- NASTAVENÍ TESTBENCHE (Odpovídá generikům ve filter_2d)
+-- =========================================================================
+constant C_MODE : T_MODE := VALID;
 
-    constant C_PIX_CNT : positive := C_IMG_W * C_IMG_H;
+-- čtvercový obraz pro jednoduchost (10x10) -> 100 pixelů, což je dostatečné pro testování, a rychlé pro simulaci
+constant C_IMG_W : positive := 12;      -- 12 místo 10 kvůli SAME režimu (padding přidává 1 pixel na každou stranu)
+constant C_IMG_H : positive := C_IMG_W;
 
-    constant C_KER_SIZE : positive := 3;
+constant C_PIX_CNT : positive := C_IMG_W * C_IMG_H;
 
-    -- Pixel je klasický 8-bit Unsigned (7 downto 0)
-    constant C_PIX_H : integer := 7;
-    constant C_PIX_L : integer := 0;
+constant C_KER_SIZE : positive := 3;
 
-    -- Kernel je v Q4.4 formátu (8-bit Signed se zlomkem) -> (3 downto -4)
-    constant C_KER_H   : integer := 3;
-    constant C_KER_L   : integer := -4;
-    constant C_FRACT_B : natural := abs (C_KER_L); -- Počet zlomkových bitů (4)
+-- Pixel je klasický 8-bit Unsigned (7 downto 0)
+constant C_PIX_H : integer := 7;
+constant C_PIX_L : integer := 0;
 
-    constant C_KER_WID : integer := C_KER_H - C_KER_L + 1; -- 8 bitů
+-- Kernel je v Q4.4 formátu (8-bit Signed se zlomkem) -> (3 downto -4)
+constant C_KER_H   : integer := 3;
+constant C_KER_L   : integer := -4;
+constant C_FRACT_B : natural := abs (C_KER_L); -- Počet zlomkových bitů (4)
 
+constant C_KER_WID : integer := C_KER_H - C_KER_L + 1; -- 8 bitů
 
-    constant C_OUT_W : positive := C_IMG_W when (C_MODE=SAME) else (C_IMG_W - C_KER_SIZE + 1);
-    constant C_OUT_H : positive := C_IMG_H when (C_MODE=SAME) else (C_IMG_H - C_KER_SIZE + 1);
-    constant C_OUT_PIX_CNT : positive := C_OUT_W * C_OUT_H;
+constant C_OUT_W       : positive := C_IMG_W when (C_MODE = SAME) else (C_IMG_W - C_KER_SIZE + 1);
+constant C_OUT_H       : positive := C_IMG_H when (C_MODE = SAME) else (C_IMG_H - C_KER_SIZE + 1);
+constant C_OUT_PIX_CNT : positive := C_OUT_W * C_OUT_H;
 
-    constant CLK_PERIOD : time := 10 ns;
+constant CLK_PERIOD : time := 10 ns;
 
-    -- =========================================================================
-    -- DATOVÉ TYPY A KONSTANTY (Testovací Kernely)
-    -- V Q4.4 formátu reprezentuje hodnota 16 číslo 1.0 (16 * 2^-4 = 1)
-    -- =========================================================================
-    type int_array is array (natural range <>) of integer;
+-- =========================================================================
+-- DATOVÉ TYPY A KONSTANTY (Testovací Kernely)
+-- V Q4.4 formátu reprezentuje hodnota 16 číslo 1.0 (16 * 2^-4 = 1)
+-- =========================================================================
+type int_array is array (natural range <>) of integer;
 
-    -- Sobel X (Detekce vertikálních hran)
-    constant KERNEL_3x3_SOBEL_X : int_array(0 to 8) := (
-        -16, 0, 16,
-        -32, 0, 32,
-        -16, 0, 16
-    );
+-- Sobel X (Detekce vertikálních hran)
+constant KERNEL_3x3_SOBEL_X : int_array(0 to 8) := (
+    -16, 0, 16,
+    -32, 0, 32,
+    -16, 0, 16
+);
 
-    -- Gaussian Blur (Vyhlazení, součet prvků je 16, takže výsledek bude automaticky /16)
-    constant KERNEL_3x3_GAUSS : int_array(0 to 8) := (
-        1, 2, 1,
-        2, 4, 2,
-        1, 2, 1
-    );
+-- Gaussian Blur (Vyhlazení, součet prvků je 16, takže výsledek bude automaticky /16)
+constant KERNEL_3x3_GAUSS : int_array(0 to 8) := (
+    1, 2, 1,
+    2, 4, 2,
+    1, 2, 1
+);
 
-    -- Identita (Kopie původního obrazu)
-    constant KERNEL_3x3_IDENTITY : int_array(0 to 8) := (
-        0, 0, 0,
-        0, 16, 0,
-        0, 0, 0
-    );
+-- Identita (Kopie původního obrazu)
+constant KERNEL_3x3_IDENTITY : int_array(0 to 8) := (
+    0, 0, 0,
+    0, 16, 0,
+    0, 0, 0
+);
 
-    -- Identita (Kopie původního obrazu)
-    constant KERNEL_5x5_IDENTITY : int_array(0 to 24) := ( -- @suppress "Unused declaration"
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 25, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0
-    );
+-- Identita (Kopie původního obrazu)
+constant KERNEL_5x5_IDENTITY : int_array(0 to 24) := ( -- @suppress "Unused declaration"
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0,
+    0, 0, 25, 0, 0,
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0
+);
 
-    -- =========================================================================
-    -- SIGNÁLY
-    -- =========================================================================
-    signal clk     : std_logic := '0';
-    signal aresetn : std_logic := '0';  -- Active-Low Reset
+-- =========================================================================
+-- SIGNÁLY
+-- =========================================================================
+signal clk     : std_logic := '0';
+signal aresetn : std_logic := '0';      -- Active-Low Reset
 
-    -- AXI Stream Slave (Vstup obrazu)
-    signal s_tdata  : std_logic_vector(C_PIX_H - C_PIX_L downto 0) := (others => '0');
-    signal s_tvalid : std_logic                                    := '0';
-    signal s_tready : std_logic;
+-- AXI Stream Slave (Vstup obrazu)
+signal s_tdata  : std_logic_vector(C_PIX_H - C_PIX_L downto 0) := (others => '0');
+signal s_tvalid : std_logic                                    := '0';
+signal s_tready : std_logic;
+signal s_tlast  : std_logic                                    := '0';
+signal s_tuser  : std_logic_vector(0 downto 0)                 := (others => '0');
 
-    -- AXI Stream Master (Výstup konvoluce)
-    signal m_tdata  : std_logic_vector(C_PIX_H - C_PIX_L downto 0);
-    signal m_tvalid : std_logic;
-    signal m_tready : std_logic := '0';
+-- AXI Stream Master (Výstup konvoluce)
+signal m_tdata  : std_logic_vector(C_PIX_H - C_PIX_L downto 0);
+signal m_tvalid : std_logic;
+signal m_tready : std_logic := '1';     -- Master je vždy připraven přijímat data
+signal m_tlast  : std_logic;
+signal m_tuser  : std_logic_vector(0 downto 0);
 
-    signal kernel_in : std_logic_vector((C_KER_SIZE * C_KER_SIZE * C_KER_WID) - 1 downto 0) := (others => '0');
+signal kernel_in : std_logic_vector((C_KER_SIZE * C_KER_SIZE * C_KER_WID) - 1 downto 0) := (others => '0');
 
-    -- Datové buffery pro simulaci
-    signal input_image    : int_array(0 to C_PIX_CNT - 1) := (others => 0);
-    signal expected_image : int_array(0 to C_PIX_CNT - 1) := (others => 0);
+-- Datové buffery pro simulaci
+signal input_image    : int_array(0 to C_PIX_CNT - 1)     := (others => 0);
+signal expected_image : int_array(0 to C_OUT_PIX_CNT - 1) := (others => 0);
 
-    -- Řízení Testbenche
-    signal start_test : std_logic := '0';
-    signal test_done  : std_logic := '0';
+-- Řízení Testbenche
+signal start_test : std_logic := '0';
+signal test_done  : std_logic := '0';
+signal feeder_done : std_logic := '0';
     signal test_error : std_logic := '0';
 
-    -- =========================================================================
-    -- FUNKCE PRO HARDWAROVOU PŘÍPRAVU KERNELU
-    -- =========================================================================
-    -- function flatten_kernel(k : int_array; k_width : natural) return std_logic_vector is
-    --     variable res : std_logic_vector(k'length * k_width - 1 downto 0);
-    -- begin
-    --     for i in k'low to k'high loop
-    --         res(((i - k'low) + 1) * k_width - 1 downto (i - k'low) * k_width) := std_logic_vector(to_signed(k(i), k_width));
-    --     end loop;
-    --     return res;
-    -- end function;
 
     function flatten_kernel(k : int_array) return std_logic_vector is
         -- Statická alokace přes globální konstanty Testbenche
@@ -141,19 +134,18 @@ architecture SIM of tb_filter_2d is
     -- "GOLDEN MODEL" - UNIVERZÁLNÍ SOFTWAROVÁ KONVOLUCE
     -- =========================================================================
     function sw_convolution(img : int_array; kernel : int_array; MODE : T_MODE) return int_array is
-        variable res        : int_array(0 to C_PIX_CNT - 1) := (others => 0);
+       variable res        : int_array(0 to C_OUT_PIX_CNT - 1) := (others => 0);
         variable acc        : integer;
         variable acc_sig    : signed(31 downto 0);
         variable r_in, c_in : integer;
         variable val        : integer;
-
-        variable offset  : integer := C_KER_SIZE / 2;
-        variable out_idx : integer := 0;
-
-        variable y_start, y_end : integer;
-        variable x_start, x_end : integer;
+        variable offset     : integer := C_KER_SIZE / 2;
+        variable out_idx    : integer := 0;
+        variable y_start, y_end, x_start, x_end : integer;
     begin
         -- Nastavení hranic průchodu podle režimu
+        offset := C_KER_SIZE / 2;
+
         if MODE = SAME then
             y_start := 0;
             y_end   := C_IMG_H - 1;
@@ -234,12 +226,18 @@ begin
             aclk          => clk,
             aresetn       => aresetn,
             kernel_in     => kernel_in,
+
             s_axis_tdata  => s_tdata,
             s_axis_tvalid => s_tvalid,
             s_axis_tready => s_tready,
+            s_axis_tlast  => s_tlast,
+            s_axis_tuser  => s_tuser,
+
             m_axis_tdata  => m_tdata,
             m_axis_tvalid => m_tvalid,
-            m_axis_tready => m_tready
+            m_axis_tready => m_tready,
+            m_axis_tlast  => open,
+            m_axis_tuser  => open
         );
 
     -- =========================================================================
@@ -248,17 +246,39 @@ begin
     feeder_proc : process
     begin
         s_tvalid <= '0';
+        s_tlast  <= '0';
+        s_tuser  <= (others => '0');
+        feeder_done <= '0';
         wait until start_test = '1';
 
+        -- 1. Odeslání celého validního obrazu
         for i in 0 to C_PIX_CNT - 1 loop
             s_tdata  <= std_logic_vector(to_unsigned(input_image(i), C_PIX_H - C_PIX_L + 1));
             s_tvalid <= '1';
-            -- Čekáme na potvrzení od Slave
+            
+            -- Generování SOF (Start of Frame)
+            if i = 0 then s_tuser <= (others => '1');
+            else s_tuser <= (others => '0'); end if;
+            
+            -- Generování EOL (End of Line)
+            if (i + 1) mod C_IMG_W = 0 then s_tlast <= '1'; else s_tlast <= '0'; end if;
+
+            wait until rising_edge(clk) and s_tready = '1';
+        end loop;
+
+        -- 2. "FLUSH" - Odeslání prázdných pixelů k vytlačení zbytku z pipeline
+        s_tdata <= (others => '0');
+        s_tuser <= (others => '0');
+        s_tlast <= '0';
+        for i in 0 to (C_KER_SIZE * C_IMG_W + 20) loop
+            s_tvalid <= '1';
             wait until rising_edge(clk) and s_tready = '1';
         end loop;
 
         s_tvalid <= '0';
+        feeder_done <= '1';
         wait until start_test = '0';
+        feeder_done <= '0';
     end process;
 
     -- =========================================================================
@@ -273,7 +293,7 @@ begin
         test_error <= '0';
 
         wait until start_test = '1';
-        m_tready     <= '1';            -- Jsme vždy připraveni přijímat
+        m_tready <= '1';
         err_detected := '0';
 
         for i in 0 to C_OUT_PIX_CNT - 1 loop
@@ -282,7 +302,6 @@ begin
             hw_val  := to_integer(unsigned(m_tdata));
             exp_val := expected_image(i);
 
-            -- Tolerance 2 kvůli Fixed-Point zaokrouhlování na hranách
             if abs (hw_val - exp_val) > 2 then
                 report "Chyba na indexu " & integer'image(i) & "! Ocekavano: " & integer'image(exp_val) & " Ziskano (HW): " & integer'image(hw_val)
                 severity error;
@@ -298,7 +317,7 @@ begin
     end process;
 
     -- =========================================================================
-    -- PROCES 3: HLAVNÍ MOZEK (Řídí testovací vektory)
+    -- HLAVNÍ PROCES
     -- =========================================================================
     main_proc : process
         variable seed1, seed2 : positive := 1;
@@ -319,55 +338,36 @@ begin
         end loop;
         wait for 1 ns;
 
-        -- ---------------------------------------------------------------------
-        -- TEST 1: Identita (Obraz se nesmí změnit)
-        -- ---------------------------------------------------------------------
         report ">> TEST 1: IDENTITY (Q4.4)";
         kernel_in      <= flatten_kernel(KERNEL_3x3_IDENTITY);
         expected_image <= sw_convolution(input_image, KERNEL_3x3_IDENTITY, C_MODE);
-
         start_test <= '1';
-        wait until test_done = '1';
+        wait until test_done = '1' and feeder_done = '1';
         start_test <= '0';
         wait for CLK_PERIOD * 10;
+        if test_error = '0' then report "TEST 1: PASSED"; end if;
 
-        if test_error = '0' then
-            report "TEST 1: PASSED";
-        end if;
+        wait for CLK_PERIOD * 2;
 
-        wait for CLK_PERIOD * 20;       -- Kratší pauza mezi testy
-        -- ---------------------------------------------------------------------
-        -- TEST 2: Sobeluv filtr (Hranový detektor)
-        -- ---------------------------------------------------------------------
         report ">> TEST 2: SOBEL X-EDGES (Saturace & Znaménka)";
         kernel_in      <= flatten_kernel(KERNEL_3x3_SOBEL_X);
         expected_image <= sw_convolution(input_image, KERNEL_3x3_SOBEL_X, C_MODE);
-
         start_test <= '1';
-        wait until test_done = '1';
+        wait until test_done = '1' and feeder_done = '1';
         start_test <= '0';
         wait for CLK_PERIOD * 10;
+        if test_error = '0' then report "TEST 2: PASSED"; end if;
 
-        if test_error = '0' then
-            report "TEST 2: PASSED";
-        end if;
+        wait for CLK_PERIOD * 2;
 
-        wait for CLK_PERIOD * 20;       -- Kratší pauza mezi testy
-        -- ---------------------------------------------------------------------
-        -- TEST 3: Gaussovo rozostření (Posuny)
-        -- ---------------------------------------------------------------------
-        report ">> TEST 3: GAUSSOVSKY BLUR (KERNEL 3x3)";
+        report ">> TEST 3: GAUSSIAN BLUR (Normalizace & Zlomky)";
         kernel_in      <= flatten_kernel(KERNEL_3x3_GAUSS);
         expected_image <= sw_convolution(input_image, KERNEL_3x3_GAUSS, C_MODE);
-
         start_test <= '1';
-        wait until test_done = '1';
+        wait until test_done = '1' and feeder_done = '1';
         start_test <= '0';
         wait for CLK_PERIOD * 10;
-
-        if test_error = '0' then
-            report "TEST 3: PASSED";
-        end if;
+        if test_error = '0' then report "TEST 3: PASSED"; end if;
 
         report "=== VSECHNY TESTY DOKONCENY ===";
         std.env.stop;
