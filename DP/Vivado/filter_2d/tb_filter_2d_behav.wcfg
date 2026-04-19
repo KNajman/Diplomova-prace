@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="282.000001 us"></ZoomEndTime>
-      <Cursor1Time time="0.000000 us"></Cursor1Time>
+      <ZoomStartTime time="2,206.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="4,366.001 ns"></ZoomEndTime>
+      <Cursor1Time time="4,006.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="340"></NameColumnWidth>
-      <ValueColumnWidth column_width="148"></ValueColumnWidth>
+      <NameColumnWidth column_width="135"></NameColumnWidth>
+      <ValueColumnWidth column_width="61"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="19" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/tb_filter_2d/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,6 +27,10 @@
    <wvobject fp_name="/tb_filter_2d/aresetn" type="logic">
       <obj_property name="ElementShortName">aresetn</obj_property>
       <obj_property name="ObjectShortName">aresetn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_filter_2d/C_MODE" type="other">
+      <obj_property name="ElementShortName">C_MODE</obj_property>
+      <obj_property name="ObjectShortName">C_MODE</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_filter_2d/s_tdata" type="array">
       <obj_property name="ElementShortName">s_tdata[7:0]</obj_property>
@@ -49,9 +53,26 @@
       <obj_property name="ElementShortName">s_tuser[0:0]</obj_property>
       <obj_property name="ObjectShortName">s_tuser[0:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_filter_2d/start_test" type="logic">
+      <obj_property name="ElementShortName">start_test</obj_property>
+      <obj_property name="ObjectShortName">start_test</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_filter_2d/test_done" type="logic">
+      <obj_property name="ElementShortName">test_done</obj_property>
+      <obj_property name="ObjectShortName">test_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_filter_2d/test_error" type="logic">
+      <obj_property name="ElementShortName">test_error</obj_property>
+      <obj_property name="ObjectShortName">test_error</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_filter_2d/m_tdata" type="array">
       <obj_property name="ElementShortName">m_tdata[7:0]</obj_property>
       <obj_property name="ObjectShortName">m_tdata[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_filter_2d/expected_image" type="array">
+      <obj_property name="ElementShortName">expected_image[0:63]</obj_property>
+      <obj_property name="ObjectShortName">expected_image[0:63]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_filter_2d/m_tvalid" type="logic">
       <obj_property name="ElementShortName">m_tvalid</obj_property>
@@ -68,33 +89,5 @@
    <wvobject fp_name="/tb_filter_2d/m_tuser" type="array">
       <obj_property name="ElementShortName">m_tuser[0:0]</obj_property>
       <obj_property name="ObjectShortName">m_tuser[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/kernel_in" type="array">
-      <obj_property name="ElementShortName">kernel_in[71:0]</obj_property>
-      <obj_property name="ObjectShortName">kernel_in[71:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/input_image" type="array">
-      <obj_property name="ElementShortName">input_image[0:143]</obj_property>
-      <obj_property name="ObjectShortName">input_image[0:143]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/expected_image" type="array">
-      <obj_property name="ElementShortName">expected_image[0:143]</obj_property>
-      <obj_property name="ObjectShortName">expected_image[0:143]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/start_test" type="logic">
-      <obj_property name="ElementShortName">start_test</obj_property>
-      <obj_property name="ObjectShortName">start_test</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/test_done" type="logic">
-      <obj_property name="ElementShortName">test_done</obj_property>
-      <obj_property name="ObjectShortName">test_done</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/test_error" type="logic">
-      <obj_property name="ElementShortName">test_error</obj_property>
-      <obj_property name="ObjectShortName">test_error</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_filter_2d/C_MODE" type="other">
-      <obj_property name="ElementShortName">C_MODE</obj_property>
-      <obj_property name="ObjectShortName">C_MODE</obj_property>
    </wvobject>
 </wave_config>
