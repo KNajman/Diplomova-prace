@@ -64,6 +64,9 @@ architecture RTL of mac_pipeline is
     signal tree_sum     : sfixed(ACC_HIGH downto G_PIXEL_LOW + G_KERNEL_LOW);
     signal window_fixed : t_ufixed_array(0 to C_NUM_ELEMENTS - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW);
     signal kernel_fixed : t_sfixed_array(0 to C_NUM_ELEMENTS - 1)(G_KERNEL_HIGH downto G_KERNEL_LOW);
+    
+    attribute use_dsp : string;
+    attribute use_dsp of mult_results : signal is "yes";
 
 begin
     -- =========================================================================
@@ -90,6 +93,7 @@ begin
     -- =========================================================================
     parallel_multiplication : process(aclk)
         variable v_pixel_signed : sfixed(G_PIXEL_HIGH + 1 downto G_PIXEL_LOW);
+        variable v_kernel_signed : sfixed(G_KERNEL_HIGH downto G_KERNEL_LOW);
     begin
         if rising_edge(aclk) then
             if aresetn = '0' then
@@ -99,7 +103,9 @@ begin
                     -- Resize automatically pads MSB with '0', securing a positive value
                     -- Safe cast to sfixed is then guaranteed
                     v_pixel_signed  := sfixed(resize(window_fixed(i), G_PIXEL_HIGH + 1, G_PIXEL_LOW));
-                    mult_results(i) <= v_pixel_signed * kernel_fixed(i);
+                    v_kernel_signed := kernel_fixed(i);
+                    
+                    mult_results(i) <= v_pixel_signed * v_kernel_signed;
                 end loop;
             end if;
         end if;
@@ -108,7 +114,27 @@ begin
     -- =========================================================================
     -- Phase 2: Pipelined Adder Tree
     -- =========================================================================
-    Inst_Adder_Tree : entity work.pipelined_adder_tree
+    -- Inst_Adder_Tree : entity work.pipelined_adder_tree
+    --     generic map(
+    --         NUM_INPUTS => C_NUM_ELEMENTS,
+    --         IN_HIGH    => mult_results(0)'high,
+    --         IN_LOW     => mult_results(0)'low,
+    --         OUT_HIGH   => ACC_HIGH,
+    --         OUT_LOW    => G_PIXEL_LOW + G_KERNEL_LOW
+    --     )
+    --     port map(
+    --         aclk            => aclk,
+    --         aresetn         => aresetn,
+    --         pipeline_enable => pipeline_en,
+    --         data_in         => pack_sfixed_array(mult_results, C_NUM_ELEMENTS, mult_results(0)'high, mult_results(0)'low),
+    --         sum_out         => tree_sum
+    --     );
+
+
+        --==========================================================================
+        -- Phase 2: Alternative Pipelined Adder Cascade (Uncomment to use instead of Tree)
+        --==========================================================================
+    Inst_Adder_Cascade : entity work.pipelined_adder_cascade
         generic map(
             NUM_INPUTS => C_NUM_ELEMENTS,
             IN_HIGH    => mult_results(0)'high,
@@ -123,6 +149,7 @@ begin
             data_in         => pack_sfixed_array(mult_results, C_NUM_ELEMENTS, mult_results(0)'high, mult_results(0)'low),
             sum_out         => tree_sum
         );
+
 
    -- =========================================================================
     -- Phase 3: Saturation and Rounding

@@ -66,6 +66,9 @@ architecture RTL of sliding_window is
     signal window       : t_ufixed_matrix(0 to C_KERNEL_WINDOW_SIZE, 0 to C_KERNEL_WINDOW_SIZE)(G_PIXEL_HIGH downto G_PIXEL_LOW) := (others => (others => (others => '0')));
     signal line_buffers : t_ufixed_matrix(0 to KERNEL_SIZE - 2, 0 to IMAGE_WIDTH - 1)(G_PIXEL_HIGH downto G_PIXEL_LOW)           := (others => (others => (others => '0')));
 
+    attribute ram_style : string;
+    attribute ram_style of line_buffers : signal is "block";
+
     signal sw_clken : std_logic;
 
 begin
