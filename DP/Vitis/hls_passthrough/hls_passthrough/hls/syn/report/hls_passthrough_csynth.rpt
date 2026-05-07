@@ -1,0 +1,137 @@
+
+
+================================================================
+== Vitis HLS Report for 'hls_passthrough'
+================================================================
+* Date:           Tue May  5 22:36:13 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 14 2025)
+* Project:        hls_passthrough
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xck26-sfvc784-2LV-c
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  0.576 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|       8|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       0|      18|    -|
+|Register         |        -|     -|       2|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|       2|      26|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |      288|  1248|  234240|  117120|   64|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |ap_block_pp0_stage0_01001         |        or|   0|  0|   2|           1|           1|
+    |ap_block_state1_pp0_stage0_iter0  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1  |        or|   0|  0|   2|           1|           1|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|   8|           4|           5|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |in_stream_TDATA_blk_n   |   9|          2|    1|          2|
+    |out_stream_TDATA_blk_n  |   9|          2|    1|          2|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   |  18|          4|    2|          4|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    |  2|   0|    2|          0|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+--------------+---------------------+--------------+
+|     RTL Ports     | Dir | Bits|   Protocol   |    Source Object    |    C Type    |
++-------------------+-----+-----+--------------+---------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_none|      hls_passthrough|  return value|
+|ap_rst_n           |   in|    1|  ap_ctrl_none|      hls_passthrough|  return value|
+|in_stream_TDATA    |   in|   32|          axis|   in_stream_V_data_V|       pointer|
+|in_stream_TVALID   |   in|    1|          axis|   in_stream_V_last_V|       pointer|
+|in_stream_TREADY   |  out|    1|          axis|   in_stream_V_last_V|       pointer|
+|in_stream_TLAST    |   in|    1|          axis|   in_stream_V_last_V|       pointer|
+|in_stream_TKEEP    |   in|    4|          axis|   in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB    |   in|    4|          axis|   in_stream_V_strb_V|       pointer|
+|in_stream_TUSER    |   in|    1|          axis|   in_stream_V_user_V|       pointer|
+|out_stream_TDATA   |  out|   32|          axis|  out_stream_V_data_V|       pointer|
+|out_stream_TVALID  |  out|    1|          axis|  out_stream_V_last_V|       pointer|
+|out_stream_TREADY  |   in|    1|          axis|  out_stream_V_last_V|       pointer|
+|out_stream_TLAST   |  out|    1|          axis|  out_stream_V_last_V|       pointer|
+|out_stream_TKEEP   |  out|    4|          axis|  out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB   |  out|    4|          axis|  out_stream_V_strb_V|       pointer|
+|out_stream_TUSER   |  out|    1|          axis|  out_stream_V_user_V|       pointer|
++-------------------+-----+-----+--------------+---------------------+--------------+
+

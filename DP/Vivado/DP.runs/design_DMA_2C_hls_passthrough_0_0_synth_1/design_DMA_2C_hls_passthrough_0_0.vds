@@ -1,0 +1,304 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue May  5 22:47:27 2026
+# Process ID         : 10088
+# Current directory  : D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1
+# Command line       : vivado.exe -log design_DMA_2C_hls_passthrough_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_DMA_2C_hls_passthrough_0_0.tcl
+# Log file           : D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1/design_DMA_2C_hls_passthrough_0_0.vds
+# Journal file       : D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1\vivado.jou
+# Running On         : N166A
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
+# CPU Frequency      : 2112 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 12723 MB
+# Swap memory        : 11811 MB
+# Total Virtual      : 24534 MB
+# Available Virtual  : 10068 MB
+#-----------------------------------------------------------
+source design_DMA_2C_hls_passthrough_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:28 ; elapsed = 00:00:20 . Memory (MB): peak = 529.910 ; gain = 219.473
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Repos/_DP/DP/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDDesignTools/2025.2/Vivado/data/ip'.
+Command: synth_design -top design_DMA_2C_hls_passthrough_0_0 -part xck26-sfvc784-2LV-c -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Device 21-403] Loading part xck26-sfvc784-2LV-c
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 4940
+WARNING: [Synth 8-10771] ignoring re-definition of predefined conditional analysis id 'vhdl_version'
+WARNING: [Synth 8-10771] ignoring re-definition of predefined conditional analysis id 'vhdl_version'
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:21 . Memory (MB): peak = 1835.492 ; gain = 211.441
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'design_DMA_2C_hls_passthrough_0_0' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/synth/design_DMA_2C_hls_passthrough_0_0.vhd:77]
+INFO: [Synth 8-3491] module 'hls_passthrough' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:11' bound to instance 'U0' of component 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/synth/design_DMA_2C_hls_passthrough_0_0.vhd:142]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:32]
+	Parameter DataWidth bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:122]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both' (0#1) [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:136]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized1' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized1' (0#1) [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:150]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:164]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized3' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized3' (0#1) [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:178]
+	Parameter DataWidth bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:192]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:206]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:220]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:234]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:248]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough' (0#1) [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'design_DMA_2C_hls_passthrough_0_0' (0#1) [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/synth/design_DMA_2C_hls_passthrough_0_0.vhd:77]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:27 . Memory (MB): peak = 1961.504 ; gain = 337.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:27 . Memory (MB): peak = 1961.504 ; gain = 337.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:27 . Memory (MB): peak = 1961.504 ; gain = 337.453
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.093 . Memory (MB): peak = 1961.504 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc] for cell 'U0'
+create_clock: Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 2047.301 ; gain = 0.023
+Finished Parsing XDC File [d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc] for cell 'U0'
+Parsing XDC File [D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2047.301 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:01 . Memory (MB): peak = 2047.301 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:32 ; elapsed = 00:01:10 . Memory (MB): peak = 2047.301 ; gain = 423.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xck26-sfvc784-2LV-c
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:32 ; elapsed = 00:01:10 . Memory (MB): peak = 2047.301 ; gain = 423.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:01:10 . Memory (MB): peak = 2047.301 ; gain = 423.250
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both__parameterized1'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both__parameterized3'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    zero |                               01 |                               10
+                     one |                               11 |                               11
+                     two |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hls_passthrough_regslice_both'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    zero |                               01 |                               10
+                     one |                               11 |                               11
+                     two |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hls_passthrough_regslice_both__parameterized1'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    zero |                               01 |                               10
+                     one |                               11 |                               11
+                     two |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hls_passthrough_regslice_both__parameterized3'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:33 ; elapsed = 00:01:11 . Memory (MB): peak = 2047.301 ; gain = 423.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 4     
+	                4 Bit    Registers := 8     
+	                2 Bit    Registers := 10    
+	                1 Bit    Registers := 20    
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 4     
+	   2 Input    2 Bit        Muxes := 100   
+	   4 Input    2 Bit        Muxes := 40    
+	   2 Input    1 Bit        Muxes := 44    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1248 (col length:96)
+BRAMs: 288 (col length: RAMB18 96 RAMB36 48)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:01:16 . Memory (MB): peak = 2047.301 ; gain = 423.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:01:46 . Memory (MB): peak = 2707.168 ; gain = 1083.117
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:58 ; elapsed = 00:01:47 . Memory (MB): peak = 2734.547 ; gain = 1110.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:01:47 . Memory (MB): peak = 2734.547 ; gain = 1110.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     1|
+|2     |LUT2 |     5|
+|3     |LUT3 |     1|
+|4     |LUT4 |   104|
+|5     |LUT5 |    22|
+|6     |LUT6 |     8|
+|7     |FDRE |   191|
+|8     |FDSE |    12|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:05 ; elapsed = 00:01:54 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:43 ; elapsed = 00:01:23 . Memory (MB): peak = 2968.402 ; gain = 1258.555
+Synthesis Optimization Complete : Time (s): cpu = 00:01:06 ; elapsed = 00:01:55 . Memory (MB): peak = 2968.402 ; gain = 1344.352
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2968.402 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2968.402 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: cbbb74f
+INFO: [Common 17-83] Releasing license: Synthesis
+44 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:18 ; elapsed = 00:03:00 . Memory (MB): peak = 2968.402 ; gain = 2377.348
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.163 . Memory (MB): peak = 2968.402 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1/design_DMA_2C_hls_passthrough_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_DMA_2C_hls_passthrough_0_0, cache-ID = 84245e2ab61aca6a
+INFO: [Coretcl 2-1174] Renamed 11 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2968.402 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/DP.runs/design_DMA_2C_hls_passthrough_0_0_synth_1/design_DMA_2C_hls_passthrough_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_DMA_2C_hls_passthrough_0_0_utilization_synth.rpt -pb design_DMA_2C_hls_passthrough_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue May  5 22:51:01 2026...

@@ -1,0 +1,11 @@
+vhdl xil_defaultlib  \
+"../../../../DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough_regslice_both.vhd" \
+"../../../../DP.gen/sources_1/bd/design_DMA_2C/ipshared/6529/hdl/vhdl/hls_passthrough.vhd" \
+"../../../bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/sim/design_DMA_2C_hls_passthrough_0_0.vhd" \
+"../../../bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_1/sim/bd_d851_psr_aclk_0.vhd" \
+"../../../bd/design_DMA_2C/ip/design_DMA_2C_rst_ps8_0_99M_0/sim/design_DMA_2C_rst_ps8_0_99M_0.vhd" \
+"../../../bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/sim/design_DMA_2C_axi_dma_0_0.vhd" \
+"../../../bd/design_DMA_2C/sim/design_DMA_2C.vhd" \
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,489 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Apr 19 23:45:30 2026
+# Process ID         : 25420
+# Current directory  : D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.runs/synth_1
+# Command line       : vivado.exe -log filter_2d.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source filter_2d.tcl
+# Log file           : D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.runs/synth_1/filter_2d.vds
+# Journal file       : D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.runs/synth_1\vivado.jou
+# Running On         : N166A
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
+# CPU Frequency      : 2112 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 12723 MB
+# Swap memory        : 14706 MB
+# Total Virtual      : 27430 MB
+# Available Virtual  : 6014 MB
+#-----------------------------------------------------------
+source filter_2d.tcl -notrace
+create_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 532.188 ; gain = 218.492
+Command: read_checkpoint -auto_incremental -incremental D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/utils_1/imports/synth_1/filter_2d.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/utils_1/imports/synth_1/filter_2d.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top filter_2d -part xck26-sfvc784-2LV-c
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 17404
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1076.781 ; gain = 529.359
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'filter_2d' [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/filter_2d.vhd:67]
+INFO: [Synth 8-638] synthesizing module 'sliding_window' [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:56]
+	Parameter IMAGE_WIDTH bound to: 100 - type: integer 
+	Parameter IMAGE_HEIGHT bound to: 100 - type: integer 
+	Parameter KERNEL_SIZE bound to: 3 - type: integer 
+	Parameter G_PIXEL_HIGH bound to: 7 - type: integer 
+	Parameter G_PIXEL_LOW bound to: 0 - type: integer 
+WARNING: [Synth 8-3514] cannot infer block ram on a non-memory variable 'line_buffers'  [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:70]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,0]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,1]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,2]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,3]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,4]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,5]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,6]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,7]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,8]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,9]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,10]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,11]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,12]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,13]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,14]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,15]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,16]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,17]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,18]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,19]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,20]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,21]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,22]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,23]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,24]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,25]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,26]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,27]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,28]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,29]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,30]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,31]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,32]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,33]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,34]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,35]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,36]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,37]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,38]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,39]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,40]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,41]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,42]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,43]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,44]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,45]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,46]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,47]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,48]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,49]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,50]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,51]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,52]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,53]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,54]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,55]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,56]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,57]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,58]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,59]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,60]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,61]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,62]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,63]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,64]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,65]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,66]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,67]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,68]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,69]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,70]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,71]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,72]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,73]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,74]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,75]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,76]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,77]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,78]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,79]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,80]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,81]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,82]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,83]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,84]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,85]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,86]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,87]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,88]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,89]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,90]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,91]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,92]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,93]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,94]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,95]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,96]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,97]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,98]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+WARNING: [Synth 8-7186] Applying attribute ram_style = "block" is ignored, object 'line_buffers[0,99]' is not inferred as ram due to incorrect usage [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:67]
+INFO: [Common 17-14] Message 'Synth 8-7186' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-638] synthesizing module 'delay_line' [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/delay_line.vhd:23]
+	Parameter G_DELAY bound to: 101 - type: integer 
+	Parameter G_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'delay_line' (0#1) [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/delay_line.vhd:23]
+INFO: [Synth 8-256] done synthesizing module 'sliding_window' (0#1) [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/sliding_window.vhd:56]
+INFO: [Synth 8-638] synthesizing module 'mac_pipeline' [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/mac_pipeline.vhd:57]
+	Parameter G_PIXEL_HIGH bound to: 7 - type: integer 
+	Parameter G_PIXEL_LOW bound to: 0 - type: integer 
+	Parameter G_KERNEL_SIZE bound to: 3 - type: integer 
+	Parameter G_KERNEL_HIGH bound to: 3 - type: integer 
+	Parameter G_KERNEL_LOW bound to: -4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'delay_line__parameterized0' [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/delay_line.vhd:23]
+	Parameter G_DELAY bound to: 7 - type: integer 
+	Parameter G_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'delay_line__parameterized0' (0#1) [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/delay_line.vhd:23]
+INFO: [Synth 8-638] synthesizing module 'pipelined_adder_cascade' [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/pipelined_adder_cascade.vhd:47]
+	Parameter NUM_INPUTS bound to: 9 - type: integer 
+	Parameter IN_HIGH bound to: 12 - type: integer 
+	Parameter IN_LOW bound to: -4 - type: integer 
+	Parameter OUT_HIGH bound to: 17 - type: integer 
+	Parameter OUT_LOW bound to: -4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'pipelined_adder_cascade' (0#1) [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/pipelined_adder_cascade.vhd:47]
+INFO: [Synth 8-256] done synthesizing module 'mac_pipeline' (0#1) [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/mac_pipeline.vhd:57]
+INFO: [Synth 8-256] done synthesizing module 'filter_2d' (0#1) [D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.srcs/sources_1/imports/new/filter_2d.vhd:67]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1262.645 ; gain = 715.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1262.645 ; gain = 715.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xck26-sfvc784-2LV-c
+INFO: [Synth 8-6742] Reading net delay rules and data
+INFO: [Device 21-403] Loading part xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1262.645 ; gain = 715.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1264.660 ; gain = 717.238
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 2     
++---Registers : 
+	               48 Bit    Registers := 1     
+	               22 Bit    Registers := 8     
+	                8 Bit    Registers := 210   
+	                7 Bit    Registers := 2     
+	                1 Bit    Registers := 225   
++---Muxes : 
+	   2 Input   22 Bit        Muxes := 32    
+	   2 Input    9 Bit        Muxes := 5     
+	   3 Input    9 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1248 (col length:96)
+BRAMs: 288 (col length: RAMB18 96 RAMB36 48)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: (A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[0] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: PCIN+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[1] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[1] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[2] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[2] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[3] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[3] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[4] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[4] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[5] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[5] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[6] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[6] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[7] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: Generating DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg, operation Mode is: C'+(A*B)'.
+DSP Report: register Inst_MAC_Pipeline/Inst_Adder_Cascade/cascade_reg_reg[7] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: register Inst_MAC_Pipeline/mult_results_reg[8] is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+DSP Report: operator Inst_MAC_Pipeline/Inst_Adder_Cascade/arg is absorbed into DSP Inst_MAC_Pipeline/Inst_Adder_Cascade/arg.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:43 . Memory (MB): peak = 2086.852 ; gain = 1539.430
+---------------------------------------------------------------------------------
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_0 : 0 0 : 536 1125 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_0 : 0 1 : 589 1125 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_3 : 0 0 : 615 615 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_5 : 0 0 : 615 615 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_6 : 0 0 : 615 615 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_7 : 0 0 : 615 615 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_8 : 0 0 : 615 615 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_9 : 0 0 : 615 615 : Used 1 time 100
+ Sort Area is  Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_a : 0 0 : 615 615 : Used 1 time 100
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name             | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|pipelined_adder_cascade | (A*B)'      | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|mac_pipeline            | PCIN+(A*B)' | 9      | 8      | -      | -      | 23     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A*B)'   | 9      | 8      | 22     | -      | 23     | 0    | 0    | 1    | -    | -     | 1    | 0    | 
++------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:43 . Memory (MB): peak = 2095.727 ; gain = 1548.305
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:44 . Memory (MB): peak = 2095.879 ; gain = 1548.457
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------+---------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name | RTL Name                                                                  | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------+---------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|filter_2d   | Inst_Sliding_Window/Inst_delay_line_tlast/gen_delay.shift_reg_reg[100][0] | 101    | 1     | YES          | NO                 | YES               | 0      | 4       | 
+|filter_2d   | Inst_Sliding_Window/Inst_delay_line_tuser/gen_delay.shift_reg_reg[100][0] | 101    | 1     | YES          | NO                 | YES               | 0      | 4       | 
+|filter_2d   | Inst_MAC_Pipeline/Inst_delay_line_tlast/gen_delay.shift_reg_reg[6][0]     | 7      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|filter_2d   | Inst_MAC_Pipeline/Inst_delay_line_tuser/gen_delay.shift_reg_reg[6][0]     | 7      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|filter_2d   | Inst_MAC_Pipeline/Inst_delay_line_valid/gen_delay.shift_reg_reg[6][0]     | 7      | 1     | YES          | NO                 | YES               | 1      | 0       | 
++------------+---------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name             | DSP Mapping   | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|pipelined_adder_cascade | ((A''*B)')'   | 8      | 18     | -      | -      | 17     | 2    | 0    | -    | -    | -     | 1    | 1    | 
+|mac_pipeline            | PCIN+(A''*B)' | 8      | 18     | -      | -      | 23     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A'*B)'    | 8      | 18     | 48     | -      | 23     | 1    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A''*B)'   | 8      | 18     | 48     | -      | 23     | 2    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A''*B)'   | 8      | 18     | 48     | -      | 23     | 2    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A'*B)'    | 8      | 18     | 48     | -      | 23     | 1    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A''*B)'   | 8      | 18     | 48     | -      | 23     | 2    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A''*B)'   | 8      | 18     | 48     | -      | 23     | 2    | 0    | 1    | -    | -     | 1    | 0    | 
+|pipelined_adder_cascade | C'+(A'*B)'    | 8      | 18     | 48     | -      | 23     | 1    | 0    | 1    | -    | -     | 1    | 0    | 
++------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |BUFG            |     1|
+|2     |DSP48E2         |     3|
+|3     |DSP_ALU         |     6|
+|4     |DSP_A_B_DATA    |     6|
+|5     |DSP_C_DATA      |     6|
+|6     |DSP_MULTIPLIER  |     6|
+|7     |DSP_M_DATA      |     6|
+|8     |DSP_OUTPUT      |     6|
+|9     |DSP_PREADD      |     6|
+|10    |DSP_PREADD_DATA |     6|
+|11    |LUT1            |     1|
+|12    |LUT2            |    48|
+|13    |LUT3            |    26|
+|14    |LUT4            |   215|
+|15    |LUT5            |    65|
+|16    |LUT6            |   669|
+|17    |MUXF7           |   123|
+|18    |MUXF8           |    55|
+|19    |SRL16E          |     3|
+|20    |SRLC32E         |     8|
+|21    |FDRE            |  1785|
+|22    |FDSE            |     1|
+|23    |IBUF            |    86|
+|24    |OBUF            |    12|
++------+----------------+------+
+
+Report Instance Areas: 
++------+--------------------------+--------------------------------------------------------+------+
+|      |Instance                  |Module                                                  |Cells |
++------+--------------------------+--------------------------------------------------------+------+
+|1     |top                       |                                                        |  3149|
+|2     |  Inst_MAC_Pipeline       |mac_pipeline                                            |   312|
+|3     |    Inst_Adder_Cascade    |pipelined_adder_cascade                                 |   286|
+|4     |      arg                 |\Inst_MAC_Pipeline/Inst_Adder_Cascade/arg_funnel        |     8|
+|5     |      arg__0              |\Inst_MAC_Pipeline/Inst_Adder_Cascade/arg__6_funnel__4  |     8|
+|6     |      arg__2              |\Inst_MAC_Pipeline/Inst_Adder_Cascade/arg__6_funnel__3  |     8|
+|7     |      arg__3              |\Inst_MAC_Pipeline/Inst_Adder_Cascade/arg__6_funnel__2  |     8|
+|8     |      arg__5              |\Inst_MAC_Pipeline/Inst_Adder_Cascade/arg__6_funnel__1  |     8|
+|9     |      arg__6              |\Inst_MAC_Pipeline/Inst_Adder_Cascade/arg__6_funnel     |     8|
+|10    |    Inst_delay_line_tlast |delay_line__parameterized0                              |    10|
+|11    |    Inst_delay_line_tuser |delay_line__parameterized0_1                            |     4|
+|12    |    Inst_delay_line_valid |delay_line__parameterized0_2                            |     4|
+|13    |  Inst_Sliding_Window     |sliding_window                                          |  2738|
+|14    |    Inst_delay_line_tlast |delay_line                                              |   109|
+|15    |    Inst_delay_line_tuser |delay_line_0                                            |     7|
++------+--------------------------+--------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 201 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 2221.949 ; gain = 1674.527
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 2236.668 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 274 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'filter_2d' is not ideal for floorplanning, since the cellview 'sliding_window' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2341.309 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 96 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 9 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 86 instances
+
+Synth Design complete | Checksum: 2e3eb070
+INFO: [Common 17-83] Releasing license: Synthesis
+30 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:01:10 . Memory (MB): peak = 2341.309 ; gain = 1799.727
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 2341.309 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/filter_2d/filter_2d.runs/synth_1/filter_2d.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file filter_2d_utilization_synth.rpt -pb filter_2d_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 19 23:47:31 2026...

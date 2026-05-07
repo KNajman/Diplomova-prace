@@ -34,8 +34,8 @@ use work.video_processing_pkg.all;
 
 entity filter_2d is
     generic(
-        G_IMAGE_WIDTH  : positive := 1920;
-        G_IMAGE_HEIGHT : positive := 1080;
+        G_IMAGE_WIDTH  : positive := 100;
+        G_IMAGE_HEIGHT : positive := 100;
         G_KERNEL_SIZE  : positive := 3;
         G_PIXEL_HIGH   : integer  := 7;
         G_PIXEL_LOW    : integer  := 0;
