@@ -65696,14 +65696,13 @@ __attribute__((sdx_kernel("hls_passthrough", 0))) void hls_passthrough(hls::stre
 #pragma HLSDIRECTIVE TOP name=hls_passthrough
 # 7 "hls_passthrough.cpp"
 
-#pragma HLS PIPELINE II = 1
+#pragma HLS INTERFACE axis port=in_stream
+#pragma HLS INTERFACE axis port=out_stream
 
 
+#pragma HLS INTERFACE s_axilite port=return
 
-#pragma HLS INTERFACE axis port = in_stream
-#pragma HLS INTERFACE axis port = out_stream
-
-#pragma HLS INTERFACE ap_ctrl_none port=return
+#pragma HLS PIPELINE II=1
 
     axis_video_dma in_packet = in_stream.read();
     axis_video_dma out_packet = in_packet;

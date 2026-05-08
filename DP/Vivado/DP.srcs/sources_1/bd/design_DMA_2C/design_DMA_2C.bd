@@ -20,7 +20,7 @@
     "components": {
       "hls_passthrough_0": {
         "vlnv": "xilinx.com:hls:hls_passthrough:1.0",
-        "ip_revision": "2114596058",
+        "ip_revision": "2114599741",
         "xci_name": "design_DMA_2C_hls_passthrough_0_0",
         "xci_path": "ip\\design_DMA_2C_hls_passthrough_0_0\\design_DMA_2C_hls_passthrough_0_0.xci",
         "inst_hier_path": "hls_passthrough_0",
@@ -1466,6 +1466,9 @@
         "inst_hier_path": "axi_smc",
         "has_run_ip_tcl": "true",
         "parameters": {
+          "NUM_MI": {
+            "value": "2"
+          },
           "NUM_SI": {
             "value": "1"
           }
@@ -1484,11 +1487,12 @@
               }
             },
             "bridges": [
-              "M00_AXI"
+              "M00_AXI",
+              "M01_AXI"
             ],
             "bd_attributes": {
               "BRIDGES": {
-                "value": "M00_AXI",
+                "value": "M00_AXI:M01_AXI",
                 "value_src": "auto"
               },
               "TYPE": {
@@ -1498,6 +1502,37 @@
             }
           },
           "M00_AXI": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1"
+              },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0"
+              }
+            },
+            "bd_attributes": {
+              "TYPE": {
+                "value": "interior",
+                "value_src": "default"
+              }
+            }
+          },
+          "M01_AXI": {
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
@@ -1632,6 +1667,12 @@
           "axi_dma_0/S_AXI_LITE"
         ]
       },
+      "axi_smc_M01_AXI": {
+        "interface_ports": [
+          "axi_smc/M01_AXI",
+          "hls_passthrough_0/s_axi_control"
+        ]
+      },
       "hls_passthrough_0_out_stream": {
         "interface_ports": [
           "hls_passthrough_0/out_stream",
@@ -1682,6 +1723,13 @@
                 "address_block": "/axi_dma_0/S_AXI_LITE/Reg",
                 "offset": "0x00A0000000",
                 "range": "64K"
+              },
+              "SEG_hls_passthrough_0_Reg": {
+                "address_block": "/hls_passthrough_0/s_axi_control/Reg",
+                "offset": "0x00A0010000",
+                "range": "64K",
+                "offset_base_param": "C_S_AXI_CONTROL_BASEADDR",
+                "offset_high_param": "C_S_AXI_CONTROL_HIGHADDR"
               }
             }
           }

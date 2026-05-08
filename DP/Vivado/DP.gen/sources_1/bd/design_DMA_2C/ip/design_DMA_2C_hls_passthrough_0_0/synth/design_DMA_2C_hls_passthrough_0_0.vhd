@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:hls:hls_passthrough:1.0
--- IP Revision: 2114596058
+-- IP Revision: 2114599741
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -55,8 +55,26 @@ USE ieee.numeric_std.ALL;
 
 ENTITY design_DMA_2C_hls_passthrough_0_0 IS
   PORT (
+    s_axi_control_ARADDR : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_control_ARREADY : OUT STD_LOGIC;
+    s_axi_control_ARVALID : IN STD_LOGIC;
+    s_axi_control_AWADDR : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_control_AWREADY : OUT STD_LOGIC;
+    s_axi_control_AWVALID : IN STD_LOGIC;
+    s_axi_control_BREADY : IN STD_LOGIC;
+    s_axi_control_BRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_control_BVALID : OUT STD_LOGIC;
+    s_axi_control_RDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_control_RREADY : IN STD_LOGIC;
+    s_axi_control_RRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_control_RVALID : OUT STD_LOGIC;
+    s_axi_control_WDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_control_WREADY : OUT STD_LOGIC;
+    s_axi_control_WSTRB : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_control_WVALID : IN STD_LOGIC;
     ap_clk : IN STD_LOGIC;
     ap_rst_n : IN STD_LOGIC;
+    interrupt : OUT STD_LOGIC;
     in_stream_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     in_stream_TKEEP : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
     in_stream_TLAST : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
@@ -78,9 +96,31 @@ ARCHITECTURE design_DMA_2C_hls_passthrough_0_0_arch OF design_DMA_2C_hls_passthr
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF design_DMA_2C_hls_passthrough_0_0_arch: ARCHITECTURE IS "yes";
   COMPONENT hls_passthrough IS
+    GENERIC (
+      C_S_AXI_CONTROL_ADDR_WIDTH : INTEGER;
+      C_S_AXI_CONTROL_DATA_WIDTH : INTEGER
+    );
     PORT (
+      s_axi_control_ARADDR : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      s_axi_control_ARREADY : OUT STD_LOGIC;
+      s_axi_control_ARVALID : IN STD_LOGIC;
+      s_axi_control_AWADDR : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      s_axi_control_AWREADY : OUT STD_LOGIC;
+      s_axi_control_AWVALID : IN STD_LOGIC;
+      s_axi_control_BREADY : IN STD_LOGIC;
+      s_axi_control_BRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      s_axi_control_BVALID : OUT STD_LOGIC;
+      s_axi_control_RDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      s_axi_control_RREADY : IN STD_LOGIC;
+      s_axi_control_RRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      s_axi_control_RVALID : OUT STD_LOGIC;
+      s_axi_control_WDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      s_axi_control_WREADY : OUT STD_LOGIC;
+      s_axi_control_WSTRB : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      s_axi_control_WVALID : IN STD_LOGIC;
       ap_clk : IN STD_LOGIC;
       ap_rst_n : IN STD_LOGIC;
+      interrupt : OUT STD_LOGIC;
       in_stream_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
       in_stream_TKEEP : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
       in_stream_TLAST : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
@@ -102,7 +142,7 @@ ARCHITECTURE design_DMA_2C_hls_passthrough_0_0_arch OF design_DMA_2C_hls_passthr
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF design_DMA_2C_hls_passthrough_0_0_arch : ARCHITECTURE IS "design_DMA_2C_hls_passthrough_0_0,hls_passthrough,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF design_DMA_2C_hls_passthrough_0_0_arch: ARCHITECTURE IS "design_DMA_2C_hls_passthrough_0_0,hls_passthrough,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=hls_passthrough,x_ipVersion=1.0,x_ipCoreRevision=2114596058,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED}";
+  ATTRIBUTE CORE_GENERATION_INFO OF design_DMA_2C_hls_passthrough_0_0_arch: ARCHITECTURE IS "design_DMA_2C_hls_passthrough_0_0,hls_passthrough,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=hls_passthrough,x_ipVersion=1.0,x_ipCoreRevision=2114599741,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S_AXI_CONTROL_ADDR_WIDTH=4,C_S_AXI_CONTROL_DATA_WIDTH=32}";
   ATTRIBUTE SDX_KERNEL : STRING;
   ATTRIBUTE SDX_KERNEL OF hls_passthrough: COMPONENT IS "true";
   ATTRIBUTE SDX_KERNEL_TYPE : STRING;
@@ -116,7 +156,7 @@ ARCHITECTURE design_DMA_2C_hls_passthrough_0_0_arch OF design_DMA_2C_hls_passthr
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF ap_clk: SIGNAL IS "xilinx.com:signal:clock:1.0 ap_clk CLK";
   ATTRIBUTE X_INTERFACE_MODE OF ap_clk: SIGNAL IS "slave ap_clk";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF ap_clk: SIGNAL IS "XIL_INTERFACENAME ap_clk, ASSOCIATED_BUSIF in_stream:out_stream, ASSOCIATED_RESET ap_rst_n, FREQ_HZ 99999001, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_DMA_2C_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF ap_clk: SIGNAL IS "XIL_INTERFACENAME ap_clk, ASSOCIATED_BUSIF s_axi_control:in_stream:out_stream, ASSOCIATED_RESET ap_rst_n, FREQ_HZ 99999001, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_DMA_2C_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF ap_rst_n: SIGNAL IS "xilinx.com:signal:reset:1.0 ap_rst_n RST";
   ATTRIBUTE X_INTERFACE_MODE OF ap_rst_n: SIGNAL IS "slave ap_rst_n";
   ATTRIBUTE X_INTERFACE_PARAMETER OF ap_rst_n: SIGNAL IS "XIL_INTERFACENAME ap_rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0";
@@ -129,6 +169,9 @@ ARCHITECTURE design_DMA_2C_hls_passthrough_0_0_arch OF design_DMA_2C_hls_passthr
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TSTRB: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TSTRB";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TUSER: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TUSER";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF interrupt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 interrupt INTERRUPT";
+  ATTRIBUTE X_INTERFACE_MODE OF interrupt: SIGNAL IS "master interrupt";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF interrupt: SIGNAL IS "XIL_INTERFACENAME interrupt, SENSITIVITY LEVEL_HIGH, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TDATA";
   ATTRIBUTE X_INTERFACE_MODE OF out_stream_TDATA: SIGNAL IS "master out_stream";
   ATTRIBUTE X_INTERFACE_PARAMETER OF out_stream_TDATA: SIGNAL IS "XIL_INTERFACENAME out_stream, TUSER_WIDTH 1, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_DMA_2C_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
@@ -138,11 +181,53 @@ ARCHITECTURE design_DMA_2C_hls_passthrough_0_0_arch OF design_DMA_2C_hls_passthr
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TSTRB: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TSTRB";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TUSER: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TUSER";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARADDR";
+  ATTRIBUTE X_INTERFACE_MODE OF s_axi_control_ARADDR: SIGNAL IS "slave s_axi_control";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axi_control_ARADDR: SIGNAL IS "XIL_INTERFACENAME s_axi_control, ADDR_WIDTH 4, DATA_WIDTH 32, PROTOCOL AXI4LITE, READ_WRITE_MODE READ_WRITE, FREQ_HZ 99999001, ID_WIDTH 0, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN design_DMA_2C_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_TH" & 
+"READS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_AWADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control AWADDR";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_AWREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control AWREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_AWVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control AWVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_BREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control BREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_BRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control BRESP";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_BVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control BVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_RDATA: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control RDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_RREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control RREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_RRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control RRESP";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_RVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control RVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_WDATA: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control WDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_WREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control WREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_WSTRB: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control WSTRB";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_WVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control WVALID";
 BEGIN
   U0 : hls_passthrough
+    GENERIC MAP (
+      C_S_AXI_CONTROL_ADDR_WIDTH => 4,
+      C_S_AXI_CONTROL_DATA_WIDTH => 32
+    )
     PORT MAP (
+      s_axi_control_ARADDR => s_axi_control_ARADDR,
+      s_axi_control_ARREADY => s_axi_control_ARREADY,
+      s_axi_control_ARVALID => s_axi_control_ARVALID,
+      s_axi_control_AWADDR => s_axi_control_AWADDR,
+      s_axi_control_AWREADY => s_axi_control_AWREADY,
+      s_axi_control_AWVALID => s_axi_control_AWVALID,
+      s_axi_control_BREADY => s_axi_control_BREADY,
+      s_axi_control_BRESP => s_axi_control_BRESP,
+      s_axi_control_BVALID => s_axi_control_BVALID,
+      s_axi_control_RDATA => s_axi_control_RDATA,
+      s_axi_control_RREADY => s_axi_control_RREADY,
+      s_axi_control_RRESP => s_axi_control_RRESP,
+      s_axi_control_RVALID => s_axi_control_RVALID,
+      s_axi_control_WDATA => s_axi_control_WDATA,
+      s_axi_control_WREADY => s_axi_control_WREADY,
+      s_axi_control_WSTRB => s_axi_control_WSTRB,
+      s_axi_control_WVALID => s_axi_control_WVALID,
       ap_clk => ap_clk,
       ap_rst_n => ap_rst_n,
+      interrupt => interrupt,
       in_stream_TDATA => in_stream_TDATA,
       in_stream_TKEEP => in_stream_TKEEP,
       in_stream_TLAST => in_stream_TLAST,

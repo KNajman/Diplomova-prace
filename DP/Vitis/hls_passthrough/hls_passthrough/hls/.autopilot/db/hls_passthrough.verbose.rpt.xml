@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_passthrough'" level="0">
-<item name = "Date">Tue May  5 22:36:13 2026
+<item name = "Date">Fri May  8 11:52:29 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">hls_passthrough</item>
@@ -49,7 +49,7 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 8, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, -, -, -, -</column>
+<column name="Instance">0, -, 36, 40, 0</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, 0, 18, -</column>
 <column name="Register">-, -, 2, -, -</column>
@@ -61,6 +61,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="control_s_axi_U">control_s_axi, 0, 0, 36, 40, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -102,19 +103,37 @@
 <section name = "Interface" level="0">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
-<column name="ap_clk">in, 1, ap_ctrl_none, hls_passthrough, return value</column>
-<column name="ap_rst_n">in, 1, ap_ctrl_none, hls_passthrough, return value</column>
-<column name="in_stream_TDATA">in, 32, axis, in_stream_V_data_V, pointer</column>
+<column name="s_axi_control_AWVALID">in, 1, s_axi, control, return void</column>
+<column name="s_axi_control_AWREADY">out, 1, s_axi, control, return void</column>
+<column name="s_axi_control_AWADDR">in, 4, s_axi, control, return void</column>
+<column name="s_axi_control_WVALID">in, 1, s_axi, control, return void</column>
+<column name="s_axi_control_WREADY">out, 1, s_axi, control, return void</column>
+<column name="s_axi_control_WDATA">in, 32, s_axi, control, return void</column>
+<column name="s_axi_control_WSTRB">in, 4, s_axi, control, return void</column>
+<column name="s_axi_control_ARVALID">in, 1, s_axi, control, return void</column>
+<column name="s_axi_control_ARREADY">out, 1, s_axi, control, return void</column>
+<column name="s_axi_control_ARADDR">in, 4, s_axi, control, return void</column>
+<column name="s_axi_control_RVALID">out, 1, s_axi, control, return void</column>
+<column name="s_axi_control_RREADY">in, 1, s_axi, control, return void</column>
+<column name="s_axi_control_RDATA">out, 32, s_axi, control, return void</column>
+<column name="s_axi_control_RRESP">out, 2, s_axi, control, return void</column>
+<column name="s_axi_control_BVALID">out, 1, s_axi, control, return void</column>
+<column name="s_axi_control_BREADY">in, 1, s_axi, control, return void</column>
+<column name="s_axi_control_BRESP">out, 2, s_axi, control, return void</column>
+<column name="ap_clk">in, 1, ap_ctrl_hs, hls_passthrough, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_hs, hls_passthrough, return value</column>
+<column name="interrupt">out, 1, ap_ctrl_hs, hls_passthrough, return value</column>
 <column name="in_stream_TVALID">in, 1, axis, in_stream_V_last_V, pointer</column>
 <column name="in_stream_TREADY">out, 1, axis, in_stream_V_last_V, pointer</column>
 <column name="in_stream_TLAST">in, 1, axis, in_stream_V_last_V, pointer</column>
+<column name="out_stream_TREADY">in, 1, axis, out_stream_V_last_V, pointer</column>
+<column name="out_stream_TVALID">out, 1, axis, out_stream_V_last_V, pointer</column>
+<column name="out_stream_TLAST">out, 1, axis, out_stream_V_last_V, pointer</column>
+<column name="in_stream_TDATA">in, 32, axis, in_stream_V_data_V, pointer</column>
 <column name="in_stream_TKEEP">in, 4, axis, in_stream_V_keep_V, pointer</column>
 <column name="in_stream_TSTRB">in, 4, axis, in_stream_V_strb_V, pointer</column>
 <column name="in_stream_TUSER">in, 1, axis, in_stream_V_user_V, pointer</column>
 <column name="out_stream_TDATA">out, 32, axis, out_stream_V_data_V, pointer</column>
-<column name="out_stream_TVALID">out, 1, axis, out_stream_V_last_V, pointer</column>
-<column name="out_stream_TREADY">in, 1, axis, out_stream_V_last_V, pointer</column>
-<column name="out_stream_TLAST">out, 1, axis, out_stream_V_last_V, pointer</column>
 <column name="out_stream_TKEEP">out, 4, axis, out_stream_V_keep_V, pointer</column>
 <column name="out_stream_TSTRB">out, 4, axis, out_stream_V_strb_V, pointer</column>
 <column name="out_stream_TUSER">out, 1, axis, out_stream_V_user_V, pointer</column>

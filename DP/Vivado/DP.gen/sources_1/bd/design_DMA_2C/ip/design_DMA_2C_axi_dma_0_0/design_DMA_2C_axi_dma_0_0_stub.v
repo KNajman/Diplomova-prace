@@ -2,10 +2,10 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-// Date        : Tue May  5 23:09:53 2026
+// Date        : Tue May  5 23:09:51 2026
 // Host        : N166A running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top design_DMA_2C_axi_dma_0_0 -prefix
+//               design_DMA_2C_axi_dma_0_0_ design_DMA_2C_axi_dma_0_0_stub.v
 // Design      : design_DMA_2C_axi_dma_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xck26-sfvc784-2LV-c

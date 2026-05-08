@@ -56,13 +56,7 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
 set_param general.usePosixSpawnForFork 1
-set_param chipscope.maxJobs 2
-set_param bd.open.in_stealth_mode 1
-set_param synth.incrementalSynthesisCache C:/Users/najma/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-2412-N166A/incrSyn
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Board 49-26}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xck26-sfvc784-2LV-c
@@ -85,19 +79,45 @@ set_property ip_cache_permissions {read write} [current_project]
 set_property vhdl_define {vhdl_version=VHDL 2008} [current_fileset]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/hdl/design_DMA_2C_wrapper.vhd
+read_vhdl -library xil_defaultlib D:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/hdl/design_DMA_2C_wrapper.vhd
 add_files D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/bd/design_DMA_2C/design_DMA_2C.bd
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_zynq_ultra_ps_e_0_0/design_DMA_2C_zynq_ultra_ps_e_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_zynq_ultra_ps_e_0_0/design_DMA_2C_zynq_ultra_ps_e_0_0.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_1/bd_d851_psr_aclk_0_board.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_5/bd_d851_s00a2s_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_6/bd_d851_sarn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_7/bd_d851_srn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_8/bd_d851_sawn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_9/bd_d851_swn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_10/bd_d851_sbn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_11/bd_d851_m00s2a_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_2/bd_d851_arinsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_3/bd_d851_rinsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_4/bd_d851_awinsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_5/bd_d851_winsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_6/bd_d851_binsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_7/bd_d851_aroutsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_8/bd_d851_routsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_9/bd_d851_awoutsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_10/bd_d851_woutsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_11/bd_d851_boutsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_12/bd_d851_arni_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_13/bd_d851_rni_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_14/bd_d851_awni_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_15/bd_d851_wni_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_16/bd_d851_bni_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_20/bd_d851_s00a2s_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_21/bd_d851_sarn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_22/bd_d851_srn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_23/bd_d851_sawn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_24/bd_d851_swn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_25/bd_d851_sbn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_26/bd_d851_m00s2a_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_27/bd_d851_m00arn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_28/bd_d851_m00rn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_29/bd_d851_m00awn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_30/bd_d851_m00wn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_31/bd_d851_m00bn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_33/bd_d851_m01s2a_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_34/bd_d851_m01arn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_35/bd_d851_m01rn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_36/bd_d851_m01awn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_37/bd_d851_m01wn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_38/bd_d851_m01bn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/smartconnect.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_rst_ps8_0_99M_0/design_DMA_2C_rst_ps8_0_99M_0_board.xdc]

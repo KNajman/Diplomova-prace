@@ -97,8 +97,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Board 49-26}  -suppress 
 
 OPTRACE "impl_1" START { ROLLUP_1 }
@@ -107,12 +105,9 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param checkpoint.writeSynthRtdsInDcp 1
   set_param general.usePosixSpawnForFork 1
-  set_param chipscope.maxJobs 2
-  set_param bd.open.in_stealth_mode 1
-  set_param synth.incrementalSynthesisCache C:/Users/najma/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-2412-N166A/incrSyn
-  set_param runs.launchOptions { -jobs 3  }
+  set_param chipscope.maxJobs 1
+  set_param runs.launchOptions { -jobs 2  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xck26-sfvc784-2LV-c
   set_property board_part xilinx.com:kv260_som:part0:1.4 [current_project]
