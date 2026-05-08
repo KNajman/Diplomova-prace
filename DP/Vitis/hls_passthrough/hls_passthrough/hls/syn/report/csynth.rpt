@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'hls_passthrough'
 ================================================================
 + General Information: 
-    * Date:           Tue May  5 22:36:13 2026
+    * Date:           Fri May  8 11:52:29 2026
     * Version:        2025.2 (Build 6295257 on Nov 14 2025)
     * Project:        hls_passthrough
     * Solution:       hls (Vivado IP Flow Target)
@@ -13,18 +13,35 @@
     
 
 * Performance & Resource Estimates: 
-+-------------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+---------+----------+-----+
-|      Modules      | Issue|               | Iteration|         | Trip |          |      Latency     |      |      |    |         |          |     |
-|      & Loops      | Type | Violation Type|  Latency | Interval| Count| Pipelined| (cycles)|  (ns)  | Slack| BRAM | DSP|    FF   |    LUT   | URAM|
-+-------------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+---------+----------+-----+
-|+ hls_passthrough  |     -|              -|         -|        1|     -|       yes|        1|  10.000|  6.72|     -|   -|  2 (~0%)|  26 (~0%)|    -|
-+-------------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+---------+----------+-----+
++-------------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+----------+----------+-----+
+|      Modules      | Issue|               | Iteration|         | Trip |          |      Latency     |      |      |    |          |          |     |
+|      & Loops      | Type | Violation Type|  Latency | Interval| Count| Pipelined| (cycles)|  (ns)  | Slack| BRAM | DSP|    FF    |    LUT   | URAM|
++-------------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+----------+----------+-----+
+|+ hls_passthrough  |     -|              -|         -|        1|     -|       yes|        1|  10.000|  6.72|     -|   -|  38 (~0%)|  66 (~0%)|    -|
++-------------------+------+---------------+----------+---------+------+----------+---------+--------+------+------+----+----------+----------+-----+
     Name Prefix: '+' for module, 'o' for loop, '*' for dataflow
 
 
 ================================================================
 == HW Interfaces
 ================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+
+| Interface     | Data Width | Address Width |
++---------------+------------+---------------+
+| s_axi_control | 32         | 4             |
++---------------+------------+---------------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
 * AXIS
 +------------+-----------+---------------+-------+-------+-------+--------+-------+-------+--------+
 | Interface  | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TUSER | TVALID |
@@ -34,13 +51,14 @@
 +------------+-----------+---------------+-------+-------+-------+--------+-------+-------+--------+
 
 * TOP LEVEL CONTROL
-+-----------+--------------+----------+
-| Interface | Type         | Ports    |
-+-----------+--------------+----------+
-| ap_clk    | clock        | ap_clk   |
-| ap_rst_n  | reset        | ap_rst_n |
-| ap_ctrl   | ap_ctrl_none |          |
-+-----------+--------------+----------+
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
 
 
 ================================================================
@@ -71,28 +89,35 @@
 ================================================================
 == Storage Report
 ================================================================
-  No bind storage info in design
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + hls_passthrough |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
 
 ================================================================
 == Pragma Report
 ================================================================
 * Valid Pragma Syntax
-+-----------+--------------------------+----------------------------------------------------------------------------------+
-| Type      | Options                  | Location                                                                         |
-+-----------+--------------------------+----------------------------------------------------------------------------------+
-| INLINE    |                          | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:50)       |
-| UNROLL    |                          | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:52)       |
-| INLINE    |                          | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:62)       |
-| UNROLL    |                          | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:64)       |
-| INLINE    |                          | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:78)       |
-| UNROLL    |                          | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:81)       |
-| INLINE    |                          | in operator ap_uint<num_channels * pixel_width> (hls_color_space_convert.hpp:90) |
-| UNROLL    |                          | in operator ap_uint<num_channels * pixel_width> (hls_color_space_convert.hpp:94) |
-| INLINE    |                          | in operator unsigned int (hls_color_space_convert.hpp:105)                       |
-| PIPELINE  | II = 1                   | in hls_passthrough (hls_passthrough.cpp:8)                                       |
-| INTERFACE | axis port = in_stream    | in hls_passthrough (hls_passthrough.cpp:12)                                      |
-| INTERFACE | axis port = out_stream   | in hls_passthrough (hls_passthrough.cpp:13)                                      |
-| INTERFACE | ap_ctrl_none port=return | in hls_passthrough (hls_passthrough.cpp:15)                                      |
-+-----------+--------------------------+----------------------------------------------------------------------------------+
++-----------+-----------------------+----------------------------------------------------------------------------------+
+| Type      | Options               | Location                                                                         |
++-----------+-----------------------+----------------------------------------------------------------------------------+
+| INLINE    |                       | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:50)       |
+| UNROLL    |                       | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:52)       |
+| INLINE    |                       | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:62)       |
+| UNROLL    |                       | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:64)       |
+| INLINE    |                       | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:78)       |
+| UNROLL    |                       | in color_pixel<num_channels, pixel_width> (hls_color_space_convert.hpp:81)       |
+| INLINE    |                       | in operator ap_uint<num_channels * pixel_width> (hls_color_space_convert.hpp:90) |
+| UNROLL    |                       | in operator ap_uint<num_channels * pixel_width> (hls_color_space_convert.hpp:94) |
+| INLINE    |                       | in operator unsigned int (hls_color_space_convert.hpp:105)                       |
+| INTERFACE | axis port=in_stream   | in hls_passthrough (hls_passthrough.cpp:8)                                       |
+| INTERFACE | axis port=out_stream  | in hls_passthrough (hls_passthrough.cpp:9)                                       |
+| INTERFACE | s_axilite port=return | in hls_passthrough (hls_passthrough.cpp:12)                                      |
+| PIPELINE  | ii=1                  | in hls_passthrough (hls_passthrough.cpp:14)                                      |
++-----------+-----------------------+----------------------------------------------------------------------------------+
 
 

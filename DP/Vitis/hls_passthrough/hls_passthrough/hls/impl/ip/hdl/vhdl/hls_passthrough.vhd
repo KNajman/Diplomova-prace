@@ -9,11 +9,15 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity hls_passthrough is
+generic (
+    C_S_AXI_CONTROL_ADDR_WIDTH : INTEGER := 4;
+    C_S_AXI_CONTROL_DATA_WIDTH : INTEGER := 32 );
 port (
     ap_clk : IN STD_LOGIC;
     ap_rst_n : IN STD_LOGIC;
-    in_stream_TDATA : IN STD_LOGIC_VECTOR (31 downto 0);
     in_stream_TVALID : IN STD_LOGIC;
+    out_stream_TREADY : IN STD_LOGIC;
+    in_stream_TDATA : IN STD_LOGIC_VECTOR (31 downto 0);
     in_stream_TREADY : OUT STD_LOGIC;
     in_stream_TKEEP : IN STD_LOGIC_VECTOR (3 downto 0);
     in_stream_TSTRB : IN STD_LOGIC_VECTOR (3 downto 0);
@@ -21,11 +25,28 @@ port (
     in_stream_TLAST : IN STD_LOGIC_VECTOR (0 downto 0);
     out_stream_TDATA : OUT STD_LOGIC_VECTOR (31 downto 0);
     out_stream_TVALID : OUT STD_LOGIC;
-    out_stream_TREADY : IN STD_LOGIC;
     out_stream_TKEEP : OUT STD_LOGIC_VECTOR (3 downto 0);
     out_stream_TSTRB : OUT STD_LOGIC_VECTOR (3 downto 0);
     out_stream_TUSER : OUT STD_LOGIC_VECTOR (0 downto 0);
-    out_stream_TLAST : OUT STD_LOGIC_VECTOR (0 downto 0) );
+    out_stream_TLAST : OUT STD_LOGIC_VECTOR (0 downto 0);
+    s_axi_control_AWVALID : IN STD_LOGIC;
+    s_axi_control_AWREADY : OUT STD_LOGIC;
+    s_axi_control_AWADDR : IN STD_LOGIC_VECTOR (C_S_AXI_CONTROL_ADDR_WIDTH-1 downto 0);
+    s_axi_control_WVALID : IN STD_LOGIC;
+    s_axi_control_WREADY : OUT STD_LOGIC;
+    s_axi_control_WDATA : IN STD_LOGIC_VECTOR (C_S_AXI_CONTROL_DATA_WIDTH-1 downto 0);
+    s_axi_control_WSTRB : IN STD_LOGIC_VECTOR (C_S_AXI_CONTROL_DATA_WIDTH/8-1 downto 0);
+    s_axi_control_ARVALID : IN STD_LOGIC;
+    s_axi_control_ARREADY : OUT STD_LOGIC;
+    s_axi_control_ARADDR : IN STD_LOGIC_VECTOR (C_S_AXI_CONTROL_ADDR_WIDTH-1 downto 0);
+    s_axi_control_RVALID : OUT STD_LOGIC;
+    s_axi_control_RREADY : IN STD_LOGIC;
+    s_axi_control_RDATA : OUT STD_LOGIC_VECTOR (C_S_AXI_CONTROL_DATA_WIDTH-1 downto 0);
+    s_axi_control_RRESP : OUT STD_LOGIC_VECTOR (1 downto 0);
+    s_axi_control_BVALID : OUT STD_LOGIC;
+    s_axi_control_BREADY : IN STD_LOGIC;
+    s_axi_control_BRESP : OUT STD_LOGIC_VECTOR (1 downto 0);
+    interrupt : OUT STD_LOGIC );
 end;
 
 
@@ -34,34 +55,40 @@ architecture behav of hls_passthrough is
     attribute DowngradeIPIdentifiedWarnings of behav : architecture is "yes";
     attribute CORE_GENERATION_INFO : STRING;
     attribute CORE_GENERATION_INFO of behav : architecture is
-    "hls_passthrough_hls_passthrough,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=pipeline,HLS_SYN_CLOCK=0.576000,HLS_SYN_LAT=1,HLS_SYN_TPT=1,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=2,HLS_SYN_LUT=26,HLS_VERSION=2025_2}";
+    "hls_passthrough_hls_passthrough,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=pipeline,HLS_SYN_CLOCK=0.576000,HLS_SYN_LAT=1,HLS_SYN_TPT=1,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=38,HLS_SYN_LUT=66,HLS_VERSION=2025_2}";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_ST_fsm_pp0_stage0 : STD_LOGIC_VECTOR (0 downto 0) := "1";
-    constant ap_const_boolean_1 : BOOLEAN := true;
     constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
+    constant ap_const_boolean_1 : BOOLEAN := true;
     constant ap_const_boolean_0 : BOOLEAN := false;
+    constant C_S_AXI_DATA_WIDTH : INTEGER := 32;
 
     signal ap_rst_n_inv : STD_LOGIC;
-    signal in_stream_TDATA_blk_n : STD_LOGIC;
+    signal ap_start : STD_LOGIC;
+    signal ap_done : STD_LOGIC;
+    signal ap_idle : STD_LOGIC;
     signal ap_CS_fsm : STD_LOGIC_VECTOR (0 downto 0) := "1";
     attribute fsm_encoding : string;
     attribute fsm_encoding of ap_CS_fsm : signal is "none";
     signal ap_CS_fsm_pp0_stage0 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_pp0_stage0 : signal is "none";
-    signal ap_block_pp0_stage0 : BOOLEAN;
-    signal out_stream_TDATA_blk_n : STD_LOGIC;
+    signal ap_enable_reg_pp0_iter0 : STD_LOGIC;
     signal ap_enable_reg_pp0_iter1 : STD_LOGIC := '0';
+    signal ap_idle_pp0 : STD_LOGIC;
+    signal ap_ready : STD_LOGIC;
     signal ap_block_state1_pp0_stage0_iter0 : BOOLEAN;
     signal regslice_both_out_stream_V_data_V_U_apdone_blk : STD_LOGIC;
     signal ap_block_state2_pp0_stage0_iter1 : BOOLEAN;
-    signal ap_block_pp0_stage0_11001 : BOOLEAN;
     signal ap_block_pp0_stage0_subdone : BOOLEAN;
+    signal in_stream_TDATA_blk_n : STD_LOGIC;
+    signal ap_block_pp0_stage0 : BOOLEAN;
+    signal out_stream_TDATA_blk_n : STD_LOGIC;
+    signal ap_block_pp0_stage0_11001 : BOOLEAN;
     signal ap_block_pp0_stage0_01001 : BOOLEAN;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (0 downto 0);
     signal ap_idle_pp0_0to0 : STD_LOGIC;
     signal ap_reset_init_pp0 : STD_LOGIC;
-    signal ap_idle_pp0 : STD_LOGIC;
     signal ap_enable_pp0 : STD_LOGIC;
     signal regslice_both_in_stream_V_data_V_U_apdone_blk : STD_LOGIC;
     signal in_stream_TDATA_int_regslice : STD_LOGIC_VECTOR (31 downto 0);
@@ -101,6 +128,39 @@ architecture behav of hls_passthrough is
     signal regslice_both_out_stream_V_last_V_U_vld_out : STD_LOGIC;
     signal ap_ce_reg : STD_LOGIC;
 
+    component hls_passthrough_control_s_axi IS
+    generic (
+        C_S_AXI_ADDR_WIDTH : INTEGER;
+        C_S_AXI_DATA_WIDTH : INTEGER );
+    port (
+        AWVALID : IN STD_LOGIC;
+        AWREADY : OUT STD_LOGIC;
+        AWADDR : IN STD_LOGIC_VECTOR (C_S_AXI_ADDR_WIDTH-1 downto 0);
+        WVALID : IN STD_LOGIC;
+        WREADY : OUT STD_LOGIC;
+        WDATA : IN STD_LOGIC_VECTOR (C_S_AXI_DATA_WIDTH-1 downto 0);
+        WSTRB : IN STD_LOGIC_VECTOR (C_S_AXI_DATA_WIDTH/8-1 downto 0);
+        ARVALID : IN STD_LOGIC;
+        ARREADY : OUT STD_LOGIC;
+        ARADDR : IN STD_LOGIC_VECTOR (C_S_AXI_ADDR_WIDTH-1 downto 0);
+        RVALID : OUT STD_LOGIC;
+        RREADY : IN STD_LOGIC;
+        RDATA : OUT STD_LOGIC_VECTOR (C_S_AXI_DATA_WIDTH-1 downto 0);
+        RRESP : OUT STD_LOGIC_VECTOR (1 downto 0);
+        BVALID : OUT STD_LOGIC;
+        BREADY : IN STD_LOGIC;
+        BRESP : OUT STD_LOGIC_VECTOR (1 downto 0);
+        ACLK : IN STD_LOGIC;
+        ARESET : IN STD_LOGIC;
+        ACLK_EN : IN STD_LOGIC;
+        ap_start : OUT STD_LOGIC;
+        interrupt : OUT STD_LOGIC;
+        ap_ready : IN STD_LOGIC;
+        ap_done : IN STD_LOGIC;
+        ap_idle : IN STD_LOGIC );
+    end component;
+
+
     component hls_passthrough_regslice_both IS
     generic (
         DataWidth : INTEGER );
@@ -119,6 +179,37 @@ architecture behav of hls_passthrough is
 
 
 begin
+    control_s_axi_U : component hls_passthrough_control_s_axi
+    generic map (
+        C_S_AXI_ADDR_WIDTH => C_S_AXI_CONTROL_ADDR_WIDTH,
+        C_S_AXI_DATA_WIDTH => C_S_AXI_CONTROL_DATA_WIDTH)
+    port map (
+        AWVALID => s_axi_control_AWVALID,
+        AWREADY => s_axi_control_AWREADY,
+        AWADDR => s_axi_control_AWADDR,
+        WVALID => s_axi_control_WVALID,
+        WREADY => s_axi_control_WREADY,
+        WDATA => s_axi_control_WDATA,
+        WSTRB => s_axi_control_WSTRB,
+        ARVALID => s_axi_control_ARVALID,
+        ARREADY => s_axi_control_ARREADY,
+        ARADDR => s_axi_control_ARADDR,
+        RVALID => s_axi_control_RVALID,
+        RREADY => s_axi_control_RREADY,
+        RDATA => s_axi_control_RDATA,
+        RRESP => s_axi_control_RRESP,
+        BVALID => s_axi_control_BVALID,
+        BREADY => s_axi_control_BREADY,
+        BRESP => s_axi_control_BRESP,
+        ACLK => ap_clk,
+        ARESET => ap_rst_n_inv,
+        ACLK_EN => ap_const_logic_1,
+        ap_start => ap_start,
+        interrupt => interrupt,
+        ap_ready => ap_ready,
+        ap_done => ap_done,
+        ap_idle => ap_idle);
+
     regslice_both_in_stream_V_data_V_U : component hls_passthrough_regslice_both
     generic map (
         DataWidth => 32)
@@ -282,7 +373,7 @@ begin
                 ap_enable_reg_pp0_iter1 <= ap_const_logic_0;
             else
                 if (((ap_const_boolean_0 = ap_block_pp0_stage0_subdone) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
-                    ap_enable_reg_pp0_iter1 <= ap_const_logic_1;
+                    ap_enable_reg_pp0_iter1 <= ap_start;
                 end if; 
             end if;
         end if;
@@ -301,21 +392,21 @@ begin
     ap_CS_fsm_pp0_stage0 <= ap_CS_fsm(0);
         ap_block_pp0_stage0 <= not((ap_const_boolean_1 = ap_const_boolean_1));
 
-    ap_block_pp0_stage0_01001_assign_proc : process(ap_enable_reg_pp0_iter1, ap_block_state1_pp0_stage0_iter0, ap_block_state2_pp0_stage0_iter1)
+    ap_block_pp0_stage0_01001_assign_proc : process(ap_start, ap_enable_reg_pp0_iter1, ap_block_state1_pp0_stage0_iter0, ap_block_state2_pp0_stage0_iter1)
     begin
-                ap_block_pp0_stage0_01001 <= (((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state2_pp0_stage0_iter1)) or ((ap_const_logic_1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state1_pp0_stage0_iter0)));
+                ap_block_pp0_stage0_01001 <= (((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state2_pp0_stage0_iter1)) or ((ap_start = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state1_pp0_stage0_iter0)));
     end process;
 
 
-    ap_block_pp0_stage0_11001_assign_proc : process(ap_enable_reg_pp0_iter1, ap_block_state1_pp0_stage0_iter0, ap_block_state2_pp0_stage0_iter1)
+    ap_block_pp0_stage0_11001_assign_proc : process(ap_start, ap_enable_reg_pp0_iter1, ap_block_state1_pp0_stage0_iter0, ap_block_state2_pp0_stage0_iter1)
     begin
-                ap_block_pp0_stage0_11001 <= (((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state2_pp0_stage0_iter1)) or ((ap_const_logic_1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state1_pp0_stage0_iter0)));
+                ap_block_pp0_stage0_11001 <= (((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state2_pp0_stage0_iter1)) or ((ap_start = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state1_pp0_stage0_iter0)));
     end process;
 
 
-    ap_block_pp0_stage0_subdone_assign_proc : process(ap_enable_reg_pp0_iter1, ap_block_state1_pp0_stage0_iter0, ap_block_state2_pp0_stage0_iter1)
+    ap_block_pp0_stage0_subdone_assign_proc : process(ap_start, ap_enable_reg_pp0_iter1, ap_block_state1_pp0_stage0_iter0, ap_block_state2_pp0_stage0_iter1)
     begin
-                ap_block_pp0_stage0_subdone <= (((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state2_pp0_stage0_iter1)) or ((ap_const_logic_1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state1_pp0_stage0_iter0)));
+                ap_block_pp0_stage0_subdone <= (((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state2_pp0_stage0_iter1)) or ((ap_start = ap_const_logic_1) and (ap_const_boolean_1 = ap_block_state1_pp0_stage0_iter0)));
     end process;
 
 
@@ -330,9 +421,58 @@ begin
                 ap_block_state2_pp0_stage0_iter1 <= ((regslice_both_out_stream_V_data_V_U_apdone_blk = ap_const_logic_1) or (out_stream_TREADY_int_regslice = ap_const_logic_0));
     end process;
 
+
+    ap_done_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_enable_reg_pp0_iter1, ap_block_pp0_stage0_subdone)
+    begin
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_subdone) and (ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+            ap_done <= ap_const_logic_1;
+        else 
+            ap_done <= ap_const_logic_0;
+        end if; 
+    end process;
+
     ap_enable_pp0 <= (ap_idle_pp0 xor ap_const_logic_1);
-    ap_idle_pp0 <= ap_const_logic_0;
-    ap_idle_pp0_0to0 <= ap_const_logic_0;
+    ap_enable_reg_pp0_iter0 <= ap_start;
+
+    ap_idle_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_idle_pp0)
+    begin
+        if (((ap_start = ap_const_logic_0) and (ap_idle_pp0 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+            ap_idle <= ap_const_logic_1;
+        else 
+            ap_idle <= ap_const_logic_0;
+        end if; 
+    end process;
+
+
+    ap_idle_pp0_assign_proc : process(ap_enable_reg_pp0_iter0, ap_enable_reg_pp0_iter1)
+    begin
+        if (((ap_enable_reg_pp0_iter1 = ap_const_logic_0) and (ap_enable_reg_pp0_iter0 = ap_const_logic_0))) then 
+            ap_idle_pp0 <= ap_const_logic_1;
+        else 
+            ap_idle_pp0 <= ap_const_logic_0;
+        end if; 
+    end process;
+
+
+    ap_idle_pp0_0to0_assign_proc : process(ap_enable_reg_pp0_iter0)
+    begin
+        if ((ap_enable_reg_pp0_iter0 = ap_const_logic_0)) then 
+            ap_idle_pp0_0to0 <= ap_const_logic_1;
+        else 
+            ap_idle_pp0_0to0 <= ap_const_logic_0;
+        end if; 
+    end process;
+
+
+    ap_ready_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0_subdone)
+    begin
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_subdone) and (ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+            ap_ready <= ap_const_logic_1;
+        else 
+            ap_ready <= ap_const_logic_0;
+        end if; 
+    end process;
+
 
     ap_reset_init_pp0_assign_proc : process(ap_idle_pp0_0to0)
     begin
@@ -350,9 +490,9 @@ begin
     end process;
 
 
-    in_stream_TDATA_blk_n_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0, in_stream_TVALID_int_regslice)
+    in_stream_TDATA_blk_n_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0, in_stream_TVALID_int_regslice)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
             in_stream_TDATA_blk_n <= in_stream_TVALID_int_regslice;
         else 
             in_stream_TDATA_blk_n <= ap_const_logic_1;
@@ -361,9 +501,9 @@ begin
 
     in_stream_TREADY <= regslice_both_in_stream_V_data_V_U_ack_in;
 
-    in_stream_TREADY_int_regslice_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0_11001)
+    in_stream_TREADY_int_regslice_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
             in_stream_TREADY_int_regslice <= ap_const_logic_1;
         else 
             in_stream_TREADY_int_regslice <= ap_const_logic_0;
@@ -371,9 +511,9 @@ begin
     end process;
 
 
-    out_stream_TDATA_blk_n_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0, ap_enable_reg_pp0_iter1, out_stream_TREADY_int_regslice)
+    out_stream_TDATA_blk_n_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_enable_reg_pp0_iter1, ap_block_pp0_stage0, out_stream_TREADY_int_regslice)
     begin
-        if ((((ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0)) or ((ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_const_logic_1 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0)))) then 
+        if ((((ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0)) or ((ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0)))) then 
             out_stream_TDATA_blk_n <= out_stream_TREADY_int_regslice;
         else 
             out_stream_TDATA_blk_n <= ap_const_logic_1;
@@ -382,9 +522,9 @@ begin
 
     out_stream_TVALID <= regslice_both_out_stream_V_data_V_U_vld_out;
 
-    out_stream_TVALID_int_regslice_assign_proc : process(ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0_11001)
+    out_stream_TVALID_int_regslice_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_block_pp0_stage0_11001)
     begin
-        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
+        if (((ap_const_boolean_0 = ap_block_pp0_stage0_11001) and (ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0))) then 
             out_stream_TVALID_int_regslice <= ap_const_logic_1;
         else 
             out_stream_TVALID_int_regslice <= ap_const_logic_0;

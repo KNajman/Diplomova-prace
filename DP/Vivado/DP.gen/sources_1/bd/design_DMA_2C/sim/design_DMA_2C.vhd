@@ -2,7 +2,7 @@
 --Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
---Date        : Tue May  5 23:07:20 2026
+--Date        : Fri May  8 12:30:13 2026
 --Host        : N166A running 64-bit major release  (build 9200)
 --Command     : generate_target design_DMA_2C.bd
 --Design      : design_DMA_2C
@@ -14,7 +14,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_DMA_2C is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of design_DMA_2C : entity is "design_DMA_2C,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_DMA_2C,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=5,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=2,da_clkrst_cnt=1,da_zynq_ultra_ps_e_cnt=1,synth_mode=Hierarchical}";
+  attribute CORE_GENERATION_INFO of design_DMA_2C : entity is "design_DMA_2C,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_DMA_2C,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=5,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_clkrst_cnt=1,da_zynq_ultra_ps_e_cnt=1,synth_mode=Hierarchical}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_DMA_2C : entity is "design_DMA_2C.hwdef";
 end design_DMA_2C;
@@ -22,8 +22,26 @@ end design_DMA_2C;
 architecture STRUCTURE of design_DMA_2C is
   component design_DMA_2C_hls_passthrough_0_0 is
   port (
+    s_axi_control_ARADDR : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_ARREADY : out STD_LOGIC;
+    s_axi_control_ARVALID : in STD_LOGIC;
+    s_axi_control_AWADDR : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_AWREADY : out STD_LOGIC;
+    s_axi_control_AWVALID : in STD_LOGIC;
+    s_axi_control_BREADY : in STD_LOGIC;
+    s_axi_control_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_control_BVALID : out STD_LOGIC;
+    s_axi_control_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_control_RREADY : in STD_LOGIC;
+    s_axi_control_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_control_RVALID : out STD_LOGIC;
+    s_axi_control_WDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_control_WREADY : out STD_LOGIC;
+    s_axi_control_WSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_WVALID : in STD_LOGIC;
     ap_clk : in STD_LOGIC;
     ap_rst_n : in STD_LOGIC;
+    interrupt : out STD_LOGIC;
     in_stream_TDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
     in_stream_TKEEP : in STD_LOGIC_VECTOR ( 3 downto 0 );
     in_stream_TLAST : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -148,7 +166,26 @@ architecture STRUCTURE of design_DMA_2C is
     M00_AXI_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     M00_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M00_AXI_rvalid : in STD_LOGIC;
-    M00_AXI_rready : out STD_LOGIC
+    M00_AXI_rready : out STD_LOGIC;
+    M01_AXI_awaddr : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M01_AXI_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M01_AXI_awvalid : out STD_LOGIC;
+    M01_AXI_awready : in STD_LOGIC;
+    M01_AXI_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M01_AXI_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M01_AXI_wvalid : out STD_LOGIC;
+    M01_AXI_wready : in STD_LOGIC;
+    M01_AXI_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M01_AXI_bvalid : in STD_LOGIC;
+    M01_AXI_bready : out STD_LOGIC;
+    M01_AXI_araddr : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M01_AXI_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M01_AXI_arvalid : out STD_LOGIC;
+    M01_AXI_arready : in STD_LOGIC;
+    M01_AXI_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    M01_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M01_AXI_rvalid : in STD_LOGIC;
+    M01_AXI_rready : out STD_LOGIC
   );
   end component design_DMA_2C_axi_smc_0;
   component design_DMA_2C_rst_ps8_0_99M_0 is
@@ -253,6 +290,23 @@ architecture STRUCTURE of design_DMA_2C is
   signal axi_smc_M00_AXI_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_smc_M00_AXI_WREADY : STD_LOGIC;
   signal axi_smc_M00_AXI_WVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_ARADDR : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_M01_AXI_ARREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_ARVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_AWADDR : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_M01_AXI_AWREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_AWVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_BREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_M01_AXI_BVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axi_smc_M01_AXI_RREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_M01_AXI_RVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axi_smc_M01_AXI_WREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_M01_AXI_WVALID : STD_LOGIC;
   signal hls_passthrough_0_out_stream_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal hls_passthrough_0_out_stream_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal hls_passthrough_0_out_stream_TLAST : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -327,6 +381,9 @@ architecture STRUCTURE of design_DMA_2C is
   signal NLW_axi_smc_M00_AXI_arprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_axi_smc_M00_AXI_awprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_axi_smc_M00_AXI_wstrb_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal NLW_axi_smc_M01_AXI_arprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal NLW_axi_smc_M01_AXI_awprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal NLW_hls_passthrough_0_interrupt_UNCONNECTED : STD_LOGIC;
   signal NLW_hls_passthrough_0_out_stream_TSTRB_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_hls_passthrough_0_out_stream_TUSER_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps8_0_99M_mb_reset_UNCONNECTED : STD_LOGIC;
@@ -421,6 +478,25 @@ axi_smc: component design_DMA_2C_axi_smc_0
       M00_AXI_wready => axi_smc_M00_AXI_WREADY,
       M00_AXI_wstrb(3 downto 0) => NLW_axi_smc_M00_AXI_wstrb_UNCONNECTED(3 downto 0),
       M00_AXI_wvalid => axi_smc_M00_AXI_WVALID,
+      M01_AXI_araddr(3 downto 0) => axi_smc_M01_AXI_ARADDR(3 downto 0),
+      M01_AXI_arprot(2 downto 0) => NLW_axi_smc_M01_AXI_arprot_UNCONNECTED(2 downto 0),
+      M01_AXI_arready => axi_smc_M01_AXI_ARREADY,
+      M01_AXI_arvalid => axi_smc_M01_AXI_ARVALID,
+      M01_AXI_awaddr(3 downto 0) => axi_smc_M01_AXI_AWADDR(3 downto 0),
+      M01_AXI_awprot(2 downto 0) => NLW_axi_smc_M01_AXI_awprot_UNCONNECTED(2 downto 0),
+      M01_AXI_awready => axi_smc_M01_AXI_AWREADY,
+      M01_AXI_awvalid => axi_smc_M01_AXI_AWVALID,
+      M01_AXI_bready => axi_smc_M01_AXI_BREADY,
+      M01_AXI_bresp(1 downto 0) => axi_smc_M01_AXI_BRESP(1 downto 0),
+      M01_AXI_bvalid => axi_smc_M01_AXI_BVALID,
+      M01_AXI_rdata(31 downto 0) => axi_smc_M01_AXI_RDATA(31 downto 0),
+      M01_AXI_rready => axi_smc_M01_AXI_RREADY,
+      M01_AXI_rresp(1 downto 0) => axi_smc_M01_AXI_RRESP(1 downto 0),
+      M01_AXI_rvalid => axi_smc_M01_AXI_RVALID,
+      M01_AXI_wdata(31 downto 0) => axi_smc_M01_AXI_WDATA(31 downto 0),
+      M01_AXI_wready => axi_smc_M01_AXI_WREADY,
+      M01_AXI_wstrb(3 downto 0) => axi_smc_M01_AXI_WSTRB(3 downto 0),
+      M01_AXI_wvalid => axi_smc_M01_AXI_WVALID,
       S00_AXI_araddr(39 downto 0) => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR(39 downto 0),
       S00_AXI_arburst(1 downto 0) => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST(1 downto 0),
       S00_AXI_arcache(3 downto 0) => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARCACHE(3 downto 0),
@@ -474,13 +550,31 @@ hls_passthrough_0: component design_DMA_2C_hls_passthrough_0_0
       in_stream_TSTRB(3 downto 0) => B"1111",
       in_stream_TUSER(0) => '0',
       in_stream_TVALID => axi_dma_0_M_AXIS_MM2S_TVALID,
+      interrupt => NLW_hls_passthrough_0_interrupt_UNCONNECTED,
       out_stream_TDATA(31 downto 0) => hls_passthrough_0_out_stream_TDATA(31 downto 0),
       out_stream_TKEEP(3 downto 0) => hls_passthrough_0_out_stream_TKEEP(3 downto 0),
       out_stream_TLAST(0) => hls_passthrough_0_out_stream_TLAST(0),
       out_stream_TREADY => hls_passthrough_0_out_stream_TREADY,
       out_stream_TSTRB(3 downto 0) => NLW_hls_passthrough_0_out_stream_TSTRB_UNCONNECTED(3 downto 0),
       out_stream_TUSER(0) => NLW_hls_passthrough_0_out_stream_TUSER_UNCONNECTED(0),
-      out_stream_TVALID => hls_passthrough_0_out_stream_TVALID
+      out_stream_TVALID => hls_passthrough_0_out_stream_TVALID,
+      s_axi_control_ARADDR(3 downto 0) => axi_smc_M01_AXI_ARADDR(3 downto 0),
+      s_axi_control_ARREADY => axi_smc_M01_AXI_ARREADY,
+      s_axi_control_ARVALID => axi_smc_M01_AXI_ARVALID,
+      s_axi_control_AWADDR(3 downto 0) => axi_smc_M01_AXI_AWADDR(3 downto 0),
+      s_axi_control_AWREADY => axi_smc_M01_AXI_AWREADY,
+      s_axi_control_AWVALID => axi_smc_M01_AXI_AWVALID,
+      s_axi_control_BREADY => axi_smc_M01_AXI_BREADY,
+      s_axi_control_BRESP(1 downto 0) => axi_smc_M01_AXI_BRESP(1 downto 0),
+      s_axi_control_BVALID => axi_smc_M01_AXI_BVALID,
+      s_axi_control_RDATA(31 downto 0) => axi_smc_M01_AXI_RDATA(31 downto 0),
+      s_axi_control_RREADY => axi_smc_M01_AXI_RREADY,
+      s_axi_control_RRESP(1 downto 0) => axi_smc_M01_AXI_RRESP(1 downto 0),
+      s_axi_control_RVALID => axi_smc_M01_AXI_RVALID,
+      s_axi_control_WDATA(31 downto 0) => axi_smc_M01_AXI_WDATA(31 downto 0),
+      s_axi_control_WREADY => axi_smc_M01_AXI_WREADY,
+      s_axi_control_WSTRB(3 downto 0) => axi_smc_M01_AXI_WSTRB(3 downto 0),
+      s_axi_control_WVALID => axi_smc_M01_AXI_WVALID
     );
 rst_ps8_0_99M: component design_DMA_2C_rst_ps8_0_99M_0
      port map (

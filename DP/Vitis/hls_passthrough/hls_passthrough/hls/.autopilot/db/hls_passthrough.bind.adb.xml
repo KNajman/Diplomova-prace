@@ -115,10 +115,10 @@ entry:20 %p_3 = extractvalue i42 %empty
 
 <Node id="32" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="32" op_7_bw="4" op_8_bw="4" op_9_bw="1" op_10_bw="1">
 <![CDATA[
-entry:21 %write_ln19 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
+entry:21 %write_ln18 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
 
 ]]></Node>
-<StgValue><ssdm name="write_ln19"/></StgValue>
+<StgValue><ssdm name="write_ln18"/></StgValue>
 </operation>
 </state>
 
@@ -133,10 +133,10 @@ entry:21 %write_ln19 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P
 
 <Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="0">
 <![CDATA[
-entry:0 %specpipeline_ln8 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, i32 4294967295, void @empty_1
+entry:0 %specpipeline_ln14 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, i32 4294967295, void @empty_1
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln8"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln14"/></StgValue>
 </operation>
 
 <operation id="11" st_id="2" stage="1" lat="1">
@@ -148,7 +148,7 @@ entry:0 %specpipeline_ln8 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32
 
 <Node id="12" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:1 %spectopmodule_ln6 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_4
+entry:1 %spectopmodule_ln6 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_6
 
 ]]></Node>
 <StgValue><ssdm name="spectopmodule_ln6"/></StgValue>
@@ -161,12 +161,12 @@ entry:1 %spectopmodule_ln6 = spectopmodule void @_ssdm_op_SpecTopModule, void @e
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0" op_17_bw="32" op_18_bw="32" op_19_bw="32" op_20_bw="32">
+<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="0" op_7_bw="32" op_8_bw="32" op_9_bw="0" op_10_bw="32" op_11_bw="32" op_12_bw="0" op_13_bw="0" op_14_bw="0" op_15_bw="32" op_16_bw="32" op_17_bw="32" op_18_bw="32" op_19_bw="0" op_20_bw="0" op_21_bw="32" op_22_bw="32" op_23_bw="32" op_24_bw="32">
 <![CDATA[
-entry:2 %specinterface_ln6 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0
+entry:2 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in_stream_V_data_V, i4 %in_stream_V_keep_V, i4 %in_stream_V_strb_V, i1 %in_stream_V_user_V, i1 %in_stream_V_last_V, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0
 
 ]]></Node>
-<StgValue><ssdm name="specinterface_ln6"/></StgValue>
+<StgValue><ssdm name="specinterface_ln0"/></StgValue>
 </operation>
 
 <operation id="13" st_id="2" stage="1" lat="1">
@@ -176,12 +176,12 @@ entry:2 %specinterface_ln6 = specinterface void @_ssdm_op_SpecInterface, i32 0, 
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="14" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="0" op_7_bw="32" op_8_bw="32" op_9_bw="0" op_10_bw="32" op_11_bw="32" op_12_bw="0" op_13_bw="0" op_14_bw="0" op_15_bw="32" op_16_bw="32" op_17_bw="32" op_18_bw="32" op_19_bw="0" op_20_bw="0" op_21_bw="32" op_22_bw="32" op_23_bw="32" op_24_bw="32">
+<Node id="14" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-entry:3 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in_stream_V_data_V, i4 %in_stream_V_keep_V, i4 %in_stream_V_strb_V, i1 %in_stream_V_user_V, i1 %in_stream_V_last_V, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0
+entry:3 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in_stream_V_data_V
 
 ]]></Node>
-<StgValue><ssdm name="specinterface_ln0"/></StgValue>
+<StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
 </operation>
 
 <operation id="14" st_id="2" stage="1" lat="1">
@@ -191,9 +191,9 @@ entry:3 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="15" bw="0" op_0_bw="0" op_1_bw="32">
+<Node id="15" bw="0" op_0_bw="0" op_1_bw="4">
 <![CDATA[
-entry:4 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in_stream_V_data_V
+entry:4 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %in_stream_V_keep_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -208,7 +208,7 @@ entry:4 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in_strea
 
 <Node id="16" bw="0" op_0_bw="0" op_1_bw="4">
 <![CDATA[
-entry:5 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %in_stream_V_keep_V
+entry:5 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %in_stream_V_strb_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -221,9 +221,9 @@ entry:5 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %in_stream
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="17" bw="0" op_0_bw="0" op_1_bw="4">
+<Node id="17" bw="0" op_0_bw="0" op_1_bw="1">
 <![CDATA[
-entry:6 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %in_stream_V_strb_V
+entry:6 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %in_stream_V_user_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -238,7 +238,7 @@ entry:6 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %in_stream
 
 <Node id="18" bw="0" op_0_bw="0" op_1_bw="1">
 <![CDATA[
-entry:7 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %in_stream_V_user_V
+entry:7 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %in_stream_V_last_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -251,12 +251,12 @@ entry:7 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %in_stream
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="19" bw="0" op_0_bw="0" op_1_bw="1">
+<Node id="19" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="0" op_7_bw="32" op_8_bw="32" op_9_bw="0" op_10_bw="32" op_11_bw="32" op_12_bw="0" op_13_bw="0" op_14_bw="0" op_15_bw="32" op_16_bw="32" op_17_bw="32" op_18_bw="32" op_19_bw="0" op_20_bw="0" op_21_bw="32" op_22_bw="32" op_23_bw="32" op_24_bw="32">
 <![CDATA[
-entry:8 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %in_stream_V_last_V
+entry:8 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0
 
 ]]></Node>
-<StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
+<StgValue><ssdm name="specinterface_ln0"/></StgValue>
 </operation>
 
 <operation id="19" st_id="2" stage="1" lat="1">
@@ -266,12 +266,12 @@ entry:8 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %in_stream
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="20" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="0" op_7_bw="32" op_8_bw="32" op_9_bw="0" op_10_bw="32" op_11_bw="32" op_12_bw="0" op_13_bw="0" op_14_bw="0" op_15_bw="32" op_16_bw="32" op_17_bw="32" op_18_bw="32" op_19_bw="0" op_20_bw="0" op_21_bw="32" op_22_bw="32" op_23_bw="32" op_24_bw="32">
+<Node id="20" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-entry:9 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0
+entry:9 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %out_stream_V_data_V
 
 ]]></Node>
-<StgValue><ssdm name="specinterface_ln0"/></StgValue>
+<StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
 </operation>
 
 <operation id="20" st_id="2" stage="1" lat="1">
@@ -281,9 +281,9 @@ entry:9 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %ou
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="21" bw="0" op_0_bw="0" op_1_bw="32">
+<Node id="21" bw="0" op_0_bw="0" op_1_bw="4">
 <![CDATA[
-entry:10 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %out_stream_V_data_V
+entry:10 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %out_stream_V_keep_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -298,7 +298,7 @@ entry:10 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %out_str
 
 <Node id="22" bw="0" op_0_bw="0" op_1_bw="4">
 <![CDATA[
-entry:11 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %out_stream_V_keep_V
+entry:11 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %out_stream_V_strb_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -311,9 +311,9 @@ entry:11 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %out_stre
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="23" bw="0" op_0_bw="0" op_1_bw="4">
+<Node id="23" bw="0" op_0_bw="0" op_1_bw="1">
 <![CDATA[
-entry:12 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %out_stream_V_strb_V
+entry:12 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %out_stream_V_user_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -328,7 +328,7 @@ entry:12 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %out_stre
 
 <Node id="24" bw="0" op_0_bw="0" op_1_bw="1">
 <![CDATA[
-entry:13 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %out_stream_V_user_V
+entry:13 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %out_stream_V_last_V
 
 ]]></Node>
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
@@ -341,12 +341,12 @@ entry:13 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %out_stre
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="25" bw="0" op_0_bw="0" op_1_bw="1">
+<Node id="25" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="0" op_3_bw="32" op_4_bw="32" op_5_bw="0" op_6_bw="32" op_7_bw="32" op_8_bw="0" op_9_bw="0" op_10_bw="0" op_11_bw="32" op_12_bw="32" op_13_bw="32" op_14_bw="32" op_15_bw="0" op_16_bw="0" op_17_bw="32" op_18_bw="32" op_19_bw="32" op_20_bw="32">
 <![CDATA[
-entry:14 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %out_stream_V_last_V
+entry:14 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0
 
 ]]></Node>
-<StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
+<StgValue><ssdm name="specinterface_ln0"/></StgValue>
 </operation>
 
 <operation id="25" st_id="2" stage="1" lat="2">
@@ -358,10 +358,10 @@ entry:14 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %out_stre
 
 <Node id="32" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="32" op_7_bw="4" op_8_bw="4" op_9_bw="1" op_10_bw="1">
 <![CDATA[
-entry:21 %write_ln19 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
+entry:21 %write_ln18 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
 
 ]]></Node>
-<StgValue><ssdm name="write_ln19"/></StgValue>
+<StgValue><ssdm name="write_ln18"/></StgValue>
 </operation>
 
 <operation id="26" st_id="2" stage="1" lat="1">
@@ -373,10 +373,10 @@ entry:21 %write_ln19 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P
 
 <Node id="33" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="1" op_7_bw="1" op_8_bw="0">
 <![CDATA[
-entry:22 %specaxissidechannel_ln20 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i1 0, i1 0, void @empty_2
+entry:22 %specaxissidechannel_ln19 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i1 0, i1 0, void @empty_4
 
 ]]></Node>
-<StgValue><ssdm name="specaxissidechannel_ln20"/></StgValue>
+<StgValue><ssdm name="specaxissidechannel_ln19"/></StgValue>
 </operation>
 
 <operation id="27" st_id="2" stage="1" lat="1">
@@ -388,10 +388,10 @@ entry:22 %specaxissidechannel_ln20 = specaxissidechannel void @_ssdm_op_SpecAXIS
 
 <Node id="34" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="1" op_7_bw="1" op_8_bw="0">
 <![CDATA[
-entry:23 %specaxissidechannel_ln20 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %in_stream_V_data_V, i4 %in_stream_V_keep_V, i4 %in_stream_V_strb_V, i1 %in_stream_V_user_V, i1 %in_stream_V_last_V, i1 0, i1 0, void @empty_3
+entry:23 %specaxissidechannel_ln19 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %in_stream_V_data_V, i4 %in_stream_V_keep_V, i4 %in_stream_V_strb_V, i1 %in_stream_V_user_V, i1 %in_stream_V_last_V, i1 0, i1 0, void @empty_5
 
 ]]></Node>
-<StgValue><ssdm name="specaxissidechannel_ln20"/></StgValue>
+<StgValue><ssdm name="specaxissidechannel_ln19"/></StgValue>
 </operation>
 
 <operation id="28" st_id="2" stage="1" lat="1">
@@ -403,10 +403,10 @@ entry:23 %specaxissidechannel_ln20 = specaxissidechannel void @_ssdm_op_SpecAXIS
 
 <Node id="35" bw="0">
 <![CDATA[
-entry:24 %ret_ln20 = ret
+entry:24 %ret_ln19 = ret
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln20"/></StgValue>
+<StgValue><ssdm name="ret_ln19"/></StgValue>
 </operation>
 </state>
 </state_list>
@@ -469,285 +469,285 @@ entry:24 %ret_ln20 = ret
 </dataflow>
 <dataflow id="53" from="empty" to="p_3" fromId="3" toId="8">
 </dataflow>
-<dataflow id="55" from="_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A" to="write_ln19" fromId="54" toId="9">
+<dataflow id="55" from="_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A" to="write_ln18" fromId="54" toId="9">
 </dataflow>
-<dataflow id="56" from="out_stream_V_data_V" to="write_ln19" fromId="37" toId="9">
+<dataflow id="56" from="out_stream_V_data_V" to="write_ln18" fromId="37" toId="9">
 </dataflow>
-<dataflow id="57" from="out_stream_V_keep_V" to="write_ln19" fromId="38" toId="9">
+<dataflow id="57" from="out_stream_V_keep_V" to="write_ln18" fromId="38" toId="9">
 </dataflow>
-<dataflow id="58" from="out_stream_V_strb_V" to="write_ln19" fromId="39" toId="9">
+<dataflow id="58" from="out_stream_V_strb_V" to="write_ln18" fromId="39" toId="9">
 </dataflow>
-<dataflow id="59" from="out_stream_V_user_V" to="write_ln19" fromId="40" toId="9">
+<dataflow id="59" from="out_stream_V_user_V" to="write_ln18" fromId="40" toId="9">
 </dataflow>
-<dataflow id="60" from="out_stream_V_last_V" to="write_ln19" fromId="41" toId="9">
+<dataflow id="60" from="out_stream_V_last_V" to="write_ln18" fromId="41" toId="9">
 </dataflow>
-<dataflow id="61" from="p_0" to="write_ln19" fromId="4" toId="9">
+<dataflow id="61" from="p_0" to="write_ln18" fromId="4" toId="9">
 </dataflow>
-<dataflow id="62" from="p_s" to="write_ln19" fromId="5" toId="9">
+<dataflow id="62" from="p_s" to="write_ln18" fromId="5" toId="9">
 </dataflow>
-<dataflow id="63" from="p_1" to="write_ln19" fromId="6" toId="9">
+<dataflow id="63" from="p_1" to="write_ln18" fromId="6" toId="9">
 </dataflow>
-<dataflow id="64" from="p_2" to="write_ln19" fromId="7" toId="9">
+<dataflow id="64" from="p_2" to="write_ln18" fromId="7" toId="9">
 </dataflow>
-<dataflow id="65" from="p_3" to="write_ln19" fromId="8" toId="9">
+<dataflow id="65" from="p_3" to="write_ln18" fromId="8" toId="9">
 </dataflow>
-<dataflow id="67" from="_ssdm_op_SpecPipeline" to="specpipeline_ln8" fromId="66" toId="10">
+<dataflow id="67" from="_ssdm_op_SpecPipeline" to="specpipeline_ln14" fromId="66" toId="10">
 </dataflow>
-<dataflow id="69" from="StgValue_68" to="specpipeline_ln8" fromId="68" toId="10">
+<dataflow id="69" from="StgValue_68" to="specpipeline_ln14" fromId="68" toId="10">
 </dataflow>
-<dataflow id="71" from="StgValue_70" to="specpipeline_ln8" fromId="70" toId="10">
+<dataflow id="71" from="StgValue_70" to="specpipeline_ln14" fromId="70" toId="10">
 </dataflow>
-<dataflow id="72" from="StgValue_70" to="specpipeline_ln8" fromId="70" toId="10">
+<dataflow id="72" from="StgValue_70" to="specpipeline_ln14" fromId="70" toId="10">
 </dataflow>
-<dataflow id="73" from="StgValue_70" to="specpipeline_ln8" fromId="70" toId="10">
+<dataflow id="73" from="StgValue_70" to="specpipeline_ln14" fromId="70" toId="10">
 </dataflow>
-<dataflow id="75" from="StgValue_74" to="specpipeline_ln8" fromId="74" toId="10">
+<dataflow id="75" from="StgValue_74" to="specpipeline_ln14" fromId="74" toId="10">
 </dataflow>
-<dataflow id="77" from="empty_1" to="specpipeline_ln8" fromId="76" toId="10">
+<dataflow id="77" from="empty_1" to="specpipeline_ln14" fromId="76" toId="10">
 </dataflow>
 <dataflow id="79" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln6" fromId="78" toId="11">
 </dataflow>
-<dataflow id="81" from="empty_4" to="spectopmodule_ln6" fromId="80" toId="11">
+<dataflow id="81" from="empty_6" to="spectopmodule_ln6" fromId="80" toId="11">
 </dataflow>
-<dataflow id="83" from="_ssdm_op_SpecInterface" to="specinterface_ln6" fromId="82" toId="12">
+<dataflow id="83" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="82" toId="12">
 </dataflow>
-<dataflow id="84" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="84" from="in_stream_V_data_V" to="specinterface_ln0" fromId="32" toId="12">
 </dataflow>
-<dataflow id="86" from="empty_5" to="specinterface_ln6" fromId="85" toId="12">
+<dataflow id="85" from="in_stream_V_keep_V" to="specinterface_ln0" fromId="33" toId="12">
 </dataflow>
-<dataflow id="87" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="86" from="in_stream_V_strb_V" to="specinterface_ln0" fromId="34" toId="12">
 </dataflow>
-<dataflow id="88" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="87" from="in_stream_V_user_V" to="specinterface_ln0" fromId="35" toId="12">
 </dataflow>
-<dataflow id="89" from="empty_1" to="specinterface_ln6" fromId="76" toId="12">
+<dataflow id="88" from="in_stream_V_last_V" to="specinterface_ln0" fromId="36" toId="12">
 </dataflow>
-<dataflow id="90" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="90" from="empty" to="specinterface_ln0" fromId="89" toId="12">
 </dataflow>
-<dataflow id="91" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="91" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="12">
 </dataflow>
-<dataflow id="92" from="empty_1" to="specinterface_ln6" fromId="76" toId="12">
+<dataflow id="92" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="12">
 </dataflow>
-<dataflow id="93" from="empty_1" to="specinterface_ln6" fromId="76" toId="12">
+<dataflow id="94" from="empty_0" to="specinterface_ln0" fromId="93" toId="12">
 </dataflow>
-<dataflow id="94" from="empty_1" to="specinterface_ln6" fromId="76" toId="12">
+<dataflow id="95" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="95" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="96" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="96" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="97" from="empty_1" to="specinterface_ln0" fromId="76" toId="12">
 </dataflow>
-<dataflow id="97" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="98" from="empty_1" to="specinterface_ln0" fromId="76" toId="12">
 </dataflow>
-<dataflow id="98" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="99" from="empty_1" to="specinterface_ln0" fromId="76" toId="12">
 </dataflow>
-<dataflow id="99" from="empty_1" to="specinterface_ln6" fromId="76" toId="12">
+<dataflow id="100" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="100" from="empty_1" to="specinterface_ln6" fromId="76" toId="12">
+<dataflow id="101" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="101" from="StgValue_74" to="specinterface_ln6" fromId="74" toId="12">
+<dataflow id="102" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="102" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="103" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="103" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="104" from="empty_1" to="specinterface_ln0" fromId="76" toId="12">
 </dataflow>
-<dataflow id="104" from="StgValue_70" to="specinterface_ln6" fromId="70" toId="12">
+<dataflow id="105" from="empty_1" to="specinterface_ln0" fromId="76" toId="12">
 </dataflow>
-<dataflow id="105" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="82" toId="13">
+<dataflow id="106" from="StgValue_74" to="specinterface_ln0" fromId="74" toId="12">
 </dataflow>
-<dataflow id="106" from="in_stream_V_data_V" to="specinterface_ln0" fromId="32" toId="13">
+<dataflow id="107" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="107" from="in_stream_V_keep_V" to="specinterface_ln0" fromId="33" toId="13">
+<dataflow id="108" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="108" from="in_stream_V_strb_V" to="specinterface_ln0" fromId="34" toId="13">
+<dataflow id="109" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="12">
 </dataflow>
-<dataflow id="109" from="in_stream_V_user_V" to="specinterface_ln0" fromId="35" toId="13">
+<dataflow id="111" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="13">
 </dataflow>
-<dataflow id="110" from="in_stream_V_last_V" to="specinterface_ln0" fromId="36" toId="13">
+<dataflow id="112" from="in_stream_V_data_V" to="specbitsmap_ln0" fromId="32" toId="13">
 </dataflow>
-<dataflow id="112" from="empty" to="specinterface_ln0" fromId="111" toId="13">
+<dataflow id="113" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="14">
 </dataflow>
-<dataflow id="113" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="13">
+<dataflow id="114" from="in_stream_V_keep_V" to="specbitsmap_ln0" fromId="33" toId="14">
 </dataflow>
-<dataflow id="114" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="13">
+<dataflow id="115" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="15">
 </dataflow>
-<dataflow id="116" from="empty_0" to="specinterface_ln0" fromId="115" toId="13">
+<dataflow id="116" from="in_stream_V_strb_V" to="specbitsmap_ln0" fromId="34" toId="15">
 </dataflow>
-<dataflow id="117" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="117" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="16">
 </dataflow>
-<dataflow id="118" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="118" from="in_stream_V_user_V" to="specbitsmap_ln0" fromId="35" toId="16">
 </dataflow>
-<dataflow id="119" from="empty_1" to="specinterface_ln0" fromId="76" toId="13">
+<dataflow id="119" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="17">
 </dataflow>
-<dataflow id="120" from="empty_1" to="specinterface_ln0" fromId="76" toId="13">
+<dataflow id="120" from="in_stream_V_last_V" to="specbitsmap_ln0" fromId="36" toId="17">
 </dataflow>
-<dataflow id="121" from="empty_1" to="specinterface_ln0" fromId="76" toId="13">
+<dataflow id="121" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="82" toId="18">
 </dataflow>
-<dataflow id="122" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="122" from="out_stream_V_data_V" to="specinterface_ln0" fromId="37" toId="18">
 </dataflow>
-<dataflow id="123" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="123" from="out_stream_V_keep_V" to="specinterface_ln0" fromId="38" toId="18">
 </dataflow>
-<dataflow id="124" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="124" from="out_stream_V_strb_V" to="specinterface_ln0" fromId="39" toId="18">
 </dataflow>
-<dataflow id="125" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="125" from="out_stream_V_user_V" to="specinterface_ln0" fromId="40" toId="18">
 </dataflow>
-<dataflow id="126" from="empty_1" to="specinterface_ln0" fromId="76" toId="13">
+<dataflow id="126" from="out_stream_V_last_V" to="specinterface_ln0" fromId="41" toId="18">
 </dataflow>
-<dataflow id="127" from="empty_1" to="specinterface_ln0" fromId="76" toId="13">
+<dataflow id="127" from="empty" to="specinterface_ln0" fromId="89" toId="18">
 </dataflow>
-<dataflow id="128" from="StgValue_74" to="specinterface_ln0" fromId="74" toId="13">
+<dataflow id="128" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="18">
 </dataflow>
-<dataflow id="129" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="129" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="18">
 </dataflow>
-<dataflow id="130" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="130" from="empty_0" to="specinterface_ln0" fromId="93" toId="18">
 </dataflow>
-<dataflow id="131" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="13">
+<dataflow id="131" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="133" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="14">
+<dataflow id="132" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="134" from="in_stream_V_data_V" to="specbitsmap_ln0" fromId="32" toId="14">
+<dataflow id="133" from="empty_1" to="specinterface_ln0" fromId="76" toId="18">
 </dataflow>
-<dataflow id="135" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="15">
+<dataflow id="134" from="empty_1" to="specinterface_ln0" fromId="76" toId="18">
 </dataflow>
-<dataflow id="136" from="in_stream_V_keep_V" to="specbitsmap_ln0" fromId="33" toId="15">
+<dataflow id="135" from="empty_1" to="specinterface_ln0" fromId="76" toId="18">
 </dataflow>
-<dataflow id="137" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="16">
+<dataflow id="136" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="138" from="in_stream_V_strb_V" to="specbitsmap_ln0" fromId="34" toId="16">
+<dataflow id="137" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="139" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="17">
+<dataflow id="138" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="140" from="in_stream_V_user_V" to="specbitsmap_ln0" fromId="35" toId="17">
+<dataflow id="139" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="141" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="18">
+<dataflow id="140" from="empty_1" to="specinterface_ln0" fromId="76" toId="18">
 </dataflow>
-<dataflow id="142" from="in_stream_V_last_V" to="specbitsmap_ln0" fromId="36" toId="18">
+<dataflow id="141" from="empty_1" to="specinterface_ln0" fromId="76" toId="18">
 </dataflow>
-<dataflow id="143" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="82" toId="19">
+<dataflow id="142" from="StgValue_74" to="specinterface_ln0" fromId="74" toId="18">
 </dataflow>
-<dataflow id="144" from="out_stream_V_data_V" to="specinterface_ln0" fromId="37" toId="19">
+<dataflow id="143" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="145" from="out_stream_V_keep_V" to="specinterface_ln0" fromId="38" toId="19">
+<dataflow id="144" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="146" from="out_stream_V_strb_V" to="specinterface_ln0" fromId="39" toId="19">
+<dataflow id="145" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="18">
 </dataflow>
-<dataflow id="147" from="out_stream_V_user_V" to="specinterface_ln0" fromId="40" toId="19">
+<dataflow id="146" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="19">
 </dataflow>
-<dataflow id="148" from="out_stream_V_last_V" to="specinterface_ln0" fromId="41" toId="19">
+<dataflow id="147" from="out_stream_V_data_V" to="specbitsmap_ln0" fromId="37" toId="19">
 </dataflow>
-<dataflow id="149" from="empty" to="specinterface_ln0" fromId="111" toId="19">
+<dataflow id="148" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="20">
 </dataflow>
-<dataflow id="150" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="19">
+<dataflow id="149" from="out_stream_V_keep_V" to="specbitsmap_ln0" fromId="38" toId="20">
 </dataflow>
-<dataflow id="151" from="StgValue_68" to="specinterface_ln0" fromId="68" toId="19">
+<dataflow id="150" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="21">
 </dataflow>
-<dataflow id="152" from="empty_0" to="specinterface_ln0" fromId="115" toId="19">
+<dataflow id="151" from="out_stream_V_strb_V" to="specbitsmap_ln0" fromId="39" toId="21">
 </dataflow>
-<dataflow id="153" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="152" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="22">
 </dataflow>
-<dataflow id="154" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="153" from="out_stream_V_user_V" to="specbitsmap_ln0" fromId="40" toId="22">
 </dataflow>
-<dataflow id="155" from="empty_1" to="specinterface_ln0" fromId="76" toId="19">
+<dataflow id="154" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="110" toId="23">
 </dataflow>
-<dataflow id="156" from="empty_1" to="specinterface_ln0" fromId="76" toId="19">
+<dataflow id="155" from="out_stream_V_last_V" to="specbitsmap_ln0" fromId="41" toId="23">
 </dataflow>
-<dataflow id="157" from="empty_1" to="specinterface_ln0" fromId="76" toId="19">
+<dataflow id="156" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="82" toId="24">
 </dataflow>
-<dataflow id="158" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="157" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="159" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="159" from="empty_2" to="specinterface_ln0" fromId="158" toId="24">
 </dataflow>
-<dataflow id="160" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="160" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="161" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="161" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="162" from="empty_1" to="specinterface_ln0" fromId="76" toId="19">
+<dataflow id="162" from="empty_1" to="specinterface_ln0" fromId="76" toId="24">
 </dataflow>
-<dataflow id="163" from="empty_1" to="specinterface_ln0" fromId="76" toId="19">
+<dataflow id="163" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="164" from="StgValue_74" to="specinterface_ln0" fromId="74" toId="19">
+<dataflow id="164" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="165" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="166" from="empty_3" to="specinterface_ln0" fromId="165" toId="24">
 </dataflow>
-<dataflow id="166" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="167" from="empty_1" to="specinterface_ln0" fromId="76" toId="24">
 </dataflow>
-<dataflow id="167" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="19">
+<dataflow id="168" from="empty_1" to="specinterface_ln0" fromId="76" toId="24">
 </dataflow>
-<dataflow id="168" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="20">
+<dataflow id="169" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="169" from="out_stream_V_data_V" to="specbitsmap_ln0" fromId="37" toId="20">
+<dataflow id="170" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="170" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="21">
+<dataflow id="171" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="171" from="out_stream_V_keep_V" to="specbitsmap_ln0" fromId="38" toId="21">
+<dataflow id="172" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="172" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="22">
+<dataflow id="173" from="empty_1" to="specinterface_ln0" fromId="76" toId="24">
 </dataflow>
-<dataflow id="173" from="out_stream_V_strb_V" to="specbitsmap_ln0" fromId="39" toId="22">
+<dataflow id="174" from="empty_1" to="specinterface_ln0" fromId="76" toId="24">
 </dataflow>
-<dataflow id="174" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="23">
+<dataflow id="175" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="175" from="out_stream_V_user_V" to="specbitsmap_ln0" fromId="40" toId="23">
+<dataflow id="176" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="176" from="_ssdm_op_SpecBitsMap" to="specbitsmap_ln0" fromId="132" toId="24">
+<dataflow id="177" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="177" from="out_stream_V_last_V" to="specbitsmap_ln0" fromId="41" toId="24">
+<dataflow id="178" from="StgValue_70" to="specinterface_ln0" fromId="70" toId="24">
 </dataflow>
-<dataflow id="178" from="_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A" to="write_ln19" fromId="54" toId="25">
+<dataflow id="179" from="_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A" to="write_ln18" fromId="54" toId="25">
 </dataflow>
-<dataflow id="179" from="out_stream_V_data_V" to="write_ln19" fromId="37" toId="25">
+<dataflow id="180" from="out_stream_V_data_V" to="write_ln18" fromId="37" toId="25">
 </dataflow>
-<dataflow id="180" from="out_stream_V_keep_V" to="write_ln19" fromId="38" toId="25">
+<dataflow id="181" from="out_stream_V_keep_V" to="write_ln18" fromId="38" toId="25">
 </dataflow>
-<dataflow id="181" from="out_stream_V_strb_V" to="write_ln19" fromId="39" toId="25">
+<dataflow id="182" from="out_stream_V_strb_V" to="write_ln18" fromId="39" toId="25">
 </dataflow>
-<dataflow id="182" from="out_stream_V_user_V" to="write_ln19" fromId="40" toId="25">
+<dataflow id="183" from="out_stream_V_user_V" to="write_ln18" fromId="40" toId="25">
 </dataflow>
-<dataflow id="183" from="out_stream_V_last_V" to="write_ln19" fromId="41" toId="25">
+<dataflow id="184" from="out_stream_V_last_V" to="write_ln18" fromId="41" toId="25">
 </dataflow>
-<dataflow id="184" from="p_0" to="write_ln19" fromId="4" toId="25">
+<dataflow id="185" from="p_0" to="write_ln18" fromId="4" toId="25">
 </dataflow>
-<dataflow id="185" from="p_s" to="write_ln19" fromId="5" toId="25">
+<dataflow id="186" from="p_s" to="write_ln18" fromId="5" toId="25">
 </dataflow>
-<dataflow id="186" from="p_1" to="write_ln19" fromId="6" toId="25">
+<dataflow id="187" from="p_1" to="write_ln18" fromId="6" toId="25">
 </dataflow>
-<dataflow id="187" from="p_2" to="write_ln19" fromId="7" toId="25">
+<dataflow id="188" from="p_2" to="write_ln18" fromId="7" toId="25">
 </dataflow>
-<dataflow id="188" from="p_3" to="write_ln19" fromId="8" toId="25">
+<dataflow id="189" from="p_3" to="write_ln18" fromId="8" toId="25">
 </dataflow>
-<dataflow id="190" from="_ssdm_op_SpecAXISSideChannel" to="specaxissidechannel_ln20" fromId="189" toId="26">
+<dataflow id="191" from="_ssdm_op_SpecAXISSideChannel" to="specaxissidechannel_ln19" fromId="190" toId="26">
 </dataflow>
-<dataflow id="191" from="out_stream_V_data_V" to="specaxissidechannel_ln20" fromId="37" toId="26">
+<dataflow id="192" from="out_stream_V_data_V" to="specaxissidechannel_ln19" fromId="37" toId="26">
 </dataflow>
-<dataflow id="192" from="out_stream_V_keep_V" to="specaxissidechannel_ln20" fromId="38" toId="26">
+<dataflow id="193" from="out_stream_V_keep_V" to="specaxissidechannel_ln19" fromId="38" toId="26">
 </dataflow>
-<dataflow id="193" from="out_stream_V_strb_V" to="specaxissidechannel_ln20" fromId="39" toId="26">
+<dataflow id="194" from="out_stream_V_strb_V" to="specaxissidechannel_ln19" fromId="39" toId="26">
 </dataflow>
-<dataflow id="194" from="out_stream_V_user_V" to="specaxissidechannel_ln20" fromId="40" toId="26">
+<dataflow id="195" from="out_stream_V_user_V" to="specaxissidechannel_ln19" fromId="40" toId="26">
 </dataflow>
-<dataflow id="195" from="out_stream_V_last_V" to="specaxissidechannel_ln20" fromId="41" toId="26">
+<dataflow id="196" from="out_stream_V_last_V" to="specaxissidechannel_ln19" fromId="41" toId="26">
 </dataflow>
-<dataflow id="197" from="StgValue_196" to="specaxissidechannel_ln20" fromId="196" toId="26">
+<dataflow id="198" from="StgValue_197" to="specaxissidechannel_ln19" fromId="197" toId="26">
 </dataflow>
-<dataflow id="198" from="StgValue_196" to="specaxissidechannel_ln20" fromId="196" toId="26">
+<dataflow id="199" from="StgValue_197" to="specaxissidechannel_ln19" fromId="197" toId="26">
 </dataflow>
-<dataflow id="200" from="empty_2" to="specaxissidechannel_ln20" fromId="199" toId="26">
+<dataflow id="201" from="empty_4" to="specaxissidechannel_ln19" fromId="200" toId="26">
 </dataflow>
-<dataflow id="201" from="_ssdm_op_SpecAXISSideChannel" to="specaxissidechannel_ln20" fromId="189" toId="27">
+<dataflow id="202" from="_ssdm_op_SpecAXISSideChannel" to="specaxissidechannel_ln19" fromId="190" toId="27">
 </dataflow>
-<dataflow id="202" from="in_stream_V_data_V" to="specaxissidechannel_ln20" fromId="32" toId="27">
+<dataflow id="203" from="in_stream_V_data_V" to="specaxissidechannel_ln19" fromId="32" toId="27">
 </dataflow>
-<dataflow id="203" from="in_stream_V_keep_V" to="specaxissidechannel_ln20" fromId="33" toId="27">
+<dataflow id="204" from="in_stream_V_keep_V" to="specaxissidechannel_ln19" fromId="33" toId="27">
 </dataflow>
-<dataflow id="204" from="in_stream_V_strb_V" to="specaxissidechannel_ln20" fromId="34" toId="27">
+<dataflow id="205" from="in_stream_V_strb_V" to="specaxissidechannel_ln19" fromId="34" toId="27">
 </dataflow>
-<dataflow id="205" from="in_stream_V_user_V" to="specaxissidechannel_ln20" fromId="35" toId="27">
+<dataflow id="206" from="in_stream_V_user_V" to="specaxissidechannel_ln19" fromId="35" toId="27">
 </dataflow>
-<dataflow id="206" from="in_stream_V_last_V" to="specaxissidechannel_ln20" fromId="36" toId="27">
+<dataflow id="207" from="in_stream_V_last_V" to="specaxissidechannel_ln19" fromId="36" toId="27">
 </dataflow>
-<dataflow id="207" from="StgValue_196" to="specaxissidechannel_ln20" fromId="196" toId="27">
+<dataflow id="208" from="StgValue_197" to="specaxissidechannel_ln19" fromId="197" toId="27">
 </dataflow>
-<dataflow id="208" from="StgValue_196" to="specaxissidechannel_ln20" fromId="196" toId="27">
+<dataflow id="209" from="StgValue_197" to="specaxissidechannel_ln19" fromId="197" toId="27">
 </dataflow>
-<dataflow id="210" from="empty_3" to="specaxissidechannel_ln20" fromId="209" toId="27">
+<dataflow id="211" from="empty_5" to="specaxissidechannel_ln19" fromId="210" toId="27">
 </dataflow>
 </dataflows>
 

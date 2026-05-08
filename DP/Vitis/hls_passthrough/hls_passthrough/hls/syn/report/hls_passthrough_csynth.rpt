@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_passthrough'
 ================================================================
-* Date:           Tue May  5 22:36:13 2026
+* Date:           Fri May  8 11:52:29 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_passthrough
@@ -51,12 +51,12 @@
 |DSP              |        -|     -|       -|       -|    -|
 |Expression       |        -|     -|       0|       8|    -|
 |FIFO             |        -|     -|       -|       -|    -|
-|Instance         |        -|     -|       -|       -|    -|
+|Instance         |        0|     -|      36|      40|    0|
 |Memory           |        -|     -|       -|       -|    -|
 |Multiplexer      |        -|     -|       0|      18|    -|
 |Register         |        -|     -|       2|       -|    -|
 +-----------------+---------+------+--------+--------+-----+
-|Total            |        0|     0|       2|      26|    0|
+|Total            |        0|     0|      38|      66|    0|
 +-----------------+---------+------+--------+--------+-----+
 |Available        |      288|  1248|  234240|  117120|   64|
 +-----------------+---------+------+--------+--------+-----+
@@ -65,7 +65,13 @@
 
 + Detail: 
     * Instance: 
-    N/A
+    +-----------------+---------------+---------+----+----+----+-----+
+    |     Instance    |     Module    | BRAM_18K| DSP| FF | LUT| URAM|
+    +-----------------+---------------+---------+----+----+----+-----+
+    |control_s_axi_U  |control_s_axi  |        0|   0|  36|  40|    0|
+    +-----------------+---------------+---------+----+----+----+-----+
+    |Total            |               |        0|   0|  36|  40|    0|
+    +-----------------+---------------+---------+----+----+----+-----+
 
     * DSP: 
     N/A
@@ -114,24 +120,42 @@
 == Interface
 ================================================================
 * Summary: 
-+-------------------+-----+-----+--------------+---------------------+--------------+
-|     RTL Ports     | Dir | Bits|   Protocol   |    Source Object    |    C Type    |
-+-------------------+-----+-----+--------------+---------------------+--------------+
-|ap_clk             |   in|    1|  ap_ctrl_none|      hls_passthrough|  return value|
-|ap_rst_n           |   in|    1|  ap_ctrl_none|      hls_passthrough|  return value|
-|in_stream_TDATA    |   in|   32|          axis|   in_stream_V_data_V|       pointer|
-|in_stream_TVALID   |   in|    1|          axis|   in_stream_V_last_V|       pointer|
-|in_stream_TREADY   |  out|    1|          axis|   in_stream_V_last_V|       pointer|
-|in_stream_TLAST    |   in|    1|          axis|   in_stream_V_last_V|       pointer|
-|in_stream_TKEEP    |   in|    4|          axis|   in_stream_V_keep_V|       pointer|
-|in_stream_TSTRB    |   in|    4|          axis|   in_stream_V_strb_V|       pointer|
-|in_stream_TUSER    |   in|    1|          axis|   in_stream_V_user_V|       pointer|
-|out_stream_TDATA   |  out|   32|          axis|  out_stream_V_data_V|       pointer|
-|out_stream_TVALID  |  out|    1|          axis|  out_stream_V_last_V|       pointer|
-|out_stream_TREADY  |   in|    1|          axis|  out_stream_V_last_V|       pointer|
-|out_stream_TLAST   |  out|    1|          axis|  out_stream_V_last_V|       pointer|
-|out_stream_TKEEP   |  out|    4|          axis|  out_stream_V_keep_V|       pointer|
-|out_stream_TSTRB   |  out|    4|          axis|  out_stream_V_strb_V|       pointer|
-|out_stream_TUSER   |  out|    1|          axis|  out_stream_V_user_V|       pointer|
-+-------------------+-----+-----+--------------+---------------------+--------------+
++-----------------------+-----+-----+------------+---------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object    |    C Type    |
++-----------------------+-----+-----+------------+---------------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|              control|   return void|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|              control|   return void|
+|s_axi_control_AWADDR   |   in|    4|       s_axi|              control|   return void|
+|s_axi_control_WVALID   |   in|    1|       s_axi|              control|   return void|
+|s_axi_control_WREADY   |  out|    1|       s_axi|              control|   return void|
+|s_axi_control_WDATA    |   in|   32|       s_axi|              control|   return void|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|              control|   return void|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|              control|   return void|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|              control|   return void|
+|s_axi_control_ARADDR   |   in|    4|       s_axi|              control|   return void|
+|s_axi_control_RVALID   |  out|    1|       s_axi|              control|   return void|
+|s_axi_control_RREADY   |   in|    1|       s_axi|              control|   return void|
+|s_axi_control_RDATA    |  out|   32|       s_axi|              control|   return void|
+|s_axi_control_RRESP    |  out|    2|       s_axi|              control|   return void|
+|s_axi_control_BVALID   |  out|    1|       s_axi|              control|   return void|
+|s_axi_control_BREADY   |   in|    1|       s_axi|              control|   return void|
+|s_axi_control_BRESP    |  out|    2|       s_axi|              control|   return void|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|      hls_passthrough|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|      hls_passthrough|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|      hls_passthrough|  return value|
+|in_stream_TVALID       |   in|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TREADY       |  out|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TLAST        |   in|    1|        axis|   in_stream_V_last_V|       pointer|
+|out_stream_TREADY      |   in|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TVALID      |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TLAST       |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|in_stream_TDATA        |   in|   32|        axis|   in_stream_V_data_V|       pointer|
+|in_stream_TKEEP        |   in|    4|        axis|   in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB        |   in|    4|        axis|   in_stream_V_strb_V|       pointer|
+|in_stream_TUSER        |   in|    1|        axis|   in_stream_V_user_V|       pointer|
+|out_stream_TDATA       |  out|   32|        axis|  out_stream_V_data_V|       pointer|
+|out_stream_TKEEP       |  out|    4|        axis|  out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB       |  out|    4|        axis|  out_stream_V_strb_V|       pointer|
+|out_stream_TUSER       |  out|    1|        axis|  out_stream_V_user_V|       pointer|
++-----------------------+-----+-----+------------+---------------------+--------------+
 
