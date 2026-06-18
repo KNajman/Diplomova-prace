@@ -48,6 +48,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps_xfer.h
@@ -178,6 +180,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps_xfer.h
@@ -308,6 +312,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include/../include/xiicps_xfer.h

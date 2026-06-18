@@ -13,7 +13,7 @@ class hls_passthrough_reference_model extends uvm_component;
     event allsvr_input_done;
     event allsvr_output_done;
     event write_start_finish;
-    int trans_num_total = 1;
+    int trans_num_total = 256;
     int trans_num_idx;
     int ap_done_cnt=1;
     event dut2tb_ap_ready;

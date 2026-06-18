@@ -58,6 +58,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../in
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_xfer.h
@@ -215,6 +217,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../in
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_xfer.h
@@ -372,6 +376,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../in
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_xfer.h
@@ -529,6 +535,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../in
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_xfer.h
@@ -686,6 +694,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../in
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_xfer.h
@@ -843,6 +853,8 @@ D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../in
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xfpd_xmpu_sink.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xgpiops_hw.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough.h
+D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xhls_passthrough_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_hw.h
 D:/Repos/_DP/DP/Vitis/test_passthought/zynqmp_fsbl/zynqmp_fsbl_bsp/include/../include/xiicps_xfer.h

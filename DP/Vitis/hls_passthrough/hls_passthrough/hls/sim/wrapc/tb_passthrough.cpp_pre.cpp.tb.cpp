@@ -101132,61 +101132,83 @@ void hls_passthrough(hls::stream<axis_video_dma> &in_stream,
 #ifndef HLS_FASTSIM
 # 4 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
 int main() {
-  int status = 0;
+    int status = 0;
 
 
-  hls::stream<axis_video_dma> in_stream("input_stream");
-  hls::stream<axis_video_dma> out_stream("output_stream");
+    const int WIDTH = 16;
+    const int HEIGHT = 16;
+    const int TOTAL_PIXELS = WIDTH * HEIGHT;
 
 
-  axis_video_dma in_packet;
+    hls::stream<axis_video_dma> in_stream("input_stream");
+    hls::stream<axis_video_dma> out_stream("output_stream");
+
+    std::cout << "--- Start HLS Testbench: Obraz " << WIDTH << "x" << HEIGHT << " ---" << std::endl;
+
+
+    for (int row = 0; row < HEIGHT; row++) {
+        for (int col = 0; col < WIDTH; col++) {
+
+            axis_video_dma in_packet;
 
 
 
-  unsigned int test_color = 0x0080FF;
-
-  in_packet.data = static_cast<ap_uint<32>>(rgb_pixel(test_color));
-  in_packet.user = 1;
-  in_packet.last = 1;
-  in_packet.keep = 0xF;
-  in_packet.strb = 0xF;
+            unsigned int test_color = (row << 8) | col;
 
 
-  in_stream.write(in_packet);
+            in_packet.data = test_color;
 
 
-  
+            in_packet.user = (row == 0 && col == 0) ? 1 : 0;
+            in_packet.last = (col == (WIDTH - 1)) ? 1 : 0;
+            in_packet.keep = 0xF;
+            in_packet.strb = 0xF;
+
+
+            in_stream.write(in_packet);
+
+
+
+            
 #ifndef HLS_FASTSIM
 #define hls_passthrough apatb_hls_passthrough_sw
 #endif
-# 28 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
+# 42 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
 hls_passthrough
 #undef hls_passthrough
-# 28 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
+# 42 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
 (in_stream, out_stream);
 #undef hls_passthrough
-# 28 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
+# 42 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
 
 
 
-  axis_video_dma out_packet = out_stream.read();
+            axis_video_dma out_packet = out_stream.read();
 
 
-  unsigned int out_data_cpu =
-      out_packet.data;
+            if (out_packet.data != test_color ||
+                out_packet.user != in_packet.user ||
+                out_packet.last != in_packet.last) {
 
+                std::cout << "CHYBA na pozici: [" << row << "][" << col << "]" << std::endl;
+                std::cout << "  Ocekavano: Data=" << test_color << ", User=" << in_packet.user << ", Last=" << in_packet.last << std::endl;
+                std::cout << "  Prijato:   Data=" << out_packet.data << ", User=" << out_packet.user << ", Last=" << out_packet.last << std::endl;
 
-  if (out_data_cpu != test_color || out_packet.user != 1 ||
-      out_packet.last != 1) {
-    std::cout << "CHYBA: Vystupni data neodpovidaji vstupu!" << std::endl;
-    status = 1;
-  } else {
-    std::cout << "USPECH: Data prosla v poradku vcetne signalu TUSER a TLAST."
-              << std::endl;
-  }
+                status = 1;
+                break;
+            }
+        }
+        if (status != 0) break;
+    }
 
-  return status;
+    if (status == 0) {
+        std::cout << "USPECH: Vsech " << TOTAL_PIXELS << " pixelu proslo v poradku (vcetne TUSER a TLAST signálů)." << std::endl;
+    } else {
+        std::cout << "TEST SELHAL!" << std::endl;
+    }
+
+    return status;
 }
 #endif
-# 48 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
+# 70 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp"
 

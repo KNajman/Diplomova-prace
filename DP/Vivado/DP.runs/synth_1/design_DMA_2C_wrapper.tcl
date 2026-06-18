@@ -57,6 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param general.usePosixSpawnForFork 1
+set_param bd.open.in_stealth_mode 1
 set_msg_config  -id {Board 49-26}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xck26-sfvc784-2LV-c
@@ -81,7 +82,6 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib D:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/hdl/design_DMA_2C_wrapper.vhd
 add_files D:/Repos/_DP/DP/Vivado/DP.srcs/sources_1/bd/design_DMA_2C/design_DMA_2C.bd
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_zynq_ultra_ps_e_0_0/design_DMA_2C_zynq_ultra_ps_e_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_zynq_ultra_ps_e_0_0/design_DMA_2C_zynq_ultra_ps_e_0_0.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/bd_0/ip/ip_1/bd_d851_psr_aclk_0_board.xdc]
@@ -125,6 +125,28 @@ set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0_clocks.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_1/bd_ee55_psr_aclk_0_board.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_2/bd_ee55_arsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_3/bd_ee55_rsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_4/bd_ee55_awsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_5/bd_ee55_wsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_6/bd_ee55_bsw_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_10/bd_ee55_s00a2s_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_11/bd_ee55_sarn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_12/bd_ee55_srn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_16/bd_ee55_s01a2s_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_17/bd_ee55_sawn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_18/bd_ee55_swn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_19/bd_ee55_sbn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_20/bd_ee55_m00s2a_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_21/bd_ee55_m00arn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_22/bd_ee55_m00rn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_23/bd_ee55_m00awn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_24/bd_ee55_m00wn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_25/bd_ee55_m00bn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/smartconnect.xdc]
+set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/design_DMA_2C_ooc.xdc]
 
 OPTRACE "Adding files" END { }

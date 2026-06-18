@@ -4,9 +4,6 @@
 # Block Designs: bd/design_DMA_2C/design_DMA_2C.bd
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_2C || ORIG_REF_NAME==design_DMA_2C} -quiet] -quiet
 
-# IP: bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/design_DMA_2C_hls_passthrough_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_2C_hls_passthrough_0_0 || ORIG_REF_NAME==design_DMA_2C_hls_passthrough_0_0} -quiet] -quiet
-
 # IP: bd/design_DMA_2C/ip/design_DMA_2C_zynq_ultra_ps_e_0_0/design_DMA_2C_zynq_ultra_ps_e_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_2C_zynq_ultra_ps_e_0_0 || ORIG_REF_NAME==design_DMA_2C_zynq_ultra_ps_e_0_0} -quiet] -quiet
 
@@ -18,5 +15,11 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_
 
 # IP: bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_2C_axi_dma_0_0 || ORIG_REF_NAME==design_DMA_2C_axi_dma_0_0} -quiet] -quiet
+
+# IP: bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/design_DMA_2C_axi_smc_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_2C_axi_smc_1_0 || ORIG_REF_NAME==design_DMA_2C_axi_smc_1_0} -quiet] -quiet
+
+# IP: bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0/design_DMA_2C_hls_passthrough_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_DMA_2C_hls_passthrough_0_0 || ORIG_REF_NAME==design_DMA_2C_hls_passthrough_0_0} -quiet] -quiet
 
 # XDC: d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/design_DMA_2C_ooc.xdc
