@@ -73,12 +73,15 @@ void hls_filter_2d(
 
     // Posuv oken
     for (int r = 0; r < KERNEL_SIZE; r++) {
+      #pragma HLS UNROLL factor=KERNEL_SIZE
       for (int c = 0; c < KERNEL_SIZE - 1; c++) {
+        #pragma HLS UNROLL factor=KERNEL_SIZE
         window[r][c] = window[r][c + 1];
       }
     }
 
     for (int r = 0; r < KERNEL_SIZE - 1; r++) {
+      #pragma HLS UNROLL factor=KERNEL_SIZE
       window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
     }
     window[KERNEL_SIZE - 1][KERNEL_SIZE - 1] = new_pixel;
@@ -107,7 +110,9 @@ void hls_filter_2d(
       ap_int<ACCUMULATOR_WIDTH> sum = 0;
 
       for (int r = 0; r < KERNEL_SIZE; r++) {
+        #pragma HLS UNROLL factor=KERNEL_SIZE
         for (int c = 0; c < KERNEL_SIZE; c++) {
+          #pragma HLS UNROLL factor=KERNEL_SIZE
 
           // Znaménkové souřadnice pro detekci okrajů (Padding)
           ap_int<COORD_BITS + 2> img_x =

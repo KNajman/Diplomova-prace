@@ -23,7 +23,8 @@ void hls_filter_median_3x3(
 
     ap_uint<COORD_BITS> x = 0;
     ap_uint<COORD_BITS> y = 0;
-    bool sof_flag = true; // Je indikováno odeslání prvního pixelu (Start Of Frame).
+    ap_uint<COORD_BITS> out_x = 0;
+    ap_uint<COORD_BITS> out_y = 0;
 
     // Je iterováno přesně přes počet pixelů na vstupu.
     ap_uint<TOTAL_PIXELS_BITS> total_pixels = width * height;
@@ -100,17 +101,26 @@ void hls_filter_median_3x3(
             axis_gray out_packet;
             out_packet.data = median_out;
 
-            // Nastavení SOF jen pro první pixel výstupního obrazu.
-            bool is_first_output = (out_y == 0 && out_x == RADIUS);  // For VALID mode
-            out_packet.user = is_first_output ? 1 : 0;
+            // Vypočítat skutečnou šířku a výšku výstupního obrazu pro VALID režim
+            ap_uint<COORD_BITS> actual_out_width = width - 2 * RADIUS;
+            ap_uint<COORD_BITS> actual_out_height = height - 2 * RADIUS;
 
-            // Nastavení příznaku posledního pixelu v řádku.
-            out_packet.last = (x == width - 1) ? 1 : 0;
+            // Nastavení SOF jen pro první výstupní pixel (0,0 v prostoru výstupu)
+            out_packet.user = (out_x == 0 && out_y == 0) ? 1 : 0;
+
+            // Nastavení příznaku posledního pixelu v řádku podle pozice ve výstupu
+            out_packet.last = (out_x == actual_out_width - 1) ? 1 : 0;
 
             // Odeslání paketu do výstupního streamu.
             m_axis_video.write(out_packet);
-            
-            sof_flag = false; // Příznak Start Of Frame je vynulován.
+
+            // Inkrementace výstupních souřadnic
+            if (out_x == actual_out_width - 1) {
+                out_x = 0;
+                out_y++;
+            } else {
+                out_x++;
+            }
         }
 
         // ---------------------------------------------------------------------
