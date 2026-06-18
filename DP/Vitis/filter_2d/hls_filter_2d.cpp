@@ -58,7 +58,7 @@ void hls_filter_2d(
     // 1. ČTENÍ (Slave AXI-Stream) A LOGIKA OKNA
     // ---------------------------------------------------------------------
 
-    ap_uint<PIXEL_WIDTH> new_pixel = 0;
+    ap_uint<PIXEL_WIDTH> new_pixel;
     // using new_pixel = color_pixel<1,PIXEL_WIDTH>;
 
     if (i < total_pixels) {
@@ -67,22 +67,24 @@ void hls_filter_2d(
       // 2. Extrahujeme data z lokální kopie
       new_pixel = s_axis_video.read().data;
       // new_pixel = (*s_axis_video++).data;
+    } else {
+      new_pixel = 0; // Explicitní zero-padding
     }
 
     // Posuv oken
-    for (size_t r = 0; r < KERNEL_SIZE; r++) {
-      for (size_t c = 0; c < KERNEL_SIZE - 1; c++) {
+    for (int r = 0; r < KERNEL_SIZE; r++) {
+      for (int c = 0; c < KERNEL_SIZE - 1; c++) {
         window[r][c] = window[r][c + 1];
       }
     }
 
-    for (size_t r = 0; r < KERNEL_SIZE - 1; r++) {
+    for (int r = 0; r < KERNEL_SIZE - 1; r++) {
       window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
     }
     window[KERNEL_SIZE - 1][KERNEL_SIZE - 1] = new_pixel;
 
     if (x < width) {
-      for (size_t r = 0; r < KERNEL_SIZE - 2; r++) {
+      for (int r = 0; r < KERNEL_SIZE - 2; r++) {
         line_buffer[r][x] = line_buffer[r + 1][x];
       }
       line_buffer[KERNEL_SIZE - 2][x] = new_pixel;
@@ -104,8 +106,8 @@ void hls_filter_2d(
     if (i >= flush_cycles) {
       ap_int<ACCUMULATOR_WIDTH> sum = 0;
 
-      for (size_t r = 0; r < KERNEL_SIZE; r++) {
-        for (size_t c = 0; c < KERNEL_SIZE; c++) {
+      for (int r = 0; r < KERNEL_SIZE; r++) {
+        for (int c = 0; c < KERNEL_SIZE; c++) {
 
           // Znaménkové souřadnice pro detekci okrajů (Padding)
           ap_int<COORD_BITS + 2> img_x =
