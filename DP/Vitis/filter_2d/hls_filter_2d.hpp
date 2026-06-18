@@ -31,11 +31,11 @@ const int ACCUMULATOR_WIDTH = 32; // Šířka vnitřního sčítače konvoluce
 const int MAX_IMG_WIDTH = 7680; // 8K rozlišení
 
 // 4. Bitové šířky čítačů pro syntézu optimálních sčítaček (místo 32-bit int)
-// (Pro MAX_IMG_WIDTH 7680 potřebuje 13 bitů, protože 2^13 = 8192), lze určit dynamicky jako ceil(log2(MAX_IMG_WIDTH))
-const int COORD_BITS = ceil(log2(MAX_IMG_WIDTH)); //
+// (Pro MAX_IMG_WIDTH 7680 potřebuje 13 bitů, protože 2^13 = 8192)
+// Použít pevnou hodnotu pro kompatibilitu s HLS (ne volat ceil/log2 v hlavičce)
+const int COORD_BITS = 13; // ceil(log2(MAX_IMG_WIDTH)) for MAX_IMG_WIDTH=7680
 const int TOTAL_PIXELS_BITS = COORD_BITS * 2;        // 26 bitů (13 + 13)
 const int FLUSH_CYCLES_BITS = COORD_BITS + 3;        // Rezerva pro okraje
-const int FLUSH_CYCLES_BITS =  //dynamicky vypo
 const int TOTAL_CYCLES_BITS = TOTAL_PIXELS_BITS + 1; // +1 bit proti přetečení
 
 // ============================================================================
