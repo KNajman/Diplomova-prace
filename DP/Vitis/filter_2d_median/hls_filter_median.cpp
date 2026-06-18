@@ -95,16 +95,19 @@ void hls_filter_median_3x3(
         // 3. ŘÍZENÍ VÝSTUPU (Režim HW_VALID)
         // ---------------------------------------------------------------------
         
-        // Výstupní pixel je validní pouze pokud je okno plně naplněno daty (okraje jsou ignorovány).
+        // Výstupní pixel je validní pouze pokud je okno plně naplněno daty (okraje ignorovány).
         if (x >= KERNEL_SIZE - 1 && y >= KERNEL_SIZE - 1) {
             axis_gray out_packet;
             out_packet.data = median_out;
 
-            // Jsou nastaveny synchronizační signály pro AXI-Stream.
-            out_packet.user = sof_flag ? 1 : 0;
+            // Nastavení SOF jen pro první pixel výstupního obrazu.
+            bool is_first_output = (out_y == 0 && out_x == RADIUS);  // For VALID mode
+            out_packet.user = is_first_output ? 1 : 0;
+
+            // Nastavení příznaku posledního pixelu v řádku.
             out_packet.last = (x == width - 1) ? 1 : 0;
 
-            // Paket je odeslán do výstupního streamu.
+            // Odeslání paketu do výstupního streamu.
             m_axis_video.write(out_packet);
             
             sof_flag = false; // Příznak Start Of Frame je vynulován.
