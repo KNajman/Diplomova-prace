@@ -48,8 +48,11 @@ void hls_filter_2d(
   ap_uint<COORD_BITS> out_x = 0;
   ap_uint<COORD_BITS> out_y = 0;
 
-  for (ap_uint<TOTAL_CYCLES_BITS> i = 0; i < total_cycles; i++) {
-#pragma HLS PIPELINE II = 1
+
+  // Split into two phases:
+  // Phase 1: Naplnit pipeline (read/fill for flush_cycles)
+  for (ap_uint<FLUSH_CYCLES_BITS> i = 0; i < flush_cycles; i++) {
+      #pragma HLS PIPELINE II = 1
 
     // ---------------------------------------------------------------------
     // 1. ČTENÍ (Slave AXI-Stream) A LOGIKA OKNA
@@ -90,7 +93,11 @@ void hls_filter_2d(
     } else {
       x++;
     }
+  }
 
+  // Phase 2: Process (read/compute/output for remaining)
+  for (ap_uint<TOTAL_PIXELS_BITS> i = 0; i < total_pixels; i++) {
+      #pragma HLS PIPELINE II = 1
     // ---------------------------------------------------------------------
     // 2. VÝPOČET KONVOLUCE
     // ---------------------------------------------------------------------
@@ -159,7 +166,10 @@ void hls_filter_2d(
       }
 
       // Inkrementace výstupních souřadnic
-      if (out_x == width - 1) {
+      ap_uint<COORD_BITS> actual_out_width = (borderType == 1) ? width : (width - 2 * RADIUS);
+      ap_uint<COORD_BITS> actual_out_height = (borderType == 1) ? height : (height - 2 * RADIUS);
+
+      if (out_x == actual_out_width - 1) {
         out_x = 0;
         out_y++;
       } else {
