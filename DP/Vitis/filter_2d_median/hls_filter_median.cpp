@@ -40,16 +40,16 @@ void hls_filter_median_3x3(
 
         // V okně jsou posunuty všechny dosavadní pixely doleva.
         for (int r = 0; r < KERNEL_SIZE; r++) {
-            #pragma HLS UNROLL
+            #pragma HLS UNROLL factor=KERNEL_SIZE
             for (int c = 0; c < KERNEL_SIZE - 1; c++) {
-                #pragma HLS UNROLL
+                #pragma HLS UNROLL factor=KERNEL_SIZE
                 window[r][c] = window[r][c + 1];
             }
         }
 
         // Do pravého sloupce okna jsou překopírována data z řádkového bufferu.
         for (int r = 0; r < KERNEL_SIZE - 1; r++) {
-            #pragma HLS UNROLL
+            #pragma HLS UNROLL factor=KERNEL_SIZE
             window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
         }
         // Na úplný spodek sloupce je vložen aktuální nový pixel.
@@ -57,7 +57,7 @@ void hls_filter_median_3x3(
 
         // Řádkový buffer je posunut nahoru (staré řádky jsou zahozeny).
         for (int r = 0; r < KERNEL_SIZE - 2; r++) {
-            #pragma HLS UNROLL
+            #pragma HLS UNROLL factor=KERNEL_SIZE
             line_buffer[r][x] = line_buffer[r + 1][x];
         }
         // Nový pixel je uložen na dno řádkového bufferu.
@@ -72,7 +72,7 @@ void hls_filter_median_3x3(
 
         // Krok 1: Jsou setříděny jednotlivé řádky okna.
         for (int row = 0; row < 3; row++) {
-            #pragma HLS UNROLL
+            #pragma HLS UNROLL factor=3
             sort_three(window[row][0], window[row][1], window[row][2], 
                        min[row], med[row], max[row]);
         }
