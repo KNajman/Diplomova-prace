@@ -4,7 +4,7 @@
     "xci_name": "design_DMA_2C_hls_passthrough_0_0",
     "cell_name": "hls_passthrough_0",
     "component_reference": "xilinx.com:hls:hls_passthrough:1.0",
-    "ip_revision": "2114599741",
+    "ip_revision": "2114608609",
     "gen_directory": "../../../../../../DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0",
     "parameters": {
       "component_parameters": {
@@ -34,13 +34,13 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114599741" } ],
+        "IPREVISION": [ { "value": "2114608609" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_hls_passthrough_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2025.2" } ],
-        "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
+        "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
       }
     },
     "boundary": {
@@ -402,5 +402,5 @@
       }
     }
   },
-  "checksum": "00896bcf"
+  "checksum": "bcb4f9cc"
 }

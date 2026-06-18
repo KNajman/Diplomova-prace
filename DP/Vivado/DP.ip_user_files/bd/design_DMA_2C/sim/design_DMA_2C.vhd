@@ -2,7 +2,7 @@
 --Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
---Date        : Tue May  5 23:07:20 2026
+--Date        : Thu May 14 19:41:05 2026
 --Host        : N166A running 64-bit major release  (build 9200)
 --Command     : generate_target design_DMA_2C.bd
 --Design      : design_DMA_2C
@@ -14,32 +14,12 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_DMA_2C is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of design_DMA_2C : entity is "design_DMA_2C,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_DMA_2C,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=5,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=2,da_clkrst_cnt=1,da_zynq_ultra_ps_e_cnt=1,synth_mode=Hierarchical}";
+  attribute CORE_GENERATION_INFO of design_DMA_2C : entity is "design_DMA_2C,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_DMA_2C,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=7,da_clkrst_cnt=1,da_zynq_ultra_ps_e_cnt=1,synth_mode=None}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_DMA_2C : entity is "design_DMA_2C.hwdef";
 end design_DMA_2C;
 
 architecture STRUCTURE of design_DMA_2C is
-  component design_DMA_2C_hls_passthrough_0_0 is
-  port (
-    ap_clk : in STD_LOGIC;
-    ap_rst_n : in STD_LOGIC;
-    in_stream_TDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    in_stream_TKEEP : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    in_stream_TLAST : in STD_LOGIC_VECTOR ( 0 to 0 );
-    in_stream_TREADY : out STD_LOGIC;
-    in_stream_TSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    in_stream_TUSER : in STD_LOGIC_VECTOR ( 0 to 0 );
-    in_stream_TVALID : in STD_LOGIC;
-    out_stream_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    out_stream_TKEEP : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    out_stream_TLAST : out STD_LOGIC_VECTOR ( 0 to 0 );
-    out_stream_TREADY : in STD_LOGIC;
-    out_stream_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    out_stream_TUSER : out STD_LOGIC_VECTOR ( 0 to 0 );
-    out_stream_TVALID : out STD_LOGIC
-  );
-  end component design_DMA_2C_hls_passthrough_0_0;
   component design_DMA_2C_zynq_ultra_ps_e_0_0 is
   port (
     maxihpm0_fpd_aclk : in STD_LOGIC;
@@ -82,7 +62,46 @@ architecture STRUCTURE of design_DMA_2C is
     maxigp0_rready : out STD_LOGIC;
     maxigp0_awqos : out STD_LOGIC_VECTOR ( 3 downto 0 );
     maxigp0_arqos : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    pl_ps_irq0 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    saxihp0_fpd_aclk : in STD_LOGIC;
+    saxigp2_aruser : in STD_LOGIC;
+    saxigp2_awuser : in STD_LOGIC;
+    saxigp2_awid : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    saxigp2_awaddr : in STD_LOGIC_VECTOR ( 48 downto 0 );
+    saxigp2_awlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    saxigp2_awsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    saxigp2_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    saxigp2_awlock : in STD_LOGIC;
+    saxigp2_awcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    saxigp2_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    saxigp2_awvalid : in STD_LOGIC;
+    saxigp2_awready : out STD_LOGIC;
+    saxigp2_wdata : in STD_LOGIC_VECTOR ( 127 downto 0 );
+    saxigp2_wstrb : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    saxigp2_wlast : in STD_LOGIC;
+    saxigp2_wvalid : in STD_LOGIC;
+    saxigp2_wready : out STD_LOGIC;
+    saxigp2_bid : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    saxigp2_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    saxigp2_bvalid : out STD_LOGIC;
+    saxigp2_bready : in STD_LOGIC;
+    saxigp2_arid : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    saxigp2_araddr : in STD_LOGIC_VECTOR ( 48 downto 0 );
+    saxigp2_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    saxigp2_arsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    saxigp2_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    saxigp2_arlock : in STD_LOGIC;
+    saxigp2_arcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    saxigp2_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    saxigp2_arvalid : in STD_LOGIC;
+    saxigp2_arready : out STD_LOGIC;
+    saxigp2_rid : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    saxigp2_rdata : out STD_LOGIC_VECTOR ( 127 downto 0 );
+    saxigp2_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    saxigp2_rlast : out STD_LOGIC;
+    saxigp2_rvalid : out STD_LOGIC;
+    saxigp2_rready : in STD_LOGIC;
+    saxigp2_awqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    saxigp2_arqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
     pl_resetn0 : out STD_LOGIC;
     pl_clk0 : out STD_LOGIC
   );
@@ -148,7 +167,26 @@ architecture STRUCTURE of design_DMA_2C is
     M00_AXI_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     M00_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M00_AXI_rvalid : in STD_LOGIC;
-    M00_AXI_rready : out STD_LOGIC
+    M00_AXI_rready : out STD_LOGIC;
+    M01_AXI_awaddr : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M01_AXI_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M01_AXI_awvalid : out STD_LOGIC;
+    M01_AXI_awready : in STD_LOGIC;
+    M01_AXI_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M01_AXI_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M01_AXI_wvalid : out STD_LOGIC;
+    M01_AXI_wready : in STD_LOGIC;
+    M01_AXI_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M01_AXI_bvalid : in STD_LOGIC;
+    M01_AXI_bready : out STD_LOGIC;
+    M01_AXI_araddr : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M01_AXI_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M01_AXI_arvalid : out STD_LOGIC;
+    M01_AXI_arready : in STD_LOGIC;
+    M01_AXI_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    M01_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M01_AXI_rvalid : in STD_LOGIC;
+    M01_AXI_rready : out STD_LOGIC
   );
   end component design_DMA_2C_axi_smc_0;
   component design_DMA_2C_rst_ps8_0_99M_0 is
@@ -232,11 +270,183 @@ architecture STRUCTURE of design_DMA_2C is
     s2mm_introut : out STD_LOGIC
   );
   end component design_DMA_2C_axi_dma_0_0;
+  component design_DMA_2C_axi_smc_1_0 is
+  port (
+    aclk : in STD_LOGIC;
+    aresetn : in STD_LOGIC;
+    S00_AXI_araddr : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    S00_AXI_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    S00_AXI_arsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S00_AXI_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S00_AXI_arlock : in STD_LOGIC_VECTOR ( 0 to 0 );
+    S00_AXI_arcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S00_AXI_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S00_AXI_arqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S00_AXI_arvalid : in STD_LOGIC;
+    S00_AXI_arready : out STD_LOGIC;
+    S00_AXI_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    S00_AXI_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S00_AXI_rlast : out STD_LOGIC;
+    S00_AXI_rvalid : out STD_LOGIC;
+    S00_AXI_rready : in STD_LOGIC;
+    S01_AXI_awaddr : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    S01_AXI_awlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    S01_AXI_awsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S01_AXI_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S01_AXI_awlock : in STD_LOGIC_VECTOR ( 0 to 0 );
+    S01_AXI_awcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S01_AXI_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S01_AXI_awqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S01_AXI_awvalid : in STD_LOGIC;
+    S01_AXI_awready : out STD_LOGIC;
+    S01_AXI_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S01_AXI_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S01_AXI_wlast : in STD_LOGIC;
+    S01_AXI_wvalid : in STD_LOGIC;
+    S01_AXI_wready : out STD_LOGIC;
+    S01_AXI_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S01_AXI_bvalid : out STD_LOGIC;
+    S01_AXI_bready : in STD_LOGIC;
+    M00_AXI_awaddr : out STD_LOGIC_VECTOR ( 48 downto 0 );
+    M00_AXI_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    M00_AXI_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M00_AXI_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M00_AXI_awlock : out STD_LOGIC_VECTOR ( 0 to 0 );
+    M00_AXI_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M00_AXI_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M00_AXI_awqos : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M00_AXI_awvalid : out STD_LOGIC;
+    M00_AXI_awready : in STD_LOGIC;
+    M00_AXI_wdata : out STD_LOGIC_VECTOR ( 127 downto 0 );
+    M00_AXI_wstrb : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    M00_AXI_wlast : out STD_LOGIC;
+    M00_AXI_wvalid : out STD_LOGIC;
+    M00_AXI_wready : in STD_LOGIC;
+    M00_AXI_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M00_AXI_bvalid : in STD_LOGIC;
+    M00_AXI_bready : out STD_LOGIC;
+    M00_AXI_araddr : out STD_LOGIC_VECTOR ( 48 downto 0 );
+    M00_AXI_arlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    M00_AXI_arsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M00_AXI_arburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M00_AXI_arlock : out STD_LOGIC_VECTOR ( 0 to 0 );
+    M00_AXI_arcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M00_AXI_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M00_AXI_arqos : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M00_AXI_arvalid : out STD_LOGIC;
+    M00_AXI_arready : in STD_LOGIC;
+    M00_AXI_rdata : in STD_LOGIC_VECTOR ( 127 downto 0 );
+    M00_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M00_AXI_rlast : in STD_LOGIC;
+    M00_AXI_rvalid : in STD_LOGIC;
+    M00_AXI_rready : out STD_LOGIC
+  );
+  end component design_DMA_2C_axi_smc_1_0;
+  component design_DMA_2C_hls_passthrough_0_0 is
+  port (
+    s_axi_control_ARADDR : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_ARREADY : out STD_LOGIC;
+    s_axi_control_ARVALID : in STD_LOGIC;
+    s_axi_control_AWADDR : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_AWREADY : out STD_LOGIC;
+    s_axi_control_AWVALID : in STD_LOGIC;
+    s_axi_control_BREADY : in STD_LOGIC;
+    s_axi_control_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_control_BVALID : out STD_LOGIC;
+    s_axi_control_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_control_RREADY : in STD_LOGIC;
+    s_axi_control_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_control_RVALID : out STD_LOGIC;
+    s_axi_control_WDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_control_WREADY : out STD_LOGIC;
+    s_axi_control_WSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_WVALID : in STD_LOGIC;
+    ap_clk : in STD_LOGIC;
+    ap_rst_n : in STD_LOGIC;
+    interrupt : out STD_LOGIC;
+    in_stream_TDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    in_stream_TKEEP : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    in_stream_TLAST : in STD_LOGIC_VECTOR ( 0 to 0 );
+    in_stream_TREADY : out STD_LOGIC;
+    in_stream_TSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    in_stream_TUSER : in STD_LOGIC_VECTOR ( 0 to 0 );
+    in_stream_TVALID : in STD_LOGIC;
+    out_stream_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    out_stream_TKEEP : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    out_stream_TLAST : out STD_LOGIC_VECTOR ( 0 to 0 );
+    out_stream_TREADY : in STD_LOGIC;
+    out_stream_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    out_stream_TUSER : out STD_LOGIC_VECTOR ( 0 to 0 );
+    out_stream_TVALID : out STD_LOGIC
+  );
+  end component design_DMA_2C_hls_passthrough_0_0;
   signal axi_dma_0_M_AXIS_MM2S_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_dma_0_M_AXIS_MM2S_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_dma_0_M_AXIS_MM2S_TLAST : STD_LOGIC;
   signal axi_dma_0_M_AXIS_MM2S_TREADY : STD_LOGIC;
   signal axi_dma_0_M_AXIS_MM2S_TVALID : STD_LOGIC;
+  signal axi_dma_0_M_AXI_MM2S_ARADDR : STD_LOGIC_VECTOR ( 63 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_ARBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_ARCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_ARLEN : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_ARPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_ARREADY : STD_LOGIC;
+  signal axi_dma_0_M_AXI_MM2S_ARSIZE : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_ARVALID : STD_LOGIC;
+  signal axi_dma_0_M_AXI_MM2S_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_RLAST : STD_LOGIC;
+  signal axi_dma_0_M_AXI_MM2S_RREADY : STD_LOGIC;
+  signal axi_dma_0_M_AXI_MM2S_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_dma_0_M_AXI_MM2S_RVALID : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_AWADDR : STD_LOGIC_VECTOR ( 63 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_AWBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_AWCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_AWLEN : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_AWPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_AWREADY : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_AWSIZE : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_AWVALID : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_BREADY : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_BVALID : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_WLAST : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_WREADY : STD_LOGIC;
+  signal axi_dma_0_M_AXI_S2MM_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_dma_0_M_AXI_S2MM_WVALID : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_ARADDR : STD_LOGIC_VECTOR ( 48 downto 0 );
+  signal axi_smc_1_M00_AXI_ARBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_1_M00_AXI_ARCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_1_M00_AXI_ARLEN : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal axi_smc_1_M00_AXI_ARLOCK : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal axi_smc_1_M00_AXI_ARPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_smc_1_M00_AXI_ARQOS : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_1_M00_AXI_ARREADY : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_ARSIZE : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_smc_1_M00_AXI_ARVALID : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_AWADDR : STD_LOGIC_VECTOR ( 48 downto 0 );
+  signal axi_smc_1_M00_AXI_AWBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_1_M00_AXI_AWCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_1_M00_AXI_AWLEN : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal axi_smc_1_M00_AXI_AWLOCK : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal axi_smc_1_M00_AXI_AWPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_smc_1_M00_AXI_AWQOS : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_1_M00_AXI_AWREADY : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_AWSIZE : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axi_smc_1_M00_AXI_AWVALID : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_BREADY : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_1_M00_AXI_BVALID : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_RDATA : STD_LOGIC_VECTOR ( 127 downto 0 );
+  signal axi_smc_1_M00_AXI_RLAST : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_RREADY : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_1_M00_AXI_RVALID : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_WDATA : STD_LOGIC_VECTOR ( 127 downto 0 );
+  signal axi_smc_1_M00_AXI_WLAST : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_WREADY : STD_LOGIC;
+  signal axi_smc_1_M00_AXI_WSTRB : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal axi_smc_1_M00_AXI_WVALID : STD_LOGIC;
   signal axi_smc_M00_AXI_ARADDR : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal axi_smc_M00_AXI_ARREADY : STD_LOGIC;
   signal axi_smc_M00_AXI_ARVALID : STD_LOGIC;
@@ -253,6 +463,23 @@ architecture STRUCTURE of design_DMA_2C is
   signal axi_smc_M00_AXI_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_smc_M00_AXI_WREADY : STD_LOGIC;
   signal axi_smc_M00_AXI_WVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_ARADDR : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_M01_AXI_ARREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_ARVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_AWADDR : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_M01_AXI_AWREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_AWVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_BREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_M01_AXI_BVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axi_smc_M01_AXI_RREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_smc_M01_AXI_RVALID : STD_LOGIC;
+  signal axi_smc_M01_AXI_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axi_smc_M01_AXI_WREADY : STD_LOGIC;
+  signal axi_smc_M01_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_smc_M01_AXI_WVALID : STD_LOGIC;
   signal hls_passthrough_0_out_stream_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal hls_passthrough_0_out_stream_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal hls_passthrough_0_out_stream_TLAST : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -300,74 +527,59 @@ architecture STRUCTURE of design_DMA_2C is
   signal zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WVALID : STD_LOGIC;
   signal zynq_ultra_ps_e_0_pl_clk0 : STD_LOGIC;
   signal zynq_ultra_ps_e_0_pl_resetn0 : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_mm2s_arvalid_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_mm2s_rready_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_s2mm_awvalid_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_s2mm_bready_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_s2mm_wlast_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_s2mm_wvalid_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dma_0_mm2s_introut_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dma_0_mm2s_prmry_reset_out_n_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dma_0_s2mm_introut_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dma_0_s2mm_prmry_reset_out_n_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_dma_0_m_axi_mm2s_araddr_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 0 );
-  signal NLW_axi_dma_0_m_axi_mm2s_arburst_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_axi_dma_0_m_axi_mm2s_arcache_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_axi_dma_0_m_axi_mm2s_arlen_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_axi_dma_0_m_axi_mm2s_arprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal NLW_axi_dma_0_m_axi_mm2s_arsize_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_awaddr_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_awburst_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_awcache_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_awlen_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_awprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_awsize_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_wdata_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal NLW_axi_dma_0_m_axi_s2mm_wstrb_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_axi_smc_M00_AXI_arprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_axi_smc_M00_AXI_awprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_axi_smc_M00_AXI_wstrb_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal NLW_axi_smc_M01_AXI_arprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal NLW_axi_smc_M01_AXI_awprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal NLW_hls_passthrough_0_interrupt_UNCONNECTED : STD_LOGIC;
   signal NLW_hls_passthrough_0_out_stream_TSTRB_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_hls_passthrough_0_out_stream_TUSER_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps8_0_99M_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_ps8_0_99M_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps8_0_99M_interconnect_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps8_0_99M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal NLW_zynq_ultra_ps_e_0_saxigp2_bid_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal NLW_zynq_ultra_ps_e_0_saxigp2_rid_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
 begin
 axi_dma_0: component design_DMA_2C_axi_dma_0_0
      port map (
       axi_resetn => rst_ps8_0_99M_peripheral_aresetn(0),
       m_axi_mm2s_aclk => zynq_ultra_ps_e_0_pl_clk0,
-      m_axi_mm2s_araddr(63 downto 0) => NLW_axi_dma_0_m_axi_mm2s_araddr_UNCONNECTED(63 downto 0),
-      m_axi_mm2s_arburst(1 downto 0) => NLW_axi_dma_0_m_axi_mm2s_arburst_UNCONNECTED(1 downto 0),
-      m_axi_mm2s_arcache(3 downto 0) => NLW_axi_dma_0_m_axi_mm2s_arcache_UNCONNECTED(3 downto 0),
-      m_axi_mm2s_arlen(7 downto 0) => NLW_axi_dma_0_m_axi_mm2s_arlen_UNCONNECTED(7 downto 0),
-      m_axi_mm2s_arprot(2 downto 0) => NLW_axi_dma_0_m_axi_mm2s_arprot_UNCONNECTED(2 downto 0),
-      m_axi_mm2s_arready => '0',
-      m_axi_mm2s_arsize(2 downto 0) => NLW_axi_dma_0_m_axi_mm2s_arsize_UNCONNECTED(2 downto 0),
-      m_axi_mm2s_arvalid => NLW_axi_dma_0_m_axi_mm2s_arvalid_UNCONNECTED,
-      m_axi_mm2s_rdata(31 downto 0) => B"00000000000000000000000000000000",
-      m_axi_mm2s_rlast => '0',
-      m_axi_mm2s_rready => NLW_axi_dma_0_m_axi_mm2s_rready_UNCONNECTED,
-      m_axi_mm2s_rresp(1 downto 0) => B"00",
-      m_axi_mm2s_rvalid => '0',
+      m_axi_mm2s_araddr(63 downto 0) => axi_dma_0_M_AXI_MM2S_ARADDR(63 downto 0),
+      m_axi_mm2s_arburst(1 downto 0) => axi_dma_0_M_AXI_MM2S_ARBURST(1 downto 0),
+      m_axi_mm2s_arcache(3 downto 0) => axi_dma_0_M_AXI_MM2S_ARCACHE(3 downto 0),
+      m_axi_mm2s_arlen(7 downto 0) => axi_dma_0_M_AXI_MM2S_ARLEN(7 downto 0),
+      m_axi_mm2s_arprot(2 downto 0) => axi_dma_0_M_AXI_MM2S_ARPROT(2 downto 0),
+      m_axi_mm2s_arready => axi_dma_0_M_AXI_MM2S_ARREADY,
+      m_axi_mm2s_arsize(2 downto 0) => axi_dma_0_M_AXI_MM2S_ARSIZE(2 downto 0),
+      m_axi_mm2s_arvalid => axi_dma_0_M_AXI_MM2S_ARVALID,
+      m_axi_mm2s_rdata(31 downto 0) => axi_dma_0_M_AXI_MM2S_RDATA(31 downto 0),
+      m_axi_mm2s_rlast => axi_dma_0_M_AXI_MM2S_RLAST,
+      m_axi_mm2s_rready => axi_dma_0_M_AXI_MM2S_RREADY,
+      m_axi_mm2s_rresp(1 downto 0) => axi_dma_0_M_AXI_MM2S_RRESP(1 downto 0),
+      m_axi_mm2s_rvalid => axi_dma_0_M_AXI_MM2S_RVALID,
       m_axi_s2mm_aclk => zynq_ultra_ps_e_0_pl_clk0,
-      m_axi_s2mm_awaddr(63 downto 0) => NLW_axi_dma_0_m_axi_s2mm_awaddr_UNCONNECTED(63 downto 0),
-      m_axi_s2mm_awburst(1 downto 0) => NLW_axi_dma_0_m_axi_s2mm_awburst_UNCONNECTED(1 downto 0),
-      m_axi_s2mm_awcache(3 downto 0) => NLW_axi_dma_0_m_axi_s2mm_awcache_UNCONNECTED(3 downto 0),
-      m_axi_s2mm_awlen(7 downto 0) => NLW_axi_dma_0_m_axi_s2mm_awlen_UNCONNECTED(7 downto 0),
-      m_axi_s2mm_awprot(2 downto 0) => NLW_axi_dma_0_m_axi_s2mm_awprot_UNCONNECTED(2 downto 0),
-      m_axi_s2mm_awready => '0',
-      m_axi_s2mm_awsize(2 downto 0) => NLW_axi_dma_0_m_axi_s2mm_awsize_UNCONNECTED(2 downto 0),
-      m_axi_s2mm_awvalid => NLW_axi_dma_0_m_axi_s2mm_awvalid_UNCONNECTED,
-      m_axi_s2mm_bready => NLW_axi_dma_0_m_axi_s2mm_bready_UNCONNECTED,
-      m_axi_s2mm_bresp(1 downto 0) => B"00",
-      m_axi_s2mm_bvalid => '0',
-      m_axi_s2mm_wdata(31 downto 0) => NLW_axi_dma_0_m_axi_s2mm_wdata_UNCONNECTED(31 downto 0),
-      m_axi_s2mm_wlast => NLW_axi_dma_0_m_axi_s2mm_wlast_UNCONNECTED,
-      m_axi_s2mm_wready => '0',
-      m_axi_s2mm_wstrb(3 downto 0) => NLW_axi_dma_0_m_axi_s2mm_wstrb_UNCONNECTED(3 downto 0),
-      m_axi_s2mm_wvalid => NLW_axi_dma_0_m_axi_s2mm_wvalid_UNCONNECTED,
+      m_axi_s2mm_awaddr(63 downto 0) => axi_dma_0_M_AXI_S2MM_AWADDR(63 downto 0),
+      m_axi_s2mm_awburst(1 downto 0) => axi_dma_0_M_AXI_S2MM_AWBURST(1 downto 0),
+      m_axi_s2mm_awcache(3 downto 0) => axi_dma_0_M_AXI_S2MM_AWCACHE(3 downto 0),
+      m_axi_s2mm_awlen(7 downto 0) => axi_dma_0_M_AXI_S2MM_AWLEN(7 downto 0),
+      m_axi_s2mm_awprot(2 downto 0) => axi_dma_0_M_AXI_S2MM_AWPROT(2 downto 0),
+      m_axi_s2mm_awready => axi_dma_0_M_AXI_S2MM_AWREADY,
+      m_axi_s2mm_awsize(2 downto 0) => axi_dma_0_M_AXI_S2MM_AWSIZE(2 downto 0),
+      m_axi_s2mm_awvalid => axi_dma_0_M_AXI_S2MM_AWVALID,
+      m_axi_s2mm_bready => axi_dma_0_M_AXI_S2MM_BREADY,
+      m_axi_s2mm_bresp(1 downto 0) => axi_dma_0_M_AXI_S2MM_BRESP(1 downto 0),
+      m_axi_s2mm_bvalid => axi_dma_0_M_AXI_S2MM_BVALID,
+      m_axi_s2mm_wdata(31 downto 0) => axi_dma_0_M_AXI_S2MM_WDATA(31 downto 0),
+      m_axi_s2mm_wlast => axi_dma_0_M_AXI_S2MM_WLAST,
+      m_axi_s2mm_wready => axi_dma_0_M_AXI_S2MM_WREADY,
+      m_axi_s2mm_wstrb(3 downto 0) => axi_dma_0_M_AXI_S2MM_WSTRB(3 downto 0),
+      m_axi_s2mm_wvalid => axi_dma_0_M_AXI_S2MM_WVALID,
       m_axis_mm2s_tdata(31 downto 0) => axi_dma_0_M_AXIS_MM2S_TDATA(31 downto 0),
       m_axis_mm2s_tkeep(3 downto 0) => axi_dma_0_M_AXIS_MM2S_TKEEP(3 downto 0),
       m_axis_mm2s_tlast => axi_dma_0_M_AXIS_MM2S_TLAST,
@@ -421,6 +633,25 @@ axi_smc: component design_DMA_2C_axi_smc_0
       M00_AXI_wready => axi_smc_M00_AXI_WREADY,
       M00_AXI_wstrb(3 downto 0) => NLW_axi_smc_M00_AXI_wstrb_UNCONNECTED(3 downto 0),
       M00_AXI_wvalid => axi_smc_M00_AXI_WVALID,
+      M01_AXI_araddr(3 downto 0) => axi_smc_M01_AXI_ARADDR(3 downto 0),
+      M01_AXI_arprot(2 downto 0) => NLW_axi_smc_M01_AXI_arprot_UNCONNECTED(2 downto 0),
+      M01_AXI_arready => axi_smc_M01_AXI_ARREADY,
+      M01_AXI_arvalid => axi_smc_M01_AXI_ARVALID,
+      M01_AXI_awaddr(3 downto 0) => axi_smc_M01_AXI_AWADDR(3 downto 0),
+      M01_AXI_awprot(2 downto 0) => NLW_axi_smc_M01_AXI_awprot_UNCONNECTED(2 downto 0),
+      M01_AXI_awready => axi_smc_M01_AXI_AWREADY,
+      M01_AXI_awvalid => axi_smc_M01_AXI_AWVALID,
+      M01_AXI_bready => axi_smc_M01_AXI_BREADY,
+      M01_AXI_bresp(1 downto 0) => axi_smc_M01_AXI_BRESP(1 downto 0),
+      M01_AXI_bvalid => axi_smc_M01_AXI_BVALID,
+      M01_AXI_rdata(31 downto 0) => axi_smc_M01_AXI_RDATA(31 downto 0),
+      M01_AXI_rready => axi_smc_M01_AXI_RREADY,
+      M01_AXI_rresp(1 downto 0) => axi_smc_M01_AXI_RRESP(1 downto 0),
+      M01_AXI_rvalid => axi_smc_M01_AXI_RVALID,
+      M01_AXI_wdata(31 downto 0) => axi_smc_M01_AXI_WDATA(31 downto 0),
+      M01_AXI_wready => axi_smc_M01_AXI_WREADY,
+      M01_AXI_wstrb(3 downto 0) => axi_smc_M01_AXI_WSTRB(3 downto 0),
+      M01_AXI_wvalid => axi_smc_M01_AXI_WVALID,
       S00_AXI_araddr(39 downto 0) => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR(39 downto 0),
       S00_AXI_arburst(1 downto 0) => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST(1 downto 0),
       S00_AXI_arcache(3 downto 0) => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARCACHE(3 downto 0),
@@ -463,6 +694,77 @@ axi_smc: component design_DMA_2C_axi_smc_0
       aclk => zynq_ultra_ps_e_0_pl_clk0,
       aresetn => rst_ps8_0_99M_peripheral_aresetn(0)
     );
+axi_smc_1: component design_DMA_2C_axi_smc_1_0
+     port map (
+      M00_AXI_araddr(48 downto 0) => axi_smc_1_M00_AXI_ARADDR(48 downto 0),
+      M00_AXI_arburst(1 downto 0) => axi_smc_1_M00_AXI_ARBURST(1 downto 0),
+      M00_AXI_arcache(3 downto 0) => axi_smc_1_M00_AXI_ARCACHE(3 downto 0),
+      M00_AXI_arlen(7 downto 0) => axi_smc_1_M00_AXI_ARLEN(7 downto 0),
+      M00_AXI_arlock(0) => axi_smc_1_M00_AXI_ARLOCK(0),
+      M00_AXI_arprot(2 downto 0) => axi_smc_1_M00_AXI_ARPROT(2 downto 0),
+      M00_AXI_arqos(3 downto 0) => axi_smc_1_M00_AXI_ARQOS(3 downto 0),
+      M00_AXI_arready => axi_smc_1_M00_AXI_ARREADY,
+      M00_AXI_arsize(2 downto 0) => axi_smc_1_M00_AXI_ARSIZE(2 downto 0),
+      M00_AXI_arvalid => axi_smc_1_M00_AXI_ARVALID,
+      M00_AXI_awaddr(48 downto 0) => axi_smc_1_M00_AXI_AWADDR(48 downto 0),
+      M00_AXI_awburst(1 downto 0) => axi_smc_1_M00_AXI_AWBURST(1 downto 0),
+      M00_AXI_awcache(3 downto 0) => axi_smc_1_M00_AXI_AWCACHE(3 downto 0),
+      M00_AXI_awlen(7 downto 0) => axi_smc_1_M00_AXI_AWLEN(7 downto 0),
+      M00_AXI_awlock(0) => axi_smc_1_M00_AXI_AWLOCK(0),
+      M00_AXI_awprot(2 downto 0) => axi_smc_1_M00_AXI_AWPROT(2 downto 0),
+      M00_AXI_awqos(3 downto 0) => axi_smc_1_M00_AXI_AWQOS(3 downto 0),
+      M00_AXI_awready => axi_smc_1_M00_AXI_AWREADY,
+      M00_AXI_awsize(2 downto 0) => axi_smc_1_M00_AXI_AWSIZE(2 downto 0),
+      M00_AXI_awvalid => axi_smc_1_M00_AXI_AWVALID,
+      M00_AXI_bready => axi_smc_1_M00_AXI_BREADY,
+      M00_AXI_bresp(1 downto 0) => axi_smc_1_M00_AXI_BRESP(1 downto 0),
+      M00_AXI_bvalid => axi_smc_1_M00_AXI_BVALID,
+      M00_AXI_rdata(127 downto 0) => axi_smc_1_M00_AXI_RDATA(127 downto 0),
+      M00_AXI_rlast => axi_smc_1_M00_AXI_RLAST,
+      M00_AXI_rready => axi_smc_1_M00_AXI_RREADY,
+      M00_AXI_rresp(1 downto 0) => axi_smc_1_M00_AXI_RRESP(1 downto 0),
+      M00_AXI_rvalid => axi_smc_1_M00_AXI_RVALID,
+      M00_AXI_wdata(127 downto 0) => axi_smc_1_M00_AXI_WDATA(127 downto 0),
+      M00_AXI_wlast => axi_smc_1_M00_AXI_WLAST,
+      M00_AXI_wready => axi_smc_1_M00_AXI_WREADY,
+      M00_AXI_wstrb(15 downto 0) => axi_smc_1_M00_AXI_WSTRB(15 downto 0),
+      M00_AXI_wvalid => axi_smc_1_M00_AXI_WVALID,
+      S00_AXI_araddr(63 downto 0) => axi_dma_0_M_AXI_MM2S_ARADDR(63 downto 0),
+      S00_AXI_arburst(1 downto 0) => axi_dma_0_M_AXI_MM2S_ARBURST(1 downto 0),
+      S00_AXI_arcache(3 downto 0) => axi_dma_0_M_AXI_MM2S_ARCACHE(3 downto 0),
+      S00_AXI_arlen(7 downto 0) => axi_dma_0_M_AXI_MM2S_ARLEN(7 downto 0),
+      S00_AXI_arlock(0) => '0',
+      S00_AXI_arprot(2 downto 0) => axi_dma_0_M_AXI_MM2S_ARPROT(2 downto 0),
+      S00_AXI_arqos(3 downto 0) => B"0000",
+      S00_AXI_arready => axi_dma_0_M_AXI_MM2S_ARREADY,
+      S00_AXI_arsize(2 downto 0) => axi_dma_0_M_AXI_MM2S_ARSIZE(2 downto 0),
+      S00_AXI_arvalid => axi_dma_0_M_AXI_MM2S_ARVALID,
+      S00_AXI_rdata(31 downto 0) => axi_dma_0_M_AXI_MM2S_RDATA(31 downto 0),
+      S00_AXI_rlast => axi_dma_0_M_AXI_MM2S_RLAST,
+      S00_AXI_rready => axi_dma_0_M_AXI_MM2S_RREADY,
+      S00_AXI_rresp(1 downto 0) => axi_dma_0_M_AXI_MM2S_RRESP(1 downto 0),
+      S00_AXI_rvalid => axi_dma_0_M_AXI_MM2S_RVALID,
+      S01_AXI_awaddr(63 downto 0) => axi_dma_0_M_AXI_S2MM_AWADDR(63 downto 0),
+      S01_AXI_awburst(1 downto 0) => axi_dma_0_M_AXI_S2MM_AWBURST(1 downto 0),
+      S01_AXI_awcache(3 downto 0) => axi_dma_0_M_AXI_S2MM_AWCACHE(3 downto 0),
+      S01_AXI_awlen(7 downto 0) => axi_dma_0_M_AXI_S2MM_AWLEN(7 downto 0),
+      S01_AXI_awlock(0) => '0',
+      S01_AXI_awprot(2 downto 0) => axi_dma_0_M_AXI_S2MM_AWPROT(2 downto 0),
+      S01_AXI_awqos(3 downto 0) => B"0000",
+      S01_AXI_awready => axi_dma_0_M_AXI_S2MM_AWREADY,
+      S01_AXI_awsize(2 downto 0) => axi_dma_0_M_AXI_S2MM_AWSIZE(2 downto 0),
+      S01_AXI_awvalid => axi_dma_0_M_AXI_S2MM_AWVALID,
+      S01_AXI_bready => axi_dma_0_M_AXI_S2MM_BREADY,
+      S01_AXI_bresp(1 downto 0) => axi_dma_0_M_AXI_S2MM_BRESP(1 downto 0),
+      S01_AXI_bvalid => axi_dma_0_M_AXI_S2MM_BVALID,
+      S01_AXI_wdata(31 downto 0) => axi_dma_0_M_AXI_S2MM_WDATA(31 downto 0),
+      S01_AXI_wlast => axi_dma_0_M_AXI_S2MM_WLAST,
+      S01_AXI_wready => axi_dma_0_M_AXI_S2MM_WREADY,
+      S01_AXI_wstrb(3 downto 0) => axi_dma_0_M_AXI_S2MM_WSTRB(3 downto 0),
+      S01_AXI_wvalid => axi_dma_0_M_AXI_S2MM_WVALID,
+      aclk => zynq_ultra_ps_e_0_pl_clk0,
+      aresetn => rst_ps8_0_99M_peripheral_aresetn(0)
+    );
 hls_passthrough_0: component design_DMA_2C_hls_passthrough_0_0
      port map (
       ap_clk => zynq_ultra_ps_e_0_pl_clk0,
@@ -474,13 +776,31 @@ hls_passthrough_0: component design_DMA_2C_hls_passthrough_0_0
       in_stream_TSTRB(3 downto 0) => B"1111",
       in_stream_TUSER(0) => '0',
       in_stream_TVALID => axi_dma_0_M_AXIS_MM2S_TVALID,
+      interrupt => NLW_hls_passthrough_0_interrupt_UNCONNECTED,
       out_stream_TDATA(31 downto 0) => hls_passthrough_0_out_stream_TDATA(31 downto 0),
       out_stream_TKEEP(3 downto 0) => hls_passthrough_0_out_stream_TKEEP(3 downto 0),
       out_stream_TLAST(0) => hls_passthrough_0_out_stream_TLAST(0),
       out_stream_TREADY => hls_passthrough_0_out_stream_TREADY,
       out_stream_TSTRB(3 downto 0) => NLW_hls_passthrough_0_out_stream_TSTRB_UNCONNECTED(3 downto 0),
       out_stream_TUSER(0) => NLW_hls_passthrough_0_out_stream_TUSER_UNCONNECTED(0),
-      out_stream_TVALID => hls_passthrough_0_out_stream_TVALID
+      out_stream_TVALID => hls_passthrough_0_out_stream_TVALID,
+      s_axi_control_ARADDR(3 downto 0) => axi_smc_M01_AXI_ARADDR(3 downto 0),
+      s_axi_control_ARREADY => axi_smc_M01_AXI_ARREADY,
+      s_axi_control_ARVALID => axi_smc_M01_AXI_ARVALID,
+      s_axi_control_AWADDR(3 downto 0) => axi_smc_M01_AXI_AWADDR(3 downto 0),
+      s_axi_control_AWREADY => axi_smc_M01_AXI_AWREADY,
+      s_axi_control_AWVALID => axi_smc_M01_AXI_AWVALID,
+      s_axi_control_BREADY => axi_smc_M01_AXI_BREADY,
+      s_axi_control_BRESP(1 downto 0) => axi_smc_M01_AXI_BRESP(1 downto 0),
+      s_axi_control_BVALID => axi_smc_M01_AXI_BVALID,
+      s_axi_control_RDATA(31 downto 0) => axi_smc_M01_AXI_RDATA(31 downto 0),
+      s_axi_control_RREADY => axi_smc_M01_AXI_RREADY,
+      s_axi_control_RRESP(1 downto 0) => axi_smc_M01_AXI_RRESP(1 downto 0),
+      s_axi_control_RVALID => axi_smc_M01_AXI_RVALID,
+      s_axi_control_WDATA(31 downto 0) => axi_smc_M01_AXI_WDATA(31 downto 0),
+      s_axi_control_WREADY => axi_smc_M01_AXI_WREADY,
+      s_axi_control_WSTRB(3 downto 0) => axi_smc_M01_AXI_WSTRB(3 downto 0),
+      s_axi_control_WVALID => axi_smc_M01_AXI_WVALID
     );
 rst_ps8_0_99M: component design_DMA_2C_rst_ps8_0_99M_0
      port map (
@@ -538,7 +858,46 @@ zynq_ultra_ps_e_0: component design_DMA_2C_zynq_ultra_ps_e_0_0
       maxigp0_wvalid => zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WVALID,
       maxihpm0_fpd_aclk => zynq_ultra_ps_e_0_pl_clk0,
       pl_clk0 => zynq_ultra_ps_e_0_pl_clk0,
-      pl_ps_irq0(0) => '0',
-      pl_resetn0 => zynq_ultra_ps_e_0_pl_resetn0
+      pl_resetn0 => zynq_ultra_ps_e_0_pl_resetn0,
+      saxigp2_araddr(48 downto 0) => axi_smc_1_M00_AXI_ARADDR(48 downto 0),
+      saxigp2_arburst(1 downto 0) => axi_smc_1_M00_AXI_ARBURST(1 downto 0),
+      saxigp2_arcache(3 downto 0) => axi_smc_1_M00_AXI_ARCACHE(3 downto 0),
+      saxigp2_arid(5 downto 0) => B"000000",
+      saxigp2_arlen(7 downto 0) => axi_smc_1_M00_AXI_ARLEN(7 downto 0),
+      saxigp2_arlock => axi_smc_1_M00_AXI_ARLOCK(0),
+      saxigp2_arprot(2 downto 0) => axi_smc_1_M00_AXI_ARPROT(2 downto 0),
+      saxigp2_arqos(3 downto 0) => axi_smc_1_M00_AXI_ARQOS(3 downto 0),
+      saxigp2_arready => axi_smc_1_M00_AXI_ARREADY,
+      saxigp2_arsize(2 downto 0) => axi_smc_1_M00_AXI_ARSIZE(2 downto 0),
+      saxigp2_aruser => '0',
+      saxigp2_arvalid => axi_smc_1_M00_AXI_ARVALID,
+      saxigp2_awaddr(48 downto 0) => axi_smc_1_M00_AXI_AWADDR(48 downto 0),
+      saxigp2_awburst(1 downto 0) => axi_smc_1_M00_AXI_AWBURST(1 downto 0),
+      saxigp2_awcache(3 downto 0) => axi_smc_1_M00_AXI_AWCACHE(3 downto 0),
+      saxigp2_awid(5 downto 0) => B"000000",
+      saxigp2_awlen(7 downto 0) => axi_smc_1_M00_AXI_AWLEN(7 downto 0),
+      saxigp2_awlock => axi_smc_1_M00_AXI_AWLOCK(0),
+      saxigp2_awprot(2 downto 0) => axi_smc_1_M00_AXI_AWPROT(2 downto 0),
+      saxigp2_awqos(3 downto 0) => axi_smc_1_M00_AXI_AWQOS(3 downto 0),
+      saxigp2_awready => axi_smc_1_M00_AXI_AWREADY,
+      saxigp2_awsize(2 downto 0) => axi_smc_1_M00_AXI_AWSIZE(2 downto 0),
+      saxigp2_awuser => '0',
+      saxigp2_awvalid => axi_smc_1_M00_AXI_AWVALID,
+      saxigp2_bid(5 downto 0) => NLW_zynq_ultra_ps_e_0_saxigp2_bid_UNCONNECTED(5 downto 0),
+      saxigp2_bready => axi_smc_1_M00_AXI_BREADY,
+      saxigp2_bresp(1 downto 0) => axi_smc_1_M00_AXI_BRESP(1 downto 0),
+      saxigp2_bvalid => axi_smc_1_M00_AXI_BVALID,
+      saxigp2_rdata(127 downto 0) => axi_smc_1_M00_AXI_RDATA(127 downto 0),
+      saxigp2_rid(5 downto 0) => NLW_zynq_ultra_ps_e_0_saxigp2_rid_UNCONNECTED(5 downto 0),
+      saxigp2_rlast => axi_smc_1_M00_AXI_RLAST,
+      saxigp2_rready => axi_smc_1_M00_AXI_RREADY,
+      saxigp2_rresp(1 downto 0) => axi_smc_1_M00_AXI_RRESP(1 downto 0),
+      saxigp2_rvalid => axi_smc_1_M00_AXI_RVALID,
+      saxigp2_wdata(127 downto 0) => axi_smc_1_M00_AXI_WDATA(127 downto 0),
+      saxigp2_wlast => axi_smc_1_M00_AXI_WLAST,
+      saxigp2_wready => axi_smc_1_M00_AXI_WREADY,
+      saxigp2_wstrb(15 downto 0) => axi_smc_1_M00_AXI_WSTRB(15 downto 0),
+      saxigp2_wvalid => axi_smc_1_M00_AXI_WVALID,
+      saxihp0_fpd_aclk => zynq_ultra_ps_e_0_pl_clk0
     );
 end STRUCTURE;

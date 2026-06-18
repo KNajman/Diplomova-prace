@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:hls:hls_passthrough:1.0
--- IP Revision: 2114599741
+-- IP Revision: 2114608609
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -142,7 +142,7 @@ ARCHITECTURE design_DMA_2C_hls_passthrough_0_0_arch OF design_DMA_2C_hls_passthr
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF design_DMA_2C_hls_passthrough_0_0_arch : ARCHITECTURE IS "design_DMA_2C_hls_passthrough_0_0,hls_passthrough,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF design_DMA_2C_hls_passthrough_0_0_arch: ARCHITECTURE IS "design_DMA_2C_hls_passthrough_0_0,hls_passthrough,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=hls_passthrough,x_ipVersion=1.0,x_ipCoreRevision=2114599741,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S_AXI_CONTROL_ADDR_WIDTH=4,C_S_AXI_CONTROL_DATA_WIDTH=32}";
+  ATTRIBUTE CORE_GENERATION_INFO OF design_DMA_2C_hls_passthrough_0_0_arch: ARCHITECTURE IS "design_DMA_2C_hls_passthrough_0_0,hls_passthrough,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=hls_passthrough,x_ipVersion=1.0,x_ipCoreRevision=2114608609,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S_AXI_CONTROL_ADDR_WIDTH=4,C_S_AXI_CONTROL_DATA_WIDTH=32}";
   ATTRIBUTE SDX_KERNEL : STRING;
   ATTRIBUTE SDX_KERNEL OF hls_passthrough: COMPONENT IS "true";
   ATTRIBUTE SDX_KERNEL_TYPE : STRING;
