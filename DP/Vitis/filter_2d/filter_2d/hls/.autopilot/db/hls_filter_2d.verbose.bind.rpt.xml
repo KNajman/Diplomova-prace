@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_filter_2d'" level="0">
-<item name = "Date">Fri Apr 10 08:07:58 2026
+<item name = "Date">Fri Jun 19 11:04:55 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">filter_2d</item>
@@ -24,14 +24,14 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">15, 67108878, 0.150 us, 0.671 sec, 16, 67108879, no</column>
+<column name="">16, 67108879, 0.160 us, 0.671 sec, 17, 67108880, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_51_1_fu_364">hls_filter_2d_Pipeline_VITIS_LOOP_51_1, 12, 67108875, 0.120 us, 0.671 sec, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_filter_2d_Pipeline_VITIS_LOOP_158_1_fu_364">hls_filter_2d_Pipeline_VITIS_LOOP_158_1, 13, 67108876, 0.130 us, 0.671 sec, 0, 0, loop pipeline stp</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

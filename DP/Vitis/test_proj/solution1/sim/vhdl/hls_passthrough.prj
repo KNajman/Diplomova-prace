@@ -1,0 +1,10 @@
+vhdl xil_defaultlib "AESL_sim_pkg.vhd"
+sv work "glbl.v"
+vhdl xil_defaultlib "AESL_axi_slave_control.vhd"
+vhdl xil_defaultlib "AESL_axi_s_in_stream.vhd"
+vhdl xil_defaultlib "AESL_axi_s_out_stream.vhd"
+vhdl xil_defaultlib "hls_passthrough.autotb.vhd"
+vhdl xil_defaultlib "hls_passthrough.vhd"
+vhdl xil_defaultlib "hls_passthrough_control_s_axi.vhd"
+vhdl xil_defaultlib "hls_passthrough_regslice_both.vhd"
+

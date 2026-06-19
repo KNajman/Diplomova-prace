@@ -65208,20 +65208,20 @@ class stream : public stream<__STREAM_T__, 0> {
 # 13 "./hls_filter_2d.hpp" 2
 
 
-# 1 "./hls_video_types.hpp" 1
+# 1 "D:/Repos/_DP/DP/Vitis\\hls_video_types.hpp" 1
 
 
 
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_int.h" 1
-# 5 "./hls_video_types.hpp" 2
-# 17 "./hls_video_types.hpp"
+# 5 "D:/Repos/_DP/DP/Vitis\\hls_video_types.hpp" 2
+# 17 "D:/Repos/_DP/DP/Vitis\\hls_video_types.hpp"
 template <typename PIXEL_TYPE>
 struct axi_stream_video {
     PIXEL_TYPE data;
     ap_uint<1> user;
     ap_uint<1> last;
 };
-# 32 "./hls_video_types.hpp"
+# 32 "D:/Repos/_DP/DP/Vitis\\hls_video_types.hpp"
 template <int NUM_CHANNELS, int PIXEL_WIDTH = 8>
 struct color_pixel {
 
@@ -65297,7 +65297,7 @@ struct color_pixel {
         return static_cast<unsigned int>(packed);
     }
 };
-# 118 "./hls_video_types.hpp"
+# 118 "D:/Repos/_DP/DP/Vitis\\hls_video_types.hpp"
 const ap_int<16> rec601_coeffs[3][3] = {
     {77, 150, 29},
     {-43, -85, 128},
@@ -65356,6 +65356,7 @@ using axis_hsv = axi_stream_video<hsv_pixel>;
 
 
 
+
 const int KERNEL_SIZE = 5;
 const int RADIUS = KERNEL_SIZE / 2;
 
@@ -65369,40 +65370,143 @@ const int MAX_IMG_WIDTH = 7680;
 
 
 
+
 const int COORD_BITS = 13;
 const int TOTAL_PIXELS_BITS = COORD_BITS * 2;
 const int FLUSH_CYCLES_BITS = COORD_BITS + 3;
 const int TOTAL_CYCLES_BITS = TOTAL_PIXELS_BITS + 1;
-# 56 "./hls_filter_2d.hpp"
-__attribute__((sdx_kernel("hls_filter_2d", 0))) void hls_filter_2d(
-    hls::stream<axis_gray> &s_axis_video,
-    hls::stream<axis_gray> &m_axis_video,
-    ap_uint<COORD_BITS> width,
-    ap_uint<COORD_BITS> height,
-    ap_int<KERNEL_WIDTH> kernel[KERNEL_SIZE][KERNEL_SIZE],
-    ap_int<ACCUMULATOR_WIDTH> inv_divisor,
-    ap_uint<5> fraction_bits,
-    ap_int<ACCUMULATOR_WIDTH> delta,
-    ap_uint<1> borderType
-);
+# 59 "./hls_filter_2d.hpp"
+__attribute__((sdx_kernel("hls_filter_2d", 0))) void hls_filter_2d(hls::stream<axis_gray> &s_axis_video,
+                   hls::stream<axis_gray> &m_axis_video,
+                   ap_uint<COORD_BITS> width, ap_uint<COORD_BITS> height,
+                   ap_int<KERNEL_WIDTH> kernel[KERNEL_SIZE][KERNEL_SIZE],
+                   ap_int<ACCUMULATOR_WIDTH> inv_divisor,
+                   ap_uint<5> fraction_bits, ap_int<ACCUMULATOR_WIDTH> delta,
+                   ap_uint<1> borderType);
 # 2 "hls_filter_2d.cpp" 2
 
 
 
 
 
+static void
+update_window(hls::stream<axis_gray> &s_axis_video, ap_uint<COORD_BITS> width,
+              ap_uint<COORD_BITS> height,
+              ap_uint<TOTAL_PIXELS_BITS> total_pixels,
+              ap_uint<TOTAL_CYCLES_BITS> i,
+              ap_uint<PIXEL_WIDTH> line_buffer[KERNEL_SIZE - 1][MAX_IMG_WIDTH],
+              ap_uint<PIXEL_WIDTH> window[KERNEL_SIZE][KERNEL_SIZE],
+              ap_uint<COORD_BITS> &x, ap_uint<PIXEL_WIDTH> &new_pixel) {
+  if (i < total_pixels) {
+    new_pixel = s_axis_video.read().data;
+  } else {
+    new_pixel = 0;
+  }
+
+  VITIS_LOOP_21_1: for (int r = 0; r < KERNEL_SIZE; r++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+    VITIS_LOOP_23_2: for (int c = 0; c < KERNEL_SIZE - 1; c++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+      window[r][c] = window[r][c + 1];
+    }
+  }
+
+  VITIS_LOOP_29_3: for (int r = 0; r < KERNEL_SIZE - 1; r++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+    window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
+  }
+  window[KERNEL_SIZE - 1][KERNEL_SIZE - 1] = new_pixel;
+
+  if (x < width) {
+    VITIS_LOOP_36_4: for (int r = 0; r < KERNEL_SIZE - 2; r++) {
+      line_buffer[r][x] = line_buffer[r + 1][x];
+    }
+    line_buffer[KERNEL_SIZE - 2][x] = new_pixel;
+  }
+
+  if (x == width - 1) {
+    x = 0;
+  } else {
+    x++;
+  }
+}
+
+static void compute_and_write_output(
+    ap_uint<COORD_BITS> width, ap_uint<COORD_BITS> height,
+    ap_uint<PIXEL_WIDTH> window[KERNEL_SIZE][KERNEL_SIZE],
+    ap_int<KERNEL_WIDTH> kernel[KERNEL_SIZE][KERNEL_SIZE],
+    ap_int<ACCUMULATOR_WIDTH> inv_divisor, ap_uint<5> fraction_bits,
+    ap_int<ACCUMULATOR_WIDTH> delta, ap_uint<1> borderType,
+    ap_uint<COORD_BITS> &out_x, ap_uint<COORD_BITS> &out_y,
+    hls::stream<axis_gray> &m_axis_video, bool &output_valid) {
+  ap_int<ACCUMULATOR_WIDTH> sum = 0;
+
+  VITIS_LOOP_59_1: for (int r = 0; r < KERNEL_SIZE; r++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+    VITIS_LOOP_61_2: for (int c = 0; c < KERNEL_SIZE; c++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+      ap_int<COORD_BITS + 2> img_x = (ap_int<COORD_BITS + 2>)out_x - RADIUS + c;
+      ap_int<COORD_BITS + 2> img_y = (ap_int<COORD_BITS + 2>)out_y - RADIUS + r;
+
+      ap_uint<PIXEL_WIDTH> val = 0;
+      if (img_x >= 0 && img_x < width && img_y >= 0 && img_y < height) {
+        val = window[r][c];
+      }
+
+      sum += (ap_int<ACCUMULATOR_WIDTH>)val *
+             (ap_int<ACCUMULATOR_WIDTH>)kernel[r][c];
+    }
+  }
+
+  sum = (sum * inv_divisor) >> fraction_bits;
+  sum += delta;
+
+  const int MAX_PIXEL_VAL = (1 << PIXEL_WIDTH) - 1;
+  if (sum < 0)
+    sum = 0;
+  if (sum > MAX_PIXEL_VAL)
+    sum = MAX_PIXEL_VAL;
+
+  output_valid = false;
+  if (borderType == 1) {
+    output_valid = true;
+  } else if (out_x >= RADIUS && out_x < (width - RADIUS) && out_y >= RADIUS &&
+             out_y < (height - RADIUS)) {
+    output_valid = true;
+  }
+
+  if (output_valid) {
+    axis_gray out_paket;
+    out_paket.data = (ap_uint<PIXEL_WIDTH>)sum;
+    out_paket.user = (out_x == 0 && out_y == 0) ? 1 : 0;
+    out_paket.last = (borderType == 1) ? (out_x == width - 1)
+                                       : (out_x == width - RADIUS - 1);
+    m_axis_video.write(out_paket);
+  }
+
+  if (out_x == width - 1) {
+    out_x = 0;
+    if (out_y == height - 1) {
+      out_y = 0;
+    } else {
+      out_y++;
+    }
+  } else {
+    out_x++;
+  }
+}
+
 __attribute__((sdx_kernel("hls_filter_2d", 0))) void hls_filter_2d(
     hls::stream<axis_gray> &s_axis_video, hls::stream<axis_gray> &m_axis_video,
     ap_uint<COORD_BITS> width, ap_uint<COORD_BITS> height,
     ap_int<KERNEL_WIDTH> kernel[KERNEL_SIZE][KERNEL_SIZE],
-    ap_int<ACCUMULATOR_WIDTH> inv_divisor,
-    ap_uint<5> fraction_bits,
+    ap_int<ACCUMULATOR_WIDTH> inv_divisor, ap_uint<5> fraction_bits,
     ap_int<ACCUMULATOR_WIDTH> delta,
     ap_uint<1> borderType
 ) {
 #line 1 "directive"
 #pragma HLSDIRECTIVE TOP name=hls_filter_2d
-# 15 "hls_filter_2d.cpp"
+# 121 "hls_filter_2d.cpp"
 
 
 #pragma HLS INTERFACE axis port = s_axis_video
@@ -65439,123 +65543,19 @@ __attribute__((sdx_kernel("hls_filter_2d", 0))) void hls_filter_2d(
   ap_uint<COORD_BITS> out_x = 0;
   ap_uint<COORD_BITS> out_y = 0;
 
-  VITIS_LOOP_51_1: for (ap_uint<TOTAL_CYCLES_BITS> i = 0; i < total_cycles; i++) {
+
+  VITIS_LOOP_158_1: for (ap_uint<TOTAL_CYCLES_BITS> i = 0; i < total_cycles; i++) {
 #pragma HLS PIPELINE II = 1
 
-
-
-
-
-    ap_uint<PIXEL_WIDTH> new_pixel = 0;
-
-
-    if (i < total_pixels) {
-
-
-
-      new_pixel = s_axis_video.read().data;
-
-    }
-
-
-    VITIS_LOOP_70_2: for (size_t r = 0; r < KERNEL_SIZE; r++) {
-      VITIS_LOOP_71_3: for (size_t c = 0; c < KERNEL_SIZE - 1; c++) {
-        window[r][c] = window[r][c + 1];
-      }
-    }
-
-    VITIS_LOOP_76_4: for (size_t r = 0; r < KERNEL_SIZE - 1; r++) {
-      window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
-    }
-    window[KERNEL_SIZE - 1][KERNEL_SIZE - 1] = new_pixel;
-
-    if (x < width) {
-      VITIS_LOOP_82_5: for (size_t r = 0; r < KERNEL_SIZE - 2; r++) {
-        line_buffer[r][x] = line_buffer[r + 1][x];
-      }
-      line_buffer[KERNEL_SIZE - 2][x] = new_pixel;
-    }
-
-    if (x == width - 1) {
-      x = 0;
-    } else {
-      x++;
-    }
-
-
-
+    ap_uint<PIXEL_WIDTH> new_pixel;
+    update_window(s_axis_video, width, height, total_pixels, i, line_buffer,
+                  window, x, new_pixel);
 
     if (i >= flush_cycles) {
-      ap_int<ACCUMULATOR_WIDTH> sum = 0;
-
-      VITIS_LOOP_100_6: for (size_t r = 0; r < KERNEL_SIZE; r++) {
-        VITIS_LOOP_101_7: for (size_t c = 0; c < KERNEL_SIZE; c++) {
-
-
-          ap_int<COORD_BITS + 2> img_x =
-              (ap_int<COORD_BITS + 2>)out_x - RADIUS + c;
-          ap_int<COORD_BITS + 2> img_y =
-              (ap_int<COORD_BITS + 2>)out_y - RADIUS + r;
-
-          ap_uint<PIXEL_WIDTH> val = 0;
-
-
-          if (img_x >= 0 && img_x < width && img_y >= 0 && img_y < height) {
-            val = window[r][c];
-          }
-
-          sum += (ap_int<ACCUMULATOR_WIDTH>)val *
-                 (ap_int<ACCUMULATOR_WIDTH>)kernel[r][c];
-        }
-      }
-
-
-      sum = (sum * inv_divisor) >> fraction_bits;
-      sum += delta;
-
-
-      const int MAX_PIXEL_VAL = (1 << PIXEL_WIDTH) - 1;
-      if (sum < 0)
-        sum = 0;
-      if (sum > MAX_PIXEL_VAL)
-        sum = MAX_PIXEL_VAL;
-
-
-
-
       bool output_valid = false;
-
-      if (borderType == 1) {
-        output_valid = true;
-      } else {
-        if (out_x >= RADIUS && out_x < (width - RADIUS) && out_y >= RADIUS &&
-            out_y < (height - RADIUS)) {
-          output_valid = true;
-        }
-      }
-
-      if (output_valid) {
-        axis_gray out_paket;
-        out_paket.data = (ap_uint<PIXEL_WIDTH>)sum;
-
-        out_paket.user = (out_x == 0 && out_y == 0) ? 1 : 0;
-
-        if (borderType == 1) {
-          out_paket.last = (out_x == width - 1) ? 1 : 0;
-        } else {
-          out_paket.last = (out_x == width - RADIUS - 1) ? 1 : 0;
-        }
-
-        m_axis_video.write(out_paket);
-      }
-
-
-      if (out_x == width - 1) {
-        out_x = 0;
-        out_y++;
-      } else {
-        out_x++;
-      }
+      compute_and_write_output(width, height, window, kernel, inv_divisor,
+                               fraction_bits, delta, borderType, out_x, out_y,
+                               m_axis_video, output_valid);
     }
   }
 }

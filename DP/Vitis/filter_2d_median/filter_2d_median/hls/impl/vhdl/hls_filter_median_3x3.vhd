@@ -47,7 +47,7 @@ architecture behav of hls_filter_median_3x3 is
     attribute DowngradeIPIdentifiedWarnings of behav : architecture is "yes";
     attribute CORE_GENERATION_INFO : STRING;
     attribute CORE_GENERATION_INFO of behav : architecture is
-    "hls_filter_median_3x3_hls_filter_median_3x3,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.789000,HLS_SYN_LAT=33546246,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=460,HLS_SYN_LUT=1367,HLS_VERSION=2025_2}";
+    "hls_filter_median_3x3_hls_filter_median_3x3,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.789000,HLS_SYN_LAT=33546246,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=501,HLS_SYN_LUT=1546,HLS_VERSION=2025_2}";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_ST_fsm_state1 : STD_LOGIC_VECTOR (3 downto 0) := "0001";
@@ -60,6 +60,7 @@ architecture behav of hls_filter_median_3x3 is
     constant C_S_AXI_DATA_WIDTH : INTEGER := 32;
     constant ap_const_lv32_2 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000010";
     constant ap_const_lv14_3FFF : STD_LOGIC_VECTOR (13 downto 0) := "11111111111111";
+    constant ap_const_lv13_1FFE : STD_LOGIC_VECTOR (12 downto 0) := "1111111111110";
     constant ap_const_lv32_3 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000011";
 
     signal ap_rst_n_inv : STD_LOGIC;
@@ -74,27 +75,31 @@ architecture behav of hls_filter_median_3x3 is
     signal ap_ready : STD_LOGIC;
     signal width : STD_LOGIC_VECTOR (12 downto 0);
     signal height : STD_LOGIC_VECTOR (12 downto 0);
-    signal add_ln117_fu_70_p2 : STD_LOGIC_VECTOR (13 downto 0);
-    signal add_ln117_reg_92 : STD_LOGIC_VECTOR (13 downto 0);
+    signal add_ln134_fu_73_p2 : STD_LOGIC_VECTOR (13 downto 0);
+    signal add_ln134_reg_112 : STD_LOGIC_VECTOR (13 downto 0);
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
-    signal mul_ln31_fu_85_p2 : STD_LOGIC_VECTOR (25 downto 0);
-    signal mul_ln31_reg_97 : STD_LOGIC_VECTOR (25 downto 0);
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_idle : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_ready : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA : STD_LOGIC_VECTOR (23 downto 0);
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID : STD_LOGIC;
-    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg : STD_LOGIC := '0';
+    signal add_ln116_fu_90_p2 : STD_LOGIC_VECTOR (13 downto 0);
+    signal add_ln116_reg_117 : STD_LOGIC_VECTOR (13 downto 0);
+    signal mul_ln34_fu_105_p2 : STD_LOGIC_VECTOR (25 downto 0);
+    signal mul_ln34_reg_122 : STD_LOGIC_VECTOR (25 downto 0);
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_idle : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_ready : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA : STD_LOGIC_VECTOR (23 downto 0);
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID : STD_LOGIC;
+    signal grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg : STD_LOGIC := '0';
     signal ap_CS_fsm_state3 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state3 : signal is "none";
     signal m_axis_video_TDATA_reg : STD_LOGIC_VECTOR (23 downto 0);
-    signal zext_ln117_fu_66_p1 : STD_LOGIC_VECTOR (13 downto 0);
-    signal mul_ln31_fu_85_p0 : STD_LOGIC_VECTOR (12 downto 0);
-    signal mul_ln31_fu_85_p1 : STD_LOGIC_VECTOR (12 downto 0);
+    signal zext_ln134_fu_69_p1 : STD_LOGIC_VECTOR (13 downto 0);
+    signal add_ln109_fu_80_p2 : STD_LOGIC_VECTOR (12 downto 0);
+    signal zext_ln116_fu_86_p1 : STD_LOGIC_VECTOR (13 downto 0);
+    signal mul_ln34_fu_105_p0 : STD_LOGIC_VECTOR (12 downto 0);
+    signal mul_ln34_fu_105_p1 : STD_LOGIC_VECTOR (12 downto 0);
     signal ap_CS_fsm_state4 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state4 : signal is "none";
     signal regslice_both_m_axis_video_U_apdone_blk : STD_LOGIC;
@@ -111,11 +116,11 @@ architecture behav of hls_filter_median_3x3 is
     signal m_axis_video_TDATA_int_regslice : STD_LOGIC_VECTOR (23 downto 0);
     signal m_axis_video_TREADY_int_regslice : STD_LOGIC;
     signal regslice_both_m_axis_video_U_vld_out : STD_LOGIC;
-    signal mul_ln31_fu_85_p00 : STD_LOGIC_VECTOR (25 downto 0);
-    signal mul_ln31_fu_85_p10 : STD_LOGIC_VECTOR (25 downto 0);
+    signal mul_ln34_fu_105_p00 : STD_LOGIC_VECTOR (25 downto 0);
+    signal mul_ln34_fu_105_p10 : STD_LOGIC_VECTOR (25 downto 0);
     signal ap_ce_reg : STD_LOGIC;
 
-    component hls_filter_median_3x3_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1 IS
+    component hls_filter_median_3x3_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1 IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -125,10 +130,11 @@ architecture behav of hls_filter_median_3x3 is
         ap_ready : OUT STD_LOGIC;
         s_axis_video_TVALID : IN STD_LOGIC;
         m_axis_video_TREADY : IN STD_LOGIC;
-        mul_ln31 : IN STD_LOGIC_VECTOR (25 downto 0);
+        mul_ln34 : IN STD_LOGIC_VECTOR (25 downto 0);
+        add_ln134 : IN STD_LOGIC_VECTOR (13 downto 0);
         s_axis_video_TDATA : IN STD_LOGIC_VECTOR (23 downto 0);
         s_axis_video_TREADY : OUT STD_LOGIC;
-        add_ln117 : IN STD_LOGIC_VECTOR (13 downto 0);
+        add_ln116 : IN STD_LOGIC_VECTOR (13 downto 0);
         m_axis_video_TDATA : OUT STD_LOGIC_VECTOR (23 downto 0);
         m_axis_video_TVALID : OUT STD_LOGIC );
     end component;
@@ -201,22 +207,23 @@ architecture behav of hls_filter_median_3x3 is
 
 
 begin
-    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56 : component hls_filter_median_3x3_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1
+    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58 : component hls_filter_median_3x3_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst_n_inv,
-        ap_start => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start,
-        ap_done => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done,
-        ap_idle => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_idle,
-        ap_ready => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_ready,
+        ap_start => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start,
+        ap_done => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done,
+        ap_idle => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_idle,
+        ap_ready => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_ready,
         s_axis_video_TVALID => s_axis_video_TVALID_int_regslice,
-        m_axis_video_TREADY => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY,
-        mul_ln31 => mul_ln31_reg_97,
+        m_axis_video_TREADY => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY,
+        mul_ln34 => mul_ln34_reg_122,
+        add_ln134 => add_ln134_reg_112,
         s_axis_video_TDATA => s_axis_video_TDATA_int_regslice,
-        s_axis_video_TREADY => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY,
-        add_ln117 => add_ln117_reg_92,
-        m_axis_video_TDATA => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA,
-        m_axis_video_TVALID => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID);
+        s_axis_video_TREADY => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY,
+        add_ln116 => add_ln116_reg_117,
+        m_axis_video_TDATA => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA,
+        m_axis_video_TVALID => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID);
 
     control_s_axi_U : component hls_filter_median_3x3_control_s_axi
     generic map (
@@ -251,7 +258,7 @@ begin
         ap_done => ap_done,
         ap_idle => ap_idle);
 
-    mul_13ns_13ns_26_1_1_U6 : component hls_filter_median_3x3_mul_13ns_13ns_26_1_1
+    mul_13ns_13ns_26_1_1_U7 : component hls_filter_median_3x3_mul_13ns_13ns_26_1_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,
@@ -259,9 +266,9 @@ begin
         din1_WIDTH => 13,
         dout_WIDTH => 26)
     port map (
-        din0 => mul_ln31_fu_85_p0,
-        din1 => mul_ln31_fu_85_p1,
-        dout => mul_ln31_fu_85_p2);
+        din0 => mul_ln34_fu_105_p0,
+        din1 => mul_ln34_fu_105_p1,
+        dout => mul_ln34_fu_105_p2);
 
     regslice_both_s_axis_video_U : component hls_filter_median_3x3_regslice_both
     generic map (
@@ -284,7 +291,7 @@ begin
         ap_clk => ap_clk,
         ap_rst => ap_rst_n_inv,
         data_in => m_axis_video_TDATA_int_regslice,
-        vld_in => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID,
+        vld_in => grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID,
         ack_in => m_axis_video_TREADY_int_regslice,
         data_out => m_axis_video_TDATA,
         vld_out => regslice_both_m_axis_video_U_vld_out,
@@ -307,16 +314,16 @@ begin
     end process;
 
 
-    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg_assign_proc : process(ap_clk)
+    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg_assign_proc : process(ap_clk)
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst_n_inv = '1') then
-                grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg <= ap_const_logic_0;
+                grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg <= ap_const_logic_0;
             else
                 if ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-                    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg <= ap_const_logic_1;
-                elsif ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_ready = ap_const_logic_1)) then 
-                    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg <= ap_const_logic_0;
+                    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg <= ap_const_logic_1;
+                elsif ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_ready = ap_const_logic_1)) then 
+                    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
@@ -326,21 +333,22 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_CS_fsm_state2)) then
-                add_ln117_reg_92 <= add_ln117_fu_70_p2;
-                mul_ln31_reg_97 <= mul_ln31_fu_85_p2;
+                add_ln116_reg_117 <= add_ln116_fu_90_p2;
+                add_ln134_reg_112 <= add_ln134_fu_73_p2;
+                mul_ln34_reg_122 <= mul_ln34_fu_105_p2;
             end if;
         end if;
     end process;
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then
-                m_axis_video_TDATA_reg <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA;
+            if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then
+                m_axis_video_TDATA_reg <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA;
             end if;
         end if;
     end process;
 
-    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_CS_fsm_state1, grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done, ap_CS_fsm_state3, ap_CS_fsm_state4, regslice_both_m_axis_video_U_apdone_blk)
+    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_CS_fsm_state1, grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done, ap_CS_fsm_state3, ap_CS_fsm_state4, regslice_both_m_axis_video_U_apdone_blk)
     begin
         case ap_CS_fsm is
             when ap_ST_fsm_state1 => 
@@ -352,7 +360,7 @@ begin
             when ap_ST_fsm_state2 => 
                 ap_NS_fsm <= ap_ST_fsm_state3;
             when ap_ST_fsm_state3 => 
-                if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then
+                if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then
                     ap_NS_fsm <= ap_ST_fsm_state4;
                 else
                     ap_NS_fsm <= ap_ST_fsm_state3;
@@ -367,7 +375,9 @@ begin
                 ap_NS_fsm <= "XXXX";
         end case;
     end process;
-    add_ln117_fu_70_p2 <= std_logic_vector(unsigned(zext_ln117_fu_66_p1) + unsigned(ap_const_lv14_3FFF));
+    add_ln109_fu_80_p2 <= std_logic_vector(unsigned(width) + unsigned(ap_const_lv13_1FFE));
+    add_ln116_fu_90_p2 <= std_logic_vector(unsigned(zext_ln116_fu_86_p1) + unsigned(ap_const_lv14_3FFF));
+    add_ln134_fu_73_p2 <= std_logic_vector(unsigned(zext_ln134_fu_69_p1) + unsigned(ap_const_lv14_3FFF));
     ap_CS_fsm_state1 <= ap_CS_fsm(0);
     ap_CS_fsm_state2 <= ap_CS_fsm(1);
     ap_CS_fsm_state3 <= ap_CS_fsm(2);
@@ -384,9 +394,9 @@ begin
 
     ap_ST_fsm_state2_blk <= ap_const_logic_0;
 
-    ap_ST_fsm_state3_blk_assign_proc : process(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done)
+    ap_ST_fsm_state3_blk_assign_proc : process(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done)
     begin
-        if ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done = ap_const_logic_0)) then 
+        if ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done = ap_const_logic_0)) then 
             ap_ST_fsm_state3_blk <= ap_const_logic_1;
         else 
             ap_ST_fsm_state3_blk <= ap_const_logic_0;
@@ -439,33 +449,34 @@ begin
                 ap_rst_n_inv <= not(ap_rst_n);
     end process;
 
-    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg;
-    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY <= (m_axis_video_TREADY_int_regslice and ap_CS_fsm_state3);
+    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg;
+    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY <= (m_axis_video_TREADY_int_regslice and ap_CS_fsm_state3);
 
-    m_axis_video_TDATA_int_regslice_assign_proc : process(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA, grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID, ap_CS_fsm_state3, m_axis_video_TDATA_reg)
+    m_axis_video_TDATA_int_regslice_assign_proc : process(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA, grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID, ap_CS_fsm_state3, m_axis_video_TDATA_reg)
     begin
-        if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
-            m_axis_video_TDATA_int_regslice <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA;
+        if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
+            m_axis_video_TDATA_int_regslice <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA;
         else 
             m_axis_video_TDATA_int_regslice <= m_axis_video_TDATA_reg;
         end if; 
     end process;
 
     m_axis_video_TVALID <= regslice_both_m_axis_video_U_vld_out;
-    mul_ln31_fu_85_p0 <= mul_ln31_fu_85_p00(13 - 1 downto 0);
-    mul_ln31_fu_85_p00 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(height),26));
-    mul_ln31_fu_85_p1 <= mul_ln31_fu_85_p10(13 - 1 downto 0);
-    mul_ln31_fu_85_p10 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(width),26));
+    mul_ln34_fu_105_p0 <= mul_ln34_fu_105_p00(13 - 1 downto 0);
+    mul_ln34_fu_105_p00 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(height),26));
+    mul_ln34_fu_105_p1 <= mul_ln34_fu_105_p10(13 - 1 downto 0);
+    mul_ln34_fu_105_p10 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(width),26));
     s_axis_video_TREADY <= regslice_both_s_axis_video_U_ack_in;
 
-    s_axis_video_TREADY_int_regslice_assign_proc : process(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY, ap_CS_fsm_state3)
+    s_axis_video_TREADY_int_regslice_assign_proc : process(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY, ap_CS_fsm_state3)
     begin
         if ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
-            s_axis_video_TREADY_int_regslice <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY;
+            s_axis_video_TREADY_int_regslice <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY;
         else 
             s_axis_video_TREADY_int_regslice <= ap_const_logic_0;
         end if; 
     end process;
 
-    zext_ln117_fu_66_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(width),14));
+    zext_ln116_fu_86_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(add_ln109_fu_80_p2),14));
+    zext_ln134_fu_69_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(width),14));
 end behav;

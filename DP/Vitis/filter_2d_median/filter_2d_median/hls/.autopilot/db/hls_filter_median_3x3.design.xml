@@ -5,10 +5,10 @@
 <ModuleName>hls_filter_median_3x3</ModuleName>
 <InstancesList>
 <Instance>
-<InstName>grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56</InstName>
-<ModuleName>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</ModuleName>
+<InstName>grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58</InstName>
+<ModuleName>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</ModuleName>
 <IsCompInst>true</IsCompInst>
-<ID>56</ID>
+<ID>58</ID>
 </Instance>
 </InstancesList>
 </TopModule>
@@ -16,9 +16,9 @@
 
 <ModuleInformation>
 <Module>
-<Name>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Name>
+<Name>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Name>
 <Loops>
-<VITIS_LOOP_31_1></VITIS_LOOP_31_1>
+<VITIS_LOOP_34_1></VITIS_LOOP_34_1>
 </Loops>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
@@ -38,8 +38,8 @@
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<VITIS_LOOP_31_1>
-<Name>VITIS_LOOP_31_1</Name>
+<VITIS_LOOP_34_1>
+<Name>VITIS_LOOP_34_1</Name>
 <Slack>7.30</Slack>
 <TripCount>
 <range>
@@ -56,19 +56,19 @@
 <PerformancePragma>-</PerformancePragma>
 <InstanceList>
 </InstanceList>
-</VITIS_LOOP_31_1>
+</VITIS_LOOP_34_1>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_median.cpp:24</SourceLocation>
+<SourceLocation>hls_filter_median.cpp:26</SourceLocation>
 <SummaryOfLoopViolations>
-<VITIS_LOOP_31_1>
-<Name>VITIS_LOOP_31_1</Name>
+<VITIS_LOOP_34_1>
+<Name>VITIS_LOOP_34_1</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_median.cpp:121</SourceLocation>
-</VITIS_LOOP_31_1>
+<SourceLocation>hls_filter_median.cpp:138</SourceLocation>
+</VITIS_LOOP_34_1>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
@@ -77,10 +77,10 @@
 <BRAM_18K>8</BRAM_18K>
 <AVAIL_BRAM>288</AVAIL_BRAM>
 <UTIL_BRAM>2</UTIL_BRAM>
-<FF>317</FF>
+<FF>344</FF>
 <AVAIL_FF>234240</AVAIL_FF>
 <UTIL_FF>~0</UTIL_FF>
-<LUT>1205</LUT>
+<LUT>1343</LUT>
 <AVAIL_LUT>117120</AVAIL_LUT>
 <UTIL_LUT>1</UTIL_LUT>
 <URAM>0</URAM>
@@ -94,7 +94,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Object>
+<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -105,7 +105,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Object>
+<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -116,7 +116,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Object>
+<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -127,7 +127,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Object>
+<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -138,7 +138,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Object>
+<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -149,7 +149,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1</Object>
+<Object>hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -225,8 +225,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>mul_ln31</name>
-<Object>mul_ln31</Object>
+<name>mul_ln34</name>
+<Object>mul_ln34</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -236,8 +236,19 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>add_ln117</name>
-<Object>add_ln117</Object>
+<name>add_ln134</name>
+<Object>add_ln134</Object>
+<Type>scalar</Type>
+<Scope></Scope>
+<IOProtocol>ap_none</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>14</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>add_ln116</name>
+<Object>add_ln116</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -270,7 +281,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_median.cpp:3</SourceLocation>
+<SourceLocation>hls_filter_median.cpp:5</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>
@@ -281,10 +292,10 @@
 <DSP>1</DSP>
 <AVAIL_DSP>1248</AVAIL_DSP>
 <UTIL_DSP>~0</UTIL_DSP>
-<FF>460</FF>
+<FF>501</FF>
 <AVAIL_FF>234240</AVAIL_FF>
 <UTIL_FF>~0</UTIL_FF>
-<LUT>1369</LUT>
+<LUT>1548</LUT>
 <AVAIL_LUT>117120</AVAIL_LUT>
 <UTIL_LUT>1</UTIL_LUT>
 <URAM>0</URAM>

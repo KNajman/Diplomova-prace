@@ -472,11 +472,4 @@ assign in_stream_TREADY = regslice_both_in_stream_V_data_V_U_ack_in;
 
 assign out_stream_TVALID = regslice_both_out_stream_V_data_V_U_vld_out;
 
-
-reg find_kernel_block = 0;
-// synthesis translate_off
-`include "hls_passthrough_hls_deadlock_kernel_monitor_top.vh"
-// synthesis translate_on
-
 endmodule //hls_passthrough
-

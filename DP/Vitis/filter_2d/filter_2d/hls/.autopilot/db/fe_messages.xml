@@ -1,4 +1,7 @@
 <xilinx:hls_fe_msgs>
+    <msg msg_groups="" msg_id="207-6591" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:9:35" msg_body="unused parameter 'height'">
+        <args ClangWarningOption="unused-parameter"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\utils/x_hls_utils.h:224:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="reg" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
@@ -602,148 +605,196 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/etc/hls_hypot_apfixed.h:170:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hypot_fixed" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:43:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:43:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:45:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:45:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:57:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:57:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:59:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:59:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:72:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:72:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:75:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:75:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="color_pixel&lt;NUM_CHANNELS, PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:87:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:87:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator ap_uint&lt;NUM_CHANNELS * PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:90:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:90:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator ap_uint&lt;NUM_CHANNELS * PIXEL_WIDTH&gt;" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="./hls_video_types.hpp:102:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:102:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="operator unsigned int" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:22:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="update_window" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor = KERNEL_SIZE" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:24:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="update_window" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor = KERNEL_SIZE" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:30:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="update_window" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor = KERNEL_SIZE" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:60:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="compute_and_write_output" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor = KERNEL_SIZE" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:62:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="compute_and_write_output" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor = KERNEL_SIZE" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="directive:1:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=hls_filter_2d" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:17:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:123:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port = s_axis_video" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:18:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:124:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port = m_axis_video" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:21:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:127:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = width bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:22:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:128:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = height bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:23:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:129:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = kernel bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:24:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:130:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = inv_divisor bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:25:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:131:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = fraction_bits bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:26:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:132:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = delta bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:27:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:133:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = borderType bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:28:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:134:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = return bundle = control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:31:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:137:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable = kernel complete dim = 0" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:35:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:141:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable = line_buffer complete dim = 1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:39:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:145:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable = window complete dim = 0" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:52:1" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:159:1" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="hls" ARG_PragmaFunction="hls_filter_2d" ARG_PragmaIsValid="1" ARG_PragmaOptions="II = 1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="./hls_video_types.hpp:18:8" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel()' into 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()'">
-        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel()" Callee-DebugLoc="File ./hls_video_types.hpp Line 42 Column 0" Caller="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Caller-DebugLoc="File ./hls_video_types.hpp Line 18 Column 0"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-275" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:59:20" msg_body="In loop 'VITIS_LOOP_59_1 (hls_filter_2d.cpp:59:20)', partially UNROLL (hls_filter_2d.cpp:60:1) is converted into complete unroll due to PIPELINE pragma above (hls_filter_2d.cpp:159:1) as a pipelined region cannot contain loops that are not fully unrolled">
+        <args LoopLoc="hls_filter_2d.cpp:59:20" LoopLoc-DebugLoc="File hls_filter_2d.cpp Line 59 Column 20" LoopName="VITIS_LOOP_59_1" PragmaLoc="islist hls_filter_2d.cpp:60:1 hls_filter_2d.cpp:159:1" PragmaLoc-DebugLoc="islist {File hls_filter_2d.cpp Line 60 Column 1} {File hls_filter_2d.cpp Line 159 Column 1}"/>
     </msg>
-    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:148:26" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel(ap_uint&lt;8&gt;)' into 'hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)'">
-        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel(ap_uint&lt;8&gt;)" Callee-DebugLoc="File ./hls_video_types.hpp Line 56 Column 0" Caller="hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 15 Column 0"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-275" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:61:22" msg_body="In loop 'VITIS_LOOP_61_2 (hls_filter_2d.cpp:61:22)', partially UNROLL (hls_filter_2d.cpp:62:1) is converted into complete unroll due to PIPELINE pragma above (hls_filter_2d.cpp:159:1) as a pipelined region cannot contain loops that are not fully unrolled">
+        <args LoopLoc="hls_filter_2d.cpp:61:22" LoopLoc-DebugLoc="File hls_filter_2d.cpp Line 61 Column 22" LoopName="VITIS_LOOP_61_2" PragmaLoc="islist hls_filter_2d.cpp:62:1 hls_filter_2d.cpp:159:1" PragmaLoc-DebugLoc="islist {File hls_filter_2d.cpp Line 62 Column 1} {File hls_filter_2d.cpp Line 159 Column 1}"/>
     </msg>
-    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:65:19" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::operator ap_uint&lt;8&gt;() const' into 'hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)'">
-        <args Callee="color_pixel&lt;1, 8&gt;::operator ap_uint&lt;8&gt;() const" Callee-DebugLoc="File ./hls_video_types.hpp Line 86 Column 0" Caller="hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 15 Column 0"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-275" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:21:20" msg_body="In loop 'VITIS_LOOP_21_1 (hls_filter_2d.cpp:21:20)', partially UNROLL (hls_filter_2d.cpp:22:1) is converted into complete unroll due to PIPELINE pragma above (hls_filter_2d.cpp:159:1) as a pipelined region cannot contain loops that are not fully unrolled">
+        <args LoopLoc="hls_filter_2d.cpp:21:20" LoopLoc-DebugLoc="File hls_filter_2d.cpp Line 21 Column 20" LoopName="VITIS_LOOP_21_1" PragmaLoc="islist hls_filter_2d.cpp:22:1 hls_filter_2d.cpp:159:1" PragmaLoc-DebugLoc="islist {File hls_filter_2d.cpp Line 22 Column 1} {File hls_filter_2d.cpp Line 159 Column 1}"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_video_types.hpp:89:26" msg_body="Loop 'VITIS_LOOP_89_1' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_89_1"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-275" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:23:22" msg_body="In loop 'VITIS_LOOP_23_2 (hls_filter_2d.cpp:23:22)', partially UNROLL (hls_filter_2d.cpp:24:1) is converted into complete unroll due to PIPELINE pragma above (hls_filter_2d.cpp:159:1) as a pipelined region cannot contain loops that are not fully unrolled">
+        <args LoopLoc="hls_filter_2d.cpp:23:22" LoopLoc-DebugLoc="File hls_filter_2d.cpp Line 23 Column 22" LoopName="VITIS_LOOP_23_2" PragmaLoc="islist hls_filter_2d.cpp:24:1 hls_filter_2d.cpp:159:1" PragmaLoc-DebugLoc="islist {File hls_filter_2d.cpp Line 24 Column 1} {File hls_filter_2d.cpp Line 159 Column 1}"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:70:22" msg_body="Loop 'VITIS_LOOP_70_2' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_70_2"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-275" msg_severity="WARNING" msg_loc="hls_filter_2d.cpp:29:20" msg_body="In loop 'VITIS_LOOP_29_3 (hls_filter_2d.cpp:29:20)', partially UNROLL (hls_filter_2d.cpp:30:1) is converted into complete unroll due to PIPELINE pragma above (hls_filter_2d.cpp:159:1) as a pipelined region cannot contain loops that are not fully unrolled">
+        <args LoopLoc="hls_filter_2d.cpp:29:20" LoopLoc-DebugLoc="File hls_filter_2d.cpp Line 29 Column 20" LoopName="VITIS_LOOP_29_3" PragmaLoc="islist hls_filter_2d.cpp:30:1 hls_filter_2d.cpp:159:1" PragmaLoc-DebugLoc="islist {File hls_filter_2d.cpp Line 30 Column 1} {File hls_filter_2d.cpp Line 159 Column 1}"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:71:24" msg_body="Loop 'VITIS_LOOP_71_3' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_71_3"/>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:18:8" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel()' into 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()'">
+        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel()" Callee-DebugLoc="File {D:/Repos/_DP/DP/Vitis\hls_video_types.hpp} Line 42 Column 0" Caller="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Caller-DebugLoc="File {D:/Repos/_DP/DP/Vitis\hls_video_types.hpp} Line 18 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:76:22" msg_body="Loop 'VITIS_LOOP_76_4' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_76_4"/>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:16:17" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::operator ap_uint&lt;8&gt;() const' into 'update_window(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;26&gt;, ap_uint&lt;27&gt;, ap_uint&lt;8&gt; (*) [7680], ap_uint&lt;8&gt; (*) [5], ap_uint&lt;13&gt;&amp;, ap_uint&lt;8&gt;&amp;)'">
+        <args Callee="color_pixel&lt;1, 8&gt;::operator ap_uint&lt;8&gt;() const" Callee-DebugLoc="File {D:/Repos/_DP/DP/Vitis\hls_video_types.hpp} Line 86 Column 0" Caller="update_window(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;26&gt;, ap_uint&lt;27&gt;, ap_uint&lt;8&gt; (*) [7680], ap_uint&lt;8&gt; (*) [5], ap_uint&lt;13&gt;&amp;, ap_uint&lt;8&gt;&amp;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 14 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:82:24" msg_body="Loop 'VITIS_LOOP_82_5' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_82_5"/>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:95:22" msg_body="Inlining function 'color_pixel&lt;1, 8&gt;::color_pixel(ap_uint&lt;8&gt;)' into 'compute_and_write_output(ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;8&gt; (*) [5], ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;, ap_uint&lt;13&gt;&amp;, ap_uint&lt;13&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, bool&amp;)'">
+        <args Callee="color_pixel&lt;1, 8&gt;::color_pixel(ap_uint&lt;8&gt;)" Callee-DebugLoc="File {D:/Repos/_DP/DP/Vitis\hls_video_types.hpp} Line 56 Column 0" Caller="compute_and_write_output(ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;8&gt; (*) [5], ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;, ap_uint&lt;13&gt;&amp;, ap_uint&lt;13&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, bool&amp;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 56 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:100:25" msg_body="Loop 'VITIS_LOOP_100_6' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_100_6"/>
-    </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:101:27" msg_body="Loop 'VITIS_LOOP_101_7' is marked as complete unroll implied by the pipeline pragma">
-        <args LoopName="VITIS_LOOP_101_7"/>
-    </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_video_types.hpp:58:26" msg_body="Loop 'VITIS_LOOP_58_1' is marked as complete unroll implied by the pipeline pragma">
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:58:26" msg_body="Loop 'VITIS_LOOP_58_1' is marked as complete unroll implied by the pipeline pragma">
         <args LoopName="VITIS_LOOP_58_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="./hls_video_types.hpp:44:26" msg_body="Loop 'VITIS_LOOP_44_1' is marked as complete unroll implied by the pipeline pragma">
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:59:20" msg_body="Loop 'VITIS_LOOP_59_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_59_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:61:22" msg_body="Loop 'VITIS_LOOP_61_2' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_61_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:36:22" msg_body="Loop 'VITIS_LOOP_36_4' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_36_4"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:29:20" msg_body="Loop 'VITIS_LOOP_29_3' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_29_3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:21:20" msg_body="Loop 'VITIS_LOOP_21_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_21_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:23:22" msg_body="Loop 'VITIS_LOOP_23_2' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_23_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:89:26" msg_body="Loop 'VITIS_LOOP_89_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_89_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:44:26" msg_body="Loop 'VITIS_LOOP_44_1' is marked as complete unroll implied by the pipeline pragma">
         <args LoopName="VITIS_LOOP_44_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_89_1' (./hls_video_types.hpp:89:26) in function 'hls_filter_2d' completely with a factor of 1">
-        <args Factor="1" LoopLoc="./hls_video_types.hpp:89:26" LoopName="VITIS_LOOP_89_1"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:56:0" msg_body="Unrolling loop 'VITIS_LOOP_58_1' (D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:58:26) in function 'compute_and_write_output' completely with a factor of 1">
+        <args Factor="1" LoopLoc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:58:26" LoopName="VITIS_LOOP_58_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_70_2' (hls_filter_2d.cpp:70:22) in function 'hls_filter_2d' completely with a factor of 5">
-        <args Factor="5" LoopLoc="hls_filter_2d.cpp:70:22" LoopName="VITIS_LOOP_70_2"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:56:0" msg_body="Unrolling loop 'VITIS_LOOP_59_1' (hls_filter_2d.cpp:59:20) in function 'compute_and_write_output' completely with a factor of 5">
+        <args Factor="5" LoopLoc="hls_filter_2d.cpp:59:20" LoopName="VITIS_LOOP_59_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_71_3' (hls_filter_2d.cpp:71:24) in function 'hls_filter_2d' completely with a factor of 4">
-        <args Factor="4" LoopLoc="hls_filter_2d.cpp:71:24" LoopName="VITIS_LOOP_71_3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:56:0" msg_body="Unrolling loop 'VITIS_LOOP_61_2' (hls_filter_2d.cpp:61:22) in function 'compute_and_write_output' completely with a factor of 5">
+        <args Factor="5" LoopLoc="hls_filter_2d.cpp:61:22" LoopName="VITIS_LOOP_61_2"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_76_4' (hls_filter_2d.cpp:76:22) in function 'hls_filter_2d' completely with a factor of 4">
-        <args Factor="4" LoopLoc="hls_filter_2d.cpp:76:22" LoopName="VITIS_LOOP_76_4"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="Unrolling loop 'VITIS_LOOP_36_4' (hls_filter_2d.cpp:36:22) in function 'update_window' completely with a factor of 3">
+        <args Factor="3" LoopLoc="hls_filter_2d.cpp:36:22" LoopName="VITIS_LOOP_36_4"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_82_5' (hls_filter_2d.cpp:82:24) in function 'hls_filter_2d' completely with a factor of 3">
-        <args Factor="3" LoopLoc="hls_filter_2d.cpp:82:24" LoopName="VITIS_LOOP_82_5"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="Unrolling loop 'VITIS_LOOP_29_3' (hls_filter_2d.cpp:29:20) in function 'update_window' completely with a factor of 4">
+        <args Factor="4" LoopLoc="hls_filter_2d.cpp:29:20" LoopName="VITIS_LOOP_29_3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_100_6' (hls_filter_2d.cpp:100:25) in function 'hls_filter_2d' completely with a factor of 5">
-        <args Factor="5" LoopLoc="hls_filter_2d.cpp:100:25" LoopName="VITIS_LOOP_100_6"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="Unrolling loop 'VITIS_LOOP_21_1' (hls_filter_2d.cpp:21:20) in function 'update_window' completely with a factor of 5">
+        <args Factor="5" LoopLoc="hls_filter_2d.cpp:21:20" LoopName="VITIS_LOOP_21_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_101_7' (hls_filter_2d.cpp:101:27) in function 'hls_filter_2d' completely with a factor of 5">
-        <args Factor="5" LoopLoc="hls_filter_2d.cpp:101:27" LoopName="VITIS_LOOP_101_7"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="Unrolling loop 'VITIS_LOOP_23_2' (hls_filter_2d.cpp:23:22) in function 'update_window' completely with a factor of 4">
+        <args Factor="4" LoopLoc="hls_filter_2d.cpp:23:22" LoopName="VITIS_LOOP_23_2"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_58_1' (./hls_video_types.hpp:58:26) in function 'hls_filter_2d' completely with a factor of 1">
-        <args Factor="1" LoopLoc="./hls_video_types.hpp:58:26" LoopName="VITIS_LOOP_58_1"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="Unrolling loop 'VITIS_LOOP_89_1' (D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:89:26) in function 'update_window' completely with a factor of 1">
+        <args Factor="1" LoopLoc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:89:26" LoopName="VITIS_LOOP_89_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="./hls_video_types.hpp:18:0" msg_body="Unrolling loop 'VITIS_LOOP_44_1' (./hls_video_types.hpp:44:26) in function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video' completely with a factor of 1">
-        <args Factor="1" LoopLoc="./hls_video_types.hpp:44:26" LoopName="VITIS_LOOP_44_1"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:18:0" msg_body="Unrolling loop 'VITIS_LOOP_44_1' (D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:44:26) in function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video' completely with a factor of 1">
+        <args Factor="1" LoopLoc="D:/Repos/_DP/DP/Vitis\hls_video_types.hpp:44:26" LoopName="VITIS_LOOP_44_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Inlining function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()' into 'hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)'">
-        <args Callee="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Callee-DebugLoc="File ./hls_video_types.hpp Line 18 Column 0" Caller="hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 15 Column 0"/>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="Inlining function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()' into 'update_window(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;26&gt;, ap_uint&lt;27&gt;, ap_uint&lt;8&gt; (*) [7680], ap_uint&lt;8&gt; (*) [5], ap_uint&lt;13&gt;&amp;, ap_uint&lt;8&gt;&amp;)'">
+        <args Callee="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Callee-DebugLoc="File {D:/Repos/_DP/DP/Vitis\hls_video_types.hpp} Line 18 Column 0" Caller="update_window(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;26&gt;, ap_uint&lt;27&gt;, ap_uint&lt;8&gt; (*) [7680], ap_uint&lt;8&gt; (*) [5], ap_uint&lt;13&gt;&amp;, ap_uint&lt;8&gt;&amp;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 14 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:34:24" msg_body="Applying array_partition to 'line_buffer': Complete partitioning on dimension 1.">
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:56:0" msg_body="Inlining function 'axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()' into 'compute_and_write_output(ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;8&gt; (*) [5], ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;, ap_uint&lt;13&gt;&amp;, ap_uint&lt;13&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, bool&amp;)'">
+        <args Callee="axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;::axi_stream_video()" Callee-DebugLoc="File {D:/Repos/_DP/DP/Vitis\hls_video_types.hpp} Line 18 Column 0" Caller="compute_and_write_output(ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;8&gt; (*) [5], ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;, ap_uint&lt;13&gt;&amp;, ap_uint&lt;13&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, bool&amp;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 56 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:140:24" msg_body="Applying array_partition to 'line_buffer': Complete partitioning on dimension 1.">
         <args Dim="1" Mode="Complete" UOName="line_buffer"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:15:0" msg_body="Applying array_partition to 'kernel': Complete partitioning on dimension 1. Complete partitioning on dimension 2.">
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:144:24" msg_body="Applying array_partition to 'window': Complete partitioning on dimension 1. Complete partitioning on dimension 2.">
+        <args Dim="islist 1 2" Mode="islist Complete Complete" UOName="window"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:121:0" msg_body="Applying array_partition to 'kernel': Complete partitioning on dimension 1. Complete partitioning on dimension 2.">
         <args Dim="islist 1 2" Mode="islist Complete Complete" UOName="kernel"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:162:5" msg_body="Automatically inlining function 'update_window(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;26&gt;, ap_uint&lt;27&gt;, ap_uint&lt;8&gt; (*) [7680], ap_uint&lt;8&gt; (*) [5], ap_uint&lt;13&gt;&amp;, ap_uint&lt;8&gt;&amp;)' to improve effectiveness of pipeline pragma in function 'hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)'">
+        <args Callee="update_window(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;26&gt;, ap_uint&lt;27&gt;, ap_uint&lt;8&gt; (*) [7680], ap_uint&lt;8&gt; (*) [5], ap_uint&lt;13&gt;&amp;, ap_uint&lt;8&gt;&amp;)" Callee-DebugLoc="File hls_filter_2d.cpp Line 14 Column 0" Caller="hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 121 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION_VERBOSE_PASSED" msg_id="214-335" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:14:0" msg_body="inline   1 update_window hls_filter_2d.cpp:159:1">
+        <args PragmaFunction="update_window" PragmaIsAuto="1" PragmaSrcLoc="hls_filter_2d.cpp:159:1" PragmaSrcLoc-DebugLoc="File hls_filter_2d.cpp Line 159 Column 1" PragmaType="inline"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:167:7" msg_body="Automatically inlining function 'compute_and_write_output(ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;8&gt; (*) [5], ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;, ap_uint&lt;13&gt;&amp;, ap_uint&lt;13&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, bool&amp;) (.59.60)' to improve effectiveness of pipeline pragma in function 'hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)'">
+        <args Callee="compute_and_write_output(ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_uint&lt;8&gt; (*) [5], ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;, ap_uint&lt;13&gt;&amp;, ap_uint&lt;13&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, bool&amp;) (.59.60)" Callee-DebugLoc="File hls_filter_2d.cpp Line 56 Column 0" Caller="hls_filter_2d(hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, hls::stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;, ap_uint&lt;13&gt;, ap_uint&lt;13&gt;, ap_int&lt;8&gt; (*) [5], ap_int&lt;32&gt;, ap_uint&lt;5&gt;, ap_int&lt;32&gt;, ap_uint&lt;1&gt;)" Caller-DebugLoc="File hls_filter_2d.cpp Line 121 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION_VERBOSE_PASSED" msg_id="214-335" msg_severity="INFO" msg_loc="hls_filter_2d.cpp:56:0" msg_body="inline   1 compute_and_write_output hls_filter_2d.cpp:159:1">
+        <args PragmaFunction="compute_and_write_output" PragmaIsAuto="1" PragmaSrcLoc="hls_filter_2d.cpp:159:1" PragmaSrcLoc-DebugLoc="File hls_filter_2d.cpp Line 159 Column 1" PragmaType="inline"/>
     </msg>
 </xilinx:hls_fe_msgs>

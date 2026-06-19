@@ -5,8 +5,8 @@
 <ModuleName>hls_filter_2d</ModuleName>
 <InstancesList>
 <Instance>
-<InstName>grp_hls_filter_2d_Pipeline_VITIS_LOOP_51_1_fu_364</InstName>
-<ModuleName>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</ModuleName>
+<InstName>grp_hls_filter_2d_Pipeline_VITIS_LOOP_158_1_fu_364</InstName>
+<ModuleName>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</ModuleName>
 <IsCompInst>true</IsCompInst>
 <ID>364</ID>
 </Instance>
@@ -16,9 +16,9 @@
 
 <ModuleInformation>
 <Module>
-<Name>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Name>
+<Name>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Name>
 <Loops>
-<VITIS_LOOP_51_1></VITIS_LOOP_51_1>
+<VITIS_LOOP_158_1></VITIS_LOOP_158_1>
 </Loops>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
@@ -27,10 +27,10 @@
 <EstimatedClockPeriod>6.716</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>12</Best-caseLatency>
-<Average-caseLatency>33554443</Average-caseLatency>
-<Worst-caseLatency>67108875</Worst-caseLatency>
-<Best-caseRealTimeLatency>0.120 us</Best-caseRealTimeLatency>
+<Best-caseLatency>13</Best-caseLatency>
+<Average-caseLatency>33554444</Average-caseLatency>
+<Worst-caseLatency>67108876</Worst-caseLatency>
+<Best-caseRealTimeLatency>0.130 us</Best-caseRealTimeLatency>
 <Average-caseRealTimeLatency>0.336 sec</Average-caseRealTimeLatency>
 <Worst-caseRealTimeLatency>0.671 sec</Worst-caseRealTimeLatency>
 <PipelineInitiationInterval>2 ~ 67108865</PipelineInitiationInterval>
@@ -38,8 +38,8 @@
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<VITIS_LOOP_51_1>
-<Name>VITIS_LOOP_51_1</Name>
+<VITIS_LOOP_158_1>
+<Name>VITIS_LOOP_158_1</Name>
 <Slack>7.30</Slack>
 <TripCount>
 <range>
@@ -48,27 +48,27 @@
 </range>
 </TripCount>
 <isPerfectNested>0</isPerfectNested>
-<Latency>10 ~ 67108873</Latency>
-<AbsoluteTimeLatency>0.100 us ~ 0.671 sec</AbsoluteTimeLatency>
+<Latency>11 ~ 67108874</Latency>
+<AbsoluteTimeLatency>0.110 us ~ 0.671 sec</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
-<PipelineDepth>10</PipelineDepth>
+<PipelineDepth>11</PipelineDepth>
 <PipelineType>yes</PipelineType>
 <PerformancePragma>-</PerformancePragma>
 <InstanceList>
 </InstanceList>
-</VITIS_LOOP_51_1>
+</VITIS_LOOP_158_1>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_2d.cpp:51</SourceLocation>
+<SourceLocation>hls_filter_2d.cpp:153</SourceLocation>
 <SummaryOfLoopViolations>
-<VITIS_LOOP_51_1>
-<Name>VITIS_LOOP_51_1</Name>
+<VITIS_LOOP_158_1>
+<Name>VITIS_LOOP_158_1</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_2d.cpp:51</SourceLocation>
-</VITIS_LOOP_51_1>
+<SourceLocation>hls_filter_2d.cpp:45~hls_filter_2d.cpp:162</SourceLocation>
+</VITIS_LOOP_158_1>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
@@ -80,10 +80,10 @@
 <DSP>18</DSP>
 <AVAIL_DSP>1248</AVAIL_DSP>
 <UTIL_DSP>1</UTIL_DSP>
-<FF>1637</FF>
+<FF>1761</FF>
 <AVAIL_FF>234240</AVAIL_FF>
 <UTIL_FF>~0</UTIL_FF>
-<LUT>2361</LUT>
+<LUT>2402</LUT>
 <AVAIL_LUT>117120</AVAIL_LUT>
 <UTIL_LUT>2</UTIL_LUT>
 <URAM>0</URAM>
@@ -94,7 +94,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Object>
+<Object>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -105,7 +105,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Object>
+<Object>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -116,7 +116,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Object>
+<Object>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -127,7 +127,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Object>
+<Object>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -138,7 +138,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Object>
+<Object>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -149,7 +149,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>hls_filter_2d_Pipeline_VITIS_LOOP_51_1</Object>
+<Object>hls_filter_2d_Pipeline_VITIS_LOOP_158_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -258,8 +258,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>add_ln88</name>
-<Object>add_ln88</Object>
+<name>add_ln42</name>
+<Object>add_ln42</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -280,8 +280,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>add_ln140</name>
-<Object>add_ln140</Object>
+<name>add_ln104</name>
+<Object>add_ln104</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -291,8 +291,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>add_ln141</name>
-<Object>add_ln141</Object>
+<name>add_ln88</name>
+<Object>add_ln88</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -302,8 +302,19 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>zext_ln122</name>
-<Object>zext_ln122</Object>
+<name>add_ln89</name>
+<Object>add_ln89</Object>
+<Type>scalar</Type>
+<Scope></Scope>
+<IOProtocol>ap_none</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>14</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>zext_ln72</name>
+<Object>zext_ln72</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -313,8 +324,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>zext_ln43</name>
-<Object>zext_ln43</Object>
+<name>zext_ln149</name>
+<Object>zext_ln149</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -335,8 +346,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_17</name>
-<Object>sext_ln117_17</Object>
+<name>sext_ln72_17</name>
+<Object>sext_ln72_17</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -346,8 +357,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_16</name>
-<Object>sext_ln117_16</Object>
+<name>sext_ln72_16</name>
+<Object>sext_ln72_16</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -357,8 +368,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_15</name>
-<Object>sext_ln117_15</Object>
+<name>sext_ln72_15</name>
+<Object>sext_ln72_15</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -368,8 +379,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_14</name>
-<Object>sext_ln117_14</Object>
+<name>sext_ln72_14</name>
+<Object>sext_ln72_14</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -379,8 +390,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_13</name>
-<Object>sext_ln117_13</Object>
+<name>sext_ln72_13</name>
+<Object>sext_ln72_13</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -390,8 +401,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_12</name>
-<Object>sext_ln117_12</Object>
+<name>sext_ln72_12</name>
+<Object>sext_ln72_12</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -401,8 +412,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_11</name>
-<Object>sext_ln117_11</Object>
+<name>sext_ln72_11</name>
+<Object>sext_ln72_11</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -412,8 +423,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_10</name>
-<Object>sext_ln117_10</Object>
+<name>sext_ln72_10</name>
+<Object>sext_ln72_10</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -423,8 +434,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_9</name>
-<Object>sext_ln117_9</Object>
+<name>sext_ln72_9</name>
+<Object>sext_ln72_9</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -434,8 +445,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_8</name>
-<Object>sext_ln117_8</Object>
+<name>sext_ln72_8</name>
+<Object>sext_ln72_8</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -445,8 +456,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_7</name>
-<Object>sext_ln117_7</Object>
+<name>sext_ln72_7</name>
+<Object>sext_ln72_7</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -456,8 +467,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_6</name>
-<Object>sext_ln117_6</Object>
+<name>sext_ln72_6</name>
+<Object>sext_ln72_6</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -467,8 +478,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_5</name>
-<Object>sext_ln117_5</Object>
+<name>sext_ln72_5</name>
+<Object>sext_ln72_5</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -478,8 +489,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_4</name>
-<Object>sext_ln117_4</Object>
+<name>sext_ln72_4</name>
+<Object>sext_ln72_4</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -489,8 +500,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_3</name>
-<Object>sext_ln117_3</Object>
+<name>sext_ln72_3</name>
+<Object>sext_ln72_3</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -500,8 +511,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_2</name>
-<Object>sext_ln117_2</Object>
+<name>sext_ln72_2</name>
+<Object>sext_ln72_2</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -511,8 +522,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117</name>
-<Object>sext_ln117</Object>
+<name>sext_ln72</name>
+<Object>sext_ln72</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -522,8 +533,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_1</name>
-<Object>sext_ln117_1</Object>
+<name>sext_ln72_1</name>
+<Object>sext_ln72_1</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -533,8 +544,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln51</name>
-<Object>sext_ln51</Object>
+<name>sext_ln76</name>
+<Object>sext_ln76</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -544,8 +555,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_23</name>
-<Object>sext_ln117_23</Object>
+<name>sext_ln72_23</name>
+<Object>sext_ln72_23</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -555,8 +566,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_22</name>
-<Object>sext_ln117_22</Object>
+<name>sext_ln72_22</name>
+<Object>sext_ln72_22</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -566,8 +577,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_21</name>
-<Object>sext_ln117_21</Object>
+<name>sext_ln72_21</name>
+<Object>sext_ln72_21</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -577,8 +588,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_20</name>
-<Object>sext_ln117_20</Object>
+<name>sext_ln72_20</name>
+<Object>sext_ln72_20</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -588,8 +599,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_19</name>
-<Object>sext_ln117_19</Object>
+<name>sext_ln72_19</name>
+<Object>sext_ln72_19</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -599,8 +610,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln117_18</name>
-<Object>sext_ln117_18</Object>
+<name>sext_ln72_18</name>
+<Object>sext_ln72_18</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -610,8 +621,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>sext_ln122</name>
-<Object>sext_ln122</Object>
+<name>sext_ln76_1</name>
+<Object>sext_ln76_1</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -621,8 +632,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>zext_ln140</name>
-<Object>zext_ln140</Object>
+<name>zext_ln104</name>
+<Object>zext_ln104</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -654,8 +665,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>add_ln155</name>
-<Object>add_ln155</Object>
+<name>add_ln98</name>
+<Object>add_ln98</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
@@ -675,20 +686,20 @@
 <EstimatedClockPeriod>6.716</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>15</Best-caseLatency>
-<Average-caseLatency>33554446</Average-caseLatency>
-<Worst-caseLatency>67108878</Worst-caseLatency>
-<Best-caseRealTimeLatency>0.150 us</Best-caseRealTimeLatency>
+<Best-caseLatency>16</Best-caseLatency>
+<Average-caseLatency>33554447</Average-caseLatency>
+<Worst-caseLatency>67108879</Worst-caseLatency>
+<Best-caseRealTimeLatency>0.160 us</Best-caseRealTimeLatency>
 <Average-caseRealTimeLatency>0.336 sec</Average-caseRealTimeLatency>
 <Worst-caseRealTimeLatency>0.671 sec</Worst-caseRealTimeLatency>
-<PipelineInitiationInterval>16 ~ 67108879</PipelineInitiationInterval>
+<PipelineInitiationInterval>17 ~ 67108880</PipelineInitiationInterval>
 <PipelineType>no</PipelineType>
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_2d.cpp:7</SourceLocation>
+<SourceLocation>hls_filter_2d.cpp:114</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>
@@ -699,10 +710,10 @@
 <DSP>19</DSP>
 <AVAIL_DSP>1248</AVAIL_DSP>
 <UTIL_DSP>1</UTIL_DSP>
-<FF>2603</FF>
+<FF>2741</FF>
 <AVAIL_FF>234240</AVAIL_FF>
 <UTIL_FF>1</UTIL_FF>
-<LUT>3184</LUT>
+<LUT>3246</LUT>
 <AVAIL_LUT>117120</AVAIL_LUT>
 <UTIL_LUT>2</UTIL_LUT>
 <URAM>0</URAM>

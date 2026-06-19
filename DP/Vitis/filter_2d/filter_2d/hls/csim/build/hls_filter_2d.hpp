@@ -11,8 +11,9 @@
 #include <hls_math.h>
 #include <hls_stream.h>
 
-// Připojení našich vlastních sdílených video typů
-#include "hls_video_types.hpp"
+// Připojení vlastních sdílených video typů
+#include "../hls_video_types.hpp"
+
 
 // ============================================================================
 // KONFIGURACE HARDWARU (Ekvivalent VHDL Generics)
@@ -31,8 +32,9 @@ const int ACCUMULATOR_WIDTH = 32; // Šířka vnitřního sčítače konvoluce
 const int MAX_IMG_WIDTH = 7680; // 8K rozlišení
 
 // 4. Bitové šířky čítačů pro syntézu optimálních sčítaček (místo 32-bit int)
-// (Pro MAX_IMG_WIDTH 7680 potřebujeme 13 bitů, protože 2^13 = 8192)
-const int COORD_BITS = 13;
+// (Pro MAX_IMG_WIDTH 7680 potřebuje 13 bitů, protože 2^13 = 8192)
+// Použít pevnou hodnotu pro kompatibilitu s HLS (ne volat ceil/log2 v hlavičce)
+const int COORD_BITS = 13; // ceil(log2(MAX_IMG_WIDTH)) for MAX_IMG_WIDTH=7680
 const int TOTAL_PIXELS_BITS = COORD_BITS * 2;        // 26 bitů (13 + 13)
 const int FLUSH_CYCLES_BITS = COORD_BITS + 3;        // Rezerva pro okraje
 const int TOTAL_CYCLES_BITS = TOTAL_PIXELS_BITS + 1; // +1 bit proti přetečení
@@ -43,26 +45,23 @@ const int TOTAL_CYCLES_BITS = TOTAL_PIXELS_BITS + 1; // +1 bit proti přetečen�
 
 /**
  * @brief Top-level funkce HLS konvolučního 2D filtru.
- * * @param s_axis_video Vstupní AXI4-Stream rozhraní.
+ * @param s_axis_video Vstupní AXI4-Stream rozhraní.
  * @param m_axis_video Výstupní AXI4-Stream rozhraní.
  * @param width        Šířka zpracovávaného obrazu.
  * @param height       Výška zpracovávaného obrazu.
  * @param kernel       Matice koeficientů konvolučního jádra.
- * @param inv_divisor  Inverzní dělitel (pro normalizaci násobením místo dělení).
+ * @param inv_divisor  Inverzní dělitel (pro normalizaci násobením místo
+ * dělení).
  * @param fraction_bits Počet bitů pro bitový posun (nahrazuje dělení).
  * @param delta        Posun výstupní hodnoty (jasový offset).
  * @param borderType   Režim okrajů (0 = VALID, 1 = SAME).
  */
-void hls_filter_2d(
-    hls::stream<axis_gray> &s_axis_video, 
-    hls::stream<axis_gray> &m_axis_video,
-    ap_uint<COORD_BITS> width, 
-    ap_uint<COORD_BITS> height,
-    ap_int<KERNEL_WIDTH> kernel[KERNEL_SIZE][KERNEL_SIZE],
-    ap_int<ACCUMULATOR_WIDTH> inv_divisor, 
-    ap_uint<5> fraction_bits,
-    ap_int<ACCUMULATOR_WIDTH> delta,
-    ap_uint<1> borderType
-);
+void hls_filter_2d(hls::stream<axis_gray> &s_axis_video,
+                   hls::stream<axis_gray> &m_axis_video,
+                   ap_uint<COORD_BITS> width, ap_uint<COORD_BITS> height,
+                   ap_int<KERNEL_WIDTH> kernel[KERNEL_SIZE][KERNEL_SIZE],
+                   ap_int<ACCUMULATOR_WIDTH> inv_divisor,
+                   ap_uint<5> fraction_bits, ap_int<ACCUMULATOR_WIDTH> delta,
+                   ap_uint<1> borderType);
 
 #endif // HLS_FILTER_2D_HPP

@@ -35,7 +35,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_filter_median.cpp:3</SourceLocation>
+<SourceLocation>hls_filter_median.cpp:5</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 
@@ -43,8 +43,8 @@
 <Resources>
 <BRAM_18K>8</BRAM_18K>
 <DSP>1</DSP>
-<FF>460</FF>
-<LUT>1367</LUT>
+<FF>501</FF>
+<LUT>1546</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
