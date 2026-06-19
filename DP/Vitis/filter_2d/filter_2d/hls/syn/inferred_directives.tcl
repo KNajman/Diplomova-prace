@@ -1,0 +1,3 @@
+# Inferred from performance & pipeline pragmas/directives
+set_directive_inline update_window
+set_directive_inline compute_and_write_output

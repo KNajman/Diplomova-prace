@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="hls_filter_median_3x3_hls_filter_median_3x3,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.789000,HLS_SYN_LAT=33546246,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=460,HLS_SYN_LUT=1367,HLS_VERSION=2025_2}" *)
+(* CORE_GENERATION_INFO="hls_filter_median_3x3_hls_filter_median_3x3,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.789000,HLS_SYN_LAT=33546246,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=501,HLS_SYN_LUT=1546,HLS_VERSION=2025_2}" *)
 
 (* DowngradeIPIdentifiedWarnings="yes" *)
 module hls_filter_median_3x3 (
@@ -85,25 +85,29 @@ wire    ap_CS_fsm_state1;
 reg    ap_ready;
 wire   [12:0] width;
 wire   [12:0] height;
-wire   [13:0] add_ln117_fu_70_p2;
-reg   [13:0] add_ln117_reg_92;
+wire   [13:0] add_ln134_fu_73_p2;
+reg   [13:0] add_ln134_reg_112;
 wire    ap_CS_fsm_state2;
-wire   [25:0] mul_ln31_fu_85_p2;
-reg   [25:0] mul_ln31_reg_97;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_idle;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_ready;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY;
-wire   [23:0] grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA;
-wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID;
-reg    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg;
+wire   [13:0] add_ln116_fu_90_p2;
+reg   [13:0] add_ln116_reg_117;
+wire   [25:0] mul_ln34_fu_105_p2;
+reg   [25:0] mul_ln34_reg_122;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_idle;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_ready;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY;
+wire   [23:0] grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA;
+wire    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID;
+reg    grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg;
 wire    ap_CS_fsm_state3;
 reg   [23:0] m_axis_video_TDATA_reg;
-wire   [13:0] zext_ln117_fu_66_p1;
-wire   [12:0] mul_ln31_fu_85_p0;
-wire   [12:0] mul_ln31_fu_85_p1;
+wire   [13:0] zext_ln134_fu_69_p1;
+wire   [12:0] add_ln109_fu_80_p2;
+wire   [13:0] zext_ln116_fu_86_p1;
+wire   [12:0] mul_ln34_fu_105_p0;
+wire   [12:0] mul_ln34_fu_105_p1;
 wire    ap_CS_fsm_state4;
 wire    regslice_both_m_axis_video_U_apdone_blk;
 reg   [3:0] ap_NS_fsm;
@@ -119,31 +123,32 @@ wire    regslice_both_s_axis_video_U_ack_in;
 reg   [23:0] m_axis_video_TDATA_int_regslice;
 wire    m_axis_video_TREADY_int_regslice;
 wire    regslice_both_m_axis_video_U_vld_out;
-wire   [25:0] mul_ln31_fu_85_p00;
-wire   [25:0] mul_ln31_fu_85_p10;
+wire   [25:0] mul_ln34_fu_105_p00;
+wire   [25:0] mul_ln34_fu_105_p10;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 4'd1;
-#0 grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg = 1'b0;
+#0 grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg = 1'b0;
 end
 
-hls_filter_median_3x3_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1 grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56(
+hls_filter_median_3x3_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1 grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start),
-    .ap_done(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done),
-    .ap_idle(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_idle),
-    .ap_ready(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_ready),
+    .ap_start(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start),
+    .ap_done(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done),
+    .ap_idle(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_idle),
+    .ap_ready(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_ready),
     .s_axis_video_TVALID(s_axis_video_TVALID_int_regslice),
-    .m_axis_video_TREADY(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY),
-    .mul_ln31(mul_ln31_reg_97),
+    .m_axis_video_TREADY(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY),
+    .mul_ln34(mul_ln34_reg_122),
+    .add_ln134(add_ln134_reg_112),
     .s_axis_video_TDATA(s_axis_video_TDATA_int_regslice),
-    .s_axis_video_TREADY(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY),
-    .add_ln117(add_ln117_reg_92),
-    .m_axis_video_TDATA(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA),
-    .m_axis_video_TVALID(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID)
+    .s_axis_video_TREADY(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY),
+    .add_ln116(add_ln116_reg_117),
+    .m_axis_video_TDATA(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA),
+    .m_axis_video_TVALID(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID)
 );
 
 hls_filter_median_3x3_control_s_axi #(
@@ -185,10 +190,10 @@ hls_filter_median_3x3_mul_13ns_13ns_26_1_1 #(
     .din0_WIDTH( 13 ),
     .din1_WIDTH( 13 ),
     .dout_WIDTH( 26 ))
-mul_13ns_13ns_26_1_1_U6(
-    .din0(mul_ln31_fu_85_p0),
-    .din1(mul_ln31_fu_85_p1),
-    .dout(mul_ln31_fu_85_p2)
+mul_13ns_13ns_26_1_1_U7(
+    .din0(mul_ln34_fu_105_p0),
+    .din1(mul_ln34_fu_105_p1),
+    .dout(mul_ln34_fu_105_p2)
 );
 
 hls_filter_median_3x3_regslice_both #(
@@ -211,7 +216,7 @@ regslice_both_m_axis_video_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
     .data_in(m_axis_video_TDATA_int_regslice),
-    .vld_in(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID),
+    .vld_in(grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID),
     .ack_in(m_axis_video_TREADY_int_regslice),
     .data_out(m_axis_video_TDATA),
     .vld_out(regslice_both_m_axis_video_U_vld_out),
@@ -229,26 +234,27 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg <= 1'b0;
+        grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state2)) begin
-            grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg <= 1'b1;
-        end else if ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_ready == 1'b1)) begin
-            grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg <= 1'b0;
+            grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg <= 1'b1;
+        end else if ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_ready == 1'b1)) begin
+            grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        add_ln117_reg_92 <= add_ln117_fu_70_p2;
-        mul_ln31_reg_97 <= mul_ln31_fu_85_p2;
+        add_ln116_reg_117 <= add_ln116_fu_90_p2;
+        add_ln134_reg_112 <= add_ln134_fu_73_p2;
+        mul_ln34_reg_122 <= mul_ln34_fu_105_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
-        m_axis_video_TDATA_reg <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA;
+    if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        m_axis_video_TDATA_reg <= grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA;
     end
 end
 
@@ -263,7 +269,7 @@ end
 assign ap_ST_fsm_state2_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done == 1'b0)) begin
+    if ((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done == 1'b0)) begin
         ap_ST_fsm_state3_blk = 1'b1;
     end else begin
         ap_ST_fsm_state3_blk = 1'b0;
@@ -303,8 +309,8 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
-        m_axis_video_TDATA_int_regslice = grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TDATA;
+    if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        m_axis_video_TDATA_int_regslice = grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TDATA;
     end else begin
         m_axis_video_TDATA_int_regslice = m_axis_video_TDATA_reg;
     end
@@ -312,7 +318,7 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        s_axis_video_TREADY_int_regslice = grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_s_axis_video_TREADY;
+        s_axis_video_TREADY_int_regslice = grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_s_axis_video_TREADY;
     end else begin
         s_axis_video_TREADY_int_regslice = 1'b0;
     end
@@ -331,7 +337,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state3;
         end
         ap_ST_fsm_state3 : begin
-            if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+            if (((grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
                 ap_NS_fsm = ap_ST_fsm_state4;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state3;
@@ -350,7 +356,11 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln117_fu_70_p2 = ($signed(zext_ln117_fu_66_p1) + $signed(14'd16383));
+assign add_ln109_fu_80_p2 = ($signed(width) + $signed(13'd8190));
+
+assign add_ln116_fu_90_p2 = ($signed(zext_ln116_fu_86_p1) + $signed(14'd16383));
+
+assign add_ln134_fu_73_p2 = ($signed(zext_ln134_fu_69_p1) + $signed(14'd16383));
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -364,22 +374,24 @@ always @ (*) begin
     ap_rst_n_inv = ~ap_rst_n;
 end
 
-assign grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start = grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg;
+assign grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start = grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg;
 
-assign grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY = (m_axis_video_TREADY_int_regslice & ap_CS_fsm_state3);
+assign grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY = (m_axis_video_TREADY_int_regslice & ap_CS_fsm_state3);
 
 assign m_axis_video_TVALID = regslice_both_m_axis_video_U_vld_out;
 
-assign mul_ln31_fu_85_p0 = mul_ln31_fu_85_p00;
+assign mul_ln34_fu_105_p0 = mul_ln34_fu_105_p00;
 
-assign mul_ln31_fu_85_p00 = height;
+assign mul_ln34_fu_105_p00 = height;
 
-assign mul_ln31_fu_85_p1 = mul_ln31_fu_85_p10;
+assign mul_ln34_fu_105_p1 = mul_ln34_fu_105_p10;
 
-assign mul_ln31_fu_85_p10 = width;
+assign mul_ln34_fu_105_p10 = width;
 
 assign s_axis_video_TREADY = regslice_both_s_axis_video_U_ack_in;
 
-assign zext_ln117_fu_66_p1 = width;
+assign zext_ln116_fu_86_p1 = add_ln109_fu_80_p2;
+
+assign zext_ln134_fu_69_p1 = width;
 
 endmodule //hls_filter_median_3x3

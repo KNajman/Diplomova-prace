@@ -152,7 +152,7 @@ set NewPortList {[
 set ArgLastReadFirstWriteLatency {
 	hls_filter_2d {
 		s_axis_video {Type I LastRead 1 FirstWrite -1}
-		m_axis_video {Type O LastRead -1 FirstWrite 9}
+		m_axis_video {Type O LastRead -1 FirstWrite 10}
 		width {Type I LastRead 0 FirstWrite -1}
 		height {Type I LastRead 0 FirstWrite -1}
 		kernel_0_0 {Type I LastRead 0 FirstWrite -1}
@@ -184,55 +184,56 @@ set ArgLastReadFirstWriteLatency {
 		fraction_bits {Type I LastRead 0 FirstWrite -1}
 		delta {Type I LastRead 0 FirstWrite -1}
 		borderType {Type I LastRead 0 FirstWrite -1}}
-	hls_filter_2d_Pipeline_VITIS_LOOP_51_1 {
+	hls_filter_2d_Pipeline_VITIS_LOOP_158_1 {
 		total_pixels {Type I LastRead 0 FirstWrite -1}
 		flush_cycles {Type I LastRead 0 FirstWrite -1}
 		total_cycles {Type I LastRead 0 FirstWrite -1}
-		add_ln88 {Type I LastRead 0 FirstWrite -1}
+		add_ln42 {Type I LastRead 0 FirstWrite -1}
 		width {Type I LastRead 0 FirstWrite -1}
 		s_axis_video {Type I LastRead 1 FirstWrite -1}
-		add_ln140 {Type I LastRead 0 FirstWrite -1}
-		add_ln141 {Type I LastRead 0 FirstWrite -1}
-		zext_ln122 {Type I LastRead 0 FirstWrite -1}
-		zext_ln43 {Type I LastRead 0 FirstWrite -1}
+		add_ln104 {Type I LastRead 0 FirstWrite -1}
+		add_ln88 {Type I LastRead 0 FirstWrite -1}
+		add_ln89 {Type I LastRead 0 FirstWrite -1}
+		zext_ln72 {Type I LastRead 0 FirstWrite -1}
+		zext_ln149 {Type I LastRead 0 FirstWrite -1}
 		height {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_17 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_16 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_15 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_14 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_13 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_12 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_11 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_10 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_9 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_8 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_7 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_6 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_5 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_4 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_3 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_2 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_1 {Type I LastRead 0 FirstWrite -1}
-		sext_ln51 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_23 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_22 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_21 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_20 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_19 {Type I LastRead 0 FirstWrite -1}
-		sext_ln117_18 {Type I LastRead 0 FirstWrite -1}
-		sext_ln122 {Type I LastRead 0 FirstWrite -1}
-		zext_ln140 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_17 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_16 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_15 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_14 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_13 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_12 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_11 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_10 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_9 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_8 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_7 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_6 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_5 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_4 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_3 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_2 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_1 {Type I LastRead 0 FirstWrite -1}
+		sext_ln76 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_23 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_22 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_21 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_20 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_19 {Type I LastRead 0 FirstWrite -1}
+		sext_ln72_18 {Type I LastRead 0 FirstWrite -1}
+		sext_ln76_1 {Type I LastRead 0 FirstWrite -1}
+		zext_ln104 {Type I LastRead 0 FirstWrite -1}
 		delta {Type I LastRead 0 FirstWrite -1}
 		borderType {Type I LastRead 0 FirstWrite -1}
-		add_ln155 {Type I LastRead 0 FirstWrite -1}
-		m_axis_video {Type O LastRead -1 FirstWrite 9}}}
+		add_ln98 {Type I LastRead 0 FirstWrite -1}
+		m_axis_video {Type O LastRead -1 FirstWrite 10}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "15", "Max" : "67108878"}
-	, {"Name" : "Interval", "Min" : "16", "Max" : "67108879"}
+	{"Name" : "Latency", "Min" : "16", "Max" : "67108879"}
+	, {"Name" : "Interval", "Min" : "17", "Max" : "67108880"}
 ]}
 
 set PipelineEnableSignalInfo {[

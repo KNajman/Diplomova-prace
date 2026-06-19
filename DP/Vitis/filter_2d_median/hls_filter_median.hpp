@@ -1,6 +1,7 @@
 #ifndef HLS_FILTER_MEDIAN
 #define HLS_FILTER_MEDIAN
 
+#include "hls_video_types.hpp"
 
 // Standardní knihovny pro C
 #include <stdint.h>

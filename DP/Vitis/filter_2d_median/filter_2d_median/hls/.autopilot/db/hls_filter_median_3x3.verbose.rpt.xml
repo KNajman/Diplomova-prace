@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_filter_median_3x3'" level="0">
-<item name = "Date">Fri Apr 10 08:17:49 2026
+<item name = "Date">Thu Jun 18 19:19:23 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">filter_2d_median</item>
@@ -31,7 +31,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56">hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1, 3, 67092484, 30.000 ns, 0.671 sec, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58">hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1, 3, 67092484, 30.000 ns, 0.671 sec, 0, 0, loop pipeline stp</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -48,12 +48,12 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 23, -</column>
+<column name="Expression">-, -, 0, 64, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">8, 1, 391, 1300, 0</column>
+<column name="Instance">8, 1, 418, 1438, 0</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, 0, 44, -</column>
-<column name="Register">-, -, 69, -, -</column>
+<column name="Register">-, -, 83, -, -</column>
 <specialColumn name="Available">288, 1248, 234240, 117120, 64</specialColumn>
 <specialColumn name="Utilization (%)">2, ~0, ~0, 1, 0</specialColumn>
 </table>
@@ -63,8 +63,8 @@
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="control_s_axi_U">control_s_axi, 0, 0, 74, 92, 0</column>
-<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56">hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1, 8, 0, 317, 1203, 0</column>
-<column name="mul_13ns_13ns_26_1_1_U6">mul_13ns_13ns_26_1_1, 0, 1, 0, 5, 0</column>
+<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58">hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1, 8, 0, 344, 1341, 0</column>
+<column name="mul_13ns_13ns_26_1_1_U7">mul_13ns_13ns_26_1_1, 0, 1, 0, 5, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -81,8 +81,10 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln117_fu_70_p2">+, 0, 0, 21, 14, 2</column>
-<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_m_axis_video_TREADY">and, 0, 0, 2, 1, 1</column>
+<column name="add_ln109_fu_80_p2">+, 0, 0, 20, 13, 3</column>
+<column name="add_ln116_fu_90_p2">+, 0, 0, 21, 14, 2</column>
+<column name="add_ln134_fu_73_p2">+, 0, 0, 21, 14, 2</column>
+<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_m_axis_video_TREADY">and, 0, 0, 2, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -94,11 +96,12 @@
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln117_reg_92">14, 0, 14, 0</column>
+<column name="add_ln116_reg_117">14, 0, 14, 0</column>
+<column name="add_ln134_reg_112">14, 0, 14, 0</column>
 <column name="ap_CS_fsm">4, 0, 4, 0</column>
-<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1_fu_56_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1_fu_58_ap_start_reg">1, 0, 1, 0</column>
 <column name="m_axis_video_TDATA_reg">24, 0, 24, 0</column>
-<column name="mul_ln31_reg_97">26, 0, 26, 0</column>
+<column name="mul_ln34_reg_122">26, 0, 26, 0</column>
 </table>
 </item>
 </section>

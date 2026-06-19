@@ -97,10 +97,11 @@ set ArgLastReadFirstWriteLatency {
 		m_axis_video {Type O LastRead -1 FirstWrite 3}
 		width {Type I LastRead 1 FirstWrite -1}
 		height {Type I LastRead 1 FirstWrite -1}}
-	hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1 {
-		mul_ln31 {Type I LastRead 0 FirstWrite -1}
+	hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1 {
+		mul_ln34 {Type I LastRead 0 FirstWrite -1}
+		add_ln134 {Type I LastRead 0 FirstWrite -1}
 		s_axis_video {Type I LastRead 2 FirstWrite -1}
-		add_ln117 {Type I LastRead 0 FirstWrite -1}
+		add_ln116 {Type I LastRead 0 FirstWrite -1}
 		m_axis_video {Type O LastRead -1 FirstWrite 3}}}
 
 set hasDtUnsupportedChannel 0

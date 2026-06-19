@@ -153,1640 +153,13 @@ extern "C" {
 }
 # 2 "<built-in>" 2
 # 1 "hls_filter_median.cpp" 2
+
 # 1 "./hls_filter_median.hpp" 1
 
 
 
+# 1 "./hls_video_types.hpp" 1
 
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 1 3
-# 52 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 1 3
-# 28 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 1 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 1 3
-# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/_mingw_mac.h" 1 3
-# 13 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/_mingw_secapi.h" 1 3
-# 44 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/_mingw_secapi.h" 3
-extern "C++" {
-template <bool __test, typename __dsttype>
-  struct __if_array;
-template <typename __dsttype>
-  struct __if_array <true, __dsttype> {
-    typedef __dsttype __type;
-};
-}
-# 14 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
-# 282 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 1 3
-# 12 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\vadefs.h" 1 3
-
-
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 1 3
-# 595 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/sdks/_mingw_directx.h" 1 3
-# 596 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/sdks/_mingw_ddk.h" 1 3
-# 597 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\vadefs.h" 2 3
-
-
-
-
-#pragma pack(push,_CRT_PACKING)
-
-
-
-extern "C" {
-
-
-
-
-
-  typedef __builtin_va_list __gnuc_va_list;
-
-
-
-
-
-
-  typedef __gnuc_va_list va_list;
-# 99 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\vadefs.h" 3
-}
-
-
-
-#pragma pack(pop)
-# 13 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 2 3
-# 283 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
-# 558 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
-extern "C" {
-# 569 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
-void __attribute__((__cdecl__)) __debugbreak(void);
-extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void __attribute__((__cdecl__)) __debugbreak(void)
-{
-  __asm__ __volatile__("int {$}3":);
-}
-
-
-
-
-const char *__mingw_get_crt_info (void);
-
-
-}
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 2 3
-
-
-
-
-#pragma pack(push,_CRT_PACKING)
-# 35 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-__extension__ typedef unsigned long size_t;
-# 45 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-__extension__ typedef long ssize_t;
-
-
-
-
-
-
-typedef size_t rsize_t;
-# 62 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-__extension__ typedef long intptr_t;
-# 75 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-__extension__ typedef unsigned long uintptr_t;
-# 88 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-__extension__ typedef long ptrdiff_t;
-# 106 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-typedef unsigned short wint_t;
-typedef unsigned short wctype_t;
-
-
-
-
-
-typedef int errno_t;
-
-
-
-
-typedef long __time32_t;
-
-
-
-
-__extension__ typedef long __time64_t;
-# 138 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-typedef __time64_t time_t;
-# 422 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
-struct threadlocaleinfostruct;
-struct threadmbcinfostruct;
-typedef struct threadlocaleinfostruct *pthreadlocinfo;
-typedef struct threadmbcinfostruct *pthreadmbcinfo;
-struct __lc_time_data;
-
-typedef struct localeinfo_struct {
-  pthreadlocinfo locinfo;
-  pthreadmbcinfo mbcinfo;
-} _locale_tstruct,*_locale_t;
-
-
-
-typedef struct tagLC_ID {
-  unsigned short wLanguage;
-  unsigned short wCountry;
-  unsigned short wCodePage;
-} LC_ID,*LPLC_ID;
-
-
-
-
-typedef struct threadlocaleinfostruct {
-  int refcount;
-  unsigned int lc_codepage;
-  unsigned int lc_collate_cp;
-  unsigned long lc_handle[6];
-  LC_ID lc_id[6];
-  struct {
-    char *locale;
-    wchar_t *wlocale;
-    int *refcount;
-    int *wrefcount;
-  } lc_category[6];
-  int lc_clike;
-  int mb_cur_max;
-  int *lconv_intl_refcount;
-  int *lconv_num_refcount;
-  int *lconv_mon_refcount;
-  struct lconv *lconv;
-  int *ctype1_refcount;
-  unsigned short *ctype1;
-  const unsigned short *pctype;
-  const unsigned char *pclmap;
-  const unsigned char *pcumap;
-  struct __lc_time_data *lc_time_curr;
-} threadlocinfo;
-
-
-
-
-
-
-
-#pragma pack(pop)
-# 29 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 2 3
-
-
-
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stddef.h" 1 3
-# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 2 3
-
-
-typedef signed char int8_t;
-typedef unsigned char uint8_t;
-typedef short int16_t;
-typedef unsigned short uint16_t;
-typedef int int32_t;
-typedef unsigned uint32_t;
-__extension__ typedef long long int64_t;
-__extension__ typedef unsigned long long uint64_t;
-
-
-typedef signed char int_least8_t;
-typedef unsigned char uint_least8_t;
-typedef short int_least16_t;
-typedef unsigned short uint_least16_t;
-typedef int int_least32_t;
-typedef unsigned uint_least32_t;
-__extension__ typedef long long int_least64_t;
-__extension__ typedef unsigned long long uint_least64_t;
-
-
-
-
-
-typedef signed char int_fast8_t;
-typedef unsigned char uint_fast8_t;
-typedef short int_fast16_t;
-typedef unsigned short uint_fast16_t;
-typedef int int_fast32_t;
-typedef unsigned int uint_fast32_t;
-__extension__ typedef long long int_fast64_t;
-__extension__ typedef unsigned long long uint_fast64_t;
-
-
-__extension__ typedef long long intmax_t;
-__extension__ typedef unsigned long long uintmax_t;
-# 53 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 2 3
-# 6 "./hls_filter_median.hpp" 2
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_print_push.h" 1 3
-# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-
-#pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  struct _iobuf {
-    char *_ptr;
-    int _cnt;
-    char *_base;
-    int _flag;
-    int _file;
-    int _charbuf;
-    int _bufsiz;
-    char *_tmpfname;
-  };
-  typedef struct _iobuf FILE;
-# 80 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 1 3
-
-
-
-
-  typedef long _off_t;
-
-  typedef long off32_t;
-
-
-
-
-
-  __extension__ typedef long long _off64_t;
-
-  __extension__ typedef long long off64_t;
-# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 3
-typedef off32_t off_t;
-# 81 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-
-__attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
-
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __iob_func(void);
-# 104 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __extension__ typedef long fpos_t;
-# 162 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vsscanf (const char * __restrict__ _Str,const char * __restrict__ Format,va_list argp);
-extern
-  __attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_scanf(const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vscanf(const char * __restrict__ Format, va_list argp);
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfscanf (FILE * __restrict__ fp, const char * __restrict__ Format,va_list argp);
-
-extern
-  __attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_vsnprintf(char * __restrict__ _DstBuf,size_t _MaxCount,const char * __restrict__ _Format,
-                               va_list _ArgList);
-extern
-  __attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_snprintf(char * __restrict__ s, size_t n, const char * __restrict__ format, ...);
-extern
-  __attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_printf(const char * __restrict__ , ... ) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vprintf (const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fprintf (FILE * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfprintf (FILE * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_sprintf (char * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vsprintf (char * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__((nonnull (1,2)))
-  int __attribute__((__cdecl__)) __mingw_asprintf(char ** __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__((nonnull (1,2)))
-  int __attribute__((__cdecl__)) __mingw_vasprintf(char ** __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-# 506 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__((__format__ (ms_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) fprintf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
-  __attribute__((__format__ (ms_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) printf(const char * __restrict__ _Format,...);
-  __attribute__((__format__ (ms_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) sprintf(char * __restrict__ _Dest,const char * __restrict__ _Format,...) ;
-
-  __attribute__((__format__ (ms_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) vfprintf(FILE * __restrict__ _File,const char * __restrict__ _Format,va_list _ArgList);
-  __attribute__((__format__ (ms_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) vprintf(const char * __restrict__ _Format,va_list _ArgList);
-  __attribute__((__format__ (ms_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) vsprintf(char * __restrict__ _Dest,const char * __restrict__ _Format,va_list _Args) ;
-
-  __attribute__((__format__ (ms_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...) ;
-  __attribute__((__format__ (ms_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) scanf(const char * __restrict__ _Format,...) ;
-  __attribute__((__format__ (ms_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...) ;
-
-
-
-
-
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-
-
-  __attribute__((__format__ (ms_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_vscanf(const char * __restrict__ Format, va_list argp);
-  __attribute__((__format__ (ms_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_vfscanf (FILE * __restrict__ fp, const char * __restrict__ Format,va_list argp);
-  __attribute__((__format__ (ms_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_vsscanf (const char * __restrict__ _Str,const char * __restrict__ Format,va_list argp);
-
-  inline __attribute__((__cdecl__))
-  __attribute__((__format__ (ms_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int vfscanf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
-  {
-    return __ms_vfscanf (__stream, __format, __local_argv);
-  }
-
-  inline __attribute__((__cdecl__))
-  __attribute__((__format__ (ms_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int vsscanf (const char * __restrict__ __source, const char * __restrict__ __format, __builtin_va_list __local_argv)
-  {
-    return __ms_vsscanf( __source, __format, __local_argv );
-  }
-  inline __attribute__((__cdecl__))
-  __attribute__((__format__ (ms_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int vscanf(const char *__format, __builtin_va_list __local_argv)
-  {
-    return __ms_vscanf (__format, __local_argv);
-  }
-
-
-#pragma GCC diagnostic pop
-
-
-
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _filbuf(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flsbuf(int _Ch,FILE *_File);
-
-
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fsopen(const char *_Filename,const char *_Mode,int _ShFlag);
-
-  void __attribute__((__cdecl__)) clearerr(FILE *_File);
-  int __attribute__((__cdecl__)) fclose(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fcloseall(void);
-
-
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fdopen(int _FileHandle,const char *_Mode);
-
-  int __attribute__((__cdecl__)) feof(FILE *_File);
-  int __attribute__((__cdecl__)) ferror(FILE *_File);
-  int __attribute__((__cdecl__)) fflush(FILE *_File);
-  int __attribute__((__cdecl__)) fgetc(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fgetchar(void);
-  int __attribute__((__cdecl__)) fgetpos(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
-  int __attribute__((__cdecl__)) fgetpos64(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
-  char *__attribute__((__cdecl__)) fgets(char * __restrict__ _Buf,int _MaxCount,FILE * __restrict__ _File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fileno(FILE *_File);
-
-
-
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _tempnam(const char *_DirName,const char *_FilePrefix);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flushall(void);
-  FILE *__attribute__((__cdecl__)) fopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode) ;
-  FILE *fopen64(const char * __restrict__ filename,const char * __restrict__ mode);
-  int __attribute__((__cdecl__)) fputc(int _Ch,FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fputchar(int _Ch);
-  int __attribute__((__cdecl__)) fputs(const char * __restrict__ _Str,FILE * __restrict__ _File);
-  size_t __attribute__((__cdecl__)) fread(void * __restrict__ _DstBuf,size_t _ElementSize,size_t _Count,FILE * __restrict__ _File);
-  FILE *__attribute__((__cdecl__)) freopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode,FILE * __restrict__ _File) ;
-  int __attribute__((__cdecl__)) fsetpos(FILE *_File,const fpos_t *_Pos);
-  int __attribute__((__cdecl__)) fsetpos64(FILE *_File,const fpos_t *_Pos);
-  int __attribute__((__cdecl__)) fseek(FILE *_File,long _Offset,int _Origin);
-  long __attribute__((__cdecl__)) ftell(FILE *_File);
-# 631 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __extension__ int __attribute__((__cdecl__)) _fseeki64(FILE *_File,long _Offset,int _Origin);
-  __extension__ long __attribute__((__cdecl__)) _ftelli64(FILE *_File);
-  int fseeko64(FILE* stream, _off64_t offset, int whence);
-  int fseeko(FILE* stream, _off_t offset, int whence);
-
-  _off_t ftello(FILE * stream);
-  _off64_t ftello64(FILE * stream);
-# 654 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  size_t __attribute__((__cdecl__)) fwrite(const void * __restrict__ _Str,size_t _Size,size_t _Count,FILE * __restrict__ _File);
-  int __attribute__((__cdecl__)) getc(FILE *_File);
-  int __attribute__((__cdecl__)) getchar(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _getmaxstdio(void);
-  char *__attribute__((__cdecl__)) gets(char *_Buffer) ;
-  int __attribute__((__cdecl__)) _getw(FILE *_File);
-
-
-  void __attribute__((__cdecl__)) perror(const char *_ErrMsg);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _pclose(FILE *_File);
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _popen(const char *_Command,const char *_Mode);
-
-
-
-
-  int __attribute__((__cdecl__)) putc(int _Ch,FILE *_File);
-  int __attribute__((__cdecl__)) putchar(int _Ch);
-  int __attribute__((__cdecl__)) puts(const char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putw(int _Word,FILE *_File);
-
-
-  int __attribute__((__cdecl__)) remove(const char *_Filename);
-  int __attribute__((__cdecl__)) rename(const char *_OldFilename,const char *_NewFilename);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _unlink(const char *_Filename);
-
-  int __attribute__((__cdecl__)) unlink(const char *_Filename) ;
-
-
-  void __attribute__((__cdecl__)) rewind(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _rmtmp(void);
-  void __attribute__((__cdecl__)) setbuf(FILE * __restrict__ _File,char * __restrict__ _Buffer) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _setmaxstdio(int _Max);
-  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_output_format(unsigned int _Format);
-  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _get_output_format(void);
-  int __attribute__((__cdecl__)) setvbuf(FILE * __restrict__ _File,char * __restrict__ _Buf,int _Mode,size_t _Size);
-# 712 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf(const char * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf(const char * __restrict__ _Src,size_t _MaxCount,const char * __restrict__ _Format,...) ;
-
-  FILE *__attribute__((__cdecl__)) tmpfile(void) ;
-  char *__attribute__((__cdecl__)) tmpnam(char *_Buffer);
-  int __attribute__((__cdecl__)) ungetc(int _Ch,FILE *_File);
-# 734 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__((__format__ (ms_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,...) ;
-  __attribute__((__format__ (ms_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,va_list _Args) ;
-# 761 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-
-
-
-
-
-
-  __attribute__((__format__ (ms_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __ms_vsnprintf(char * __restrict__ d,size_t n,const char * __restrict__ format,va_list arg)
-                                                                         ;
-
-  inline __attribute__((__cdecl__))
-  __attribute__((__format__ (ms_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-  int vsnprintf (char * __restrict__ __stream, size_t __n, const char * __restrict__ __format, va_list __local_argv)
-  {
-    return __ms_vsnprintf (__stream, __n, __format, __local_argv);
-  }
-
-  __attribute__((__format__ (ms_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __ms_snprintf(char * __restrict__ s, size_t n, const char * __restrict__ format, ...);
-
-
-inline __attribute__((__cdecl__))
-__attribute__((__format__ (ms_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-int snprintf (char * __restrict__ __stream, size_t __n, const char * __restrict__ __format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __ms_vsnprintf (__stream, __n, __format, __local_argv);
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-
-
-
-#pragma GCC diagnostic pop
-# 811 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf(const char * __restrict__ _Format,va_list _ArgList);
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_printf_count_output(int _Value);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _get_printf_count_output(void);
-
-
-
-
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vswscanf (const wchar_t * __restrict__ _Str,const wchar_t * __restrict__ Format,va_list argp);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_wscanf(const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vwscanf(const wchar_t * __restrict__ Format, va_list argp);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfwscanf (FILE * __restrict__ fp, const wchar_t * __restrict__ Format,va_list argp);
-
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-                                                      __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_wprintf(const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
-                                                      __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_snwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, ...);
-                                                      __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_vsnwprintf (wchar_t * __restrict__ , size_t, const wchar_t * __restrict__ , va_list);
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_swprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ , ...);
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vswprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ ,va_list);
-# 1061 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  int __attribute__((__cdecl__)) fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...) ;
-  int __attribute__((__cdecl__)) swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...) ;
-  int __attribute__((__cdecl__)) wscanf(const wchar_t * __restrict__ _Format,...) ;
-
-  int __attribute__((__cdecl__)) __ms_vwscanf (const wchar_t * __restrict__ , va_list);
-  int __attribute__((__cdecl__)) __ms_vfwscanf (FILE * __restrict__ ,const wchar_t * __restrict__ ,va_list);
-  int __attribute__((__cdecl__)) __ms_vswscanf (const wchar_t * __restrict__ ,const wchar_t * __restrict__ ,va_list);
-
-  inline __attribute__((__cdecl__))
-  __attribute__ ((__nonnull__ (2)))
-  int vfwscanf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
-  {
-    return __ms_vfwscanf (__stream, __format, __local_argv);
-  }
-
-  inline __attribute__((__cdecl__))
-  __attribute__ ((__nonnull__ (2)))
-  int vswscanf (const wchar_t * __restrict__ __source, const wchar_t * __restrict__ __format, __builtin_va_list __local_argv)
-  {
-    return __ms_vswscanf( __source, __format, __local_argv );
-  }
-  inline __attribute__((__cdecl__))
-  __attribute__ ((__nonnull__ (1)))
-  int vwscanf(const wchar_t *__format, __builtin_va_list __local_argv)
-  {
-    return __ms_vwscanf (__format, __local_argv);
-  }
-
-
-
-  int __attribute__((__cdecl__)) fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-  int __attribute__((__cdecl__)) wprintf(const wchar_t * __restrict__ _Format,...);
-  int __attribute__((__cdecl__)) vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
-  int __attribute__((__cdecl__)) vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
-# 1105 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfsopen(const wchar_t *_Filename,const wchar_t *_Mode,int _ShFlag);
-
-
-  wint_t __attribute__((__cdecl__)) fgetwc(FILE *_File);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fgetwchar(void);
-  wint_t __attribute__((__cdecl__)) fputwc(wchar_t _Ch,FILE *_File);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fputwchar(wchar_t _Ch);
-  wint_t __attribute__((__cdecl__)) getwc(FILE *_File);
-  wint_t __attribute__((__cdecl__)) getwchar(void);
-  wint_t __attribute__((__cdecl__)) putwc(wchar_t _Ch,FILE *_File);
-  wint_t __attribute__((__cdecl__)) putwchar(wchar_t _Ch);
-  wint_t __attribute__((__cdecl__)) ungetwc(wint_t _Ch,FILE *_File);
-  wchar_t *__attribute__((__cdecl__)) fgetws(wchar_t * __restrict__ _Dst,int _SizeInWords,FILE * __restrict__ _File);
-  int __attribute__((__cdecl__)) fputws(const wchar_t * __restrict__ _Str,FILE * __restrict__ _File);
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _getws(wchar_t *_String) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putws(const wchar_t *_Str);
-# 1186 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf(const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,...) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,va_list _Args) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
-# 1200 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  int __attribute__((__cdecl__)) __ms_snwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, ...);
-  int __attribute__((__cdecl__)) __ms_vsnwprintf (wchar_t * __restrict__ , size_t, const wchar_t * __restrict__ , va_list);
-  inline __attribute__((__cdecl__))
-  int snwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, ...)
-  {
-    int r;
-    va_list argp;
-    __builtin_va_start (argp, format);
-    r = _vsnwprintf (s, n, format, argp);
-    __builtin_va_end (argp);
-    return r;
-  }
-  inline __attribute__((__cdecl__))
-  int __attribute__((__cdecl__)) vsnwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, va_list arg)
-  {
-    return _vsnwprintf(s,n,format,arg);
-  }
-
-
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,va_list _Args);
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 1 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 2 3
-# 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (3)))
-int vswprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return vsnwprintf( __stream, __count, __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (3)))
-int swprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv;
-
-  __builtin_va_start( __local_argv, __format );
-  __retval = vswprintf( __stream, __count, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-
-extern "C++" {
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (2)))
-int vswprintf (wchar_t *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-
-
-
-  return _vswprintf( __stream, __format, __local_argv );
-
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (2)))
-int swprintf (wchar_t *__stream, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv;
-
-  __builtin_va_start( __local_argv, __format );
-  __retval = vswprintf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-}
-# 1228 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-# 1237 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtempnam(const wchar_t *_Directory,const wchar_t *_FilePrefix);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf(const wchar_t * __restrict__ _Src,size_t _MaxCount,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfdopen(int _FileHandle ,const wchar_t *_Mode);
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfopen(const wchar_t * __restrict__ _Filename,const wchar_t *__restrict__ _Mode) ;
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfreopen(const wchar_t * __restrict__ _Filename,const wchar_t * __restrict__ _Mode,FILE * __restrict__ _OldFile) ;
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wperror(const wchar_t *_ErrMsg);
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wpopen(const wchar_t *_Command,const wchar_t *_Mode);
-
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wremove(const wchar_t *_Filename);
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtmpnam(wchar_t *_Buffer);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fgetwc_nolock(FILE *_File);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fputwc_nolock(wchar_t _Ch,FILE *_File);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _ungetwc_nolock(wint_t _Ch,FILE *_File);
-# 1293 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _lock_file(FILE *_File);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _unlock_file(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fclose_nolock(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fflush_nolock(FILE *_File);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _fread_nolock(void * __restrict__ _DstBuf,size_t _ElementSize,size_t _Count,FILE * __restrict__ _File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fseek_nolock(FILE *_File,long _Offset,int _Origin);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _ftell_nolock(FILE *_File);
-  __extension__ __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fseeki64_nolock(FILE *_File,long _Offset,int _Origin);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _ftelli64_nolock(FILE *_File);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _fwrite_nolock(const void * __restrict__ _DstBuf,size_t _Size,size_t _Count,FILE * __restrict__ _File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _ungetc_nolock(int _Ch,FILE *_File);
-
-
-
-
-
-  char *__attribute__((__cdecl__)) tempnam(const char *_Directory,const char *_FilePrefix) ;
-  int __attribute__((__cdecl__)) fcloseall(void) ;
-  FILE *__attribute__((__cdecl__)) fdopen(int _FileHandle,const char *_Format) ;
-  int __attribute__((__cdecl__)) fgetchar(void) ;
-  int __attribute__((__cdecl__)) fileno(FILE *_File) ;
-  int __attribute__((__cdecl__)) flushall(void) ;
-  int __attribute__((__cdecl__)) fputchar(int _Ch) ;
-  int __attribute__((__cdecl__)) getw(FILE *_File) ;
-  int __attribute__((__cdecl__)) putw(int _Ch,FILE *_File) ;
-  int __attribute__((__cdecl__)) rmtmp(void) ;
-# 1335 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-int __attribute__((__cdecl__)) __mingw_str_wide_utf8 (const wchar_t * const wptr, char **mbptr, size_t * buflen);
-# 1349 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-int __attribute__((__cdecl__)) __mingw_str_utf8_wide (const char *const mbptr, wchar_t ** wptr, size_t * buflen);
-# 1358 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-void __attribute__((__cdecl__)) __mingw_str_free(void *ptr);
-
-
-
-
-
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnl(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnle(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlp(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlpe(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnv(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnve(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvp(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvpe(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
-# 1388 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnv(int _Mode,const char *_Filename,const char *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnve(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvp(int _Mode,const char *_Filename,const char *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvpe(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
-
-
-
-}
-
-
-#pragma pack(pop)
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 1 3
-
-
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 2 3
-# 1401 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_print_pop.h" 1 3
-# 1403 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-# 7 "./hls_filter_median.hpp" 2
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 1 3
-# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 1 3
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 1 3
-# 236 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 3
-namespace std
-{
-  typedef long unsigned int size_t;
-  typedef long int ptrdiff_t;
-
-
-  typedef decltype(nullptr) nullptr_t;
-
-}
-# 258 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 3
-namespace std
-{
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
-}
-namespace __gnu_cxx
-{
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
-}
-# 508 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/os_defines.h" 1 3
-# 509 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/cpu_defines.h" 1 3
-# 512 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
-# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 2 3
-# 75 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 1 3
-# 21 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\limits.h" 1 3
-# 22 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 2 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
-# 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-#pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 49 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  typedef int (__attribute__((__cdecl__)) *_onexit_t)(void);
-# 59 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  typedef struct _div_t {
-    int quot;
-    int rem;
-  } div_t;
-
-  typedef struct _ldiv_t {
-    long quot;
-    long rem;
-  } ldiv_t;
-
-
-
-
-
-#pragma pack(4)
-  typedef struct {
-    unsigned char ld[10];
-  } _LDOUBLE;
-#pragma pack()
-
-
-
-  typedef struct {
-    double x;
-  } _CRT_DOUBLE;
-
-  typedef struct {
-    float f;
-  } _CRT_FLOAT;
-
-
-
-
-  typedef struct {
-    long double x;
-  } _LONGDOUBLE;
-
-
-
-#pragma pack(4)
-  typedef struct {
-    unsigned char ld12[12];
-  } _LDBL12;
-#pragma pack()
-# 115 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  extern int * __imp___mb_cur_max;
-
-
-
-
-__attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_func(void);
-# 142 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  typedef void (__attribute__((__cdecl__)) *_purecall_handler)(void);
-
-  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _set_purecall_handler(_purecall_handler _Handler);
-  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _get_purecall_handler(void);
-
-  typedef void (__attribute__((__cdecl__)) *_invalid_parameter_handler)(const wchar_t *,const wchar_t *,const wchar_t *,unsigned int,uintptr_t);
-  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _set_invalid_parameter_handler(_invalid_parameter_handler _Handler);
-  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _get_invalid_parameter_handler(void);
-
-
-
-  __attribute__ ((__dllimport__)) extern int *__attribute__((__cdecl__)) _errno(void);
-
-  errno_t __attribute__((__cdecl__)) _set_errno(int _Value);
-  errno_t __attribute__((__cdecl__)) _get_errno(int *_Value);
-
-  __attribute__ ((__dllimport__)) unsigned long *__attribute__((__cdecl__)) __doserrno(void);
-
-  errno_t __attribute__((__cdecl__)) _set_doserrno(unsigned long _Value);
-  errno_t __attribute__((__cdecl__)) _get_doserrno(unsigned long *_Value);
-# 172 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  extern __attribute__((dllimport)) char *_sys_errlist[1];
-  extern __attribute__((dllimport)) int _sys_nerr;
-
-
-
-
-
-  __attribute__ ((__dllimport__)) char ***__attribute__((__cdecl__)) __p___argv(void);
-  __attribute__ ((__dllimport__)) int *__attribute__((__cdecl__)) __p__fmode(void);
-# 190 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  errno_t __attribute__((__cdecl__)) _get_pgmptr(char **_Value);
-  errno_t __attribute__((__cdecl__)) _get_wpgmptr(wchar_t **_Value);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_fmode(int _Mode);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_fmode(int *_PMode);
-# 281 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  extern int * __imp___argc;
-
-
-
-  extern char *** __imp___argv;
-
-
-
-  extern wchar_t *** __imp___wargv;
-
-
-
-
-
-  extern char *** __imp__environ;
-
-
-
-
-  extern wchar_t *** __imp__wenviron;
-
-
-
-
-
-  extern char ** __imp__pgmptr;
-
-
-
-
-  extern wchar_t ** __imp__wpgmptr;
-
-
-
-
-  extern unsigned int * __imp__osplatform;
-
-
-
-
-  extern unsigned int * __imp__osver;
-
-
-
-
-  extern unsigned int * __imp__winver;
-
-
-
-
-  extern unsigned int * __imp__winmajor;
-
-
-
-
-  extern unsigned int * __imp__winminor;
-
-
-
-
-
-  errno_t __attribute__((__cdecl__)) _get_osplatform(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_osver(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_winver(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_winmajor(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_winminor(unsigned int *_Value);
-
-
-
-
-  extern "C++" {
-    template <typename _CountofType,size_t _SizeOfArray> char (*__countof_helper( _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
-
-  }
-
-
-
-
-
-  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) exit(int _Code) __attribute__ ((__noreturn__));
-  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) _exit(int _Code) __attribute__ ((__noreturn__));
-
-
-
-  void __attribute__((__cdecl__)) _Exit(int) __attribute__ ((__noreturn__));
-# 374 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  void __attribute__((__cdecl__)) __attribute__ ((__noreturn__)) abort(void);
-
-
-
-
-  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_abort_behavior(unsigned int _Flags,unsigned int _Mask);
-
-
-
-  int __attribute__((__cdecl__)) abs(int _X);
-  long __attribute__((__cdecl__)) labs(long _X);
-
-
-  __extension__ long __attribute__((__cdecl__)) _abs64(long);
-
-  extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) long __attribute__((__cdecl__)) _abs64(long x) {
-    return __builtin_llabs(x);
-  }
-
-
-  int __attribute__((__cdecl__)) atexit(void (__attribute__((__cdecl__)) *)(void));
-
-
-  double __attribute__((__cdecl__)) atof(const char *_String);
-  double __attribute__((__cdecl__)) _atof_l(const char *_String,_locale_t _Locale);
-
-  int __attribute__((__cdecl__)) atoi(const char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoi_l(const char *_Str,_locale_t _Locale);
-  long __attribute__((__cdecl__)) atol(const char *_Str);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atol_l(const char *_Str,_locale_t _Locale);
-
-
-  void *__attribute__((__cdecl__)) bsearch(const void *_Key,const void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
-  void __attribute__((__cdecl__)) qsort(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
-
-  unsigned short __attribute__((__cdecl__)) _byteswap_ushort(unsigned short _Short);
-  unsigned long __attribute__((__cdecl__)) _byteswap_ulong (unsigned long _Long);
-  __extension__ unsigned long __attribute__((__cdecl__)) _byteswap_uint64(unsigned long _Int64);
-  div_t __attribute__((__cdecl__)) div(int _Numerator,int _Denominator);
-  char *__attribute__((__cdecl__)) getenv(const char *_VarName) ;
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _itoa(int _Value,char *_Dest,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _i64toa(long _Val,char *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ui64toa(unsigned long _Val,char *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atoi64(const char *_String);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atoi64_l(const char *_String,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtoi64(const char *_String,char **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtoi64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoui64(const char *_String,char **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoui64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
-  ldiv_t __attribute__((__cdecl__)) ldiv(long _Numerator,long _Denominator);
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ltoa(long _Value,char *_Dest,int _Radix) ;
-  int __attribute__((__cdecl__)) mblen(const char *_Ch,size_t _MaxCount);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mblen_l(const char *_Ch,size_t _MaxCount,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen(const char *_Str);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen_l(const char *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen(const char *_Str,size_t _MaxCount);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen_l(const char *_Str,size_t _MaxCount,_locale_t _Locale);
-  int __attribute__((__cdecl__)) mbtowc(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mbtowc_l(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes,_locale_t _Locale);
-  size_t __attribute__((__cdecl__)) mbstowcs(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstowcs_l(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale);
-  int __attribute__((__cdecl__)) mkstemp(char *template_name);
-  int __attribute__((__cdecl__)) rand(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_error_mode(int _Mode);
-  void __attribute__((__cdecl__)) srand(unsigned int _Seed);
-# 449 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
-{
-  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
-  return __mingw_strtod( _Str, _EndPtr);
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
-{
-  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
-  return __mingw_strtof( _Str, _EndPtr);
-}
-
-
-
-
-
-
-  long double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtold(const char * __restrict__ , char ** __restrict__ );
-
-
-  extern double __attribute__((__cdecl__)) __attribute__ ((__nothrow__))
-  __strtod (const char * __restrict__ , char ** __restrict__);
-
-
-
-
-
-
-
-  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
-  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
-  long double __attribute__((__cdecl__)) __mingw_strtold(const char * __restrict__, char ** __restrict__);
-
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _strtod_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,_locale_t _Locale);
-  long __attribute__((__cdecl__)) strtol(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtol_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-  unsigned long __attribute__((__cdecl__)) strtoul(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoul_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-
-
-  int __attribute__((__cdecl__)) system(const char *_Command);
-
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ultoa(unsigned long _Value,char *_Dest,int _Radix) ;
-  int __attribute__((__cdecl__)) wctomb(char *_MbCh,wchar_t _WCh) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wctomb_l(char *_MbCh,wchar_t _WCh,_locale_t _Locale) ;
-  size_t __attribute__((__cdecl__)) wcstombs(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount) ;
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _wcstombs_l(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale) ;
-
-
-
-  void *__attribute__((__cdecl__)) calloc(size_t _NumOfElements,size_t _SizeOfElements);
-  void __attribute__((__cdecl__)) free(void *_Memory);
-  void *__attribute__((__cdecl__)) malloc(size_t _Size);
-  void *__attribute__((__cdecl__)) realloc(void *_Memory,size_t _NewSize);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _recalloc(void *_Memory,size_t _Count,size_t _Size);
-
-
-
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _aligned_free(void *_Memory);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_malloc(size_t _Size,size_t _Alignment);
-
-
-
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_malloc(size_t _Size,size_t _Alignment,size_t _Offset);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_realloc(void *_Memory,size_t _Size,size_t _Alignment);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_realloc(void *_Memory,size_t _Size,size_t _Alignment,size_t _Offset);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment,size_t _Offset);
-
-
-
-
-
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _itow(int _Value,wchar_t *_Dest,int _Radix) ;
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ltow(long _Value,wchar_t *_Dest,int _Radix) ;
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ultow(unsigned long _Value,wchar_t *_Dest,int _Radix) ;
-
-  double __attribute__((__cdecl__)) __mingw_wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
-  float __attribute__((__cdecl__)) __mingw_wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
-  long double __attribute__((__cdecl__)) __mingw_wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
-
-
-  static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-  double __attribute__((__cdecl__)) wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
-    return __mingw_wcstod(_Str,_EndPtr);
-  }
-  static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-  float __attribute__((__cdecl__)) wcstof(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
-    return __mingw_wcstof(_Str,_EndPtr);
-  }
-
-
-
-
-
-
-  long double __attribute__((__cdecl__)) wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
-
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wcstod_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,_locale_t _Locale);
-  long __attribute__((__cdecl__)) wcstol(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstol_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-  unsigned long __attribute__((__cdecl__)) wcstoul(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoul_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wgetenv(const wchar_t *_VarName) ;
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wsystem(const wchar_t *_Command);
-
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof(const wchar_t *_Str);
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof_l(const wchar_t *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi(const wchar_t *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi_l(const wchar_t *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol(const wchar_t *_Str);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol_l(const wchar_t *_Str,_locale_t _Locale);
-
-  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _i64tow(long _Val,wchar_t *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ui64tow(unsigned long _Val,wchar_t *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtoi64(const wchar_t *_Str);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtoi64_l(const wchar_t *_Str,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstoi64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstoi64_l(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoui64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoui64_l(const wchar_t *_Str ,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putenv(const char *_EnvString);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wputenv(const wchar_t *_EnvString);
-
-
-
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fullpath(char *_FullPath,const char *_Path,size_t _SizeInBytes);
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl(_CRT_DOUBLE *_Result,char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl(_LDOUBLE *_Result,char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt(_CRT_FLOAT *_Result,char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl_l(_CRT_DOUBLE *_Result,char *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl_l(_LDOUBLE *_Result,char *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt_l(_CRT_FLOAT *_Result,char *_Str,_locale_t _Locale);
-# 609 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-unsigned long __attribute__((__cdecl__)) _lrotl(unsigned long,int);
-unsigned long __attribute__((__cdecl__)) _lrotr(unsigned long,int);
-
-
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _makepath(char *_Path,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
-  _onexit_t __attribute__((__cdecl__)) _onexit(_onexit_t _Func);
-# 627 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  __extension__ unsigned long __attribute__((__cdecl__)) _rotl64(unsigned long _Val,int _Shift);
-  __extension__ unsigned long __attribute__((__cdecl__)) _rotr64(unsigned long Value,int Shift);
-
-
-
-
-
-
-  unsigned int __attribute__((__cdecl__)) _rotr(unsigned int _Val,int _Shift);
-  unsigned int __attribute__((__cdecl__)) _rotl(unsigned int _Val,int _Shift);
-
-
-  __extension__ unsigned long __attribute__((__cdecl__)) _rotr64(unsigned long _Val,int _Shift);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _searchenv(const char *_Filename,const char *_EnvVar,char *_ResultPath) ;
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _splitpath(const char *_FullPath,char *_Drive,char *_Dir,char *_Filename,char *_Ext) ;
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _swab(char *_Buf1,char *_Buf2,int _SizeInBytes);
-
-
-
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wfullpath(wchar_t *_FullPath,const wchar_t *_Path,size_t _SizeInWords);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wmakepath(wchar_t *_ResultPath,const wchar_t *_Drive,const wchar_t *_Dir,const wchar_t *_Filename,const wchar_t *_Ext);
-
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsearchenv(const wchar_t *_Filename,const wchar_t *_EnvVar,wchar_t *_ResultPath) ;
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsplitpath(const wchar_t *_FullPath,wchar_t *_Drive,wchar_t *_Dir,wchar_t *_Filename,wchar_t *_Ext) ;
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _beep(unsigned _Frequency,unsigned _Duration) __attribute__ ((__deprecated__));
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _seterrormode(int _Mode) __attribute__ ((__deprecated__));
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _sleep(unsigned long _Duration) __attribute__ ((__deprecated__));
-# 680 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  char *__attribute__((__cdecl__)) ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
-  char *__attribute__((__cdecl__)) fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
-  char *__attribute__((__cdecl__)) gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
-  char *__attribute__((__cdecl__)) itoa(int _Val,char *_DstBuf,int _Radix) ;
-  char *__attribute__((__cdecl__)) ltoa(long _Val,char *_DstBuf,int _Radix) ;
-  int __attribute__((__cdecl__)) putenv(const char *_EnvString) ;
-
-
-
-  void __attribute__((__cdecl__)) swab(char *_Buf1,char *_Buf2,int _SizeInBytes) ;
-
-
-  char *__attribute__((__cdecl__)) ultoa(unsigned long _Val,char *_Dstbuf,int _Radix) ;
-  _onexit_t __attribute__((__cdecl__)) onexit(_onexit_t _Func);
-
-
-
-
-
-  typedef struct { __extension__ long long quot, rem; } lldiv_t;
-
-  __extension__ lldiv_t __attribute__((__cdecl__)) lldiv(long long, long long);
-
-  __extension__ long long __attribute__((__cdecl__)) llabs(long long);
-
-
-
-
-  __extension__ long long __attribute__((__cdecl__)) strtoll(const char * __restrict__, char ** __restrict, int);
-  __extension__ unsigned long long __attribute__((__cdecl__)) strtoull(const char * __restrict__, char ** __restrict__, int);
-
-
-  __extension__ long long __attribute__((__cdecl__)) atoll (const char *);
-
-
-  __extension__ long long __attribute__((__cdecl__)) wtoll (const wchar_t *);
-  __extension__ char *__attribute__((__cdecl__)) lltoa (long long, char *, int);
-  __extension__ char *__attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
-  __extension__ wchar_t *__attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
-  __extension__ wchar_t *__attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
-# 735 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-}
-
-
-#pragma pack(pop)
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 1 3
-
-
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 1 3
-# 30 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
-# 31 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 2 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 2 3
-# 741 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-#pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-  typedef struct _heapinfo {
-    int *_pentry;
-    size_t _size;
-    int _useflag;
-  } _HEAPINFO;
-
-
-  extern unsigned int _amblksiz;
-# 103 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-void * __mingw_aligned_malloc (size_t _Size, size_t _Alignment);
-void __mingw_aligned_free (void *_Memory);
-void * __mingw_aligned_offset_realloc (void *_Memory, size_t _Size, size_t _Alignment, size_t _Offset);
-void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _resetstkoflw (void);
-  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _set_malloc_crt_max_wait(unsigned long _NewValue);
-
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _expand(void *_Memory,size_t _NewSize);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _msize(void *_Memory);
-
-
-
-
-
-
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _get_sbh_threshold(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_sbh_threshold(size_t _NewValue);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_amblksiz(size_t _Value);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_amblksiz(size_t *_Value);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapadd(void *_Memory,size_t _Size);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapchk(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapmin(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapset(unsigned int _Fill);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapwalk(_HEAPINFO *_EntryInfo);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _heapused(size_t *_Used,size_t *_Commit);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _get_heap_handle(void);
-# 144 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-  static __inline void *_MarkAllocaS(void *_Ptr,unsigned int _Marker) {
-    if(_Ptr) {
-      *((unsigned int*)_Ptr) = _Marker;
-      _Ptr = (char*)_Ptr + 16;
-    }
-    return _Ptr;
-  }
-# 163 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-  static __inline void __attribute__((__cdecl__)) _freea(void *_Memory) {
-    unsigned int _Marker;
-    if(_Memory) {
-      _Memory = (char*)_Memory - 16;
-      _Marker = *(unsigned int *)_Memory;
-      if(_Marker==0xDDDD) {
- free(_Memory);
-      }
-
-
-
-
-
-    }
-  }
-# 206 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-}
-
-
-#pragma pack(pop)
-# 742 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
-# 76 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 2 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 1 3
-# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 3
-# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 3
-extern "C++"
-{
-namespace std
-{
-
-
-  using ::abs;
-
-
-  inline long
-  abs(long __i) { return __builtin_labs(__i); }
-
-
-
-  inline long long
-  abs(long long __x) { return __builtin_llabs (__x); }
-
-
-
-
-
-
-
-  inline constexpr double
-  abs(double __x)
-  { return __builtin_fabs(__x); }
-
-  inline constexpr float
-  abs(float __x)
-  { return __builtin_fabsf(__x); }
-
-  inline constexpr long double
-  abs(long double __x)
-  { return __builtin_fabsl(__x); }
-
-
-
-  inline constexpr __int128
-  abs(__int128 __x) { return __x >= 0 ? __x : -__x; }
-# 107 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 3
-}
-}
-# 78 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 2 3
-# 121 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
-extern "C++"
-{
-namespace std
-{
-
-
-  using ::div_t;
-  using ::ldiv_t;
-
-  using ::abort;
-
-
-
-  using ::atexit;
-
-
-
-
-
-  using ::atof;
-  using ::atoi;
-  using ::atol;
-  using ::bsearch;
-  using ::calloc;
-  using ::div;
-  using ::exit;
-  using ::free;
-  using ::getenv;
-  using ::labs;
-  using ::ldiv;
-  using ::malloc;
-
-  using ::mblen;
-  using ::mbstowcs;
-  using ::mbtowc;
-
-  using ::qsort;
-
-
-
-
-
-  using ::rand;
-  using ::realloc;
-  using ::srand;
-  using ::strtod;
-  using ::strtol;
-  using ::strtoul;
-  using ::system;
-
-  using ::wcstombs;
-  using ::wctomb;
-
-
-
-  inline ldiv_t
-  div(long __i, long __j) { return ldiv(__i, __j); }
-
-
-
-
-}
-# 195 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
-namespace __gnu_cxx
-{
-
-
-
-  using ::lldiv_t;
-
-
-
-
-
-  using ::_Exit;
-
-
-
-  using ::llabs;
-
-  inline lldiv_t
-  div(long long __n, long long __d)
-  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
-
-  using ::lldiv;
-# 227 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
-  using ::atoll;
-  using ::strtoll;
-  using ::strtoull;
-
-  using ::strtof;
-  using ::strtold;
-
-
-}
-
-namespace std
-{
-
-  using ::__gnu_cxx::lldiv_t;
-
-  using ::__gnu_cxx::_Exit;
-
-  using ::__gnu_cxx::llabs;
-  using ::__gnu_cxx::div;
-  using ::__gnu_cxx::lldiv;
-
-  using ::__gnu_cxx::atoll;
-  using ::__gnu_cxx::strtof;
-  using ::__gnu_cxx::strtoll;
-  using ::__gnu_cxx::strtoull;
-  using ::__gnu_cxx::strtold;
-}
-
-
-
-}
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 2 3
-
-using std::abort;
-using std::atexit;
-using std::exit;
-# 51 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 3
-using std::div_t;
-using std::ldiv_t;
-
-using std::abs;
-using std::atof;
-using std::atoi;
-using std::atol;
-using std::bsearch;
-using std::calloc;
-using std::div;
-using std::free;
-using std::getenv;
-using std::labs;
-using std::ldiv;
-using std::malloc;
-
-using std::mblen;
-using std::mbstowcs;
-using std::mbtowc;
-
-using std::qsort;
-using std::rand;
-using std::realloc;
-using std::srand;
-using std::strtod;
-using std::strtol;
-using std::strtoul;
-using std::system;
-
-using std::wcstombs;
-using std::wctomb;
-# 8 "./hls_filter_median.hpp" 2
 
 
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_int.h" 1
@@ -4255,6 +2628,35 @@ template <int _AP_W, typename _AP_T, int _AP_W1, typename _AP_T1> inline __attri
 # 13 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_int.h" 2
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\limits" 1 3
 # 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\limits" 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 1 3
+# 236 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 3
+namespace std
+{
+  typedef long unsigned int size_t;
+  typedef long int ptrdiff_t;
+
+
+  typedef decltype(nullptr) nullptr_t;
+
+}
+# 258 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 3
+namespace std
+{
+  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+}
+namespace __gnu_cxx
+{
+  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+}
+# 508 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/os_defines.h" 1 3
+# 509 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/cpu_defines.h" 1 3
+# 512 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
+# 43 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\limits" 2 3
 # 158 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\limits" 3
 namespace std
 {
@@ -15708,6 +14110,952 @@ namespace std
 # 59 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/stl_algo.h" 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 1 3
 # 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
+# 75 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 1 3
+# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/_mingw_mac.h" 1 3
+# 13 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/_mingw_secapi.h" 1 3
+# 44 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/_mingw_secapi.h" 3
+extern "C++" {
+template <bool __test, typename __dsttype>
+  struct __if_array;
+template <typename __dsttype>
+  struct __if_array <true, __dsttype> {
+    typedef __dsttype __type;
+};
+}
+# 14 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
+# 282 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 1 3
+# 12 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\vadefs.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 1 3
+# 595 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/sdks/_mingw_directx.h" 1 3
+# 596 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include/sdks/_mingw_ddk.h" 1 3
+# 597 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\vadefs.h" 2 3
+
+
+
+
+#pragma pack(push,_CRT_PACKING)
+
+
+
+extern "C" {
+
+
+
+
+
+  typedef __builtin_va_list __gnuc_va_list;
+
+
+
+
+
+
+  typedef __gnuc_va_list va_list;
+# 99 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\vadefs.h" 3
+}
+
+
+
+#pragma pack(pop)
+# 13 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 2 3
+# 283 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 2 3
+# 558 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
+extern "C" {
+# 569 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 3
+void __attribute__((__cdecl__)) __debugbreak(void);
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void __attribute__((__cdecl__)) __debugbreak(void)
+{
+  __asm__ __volatile__("int {$}3":);
+}
+
+
+
+
+const char *__mingw_get_crt_info (void);
+
+
+}
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 2 3
+
+
+
+
+#pragma pack(push,_CRT_PACKING)
+# 35 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+__extension__ typedef unsigned long size_t;
+# 45 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+__extension__ typedef long ssize_t;
+
+
+
+
+
+
+typedef size_t rsize_t;
+# 62 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+__extension__ typedef long intptr_t;
+# 75 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+__extension__ typedef unsigned long uintptr_t;
+# 88 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+__extension__ typedef long ptrdiff_t;
+# 106 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+typedef unsigned short wint_t;
+typedef unsigned short wctype_t;
+
+
+
+
+
+typedef int errno_t;
+
+
+
+
+typedef long __time32_t;
+
+
+
+
+__extension__ typedef long __time64_t;
+# 138 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+typedef __time64_t time_t;
+# 422 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
+struct threadlocaleinfostruct;
+struct threadmbcinfostruct;
+typedef struct threadlocaleinfostruct *pthreadlocinfo;
+typedef struct threadmbcinfostruct *pthreadmbcinfo;
+struct __lc_time_data;
+
+typedef struct localeinfo_struct {
+  pthreadlocinfo locinfo;
+  pthreadmbcinfo mbcinfo;
+} _locale_tstruct,*_locale_t;
+
+
+
+typedef struct tagLC_ID {
+  unsigned short wLanguage;
+  unsigned short wCountry;
+  unsigned short wCodePage;
+} LC_ID,*LPLC_ID;
+
+
+
+
+typedef struct threadlocaleinfostruct {
+  int refcount;
+  unsigned int lc_codepage;
+  unsigned int lc_collate_cp;
+  unsigned long lc_handle[6];
+  LC_ID lc_id[6];
+  struct {
+    char *locale;
+    wchar_t *wlocale;
+    int *refcount;
+    int *wrefcount;
+  } lc_category[6];
+  int lc_clike;
+  int mb_cur_max;
+  int *lconv_intl_refcount;
+  int *lconv_num_refcount;
+  int *lconv_mon_refcount;
+  struct lconv *lconv;
+  int *ctype1_refcount;
+  unsigned short *ctype1;
+  const unsigned short *pctype;
+  const unsigned char *pclmap;
+  const unsigned char *pcumap;
+  struct __lc_time_data *lc_time_curr;
+} threadlocinfo;
+
+
+
+
+
+
+
+#pragma pack(pop)
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 1 3
+# 21 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\limits.h" 1 3
+# 22 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 2 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+#pragma pack(push,_CRT_PACKING)
+
+
+extern "C" {
+# 49 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  typedef int (__attribute__((__cdecl__)) *_onexit_t)(void);
+# 59 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  typedef struct _div_t {
+    int quot;
+    int rem;
+  } div_t;
+
+  typedef struct _ldiv_t {
+    long quot;
+    long rem;
+  } ldiv_t;
+
+
+
+
+
+#pragma pack(4)
+  typedef struct {
+    unsigned char ld[10];
+  } _LDOUBLE;
+#pragma pack()
+
+
+
+  typedef struct {
+    double x;
+  } _CRT_DOUBLE;
+
+  typedef struct {
+    float f;
+  } _CRT_FLOAT;
+
+
+
+
+  typedef struct {
+    long double x;
+  } _LONGDOUBLE;
+
+
+
+#pragma pack(4)
+  typedef struct {
+    unsigned char ld12[12];
+  } _LDBL12;
+#pragma pack()
+# 115 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern int * __imp___mb_cur_max;
+
+
+
+
+__attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_func(void);
+# 142 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  typedef void (__attribute__((__cdecl__)) *_purecall_handler)(void);
+
+  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _set_purecall_handler(_purecall_handler _Handler);
+  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _get_purecall_handler(void);
+
+  typedef void (__attribute__((__cdecl__)) *_invalid_parameter_handler)(const wchar_t *,const wchar_t *,const wchar_t *,unsigned int,uintptr_t);
+  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _set_invalid_parameter_handler(_invalid_parameter_handler _Handler);
+  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _get_invalid_parameter_handler(void);
+
+
+
+  __attribute__ ((__dllimport__)) extern int *__attribute__((__cdecl__)) _errno(void);
+
+  errno_t __attribute__((__cdecl__)) _set_errno(int _Value);
+  errno_t __attribute__((__cdecl__)) _get_errno(int *_Value);
+
+  __attribute__ ((__dllimport__)) unsigned long *__attribute__((__cdecl__)) __doserrno(void);
+
+  errno_t __attribute__((__cdecl__)) _set_doserrno(unsigned long _Value);
+  errno_t __attribute__((__cdecl__)) _get_doserrno(unsigned long *_Value);
+# 172 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern __attribute__((dllimport)) char *_sys_errlist[1];
+  extern __attribute__((dllimport)) int _sys_nerr;
+
+
+
+
+
+  __attribute__ ((__dllimport__)) char ***__attribute__((__cdecl__)) __p___argv(void);
+  __attribute__ ((__dllimport__)) int *__attribute__((__cdecl__)) __p__fmode(void);
+# 190 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  errno_t __attribute__((__cdecl__)) _get_pgmptr(char **_Value);
+  errno_t __attribute__((__cdecl__)) _get_wpgmptr(wchar_t **_Value);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_fmode(int _Mode);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_fmode(int *_PMode);
+# 281 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern int * __imp___argc;
+
+
+
+  extern char *** __imp___argv;
+
+
+
+  extern wchar_t *** __imp___wargv;
+
+
+
+
+
+  extern char *** __imp__environ;
+
+
+
+
+  extern wchar_t *** __imp__wenviron;
+
+
+
+
+
+  extern char ** __imp__pgmptr;
+
+
+
+
+  extern wchar_t ** __imp__wpgmptr;
+
+
+
+
+  extern unsigned int * __imp__osplatform;
+
+
+
+
+  extern unsigned int * __imp__osver;
+
+
+
+
+  extern unsigned int * __imp__winver;
+
+
+
+
+  extern unsigned int * __imp__winmajor;
+
+
+
+
+  extern unsigned int * __imp__winminor;
+
+
+
+
+
+  errno_t __attribute__((__cdecl__)) _get_osplatform(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_osver(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_winver(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_winmajor(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_winminor(unsigned int *_Value);
+
+
+
+
+  extern "C++" {
+    template <typename _CountofType,size_t _SizeOfArray> char (*__countof_helper( _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
+
+  }
+
+
+
+
+
+  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) exit(int _Code) __attribute__ ((__noreturn__));
+  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) _exit(int _Code) __attribute__ ((__noreturn__));
+
+
+
+  void __attribute__((__cdecl__)) _Exit(int) __attribute__ ((__noreturn__));
+# 374 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  void __attribute__((__cdecl__)) __attribute__ ((__noreturn__)) abort(void);
+
+
+
+
+  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_abort_behavior(unsigned int _Flags,unsigned int _Mask);
+
+
+
+  int __attribute__((__cdecl__)) abs(int _X);
+  long __attribute__((__cdecl__)) labs(long _X);
+
+
+  __extension__ long __attribute__((__cdecl__)) _abs64(long);
+
+  extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) long __attribute__((__cdecl__)) _abs64(long x) {
+    return __builtin_llabs(x);
+  }
+
+
+  int __attribute__((__cdecl__)) atexit(void (__attribute__((__cdecl__)) *)(void));
+
+
+  double __attribute__((__cdecl__)) atof(const char *_String);
+  double __attribute__((__cdecl__)) _atof_l(const char *_String,_locale_t _Locale);
+
+  int __attribute__((__cdecl__)) atoi(const char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoi_l(const char *_Str,_locale_t _Locale);
+  long __attribute__((__cdecl__)) atol(const char *_Str);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atol_l(const char *_Str,_locale_t _Locale);
+
+
+  void *__attribute__((__cdecl__)) bsearch(const void *_Key,const void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
+  void __attribute__((__cdecl__)) qsort(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
+
+  unsigned short __attribute__((__cdecl__)) _byteswap_ushort(unsigned short _Short);
+  unsigned long __attribute__((__cdecl__)) _byteswap_ulong (unsigned long _Long);
+  __extension__ unsigned long __attribute__((__cdecl__)) _byteswap_uint64(unsigned long _Int64);
+  div_t __attribute__((__cdecl__)) div(int _Numerator,int _Denominator);
+  char *__attribute__((__cdecl__)) getenv(const char *_VarName) ;
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _itoa(int _Value,char *_Dest,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _i64toa(long _Val,char *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ui64toa(unsigned long _Val,char *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atoi64(const char *_String);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atoi64_l(const char *_String,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtoi64(const char *_String,char **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtoi64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoui64(const char *_String,char **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoui64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
+  ldiv_t __attribute__((__cdecl__)) ldiv(long _Numerator,long _Denominator);
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ltoa(long _Value,char *_Dest,int _Radix) ;
+  int __attribute__((__cdecl__)) mblen(const char *_Ch,size_t _MaxCount);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mblen_l(const char *_Ch,size_t _MaxCount,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen(const char *_Str);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen_l(const char *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen(const char *_Str,size_t _MaxCount);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen_l(const char *_Str,size_t _MaxCount,_locale_t _Locale);
+  int __attribute__((__cdecl__)) mbtowc(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mbtowc_l(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes,_locale_t _Locale);
+  size_t __attribute__((__cdecl__)) mbstowcs(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstowcs_l(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale);
+  int __attribute__((__cdecl__)) mkstemp(char *template_name);
+  int __attribute__((__cdecl__)) rand(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_error_mode(int _Mode);
+  void __attribute__((__cdecl__)) srand(unsigned int _Seed);
+# 449 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+inline __attribute__((__cdecl__))
+double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
+{
+  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
+  return __mingw_strtod( _Str, _EndPtr);
+}
+
+inline __attribute__((__cdecl__))
+float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
+{
+  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
+  return __mingw_strtof( _Str, _EndPtr);
+}
+
+
+
+
+
+
+  long double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtold(const char * __restrict__ , char ** __restrict__ );
+
+
+  extern double __attribute__((__cdecl__)) __attribute__ ((__nothrow__))
+  __strtod (const char * __restrict__ , char ** __restrict__);
+
+
+
+
+
+
+
+  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
+  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
+  long double __attribute__((__cdecl__)) __mingw_strtold(const char * __restrict__, char ** __restrict__);
+
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _strtod_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,_locale_t _Locale);
+  long __attribute__((__cdecl__)) strtol(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtol_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+  unsigned long __attribute__((__cdecl__)) strtoul(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoul_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+
+
+  int __attribute__((__cdecl__)) system(const char *_Command);
+
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ultoa(unsigned long _Value,char *_Dest,int _Radix) ;
+  int __attribute__((__cdecl__)) wctomb(char *_MbCh,wchar_t _WCh) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wctomb_l(char *_MbCh,wchar_t _WCh,_locale_t _Locale) ;
+  size_t __attribute__((__cdecl__)) wcstombs(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount) ;
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _wcstombs_l(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale) ;
+
+
+
+  void *__attribute__((__cdecl__)) calloc(size_t _NumOfElements,size_t _SizeOfElements);
+  void __attribute__((__cdecl__)) free(void *_Memory);
+  void *__attribute__((__cdecl__)) malloc(size_t _Size);
+  void *__attribute__((__cdecl__)) realloc(void *_Memory,size_t _NewSize);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _recalloc(void *_Memory,size_t _Count,size_t _Size);
+
+
+
+
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _aligned_free(void *_Memory);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_malloc(size_t _Size,size_t _Alignment);
+
+
+
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_malloc(size_t _Size,size_t _Alignment,size_t _Offset);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_realloc(void *_Memory,size_t _Size,size_t _Alignment);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_realloc(void *_Memory,size_t _Size,size_t _Alignment,size_t _Offset);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment,size_t _Offset);
+
+
+
+
+
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _itow(int _Value,wchar_t *_Dest,int _Radix) ;
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ltow(long _Value,wchar_t *_Dest,int _Radix) ;
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ultow(unsigned long _Value,wchar_t *_Dest,int _Radix) ;
+
+  double __attribute__((__cdecl__)) __mingw_wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
+  float __attribute__((__cdecl__)) __mingw_wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
+  long double __attribute__((__cdecl__)) __mingw_wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
+
+
+  inline __attribute__((__cdecl__))
+  double __attribute__((__cdecl__)) wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
+    return __mingw_wcstod(_Str,_EndPtr);
+  }
+  inline __attribute__((__cdecl__))
+  float __attribute__((__cdecl__)) wcstof(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
+    return __mingw_wcstof(_Str,_EndPtr);
+  }
+
+
+
+
+
+
+  long double __attribute__((__cdecl__)) wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
+
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wcstod_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,_locale_t _Locale);
+  long __attribute__((__cdecl__)) wcstol(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstol_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+  unsigned long __attribute__((__cdecl__)) wcstoul(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoul_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wgetenv(const wchar_t *_VarName) ;
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wsystem(const wchar_t *_Command);
+
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof(const wchar_t *_Str);
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof_l(const wchar_t *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi(const wchar_t *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi_l(const wchar_t *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol(const wchar_t *_Str);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol_l(const wchar_t *_Str,_locale_t _Locale);
+
+  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _i64tow(long _Val,wchar_t *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ui64tow(unsigned long _Val,wchar_t *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtoi64(const wchar_t *_Str);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtoi64_l(const wchar_t *_Str,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstoi64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstoi64_l(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoui64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoui64_l(const wchar_t *_Str ,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putenv(const char *_EnvString);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wputenv(const wchar_t *_EnvString);
+
+
+
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fullpath(char *_FullPath,const char *_Path,size_t _SizeInBytes);
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl(_CRT_DOUBLE *_Result,char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl(_LDOUBLE *_Result,char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt(_CRT_FLOAT *_Result,char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl_l(_CRT_DOUBLE *_Result,char *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl_l(_LDOUBLE *_Result,char *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt_l(_CRT_FLOAT *_Result,char *_Str,_locale_t _Locale);
+# 609 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+unsigned long __attribute__((__cdecl__)) _lrotl(unsigned long,int);
+unsigned long __attribute__((__cdecl__)) _lrotr(unsigned long,int);
+
+
+
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _makepath(char *_Path,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
+  _onexit_t __attribute__((__cdecl__)) _onexit(_onexit_t _Func);
+
+
+
+  void __attribute__((__cdecl__)) perror(const char *_ErrMsg);
+
+
+
+
+
+  __extension__ unsigned long __attribute__((__cdecl__)) _rotl64(unsigned long _Val,int _Shift);
+  __extension__ unsigned long __attribute__((__cdecl__)) _rotr64(unsigned long Value,int Shift);
+
+
+
+
+
+
+  unsigned int __attribute__((__cdecl__)) _rotr(unsigned int _Val,int _Shift);
+  unsigned int __attribute__((__cdecl__)) _rotl(unsigned int _Val,int _Shift);
+
+
+  __extension__ unsigned long __attribute__((__cdecl__)) _rotr64(unsigned long _Val,int _Shift);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _searchenv(const char *_Filename,const char *_EnvVar,char *_ResultPath) ;
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _splitpath(const char *_FullPath,char *_Drive,char *_Dir,char *_Filename,char *_Ext) ;
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _swab(char *_Buf1,char *_Buf2,int _SizeInBytes);
+
+
+
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wfullpath(wchar_t *_FullPath,const wchar_t *_Path,size_t _SizeInWords);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wmakepath(wchar_t *_ResultPath,const wchar_t *_Drive,const wchar_t *_Dir,const wchar_t *_Filename,const wchar_t *_Ext);
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wperror(const wchar_t *_ErrMsg);
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsearchenv(const wchar_t *_Filename,const wchar_t *_EnvVar,wchar_t *_ResultPath) ;
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsplitpath(const wchar_t *_FullPath,wchar_t *_Drive,wchar_t *_Dir,wchar_t *_Filename,wchar_t *_Ext) ;
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _beep(unsigned _Frequency,unsigned _Duration) __attribute__ ((__deprecated__));
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _seterrormode(int _Mode) __attribute__ ((__deprecated__));
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _sleep(unsigned long _Duration) __attribute__ ((__deprecated__));
+# 680 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  char *__attribute__((__cdecl__)) ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
+  char *__attribute__((__cdecl__)) fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
+  char *__attribute__((__cdecl__)) gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
+  char *__attribute__((__cdecl__)) itoa(int _Val,char *_DstBuf,int _Radix) ;
+  char *__attribute__((__cdecl__)) ltoa(long _Val,char *_DstBuf,int _Radix) ;
+  int __attribute__((__cdecl__)) putenv(const char *_EnvString) ;
+
+
+
+  void __attribute__((__cdecl__)) swab(char *_Buf1,char *_Buf2,int _SizeInBytes) ;
+
+
+  char *__attribute__((__cdecl__)) ultoa(unsigned long _Val,char *_Dstbuf,int _Radix) ;
+  _onexit_t __attribute__((__cdecl__)) onexit(_onexit_t _Func);
+
+
+
+
+
+  typedef struct { __extension__ long long quot, rem; } lldiv_t;
+
+  __extension__ lldiv_t __attribute__((__cdecl__)) lldiv(long long, long long);
+
+  __extension__ long long __attribute__((__cdecl__)) llabs(long long);
+
+
+
+
+  __extension__ long long __attribute__((__cdecl__)) strtoll(const char * __restrict__, char ** __restrict, int);
+  __extension__ unsigned long long __attribute__((__cdecl__)) strtoull(const char * __restrict__, char ** __restrict__, int);
+
+
+  __extension__ long long __attribute__((__cdecl__)) atoll (const char *);
+
+
+  __extension__ long long __attribute__((__cdecl__)) wtoll (const wchar_t *);
+  __extension__ char *__attribute__((__cdecl__)) lltoa (long long, char *, int);
+  __extension__ char *__attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
+  __extension__ wchar_t *__attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
+  __extension__ wchar_t *__attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
+# 735 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+}
+
+
+#pragma pack(pop)
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 1 3
+# 30 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
+# 31 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 2 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 2 3
+# 741 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 1 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+#pragma pack(push,_CRT_PACKING)
+
+
+extern "C" {
+# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+  typedef struct _heapinfo {
+    int *_pentry;
+    size_t _size;
+    int _useflag;
+  } _HEAPINFO;
+
+
+  extern unsigned int _amblksiz;
+# 103 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+void * __mingw_aligned_malloc (size_t _Size, size_t _Alignment);
+void __mingw_aligned_free (void *_Memory);
+void * __mingw_aligned_offset_realloc (void *_Memory, size_t _Size, size_t _Alignment, size_t _Offset);
+void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _resetstkoflw (void);
+  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _set_malloc_crt_max_wait(unsigned long _NewValue);
+
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _expand(void *_Memory,size_t _NewSize);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _msize(void *_Memory);
+
+
+
+
+
+
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _get_sbh_threshold(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_sbh_threshold(size_t _NewValue);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_amblksiz(size_t _Value);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_amblksiz(size_t *_Value);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapadd(void *_Memory,size_t _Size);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapchk(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapmin(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapset(unsigned int _Fill);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapwalk(_HEAPINFO *_EntryInfo);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _heapused(size_t *_Used,size_t *_Commit);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _get_heap_handle(void);
+# 144 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+  static __inline void *_MarkAllocaS(void *_Ptr,unsigned int _Marker) {
+    if(_Ptr) {
+      *((unsigned int*)_Ptr) = _Marker;
+      _Ptr = (char*)_Ptr + 16;
+    }
+    return _Ptr;
+  }
+# 163 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+  static __inline void __attribute__((__cdecl__)) _freea(void *_Memory) {
+    unsigned int _Marker;
+    if(_Memory) {
+      _Memory = (char*)_Memory - 16;
+      _Marker = *(unsigned int *)_Memory;
+      if(_Marker==0xDDDD) {
+ free(_Memory);
+      }
+
+
+
+
+
+    }
+  }
+# 206 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+}
+
+
+#pragma pack(pop)
+# 742 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 76 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 1 3
+# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 3
+# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 3
+extern "C++"
+{
+namespace std
+{
+
+
+  using ::abs;
+
+
+  inline long
+  abs(long __i) { return __builtin_labs(__i); }
+
+
+
+  inline long long
+  abs(long long __x) { return __builtin_llabs (__x); }
+
+
+
+
+
+
+
+  inline constexpr double
+  abs(double __x)
+  { return __builtin_fabs(__x); }
+
+  inline constexpr float
+  abs(float __x)
+  { return __builtin_fabsf(__x); }
+
+  inline constexpr long double
+  abs(long double __x)
+  { return __builtin_fabsl(__x); }
+
+
+
+  inline constexpr __int128
+  abs(__int128 __x) { return __x >= 0 ? __x : -__x; }
+# 107 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/std_abs.h" 3
+}
+}
+# 78 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 2 3
+# 121 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
+extern "C++"
+{
+namespace std
+{
+
+
+  using ::div_t;
+  using ::ldiv_t;
+
+  using ::abort;
+
+
+
+  using ::atexit;
+
+
+
+
+
+  using ::atof;
+  using ::atoi;
+  using ::atol;
+  using ::bsearch;
+  using ::calloc;
+  using ::div;
+  using ::exit;
+  using ::free;
+  using ::getenv;
+  using ::labs;
+  using ::ldiv;
+  using ::malloc;
+
+  using ::mblen;
+  using ::mbstowcs;
+  using ::mbtowc;
+
+  using ::qsort;
+
+
+
+
+
+  using ::rand;
+  using ::realloc;
+  using ::srand;
+  using ::strtod;
+  using ::strtol;
+  using ::strtoul;
+  using ::system;
+
+  using ::wcstombs;
+  using ::wctomb;
+
+
+
+  inline ldiv_t
+  div(long __i, long __j) { return ldiv(__i, __j); }
+
+
+
+
+}
+# 195 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
+namespace __gnu_cxx
+{
+
+
+
+  using ::lldiv_t;
+
+
+
+
+
+  using ::_Exit;
+
+
+
+  using ::llabs;
+
+  inline lldiv_t
+  div(long long __n, long long __d)
+  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
+
+  using ::lldiv;
+# 227 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
+  using ::atoll;
+  using ::strtoll;
+  using ::strtoull;
+
+  using ::strtof;
+  using ::strtold;
+
+
+}
+
+namespace std
+{
+
+  using ::__gnu_cxx::lldiv_t;
+
+  using ::__gnu_cxx::_Exit;
+
+  using ::__gnu_cxx::llabs;
+  using ::__gnu_cxx::div;
+  using ::__gnu_cxx::lldiv;
+
+  using ::__gnu_cxx::atoll;
+  using ::__gnu_cxx::strtof;
+  using ::__gnu_cxx::strtoll;
+  using ::__gnu_cxx::strtoull;
+  using ::__gnu_cxx::strtold;
+}
+
+
+
+}
 # 60 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/stl_algo.h" 2 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/algorithmfwd.h" 1 3
 # 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\bits/algorithmfwd.h" 3
@@ -29061,8 +28409,25 @@ namespace __cxx11 {
 
 
 extern "C" {
-# 55 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+  struct _iobuf {
+    char *_ptr;
+    int _cnt;
+    char *_base;
+    int _flag;
+    int _file;
+    int _charbuf;
+    int _bufsiz;
+    char *_tmpfname;
+  };
+  typedef struct _iobuf FILE;
+
+
+
 __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __iob_func(void);
 # 81 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
   typedef unsigned long _fsize_t;
 
@@ -29202,6 +28567,18 @@ __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wexecve(const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wexecvp(const wchar_t *_Filename,const wchar_t *const *_ArgList);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wexecvpe(const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
+
+
+
+
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnl(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnle(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlp(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlpe(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnv(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnve(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvp(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvpe(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
 # 409 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
   typedef unsigned short _ino_t;
 
@@ -29217,7 +28594,25 @@ __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func
 
 
 
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 1 3
 
+
+
+
+  typedef long _off_t;
+
+  typedef long off32_t;
+
+
+
+
+
+  __extension__ typedef long long _off64_t;
+
+  __extension__ typedef long long off64_t;
+# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 3
+typedef off32_t off_t;
+# 424 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_stat64.h" 1 3
 # 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_stat64.h" 3
   struct _stat32 {
@@ -29322,6 +28717,295 @@ __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func
   wint_t __attribute__((__cdecl__)) _getwch_nolock(void);
   wint_t __attribute__((__cdecl__)) _getwche_nolock(void);
   wint_t __attribute__((__cdecl__)) _ungetwch_nolock(wint_t _WCh);
+
+
+
+
+
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vswscanf (const wchar_t * __restrict__ _Str,const wchar_t * __restrict__ Format,va_list argp);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_wscanf(const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vwscanf(const wchar_t * __restrict__ Format, va_list argp);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfwscanf (FILE * __restrict__ fp, const wchar_t * __restrict__ Format,va_list argp);
+
+
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+                                                      __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_wprintf(const wchar_t * __restrict__ _Format,...);
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
+                                                      __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_snwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, ...);
+                                                      __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_vsnwprintf (wchar_t * __restrict__ , size_t, const wchar_t * __restrict__ , va_list);
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_swprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ , ...);
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vswprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ ,va_list);
+# 525 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int swscanf(const wchar_t *__source, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vswscanf( __source, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (1)))
+int wscanf(const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwscanf( (__acrt_iob_func(0)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int fwscanf(FILE *__stream, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwscanf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int vswscanf (const wchar_t *__source, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vswscanf( __source, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (1)))
+int vwscanf(const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwscanf( (__acrt_iob_func(0)), __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int vfwscanf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwscanf( __stream, __format, __local_argv );
+}
+
+
+
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int fwprintf (FILE *__stream, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (1)))
+int wprintf (const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwprintf( (__acrt_iob_func(1)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int vfwprintf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwprintf( __stream, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (1)))
+int vwprintf (const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwprintf( (__acrt_iob_func(1)), __format, __local_argv );
+}
+
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int snwprintf (wchar_t *__stream, size_t __n, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsnwprintf( __stream, __n, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int vsnwprintf (wchar_t *__stream, size_t __n, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vsnwprintf( __stream, __n, __format, __local_argv );
+}
+# 768 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfsopen(const wchar_t *_Filename,const wchar_t *_Mode,int _ShFlag);
+
+
+  wint_t __attribute__((__cdecl__)) fgetwc(FILE *_File);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fgetwchar(void);
+  wint_t __attribute__((__cdecl__)) fputwc(wchar_t _Ch,FILE *_File);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fputwchar(wchar_t _Ch);
+  wint_t __attribute__((__cdecl__)) getwc(FILE *_File);
+  wint_t __attribute__((__cdecl__)) getwchar(void);
+  wint_t __attribute__((__cdecl__)) putwc(wchar_t _Ch,FILE *_File);
+  wint_t __attribute__((__cdecl__)) putwchar(wchar_t _Ch);
+  wint_t __attribute__((__cdecl__)) ungetwc(wint_t _Ch,FILE *_File);
+  wchar_t *__attribute__((__cdecl__)) fgetws(wchar_t * __restrict__ _Dst,int _SizeInWords,FILE * __restrict__ _File);
+  int __attribute__((__cdecl__)) fputws(const wchar_t * __restrict__ _Str,FILE * __restrict__ _File);
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _getws(wchar_t *_String) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putws(const wchar_t *_Str);
+# 831 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf(const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_l(wchar_t * __restrict__ ,size_t _SizeInWords,const wchar_t * __restrict__ _Format,_locale_t _Locale,... ) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,...) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,va_list _Args) ;
+# 1145 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_p(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_p(const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_p(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_p(const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_p(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,...);
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vswprintf_p(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_p(const wchar_t * __restrict__ _Format,...);
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vscwprintf_p(const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_p_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_p_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_p_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_p_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,va_list _Args);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __swprintf_l(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,_locale_t _Plocinfo,...) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_l(wchar_t * __restrict__ _Dest,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __vswprintf_l(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,_locale_t _Plocinfo,va_list _Args) ;
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 1 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 2 3
+# 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int vswprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return vsnwprintf( __stream, __count, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int swprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv;
+
+  __builtin_va_start( __local_argv, __format );
+  __retval = vswprintf( __stream, __count, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+extern "C++" {
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int vswprintf (wchar_t *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+
+  return __mingw_vswprintf( __stream, __format, __local_argv );
+
+
+
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int swprintf (wchar_t *__stream, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv;
+
+  __builtin_va_start( __local_argv, __format );
+  __retval = vswprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+}
+# 1179 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
+# 1188 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtempnam(const wchar_t *_Directory,const wchar_t *_FilePrefix);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwscanf_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,...) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swscanf_l(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,_locale_t _Locale,...) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf(const wchar_t * __restrict__ _Src,size_t _MaxCount,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_l(const wchar_t * __restrict__ _Src,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wscanf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...) ;
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfdopen(int _FileHandle ,const wchar_t *_Mode);
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfopen(const wchar_t * __restrict__ _Filename,const wchar_t * __restrict__ _Mode) ;
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfreopen(const wchar_t * __restrict__ _Filename,const wchar_t * __restrict__ _Mode,FILE * __restrict__ _OldFile) ;
+
+
+
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wpopen(const wchar_t *_Command,const wchar_t *_Mode);
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wremove(const wchar_t *_Filename);
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtmpnam(wchar_t *_Buffer);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fgetwc_nolock(FILE *_File);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fputwc_nolock(wchar_t _Ch,FILE *_File);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _ungetwc_nolock(wint_t _Ch,FILE *_File);
 # 1304 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
   __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wcsdup(const wchar_t *_Str);
   wchar_t *__attribute__((__cdecl__)) wcscat(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Source) ;
@@ -29441,7 +29125,16 @@ __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func
 
   void *__attribute__((__cdecl__)) memmove(void *_Dst,const void *_Src,size_t _MaxCount);
   void *__attribute__((__cdecl__)) memcpy(void * __restrict__ _Dst,const void * __restrict__ _Src,size_t _MaxCount) ;
-# 1519 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+# 1491 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+int __attribute__((__cdecl__)) __mingw_str_wide_utf8 (const wchar_t * const wptr, char **mbptr, size_t * buflen);
+# 1505 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+int __attribute__((__cdecl__)) __mingw_str_utf8_wide (const char *const mbptr, wchar_t ** wptr, size_t * buflen);
+# 1514 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+void __attribute__((__cdecl__)) __mingw_str_free(void *ptr);
+
+
+
+
 }
 
 
@@ -30313,7 +30006,63 @@ namespace std
 
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdint" 1 3
 # 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdint" 3
-# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdint" 3
+
+
+
+
+
+
+
+
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 1 3
+# 52 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 1 3
+# 32 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 3
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stddef.h" 1 3
+# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 2 3
+
+
+typedef signed char int8_t;
+typedef unsigned char uint8_t;
+typedef short int16_t;
+typedef unsigned short uint16_t;
+typedef int int32_t;
+typedef unsigned uint32_t;
+__extension__ typedef long long int64_t;
+__extension__ typedef unsigned long long uint64_t;
+
+
+typedef signed char int_least8_t;
+typedef unsigned char uint_least8_t;
+typedef short int_least16_t;
+typedef unsigned short uint_least16_t;
+typedef int int_least32_t;
+typedef unsigned uint_least32_t;
+__extension__ typedef long long int_least64_t;
+__extension__ typedef unsigned long long uint_least64_t;
+
+
+
+
+
+typedef signed char int_fast8_t;
+typedef unsigned char uint_fast8_t;
+typedef short int_fast16_t;
+typedef unsigned short uint_fast16_t;
+typedef int int_fast32_t;
+typedef unsigned int uint_fast32_t;
+__extension__ typedef long long int_fast64_t;
+__extension__ typedef unsigned long long uint_fast64_t;
+
+
+__extension__ typedef long long intmax_t;
+__extension__ typedef unsigned long long uintmax_t;
+# 53 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 2 3
+# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdint" 2 3
+
+
+
+
 namespace std
 {
   using ::int8_t;
@@ -30567,7 +30316,380 @@ namespace std
 
 
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 1 3
-# 15 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 3
+# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_print_push.h" 1 3
+# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
+
+#pragma pack(push,_CRT_PACKING)
+
+
+extern "C" {
+# 82 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+__attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __iob_func(void);
+# 104 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __extension__ typedef long fpos_t;
+# 162 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vsscanf (const char * __restrict__ _Str,const char * __restrict__ Format,va_list argp);
+extern
+  __attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_scanf(const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vscanf(const char * __restrict__ Format, va_list argp);
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfscanf (FILE * __restrict__ fp, const char * __restrict__ Format,va_list argp);
+
+extern
+  __attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_vsnprintf(char * __restrict__ _DstBuf,size_t _MaxCount,const char * __restrict__ _Format,
+                               va_list _ArgList);
+extern
+  __attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_snprintf(char * __restrict__ s, size_t n, const char * __restrict__ format, ...);
+extern
+  __attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_printf(const char * __restrict__ , ... ) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vprintf (const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fprintf (FILE * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfprintf (FILE * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_sprintf (char * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vsprintf (char * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__((nonnull (1,2)))
+  int __attribute__((__cdecl__)) __mingw_asprintf(char ** __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__((nonnull (1,2)))
+  int __attribute__((__cdecl__)) __mingw_vasprintf(char ** __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+# 262 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+extern "C++" {
+
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int sscanf(const char *__source, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsscanf( __source, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+int scanf(const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfscanf( (__acrt_iob_func(0)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int fscanf(FILE *__stream, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfscanf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshadow"
+
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vsscanf (const char *__source, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vsscanf( __source, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+int vscanf(const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfscanf( (__acrt_iob_func(0)), __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vfscanf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfscanf( __stream, __format, __local_argv );
+}
+
+
+#pragma GCC diagnostic pop
+
+
+
+
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int fprintf (FILE *__stream, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+int printf (const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfprintf( (__acrt_iob_func(1)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int sprintf (char *__stream, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vfprintf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfprintf( __stream, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+int vprintf (const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfprintf( (__acrt_iob_func(1)), __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vsprintf (char *__stream, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vsprintf( __stream, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+int snprintf (char *__stream, size_t __n, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsnprintf( __stream, __n, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
+int vsnprintf (char *__stream, size_t __n, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vsnprintf( __stream, __n, __format, __local_argv );
+}
+# 411 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+}
+# 571 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _filbuf(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flsbuf(int _Ch,FILE *_File);
+
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fsopen(const char *_Filename,const char *_Mode,int _ShFlag);
+
+  void __attribute__((__cdecl__)) clearerr(FILE *_File);
+  int __attribute__((__cdecl__)) fclose(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fcloseall(void);
+
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fdopen(int _FileHandle,const char *_Mode);
+
+  int __attribute__((__cdecl__)) feof(FILE *_File);
+  int __attribute__((__cdecl__)) ferror(FILE *_File);
+  int __attribute__((__cdecl__)) fflush(FILE *_File);
+  int __attribute__((__cdecl__)) fgetc(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fgetchar(void);
+  int __attribute__((__cdecl__)) fgetpos(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
+  int __attribute__((__cdecl__)) fgetpos64(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
+  char *__attribute__((__cdecl__)) fgets(char * __restrict__ _Buf,int _MaxCount,FILE * __restrict__ _File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fileno(FILE *_File);
+
+
+
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _tempnam(const char *_DirName,const char *_FilePrefix);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flushall(void);
+  FILE *__attribute__((__cdecl__)) fopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode) ;
+  FILE *fopen64(const char * __restrict__ filename,const char * __restrict__ mode);
+  int __attribute__((__cdecl__)) fputc(int _Ch,FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fputchar(int _Ch);
+  int __attribute__((__cdecl__)) fputs(const char * __restrict__ _Str,FILE * __restrict__ _File);
+  size_t __attribute__((__cdecl__)) fread(void * __restrict__ _DstBuf,size_t _ElementSize,size_t _Count,FILE * __restrict__ _File);
+  FILE *__attribute__((__cdecl__)) freopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode,FILE * __restrict__ _File) ;
+  int __attribute__((__cdecl__)) fsetpos(FILE *_File,const fpos_t *_Pos);
+  int __attribute__((__cdecl__)) fsetpos64(FILE *_File,const fpos_t *_Pos);
+  int __attribute__((__cdecl__)) fseek(FILE *_File,long _Offset,int _Origin);
+  long __attribute__((__cdecl__)) ftell(FILE *_File);
+# 631 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __extension__ int __attribute__((__cdecl__)) _fseeki64(FILE *_File,long _Offset,int _Origin);
+  __extension__ long __attribute__((__cdecl__)) _ftelli64(FILE *_File);
+  int fseeko64(FILE* stream, _off64_t offset, int whence);
+  int fseeko(FILE* stream, _off_t offset, int whence);
+
+  _off_t ftello(FILE * stream);
+  _off64_t ftello64(FILE * stream);
+# 654 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  size_t __attribute__((__cdecl__)) fwrite(const void * __restrict__ _Str,size_t _Size,size_t _Count,FILE * __restrict__ _File);
+  int __attribute__((__cdecl__)) getc(FILE *_File);
+  int __attribute__((__cdecl__)) getchar(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _getmaxstdio(void);
+  char *__attribute__((__cdecl__)) gets(char *_Buffer) ;
+  int __attribute__((__cdecl__)) _getw(FILE *_File);
+
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _pclose(FILE *_File);
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _popen(const char *_Command,const char *_Mode);
+
+
+
+
+  int __attribute__((__cdecl__)) putc(int _Ch,FILE *_File);
+  int __attribute__((__cdecl__)) putchar(int _Ch);
+  int __attribute__((__cdecl__)) puts(const char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putw(int _Word,FILE *_File);
+
+
+  int __attribute__((__cdecl__)) remove(const char *_Filename);
+  int __attribute__((__cdecl__)) rename(const char *_OldFilename,const char *_NewFilename);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _unlink(const char *_Filename);
+
+  int __attribute__((__cdecl__)) unlink(const char *_Filename) ;
+
+
+  void __attribute__((__cdecl__)) rewind(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _rmtmp(void);
+  void __attribute__((__cdecl__)) setbuf(FILE * __restrict__ _File,char * __restrict__ _Buffer) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _setmaxstdio(int _Max);
+  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_output_format(unsigned int _Format);
+  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _get_output_format(void);
+  int __attribute__((__cdecl__)) setvbuf(FILE * __restrict__ _File,char * __restrict__ _Buf,int _Mode,size_t _Size);
+# 712 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf(const char * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf(const char * __restrict__ _Src,size_t _MaxCount,const char * __restrict__ _Format,...) ;
+
+  FILE *__attribute__((__cdecl__)) tmpfile(void) ;
+  char *__attribute__((__cdecl__)) tmpnam(char *_Buffer);
+  int __attribute__((__cdecl__)) ungetc(int _Ch,FILE *_File);
+# 734 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__((__format__ (ms_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,...) ;
+  __attribute__((__format__ (ms_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,va_list _Args) ;
+# 811 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf(const char * __restrict__ _Format,va_list _ArgList);
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_printf_count_output(int _Value);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _get_printf_count_output(void);
+# 1293 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _lock_file(FILE *_File);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _unlock_file(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fclose_nolock(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fflush_nolock(FILE *_File);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _fread_nolock(void * __restrict__ _DstBuf,size_t _ElementSize,size_t _Count,FILE * __restrict__ _File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fseek_nolock(FILE *_File,long _Offset,int _Origin);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _ftell_nolock(FILE *_File);
+  __extension__ __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fseeki64_nolock(FILE *_File,long _Offset,int _Origin);
+  __extension__ __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _ftelli64_nolock(FILE *_File);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _fwrite_nolock(const void * __restrict__ _DstBuf,size_t _Size,size_t _Count,FILE * __restrict__ _File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _ungetc_nolock(int _Ch,FILE *_File);
+
+
+
+
+
+  char *__attribute__((__cdecl__)) tempnam(const char *_Directory,const char *_FilePrefix) ;
+  int __attribute__((__cdecl__)) fcloseall(void) ;
+  FILE *__attribute__((__cdecl__)) fdopen(int _FileHandle,const char *_Format) ;
+  int __attribute__((__cdecl__)) fgetchar(void) ;
+  int __attribute__((__cdecl__)) fileno(FILE *_File) ;
+  int __attribute__((__cdecl__)) flushall(void) ;
+  int __attribute__((__cdecl__)) fputchar(int _Ch) ;
+  int __attribute__((__cdecl__)) getw(FILE *_File) ;
+  int __attribute__((__cdecl__)) putw(int _Ch,FILE *_File) ;
+  int __attribute__((__cdecl__)) rmtmp(void) ;
+# 1388 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnv(int _Mode,const char *_Filename,const char *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnve(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvp(int _Mode,const char *_Filename,const char *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvpe(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
+
+
+
+}
+
+
+#pragma pack(pop)
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 2 3
+# 1401 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_print_pop.h" 1 3
+# 1403 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
+# 13 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 2 3
+
+
 #pragma pack(push,_CRT_PACKING)
 
 
@@ -30662,7 +30784,7 @@ namespace std
     __builtin_va_start(__args, __fmt);
 
 
-    const int __ret = __builtin_vsnprintf(__out, __size, __fmt, __args);
+    const int __ret = __mingw_vsnprintf(__out, __size, __fmt, __args);
 
 
 
@@ -49347,7 +49469,193 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 }
 # 491 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_fixed.h" 2
 # 440 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_int.h" 2
-# 11 "./hls_filter_median.hpp" 2
+# 5 "./hls_video_types.hpp" 2
+# 17 "./hls_video_types.hpp"
+template <typename PIXEL_TYPE>
+struct axi_stream_video {
+    PIXEL_TYPE data;
+    ap_uint<1> user;
+    ap_uint<1> last;
+};
+# 32 "./hls_video_types.hpp"
+template <int NUM_CHANNELS, int PIXEL_WIDTH = 8>
+struct color_pixel {
+
+    ap_uint<PIXEL_WIDTH> channel[NUM_CHANNELS];
+
+
+
+
+
+
+    color_pixel() {
+#pragma HLS INLINE
+        VITIS_LOOP_44_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
+            channel[i] = 0;
+        }
+    }
+
+
+
+
+
+
+
+    color_pixel(ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data) {
+#pragma HLS INLINE
+        VITIS_LOOP_58_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
+
+            channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
+        }
+    }
+
+
+
+
+
+
+
+    color_pixel(unsigned int cpu_data) {
+#pragma HLS INLINE
+        ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = cpu_data;
+        VITIS_LOOP_74_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
+            channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
+        }
+    }
+
+
+
+
+
+
+
+    operator ap_uint<NUM_CHANNELS * PIXEL_WIDTH>() const {
+#pragma HLS INLINE
+        ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = 0;
+        VITIS_LOOP_89_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
+
+            packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH) = channel[i];
+        }
+        return packed_data;
+    }
+
+
+
+
+
+    operator unsigned int() const {
+#pragma HLS INLINE
+        ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed = *this;
+        return static_cast<unsigned int>(packed);
+    }
+};
+# 118 "./hls_video_types.hpp"
+const ap_int<16> rec601_coeffs[3][3] = {
+    {77, 150, 29},
+    {-43, -85, 128},
+    {128, -107, -21}
+};
+const ap_int<16> rec601_offsets[3] = {0, 128, 128};
+
+
+
+
+
+
+
+const ap_int<16> rec709_coeffs[3][3] = {
+    {54, 183, 19},
+    {-43, -85, 128},
+    {128, -107, -21}
+};
+const ap_int<16> rec709_offsets[3] = {0, 128, 128};
+
+
+
+
+
+
+
+const ap_int<16> rec2020_coeffs[3][3] = {
+    {63, 173, 20},
+    {-43, -85, 128},
+    {128, -107, -21}
+};
+const ap_int<16> rec2020_offsets[3] = {0, 128, 128};
+
+
+
+
+
+
+using gray_pixel = color_pixel<1, 8>;
+using rgb_pixel = color_pixel<3, 8>;
+using ycbcr_pixel = color_pixel<3, 8>;
+using hsv_pixel = color_pixel<3, 8>;
+using rgba_pixel = color_pixel<4, 8>;
+using cmyk_pixel = color_pixel<4, 8>;
+using rgb10_pixel = color_pixel<3, 10>;
+
+
+using axis_gray = axi_stream_video<gray_pixel>;
+using axis_rgb = axi_stream_video<rgb_pixel>;
+using axis_ycbcr = axi_stream_video<ycbcr_pixel>;
+using axis_hsv = axi_stream_video<hsv_pixel>;
+# 5 "./hls_filter_median.hpp" 2
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 1 3
+# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 1 3
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cstdlib" 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 2 3
+
+using std::abort;
+using std::atexit;
+using std::exit;
+# 51 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\stdlib.h" 3
+using std::div_t;
+using std::ldiv_t;
+
+using std::abs;
+using std::atof;
+using std::atoi;
+using std::atol;
+using std::bsearch;
+using std::calloc;
+using std::div;
+using std::free;
+using std::getenv;
+using std::labs;
+using std::ldiv;
+using std::malloc;
+
+using std::mblen;
+using std::mbstowcs;
+using std::mbtowc;
+
+using std::qsort;
+using std::rand;
+using std::realloc;
+using std::srand;
+using std::strtod;
+using std::strtol;
+using std::strtoul;
+using std::system;
+
+using std::wcstombs;
+using std::wctomb;
+# 10 "./hls_filter_median.hpp" 2
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_int.h" 1
+# 13 "./hls_filter_median.hpp" 2
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_math.h" 1
 # 26 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_math.h"
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cmath" 1 3
@@ -65075,7 +65383,7 @@ namespace hls {
     uint32_t logb(uint32_t);
 
 };
-# 12 "./hls_filter_median.hpp" 2
+# 14 "./hls_filter_median.hpp" 2
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_stream.h" 1
 # 13 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_stream.h"
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h" 1
@@ -65205,7 +65513,8 @@ class stream : public stream<__STREAM_T__, 0> {
 };
 }
 # 14 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_stream.h" 2
-# 13 "./hls_filter_median.hpp" 2
+# 15 "./hls_filter_median.hpp" 2
+
 
 
 
@@ -65229,104 +65538,7 @@ const int COORD_BITS = 13;
 const int TOTAL_PIXELS_BITS = COORD_BITS * 2;
 const int FLUSH_CYCLES_BITS = COORD_BITS + 3;
 const int TOTAL_CYCLES_BITS = TOTAL_PIXELS_BITS + 1;
-# 45 "./hls_filter_median.hpp"
-template <typename PIXEL_TYPE>
-struct axi_stream_video {
-  PIXEL_TYPE data;
-  ap_uint<1> user;
-  ap_uint<1> last;
-};
-
-
-
-
-template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
-
-    ap_uint<PIXEL_WIDTH> channel[NUM_CHANNELS];
-
-
-
-
-        color_pixel() {
-#pragma HLS INLINE
-          VITIS_LOOP_64_1: for (int i = 0; i < NUM_CHANNELS; i++) {
-#pragma HLS UNROLL
-            channel[i] = 0;
-          }
-        }
-
-
-
-
-
-    color_pixel(ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data) {
-#pragma HLS INLINE
-        VITIS_LOOP_76_1: for (int i = 0; i < NUM_CHANNELS; i++) {
-#pragma HLS UNROLL
-
-
-
-
-          channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
-        }
-      }
-
-
-
-
-
-    color_pixel(unsigned int cpu_data) {
-#pragma HLS INLINE
-      ap_uint<NUM_CHANNELS *PIXEL_WIDTH> packed_data = cpu_data;
-      VITIS_LOOP_93_1: for (int i = 0; i < NUM_CHANNELS; i++) {
-#pragma HLS UNROLL
-        channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
-      }
-    }
-
-
-
-
-    operator ap_uint<NUM_CHANNELS * PIXEL_WIDTH>() const {
-#pragma HLS INLINE
-      ap_uint<NUM_CHANNELS *PIXEL_WIDTH> packed_data = 0;
-
-      VITIS_LOOP_106_1: for (int i = 0; i < NUM_CHANNELS; i++) {
-#pragma HLS UNROLL
-        packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH) = channel[i];
-      }
-
-      return packed_data;
-    }
-
-
-
-
-    operator unsigned int() const {
-#pragma HLS INLINE
-      ap_uint<NUM_CHANNELS *PIXEL_WIDTH> packed = *this;
-      return static_cast<unsigned int>(packed);
-    }
-};
-
-
-
-
-using gray_pixel = color_pixel<1, 8>;
-using rgb_pixel = color_pixel<3, 8>;
-using ycbcr_pixel = color_pixel<3, 8>;
-using hsv_pixel = color_pixel<3, 9>;
-using rgba_pixel = color_pixel<4, 8>;
-
-
-
-
-
-using axis_gray = axi_stream_video<gray_pixel>;
-using axis_rgb = axi_stream_video<rgb_pixel>;
-using axis_ycbcr = axi_stream_video<ycbcr_pixel>;
-using axis_hsv = axi_stream_video<hsv_pixel>;
-# 153 "./hls_filter_median.hpp"
+# 157 "./hls_filter_median.hpp"
 template<typename T>
 T hls_min(T a, T b) {
     return (a < b) ? a : b;
@@ -65359,14 +65571,13 @@ __attribute__((sdx_kernel("hls_filter_median_3x3", 0))) void hls_filter_median_3
     ap_uint<COORD_BITS> width,
     ap_uint<COORD_BITS> height
 );
-# 2 "hls_filter_median.cpp" 2
+# 3 "hls_filter_median.cpp" 2
 
-__attribute__((sdx_kernel("hls_filter_median_3x3", 0))) void hls_filter_median_3x3(
-    hls::stream<axis_gray> &s_axis_video,
-    hls::stream<axis_gray> &m_axis_video,
-    ap_uint<COORD_BITS> width,
-    ap_uint<COORD_BITS> height
-) {
+
+__attribute__((sdx_kernel("hls_filter_median_3x3", 0))) void hls_filter_median_3x3(hls::stream<axis_gray> &s_axis_video,
+                           hls::stream<axis_gray> &m_axis_video,
+                           ap_uint<COORD_BITS> width,
+                           ap_uint<COORD_BITS> height) {
 #line 1 "directive"
 #pragma HLSDIRECTIVE TOP name=hls_filter_median_3x3
 # 8 "hls_filter_median.cpp"
@@ -65379,111 +65590,128 @@ __attribute__((sdx_kernel("hls_filter_median_3x3", 0))) void hls_filter_median_3
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
 
-    ap_uint<PIXEL_WIDTH> line_buffer[KERNEL_SIZE - 1][MAX_IMG_WIDTH];
+
+  ap_uint<PIXEL_WIDTH> line_buffer[KERNEL_SIZE - 1][MAX_IMG_WIDTH];
 #pragma HLS ARRAY_PARTITION variable = line_buffer complete dim = 1
 
 
-    ap_uint<PIXEL_WIDTH> window[KERNEL_SIZE][KERNEL_SIZE];
+
+  ap_uint<PIXEL_WIDTH> window[KERNEL_SIZE][KERNEL_SIZE];
 #pragma HLS ARRAY_PARTITION variable = window complete dim = 0
 
-    ap_uint<COORD_BITS> x = 0;
-    ap_uint<COORD_BITS> y = 0;
-    bool sof_flag = true;
+  ap_uint<COORD_BITS> x = 0;
+  ap_uint<COORD_BITS> y = 0;
+  ap_uint<COORD_BITS> out_x = 0;
+  ap_uint<COORD_BITS> out_y = 0;
 
 
-    ap_uint<TOTAL_PIXELS_BITS> total_pixels = width * height;
+  ap_uint<TOTAL_PIXELS_BITS> total_pixels = width * height;
 
-    VITIS_LOOP_31_1: for (ap_uint<TOTAL_PIXELS_BITS> i = 0; i < total_pixels; i++) {
-#pragma HLS PIPELINE II=1
-
-
-
-
-
-
-        ap_uint<PIXEL_WIDTH> new_pixel = s_axis_video.read().data;
-
-
-        VITIS_LOOP_42_2: for (int r = 0; r < KERNEL_SIZE; r++) {
-#pragma HLS UNROLL
-            VITIS_LOOP_44_3: for (int c = 0; c < KERNEL_SIZE - 1; c++) {
-#pragma HLS UNROLL
-                window[r][c] = window[r][c + 1];
-            }
-        }
-
-
-        VITIS_LOOP_51_4: for (int r = 0; r < KERNEL_SIZE - 1; r++) {
-#pragma HLS UNROLL
-            window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
-        }
-
-        window[KERNEL_SIZE - 1][KERNEL_SIZE - 1] = new_pixel;
-
-
-        VITIS_LOOP_59_5: for (int r = 0; r < KERNEL_SIZE - 2; r++) {
-#pragma HLS UNROLL
-            line_buffer[r][x] = line_buffer[r + 1][x];
-        }
-
-        line_buffer[KERNEL_SIZE - 2][x] = new_pixel;
-
-
-
-
-
-        ap_uint<PIXEL_WIDTH> min[3], med[3], max[3];
-        ap_uint<PIXEL_WIDTH> final_min, final_med, final_max, median_out;
-
-
-        VITIS_LOOP_74_6: for (int row = 0; row < 3; row++) {
-#pragma HLS UNROLL
-            sort_three(window[row][0], window[row][1], window[row][2],
-                       min[row], med[row], max[row]);
-        }
-
-
-        sort_three(min[0], min[1], min[2], final_min, final_med, final_max);
-        ap_uint<PIXEL_WIDTH> max_of_mins = final_max;
-
-        sort_three(med[0], med[1], med[2], final_min, final_med, final_max);
-        ap_uint<PIXEL_WIDTH> med_of_meds = final_med;
-
-        sort_three(max[0], max[1], max[2], final_min, final_med, final_max);
-        ap_uint<PIXEL_WIDTH> min_of_maxs = final_min;
-
-
-        sort_three(max_of_mins, med_of_meds, min_of_maxs, final_min, final_med, final_max);
-        median_out = final_med;
+  VITIS_LOOP_34_1: for (ap_uint<TOTAL_PIXELS_BITS> i = 0; i < total_pixels; i++) {
+#pragma HLS PIPELINE II = 1
 
 
 
 
 
 
-        if (x >= KERNEL_SIZE - 1 && y >= KERNEL_SIZE - 1) {
-            axis_gray out_packet;
-            out_packet.data = median_out;
+    ap_uint<PIXEL_WIDTH> new_pixel = s_axis_video.read().data;
 
 
-            out_packet.user = sof_flag ? 1 : 0;
-            out_packet.last = (x == width - 1) ? 1 : 0;
-
-
-            m_axis_video.write(out_packet);
-
-            sof_flag = false;
-        }
-
-
-
-
-
-        if (x == width - 1) {
-            x = 0;
-            y++;
-        } else {
-            x++;
-        }
+    VITIS_LOOP_45_2: for (int r = 0; r < KERNEL_SIZE; r++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+      VITIS_LOOP_47_3: for (int c = 0; c < KERNEL_SIZE - 1; c++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+        window[r][c] = window[r][c + 1];
+      }
     }
+
+
+    VITIS_LOOP_54_4: for (int r = 0; r < KERNEL_SIZE - 1; r++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+      window[r][KERNEL_SIZE - 1] = line_buffer[r][x];
+    }
+
+    window[KERNEL_SIZE - 1][KERNEL_SIZE - 1] = new_pixel;
+
+
+    VITIS_LOOP_62_5: for (int r = 0; r < KERNEL_SIZE - 2; r++) {
+#pragma HLS UNROLL factor = KERNEL_SIZE
+      line_buffer[r][x] = line_buffer[r + 1][x];
+    }
+
+    line_buffer[KERNEL_SIZE - 2][x] = new_pixel;
+
+
+
+
+
+    ap_uint<PIXEL_WIDTH> min[3], med[3], max[3];
+    ap_uint<PIXEL_WIDTH> final_min, final_med, final_max, median_out;
+
+
+    VITIS_LOOP_77_6: for (int row = 0; row < 3; row++) {
+#pragma HLS UNROLL factor = 3
+      sort_three(window[row][0], window[row][1], window[row][2], min[row],
+                 med[row], max[row]);
+    }
+
+
+    sort_three(min[0], min[1], min[2], final_min, final_med, final_max);
+    ap_uint<PIXEL_WIDTH> max_of_mins = final_max;
+
+    sort_three(med[0], med[1], med[2], final_min, final_med, final_max);
+    ap_uint<PIXEL_WIDTH> med_of_meds = final_med;
+
+    sort_three(max[0], max[1], max[2], final_min, final_med, final_max);
+    ap_uint<PIXEL_WIDTH> min_of_maxs = final_min;
+
+
+    sort_three(max_of_mins, med_of_meds, min_of_maxs, final_min, final_med,
+               final_max);
+    median_out = final_med;
+
+
+
+
+
+
+
+    if (x >= KERNEL_SIZE - 1 && y >= KERNEL_SIZE - 1) {
+      axis_gray out_packet;
+      out_packet.data = median_out;
+
+
+      ap_uint<COORD_BITS> actual_out_width = width - 2 * RADIUS;
+      ap_uint<COORD_BITS> actual_out_height = height - 2 * RADIUS;
+
+
+      out_packet.user = (out_x == 0 && out_y == 0) ? 1 : 0;
+
+
+      out_packet.last = (out_x == actual_out_width - 1) ? 1 : 0;
+
+
+      m_axis_video.write(out_packet);
+
+
+      if (out_x == actual_out_width - 1) {
+        out_x = 0;
+        out_y++;
+      } else {
+        out_x++;
+      }
+    }
+
+
+
+
+
+    if (x == width - 1) {
+      x = 0;
+      y++;
+    } else {
+      x++;
+    }
+  }
 }

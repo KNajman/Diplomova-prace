@@ -41,7 +41,7 @@ set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xck26:-sfvc784:-2LV-c
 set SourceFiles {sc {} c ../../hls_passthrough.cpp}
-set SourceFlags {sc {} c {{}}}
+set SourceFlags {sc {} c -ID:/Repos/_DP/DP/Vitis}
 set DirectiveFile {}
 set TBFiles {verilog D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp bc D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp vhdl D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp sc D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp cas D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp c {}}
 set SpecLanguage C

@@ -35,7 +35,7 @@
         <SummaryOfViolations>
             <IssueType>-</IssueType>
             <ViolationType>-</ViolationType>
-            <SourceLocation>hls_passthrough.cpp:14</SourceLocation>
+            <SourceLocation>hls_passthrough.cpp:16</SourceLocation>
         </SummaryOfViolations>
     </PerformanceEstimates>
     <AreaEstimates>
@@ -475,7 +475,7 @@
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>hls_passthrough.cpp:14</SourceLocation>
+                    <SourceLocation>hls_passthrough.cpp:16</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -693,18 +693,24 @@
     </ReportSWInterface>
     <ResolutionUrl key="ZZZ">docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
     <PragmaReport>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:50" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:52" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:62" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:64" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:78" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:81" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:90" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:94" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:105" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:43" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:45" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:57" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:59" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:72" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:75" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:87" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:90" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:102" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
         <Pragma type="interface" location="hls_passthrough.cpp:8" status="valid" parentFunction="hls_passthrough" variable="in_stream" isDirective="0" options="axis port=in_stream"/>
         <Pragma type="interface" location="hls_passthrough.cpp:9" status="valid" parentFunction="hls_passthrough" variable="out_stream" isDirective="0" options="axis port=out_stream"/>
-        <Pragma type="interface" location="hls_passthrough.cpp:12" status="valid" parentFunction="hls_passthrough" variable="return" isDirective="0" options="s_axilite port=return"/>
-        <Pragma type="pipeline" location="hls_passthrough.cpp:14" status="valid" parentFunction="hls_passthrough" variable="" isDirective="0" options="ii=1"/>
+        <Pragma type="interface" location="hls_passthrough.cpp:12" status="invalid" parentFunction="hls_passthrough" variable="in_stream" isDirective="0" options="s_axilite port=in_stream bundle=control">
+            <Msg msg_id="207-7038" msg_severity="WARNING" msg_body="Unsupported interface port data type in '#pragma HLS interface s_axilite'"/>
+        </Pragma>
+        <Pragma type="interface" location="hls_passthrough.cpp:13" status="invalid" parentFunction="hls_passthrough" variable="out_stream" isDirective="0" options="s_axilite port=out_stream bundle=control">
+            <Msg msg_id="207-7038" msg_severity="WARNING" msg_body="Unsupported interface port data type in '#pragma HLS interface s_axilite'"/>
+        </Pragma>
+        <Pragma type="interface" location="hls_passthrough.cpp:14" status="valid" parentFunction="hls_passthrough" variable="return" isDirective="0" options="s_axilite port=return bundle=control"/>
+        <Pragma type="pipeline" location="hls_passthrough.cpp:16" status="valid" parentFunction="hls_passthrough" variable="" isDirective="0" options="ii=1"/>
     </PragmaReport>
 </profile>

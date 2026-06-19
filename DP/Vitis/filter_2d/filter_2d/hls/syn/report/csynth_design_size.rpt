@@ -6,42 +6,44 @@
 +---------------+----------------------------+--------------+----------------------------------------------------------------------------------------+
 | Phase         | Step                       | Instructions | Description                                                                            |
 +---------------+----------------------------+--------------+----------------------------------------------------------------------------------------+
-| Compile/Link  |                            | 3,609        | After all functions are compiled and linked into a single design                       |
+| Compile/Link  |                            | 3,774        | After all functions are compiled and linked into a single design                       |
 |               |                            |              |                                                                                        |
 | Unroll/Inline |                            |              | After user unroll and inline pragmas are applied                                       |
-|               | (1) unroll                 |   815        | user unroll pragmas are applied                                                        |
-|               | (2) simplification         |   534        | simplification of applied user unroll pragmas                                          |
-|               | (3) inline                 |   516        | user inline pragmas are applied                                                        |
-|               | (4) simplification         |   482        | simplification of applied user inline pragmas                                          |
+|               | (1) unroll                 |   877        | user unroll pragmas are applied                                                        |
+|               | (2) simplification         |   675        | simplification of applied user unroll pragmas                                          |
+|               | (3) inline                 |   655        | user inline pragmas are applied                                                        |
+|               | (4) simplification         |   620        | simplification of applied user inline pragmas                                          |
 |               |                            |              |                                                                                        |
 | Array/Struct  |                            |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
-|               | (1) array partition        | 1,065        | user array partition pragmas are applied                                               |
-|               | (2) simplification         |   453        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
-|               | (3) aggregate/disaggregate |   453        | user struct aggregate/disaggregate pragmas are applied                                 |
-|               | (4) array reshape          |   453        | apply array reshape pragmas                                                            |
-|               | (5) access patterns        |   454        | array access pattern optmizations                                                      |
+|               | (1) array partition        | 1,180        | user array partition pragmas are applied                                               |
+|               | (2) simplification         |   568        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate |   568        | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape          |   568        | apply array reshape pragmas                                                            |
+|               | (5) access patterns        |   569        | array access pattern optmizations                                                      |
 |               |                            |              |                                                                                        |
 | Performance   |                            |              | After transformations are applied to meet performance pragma targets                   |
-|               | (1) loop simplification    |   429        | loop and instruction simplification                                                    |
-|               | (2) parallelization        |   429        | loops are unrolled or pipelined to meet performance targets                            |
-|               | (3) array partition        |   428        | arrays are partitioned to meet performance targets                                     |
-|               | (4) simplification         |   428        | simplification of design after performance transformations                             |
+|               | (1) loop simplification    |   544        | loop and instruction simplification                                                    |
+|               | (2) parallelization        |   509        | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) array partition        |   485        | arrays are partitioned to meet performance targets                                     |
+|               | (4) simplification         |   435        | simplification of design after performance transformations                             |
 |               |                            |              |                                                                                        |
 | HW Transforms |                            |              | After hardware transfomations                                                          |
-|               | (1) lowering               |   485        | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations          |   497        | high level synthesis optimizations                                                     |
+|               | (1) lowering               |   492        | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations          |   503        | high level synthesis optimizations                                                     |
 +---------------+----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
-+---------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
-| Function            | Location               | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
-+---------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
-| + hls_filter_2d     | hls_filter_2d.cpp:7    | 3,609        | 482           | 454          | 428         | 497           |
-|    operator ap_uint | hls_video_types.hpp:86 |   83         |               |              |             |               |
-|  + axi_stream_video | hls_video_types.hpp:18 |   44         |               |              |             |               |
-|     color_pixel     | hls_video_types.hpp:42 |   39         |               |              |             |               |
-|    color_pixel      | hls_video_types.hpp:56 |   77         |               |              |             |               |
-+---------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
++-----------------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
+| Function                    | Location               | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
++-----------------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
+| + hls_filter_2d             | hls_filter_2d.cpp:114  | 3,774        | 620           | 569          | 435         | 503           |
+|  + update_window            | hls_filter_2d.cpp:8    |  499         | 111           |  86          |             |               |
+|     operator ap_uint        | hls_video_types.hpp:86 |   83         |               |              |             |               |
+|  + compute_and_write_output | hls_filter_2d.cpp:49   | 2,604        | 441           | 364          |             |               |
+|   + axi_stream_video        | hls_video_types.hpp:18 |   44         |               |              |             |               |
+|      color_pixel            | hls_video_types.hpp:42 |   39         |               |              |             |               |
+|     color_pixel             | hls_video_types.hpp:56 |   77         |               |              |             |               |
++-----------------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings
 +---------------------------------------------+--------+------------------------------------------------------------------+

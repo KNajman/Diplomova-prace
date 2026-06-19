@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_filter_median_3x3'
 ================================================================
-* Date:           Fri Apr 10 08:17:48 2026
+* Date:           Thu Jun 18 19:19:22 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        filter_2d_median
@@ -80,32 +80,35 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 0.00>
 
 State 2 <SV = 1> <Delay = 6.78>
-ST_2 : Operation 5 [1/1] (1.00ns)   --->   "%height_read = read i13 @_ssdm_op_Read.s_axilite.i13, i13 %height" [hls_filter_median.cpp:6]   --->   Operation 5 'read' 'height_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
-ST_2 : Operation 6 [1/1] (1.00ns)   --->   "%width_read = read i13 @_ssdm_op_Read.s_axilite.i13, i13 %width" [hls_filter_median.cpp:6]   --->   Operation 6 'read' 'width_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
-ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%zext_ln117 = zext i13 %width_read" [hls_filter_median.cpp:117]   --->   Operation 7 'zext' 'zext_ln117' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 8 [1/1] (0.82ns)   --->   "%add_ln117 = add i14 %zext_ln117, i14 16383" [hls_filter_median.cpp:117]   --->   Operation 8 'add' 'add_ln117' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%height_cast = zext i13 %height_read" [hls_filter_median.cpp:6]   --->   Operation 9 'zext' 'height_cast' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%width_cast1 = zext i13 %width_read" [hls_filter_median.cpp:6]   --->   Operation 10 'zext' 'width_cast1' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 11 [1/1] (2.23ns)   --->   "%mul_ln31 = mul i26 %height_cast, i26 %width_cast1" [hls_filter_median.cpp:31]   --->   Operation 11 'mul' 'mul_ln31' <Predicate = true> <Delay = 2.23> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 2.23> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 12 [2/2] (3.55ns)   --->   "%call_ln31 = call void @hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1, i26 %mul_ln31, i24 %s_axis_video, i14 %add_ln117, i24 %m_axis_video" [hls_filter_median.cpp:31]   --->   Operation 12 'call' 'call_ln31' <Predicate = true> <Delay = 3.55> <CoreType = "Generic">   --->   Generic Core
+ST_2 : Operation 5 [1/1] (1.00ns)   --->   "%height_read = read i13 @_ssdm_op_Read.s_axilite.i13, i13 %height" [hls_filter_median.cpp:7]   --->   Operation 5 'read' 'height_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_2 : Operation 6 [1/1] (1.00ns)   --->   "%width_read = read i13 @_ssdm_op_Read.s_axilite.i13, i13 %width" [hls_filter_median.cpp:7]   --->   Operation 6 'read' 'width_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%zext_ln134 = zext i13 %width_read" [hls_filter_median.cpp:134]   --->   Operation 7 'zext' 'zext_ln134' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (0.82ns)   --->   "%add_ln134 = add i14 %zext_ln134, i14 16383" [hls_filter_median.cpp:134]   --->   Operation 8 'add' 'add_ln134' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 9 [1/1] (0.82ns)   --->   "%add_ln109 = add i13 %width_read, i13 8190" [hls_filter_median.cpp:109]   --->   Operation 9 'add' 'add_ln109' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%zext_ln116 = zext i13 %add_ln109" [hls_filter_median.cpp:116]   --->   Operation 10 'zext' 'zext_ln116' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.82ns)   --->   "%add_ln116 = add i14 %zext_ln116, i14 16383" [hls_filter_median.cpp:116]   --->   Operation 11 'add' 'add_ln116' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%height_cast = zext i13 %height_read" [hls_filter_median.cpp:7]   --->   Operation 12 'zext' 'height_cast' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%width_cast1 = zext i13 %width_read" [hls_filter_median.cpp:7]   --->   Operation 13 'zext' 'width_cast1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (2.23ns)   --->   "%mul_ln34 = mul i26 %height_cast, i26 %width_cast1" [hls_filter_median.cpp:34]   --->   Operation 14 'mul' 'mul_ln34' <Predicate = true> <Delay = 2.23> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 2.23> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [2/2] (3.55ns)   --->   "%call_ln34 = call void @hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1, i26 %mul_ln34, i14 %add_ln134, i24 %s_axis_video, i14 %add_ln116, i24 %m_axis_video" [hls_filter_median.cpp:34]   --->   Operation 15 'call' 'call_ln34' <Predicate = true> <Delay = 3.55> <CoreType = "Generic">   --->   Generic Core
 
 State 3 <SV = 2> <Delay = 5.10>
-ST_3 : Operation 13 [1/2] (5.10ns)   --->   "%call_ln31 = call void @hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1, i26 %mul_ln31, i24 %s_axis_video, i14 %add_ln117, i24 %m_axis_video" [hls_filter_median.cpp:31]   --->   Operation 13 'call' 'call_ln31' <Predicate = true> <Delay = 5.10> <CoreType = "Generic">   --->   Generic Core
+ST_3 : Operation 16 [1/2] (5.10ns)   --->   "%call_ln34 = call void @hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1, i26 %mul_ln34, i14 %add_ln134, i24 %s_axis_video, i14 %add_ln116, i24 %m_axis_video" [hls_filter_median.cpp:34]   --->   Operation 16 'call' 'call_ln34' <Predicate = true> <Delay = 5.10> <CoreType = "Generic">   --->   Generic Core
 
 State 4 <SV = 3> <Delay = 0.00>
-ST_4 : Operation 14 [1/1] (0.00ns)   --->   "%spectopmodule_ln3 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_7" [hls_filter_median.cpp:3]   --->   Operation 14 'spectopmodule' 'spectopmodule_ln3' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i24 %s_axis_video, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 16 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i24 %s_axis_video"   --->   Operation 16 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i24 %m_axis_video, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 18 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i24 %m_axis_video"   --->   Operation 18 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 19 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i13 %width"   --->   Operation 19 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %width, void @empty_2, i32 4294967295, i32 4294967295, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_4, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %width, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 22 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i13 %height"   --->   Operation 22 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %height, void @empty_2, i32 4294967295, i32 4294967295, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_6, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %height, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 26 [1/1] (0.00ns)   --->   "%ret_ln124 = ret" [hls_filter_median.cpp:124]   --->   Operation 26 'ret' 'ret_ln124' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 17 [1/1] (0.00ns)   --->   "%spectopmodule_ln5 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_7" [hls_filter_median.cpp:5]   --->   Operation 17 'spectopmodule' 'spectopmodule_ln5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i24 %s_axis_video, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 19 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i24 %s_axis_video"   --->   Operation 19 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i24 %m_axis_video, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i24 %m_axis_video"   --->   Operation 21 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 22 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i13 %width"   --->   Operation 22 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %width, void @empty_2, i32 4294967295, i32 4294967295, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_4, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %width, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i13 %height"   --->   Operation 25 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 26 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %height, void @empty_2, i32 4294967295, i32 4294967295, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_6, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 26 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i13 %height, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 27 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 28 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0"   --->   Operation 28 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 29 [1/1] (0.00ns)   --->   "%ret_ln141 = ret" [hls_filter_median.cpp:141]   --->   Operation 29 'ret' 'ret_ln141' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -118,13 +121,13 @@ The critical path consists of the following:
 
  <State 2>: 6.789ns
 The critical path consists of the following:
-	s_axi read operation ('height_read', hls_filter_median.cpp:6) on port 'height' (hls_filter_median.cpp:6) [17]  (1.000 ns)
-	'mul' operation 26 bit ('mul_ln31', hls_filter_median.cpp:31) [23]  (2.236 ns)
-	'call' operation ('call_ln31', hls_filter_median.cpp:31) to 'hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1' [24]  (3.553 ns)
+	s_axi read operation ('height_read', hls_filter_median.cpp:7) on port 'height' (hls_filter_median.cpp:7) [17]  (1.000 ns)
+	'mul' operation 26 bit ('mul_ln34', hls_filter_median.cpp:34) [26]  (2.236 ns)
+	'call' operation ('call_ln34', hls_filter_median.cpp:34) to 'hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1' [27]  (3.553 ns)
 
  <State 3>: 5.107ns
 The critical path consists of the following:
-	'call' operation ('call_ln31', hls_filter_median.cpp:31) to 'hls_filter_median_3x3_Pipeline_VITIS_LOOP_31_1' [24]  (5.107 ns)
+	'call' operation ('call_ln34', hls_filter_median.cpp:34) to 'hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1' [27]  (5.107 ns)
 
  <State 4>: 0.000ns
 The critical path consists of the following:
