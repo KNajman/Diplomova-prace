@@ -2,50 +2,6 @@
 
 #include <math.h>
 
-//=============================================================================
-// YCbCr má více standardů (Rec.601, Rec.709, Rec.2020), pro jednoduchost
-// použijeme rozsah 8 bitů pro každý kanál
-// =============================================================================
-
-/*
-Koeficienty pro Rec.601 - SD
-Y  =  0.299*R + 0.587*G + 0.114*B
-Cb = -0.169*R - 0.331*G + 0.5*B + 128
-Cr =  0.5*R - 0.419*G - 0.081*B + 128
- */
-ap_int<16> rec601_coeffs[3][3] = {
-    {77, 150, 29},   // Koeficienty pro výpočet Y
-    {-43, -85, 128}, // Koeficienty pro výpočet Cb (U)
-    {128, -107, -21} // Koeficienty pro výpočet Cr (V)
-};
-
-ap_int<16> rec601_offsets[3] = {0, 128, 128};
-
-/*Koeficienty pro Rec.709 - HD
-Y  =  0.2126*R + 0.7152*G + 0.0722*B
-Cb = -0.114*R - 0.385*G + 0.5*B + 128
-Cr =  0.5*R - 0.454*G - 0.046*B + 128
-*/
-ap_int<16> rec709_coeffs[3][3] = {
-    {54, 183, 19},   // Koeficienty pro výpočet Y
-    {-43, -85, 128}, // Koeficienty pro výpočet Cb (U)
-    {128, -107, -21} // Koeficienty pro výpočet Cr (V)
-};
-ap_int<16> rec709_offsets[3] = {0, 128, 128};
-
-/*
-Koeficienty pro Rec.2020 - 4K
-Y  =  0.2126*R + 0.7152*G + 0.0722*B
-Cb = -0.114*R - 0.385*G + 0.5*B + 128
-Cr =  0.5*R - 0.454*G - 0.046*B + 128
-*/
-ap_int<16> rec2020_coeffs[3][3] = {
-    {63, 173, 20},   // Koeficienty pro výpočet Y
-    {-43, -85, 128}, // Koeficienty pro výpočet Cb (U)
-    {128, -107, -21} // Koeficienty pro výpočet Cr (V)
-};
-ap_int<16> rec2020_offsets[3] = {0, 128, 128};
-
 /*
 =================================================================================
     REFERENČNÍ MODELY (GOLDEN)
@@ -144,4 +100,26 @@ int run_test_csc() {
 
   fails += test_color_space_convert();
   return fails;
+}
+
+int main() {
+  printf("=========================================\n");
+  printf("   START HLS C SIMULATION (Color IP)\n");
+  printf("=========================================\n\n");
+
+  int fails = 0;
+
+  fails += run_test_csc();
+
+  if (fails == 0) {
+    printf("\n=========================================\n");
+    printf(" ALL TESTS PASSED! \n");
+    printf("=========================================\n");
+    return 0;
+  } else {
+    printf("\n=========================================\n");
+    printf(" WARNING: SOME TESTS FAILED (%d)\n", fails);
+    printf("=========================================\n");
+    return 1;
+  }
 }

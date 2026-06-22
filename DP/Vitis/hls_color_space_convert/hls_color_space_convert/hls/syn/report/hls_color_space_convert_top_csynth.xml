@@ -35,7 +35,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_color_space_convert.cpp:122</SourceLocation>
+<SourceLocation>hls_color_space_convert.cpp:55</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 

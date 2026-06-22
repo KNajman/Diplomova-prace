@@ -21,6 +21,7 @@ struct axi_stream_video {
     ap_uint<1> last;  ///< TLAST: End of Line (EOL) / HSYNC. Nastaveno na 1 pro poslední pixel každého řádku.
 };
 
+
 /**
  * @brief Univerzální šablona pro pixel v libovolném barevném prostoru.
  * * Umožňuje bezpečně pracovat s pixely jako s polem kanálů (např. v C++)

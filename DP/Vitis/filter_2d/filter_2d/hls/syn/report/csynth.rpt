@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'hls_filter_2d'
 ================================================================
 + General Information: 
-    * Date:           Fri Jun 19 11:05:01 2026
+    * Date:           Fri Jun 19 16:18:22 2026
     * Version:        2025.2 (Build 6295257 on Nov 14 2025)
     * Project:        filter_2d
     * Solution:       hls (Vivado IP Flow Target)
@@ -378,15 +378,15 @@
 +-----------------+-------------------------------------------------+-----------------------------------------------------------------------------+
 | Type            | Options                                         | Location                                                                    |
 +-----------------+-------------------------------------------------+-----------------------------------------------------------------------------+
-| INLINE          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:43)       |
-| UNROLL          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:45)       |
-| INLINE          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:57)       |
-| UNROLL          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:59)       |
-| INLINE          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:72)       |
-| UNROLL          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:75)       |
-| INLINE          |                                                 | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:87) |
-| UNROLL          |                                                 | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:90) |
-| INLINE          |                                                 | in operator unsigned int (../hls_video_types.hpp:102)                       |
+| INLINE          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:44)       |
+| UNROLL          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:46)       |
+| INLINE          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:58)       |
+| UNROLL          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:60)       |
+| INLINE          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:73)       |
+| UNROLL          |                                                 | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:76)       |
+| INLINE          |                                                 | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:88) |
+| UNROLL          |                                                 | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:91) |
+| INLINE          |                                                 | in operator unsigned int (../hls_video_types.hpp:103)                       |
 | UNROLL          | factor = KERNEL_SIZE                            | in update_window (hls_filter_2d.cpp:22)                                     |
 | UNROLL          | factor = KERNEL_SIZE                            | in update_window (hls_filter_2d.cpp:24)                                     |
 | UNROLL          | factor = KERNEL_SIZE                            | in update_window (hls_filter_2d.cpp:30)                                     |

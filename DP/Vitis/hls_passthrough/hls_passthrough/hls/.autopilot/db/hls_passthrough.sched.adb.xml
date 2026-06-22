@@ -115,10 +115,10 @@ entry:20 %p_3 = extractvalue i42 %empty
 
 <Node id="32" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="32" op_7_bw="4" op_8_bw="4" op_9_bw="1" op_10_bw="1">
 <![CDATA[
-entry:21 %write_ln20 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
+entry:21 %write_ln18 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
 
 ]]></Node>
-<StgValue><ssdm name="write_ln20"/></StgValue>
+<StgValue><ssdm name="write_ln18"/></StgValue>
 </operation>
 </state>
 
@@ -133,10 +133,10 @@ entry:21 %write_ln20 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P
 
 <Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="32" op_6_bw="0">
 <![CDATA[
-entry:0 %specpipeline_ln16 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, i32 4294967295, void @empty_1
+entry:0 %specpipeline_ln14 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, i32 4294967295, void @empty_1
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln16"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln14"/></StgValue>
 </operation>
 
 <operation id="11" st_id="2" stage="1" lat="1">
@@ -358,10 +358,10 @@ entry:14 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0,
 
 <Node id="32" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="32" op_7_bw="4" op_8_bw="4" op_9_bw="1" op_10_bw="1">
 <![CDATA[
-entry:21 %write_ln20 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
+entry:21 %write_ln18 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i32 %p_0, i4 %p_s, i4 %p_1, i1 %p_2, i1 %p_3
 
 ]]></Node>
-<StgValue><ssdm name="write_ln20"/></StgValue>
+<StgValue><ssdm name="write_ln18"/></StgValue>
 </operation>
 
 <operation id="26" st_id="2" stage="1" lat="1">
@@ -373,10 +373,10 @@ entry:21 %write_ln20 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P
 
 <Node id="33" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="1" op_7_bw="1" op_8_bw="0">
 <![CDATA[
-entry:22 %specaxissidechannel_ln21 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i1 0, i1 0, void @empty_4
+entry:22 %specaxissidechannel_ln19 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %out_stream_V_data_V, i4 %out_stream_V_keep_V, i4 %out_stream_V_strb_V, i1 %out_stream_V_user_V, i1 %out_stream_V_last_V, i1 0, i1 0, void @empty_4
 
 ]]></Node>
-<StgValue><ssdm name="specaxissidechannel_ln21"/></StgValue>
+<StgValue><ssdm name="specaxissidechannel_ln19"/></StgValue>
 </operation>
 
 <operation id="27" st_id="2" stage="1" lat="1">
@@ -388,10 +388,10 @@ entry:22 %specaxissidechannel_ln21 = specaxissidechannel void @_ssdm_op_SpecAXIS
 
 <Node id="34" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="4" op_3_bw="4" op_4_bw="1" op_5_bw="1" op_6_bw="1" op_7_bw="1" op_8_bw="0">
 <![CDATA[
-entry:23 %specaxissidechannel_ln21 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %in_stream_V_data_V, i4 %in_stream_V_keep_V, i4 %in_stream_V_strb_V, i1 %in_stream_V_user_V, i1 %in_stream_V_last_V, i1 0, i1 0, void @empty_5
+entry:23 %specaxissidechannel_ln19 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %in_stream_V_data_V, i4 %in_stream_V_keep_V, i4 %in_stream_V_strb_V, i1 %in_stream_V_user_V, i1 %in_stream_V_last_V, i1 0, i1 0, void @empty_5
 
 ]]></Node>
-<StgValue><ssdm name="specaxissidechannel_ln21"/></StgValue>
+<StgValue><ssdm name="specaxissidechannel_ln19"/></StgValue>
 </operation>
 
 <operation id="28" st_id="2" stage="1" lat="1">
@@ -403,10 +403,10 @@ entry:23 %specaxissidechannel_ln21 = specaxissidechannel void @_ssdm_op_SpecAXIS
 
 <Node id="35" bw="0">
 <![CDATA[
-entry:24 %ret_ln21 = ret
+entry:24 %ret_ln19 = ret
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln21"/></StgValue>
+<StgValue><ssdm name="ret_ln19"/></StgValue>
 </operation>
 </state>
 </state_list>

@@ -133,22 +133,22 @@ set ArgLastReadFirstWriteLatency {
 		offsets_2_val {Type I LastRead 1 FirstWrite -1}
 		width {Type I LastRead 0 FirstWrite -1}
 		height {Type I LastRead 0 FirstWrite -1}}
-	hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1 {
+	hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1 {
 		total_pixels {Type I LastRead 0 FirstWrite -1}
 		s_axis_video {Type I LastRead 2 FirstWrite -1}
-		sext_ln83 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_1 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_2 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_9 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_3 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_4 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_5 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_10 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_6 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_7 {Type I LastRead 0 FirstWrite -1}
-		sext_ln83_8 {Type I LastRead 0 FirstWrite -1}
-		sext_ln58 {Type I LastRead 0 FirstWrite -1}
-		add_ln104 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_1 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_2 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_9 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_3 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_4 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_5 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_10 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_6 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_7 {Type I LastRead 0 FirstWrite -1}
+		sext_ln29_8 {Type I LastRead 0 FirstWrite -1}
+		sext_ln19 {Type I LastRead 0 FirstWrite -1}
+		add_ln43 {Type I LastRead 0 FirstWrite -1}
 		m_axis_video {Type O LastRead -1 FirstWrite 6}}}
 
 set hasDtUnsupportedChannel 0

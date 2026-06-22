@@ -32,7 +32,7 @@
         <SummaryOfViolations>
             <IssueType>-</IssueType>
             <ViolationType>-</ViolationType>
-            <SourceLocation>hls_color_space_convert.cpp:122</SourceLocation>
+            <SourceLocation>hls_color_space_convert.cpp:55</SourceLocation>
         </SummaryOfViolations>
     </PerformanceEstimates>
     <AreaEstimates>
@@ -356,14 +356,14 @@
                     <ID>176</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134</InstName>
-                            <ModuleName>hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1</ModuleName>
+                            <InstName>grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134</InstName>
+                            <ModuleName>hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1</ModuleName>
                             <IsCompInst>true</IsCompInst>
                             <ID>134</ID>
-                            <BindInstances>icmp_ln58_fu_275_p2 add_ln58_fu_280_p2 mac_muladd_16s_8ns_25s_26_4_1_U7 mac_muladd_16s_8ns_25s_26_4_1_U7 mul_16s_8ns_24_1_1_U1 mac_muladd_16s_8ns_24s_25_4_1_U4 mac_muladd_16s_8ns_24s_25_4_1_U4 mac_muladd_16s_8ns_24s_25_4_1_U4 mac_muladd_16s_8ns_25s_26_4_1_U7 result_fu_435_p2 icmp_ln93_fu_462_p2 xor_ln99_fu_472_p2 select_ln99_3_fu_478_p3 or_ln99_fu_486_p2 select_ln99_fu_492_p3 mac_muladd_16s_8ns_25s_26_4_1_U8 mac_muladd_16s_8ns_25s_26_4_1_U8 mul_16s_8ns_24_1_1_U2 mac_muladd_16s_8ns_24s_25_4_1_U5 mac_muladd_16s_8ns_24s_25_4_1_U5 mac_muladd_16s_8ns_24s_25_4_1_U5 mac_muladd_16s_8ns_25s_26_4_1_U8 result_1_fu_513_p2 icmp_ln93_1_fu_540_p2 xor_ln99_1_fu_546_p2 or_ln99_1_fu_552_p2 mac_muladd_16s_8ns_25s_26_4_1_U9 mac_muladd_16s_8ns_25s_26_4_1_U9 mul_16s_8ns_24_1_1_U3 mac_muladd_16s_8ns_24s_25_4_1_U6 mac_muladd_16s_8ns_24s_25_4_1_U6 mac_muladd_16s_8ns_24s_25_4_1_U6 mac_muladd_16s_8ns_25s_26_4_1_U9 result_2_fu_571_p2 icmp_ln93_2_fu_598_p2 xor_ln99_2_fu_608_p2 select_ln99_4_fu_614_p3 or_ln99_2_fu_622_p2 select_ln99_1_fu_628_p3 or_ln103_fu_292_p2 icmp_ln103_fu_298_p2 icmp_ln104_fu_304_p2 select_ln99_5_fu_636_p3 select_ln99_2_fu_648_p3 y_1_fu_309_p2 x_1_fu_315_p2 x_2_fu_321_p3 y_2_fu_329_p3</BindInstances>
+                            <BindInstances>icmp_ln19_fu_275_p2 add_ln19_fu_280_p2 mac_muladd_16s_8ns_25s_26_4_1_U7 mac_muladd_16s_8ns_25s_26_4_1_U7 mul_16s_8ns_24_1_1_U1 mac_muladd_16s_8ns_24s_25_4_1_U4 mac_muladd_16s_8ns_24s_25_4_1_U4 mac_muladd_16s_8ns_24s_25_4_1_U4 mac_muladd_16s_8ns_25s_26_4_1_U7 result_fu_435_p2 icmp_ln35_fu_462_p2 xor_ln39_fu_472_p2 select_ln39_3_fu_478_p3 or_ln39_fu_486_p2 select_ln39_fu_492_p3 mac_muladd_16s_8ns_25s_26_4_1_U8 mac_muladd_16s_8ns_25s_26_4_1_U8 mul_16s_8ns_24_1_1_U2 mac_muladd_16s_8ns_24s_25_4_1_U5 mac_muladd_16s_8ns_24s_25_4_1_U5 mac_muladd_16s_8ns_24s_25_4_1_U5 mac_muladd_16s_8ns_25s_26_4_1_U8 result_1_fu_513_p2 icmp_ln35_1_fu_540_p2 xor_ln39_1_fu_546_p2 or_ln39_1_fu_552_p2 mac_muladd_16s_8ns_25s_26_4_1_U9 mac_muladd_16s_8ns_25s_26_4_1_U9 mul_16s_8ns_24_1_1_U3 mac_muladd_16s_8ns_24s_25_4_1_U6 mac_muladd_16s_8ns_24s_25_4_1_U6 mac_muladd_16s_8ns_24s_25_4_1_U6 mac_muladd_16s_8ns_25s_26_4_1_U9 result_2_fu_571_p2 icmp_ln35_2_fu_598_p2 xor_ln39_2_fu_608_p2 select_ln39_4_fu_614_p3 or_ln39_2_fu_622_p2 select_ln39_1_fu_628_p3 or_ln42_fu_292_p2 icmp_ln42_fu_298_p2 icmp_ln43_fu_304_p2 select_ln39_5_fu_636_p3 select_ln39_2_fu_648_p3 y_1_fu_309_p2 x_1_fu_315_p2 x_2_fu_321_p3 y_2_fu_329_p3</BindInstances>
                         </Instance>
                     </InstancesList>
-                    <BindInstances>mul_32s_32s_32_1_1_U29 add_ln104_fu_174_p2</BindInstances>
+                    <BindInstances>mul_32s_32s_32_1_1_U29 add_ln43_fu_174_p2</BindInstances>
                 </Instance>
             </InstancesList>
             <BindInstances>control_s_axi_U</BindInstances>
@@ -371,9 +371,9 @@
     </RTLDesignHierarchy>
     <ModuleInformation>
         <Module>
-            <Name>hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1</Name>
+            <Name>hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1</Name>
             <Loops>
-                <VITIS_LOOP_58_1/>
+                <VITIS_LOOP_19_1/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
@@ -393,8 +393,8 @@
                     <PerformancePragma>-</PerformancePragma>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <VITIS_LOOP_58_1>
-                        <Name>VITIS_LOOP_58_1</Name>
+                    <VITIS_LOOP_19_1>
+                        <Name>VITIS_LOOP_19_1</Name>
                         <Slack>7.30</Slack>
                         <TripCount>undef</TripCount>
                         <isPerfectNested>0</isPerfectNested>
@@ -405,19 +405,19 @@
                         <PipelineType>yes</PipelineType>
                         <PerformancePragma>-</PerformancePragma>
                         <InstanceList/>
-                    </VITIS_LOOP_58_1>
+                    </VITIS_LOOP_19_1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>hls_color_space_convert.cpp:50</SourceLocation>
+                    <SourceLocation>hls_color_space_convert.cpp:15</SourceLocation>
                     <SummaryOfLoopViolations>
-                        <VITIS_LOOP_58_1>
-                            <Name>VITIS_LOOP_58_1</Name>
+                        <VITIS_LOOP_19_1>
+                            <Name>VITIS_LOOP_19_1</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>hls_color_space_convert.cpp:58</SourceLocation>
-                        </VITIS_LOOP_58_1>
+                            <SourceLocation>hls_color_space_convert.cpp:19</SourceLocation>
+                        </VITIS_LOOP_19_1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
@@ -441,54 +441,54 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln58_fu_275_p2" SOURCE="hls_color_space_convert.cpp:58" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln58" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln58_fu_280_p2" SOURCE="hls_color_space_convert.cpp:58" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln58" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U7" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sum" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U7" SOURCE="hls_color_space_convert.cpp:78" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln78" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_8ns_24_1_1_U1" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln83" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U4" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln83_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U4" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln83_12" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U4" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln83" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U7" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="result_fu_435_p2" SOURCE="hls_color_space_convert.cpp:88" STORAGESUBTYPE="" URAM="0" VARIABLE="result" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln93_fu_462_p2" SOURCE="hls_color_space_convert.cpp:93" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln93" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln99_fu_472_p2" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln99" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln99_3_fu_478_p3" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln99_3" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln99_fu_486_p2" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln99" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln99_fu_492_p3" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln99" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U8" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_2" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U8" SOURCE="hls_color_space_convert.cpp:78" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln78_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_8ns_24_1_1_U2" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln83_3" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U5" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln83_4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U5" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln83_15" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U5" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln83_2" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U8" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_3" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="result_1_fu_513_p2" SOURCE="hls_color_space_convert.cpp:88" STORAGESUBTYPE="" URAM="0" VARIABLE="result_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln93_1_fu_540_p2" SOURCE="hls_color_space_convert.cpp:93" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln93_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln99_1_fu_546_p2" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln99_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln99_1_fu_552_p2" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln99_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U9" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U9" SOURCE="hls_color_space_convert.cpp:78" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln78_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_8ns_24_1_1_U3" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln83_6" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U6" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln83_7" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U6" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln83_18" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U6" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln83_4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U9" SOURCE="hls_color_space_convert.cpp:83" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_5" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="result_2_fu_571_p2" SOURCE="hls_color_space_convert.cpp:88" STORAGESUBTYPE="" URAM="0" VARIABLE="result_2" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln93_2_fu_598_p2" SOURCE="hls_color_space_convert.cpp:93" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln93_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln99_2_fu_608_p2" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln99_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln99_4_fu_614_p3" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln99_4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln99_2_fu_622_p2" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln99_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln99_1_fu_628_p3" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln99_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln103_fu_292_p2" SOURCE="hls_color_space_convert.cpp:103" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln103" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln103_fu_298_p2" SOURCE="hls_color_space_convert.cpp:103" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln103" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln104_fu_304_p2" SOURCE="hls_color_space_convert.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln104" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln99_5_fu_636_p3" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln99_5" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln99_2_fu_648_p3" SOURCE="hls_color_space_convert.cpp:99" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln99_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="y_1_fu_309_p2" SOURCE="hls_color_space_convert.cpp:112" STORAGESUBTYPE="" URAM="0" VARIABLE="y_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="add" PRAGMA="" RTLNAME="x_1_fu_315_p2" SOURCE="hls_color_space_convert.cpp:114" STORAGESUBTYPE="" URAM="0" VARIABLE="x_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="x_2_fu_321_p3" SOURCE="hls_color_space_convert.cpp:110" STORAGESUBTYPE="" URAM="0" VARIABLE="x_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_58_1" OPTYPE="select" PRAGMA="" RTLNAME="y_2_fu_329_p3" SOURCE="hls_color_space_convert.cpp:110" STORAGESUBTYPE="" URAM="0" VARIABLE="y_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln19_fu_275_p2" SOURCE="hls_color_space_convert.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln19" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_280_p2" SOURCE="hls_color_space_convert.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U7" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sum" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U7" SOURCE="hls_color_space_convert.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln26" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_8ns_24_1_1_U1" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln29" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U4" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln29_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U4" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln29_12" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U4" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln29" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U7" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="result_fu_435_p2" SOURCE="hls_color_space_convert.cpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="result" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln35_fu_462_p2" SOURCE="hls_color_space_convert.cpp:35" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln35" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln39_fu_472_p2" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln39" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln39_3_fu_478_p3" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln39_3" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln39_fu_486_p2" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln39" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln39_fu_492_p3" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln39" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U8" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U8" SOURCE="hls_color_space_convert.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln26_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_8ns_24_1_1_U2" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln29_3" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U5" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln29_4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U5" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln29_15" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U5" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln29_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U8" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_3" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="result_1_fu_513_p2" SOURCE="hls_color_space_convert.cpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="result_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln35_1_fu_540_p2" SOURCE="hls_color_space_convert.cpp:35" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln35_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln39_1_fu_546_p2" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln39_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln39_1_fu_552_p2" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln39_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U9" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U9" SOURCE="hls_color_space_convert.cpp:26" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln26_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_8ns_24_1_1_U3" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln29_6" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U6" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln29_7" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sext" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="sext" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U6" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sext_ln29_18" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_24s_25_4_1_U6" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln29_4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_8ns_25s_26_4_1_U9" SOURCE="hls_color_space_convert.cpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="sum_5" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="result_2_fu_571_p2" SOURCE="hls_color_space_convert.cpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="result_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setgt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="setgt" PRAGMA="" RTLNAME="icmp_ln35_2_fu_598_p2" SOURCE="hls_color_space_convert.cpp:35" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln35_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln39_2_fu_608_p2" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln39_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln39_4_fu_614_p3" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln39_4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln39_2_fu_622_p2" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln39_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln39_1_fu_628_p3" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln39_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="or" PRAGMA="" RTLNAME="or_ln42_fu_292_p2" SOURCE="hls_color_space_convert.cpp:42" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln42" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln42_fu_298_p2" SOURCE="hls_color_space_convert.cpp:42" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln42" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln43_fu_304_p2" SOURCE="hls_color_space_convert.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln43" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln39_5_fu_636_p3" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln39_5" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="select_ln39_2_fu_648_p3" SOURCE="hls_color_space_convert.cpp:39" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln39_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="y_1_fu_309_p2" SOURCE="hls_color_space_convert.cpp:48" STORAGESUBTYPE="" URAM="0" VARIABLE="y_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="x_1_fu_315_p2" SOURCE="hls_color_space_convert.cpp:50" STORAGESUBTYPE="" URAM="0" VARIABLE="x_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="x_2_fu_321_p3" SOURCE="hls_color_space_convert.cpp:46" STORAGESUBTYPE="" URAM="0" VARIABLE="x_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="select" PRAGMA="" RTLNAME="y_2_fu_329_p3" SOURCE="hls_color_space_convert.cpp:46" STORAGESUBTYPE="" URAM="0" VARIABLE="y_2" VISIBLE="false"/>
             </BindNodes>
         </Module>
         <Module>
@@ -513,7 +513,7 @@
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>hls_color_space_convert.cpp:32</SourceLocation>
+                    <SourceLocation>hls_color_space_convert.cpp:5</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -536,8 +536,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="3" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_32_1_1_U29" SOURCE="hls_color_space_convert.cpp:47" STORAGESUBTYPE="" URAM="0" VARIABLE="total_pixels" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln104_fu_174_p2" SOURCE="hls_color_space_convert.cpp:104" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln104" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="3" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_32_1_1_U29" SOURCE="hls_color_space_convert.cpp:14" STORAGESUBTYPE="" URAM="0" VARIABLE="total_pixels" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln43_fu_174_p2" SOURCE="hls_color_space_convert.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln43" VISIBLE="true"/>
             </BindNodes>
         </Module>
         <Module>
@@ -562,7 +562,7 @@
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>hls_color_space_convert.cpp:122</SourceLocation>
+                    <SourceLocation>hls_color_space_convert.cpp:55</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -605,7 +605,7 @@
                 <hwRef type="interface" interface="m_axis_video" name="" usage="data" direction="out"/>
             </hwRefs>
         </Arg>
-        <Arg ArgName="coeffs" index="2" direction="in" srcType="ap_int&lt;16&gt;*" srcSize="16">
+        <Arg ArgName="coeffs" index="2" direction="in" srcType="ap_int&lt;16&gt; const *" srcSize="16">
             <hwRefs>
                 <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
                 <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
@@ -618,7 +618,7 @@
                 <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
             </hwRefs>
         </Arg>
-        <Arg ArgName="offsets" index="3" direction="in" srcType="ap_int&lt;16&gt;*" srcSize="16">
+        <Arg ArgName="offsets" index="3" direction="in" srcType="ap_int&lt;16&gt; const *" srcSize="16">
             <hwRefs>
                 <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
                 <hwRef type="interface" interface="s_axi_control" name="" usage="data" direction="in"/>
@@ -902,8 +902,8 @@
                     <keys size="3">Argument, Direction, Datatype</keys>
                     <column name="s_axis_video">in, stream&lt;axi_stream_video&lt;color_pixel&lt;3 8&gt; &gt; 0&gt;&amp;</column>
                     <column name="m_axis_video">out, stream&lt;axi_stream_video&lt;color_pixel&lt;3 8&gt; &gt; 0&gt;&amp;</column>
-                    <column name="coeffs">in, ap_int&lt;16&gt;*</column>
-                    <column name="offsets">in, ap_int&lt;16&gt;*</column>
+                    <column name="coeffs">in, ap_int&lt;16&gt; const *</column>
+                    <column name="offsets">in, ap_int&lt;16&gt; const *</column>
                     <column name="width">in, int</column>
                     <column name="height">in, int</column>
                 </table>
@@ -933,41 +933,27 @@
     </ReportSWInterface>
     <ResolutionUrl key="ZZZ">docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
     <PragmaReport>
-        <Pragma type="aggregate" location="hls_color_space_convert.cpp:39" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = in_stream compact = bit"/>
-        <Pragma type="aggregate" location="hls_color_space_convert.cpp:40" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = out_stream compact = bit"/>
-        <Pragma type="array_partition" location="hls_color_space_convert.cpp:44" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = coeffs complete dim = 0"/>
-        <Pragma type="array_partition" location="hls_color_space_convert.cpp:45" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = offsets complete dim = 1"/>
-        <Pragma type="pipeline" location="hls_color_space_convert.cpp:62" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="II = 1"/>
-        <Pragma type="unroll" location="hls_color_space_convert.cpp:72" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options=""/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:129" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="axis port = s_axis_video"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:130" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="axis port = m_axis_video"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:134" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = coeffs bundle = control"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:135" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = offsets bundle = control"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:136" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = width bundle = control"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:137" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = height bundle = control"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:143" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
-        <Pragma type="pipeline" location="hls_color_space_convert.cpp:180" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="II = 1"/>
-        <Pragma type="aggregate" location="hls_color_space_convert.cpp:181" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="variable = in_stream"/>
-        <Pragma type="aggregate" location="hls_color_space_convert.cpp:182" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="variable = out_stream"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:185" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="axis port = in_stream"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:187" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="axis port = out_stream"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:188" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:190" status="valid" parentFunction="hls_rgb_2_hsv" variable="" isDirective="0" options="ap_ctrl_none port = return"/>
-        <Pragma type="pipeline" location="hls_color_space_convert.cpp:266" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="II = 1"/>
-        <Pragma type="aggregate" location="hls_color_space_convert.cpp:267" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="variable = in_stream"/>
-        <Pragma type="aggregate" location="hls_color_space_convert.cpp:268" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="variable = out_stream"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:269" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="axis port = in_stream"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:270" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="axis port = out_stream"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:271" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
-        <Pragma type="interface" location="hls_color_space_convert.cpp:272" status="valid" parentFunction="hls_hsv_2_rgb" variable="" isDirective="0" options="ap_ctrl_none port = return"/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:40" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:42" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:52" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:54" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:68" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:71" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:80" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_color_space_convert.hpp:84" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_color_space_convert.hpp:95" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:44" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:46" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:58" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:60" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:73" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:76" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:88" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:91" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:103" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
+        <Pragma type="aggregate" location="hls_color_space_convert.cpp:9" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = in_stream compact = bit"/>
+        <Pragma type="aggregate" location="hls_color_space_convert.cpp:10" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = out_stream compact = bit"/>
+        <Pragma type="array_partition" location="hls_color_space_convert.cpp:11" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = coeffs complete dim = 0"/>
+        <Pragma type="array_partition" location="hls_color_space_convert.cpp:12" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="variable = offsets complete dim = 1"/>
+        <Pragma type="pipeline" location="hls_color_space_convert.cpp:20" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options="II = 1"/>
+        <Pragma type="unroll" location="hls_color_space_convert.cpp:25" status="valid" parentFunction="hls_color_space_convert_template" variable="" isDirective="0" options=""/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:60" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="axis port = s_axis_video"/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:61" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="axis port = m_axis_video"/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:62" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = coeffs bundle = control"/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:63" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = offsets bundle = control"/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:64" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = width bundle = control"/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:65" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = height bundle = control"/>
+        <Pragma type="interface" location="hls_color_space_convert.cpp:66" status="valid" parentFunction="hls_color_space_convert_top" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
     </PragmaReport>
 </profile>

@@ -113,7 +113,7 @@ int main() {
 
     int fails = 0;
     
-    // Použijeme šířku přesně 256, aby náš gradient šel plynule od 0 do 255
+    // Použiji šířku přesně 256, aby náš gradient šel plynule od 0 do 255
     const int W = 256; 
     const int H = 4;   // Výška může být malá
     const uint8_t THRESH = 127; // Práh přesně uprostřed
@@ -131,5 +131,5 @@ int main() {
     cout << "=========================================" << endl;
 
     // Návratová hodnota 0 znamená pro Vitis HLS úspěch
-    return (fails == 0) ? 0 : 1; 
+    return fails;
 }

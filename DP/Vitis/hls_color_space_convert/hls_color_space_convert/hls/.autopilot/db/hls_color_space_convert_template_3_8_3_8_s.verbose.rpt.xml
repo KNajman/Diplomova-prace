@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_color_space_convert_template_3_8_3_8_s'" level="0">
-<item name = "Date">Tue Mar 31 11:08:39 2026
+<item name = "Date">Mon Jun 22 11:26:50 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">hls_color_space_convert</item>
@@ -31,7 +31,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134">hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1, ?, ?, ?, ?, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134">hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1, ?, ?, ?, ?, 0, 0, loop pipeline stp</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -62,7 +62,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134">hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1, 0, 9, 534, 658, 0</column>
+<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134">hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1, 0, 9, 534, 658, 0</column>
 <column name="mul_32s_32s_32_1_1_U29">mul_32s_32s_32_1_1, 0, 3, 0, 20, 0</column>
 </table>
 </item>
@@ -80,8 +80,8 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln104_fu_174_p2">+, 0, 0, 39, 32, 2</column>
-<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TREADY">and, 0, 0, 2, 1, 1</column>
+<column name="add_ln43_fu_174_p2">+, 0, 0, 39, 32, 2</column>
+<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TREADY">and, 0, 0, 2, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -93,9 +93,9 @@
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln104_reg_250">32, 0, 32, 0</column>
+<column name="add_ln43_reg_250">32, 0, 32, 0</column>
 <column name="ap_CS_fsm">3, 0, 3, 0</column>
-<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg">1, 0, 1, 0</column>
 <column name="m_axis_video_TDATA_reg">32, 0, 32, 0</column>
 <column name="total_pixels_reg_185">32, 0, 32, 0</column>
 </table>

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_color_space_convert_top'
 ================================================================
-* Date:           Tue Mar 31 11:08:37 2026
+* Date:           Mon Jun 22 11:26:47 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_color_space_convert
@@ -80,8 +80,8 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 0.00>
 
 State 2 <SV = 1> <Delay = 4.42>
-ST_2 : Operation 5 [1/1] (1.00ns)   --->   "%height_read = read i32 @_ssdm_op_Read.s_axilite.i32, i32 %height" [hls_color_space_convert.cpp:123]   --->   Operation 5 'read' 'height_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
-ST_2 : Operation 6 [1/1] (1.00ns)   --->   "%width_read = read i32 @_ssdm_op_Read.s_axilite.i32, i32 %width" [hls_color_space_convert.cpp:123]   --->   Operation 6 'read' 'width_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_2 : Operation 5 [1/1] (1.00ns)   --->   "%height_read = read i32 @_ssdm_op_Read.s_axilite.i32, i32 %height" [hls_color_space_convert.cpp:55]   --->   Operation 5 'read' 'height_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_2 : Operation 6 [1/1] (1.00ns)   --->   "%width_read = read i32 @_ssdm_op_Read.s_axilite.i32, i32 %width" [hls_color_space_convert.cpp:55]   --->   Operation 6 'read' 'width_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_2 : Operation 7 [1/1] (1.00ns)   --->   "%coeffs_0_0_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %coeffs_0_0"   --->   Operation 7 'read' 'coeffs_0_0_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_2 : Operation 8 [1/1] (1.00ns)   --->   "%coeffs_0_1_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %coeffs_0_1"   --->   Operation 8 'read' 'coeffs_0_1_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_2 : Operation 9 [1/1] (1.00ns)   --->   "%coeffs_0_2_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %coeffs_0_2"   --->   Operation 9 'read' 'coeffs_0_2_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
@@ -94,13 +94,13 @@ ST_2 : Operation 15 [1/1] (1.00ns)   --->   "%coeffs_2_2_read = read i16 @_ssdm_
 ST_2 : Operation 16 [1/1] (1.00ns)   --->   "%offsets_0_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %offsets_0"   --->   Operation 16 'read' 'offsets_0_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_2 : Operation 17 [1/1] (1.00ns)   --->   "%offsets_1_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %offsets_1"   --->   Operation 17 'read' 'offsets_1_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_2 : Operation 18 [1/1] (1.00ns)   --->   "%offsets_2_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %offsets_2"   --->   Operation 18 'read' 'offsets_2_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
-ST_2 : Operation 19 [2/2] (3.42ns)   --->   "%call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read" [hls_color_space_convert.cpp:149]   --->   Operation 19 'call' 'call_ln149' <Predicate = true> <Delay = 3.42> <CoreType = "Generic">   --->   Generic Core
+ST_2 : Operation 19 [2/2] (3.42ns)   --->   "%call_ln70 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read" [hls_color_space_convert.cpp:70]   --->   Operation 19 'call' 'call_ln70' <Predicate = true> <Delay = 3.42> <CoreType = "Generic">   --->   Generic Core
 
 State 3 <SV = 2> <Delay = 0.00>
-ST_3 : Operation 20 [1/2] (0.00ns)   --->   "%call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read" [hls_color_space_convert.cpp:149]   --->   Operation 20 'call' 'call_ln149' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_3 : Operation 20 [1/2] (0.00ns)   --->   "%call_ln70 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read" [hls_color_space_convert.cpp:70]   --->   Operation 20 'call' 'call_ln70' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
 
 State 4 <SV = 3> <Delay = 0.00>
-ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%spectopmodule_ln122 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19" [hls_color_space_convert.cpp:122]   --->   Operation 21 'spectopmodule' 'spectopmodule_ln122' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%spectopmodule_ln55 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19" [hls_color_space_convert.cpp:55]   --->   Operation 21 'spectopmodule' 'spectopmodule_ln55' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %s_axis_video, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 23 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %s_axis_video"   --->   Operation 23 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %m_axis_video, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
@@ -148,7 +148,7 @@ ST_4 : Operation 65 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void
 ST_4 : Operation 66 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %height, void @empty_2, i32 4294967295, i32 4294967295, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_18, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 66 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 67 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %height, void @empty_5, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 67 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 68 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0"   --->   Operation 68 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 69 [1/1] (0.00ns)   --->   "%ret_ln151 = ret" [hls_color_space_convert.cpp:151]   --->   Operation 69 'ret' 'ret_ln151' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 69 [1/1] (0.00ns)   --->   "%ret_ln72 = ret" [hls_color_space_convert.cpp:72]   --->   Operation 69 'ret' 'ret_ln72' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -161,8 +161,8 @@ The critical path consists of the following:
 
  <State 2>: 4.420ns
 The critical path consists of the following:
-	s_axi read operation ('height_read', hls_color_space_convert.cpp:123) on port 'height' (hls_color_space_convert.cpp:123) [65]  (1.000 ns)
-	'call' operation ('call_ln149', hls_color_space_convert.cpp:149) to 'hls_color_space_convert_template<3, 8, 3, 8>' [79]  (3.420 ns)
+	s_axi read operation ('height_read', hls_color_space_convert.cpp:55) on port 'height' (hls_color_space_convert.cpp:55) [65]  (1.000 ns)
+	'call' operation ('call_ln70', hls_color_space_convert.cpp:70) to 'hls_color_space_convert_template<3, 8, 3, 8>' [79]  (3.420 ns)
 
  <State 3>: 0.000ns
 The critical path consists of the following:

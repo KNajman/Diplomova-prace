@@ -38,11 +38,11 @@
 +-----------------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
 | + hls_filter_2d             | hls_filter_2d.cpp:114  | 3,774        | 620           | 569          | 435         | 503           |
 |  + update_window            | hls_filter_2d.cpp:8    |  499         | 111           |  86          |             |               |
-|     operator ap_uint        | hls_video_types.hpp:86 |   83         |               |              |             |               |
+|     operator ap_uint        | hls_video_types.hpp:87 |   83         |               |              |             |               |
 |  + compute_and_write_output | hls_filter_2d.cpp:49   | 2,604        | 441           | 364          |             |               |
 |   + axi_stream_video        | hls_video_types.hpp:18 |   44         |               |              |             |               |
-|      color_pixel            | hls_video_types.hpp:42 |   39         |               |              |             |               |
-|     color_pixel             | hls_video_types.hpp:56 |   77         |               |              |             |               |
+|      color_pixel            | hls_video_types.hpp:43 |   39         |               |              |             |               |
+|     color_pixel             | hls_video_types.hpp:57 |   77         |               |              |             |               |
 +-----------------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings
