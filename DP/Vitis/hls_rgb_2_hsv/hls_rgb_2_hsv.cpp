@@ -1,14 +1,39 @@
 #include "hls_rgb_2_hsv.hpp"
 
+/*
+ Moderní C++ technika (Constexpr) pro vygenerování ROM tabulky během kompilace.
+ Nahrazuje hardwarovou děličku pamětí/tabulkou předpočítaných hodnot
+ (BRAM/LUTRAM) a jedním násobením. Vypočítá (1 << 16) / x.
+*/
+struct InvTable {
+  uint32_t data[256]; // POUŽIT STANDARDNÍ TYP, ODSTRANĚNO 'const'
+
+  constexpr InvTable() : data() {
+    for (int i = 0; i < 256; i++) {
+      // if (i == 0) {
+      //   data[i] = 0;
+      // } else {
+      //   data[i] = 65536 / i;
+      // }
+      data[i] = (i == 0)
+                    ? 0
+                    : (65536 + (i >> 1)) / i; // Zaokrouhlení pro lepší přesnost
+    }
+  }
+};
+
+// Samotná instance už je constexpr (tedy i const)
+constexpr InvTable INV_TBL;
+
 void hls_rgb_2_hsv(hls::stream<axis_rgb> &in_stream,
                    hls::stream<axis_hsv> &out_stream) {
-  #pragma HLS PIPELINE II = 1
-  #pragma HLS AGGREGATE variable = in_stream
-  #pragma HLS AGGREGATE variable = out_stream
-  #pragma HLS INTERFACE axis port = in_stream
-  #pragma HLS INTERFACE axis port = out_stream
-  #pragma HLS INTERFACE s_axilite port = return bundle = control
-  #pragma HLS INTERFACE ap_ctrl_none port = return
+#pragma HLS PIPELINE II = 1
+#pragma HLS AGGREGATE variable = in_stream
+#pragma HLS AGGREGATE variable = out_stream
+#pragma HLS INTERFACE axis port = in_stream
+#pragma HLS INTERFACE axis port = out_stream
+#pragma HLS INTERFACE s_axilite port = return bundle = control
+#pragma HLS INTERFACE ap_ctrl_none port = return
 
   axis_rgb in_packet = in_stream.read();
   ap_uint<8> r = in_packet.data.channel[0];
@@ -37,14 +62,21 @@ void hls_rgb_2_hsv(hls::stream<axis_rgb> &in_stream,
       offset = 0;
     } else if (Cmax == g) {
       diff = (ap_int<10>)b - (ap_int<10>)r;
-      offset = 85;
+      offset = 60;
     } else {
       diff = (ap_int<10>)r - (ap_int<10>)g;
-      offset = 170;
+      offset = 120;
     }
 
-    ap_int<32> hue_tmp = (diff * 43 * (ap_int<32>)INV_TBL.data[delta]) >> 16;
-    hue_out = (ap_uint<8>)((ap_int<10>)hue_tmp + offset);
+    ap_int<32> hue_tmp = (diff * 30 * (ap_int<32>)INV_TBL.data[delta]) >> 16;
+    ap_int<12> hue_calc = hue_tmp + offset;
+
+    // Korekce záporného úhlu
+    if (hue_calc < 0) {
+      hue_calc += 180;
+    }
+    
+    hue_out = (ap_uint<8>)hue_calc;
   }
 
   axis_hsv out_packet;

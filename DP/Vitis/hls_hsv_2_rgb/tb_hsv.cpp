@@ -1,4 +1,4 @@
-#include "hls_color_space_convert.hpp"
+#include "hls_hsv_2_rgb.hpp"
 
 /*
 =================================================================================
@@ -269,9 +269,18 @@ int test_hsv2rgb() {
   return errors;
 }
 
-int run_test_hsv() {
-  int fails = 0;
-  fails += test_rgb2hsv();
-  fails += test_hsv2rgb();
-  return fails;
+
+int main() {
+  int errors = 0;
+
+  errors += test_rgb2hsv();
+  errors += test_hsv2rgb();
+
+  if (errors == 0) {
+    printf("\nALL TESTS PASSED!\n");
+  } else {
+    printf("\nErrors occurred: %d\n", errors);
+  }
+
+  return errors;
 }

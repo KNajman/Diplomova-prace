@@ -38,7 +38,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_passthrough.cpp:16</SourceLocation>
+<SourceLocation>hls_passthrough.cpp:14</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 

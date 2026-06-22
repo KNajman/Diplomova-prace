@@ -1,19 +1,19 @@
-#include "hsv_2_rgb.h"
+#include "hls_hsv_2_rgb.hpp"
 
 void hls_hsv_2_rgb(hls::stream<axis_hsv> &in_stream,
                    hls::stream<axis_rgb> &out_stream) {
-  // Nastavuje propustnost 1 pixel za hodinový takt.
-  #pragma HLS PIPELINE II = 1
-  #pragma HLS AGGREGATE variable = in_stream
-  #pragma HLS AGGREGATE variable = out_stream
-  #pragma HLS INTERFACE axis port = in_stream
-  #pragma HLS INTERFACE axis port = out_stream
-  #pragma HLS INTERFACE s_axilite port = return bundle = control
-  #pragma HLS INTERFACE ap_ctrl_none port = return
+// Nastavení propustnost 1 pixel za hodinový takt.
+#pragma HLS PIPELINE II = 1
+#pragma HLS AGGREGATE variable = in_stream
+#pragma HLS AGGREGATE variable = out_stream
+#pragma HLS INTERFACE axis port = in_stream
+#pragma HLS INTERFACE axis port = out_stream
+#pragma HLS INTERFACE s_axilite port = return bundle = control
+#pragma HLS INTERFACE ap_ctrl_none port = return
 
   axis_hsv in_packet = in_stream.read();
 
-  // Extrakce hodnot H, S, V z AXI-Stream struktury.
+  // Extrakce hodnot H, S, V z AXI-Streamu.
   ap_uint<8> h = in_packet.data.channel[0];
   ap_uint<8> s = in_packet.data.channel[1];
   ap_uint<8> v = in_packet.data.channel[2];
@@ -22,24 +22,30 @@ void hls_hsv_2_rgb(hls::stream<axis_hsv> &in_stream,
 
   // Ošetřuje okrajovou hodnotu odstínu, aby se zabránilo přetečení v
   // následujících výpočtech.
-  if (h >= 360) {
+  if (h >= 180) {
     h = 0;
   }
 
   if (s != 0) {
-    // Násobení šesti rozdělí 256 do rozsahu 0-1530.
-    ap_uint<12> h_mult = h * 6;
-    ap_uint<12> h_scaled = h_mult + (h_mult >> 8);
+    // Potřebujeme zjistit region (h / 30) a zbytek namapovaný na 0-255.
+    // Konstanta: 2185 / 65536 = 0.03334 (odpovídá 1/30)
+    ap_uint<19> h_scaled = h * 2185;
+    ap_uint<3> region = h_scaled >> 16; // Horní bity nám dají region 0 až
 
-    // Horní 3 bity jsou číslo výseče (0-5).
-    ap_uint<3> region = h_scaled >> 8;
+    // Výpočet zbytku (fraction) v rozsahu 0-255:
+    // f = (h - region * 30) * 255 / 30.
+    // Pro úsporu DSP můžeme použít: (h % 30) * 8.5 ~= (h - region*30) * 255 /
+    // 30
+    ap_uint<10> h_rem = h - (ap_uint<8>)(region * 30);
 
-    // Spodních 8 bitů je automaticky zbytek (fraction) namapovaný
-    ap_uint<8> f = h_scaled & 0xFF;
+    // Násobení 255/30 (což je přesně 8.5) provedeme pomocí bitových posunů:
+    // x * 8.5 = x * 8 + x / 2 = (x << 3) + (x >> 1)
+    ap_uint<10> f_large = (((ap_uint<10>)h_rem) << 3) + (h_rem >> 1);
+    ap_uint<8> f = f_large;
 
-// Výpočet složek P, Q, T bez dělení!
-// Využívám aproximaci  x/ 255 ~= (x+1 + x/256)/256 ~=(x+1 + x>>8) >> 8
-  #define DIV255(x) (((x) + 1 + ((x) >> 8)) >> 8)
+    // Výpočet složek P, Q, T bez dělení!
+    // Využívám aproximaci  x/ 255 ~= (x+1 + x/256)/256 ~=(x+1 + x>>8) >> 8
+#define DIV255(x) (((x) + 1 + ((x) >> 8)) >> 8)
     // Operace (255 - X) je v HW implementována jako negace
 
     ap_uint<8> p = DIV255(v * (255 - s));

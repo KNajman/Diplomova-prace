@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_color_space_convert_template_3_8_3_8_s'
 ================================================================
-* Date:           Tue Mar 31 11:08:37 2026
+* Date:           Mon Jun 22 11:26:47 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_color_space_convert
@@ -38,7 +38,7 @@
         |                                                                              |                                                                   |  Latency (cycles) |  Latency (absolute) |  Interval |      Pipeline     |
         |                                   Instance                                   |                               Module                              |   min   |   max   |    min   |    max   | min | max |        Type       |
         +------------------------------------------------------------------------------+-------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
-        |grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134  |hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
+        |grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134  |hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
         +------------------------------------------------------------------------------+-------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
 
         * Loop: 
@@ -82,31 +82,31 @@ IsGatedGlobalClock: 0
 * FSM state operations: 
 
 State 1 <SV = 0> <Delay = 3.42>
-ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%height_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %height" [hls_color_space_convert.cpp:32]   --->   Operation 4 'read' 'height_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%width_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %width" [hls_color_space_convert.cpp:32]   --->   Operation 5 'read' 'width_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 6 [1/1] (3.42ns)   --->   "%total_pixels = mul i32 %height_read, i32 %width_read" [hls_color_space_convert.cpp:47]   --->   Operation 6 'mul' 'total_pixels' <Predicate = true> <Delay = 3.42> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 3.42> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%height_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %height" [hls_color_space_convert.cpp:5]   --->   Operation 4 'read' 'height_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%width_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %width" [hls_color_space_convert.cpp:5]   --->   Operation 5 'read' 'width_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (3.42ns)   --->   "%total_pixels = mul i32 %height_read, i32 %width_read" [hls_color_space_convert.cpp:14]   --->   Operation 6 'mul' 'total_pixels' <Predicate = true> <Delay = 3.42> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 3.42> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 
 State 2 <SV = 1> <Delay = 2.09>
-ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%offsets_2_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %offsets_2_val" [hls_color_space_convert.cpp:32]   --->   Operation 7 'read' 'offsets_2_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 8 [1/1] (0.00ns)   --->   "%offsets_1_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %offsets_1_val" [hls_color_space_convert.cpp:32]   --->   Operation 8 'read' 'offsets_1_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%offsets_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %offsets_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 9 'read' 'offsets_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%coeffs_2_2_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_2_2_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 10 'read' 'coeffs_2_2_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%coeffs_2_1_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_2_1_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 11 'read' 'coeffs_2_1_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%coeffs_2_0_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_2_0_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 12 'read' 'coeffs_2_0_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%coeffs_1_2_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_1_2_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 13 'read' 'coeffs_1_2_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%coeffs_1_1_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_1_1_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 14 'read' 'coeffs_1_1_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%coeffs_1_0_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_1_0_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 15 'read' 'coeffs_1_0_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%coeffs_0_2_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_0_2_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 16 'read' 'coeffs_0_2_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%coeffs_0_1_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_0_1_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 17 'read' 'coeffs_0_1_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%coeffs_0_0_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_0_0_0_0_0_0_val" [hls_color_space_convert.cpp:32]   --->   Operation 18 'read' 'coeffs_0_0_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 19 [1/1] (1.01ns)   --->   "%add_ln104 = add i32 %width_read, i32 4294967295" [hls_color_space_convert.cpp:104]   --->   Operation 19 'add' 'add_ln104' <Predicate = true> <Delay = 1.01> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 20 [2/2] (1.07ns)   --->   "%call_ln47 = call void @hls_color_space_convert_template<3, 8, 3, 8>_Pipeline_VITIS_LOOP_58_1, i32 %total_pixels, i32 %s_axis_video, i16 %coeffs_0_0_0_0_0_0_val_read, i16 %coeffs_0_1_0_0_0_0_val_read, i16 %coeffs_0_2_0_0_0_0_val_read, i16 %offsets_0_val_read, i16 %coeffs_1_0_0_0_0_0_val_read, i16 %coeffs_1_1_0_0_0_0_val_read, i16 %coeffs_1_2_0_0_0_0_val_read, i16 %offsets_1_val_read, i16 %coeffs_2_0_0_0_0_0_val_read, i16 %coeffs_2_1_0_0_0_0_val_read, i16 %coeffs_2_2_0_0_0_0_val_read, i16 %offsets_2_val_read, i32 %add_ln104, i32 %m_axis_video" [hls_color_space_convert.cpp:47]   --->   Operation 20 'call' 'call_ln47' <Predicate = true> <Delay = 1.07> <CoreType = "Generic">   --->   Generic Core
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%offsets_2_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %offsets_2_val" [hls_color_space_convert.cpp:5]   --->   Operation 7 'read' 'offsets_2_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (0.00ns)   --->   "%offsets_1_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %offsets_1_val" [hls_color_space_convert.cpp:5]   --->   Operation 8 'read' 'offsets_1_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%offsets_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %offsets_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 9 'read' 'offsets_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%coeffs_2_2_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_2_2_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 10 'read' 'coeffs_2_2_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%coeffs_2_1_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_2_1_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 11 'read' 'coeffs_2_1_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%coeffs_2_0_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_2_0_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 12 'read' 'coeffs_2_0_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%coeffs_1_2_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_1_2_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 13 'read' 'coeffs_1_2_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%coeffs_1_1_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_1_1_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 14 'read' 'coeffs_1_1_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%coeffs_1_0_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_1_0_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 15 'read' 'coeffs_1_0_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%coeffs_0_2_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_0_2_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 16 'read' 'coeffs_0_2_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%coeffs_0_1_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_0_1_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 17 'read' 'coeffs_0_1_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%coeffs_0_0_0_0_0_0_val_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %coeffs_0_0_0_0_0_0_val" [hls_color_space_convert.cpp:5]   --->   Operation 18 'read' 'coeffs_0_0_0_0_0_0_val_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (1.01ns)   --->   "%add_ln43 = add i32 %width_read, i32 4294967295" [hls_color_space_convert.cpp:43]   --->   Operation 19 'add' 'add_ln43' <Predicate = true> <Delay = 1.01> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [2/2] (1.07ns)   --->   "%call_ln14 = call void @hls_color_space_convert_template<3, 8, 3, 8>_Pipeline_VITIS_LOOP_19_1, i32 %total_pixels, i32 %s_axis_video, i16 %coeffs_0_0_0_0_0_0_val_read, i16 %coeffs_0_1_0_0_0_0_val_read, i16 %coeffs_0_2_0_0_0_0_val_read, i16 %offsets_0_val_read, i16 %coeffs_1_0_0_0_0_0_val_read, i16 %coeffs_1_1_0_0_0_0_val_read, i16 %coeffs_1_2_0_0_0_0_val_read, i16 %offsets_1_val_read, i16 %coeffs_2_0_0_0_0_0_val_read, i16 %coeffs_2_1_0_0_0_0_val_read, i16 %coeffs_2_2_0_0_0_0_val_read, i16 %offsets_2_val_read, i32 %add_ln43, i32 %m_axis_video" [hls_color_space_convert.cpp:14]   --->   Operation 20 'call' 'call_ln14' <Predicate = true> <Delay = 1.07> <CoreType = "Generic">   --->   Generic Core
 
 State 3 <SV = 2> <Delay = 3.20>
 ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %m_axis_video, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %s_axis_video, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 23 [1/2] (3.20ns)   --->   "%call_ln47 = call void @hls_color_space_convert_template<3, 8, 3, 8>_Pipeline_VITIS_LOOP_58_1, i32 %total_pixels, i32 %s_axis_video, i16 %coeffs_0_0_0_0_0_0_val_read, i16 %coeffs_0_1_0_0_0_0_val_read, i16 %coeffs_0_2_0_0_0_0_val_read, i16 %offsets_0_val_read, i16 %coeffs_1_0_0_0_0_0_val_read, i16 %coeffs_1_1_0_0_0_0_val_read, i16 %coeffs_1_2_0_0_0_0_val_read, i16 %offsets_1_val_read, i16 %coeffs_2_0_0_0_0_0_val_read, i16 %coeffs_2_1_0_0_0_0_val_read, i16 %coeffs_2_2_0_0_0_0_val_read, i16 %offsets_2_val_read, i32 %add_ln104, i32 %m_axis_video" [hls_color_space_convert.cpp:47]   --->   Operation 23 'call' 'call_ln47' <Predicate = true> <Delay = 3.20> <CoreType = "Generic">   --->   Generic Core
-ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%ret_ln117 = ret" [hls_color_space_convert.cpp:117]   --->   Operation 24 'ret' 'ret_ln117' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/2] (3.20ns)   --->   "%call_ln14 = call void @hls_color_space_convert_template<3, 8, 3, 8>_Pipeline_VITIS_LOOP_19_1, i32 %total_pixels, i32 %s_axis_video, i16 %coeffs_0_0_0_0_0_0_val_read, i16 %coeffs_0_1_0_0_0_0_val_read, i16 %coeffs_0_2_0_0_0_0_val_read, i16 %offsets_0_val_read, i16 %coeffs_1_0_0_0_0_0_val_read, i16 %coeffs_1_1_0_0_0_0_val_read, i16 %coeffs_1_2_0_0_0_0_val_read, i16 %offsets_1_val_read, i16 %coeffs_2_0_0_0_0_0_val_read, i16 %coeffs_2_1_0_0_0_0_val_read, i16 %coeffs_2_2_0_0_0_0_val_read, i16 %offsets_2_val_read, i32 %add_ln43, i32 %m_axis_video" [hls_color_space_convert.cpp:14]   --->   Operation 23 'call' 'call_ln14' <Predicate = true> <Delay = 3.20> <CoreType = "Generic">   --->   Generic Core
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%ret_ln53 = ret" [hls_color_space_convert.cpp:53]   --->   Operation 24 'ret' 'ret_ln53' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -157,11 +157,11 @@ coeffs_1_0_0_0_0_0_val_read (read         ) [ 0001]
 coeffs_0_2_0_0_0_0_val_read (read         ) [ 0001]
 coeffs_0_1_0_0_0_0_val_read (read         ) [ 0001]
 coeffs_0_0_0_0_0_0_val_read (read         ) [ 0001]
-add_ln104                   (add          ) [ 0001]
+add_ln43                    (add          ) [ 0001]
 specinterface_ln0           (specinterface) [ 0000]
 specinterface_ln0           (specinterface) [ 0000]
-call_ln47                   (call         ) [ 0000]
-ret_ln117                   (ret          ) [ 0000]
+call_ln14                   (call         ) [ 0000]
+ret_ln53                    (ret          ) [ 0000]
 </LifeTime>
 
 <model>
@@ -343,7 +343,7 @@ ret_ln117                   (ret          ) [ 0000]
 <pin id="39" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="hls_color_space_convert_template<3, 8, 3, 8>_Pipeline_VITIS_LOOP_58_1"/></StgValue>
+<StgValue><ssdm name="hls_color_space_convert_template<3, 8, 3, 8>_Pipeline_VITIS_LOOP_19_1"/></StgValue>
 </bind>
 </comp>
 
@@ -560,7 +560,7 @@ ret_ln117                   (ret          ) [ 0000]
 </bind>
 </comp>
 
-<comp id="134" class="1004" name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134">
+<comp id="134" class="1004" name="grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134">
 <pin_list>
 <pin id="135" dir="0" index="0" bw="0" slack="0"/>
 <pin id="136" dir="0" index="1" bw="32" slack="1"/>
@@ -583,7 +583,7 @@ ret_ln117                   (ret          ) [ 0000]
 </pin_list>
 <bind>
 <opcode="call(48) " fcode="call"/>
-<opset="call_ln47/2 "/>
+<opset="call_ln14/2 "/>
 </bind>
 </comp>
 
@@ -599,7 +599,7 @@ ret_ln117                   (ret          ) [ 0000]
 </bind>
 </comp>
 
-<comp id="174" class="1004" name="add_ln104_fu_174">
+<comp id="174" class="1004" name="add_ln43_fu_174">
 <pin_list>
 <pin id="175" dir="0" index="0" bw="32" slack="1"/>
 <pin id="176" dir="0" index="1" bw="1" slack="0"/>
@@ -607,7 +607,7 @@ ret_ln117                   (ret          ) [ 0000]
 </pin_list>
 <bind>
 <opcode="add(8) " fcode="add"/>
-<opset="add_ln104/2 "/>
+<opset="add_ln43/2 "/>
 </bind>
 </comp>
 
@@ -751,13 +751,13 @@ ret_ln117                   (ret          ) [ 0000]
 </bind>
 </comp>
 
-<comp id="250" class="1005" name="add_ln104_reg_250">
+<comp id="250" class="1005" name="add_ln43_reg_250">
 <pin_list>
 <pin id="251" dir="0" index="0" bw="32" slack="1"/>
 <pin id="252" dir="1" index="1" bw="32" slack="1"/>
 </pin_list>
 <bind>
-<opset="add_ln104 "/>
+<opset="add_ln43 "/>
 </bind>
 </comp>
 
@@ -945,7 +945,7 @@ ret_ln117                   (ret          ) [ 0000]
   - Chain level:
 	State 1
 	State 2
-		call_ln47 : 1
+		call_ln14 : 1
 	State 3
 
 
@@ -957,9 +957,9 @@ ret_ln117                   (ret          ) [ 0000]
 |----------|------------------------------------------------------------------------------|---------|---------|---------|---------|
 | Operation|                                Functional Unit                               |   DSP   |  Delay  |    FF   |   LUT   |
 |----------|------------------------------------------------------------------------------|---------|---------|---------|---------|
-|   call   | grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |    9    |  5.124  |   652   |   623   |
+|   call   | grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |    9    |  5.124  |   652   |   623   |
 |----------|------------------------------------------------------------------------------|---------|---------|---------|---------|
-|    add   |                               add_ln104_fu_174                               |    0    |    0    |    0    |    39   |
+|    add   |                                add_ln43_fu_174                               |    0    |    0    |    0    |    39   |
 |----------|------------------------------------------------------------------------------|---------|---------|---------|---------|
 |    mul   |                              total_pixels_fu_168                             |    3    |    0    |    0    |    20   |
 |----------|------------------------------------------------------------------------------|---------|---------|---------|---------|
@@ -988,7 +988,7 @@ N/A
 +-----------------------------------+--------+
 |                                   |   FF   |
 +-----------------------------------+--------+
-|         add_ln104_reg_250         |   32   |
+|          add_ln43_reg_250         |   32   |
 |coeffs_0_0_0_0_0_0_val_read_reg_245|   16   |
 |coeffs_0_1_0_0_0_0_val_read_reg_240|   16   |
 |coeffs_0_2_0_0_0_0_val_read_reg_235|   16   |
@@ -1011,19 +1011,19 @@ N/A
 |------------------------------------------------------------------------------|------|------|------|--------||---------||---------||---------|
 |                                     Comp                                     |  Pin | Size |  BW  | S x BW ||  Delay  ||    FF   ||   LUT   |
 |------------------------------------------------------------------------------|------|------|------|--------||---------||---------||---------|
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p3  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p4  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p5  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p6  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p7  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p8  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p9  |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p10 |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p11 |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p12 |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p13 |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p14 |   2  |  16  |   32   ||    0    ||    9    |
-| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 |  p15 |   2  |  32  |   64   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p3  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p4  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p5  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p6  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p7  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p8  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p9  |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p10 |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p11 |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p12 |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p13 |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p14 |   2  |  16  |   32   ||    0    ||    9    |
+| grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 |  p15 |   2  |  32  |   64   ||    0    ||    9    |
 |------------------------------------------------------------------------------|------|------|------|--------||---------||---------||---------|
 |                                     Total                                    |      |      |      |   448  ||  5.551  ||    0    ||   117   |
 |------------------------------------------------------------------------------|------|------|------|--------||---------||---------||---------|

@@ -250,10 +250,10 @@ entry:61 %offsets_2_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %offset
 
 <Node id="79" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="16" op_4_bw="16" op_5_bw="16" op_6_bw="16" op_7_bw="16" op_8_bw="16" op_9_bw="16" op_10_bw="16" op_11_bw="16" op_12_bw="16" op_13_bw="16" op_14_bw="16" op_15_bw="32" op_16_bw="32">
 <![CDATA[
-entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
+entry:62 %call_ln70 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
 
 ]]></Node>
-<StgValue><ssdm name="call_ln149"/></StgValue>
+<StgValue><ssdm name="call_ln70"/></StgValue>
 </operation>
 </state>
 
@@ -268,10 +268,10 @@ entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, 
 
 <Node id="79" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="16" op_4_bw="16" op_5_bw="16" op_6_bw="16" op_7_bw="16" op_8_bw="16" op_9_bw="16" op_10_bw="16" op_11_bw="16" op_12_bw="16" op_13_bw="16" op_14_bw="16" op_15_bw="32" op_16_bw="32">
 <![CDATA[
-entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
+entry:62 %call_ln70 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
 
 ]]></Node>
-<StgValue><ssdm name="call_ln149"/></StgValue>
+<StgValue><ssdm name="call_ln70"/></StgValue>
 </operation>
 </state>
 
@@ -286,10 +286,10 @@ entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, 
 
 <Node id="17" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:0 %spectopmodule_ln122 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19
+entry:0 %spectopmodule_ln55 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19
 
 ]]></Node>
-<StgValue><ssdm name="spectopmodule_ln122"/></StgValue>
+<StgValue><ssdm name="spectopmodule_ln55"/></StgValue>
 </operation>
 
 <operation id="22" st_id="4" stage="1" lat="1">
@@ -1006,10 +1006,10 @@ entry:47 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0,
 
 <Node id="80" bw="0">
 <![CDATA[
-entry:63 %ret_ln151 = ret
+entry:63 %ret_ln72 = ret
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln151"/></StgValue>
+<StgValue><ssdm name="ret_ln72"/></StgValue>
 </operation>
 </state>
 </state_list>
@@ -1124,77 +1124,77 @@ entry:63 %ret_ln151 = ret
 </dataflow>
 <dataflow id="118" from="offsets_2" to="offsets_2_read" fromId="86" toId="18">
 </dataflow>
-<dataflow id="120" from="hls_color_space_convert_template<3, 8, 3, 8>" to="call_ln149" fromId="119" toId="19">
+<dataflow id="120" from="hls_color_space_convert_template<3, 8, 3, 8>" to="call_ln70" fromId="119" toId="19">
 </dataflow>
-<dataflow id="121" from="s_axis_video" to="call_ln149" fromId="73" toId="19">
+<dataflow id="121" from="s_axis_video" to="call_ln70" fromId="73" toId="19">
 </dataflow>
-<dataflow id="122" from="m_axis_video" to="call_ln149" fromId="74" toId="19">
+<dataflow id="122" from="m_axis_video" to="call_ln70" fromId="74" toId="19">
 </dataflow>
-<dataflow id="123" from="coeffs_0_0_read" to="call_ln149" fromId="7" toId="19">
+<dataflow id="123" from="coeffs_0_0_read" to="call_ln70" fromId="7" toId="19">
 </dataflow>
-<dataflow id="124" from="coeffs_0_1_read" to="call_ln149" fromId="8" toId="19">
+<dataflow id="124" from="coeffs_0_1_read" to="call_ln70" fromId="8" toId="19">
 </dataflow>
-<dataflow id="125" from="coeffs_0_2_read" to="call_ln149" fromId="9" toId="19">
+<dataflow id="125" from="coeffs_0_2_read" to="call_ln70" fromId="9" toId="19">
 </dataflow>
-<dataflow id="126" from="coeffs_1_0_read" to="call_ln149" fromId="10" toId="19">
+<dataflow id="126" from="coeffs_1_0_read" to="call_ln70" fromId="10" toId="19">
 </dataflow>
-<dataflow id="127" from="coeffs_1_1_read" to="call_ln149" fromId="11" toId="19">
+<dataflow id="127" from="coeffs_1_1_read" to="call_ln70" fromId="11" toId="19">
 </dataflow>
-<dataflow id="128" from="coeffs_1_2_read" to="call_ln149" fromId="12" toId="19">
+<dataflow id="128" from="coeffs_1_2_read" to="call_ln70" fromId="12" toId="19">
 </dataflow>
-<dataflow id="129" from="coeffs_2_0_read" to="call_ln149" fromId="13" toId="19">
+<dataflow id="129" from="coeffs_2_0_read" to="call_ln70" fromId="13" toId="19">
 </dataflow>
-<dataflow id="130" from="coeffs_2_1_read" to="call_ln149" fromId="14" toId="19">
+<dataflow id="130" from="coeffs_2_1_read" to="call_ln70" fromId="14" toId="19">
 </dataflow>
-<dataflow id="131" from="coeffs_2_2_read" to="call_ln149" fromId="15" toId="19">
+<dataflow id="131" from="coeffs_2_2_read" to="call_ln70" fromId="15" toId="19">
 </dataflow>
-<dataflow id="132" from="offsets_0_read" to="call_ln149" fromId="16" toId="19">
+<dataflow id="132" from="offsets_0_read" to="call_ln70" fromId="16" toId="19">
 </dataflow>
-<dataflow id="133" from="offsets_1_read" to="call_ln149" fromId="17" toId="19">
+<dataflow id="133" from="offsets_1_read" to="call_ln70" fromId="17" toId="19">
 </dataflow>
-<dataflow id="134" from="offsets_2_read" to="call_ln149" fromId="18" toId="19">
+<dataflow id="134" from="offsets_2_read" to="call_ln70" fromId="18" toId="19">
 </dataflow>
-<dataflow id="135" from="width_read" to="call_ln149" fromId="6" toId="19">
+<dataflow id="135" from="width_read" to="call_ln70" fromId="6" toId="19">
 </dataflow>
-<dataflow id="136" from="height_read" to="call_ln149" fromId="5" toId="19">
+<dataflow id="136" from="height_read" to="call_ln70" fromId="5" toId="19">
 </dataflow>
-<dataflow id="137" from="hls_color_space_convert_template<3, 8, 3, 8>" to="call_ln149" fromId="119" toId="20">
+<dataflow id="137" from="hls_color_space_convert_template<3, 8, 3, 8>" to="call_ln70" fromId="119" toId="20">
 </dataflow>
-<dataflow id="138" from="s_axis_video" to="call_ln149" fromId="73" toId="20">
+<dataflow id="138" from="s_axis_video" to="call_ln70" fromId="73" toId="20">
 </dataflow>
-<dataflow id="139" from="m_axis_video" to="call_ln149" fromId="74" toId="20">
+<dataflow id="139" from="m_axis_video" to="call_ln70" fromId="74" toId="20">
 </dataflow>
-<dataflow id="140" from="coeffs_0_0_read" to="call_ln149" fromId="7" toId="20">
+<dataflow id="140" from="coeffs_0_0_read" to="call_ln70" fromId="7" toId="20">
 </dataflow>
-<dataflow id="141" from="coeffs_0_1_read" to="call_ln149" fromId="8" toId="20">
+<dataflow id="141" from="coeffs_0_1_read" to="call_ln70" fromId="8" toId="20">
 </dataflow>
-<dataflow id="142" from="coeffs_0_2_read" to="call_ln149" fromId="9" toId="20">
+<dataflow id="142" from="coeffs_0_2_read" to="call_ln70" fromId="9" toId="20">
 </dataflow>
-<dataflow id="143" from="coeffs_1_0_read" to="call_ln149" fromId="10" toId="20">
+<dataflow id="143" from="coeffs_1_0_read" to="call_ln70" fromId="10" toId="20">
 </dataflow>
-<dataflow id="144" from="coeffs_1_1_read" to="call_ln149" fromId="11" toId="20">
+<dataflow id="144" from="coeffs_1_1_read" to="call_ln70" fromId="11" toId="20">
 </dataflow>
-<dataflow id="145" from="coeffs_1_2_read" to="call_ln149" fromId="12" toId="20">
+<dataflow id="145" from="coeffs_1_2_read" to="call_ln70" fromId="12" toId="20">
 </dataflow>
-<dataflow id="146" from="coeffs_2_0_read" to="call_ln149" fromId="13" toId="20">
+<dataflow id="146" from="coeffs_2_0_read" to="call_ln70" fromId="13" toId="20">
 </dataflow>
-<dataflow id="147" from="coeffs_2_1_read" to="call_ln149" fromId="14" toId="20">
+<dataflow id="147" from="coeffs_2_1_read" to="call_ln70" fromId="14" toId="20">
 </dataflow>
-<dataflow id="148" from="coeffs_2_2_read" to="call_ln149" fromId="15" toId="20">
+<dataflow id="148" from="coeffs_2_2_read" to="call_ln70" fromId="15" toId="20">
 </dataflow>
-<dataflow id="149" from="offsets_0_read" to="call_ln149" fromId="16" toId="20">
+<dataflow id="149" from="offsets_0_read" to="call_ln70" fromId="16" toId="20">
 </dataflow>
-<dataflow id="150" from="offsets_1_read" to="call_ln149" fromId="17" toId="20">
+<dataflow id="150" from="offsets_1_read" to="call_ln70" fromId="17" toId="20">
 </dataflow>
-<dataflow id="151" from="offsets_2_read" to="call_ln149" fromId="18" toId="20">
+<dataflow id="151" from="offsets_2_read" to="call_ln70" fromId="18" toId="20">
 </dataflow>
-<dataflow id="152" from="width_read" to="call_ln149" fromId="6" toId="20">
+<dataflow id="152" from="width_read" to="call_ln70" fromId="6" toId="20">
 </dataflow>
-<dataflow id="153" from="height_read" to="call_ln149" fromId="5" toId="20">
+<dataflow id="153" from="height_read" to="call_ln70" fromId="5" toId="20">
 </dataflow>
-<dataflow id="155" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln122" fromId="154" toId="21">
+<dataflow id="155" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln55" fromId="154" toId="21">
 </dataflow>
-<dataflow id="157" from="empty_19" to="spectopmodule_ln122" fromId="156" toId="21">
+<dataflow id="157" from="empty_19" to="spectopmodule_ln55" fromId="156" toId="21">
 </dataflow>
 <dataflow id="159" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="158" toId="22">
 </dataflow>

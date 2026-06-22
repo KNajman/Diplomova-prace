@@ -63,28 +63,28 @@ attribute shreg_extract : string;
     signal total_pixels_reg_185 : STD_LOGIC_VECTOR (31 downto 0);
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
-    signal add_ln104_fu_174_p2 : STD_LOGIC_VECTOR (31 downto 0);
-    signal add_ln104_reg_250 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_idle : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_ready : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TREADY : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_s_axis_video_TREADY : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TDATA : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TVALID : STD_LOGIC;
-    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg : STD_LOGIC := '0';
+    signal add_ln43_fu_174_p2 : STD_LOGIC_VECTOR (31 downto 0);
+    signal add_ln43_reg_250 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_idle : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_ready : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TREADY : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_s_axis_video_TREADY : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TDATA : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TVALID : STD_LOGIC;
+    signal grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg : STD_LOGIC := '0';
     signal ap_CS_fsm_state3 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state3 : signal is "none";
     signal m_axis_video_TDATA_reg : STD_LOGIC_VECTOR (31 downto 0);
-    signal add_ln104_fu_174_p0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal add_ln43_fu_174_p0 : STD_LOGIC_VECTOR (31 downto 0);
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
     signal ap_ST_fsm_state1_blk : STD_LOGIC;
     signal ap_ST_fsm_state2_blk : STD_LOGIC;
     signal ap_ST_fsm_state3_blk : STD_LOGIC;
     signal ap_ce_reg : STD_LOGIC;
 
-    component hls_color_space_convert_top_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1 IS
+    component hls_color_space_convert_top_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1 IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -97,19 +97,19 @@ attribute shreg_extract : string;
         total_pixels : IN STD_LOGIC_VECTOR (31 downto 0);
         s_axis_video_TDATA : IN STD_LOGIC_VECTOR (31 downto 0);
         s_axis_video_TREADY : OUT STD_LOGIC;
-        sext_ln83 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_1 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_2 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_9 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_3 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_4 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_5 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_10 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_6 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_7 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln83_8 : IN STD_LOGIC_VECTOR (15 downto 0);
-        sext_ln58 : IN STD_LOGIC_VECTOR (15 downto 0);
-        add_ln104 : IN STD_LOGIC_VECTOR (31 downto 0);
+        sext_ln29 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_1 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_2 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_9 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_3 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_4 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_5 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_10 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_6 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_7 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln29_8 : IN STD_LOGIC_VECTOR (15 downto 0);
+        sext_ln19 : IN STD_LOGIC_VECTOR (15 downto 0);
+        add_ln43 : IN STD_LOGIC_VECTOR (31 downto 0);
         m_axis_video_TDATA : OUT STD_LOGIC_VECTOR (31 downto 0);
         m_axis_video_TVALID : OUT STD_LOGIC );
     end component;
@@ -131,34 +131,34 @@ attribute shreg_extract : string;
 
 
 begin
-    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134 : component hls_color_space_convert_top_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1
+    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134 : component hls_color_space_convert_top_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start,
-        ap_done => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done,
-        ap_idle => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_idle,
-        ap_ready => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_ready,
+        ap_start => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start,
+        ap_done => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done,
+        ap_idle => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_idle,
+        ap_ready => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_ready,
         s_axis_video_TVALID => s_axis_video_TVALID,
-        m_axis_video_TREADY => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TREADY,
+        m_axis_video_TREADY => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TREADY,
         total_pixels => total_pixels_reg_185,
         s_axis_video_TDATA => s_axis_video_TDATA,
-        s_axis_video_TREADY => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_s_axis_video_TREADY,
-        sext_ln83 => coeffs_0_0_0_0_0_0_val,
-        sext_ln83_1 => coeffs_0_1_0_0_0_0_val,
-        sext_ln83_2 => coeffs_0_2_0_0_0_0_val,
-        sext_ln83_9 => offsets_0_val,
-        sext_ln83_3 => coeffs_1_0_0_0_0_0_val,
-        sext_ln83_4 => coeffs_1_1_0_0_0_0_val,
-        sext_ln83_5 => coeffs_1_2_0_0_0_0_val,
-        sext_ln83_10 => offsets_1_val,
-        sext_ln83_6 => coeffs_2_0_0_0_0_0_val,
-        sext_ln83_7 => coeffs_2_1_0_0_0_0_val,
-        sext_ln83_8 => coeffs_2_2_0_0_0_0_val,
-        sext_ln58 => offsets_2_val,
-        add_ln104 => add_ln104_reg_250,
-        m_axis_video_TDATA => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TDATA,
-        m_axis_video_TVALID => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TVALID);
+        s_axis_video_TREADY => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_s_axis_video_TREADY,
+        sext_ln29 => coeffs_0_0_0_0_0_0_val,
+        sext_ln29_1 => coeffs_0_1_0_0_0_0_val,
+        sext_ln29_2 => coeffs_0_2_0_0_0_0_val,
+        sext_ln29_9 => offsets_0_val,
+        sext_ln29_3 => coeffs_1_0_0_0_0_0_val,
+        sext_ln29_4 => coeffs_1_1_0_0_0_0_val,
+        sext_ln29_5 => coeffs_1_2_0_0_0_0_val,
+        sext_ln29_10 => offsets_1_val,
+        sext_ln29_6 => coeffs_2_0_0_0_0_0_val,
+        sext_ln29_7 => coeffs_2_1_0_0_0_0_val,
+        sext_ln29_8 => coeffs_2_2_0_0_0_0_val,
+        sext_ln19 => offsets_2_val,
+        add_ln43 => add_ln43_reg_250,
+        m_axis_video_TDATA => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TDATA,
+        m_axis_video_TVALID => grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TVALID);
 
     mul_32s_32s_32_1_1_U29 : component hls_color_space_convert_top_mul_32s_32s_32_1_1
     generic map (
@@ -188,16 +188,16 @@ begin
     end process;
 
 
-    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg_assign_proc : process(ap_clk)
+    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg_assign_proc : process(ap_clk)
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst = '1') then
-                grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg <= ap_const_logic_0;
+                grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg <= ap_const_logic_0;
             else
                 if ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-                    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg <= ap_const_logic_1;
-                elsif ((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_ready = ap_const_logic_1)) then 
-                    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg <= ap_const_logic_0;
+                    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg <= ap_const_logic_1;
+                elsif ((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_ready = ap_const_logic_1)) then 
+                    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
@@ -207,15 +207,15 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_CS_fsm_state2)) then
-                add_ln104_reg_250 <= add_ln104_fu_174_p2;
+                add_ln43_reg_250 <= add_ln43_fu_174_p2;
             end if;
         end if;
     end process;
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_CS_fsm_state3) and (grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TVALID = ap_const_logic_1))) then
-                m_axis_video_TDATA_reg <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TDATA;
+            if (((ap_const_logic_1 = ap_CS_fsm_state3) and (grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TVALID = ap_const_logic_1))) then
+                m_axis_video_TDATA_reg <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TDATA;
             end if;
         end if;
     end process;
@@ -228,7 +228,7 @@ begin
         end if;
     end process;
 
-    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_CS_fsm_state1, grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done, ap_CS_fsm_state3)
+    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_CS_fsm_state1, grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done, ap_CS_fsm_state3)
     begin
         case ap_CS_fsm is
             when ap_ST_fsm_state1 => 
@@ -240,7 +240,7 @@ begin
             when ap_ST_fsm_state2 => 
                 ap_NS_fsm <= ap_ST_fsm_state3;
             when ap_ST_fsm_state3 => 
-                if (((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then
+                if (((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then
                     ap_NS_fsm <= ap_ST_fsm_state1;
                 else
                     ap_NS_fsm <= ap_ST_fsm_state3;
@@ -249,8 +249,8 @@ begin
                 ap_NS_fsm <= "XXX";
         end case;
     end process;
-    add_ln104_fu_174_p0 <= width;
-    add_ln104_fu_174_p2 <= std_logic_vector(signed(add_ln104_fu_174_p0) + signed(ap_const_lv32_FFFFFFFF));
+    add_ln43_fu_174_p0 <= width;
+    add_ln43_fu_174_p2 <= std_logic_vector(signed(add_ln43_fu_174_p0) + signed(ap_const_lv32_FFFFFFFF));
     ap_CS_fsm_state1 <= ap_CS_fsm(0);
     ap_CS_fsm_state2 <= ap_CS_fsm(1);
     ap_CS_fsm_state3 <= ap_CS_fsm(2);
@@ -266,9 +266,9 @@ begin
 
     ap_ST_fsm_state2_blk <= ap_const_logic_0;
 
-    ap_ST_fsm_state3_blk_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done)
+    ap_ST_fsm_state3_blk_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done)
     begin
-        if ((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done = ap_const_logic_0)) then 
+        if ((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done = ap_const_logic_0)) then 
             ap_ST_fsm_state3_blk <= ap_const_logic_1;
         else 
             ap_ST_fsm_state3_blk <= ap_const_logic_0;
@@ -276,9 +276,9 @@ begin
     end process;
 
 
-    ap_done_assign_proc : process(ap_start, ap_CS_fsm_state1, grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done, ap_CS_fsm_state3)
+    ap_done_assign_proc : process(ap_start, ap_CS_fsm_state1, grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done, ap_CS_fsm_state3)
     begin
-        if ((((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3)) or ((ap_start = ap_const_logic_0) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
+        if ((((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3)) or ((ap_start = ap_const_logic_0) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -296,33 +296,33 @@ begin
     end process;
 
 
-    ap_ready_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done, ap_CS_fsm_state3)
+    ap_ready_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done, ap_CS_fsm_state3)
     begin
-        if (((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
+        if (((grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_done = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
             ap_ready <= ap_const_logic_1;
         else 
             ap_ready <= ap_const_logic_0;
         end if; 
     end process;
 
-    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_ap_start_reg;
-    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TREADY <= (m_axis_video_TREADY and ap_CS_fsm_state3);
+    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_ap_start_reg;
+    grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TREADY <= (m_axis_video_TREADY and ap_CS_fsm_state3);
 
-    m_axis_video_TDATA_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TDATA, grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TVALID, ap_CS_fsm_state3, m_axis_video_TDATA_reg)
+    m_axis_video_TDATA_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TDATA, grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TVALID, ap_CS_fsm_state3, m_axis_video_TDATA_reg)
     begin
-        if (((ap_const_logic_1 = ap_CS_fsm_state3) and (grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TVALID = ap_const_logic_1))) then 
-            m_axis_video_TDATA <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TDATA;
+        if (((ap_const_logic_1 = ap_CS_fsm_state3) and (grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TVALID = ap_const_logic_1))) then 
+            m_axis_video_TDATA <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TDATA;
         else 
             m_axis_video_TDATA <= m_axis_video_TDATA_reg;
         end if; 
     end process;
 
-    m_axis_video_TVALID <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_m_axis_video_TVALID;
+    m_axis_video_TVALID <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_m_axis_video_TVALID;
 
-    s_axis_video_TREADY_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_s_axis_video_TREADY, ap_CS_fsm_state3)
+    s_axis_video_TREADY_assign_proc : process(grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_s_axis_video_TREADY, ap_CS_fsm_state3)
     begin
         if ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
-            s_axis_video_TREADY <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_58_1_fu_134_s_axis_video_TREADY;
+            s_axis_video_TREADY <= grp_hls_color_space_convert_template_3_8_3_8_Pipeline_VITIS_LOOP_19_1_fu_134_s_axis_video_TREADY;
         else 
             s_axis_video_TREADY <= ap_const_logic_0;
         end if; 

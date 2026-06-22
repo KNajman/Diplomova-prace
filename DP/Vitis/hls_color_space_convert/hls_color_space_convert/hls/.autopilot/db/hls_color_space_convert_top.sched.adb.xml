@@ -250,10 +250,10 @@ entry:61 %offsets_2_read = read i16 @_ssdm_op_Read.s_axilite.i16P0A, i16 %offset
 
 <Node id="79" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="16" op_4_bw="16" op_5_bw="16" op_6_bw="16" op_7_bw="16" op_8_bw="16" op_9_bw="16" op_10_bw="16" op_11_bw="16" op_12_bw="16" op_13_bw="16" op_14_bw="16" op_15_bw="32" op_16_bw="32">
 <![CDATA[
-entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
+entry:62 %call_ln70 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
 
 ]]></Node>
-<StgValue><ssdm name="call_ln149"/></StgValue>
+<StgValue><ssdm name="call_ln70"/></StgValue>
 </operation>
 </state>
 
@@ -268,10 +268,10 @@ entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, 
 
 <Node id="79" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="16" op_4_bw="16" op_5_bw="16" op_6_bw="16" op_7_bw="16" op_8_bw="16" op_9_bw="16" op_10_bw="16" op_11_bw="16" op_12_bw="16" op_13_bw="16" op_14_bw="16" op_15_bw="32" op_16_bw="32">
 <![CDATA[
-entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
+entry:62 %call_ln70 = call void @hls_color_space_convert_template<3, 8, 3, 8>, i32 %s_axis_video, i32 %m_axis_video, i16 %coeffs_0_0_read, i16 %coeffs_0_1_read, i16 %coeffs_0_2_read, i16 %coeffs_1_0_read, i16 %coeffs_1_1_read, i16 %coeffs_1_2_read, i16 %coeffs_2_0_read, i16 %coeffs_2_1_read, i16 %coeffs_2_2_read, i16 %offsets_0_read, i16 %offsets_1_read, i16 %offsets_2_read, i32 %width_read, i32 %height_read
 
 ]]></Node>
-<StgValue><ssdm name="call_ln149"/></StgValue>
+<StgValue><ssdm name="call_ln70"/></StgValue>
 </operation>
 </state>
 
@@ -286,10 +286,10 @@ entry:62 %call_ln149 = call void @hls_color_space_convert_template<3, 8, 3, 8>, 
 
 <Node id="17" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:0 %spectopmodule_ln122 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19
+entry:0 %spectopmodule_ln55 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19
 
 ]]></Node>
-<StgValue><ssdm name="spectopmodule_ln122"/></StgValue>
+<StgValue><ssdm name="spectopmodule_ln55"/></StgValue>
 </operation>
 
 <operation id="22" st_id="4" stage="1" lat="1">
@@ -1006,10 +1006,10 @@ entry:47 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0,
 
 <Node id="80" bw="0">
 <![CDATA[
-entry:63 %ret_ln151 = ret
+entry:63 %ret_ln72 = ret
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln151"/></StgValue>
+<StgValue><ssdm name="ret_ln72"/></StgValue>
 </operation>
 </state>
 </state_list>

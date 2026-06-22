@@ -1,7 +1,7 @@
 #ifndef HLS_THRESHOLD_HPP
 #define HLS_THRESHOLD_HPP
 
-#include "hls_video_types.hpp"
+#include "../hls_video_types.hpp"
 #include <hls_stream.h>
 
 #define THRESH_BINARY 0
