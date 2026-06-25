@@ -595,4 +595,11 @@ always @ (posedge ap_clk) begin
     flush_cycles_reg_666[0] <= 1'b0;
 end
 
+
+reg find_kernel_block = 0;
+// synthesis translate_off
+`include "hls_filter_2d_hls_deadlock_kernel_monitor_top.vh"
+// synthesis translate_on
+
 endmodule //hls_filter_2d
+

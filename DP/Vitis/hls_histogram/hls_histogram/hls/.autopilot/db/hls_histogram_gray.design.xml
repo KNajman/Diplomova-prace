@@ -5,20 +5,20 @@
 <ModuleName>hls_histogram_gray</ModuleName>
 <InstancesList>
 <Instance>
-<InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102</InstName>
-<ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</ModuleName>
+<InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102</InstName>
+<ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</ModuleName>
 <IsCompInst>true</IsCompInst>
 <ID>102</ID>
 </Instance>
 <Instance>
-<InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108</InstName>
-<ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</ModuleName>
+<InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108</InstName>
+<ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</ModuleName>
 <IsCompInst>true</IsCompInst>
 <ID>108</ID>
 </Instance>
 <Instance>
-<InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118</InstName>
-<ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</ModuleName>
+<InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118</InstName>
+<ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</ModuleName>
 <IsCompInst>true</IsCompInst>
 <ID>118</ID>
 </Instance>
@@ -28,9 +28,9 @@
 
 <ModuleInformation>
 <Module>
-<Name>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Name>
+<Name>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Name>
 <Loops>
-<VITIS_LOOP_22_1></VITIS_LOOP_22_1>
+<VITIS_LOOP_19_1></VITIS_LOOP_19_1>
 </Loops>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
@@ -50,8 +50,8 @@
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<VITIS_LOOP_22_1>
-<Name>VITIS_LOOP_22_1</Name>
+<VITIS_LOOP_19_1>
+<Name>VITIS_LOOP_19_1</Name>
 <Slack>7.30</Slack>
 <TripCount>256</TripCount>
 <isPerfectNested>0</isPerfectNested>
@@ -63,19 +63,19 @@
 <PerformancePragma>-</PerformancePragma>
 <InstanceList>
 </InstanceList>
-</VITIS_LOOP_22_1>
+</VITIS_LOOP_19_1>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./hls_histogram.hpp:22~hls_histogram.cpp:19</SourceLocation>
+<SourceLocation>./hls_histogram.hpp:19~hls_histogram.cpp:17</SourceLocation>
 <SummaryOfLoopViolations>
-<VITIS_LOOP_22_1>
-<Name>VITIS_LOOP_22_1</Name>
+<VITIS_LOOP_19_1>
+<Name>VITIS_LOOP_19_1</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./hls_histogram.hpp:22~hls_histogram.cpp:19</SourceLocation>
-</VITIS_LOOP_22_1>
+<SourceLocation>./hls_histogram.hpp:19~hls_histogram.cpp:17</SourceLocation>
+</VITIS_LOOP_19_1>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
@@ -101,7 +101,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -112,7 +112,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -123,7 +123,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -134,7 +134,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -145,7 +145,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -156,7 +156,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -212,9 +212,9 @@
 </InterfaceSummary>
 </Module>
 <Module>
-<Name>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Name>
+<Name>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Name>
 <Loops>
-<VITIS_LOOP_36_2></VITIS_LOOP_36_2>
+<VITIS_LOOP_32_2></VITIS_LOOP_32_2>
 </Loops>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
@@ -234,8 +234,8 @@
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<VITIS_LOOP_36_2>
-<Name>VITIS_LOOP_36_2</Name>
+<VITIS_LOOP_32_2>
+<Name>VITIS_LOOP_32_2</Name>
 <Slack>7.30</Slack>
 <TripCount>undef</TripCount>
 <isPerfectNested>0</isPerfectNested>
@@ -247,19 +247,19 @@
 <PerformancePragma>-</PerformancePragma>
 <InstanceList>
 </InstanceList>
-</VITIS_LOOP_36_2>
+</VITIS_LOOP_32_2>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./hls_histogram.hpp:29~hls_histogram.cpp:19</SourceLocation>
+<SourceLocation>./hls_histogram.hpp:25~hls_histogram.cpp:17</SourceLocation>
 <SummaryOfLoopViolations>
-<VITIS_LOOP_36_2>
-<Name>VITIS_LOOP_36_2</Name>
+<VITIS_LOOP_32_2>
+<Name>VITIS_LOOP_32_2</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./hls_histogram.hpp:36~hls_histogram.cpp:19</SourceLocation>
-</VITIS_LOOP_36_2>
+<SourceLocation>./hls_histogram.hpp:32~hls_histogram.cpp:17</SourceLocation>
+</VITIS_LOOP_32_2>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
@@ -285,7 +285,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -296,7 +296,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -307,7 +307,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -318,7 +318,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -329,7 +329,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -340,7 +340,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -517,9 +517,9 @@
 </InterfaceSummary>
 </Module>
 <Module>
-<Name>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Name>
+<Name>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Name>
 <Loops>
-<VITIS_LOOP_77_3></VITIS_LOOP_77_3>
+<VITIS_LOOP_68_3></VITIS_LOOP_68_3>
 </Loops>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
@@ -539,8 +539,8 @@
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<VITIS_LOOP_77_3>
-<Name>VITIS_LOOP_77_3</Name>
+<VITIS_LOOP_68_3>
+<Name>VITIS_LOOP_68_3</Name>
 <Slack>7.30</Slack>
 <TripCount>256</TripCount>
 <isPerfectNested>0</isPerfectNested>
@@ -552,19 +552,19 @@
 <PerformancePragma>-</PerformancePragma>
 <InstanceList>
 </InstanceList>
-</VITIS_LOOP_77_3>
+</VITIS_LOOP_68_3>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./hls_histogram.hpp:77~hls_histogram.cpp:19</SourceLocation>
+<SourceLocation>./hls_histogram.hpp:68~hls_histogram.cpp:17</SourceLocation>
 <SummaryOfLoopViolations>
-<VITIS_LOOP_77_3>
-<Name>VITIS_LOOP_77_3</Name>
+<VITIS_LOOP_68_3>
+<Name>VITIS_LOOP_68_3</Name>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./hls_histogram.hpp:77~hls_histogram.cpp:19</SourceLocation>
-</VITIS_LOOP_77_3>
+<SourceLocation>./hls_histogram.hpp:68~hls_histogram.cpp:17</SourceLocation>
+</VITIS_LOOP_68_3>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
@@ -590,7 +590,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -601,7 +601,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -612,7 +612,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -623,7 +623,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -634,7 +634,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -645,7 +645,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Object>
+<Object>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -755,7 +755,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_histogram.cpp:5</SourceLocation>
+<SourceLocation>hls_histogram.cpp:3</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>

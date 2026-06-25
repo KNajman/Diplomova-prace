@@ -41,7 +41,7 @@ set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xck26:-sfvc784:-2LV-c
 set SourceFiles {sc {} c ../../hls_threshold.cpp}
-set SourceFlags {sc {} c {{}}}
+set SourceFlags {sc {} c -ID:/Repos/_DP/DP/Vitis}
 set DirectiveFile {}
 set TBFiles {verilog D:/Repos/_DP/DP/Vitis/hls_threshold/tb_hls_threshold.cpp bc D:/Repos/_DP/DP/Vitis/hls_threshold/tb_hls_threshold.cpp vhdl D:/Repos/_DP/DP/Vitis/hls_threshold/tb_hls_threshold.cpp sc D:/Repos/_DP/DP/Vitis/hls_threshold/tb_hls_threshold.cpp cas D:/Repos/_DP/DP/Vitis/hls_threshold/tb_hls_threshold.cpp c {}}
 set SpecLanguage C

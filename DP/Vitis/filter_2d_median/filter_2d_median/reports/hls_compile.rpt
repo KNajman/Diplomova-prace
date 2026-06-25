@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'hls_filter_median_3x3'
 ================================================================
 + General Information: 
-    * Date:           Thu Jun 18 19:19:24 2026
+    * Date:           Thu Jun 25 10:54:11 2026
     * Version:        2025.2 (Build 6295257 on Nov 14 2025)
     * Project:        filter_2d_median
     * Solution:       hls (Vivado IP Flow Target)
@@ -216,31 +216,31 @@
 +-----------------+----------------------------------+------------------------------------------------------------------+------------------------------------------+
 
 * Valid Pragma Syntax
-+-----------------+------------------------------------------+--------------------------------------------------------------------------+
-| Type            | Options                                  | Location                                                                 |
-+-----------------+------------------------------------------+--------------------------------------------------------------------------+
-| INTERFACE       | axis port = s_axis_video                 | in hls_filter_median_3x3 (hls_filter_median.cpp:10)                      |
-| INTERFACE       | axis port = m_axis_video                 | in hls_filter_median_3x3 (hls_filter_median.cpp:11)                      |
-| INTERFACE       | s_axilite port = width bundle = control  | in hls_filter_median_3x3 (hls_filter_median.cpp:12)                      |
-| INTERFACE       | s_axilite port = height bundle = control | in hls_filter_median_3x3 (hls_filter_median.cpp:13)                      |
-| INTERFACE       | s_axilite port = return bundle = control | in hls_filter_median_3x3 (hls_filter_median.cpp:14)                      |
-| ARRAY_PARTITION | variable = line_buffer complete dim = 1  | in hls_filter_median_3x3 (hls_filter_median.cpp:19)                      |
-| ARRAY_PARTITION | variable = window complete dim = 0       | in hls_filter_median_3x3 (hls_filter_median.cpp:24)                      |
-| PIPELINE        | II = 1                                   | in hls_filter_median_3x3 (hls_filter_median.cpp:35)                      |
-| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:46)                      |
-| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:48)                      |
-| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:55)                      |
-| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:63)                      |
-| UNROLL          | factor = 3                               | in hls_filter_median_3x3 (hls_filter_median.cpp:78)                      |
-| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:43)       |
-| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:45)       |
-| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:57)       |
-| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:59)       |
-| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:72)       |
-| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:75)       |
-| INLINE          |                                          | in operator ap_uint<num_channels * pixel_width> (hls_video_types.hpp:87) |
-| UNROLL          |                                          | in operator ap_uint<num_channels * pixel_width> (hls_video_types.hpp:90) |
-| INLINE          |                                          | in operator unsigned int (hls_video_types.hpp:102)                       |
-+-----------------+------------------------------------------+--------------------------------------------------------------------------+
++-----------------+------------------------------------------+-----------------------------------------------------------------------------+
+| Type            | Options                                  | Location                                                                    |
++-----------------+------------------------------------------+-----------------------------------------------------------------------------+
+| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:44)       |
+| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:46)       |
+| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:58)       |
+| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:60)       |
+| INLINE          |                                          | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:73)       |
+| UNROLL          |                                          | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:76)       |
+| INLINE          |                                          | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:88) |
+| UNROLL          |                                          | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:91) |
+| INLINE          |                                          | in operator unsigned int (../hls_video_types.hpp:103)                       |
+| INTERFACE       | axis port = s_axis_video                 | in hls_filter_median_3x3 (hls_filter_median.cpp:10)                         |
+| INTERFACE       | axis port = m_axis_video                 | in hls_filter_median_3x3 (hls_filter_median.cpp:11)                         |
+| INTERFACE       | s_axilite port = width bundle = control  | in hls_filter_median_3x3 (hls_filter_median.cpp:12)                         |
+| INTERFACE       | s_axilite port = height bundle = control | in hls_filter_median_3x3 (hls_filter_median.cpp:13)                         |
+| INTERFACE       | s_axilite port = return bundle = control | in hls_filter_median_3x3 (hls_filter_median.cpp:14)                         |
+| ARRAY_PARTITION | variable = line_buffer complete dim = 1  | in hls_filter_median_3x3 (hls_filter_median.cpp:19)                         |
+| ARRAY_PARTITION | variable = window complete dim = 0       | in hls_filter_median_3x3 (hls_filter_median.cpp:24)                         |
+| PIPELINE        | II = 1                                   | in hls_filter_median_3x3 (hls_filter_median.cpp:35)                         |
+| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:46)                         |
+| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:48)                         |
+| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:55)                         |
+| UNROLL          | factor = KERNEL_SIZE                     | in hls_filter_median_3x3 (hls_filter_median.cpp:63)                         |
+| UNROLL          | factor = 3                               | in hls_filter_median_3x3 (hls_filter_median.cpp:78)                         |
++-----------------+------------------------------------------+-----------------------------------------------------------------------------+
 
 

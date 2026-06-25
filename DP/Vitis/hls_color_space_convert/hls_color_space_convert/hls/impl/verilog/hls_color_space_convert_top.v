@@ -411,4 +411,11 @@ assign m_axis_video_TVALID = regslice_both_m_axis_video_U_vld_out;
 
 assign s_axis_video_TREADY = regslice_both_s_axis_video_U_ack_in;
 
+
+reg find_kernel_block = 0;
+// synthesis translate_off
+`include "hls_color_space_convert_top_hls_deadlock_kernel_monitor_top.vh"
+// synthesis translate_on
+
 endmodule //hls_color_space_convert_top
+

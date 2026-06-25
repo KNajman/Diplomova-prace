@@ -41,7 +41,7 @@ set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xck26:-sfvc784:-2LV-c
 set SourceFiles {sc {} c ../../hls_filter_median.cpp}
-set SourceFlags {sc {} c {{}}}
+set SourceFlags {sc {} c -ID:/Repos/_DP/DP/Vitis}
 set DirectiveFile {}
 set TBFiles {verilog D:/Repos/_DP/DP/Vitis/filter_2d_median/tb_filter_median.cpp bc D:/Repos/_DP/DP/Vitis/filter_2d_median/tb_filter_median.cpp vhdl D:/Repos/_DP/DP/Vitis/filter_2d_median/tb_filter_median.cpp sc D:/Repos/_DP/DP/Vitis/filter_2d_median/tb_filter_median.cpp cas D:/Repos/_DP/DP/Vitis/filter_2d_median/tb_filter_median.cpp c {}}
 set SpecLanguage C

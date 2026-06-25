@@ -394,4 +394,11 @@ assign zext_ln116_fu_86_p1 = add_ln109_fu_80_p2;
 
 assign zext_ln134_fu_69_p1 = width;
 
+
+reg find_kernel_block = 0;
+// synthesis translate_off
+`include "hls_filter_median_3x3_hls_deadlock_kernel_monitor_top.vh"
+// synthesis translate_on
+
 endmodule //hls_filter_median_3x3
+

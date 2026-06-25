@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_histogram_gray'" level="0">
-<item name = "Date">Fri Apr 10 08:56:59 2026
+<item name = "Date">Thu Jun 25 12:08:26 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">hls_histogram</item>
@@ -31,9 +31,9 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102">hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, 258, 258, 2.580 us, 2.580 us, 0, 0, loop pipeline stp</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108">hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, ?, ?, ?, ?, 0, 0, loop pipeline stp</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118">hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, 259, 259, 2.590 us, 2.590 us, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102">hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, 258, 258, 2.580 us, 2.580 us, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108">hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, ?, ?, ?, ?, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118">hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, 259, 259, 2.590 us, 2.590 us, 0, 0, loop pipeline stp</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -65,9 +65,9 @@
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="control_s_axi_U">control_s_axi, 2, 0, 192, 238, 0</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102">hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, 0, 0, 11, 60, 0</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108">hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, 0, 0, 81, 240, 0</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118">hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, 0, 0, 23, 71, 0</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102">hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, 0, 0, 11, 60, 0</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108">hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, 0, 0, 81, 240, 0</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118">hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, 0, 0, 23, 71, 0</column>
 <column name="mul_32s_32s_32_1_1_U9">mul_32s_32s_32_1_1, 0, 3, 0, 20, 0</column>
 </table>
 </item>
@@ -86,7 +86,7 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="icmp_ln36_fu_132_p2">icmp, 0, 0, 39, 32, 1</column>
+<column name="icmp_ln32_fu_132_p2">icmp, 0, 0, 39, 32, 1</column>
 <column name="local_hist_we0">or, 0, 0, 2, 1, 1</column>
 </table>
 </item>
@@ -104,10 +104,10 @@
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">7, 0, 7, 0</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118_ap_start_reg">1, 0, 1, 0</column>
-<column name="icmp_ln36_reg_167">1, 0, 1, 0</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118_ap_start_reg">1, 0, 1, 0</column>
+<column name="icmp_ln32_reg_167">1, 0, 1, 0</column>
 <column name="total_pixels_reg_162">32, 0, 32, 0</column>
 </table>
 </item>

@@ -493,7 +493,7 @@
     <FIFOInformation/>
     <UserConfigCommands>
         <config_cosim rtl="vhdl"/>
-        <config_csim clean="0"/>
+        <config_csim clean="1"/>
         <config_export rtl="vhdl"/>
     </UserConfigCommands>
     <Args>
@@ -735,6 +735,15 @@
     </ReportSWInterface>
     <ResolutionUrl key="ZZZ">docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
     <PragmaReport>
+        <Pragma type="inline" location="../hls_video_types.hpp:44" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:46" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:58" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:60" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:73" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:76" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:88" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="unroll" location="../hls_video_types.hpp:91" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
+        <Pragma type="inline" location="../hls_video_types.hpp:103" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
         <Pragma type="interface" location="hls_threshold.cpp:11" status="valid" parentFunction="hls_threshold_gray" variable="" isDirective="0" options="axis port = s_axis_video"/>
         <Pragma type="interface" location="hls_threshold.cpp:12" status="valid" parentFunction="hls_threshold_gray" variable="" isDirective="0" options="axis port = m_axis_video"/>
         <Pragma type="interface" location="hls_threshold.cpp:13" status="valid" parentFunction="hls_threshold_gray" variable="" isDirective="0" options="s_axilite port = thresh_val bundle = control"/>
@@ -743,14 +752,5 @@
         <Pragma type="interface" location="hls_threshold.cpp:16" status="valid" parentFunction="hls_threshold_gray" variable="" isDirective="0" options="s_axilite port = height bundle = control"/>
         <Pragma type="interface" location="hls_threshold.cpp:17" status="valid" parentFunction="hls_threshold_gray" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
         <Pragma type="pipeline" location="hls_threshold.hpp:25" status="valid" parentFunction="hls_threshold" variable="" isDirective="0" options="II = 1"/>
-        <Pragma type="inline" location="hls_video_types.hpp:43" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_video_types.hpp:45" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_video_types.hpp:57" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_video_types.hpp:59" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_video_types.hpp:72" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_video_types.hpp:75" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_video_types.hpp:87" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="unroll" location="hls_video_types.hpp:90" status="valid" parentFunction="operator ap_uint&lt;num_channels * pixel_width&gt;" variable="" isDirective="0" options=""/>
-        <Pragma type="inline" location="hls_video_types.hpp:102" status="valid" parentFunction="operator unsigned int" variable="" isDirective="0" options=""/>
     </PragmaReport>
 </profile>

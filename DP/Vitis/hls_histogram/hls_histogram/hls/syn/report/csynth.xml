@@ -32,7 +32,7 @@
         <SummaryOfViolations>
             <IssueType>-</IssueType>
             <ViolationType>-</ViolationType>
-            <SourceLocation>hls_histogram.cpp:5</SourceLocation>
+            <SourceLocation>hls_histogram.cpp:3</SourceLocation>
         </SummaryOfViolations>
     </PerformanceEstimates>
     <AreaEstimates>
@@ -314,35 +314,35 @@
             <ModuleName>hls_histogram_gray</ModuleName>
             <InstancesList>
                 <Instance>
-                    <InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102</InstName>
-                    <ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</ModuleName>
+                    <InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102</InstName>
+                    <ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
                     <ID>102</ID>
-                    <BindInstances>icmp_ln22_fu_64_p2 add_ln22_fu_70_p2</BindInstances>
+                    <BindInstances>icmp_ln19_fu_64_p2 add_ln19_fu_70_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108</InstName>
-                    <ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</ModuleName>
+                    <InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108</InstName>
+                    <ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</ModuleName>
                     <IsCompInst>true</IsCompInst>
                     <ID>108</ID>
-                    <BindInstances>icmp_ln36_fu_148_p2 i_2_fu_154_p2 icmp_ln47_fu_173_p2 or_ln47_fu_179_p2 current_count_fu_212_p2</BindInstances>
+                    <BindInstances>icmp_ln32_fu_148_p2 i_2_fu_154_p2 icmp_ln42_fu_173_p2 or_ln42_fu_179_p2 old_count_1_fu_212_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118</InstName>
-                    <ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</ModuleName>
+                    <InstName>grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118</InstName>
+                    <ModuleName>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</ModuleName>
                     <IsCompInst>true</IsCompInst>
                     <ID>118</ID>
-                    <BindInstances>icmp_ln77_fu_87_p2 add_ln77_fu_93_p2</BindInstances>
+                    <BindInstances>icmp_ln68_fu_87_p2 add_ln68_fu_93_p2</BindInstances>
                 </Instance>
             </InstancesList>
-            <BindInstances>local_hist_U mul_32s_32s_32_1_1_U9 icmp_ln36_fu_132_p2 control_s_axi_U</BindInstances>
+            <BindInstances>local_hist_U mul_32s_32s_32_1_1_U9 icmp_ln32_fu_132_p2 control_s_axi_U</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
         <Module>
-            <Name>hls_histogram_gray_Pipeline_VITIS_LOOP_22_1</Name>
+            <Name>hls_histogram_gray_Pipeline_VITIS_LOOP_19_1</Name>
             <Loops>
-                <VITIS_LOOP_22_1/>
+                <VITIS_LOOP_19_1/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
@@ -362,8 +362,8 @@
                     <PerformancePragma>-</PerformancePragma>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <VITIS_LOOP_22_1>
-                        <Name>VITIS_LOOP_22_1</Name>
+                    <VITIS_LOOP_19_1>
+                        <Name>VITIS_LOOP_19_1</Name>
                         <Slack>7.30</Slack>
                         <TripCount>256</TripCount>
                         <isPerfectNested>0</isPerfectNested>
@@ -374,19 +374,19 @@
                         <PipelineType>yes</PipelineType>
                         <PerformancePragma>-</PerformancePragma>
                         <InstanceList/>
-                    </VITIS_LOOP_22_1>
+                    </VITIS_LOOP_19_1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>./hls_histogram.hpp:22~hls_histogram.cpp:19</SourceLocation>
+                    <SourceLocation>./hls_histogram.hpp:19~hls_histogram.cpp:17</SourceLocation>
                     <SummaryOfLoopViolations>
-                        <VITIS_LOOP_22_1>
-                            <Name>VITIS_LOOP_22_1</Name>
+                        <VITIS_LOOP_19_1>
+                            <Name>VITIS_LOOP_19_1</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>./hls_histogram.hpp:22~hls_histogram.cpp:19</SourceLocation>
-                        </VITIS_LOOP_22_1>
+                            <SourceLocation>./hls_histogram.hpp:19~hls_histogram.cpp:17</SourceLocation>
+                        </VITIS_LOOP_19_1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
@@ -410,14 +410,14 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_22_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln22_fu_64_p2" SOURCE="./hls_histogram.hpp:22" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln22" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_22_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln22_fu_70_p2" SOURCE="./hls_histogram.hpp:22" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln22" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln19_fu_64_p2" SOURCE="./hls_histogram.hpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln19" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_19_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_70_p2" SOURCE="./hls_histogram.hpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19" VISIBLE="true"/>
             </BindNodes>
         </Module>
         <Module>
-            <Name>hls_histogram_gray_Pipeline_VITIS_LOOP_36_2</Name>
+            <Name>hls_histogram_gray_Pipeline_VITIS_LOOP_32_2</Name>
             <Loops>
-                <VITIS_LOOP_36_2/>
+                <VITIS_LOOP_32_2/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
@@ -437,8 +437,8 @@
                     <PerformancePragma>-</PerformancePragma>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <VITIS_LOOP_36_2>
-                        <Name>VITIS_LOOP_36_2</Name>
+                    <VITIS_LOOP_32_2>
+                        <Name>VITIS_LOOP_32_2</Name>
                         <Slack>7.30</Slack>
                         <TripCount>undef</TripCount>
                         <isPerfectNested>0</isPerfectNested>
@@ -449,19 +449,19 @@
                         <PipelineType>yes</PipelineType>
                         <PerformancePragma>-</PerformancePragma>
                         <InstanceList/>
-                    </VITIS_LOOP_36_2>
+                    </VITIS_LOOP_32_2>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>./hls_histogram.hpp:29~hls_histogram.cpp:19</SourceLocation>
+                    <SourceLocation>./hls_histogram.hpp:25~hls_histogram.cpp:17</SourceLocation>
                     <SummaryOfLoopViolations>
-                        <VITIS_LOOP_36_2>
-                            <Name>VITIS_LOOP_36_2</Name>
+                        <VITIS_LOOP_32_2>
+                            <Name>VITIS_LOOP_32_2</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>./hls_histogram.hpp:36~hls_histogram.cpp:19</SourceLocation>
-                        </VITIS_LOOP_36_2>
+                            <SourceLocation>./hls_histogram.hpp:32~hls_histogram.cpp:17</SourceLocation>
+                        </VITIS_LOOP_32_2>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
@@ -485,17 +485,17 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_36_2" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln36_fu_148_p2" SOURCE="./hls_histogram.hpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln36" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_36_2" OPTYPE="add" PRAGMA="" RTLNAME="i_2_fu_154_p2" SOURCE="./hls_histogram.hpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="i_2" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_36_2" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln47_fu_173_p2" SOURCE="./hls_histogram.hpp:47" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln47" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_36_2" OPTYPE="or" PRAGMA="" RTLNAME="or_ln47_fu_179_p2" SOURCE="./hls_histogram.hpp:47" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln47" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_36_2" OPTYPE="add" PRAGMA="" RTLNAME="current_count_fu_212_p2" SOURCE="./hls_histogram.hpp:44" STORAGESUBTYPE="" URAM="0" VARIABLE="current_count" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_32_2" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln32_fu_148_p2" SOURCE="./hls_histogram.hpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln32" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_32_2" OPTYPE="add" PRAGMA="" RTLNAME="i_2_fu_154_p2" SOURCE="./hls_histogram.hpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="i_2" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_32_2" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln42_fu_173_p2" SOURCE="./hls_histogram.hpp:42" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln42" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op or" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_32_2" OPTYPE="or" PRAGMA="" RTLNAME="or_ln42_fu_179_p2" SOURCE="./hls_histogram.hpp:42" STORAGESUBTYPE="" URAM="0" VARIABLE="or_ln42" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_32_2" OPTYPE="add" PRAGMA="" RTLNAME="old_count_1_fu_212_p2" SOURCE="./hls_histogram.hpp:45" STORAGESUBTYPE="" URAM="0" VARIABLE="old_count_1" VISIBLE="true"/>
             </BindNodes>
         </Module>
         <Module>
-            <Name>hls_histogram_gray_Pipeline_VITIS_LOOP_77_3</Name>
+            <Name>hls_histogram_gray_Pipeline_VITIS_LOOP_68_3</Name>
             <Loops>
-                <VITIS_LOOP_77_3/>
+                <VITIS_LOOP_68_3/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
@@ -515,8 +515,8 @@
                     <PerformancePragma>-</PerformancePragma>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <VITIS_LOOP_77_3>
-                        <Name>VITIS_LOOP_77_3</Name>
+                    <VITIS_LOOP_68_3>
+                        <Name>VITIS_LOOP_68_3</Name>
                         <Slack>7.30</Slack>
                         <TripCount>256</TripCount>
                         <isPerfectNested>0</isPerfectNested>
@@ -527,19 +527,19 @@
                         <PipelineType>yes</PipelineType>
                         <PerformancePragma>-</PerformancePragma>
                         <InstanceList/>
-                    </VITIS_LOOP_77_3>
+                    </VITIS_LOOP_68_3>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>./hls_histogram.hpp:77~hls_histogram.cpp:19</SourceLocation>
+                    <SourceLocation>./hls_histogram.hpp:68~hls_histogram.cpp:17</SourceLocation>
                     <SummaryOfLoopViolations>
-                        <VITIS_LOOP_77_3>
-                            <Name>VITIS_LOOP_77_3</Name>
+                        <VITIS_LOOP_68_3>
+                            <Name>VITIS_LOOP_68_3</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>./hls_histogram.hpp:77~hls_histogram.cpp:19</SourceLocation>
-                        </VITIS_LOOP_77_3>
+                            <SourceLocation>./hls_histogram.hpp:68~hls_histogram.cpp:17</SourceLocation>
+                        </VITIS_LOOP_68_3>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
@@ -563,8 +563,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_77_3" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln77_fu_87_p2" SOURCE="./hls_histogram.hpp:77" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln77" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_77_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln77_fu_93_p2" SOURCE="./hls_histogram.hpp:77" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln77" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_68_3" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln68_fu_87_p2" SOURCE="./hls_histogram.hpp:68" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln68" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_68_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln68_fu_93_p2" SOURCE="./hls_histogram.hpp:68" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln68" VISIBLE="true"/>
             </BindNodes>
         </Module>
         <Module>
@@ -589,7 +589,7 @@
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>hls_histogram.cpp:5</SourceLocation>
+                    <SourceLocation>hls_histogram.cpp:3</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -612,9 +612,9 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="yes" RTLNAME="local_hist_U" SOURCE="./hls_histogram.hpp:18" STORAGESIZE="32 256 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="local_hist" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="3" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_32_1_1_U9" SOURCE="./hls_histogram.hpp:33" STORAGESUBTYPE="" URAM="0" VARIABLE="total_pixels" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln36_fu_132_p2" SOURCE="./hls_histogram.hpp:36" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln36" VISIBLE="false"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="yes" RTLNAME="local_hist_U" SOURCE="./hls_histogram.hpp:15" STORAGESIZE="32 256 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="local_hist" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="3" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_32_1_1_U9" SOURCE="./hls_histogram.hpp:29" STORAGESUBTYPE="" URAM="0" VARIABLE="total_pixels" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln32_fu_132_p2" SOURCE="./hls_histogram.hpp:32" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln32" VISIBLE="false"/>
                 <BindNode BINDTYPE="adapter" BRAM="2" BUNDLEDNAME="control" DISPNAME="bind_adapter " DSP="0" ID="" IMPL="" LATENCY="" LOOP="" OPTYPE="" PRAGMA="" RTLNAME="control_s_axi_U" SOURCE="" STORAGESIZE="" STORAGESUBTYPE="s_axilite" STORAGEUSAGE="interface" URAM="0" VARIABLE=""/>
             </BindNodes>
         </Module>
@@ -622,7 +622,7 @@
     <FIFOInformation/>
     <UserConfigCommands>
         <config_cosim rtl="vhdl"/>
-        <config_csim clean="0"/>
+        <config_csim clean="1"/>
     </UserConfigCommands>
     <Args>
         <Arg ArgName="stream_in" index="0" direction="in" srcType="stream&lt;axi_stream_video&lt;color_pixel&lt;1, 8&gt; &gt;, 0&gt;&amp;" srcSize="24">
@@ -826,15 +826,15 @@
     </ReportSWInterface>
     <ResolutionUrl key="ZZZ">docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
     <PragmaReport>
-        <Pragma type="interface" location="hls_histogram.cpp:12" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="axis port = stream_in"/>
-        <Pragma type="interface" location="hls_histogram.cpp:13" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = hist_out bundle = control"/>
-        <Pragma type="interface" location="hls_histogram.cpp:14" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = width bundle = control"/>
-        <Pragma type="interface" location="hls_histogram.cpp:15" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = height bundle = control"/>
-        <Pragma type="interface" location="hls_histogram.cpp:16" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
-        <Pragma type="bind_storage" location="hls_histogram.hpp:19" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="variable = local_hist type = ram_t2p impl = bram"/>
-        <Pragma type="pipeline" location="hls_histogram.hpp:24" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="II = 1"/>
-        <Pragma type="pipeline" location="hls_histogram.hpp:38" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="II = 1"/>
-        <Pragma type="pipeline" location="hls_histogram.hpp:79" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="II = 1"/>
+        <Pragma type="interface" location="hls_histogram.cpp:10" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="axis port = stream_in"/>
+        <Pragma type="interface" location="hls_histogram.cpp:11" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = hist_out bundle = control"/>
+        <Pragma type="interface" location="hls_histogram.cpp:12" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = width bundle = control"/>
+        <Pragma type="interface" location="hls_histogram.cpp:13" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = height bundle = control"/>
+        <Pragma type="interface" location="hls_histogram.cpp:14" status="valid" parentFunction="hls_histogram_gray" variable="" isDirective="0" options="s_axilite port = return bundle = control"/>
+        <Pragma type="bind_storage" location="hls_histogram.hpp:16" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="variable = local_hist type = ram_t2p impl = bram"/>
+        <Pragma type="pipeline" location="hls_histogram.hpp:20" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="II = 1"/>
+        <Pragma type="pipeline" location="hls_histogram.hpp:33" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="II = 1"/>
+        <Pragma type="pipeline" location="hls_histogram.hpp:69" status="valid" parentFunction="histogram_core" variable="" isDirective="0" options="II = 1"/>
         <Pragma type="inline" location="hls_video_types.hpp:43" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
         <Pragma type="unroll" location="hls_video_types.hpp:45" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>
         <Pragma type="inline" location="hls_video_types.hpp:57" status="valid" parentFunction="color_pixel&lt;num_channels, pixel_width&gt;" variable="" isDirective="0" options=""/>

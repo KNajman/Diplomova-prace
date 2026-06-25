@@ -2,11 +2,11 @@
     <item name="Total Instructions per Compilation Phase">
         <table>
             <keys size="4">Phase, Step, Instructions, Description</keys>
-            <column name="Compile/Link">, 423, After all functions are compiled and linked into a single design</column>
+            <column name="Compile/Link">, 725, After all functions are compiled and linked into a single design</column>
             <column name="">, , </column>
             <column name="Unroll/Inline">, , After user unroll and inline pragmas are applied</column>
-            <column name="">(1) unroll, 111, user unroll pragmas are applied</column>
-            <column name="">(2) simplification,  92, simplification of applied user unroll pragmas</column>
+            <column name="">(1) unroll, 114, user unroll pragmas are applied</column>
+            <column name="">(2) simplification,  95, simplification of applied user unroll pragmas</column>
             <column name="">(3) inline,  91, user inline pragmas are applied</column>
             <column name="">(4) simplification,  69, simplification of applied user inline pragmas</column>
             <column name="">, , </column>
@@ -32,8 +32,8 @@
         <hiertable>
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
-                <row id="0" col0="hls_histogram_gray" col1="hls_histogram.cpp:5" col2="423" col3="69" col4="67" col5="65" col6="82">
-                    <row id="3" col0="histogram_core&lt;8, 256&gt;" col1="hls_histogram.hpp:11" col2="411" col3="" col4="" col5="" col6=""/>
+                <row id="0" col0="hls_histogram_gray" col1="hls_histogram.cpp:3" col2="725" col3="69" col4="67" col5="65" col6="82">
+                    <row id="3" col0="histogram_core&lt;8, 256&gt;" col1="hls_histogram.hpp:11" col2="713" col3="" col4="" col5="" col6=""/>
                 </row>
             </rows>
             <notes/>

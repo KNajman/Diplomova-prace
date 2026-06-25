@@ -1,0 +1,37 @@
+<profile>
+  <AutoPragmaReport>
+    <AutoPragma>
+      <type>inline</type>
+      <parentFunction>update_window</parentFunction>
+      <options/>
+      <pragmaLocId>hls_filter_2d.cpp:14:0</pragmaLocId>
+      <pragmaLocOpt>update_window</pragmaLocOpt>
+      <srcPragmaType>pipeline</srcPragmaType>
+      <srcPragmaLoc>hls_filter_2d.cpp:159</srcPragmaLoc>
+      <srcPragmaSource>source-pragma</srcPragmaSource>
+      <srcPragmaSourceDesc>pipeline hls_filter_2d.cpp:159</srcPragmaSourceDesc>
+      <srcIsDirective>0</srcIsDirective>
+      <srcIsSlxDirective>0</srcIsSlxDirective>
+      <srcIsCsimDirective>0</srcIsCsimDirective>
+      <directiveIni>syn.directive.inline=update_window</directiveIni>
+      <function>update_window</function>
+    </AutoPragma>
+    <AutoPragma>
+      <type>inline</type>
+      <parentFunction>compute_and_write_output</parentFunction>
+      <options/>
+      <pragmaLocId>hls_filter_2d.cpp:57:0</pragmaLocId>
+      <pragmaLocOpt>compute_and_write_output</pragmaLocOpt>
+      <srcPragmaType>pipeline</srcPragmaType>
+      <srcPragmaLoc>hls_filter_2d.cpp:159</srcPragmaLoc>
+      <srcPragmaSource>source-pragma</srcPragmaSource>
+      <srcPragmaSourceDesc>pipeline hls_filter_2d.cpp:159</srcPragmaSourceDesc>
+      <srcIsDirective>0</srcIsDirective>
+      <srcIsSlxDirective>0</srcIsSlxDirective>
+      <srcIsCsimDirective>0</srcIsCsimDirective>
+      <directiveIni>syn.directive.inline=compute_and_write_output</directiveIni>
+      <function>compute_and_write_output</function>
+      <outOfData>true</outOfData>
+    </AutoPragma>
+  </AutoPragmaReport>
+</profile>

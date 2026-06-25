@@ -100,7 +100,7 @@ entry:18 %local_hist = alloca i64 1
 
 <Node id="25" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32 %local_hist
+entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, i32 %local_hist
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -118,7 +118,7 @@ entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32
 
 <Node id="25" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32 %local_hist
+entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, i32 %local_hist
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -181,10 +181,10 @@ entry:21 %total_pixels = mul i32 %height_read, i32 %width_read
 
 <Node id="27" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="24" op_3_bw="32" op_4_bw="32" op_5_bw="8" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
+entry:22 %call_ln29 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
 
 ]]></Node>
-<StgValue><ssdm name="call_ln33"/></StgValue>
+<StgValue><ssdm name="call_ln29"/></StgValue>
 </operation>
 
 <operation id="17" st_id="3" stage="1" lat="1">
@@ -196,10 +196,10 @@ entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i3
 
 <Node id="30" bw="1" op_0_bw="32" op_1_bw="32">
 <![CDATA[
-entry:25 %icmp_ln36 = icmp_eq  i32 %total_pixels, i32 0
+entry:25 %icmp_ln32 = icmp_eq  i32 %total_pixels, i32 0
 
 ]]></Node>
-<StgValue><ssdm name="icmp_ln36"/></StgValue>
+<StgValue><ssdm name="icmp_ln32"/></StgValue>
 </operation>
 </state>
 
@@ -214,10 +214,10 @@ entry:25 %icmp_ln36 = icmp_eq  i32 %total_pixels, i32 0
 
 <Node id="27" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="24" op_3_bw="32" op_4_bw="32" op_5_bw="8" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
+entry:22 %call_ln29 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
 
 ]]></Node>
-<StgValue><ssdm name="call_ln33"/></StgValue>
+<StgValue><ssdm name="call_ln29"/></StgValue>
 </operation>
 </state>
 
@@ -232,10 +232,10 @@ entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i3
 
 <Node id="9" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:4 %spectopmodule_ln5 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_9
+entry:4 %spectopmodule_ln3 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_9
 
 ]]></Node>
-<StgValue><ssdm name="spectopmodule_ln5"/></StgValue>
+<StgValue><ssdm name="spectopmodule_ln3"/></StgValue>
 </operation>
 
 <operation id="20" st_id="5" stage="1" lat="1">
@@ -442,10 +442,10 @@ entry:17 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0,
 
 <Node id="24" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="64" op_3_bw="64" op_4_bw="64" op_5_bw="1">
 <![CDATA[
-entry:19 %specmemcore_ln19 = specmemcore void @_ssdm_op_SpecMemCore, i32 %local_hist, i64 666, i64 30, i64 18446744073709551615, i1 0
+entry:19 %specmemcore_ln16 = specmemcore void @_ssdm_op_SpecMemCore, i32 %local_hist, i64 666, i64 30, i64 18446744073709551615, i1 0
 
 ]]></Node>
-<StgValue><ssdm name="specmemcore_ln19"/></StgValue>
+<StgValue><ssdm name="specmemcore_ln16"/></StgValue>
 </operation>
 
 <operation id="34" st_id="5" stage="1" lat="1">
@@ -487,39 +487,39 @@ entry:24 %old_pixel_loc_load = load i8 %old_pixel_loc
 
 <Node id="31" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
 <![CDATA[
-entry:26 %br_ln36 = br i1 %icmp_ln36, void %if.then16.i.split, void %VITIS_LOOP_77_3.i
+entry:26 %br_ln32 = br i1 %icmp_ln32, void %if.then20.i.split, void %VITIS_LOOP_68_3.i
 
 ]]></Node>
-<StgValue><ssdm name="br_ln36"/></StgValue>
+<StgValue><ssdm name="br_ln32"/></StgValue>
 </operation>
 
 <operation id="37" st_id="5" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="33" bw="64" op_0_bw="8">
 <![CDATA[
-if.then16.i.split:0 %zext_ln73 = zext i8 %old_pixel_loc_load
+if.then20.i.split:0 %zext_ln64 = zext i8 %old_pixel_loc_load
 
 ]]></Node>
-<StgValue><ssdm name="zext_ln73"/></StgValue>
+<StgValue><ssdm name="zext_ln64"/></StgValue>
 </operation>
 
 <operation id="38" st_id="5" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="34" bw="8" op_0_bw="32" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-if.then16.i.split:1 %local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i64 %zext_ln73
+if.then20.i.split:1 %local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i64 %zext_ln64
 
 ]]></Node>
 <StgValue><ssdm name="local_hist_addr_1"/></StgValue>
@@ -529,32 +529,32 @@ if.then16.i.split:1 %local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i
 <core>RAM_T2P_BRAM</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="35" bw="0" op_0_bw="32" op_1_bw="8" op_2_bw="0" op_3_bw="0">
 <![CDATA[
-if.then16.i.split:2 %store_ln73 = store i32 %old_count_loc_load, i8 %local_hist_addr_1
+if.then20.i.split:2 %store_ln64 = store i32 %old_count_loc_load, i8 %local_hist_addr_1
 
 ]]></Node>
-<StgValue><ssdm name="store_ln73"/></StgValue>
+<StgValue><ssdm name="store_ln64"/></StgValue>
 </operation>
 
 <operation id="40" st_id="5" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="36" bw="0" op_0_bw="0">
 <![CDATA[
-if.then16.i.split:3 %br_ln74 = br void %VITIS_LOOP_77_3.i
+if.then20.i.split:3 %br_ln65 = br void %VITIS_LOOP_68_3.i
 
 ]]></Node>
-<StgValue><ssdm name="br_ln74"/></StgValue>
+<StgValue><ssdm name="br_ln65"/></StgValue>
 </operation>
 </state>
 
@@ -569,7 +569,7 @@ if.then16.i.split:3 %br_ln74 = br void %VITIS_LOOP_77_3.i
 
 <Node id="38" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="0" op_4_bw="0" op_5_bw="0" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, i32 %local_hist, i32 %hist_out
+VITIS_LOOP_68_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, i32 %local_hist, i32 %hist_out
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -587,7 +587,7 @@ VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOO
 
 <Node id="38" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="0" op_4_bw="0" op_5_bw="0" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, i32 %local_hist, i32 %hist_out
+VITIS_LOOP_68_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, i32 %local_hist, i32 %hist_out
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -602,10 +602,10 @@ VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOO
 
 <Node id="39" bw="0">
 <![CDATA[
-VITIS_LOOP_77_3.i:1 %ret_ln20 = ret
+VITIS_LOOP_68_3.i:1 %ret_ln18 = ret
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln20"/></StgValue>
+<StgValue><ssdm name="ret_ln18"/></StgValue>
 </operation>
 </state>
 </state_list>

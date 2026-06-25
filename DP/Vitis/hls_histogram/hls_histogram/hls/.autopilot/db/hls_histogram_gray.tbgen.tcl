@@ -92,15 +92,15 @@ set ArgLastReadFirstWriteLatency {
 		hist_out {Type O LastRead -1 FirstWrite 1}
 		width {Type I LastRead 2 FirstWrite -1}
 		height {Type I LastRead 2 FirstWrite -1}}
-	hls_histogram_gray_Pipeline_VITIS_LOOP_22_1 {
+	hls_histogram_gray_Pipeline_VITIS_LOOP_19_1 {
 		local_hist {Type O LastRead -1 FirstWrite 0}}
-	hls_histogram_gray_Pipeline_VITIS_LOOP_36_2 {
+	hls_histogram_gray_Pipeline_VITIS_LOOP_32_2 {
 		total_pixels {Type I LastRead 0 FirstWrite -1}
 		stream_in {Type I LastRead 1 FirstWrite -1}
 		local_hist {Type IO LastRead 1 FirstWrite 1}
 		old_count_out {Type O LastRead -1 FirstWrite 1}
 		old_pixel_out {Type O LastRead -1 FirstWrite 1}}
-	hls_histogram_gray_Pipeline_VITIS_LOOP_77_3 {
+	hls_histogram_gray_Pipeline_VITIS_LOOP_68_3 {
 		local_hist {Type I LastRead 0 FirstWrite -1}
 		hist_out {Type O LastRead -1 FirstWrite 1}}}
 

@@ -153,7 +153,7 @@
       <key>filename</key>
       <string>./hls_histogram.hpp</string>
       <key>line</key>
-      <integer>19</integer>
+      <integer>16</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -169,7 +169,7 @@
       <key>filename</key>
       <string>./hls_histogram.hpp</string>
       <key>line</key>
-      <integer>24</integer>
+      <integer>20</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -185,7 +185,7 @@
       <key>filename</key>
       <string>./hls_histogram.hpp</string>
       <key>line</key>
-      <integer>38</integer>
+      <integer>33</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -201,7 +201,7 @@
       <key>filename</key>
       <string>./hls_histogram.hpp</string>
       <key>line</key>
-      <integer>79</integer>
+      <integer>69</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -233,7 +233,7 @@
       <key>filename</key>
       <string>hls_histogram.cpp</string>
       <key>line</key>
-      <integer>12</integer>
+      <integer>10</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -249,7 +249,7 @@
       <key>filename</key>
       <string>hls_histogram.cpp</string>
       <key>line</key>
-      <integer>13</integer>
+      <integer>11</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -265,7 +265,7 @@
       <key>filename</key>
       <string>hls_histogram.cpp</string>
       <key>line</key>
-      <integer>14</integer>
+      <integer>12</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -281,7 +281,7 @@
       <key>filename</key>
       <string>hls_histogram.cpp</string>
       <key>line</key>
-      <integer>15</integer>
+      <integer>13</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>
@@ -297,7 +297,7 @@
       <key>filename</key>
       <string>hls_histogram.cpp</string>
       <key>line</key>
-      <integer>16</integer>
+      <integer>14</integer>
       <key>column</key>
       <integer>1</integer>
       <key>message</key>

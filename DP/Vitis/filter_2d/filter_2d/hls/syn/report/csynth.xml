@@ -678,7 +678,7 @@
     <FIFOInformation/>
     <UserConfigCommands>
         <config_cosim rtl="vhdl"/>
-        <config_csim clean="0"/>
+        <config_csim clean="1"/>
         <config_export rtl="vhdl"/>
     </UserConfigCommands>
     <Args>

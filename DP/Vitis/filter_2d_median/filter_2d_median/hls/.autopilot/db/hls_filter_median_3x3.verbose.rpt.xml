@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_filter_median_3x3'" level="0">
-<item name = "Date">Thu Jun 18 19:19:23 2026
+<item name = "Date">Thu Jun 25 10:54:11 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">filter_2d_median</item>

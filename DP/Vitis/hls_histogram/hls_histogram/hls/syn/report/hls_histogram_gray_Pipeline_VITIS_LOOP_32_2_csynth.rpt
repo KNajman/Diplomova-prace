@@ -1,0 +1,169 @@
+
+
+================================================================
+== Vitis HLS Report for 'hls_histogram_gray_Pipeline_VITIS_LOOP_32_2'
+================================================================
+* Date:           Thu Jun 25 12:08:25 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 14 2025)
+* Project:        hls_histogram
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xck26-sfvc784-2LV-c
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.442 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+-------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |      Pipeline     |
+    |   min   |   max   |    min   |    max   | min | max |        Type       |
+    +---------+---------+----------+----------+-----+-----+-------------------+
+    |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
+    +---------+---------+----------+----------+-----+-----+-------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_32_2  |        ?|        ?|         3|          1|          1|     ?|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     140|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       0|     100|    -|
+|Register         |        -|     -|      81|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|      81|     240|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |      288|  1248|  234240|  117120|   64|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |             Variable Name             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |i_2_fu_154_p2                          |         +|   0|  0|  39|          32|           1|
+    |old_count_1_fu_212_p2                  |         +|   0|  0|  39|          32|           1|
+    |ap_block_pp0_stage0_01001_grp1         |       and|   0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp1  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln32_fu_148_p2                    |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln42_fu_173_p2                    |      icmp|   0|  0|  15|           8|           8|
+    |or_ln42_fu_179_p2                      |        or|   0|  0|   2|           1|           1|
+    |ap_enable_pp0                          |       xor|   0|  0|   2|           1|           2|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                  |          |   0|  0| 140|         108|          47|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------------------+----+-----------+-----+-----------+
+    |                   Name                  | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter2                  |   9|          2|    1|          2|
+    |ap_phi_mux_is_first_pixel_phi_fu_122_p4  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i                       |   9|          2|   32|         64|
+    |ap_sig_allocacmp_old_count_load_1        |  14|          3|   32|         96|
+    |ap_sig_allocacmp_old_count_load_2        |   9|          2|   32|         64|
+    |i_1_fu_58                                |   9|          2|   32|         64|
+    |old_count_fu_62                          |  14|          3|   32|         96|
+    |old_pixel_fu_54                          |   9|          2|    8|         16|
+    |stream_in_TDATA_blk_n                    |   9|          2|    1|          2|
+    +-----------------------------------------+----+-----------+-----+-----------+
+    |Total                                    | 100|         22|  172|        408|
+    +-----------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |i_1_fu_58                         |  32|   0|   32|          0|
+    |icmp_ln32_reg_251                 |   1|   0|    1|          0|
+    |icmp_ln32_reg_251_pp0_iter1_reg   |   1|   0|    1|          0|
+    |is_first_pixel_reg_117            |   1|   0|    1|          0|
+    |old_count_fu_62                   |  32|   0|   32|          0|
+    |old_pixel_fu_54                   |   8|   0|    8|          0|
+    |or_ln42_reg_255                   |   1|   0|    1|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             |  81|   0|   81|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+---------------------------------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |                Source Object                |    C Type    |
++----------------------+-----+-----+------------+---------------------------------------------+--------------+
+|ap_clk                |   in|    1|  ap_ctrl_hs|  hls_histogram_gray_Pipeline_VITIS_LOOP_32_2|  return value|
+|ap_rst                |   in|    1|  ap_ctrl_hs|  hls_histogram_gray_Pipeline_VITIS_LOOP_32_2|  return value|
+|ap_start              |   in|    1|  ap_ctrl_hs|  hls_histogram_gray_Pipeline_VITIS_LOOP_32_2|  return value|
+|ap_done               |  out|    1|  ap_ctrl_hs|  hls_histogram_gray_Pipeline_VITIS_LOOP_32_2|  return value|
+|ap_idle               |  out|    1|  ap_ctrl_hs|  hls_histogram_gray_Pipeline_VITIS_LOOP_32_2|  return value|
+|ap_ready              |  out|    1|  ap_ctrl_hs|  hls_histogram_gray_Pipeline_VITIS_LOOP_32_2|  return value|
+|stream_in_TVALID      |   in|    1|        axis|                                    stream_in|       pointer|
+|stream_in_TDATA       |   in|   24|        axis|                                    stream_in|       pointer|
+|stream_in_TREADY      |  out|    1|        axis|                                    stream_in|       pointer|
+|total_pixels          |   in|   32|     ap_none|                                 total_pixels|        scalar|
+|local_hist_address0   |  out|    8|   ap_memory|                                   local_hist|         array|
+|local_hist_ce0        |  out|    1|   ap_memory|                                   local_hist|         array|
+|local_hist_we0        |  out|    1|   ap_memory|                                   local_hist|         array|
+|local_hist_d0         |  out|   32|   ap_memory|                                   local_hist|         array|
+|local_hist_address1   |  out|    8|   ap_memory|                                   local_hist|         array|
+|local_hist_ce1        |  out|    1|   ap_memory|                                   local_hist|         array|
+|local_hist_q1         |   in|   32|   ap_memory|                                   local_hist|         array|
+|old_count_out         |  out|   32|      ap_vld|                                old_count_out|       pointer|
+|old_count_out_ap_vld  |  out|    1|      ap_vld|                                old_count_out|       pointer|
+|old_pixel_out         |  out|    8|      ap_vld|                                old_pixel_out|       pointer|
+|old_pixel_out_ap_vld  |  out|    1|      ap_vld|                                old_pixel_out|       pointer|
++----------------------+-----+-----+------------+---------------------------------------------+--------------+
+
