@@ -1552,8 +1552,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Hls_passthrough</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114608609</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2026-05-14T13:49:45Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114664466</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2026-06-22T08:48:09Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

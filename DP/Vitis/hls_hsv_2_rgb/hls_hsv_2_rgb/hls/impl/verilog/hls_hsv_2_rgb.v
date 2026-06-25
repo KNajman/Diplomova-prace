@@ -780,4 +780,11 @@ assign zext_ln56_1_fu_439_p1 = lshr_ln3_fu_429_p4;
 
 assign zext_ln57_1_fu_491_p1 = lshr_ln4_fu_481_p4;
 
+
+reg find_kernel_block = 0;
+// synthesis translate_off
+`include "hls_hsv_2_rgb_hls_deadlock_kernel_monitor_top.vh"
+// synthesis translate_on
+
 endmodule //hls_hsv_2_rgb
+

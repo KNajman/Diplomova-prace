@@ -691,4 +691,11 @@ assign zext_ln71_fu_318_p1 = delta_fu_224_p2;
 
 assign zext_ln72_fu_426_p1 = offset_fu_398_p9;
 
+
+reg find_kernel_block = 0;
+// synthesis translate_off
+`include "hls_rgb_2_hsv_hls_deadlock_kernel_monitor_top.vh"
+// synthesis translate_on
+
 endmodule //hls_rgb_2_hsv
+

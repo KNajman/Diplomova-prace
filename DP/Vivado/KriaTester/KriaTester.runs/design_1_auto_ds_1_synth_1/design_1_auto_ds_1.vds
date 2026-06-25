@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Jun 25 13:15:33 2026
+# Process ID: 17716
+# Current directory: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1
+# Command line: vivado.exe -log design_1_auto_ds_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_auto_ds_1.tcl
+# Log file: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1/design_1_auto_ds_1.vds
+# Journal file: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1\vivado.jou
+# Running On: N166A, OS: Windows, CPU Frequency: 2112 MHz, CPU Physical cores: 4, Host memory: 12723 MB
+#-----------------------------------------------------------
+source design_1_auto_ds_1.tcl -notrace
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 455.906 ; gain = 183.711
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Repos/_DP/DP/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDDesignTools/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: design_1_auto_ds_1
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 63d38789b7857318 to dir: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.cache/ip/2023.2/6/3/63d38789b7857318/design_1_auto_ds_0.dcp to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1/design_1_auto_ds_1.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.cache/ip/2023.2/6/3/63d38789b7857318/design_1_auto_ds_0_sim_netlist.v to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1/design_1_auto_ds_1_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.cache/ip/2023.2/6/3/63d38789b7857318/design_1_auto_ds_0_sim_netlist.vhdl to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1/design_1_auto_ds_1_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.cache/ip/2023.2/6/3/63d38789b7857318/design_1_auto_ds_0_stub.v to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1/design_1_auto_ds_1_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.cache/ip/2023.2/6/3/63d38789b7857318/design_1_auto_ds_0_stub.vhdl to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_auto_ds_1_synth_1/design_1_auto_ds_1_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP design_1_auto_ds_1, cache-ID = 63d38789b7857318.
+INFO: [Common 17-206] Exiting Vivado at Thu Jun 25 13:15:53 2026...
