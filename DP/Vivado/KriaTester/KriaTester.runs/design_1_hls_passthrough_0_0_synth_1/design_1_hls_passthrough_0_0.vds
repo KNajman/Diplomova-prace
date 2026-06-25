@@ -1,0 +1,401 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Jun 25 13:00:08 2026
+# Process ID: 7836
+# Current directory: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1
+# Command line: vivado.exe -log design_1_hls_passthrough_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_hls_passthrough_0_0.tcl
+# Log file: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1/design_1_hls_passthrough_0_0.vds
+# Journal file: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1\vivado.jou
+# Running On: N166A, OS: Windows, CPU Frequency: 2112 MHz, CPU Physical cores: 4, Host memory: 12723 MB
+#-----------------------------------------------------------
+source design_1_hls_passthrough_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 455.922 ; gain = 184.277
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Repos/_DP/DP/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDDesignTools/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: design_1_hls_passthrough_0_0
+Command: synth_design -top design_1_hls_passthrough_0_0 -part xck26-sfvc784-2LV-c -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xck26'
+INFO: [Device 21-403] Loading part xck26-sfvc784-2LV-c
+WARNING: [Device 21-9] Clock region file  is not available
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 4608
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1862.207 ; gain = 378.715
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'design_1_hls_passthrough_0_0' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:95]
+	Parameter C_S_AXI_CONTROL_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_S_AXI_CONTROL_DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:11' bound to instance 'U0' of component 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:198]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:53]
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_control_s_axi' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_control_s_axi.vhd:12' bound to instance 'control_s_axi_U' of component 'hls_passthrough_control_s_axi' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:182]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_control_s_axi' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_control_s_axi.vhd:69]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_control_s_axi' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_control_s_axi.vhd:69]
+	Parameter DataWidth bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:213]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:227]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized1' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized1' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:241]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:255]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized3' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized3' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:269]
+	Parameter DataWidth bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:283]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:297]
+	Parameter DataWidth bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:311]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:325]
+	Parameter DataWidth bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:339]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'design_1_hls_passthrough_0_0' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:95]
+WARNING: [Synth 8-6014] Unused sequential element int_ap_done_reg was removed.  [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/2fa6/hdl/vhdl/hls_passthrough_control_s_axi.vhd:287]
+WARNING: [Synth 8-7129] Port AWADDR[1] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port AWADDR[0] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[31] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[30] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[29] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[28] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[27] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[26] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[25] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[24] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[23] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[22] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[21] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[20] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[19] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[18] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[17] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[16] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[15] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[14] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[13] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[12] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[11] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[10] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[9] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[8] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[6] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[5] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[4] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[3] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WDATA[2] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WSTRB[3] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WSTRB[2] in module hls_passthrough_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WSTRB[1] in module hls_passthrough_control_s_axi is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:20 . Memory (MB): peak = 1972.738 ; gain = 489.246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 1972.738 ; gain = 489.246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 1972.738 ; gain = 489.246
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1972.738 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc] for cell 'U0'
+create_clock: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2068.801 ; gain = 0.035
+Finished Parsing XDC File [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/constraints/hls_passthrough_ooc.xdc] for cell 'U0'
+Parsing XDC File [D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2068.801 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.209 . Memory (MB): peak = 2068.812 ; gain = 0.012
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:37 ; elapsed = 00:00:46 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xck26-sfvc784-2LV-c
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:37 ; elapsed = 00:00:46 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:37 ; elapsed = 00:00:46 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'wstate_reg' in module 'hls_passthrough_control_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'hls_passthrough_control_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both__parameterized1'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both__parameterized3'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0001 |                              011
+*
+                  wridle |                             0010 |                              000
+                  wrdata |                             0100 |                              001
+                  wrresp |                             1000 |                              010
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'wstate_reg' using encoding 'one-hot' in module 'hls_passthrough_control_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              001 |                              110
+*
+                  rdidle |                              010 |                              100
+                  rddata |                              100 |                              101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rstate_reg' using encoding 'one-hot' in module 'hls_passthrough_control_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    zero |                               01 |                               10
+                     one |                               11 |                               11
+                     two |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hls_passthrough_regslice_both'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    zero |                               01 |                               10
+                     one |                               11 |                               11
+                     two |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hls_passthrough_regslice_both__parameterized1'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    zero |                               01 |                               10
+                     one |                               11 |                               11
+                     two |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hls_passthrough_regslice_both__parameterized3'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:48 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 5     
+	                4 Bit    Registers := 9     
+	                2 Bit    Registers := 11    
+	                1 Bit    Registers := 30    
++---Muxes : 
+	   5 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 2     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 7     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 100   
+	   4 Input    2 Bit        Muxes := 40    
+	   2 Input    1 Bit        Muxes := 47    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1248 (col length:96)
+BRAMs: 288 (col length: RAMB18 96 RAMB36 48)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port s_axi_control_AWADDR[1] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_AWADDR[0] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[31] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[30] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[29] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[28] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[27] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[26] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[25] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[24] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[23] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[22] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[21] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[20] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[19] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[18] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[17] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[16] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[15] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[14] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[13] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[12] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[11] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[10] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[9] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[8] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[6] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[5] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[4] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[3] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WDATA[2] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WSTRB[3] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WSTRB[2] in module hls_passthrough is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_control_WSTRB[1] in module hls_passthrough is either unconnected or has no load
+INFO: [Synth 8-3332] Sequential element (control_s_axi_U/FSM_onehot_wstate_reg[0]) is unused and will be removed from module hls_passthrough.
+INFO: [Synth 8-3332] Sequential element (control_s_axi_U/FSM_onehot_rstate_reg[0]) is unused and will be removed from module hls_passthrough.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:53 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:53 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:55 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:45 ; elapsed = 00:00:55 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     1|
+|2     |LUT2 |     8|
+|3     |LUT3 |     3|
+|4     |LUT4 |   116|
+|5     |LUT5 |    30|
+|6     |LUT6 |    13|
+|7     |FDRE |   216|
+|8     |FDSE |    12|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 35 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:53 . Memory (MB): peak = 2068.812 ; gain = 489.246
+Synthesis Optimization Complete : Time (s): cpu = 00:00:56 ; elapsed = 00:01:07 . Memory (MB): peak = 2068.812 ; gain = 585.320
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 2068.812 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2068.812 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: f243ad72
+INFO: [Common 17-83] Releasing license: Synthesis
+54 Infos, 71 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2068.812 ; gain = 1560.664
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2068.812 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1/design_1_hls_passthrough_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_1_hls_passthrough_0_0, cache-ID = 5765c9b6a3703bb1
+INFO: [Coretcl 2-1174] Renamed 12 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2068.812 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1/design_1_hls_passthrough_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_1_hls_passthrough_0_0_utilization_synth.rpt -pb design_1_hls_passthrough_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Jun 25 13:02:05 2026...
