@@ -37,13 +37,13 @@
 | Function                   | Location                  | Compile/Link    | Unroll/Inline | Array/Struct  | Performance | HW Transforms |
 +----------------------------+---------------------------+-----------------+---------------+---------------+-------------+---------------+
 | + hls_filter_median_3x3    | hls_filter_median.cpp:5   | 2,852           | 770           | 248           | 152         | 167           |
-|    operator ap_uint        | hls_video_types.hpp:86    |   83            |               |               |             |               |
+|    operator ap_uint        | hls_video_types.hpp:87    |   83            |               |               |             |               |
 |  + sort_three<ap_uint<8> > | hls_filter_median.hpp:172 |  995 (5 calls)  | 616 (7 calls) | 112 (7 calls) |             |               |
 |     hls_min<ap_uint<8> >   | hls_filter_median.hpp:158 |  300 (15 calls) |               |               |             |               |
 |     hls_max<ap_uint<8> >   | hls_filter_median.hpp:166 |  300 (15 calls) |               |               |             |               |
 |  + axi_stream_video        | hls_video_types.hpp:18    |   44            |               |               |             |               |
-|     color_pixel            | hls_video_types.hpp:42    |   39            |               |               |             |               |
-|    color_pixel             | hls_video_types.hpp:56    |   77            |               |               |             |               |
+|     color_pixel            | hls_video_types.hpp:43    |   39            |               |               |             |               |
+|    color_pixel             | hls_video_types.hpp:57    |   77            |               |               |             |               |
 +----------------------------+---------------------------+-----------------+---------------+---------------+-------------+---------------+
 
 * Design Size Message Settings

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'hls_histogram_gray'" level="0">
-<item name = "Date">Fri Apr 10 08:56:57 2026
+<item name = "Date">Thu Jun 25 12:08:24 2026
 </item>
 <item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
 <item name = "Project">hls_histogram</item>
@@ -31,9 +31,9 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102">hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, 258, 258, 2.580 us, 2.580 us, 0, 0, loop pipeline stp</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108">hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, ?, ?, ?, ?, 0, 0, loop pipeline stp</column>
-<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118">hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, 259, 259, 2.590 us, 2.590 us, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102">hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, 258, 258, 2.580 us, 2.580 us, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108">hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, ?, ?, ?, ?, 0, 0, loop pipeline stp</column>
+<column name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118">hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, 259, 259, 2.590 us, 2.590 us, 0, 0, loop pipeline stp</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

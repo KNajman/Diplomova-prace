@@ -1,0 +1,1 @@
+xsim {hls_histogram_gray} -testplusarg UVM_VERBOSITY=UVM_NONE -testplusarg UVM_TESTNAME=hls_histogram_gray_test_lib -testplusarg UVM_TIMEOUT=20000000000000 -autoloadwcfg -tclbatch {hls_histogram_gray.tcl}

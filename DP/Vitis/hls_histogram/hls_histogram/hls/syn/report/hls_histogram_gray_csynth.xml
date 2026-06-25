@@ -35,7 +35,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>hls_histogram.cpp:5</SourceLocation>
+<SourceLocation>hls_histogram.cpp:3</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 

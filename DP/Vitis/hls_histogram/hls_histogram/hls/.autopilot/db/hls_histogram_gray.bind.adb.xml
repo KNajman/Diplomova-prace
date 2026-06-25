@@ -101,7 +101,7 @@ entry:18 %local_hist = alloca i64 1
 
 <Node id="25" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32 %local_hist
+entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, i32 %local_hist
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -119,7 +119,7 @@ entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32
 
 <Node id="25" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32 %local_hist
+entry:20 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, i32 %local_hist
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -182,10 +182,10 @@ entry:21 %total_pixels = mul i32 %height_read, i32 %width_read
 
 <Node id="27" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="24" op_3_bw="32" op_4_bw="32" op_5_bw="8" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
+entry:22 %call_ln29 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
 
 ]]></Node>
-<StgValue><ssdm name="call_ln33"/></StgValue>
+<StgValue><ssdm name="call_ln29"/></StgValue>
 </operation>
 
 <operation id="17" st_id="3" stage="1" lat="1">
@@ -197,10 +197,10 @@ entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i3
 
 <Node id="30" bw="1" op_0_bw="32" op_1_bw="32">
 <![CDATA[
-entry:25 %icmp_ln36 = icmp_eq  i32 %total_pixels, i32 0
+entry:25 %icmp_ln32 = icmp_eq  i32 %total_pixels, i32 0
 
 ]]></Node>
-<StgValue><ssdm name="icmp_ln36"/></StgValue>
+<StgValue><ssdm name="icmp_ln32"/></StgValue>
 </operation>
 </state>
 
@@ -215,10 +215,10 @@ entry:25 %icmp_ln36 = icmp_eq  i32 %total_pixels, i32 0
 
 <Node id="27" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="24" op_3_bw="32" op_4_bw="32" op_5_bw="8" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
+entry:22 %call_ln29 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc
 
 ]]></Node>
-<StgValue><ssdm name="call_ln33"/></StgValue>
+<StgValue><ssdm name="call_ln29"/></StgValue>
 </operation>
 </state>
 
@@ -233,10 +233,10 @@ entry:22 %call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i3
 
 <Node id="9" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-entry:4 %spectopmodule_ln5 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_9
+entry:4 %spectopmodule_ln3 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_9
 
 ]]></Node>
-<StgValue><ssdm name="spectopmodule_ln5"/></StgValue>
+<StgValue><ssdm name="spectopmodule_ln3"/></StgValue>
 </operation>
 
 <operation id="20" st_id="5" stage="1" lat="1">
@@ -443,10 +443,10 @@ entry:17 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0,
 
 <Node id="24" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="64" op_3_bw="64" op_4_bw="64" op_5_bw="1">
 <![CDATA[
-entry:19 %specmemcore_ln19 = specmemcore void @_ssdm_op_SpecMemCore, i32 %local_hist, i64 666, i64 30, i64 18446744073709551615, i1 0
+entry:19 %specmemcore_ln16 = specmemcore void @_ssdm_op_SpecMemCore, i32 %local_hist, i64 666, i64 30, i64 18446744073709551615, i1 0
 
 ]]></Node>
-<StgValue><ssdm name="specmemcore_ln19"/></StgValue>
+<StgValue><ssdm name="specmemcore_ln16"/></StgValue>
 </operation>
 
 <operation id="34" st_id="5" stage="1" lat="1">
@@ -488,39 +488,39 @@ entry:24 %old_pixel_loc_load = load i8 %old_pixel_loc
 
 <Node id="31" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
 <![CDATA[
-entry:26 %br_ln36 = br i1 %icmp_ln36, void %if.then16.i.split, void %VITIS_LOOP_77_3.i
+entry:26 %br_ln32 = br i1 %icmp_ln32, void %if.then20.i.split, void %VITIS_LOOP_68_3.i
 
 ]]></Node>
-<StgValue><ssdm name="br_ln36"/></StgValue>
+<StgValue><ssdm name="br_ln32"/></StgValue>
 </operation>
 
 <operation id="37" st_id="5" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="33" bw="64" op_0_bw="8">
 <![CDATA[
-if.then16.i.split:0 %zext_ln73 = zext i8 %old_pixel_loc_load
+if.then20.i.split:0 %zext_ln64 = zext i8 %old_pixel_loc_load
 
 ]]></Node>
-<StgValue><ssdm name="zext_ln73"/></StgValue>
+<StgValue><ssdm name="zext_ln64"/></StgValue>
 </operation>
 
 <operation id="38" st_id="5" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="34" bw="8" op_0_bw="32" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-if.then16.i.split:1 %local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i64 %zext_ln73
+if.then20.i.split:1 %local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i64 %zext_ln64
 
 ]]></Node>
 <StgValue><ssdm name="local_hist_addr_1"/></StgValue>
@@ -530,32 +530,32 @@ if.then16.i.split:1 %local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i
 <core>RAM_T2P_BRAM</core>
 <MemPortIdVec>0 </MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="35" bw="0" op_0_bw="32" op_1_bw="8" op_2_bw="0" op_3_bw="0">
 <![CDATA[
-if.then16.i.split:2 %store_ln73 = store i32 %old_count_loc_load, i8 %local_hist_addr_1
+if.then20.i.split:2 %store_ln64 = store i32 %old_count_loc_load, i8 %local_hist_addr_1
 
 ]]></Node>
-<StgValue><ssdm name="store_ln73"/></StgValue>
+<StgValue><ssdm name="store_ln64"/></StgValue>
 </operation>
 
 <operation id="40" st_id="5" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
-<or_exp><and_exp><literal name="icmp_ln36" val="0"/>
+<or_exp><and_exp><literal name="icmp_ln32" val="0"/>
 </and_exp></or_exp>
 </condition>
 
 <Node id="36" bw="0" op_0_bw="0">
 <![CDATA[
-if.then16.i.split:3 %br_ln74 = br void %VITIS_LOOP_77_3.i
+if.then20.i.split:3 %br_ln65 = br void %VITIS_LOOP_68_3.i
 
 ]]></Node>
-<StgValue><ssdm name="br_ln74"/></StgValue>
+<StgValue><ssdm name="br_ln65"/></StgValue>
 </operation>
 </state>
 
@@ -570,7 +570,7 @@ if.then16.i.split:3 %br_ln74 = br void %VITIS_LOOP_77_3.i
 
 <Node id="38" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="0" op_4_bw="0" op_5_bw="0" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, i32 %local_hist, i32 %hist_out
+VITIS_LOOP_68_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, i32 %local_hist, i32 %hist_out
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -588,7 +588,7 @@ VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOO
 
 <Node id="38" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="0" op_4_bw="0" op_5_bw="0" op_6_bw="0" op_7_bw="0">
 <![CDATA[
-VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, i32 %local_hist, i32 %hist_out
+VITIS_LOOP_68_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, i32 %local_hist, i32 %hist_out
 
 ]]></Node>
 <StgValue><ssdm name="call_ln0"/></StgValue>
@@ -603,10 +603,10 @@ VITIS_LOOP_77_3.i:0 %call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOO
 
 <Node id="39" bw="0">
 <![CDATA[
-VITIS_LOOP_77_3.i:1 %ret_ln20 = ret
+VITIS_LOOP_68_3.i:1 %ret_ln18 = ret
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln20"/></StgValue>
+<StgValue><ssdm name="ret_ln18"/></StgValue>
 </operation>
 </state>
 </state_list>
@@ -636,11 +636,11 @@ VITIS_LOOP_77_3.i:1 %ret_ln20 = ret
 </dataflow>
 <dataflow id="59" from="StgValue_56" to="local_hist" fromId="56" toId="10">
 </dataflow>
-<dataflow id="61" from="hls_histogram_gray_Pipeline_VITIS_LOOP_22_1" to="call_ln0" fromId="60" toId="11">
+<dataflow id="61" from="hls_histogram_gray_Pipeline_VITIS_LOOP_19_1" to="call_ln0" fromId="60" toId="11">
 </dataflow>
 <dataflow id="62" from="local_hist" to="call_ln0" fromId="10" toId="11">
 </dataflow>
-<dataflow id="63" from="hls_histogram_gray_Pipeline_VITIS_LOOP_22_1" to="call_ln0" fromId="60" toId="12">
+<dataflow id="63" from="hls_histogram_gray_Pipeline_VITIS_LOOP_19_1" to="call_ln0" fromId="60" toId="12">
 </dataflow>
 <dataflow id="64" from="local_hist" to="call_ln0" fromId="10" toId="12">
 </dataflow>
@@ -656,37 +656,37 @@ VITIS_LOOP_77_3.i:1 %ret_ln20 = ret
 </dataflow>
 <dataflow id="71" from="width_read" to="total_pixels" fromId="14" toId="15">
 </dataflow>
-<dataflow id="73" from="hls_histogram_gray_Pipeline_VITIS_LOOP_36_2" to="call_ln33" fromId="72" toId="16">
+<dataflow id="73" from="hls_histogram_gray_Pipeline_VITIS_LOOP_32_2" to="call_ln29" fromId="72" toId="16">
 </dataflow>
-<dataflow id="74" from="total_pixels" to="call_ln33" fromId="15" toId="16">
+<dataflow id="74" from="total_pixels" to="call_ln29" fromId="15" toId="16">
 </dataflow>
-<dataflow id="75" from="stream_in" to="call_ln33" fromId="52" toId="16">
+<dataflow id="75" from="stream_in" to="call_ln29" fromId="52" toId="16">
 </dataflow>
-<dataflow id="76" from="local_hist" to="call_ln33" fromId="10" toId="16">
+<dataflow id="76" from="local_hist" to="call_ln29" fromId="10" toId="16">
 </dataflow>
-<dataflow id="77" from="old_count_loc" to="call_ln33" fromId="9" toId="16">
+<dataflow id="77" from="old_count_loc" to="call_ln29" fromId="9" toId="16">
 </dataflow>
-<dataflow id="78" from="old_pixel_loc" to="call_ln33" fromId="8" toId="16">
+<dataflow id="78" from="old_pixel_loc" to="call_ln29" fromId="8" toId="16">
 </dataflow>
-<dataflow id="79" from="total_pixels" to="icmp_ln36" fromId="15" toId="17">
+<dataflow id="79" from="total_pixels" to="icmp_ln32" fromId="15" toId="17">
 </dataflow>
-<dataflow id="81" from="StgValue_80" to="icmp_ln36" fromId="80" toId="17">
+<dataflow id="81" from="StgValue_80" to="icmp_ln32" fromId="80" toId="17">
 </dataflow>
-<dataflow id="82" from="hls_histogram_gray_Pipeline_VITIS_LOOP_36_2" to="call_ln33" fromId="72" toId="18">
+<dataflow id="82" from="hls_histogram_gray_Pipeline_VITIS_LOOP_32_2" to="call_ln29" fromId="72" toId="18">
 </dataflow>
-<dataflow id="83" from="total_pixels" to="call_ln33" fromId="15" toId="18">
+<dataflow id="83" from="total_pixels" to="call_ln29" fromId="15" toId="18">
 </dataflow>
-<dataflow id="84" from="stream_in" to="call_ln33" fromId="52" toId="18">
+<dataflow id="84" from="stream_in" to="call_ln29" fromId="52" toId="18">
 </dataflow>
-<dataflow id="85" from="local_hist" to="call_ln33" fromId="10" toId="18">
+<dataflow id="85" from="local_hist" to="call_ln29" fromId="10" toId="18">
 </dataflow>
-<dataflow id="86" from="old_count_loc" to="call_ln33" fromId="9" toId="18">
+<dataflow id="86" from="old_count_loc" to="call_ln29" fromId="9" toId="18">
 </dataflow>
-<dataflow id="87" from="old_pixel_loc" to="call_ln33" fromId="8" toId="18">
+<dataflow id="87" from="old_pixel_loc" to="call_ln29" fromId="8" toId="18">
 </dataflow>
-<dataflow id="89" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln5" fromId="88" toId="19">
+<dataflow id="89" from="_ssdm_op_SpecTopModule" to="spectopmodule_ln3" fromId="88" toId="19">
 </dataflow>
-<dataflow id="91" from="empty_9" to="spectopmodule_ln5" fromId="90" toId="19">
+<dataflow id="91" from="empty_9" to="spectopmodule_ln3" fromId="90" toId="19">
 </dataflow>
 <dataflow id="93" from="_ssdm_op_SpecInterface" to="specinterface_ln0" fromId="92" toId="20">
 </dataflow>
@@ -1052,49 +1052,49 @@ VITIS_LOOP_77_3.i:1 %ret_ln20 = ret
 </dataflow>
 <dataflow id="291" from="StgValue_80" to="specinterface_ln0" fromId="80" toId="32">
 </dataflow>
-<dataflow id="292" from="_ssdm_op_SpecMemCore" to="specmemcore_ln19" fromId="168" toId="33">
+<dataflow id="292" from="_ssdm_op_SpecMemCore" to="specmemcore_ln16" fromId="168" toId="33">
 </dataflow>
-<dataflow id="293" from="local_hist" to="specmemcore_ln19" fromId="10" toId="33">
+<dataflow id="293" from="local_hist" to="specmemcore_ln16" fromId="10" toId="33">
 </dataflow>
-<dataflow id="294" from="StgValue_171" to="specmemcore_ln19" fromId="171" toId="33">
+<dataflow id="294" from="StgValue_171" to="specmemcore_ln16" fromId="171" toId="33">
 </dataflow>
-<dataflow id="296" from="StgValue_295" to="specmemcore_ln19" fromId="295" toId="33">
+<dataflow id="296" from="StgValue_295" to="specmemcore_ln16" fromId="295" toId="33">
 </dataflow>
-<dataflow id="298" from="StgValue_297" to="specmemcore_ln19" fromId="297" toId="33">
+<dataflow id="298" from="StgValue_297" to="specmemcore_ln16" fromId="297" toId="33">
 </dataflow>
-<dataflow id="299" from="StgValue_176" to="specmemcore_ln19" fromId="176" toId="33">
+<dataflow id="299" from="StgValue_176" to="specmemcore_ln16" fromId="176" toId="33">
 </dataflow>
 <dataflow id="300" from="old_count_loc" to="old_count_loc_load" fromId="9" toId="34">
 </dataflow>
 <dataflow id="301" from="old_pixel_loc" to="old_pixel_loc_load" fromId="8" toId="35">
 </dataflow>
-<dataflow id="302" from="icmp_ln36" to="br_ln36" fromId="17" toId="36">
+<dataflow id="302" from="icmp_ln32" to="br_ln32" fromId="17" toId="36">
 </dataflow>
-<dataflow id="303" from="old_pixel_loc_load" to="zext_ln73" fromId="35" toId="37">
+<dataflow id="303" from="old_pixel_loc_load" to="zext_ln64" fromId="35" toId="37">
 </dataflow>
 <dataflow id="304" from="local_hist" to="local_hist_addr_1" fromId="10" toId="38">
 </dataflow>
 <dataflow id="306" from="StgValue_305" to="local_hist_addr_1" fromId="305" toId="38">
 </dataflow>
-<dataflow id="307" from="zext_ln73" to="local_hist_addr_1" fromId="37" toId="38">
+<dataflow id="307" from="zext_ln64" to="local_hist_addr_1" fromId="37" toId="38">
 </dataflow>
-<dataflow id="308" from="old_count_loc_load" to="store_ln73" fromId="34" toId="39">
+<dataflow id="308" from="old_count_loc_load" to="store_ln64" fromId="34" toId="39">
 </dataflow>
-<dataflow id="309" from="local_hist_addr_1" to="store_ln73" fromId="38" toId="39">
+<dataflow id="309" from="local_hist_addr_1" to="store_ln64" fromId="38" toId="39">
 </dataflow>
-<dataflow id="311" from="hls_histogram_gray_Pipeline_VITIS_LOOP_77_3" to="call_ln0" fromId="310" toId="41">
+<dataflow id="311" from="hls_histogram_gray_Pipeline_VITIS_LOOP_68_3" to="call_ln0" fromId="310" toId="41">
 </dataflow>
 <dataflow id="312" from="local_hist" to="call_ln0" fromId="10" toId="41">
 </dataflow>
 <dataflow id="313" from="hist_out" to="call_ln0" fromId="53" toId="41">
 </dataflow>
-<dataflow id="314" from="hls_histogram_gray_Pipeline_VITIS_LOOP_77_3" to="call_ln0" fromId="310" toId="42">
+<dataflow id="314" from="hls_histogram_gray_Pipeline_VITIS_LOOP_68_3" to="call_ln0" fromId="310" toId="42">
 </dataflow>
 <dataflow id="315" from="local_hist" to="call_ln0" fromId="10" toId="42">
 </dataflow>
 <dataflow id="316" from="hist_out" to="call_ln0" fromId="53" toId="42">
 </dataflow>
-<dataflow id="317" from="icmp_ln36" to="StgValue_5" fromId="17" toId="5">
+<dataflow id="317" from="icmp_ln32" to="StgValue_5" fromId="17" toId="5">
 </dataflow>
 </dataflows>
 

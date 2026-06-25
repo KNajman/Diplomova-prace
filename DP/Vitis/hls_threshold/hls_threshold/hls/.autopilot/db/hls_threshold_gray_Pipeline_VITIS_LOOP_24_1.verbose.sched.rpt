@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_threshold_gray_Pipeline_VITIS_LOOP_24_1'
 ================================================================
-* Date:           Fri Apr 10 08:38:19 2026
+* Date:           Thu Jun 25 10:38:02 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_threshold
@@ -131,7 +131,7 @@ Target clock period: 10.000ns, clock uncertainty: 2.700ns.
 The critical path consists of the following:
 	'store' operation ('store_ln24', ./hls_threshold.hpp:24->hls_threshold.cpp:21) of constant 0 32 bit on local variable 'i', ./hls_threshold.hpp:24->hls_threshold.cpp:21 [12]  (0.427 ns)
 	'load' operation 32 bit ('i', ./hls_threshold.hpp:24->hls_threshold.cpp:21) on local variable 'i', ./hls_threshold.hpp:24->hls_threshold.cpp:21 [15]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln24', ./hls_threshold.hpp:24->hls_threshold.cpp:21) [16]  (1.016 ns)
+	'add' operation 32 bit ('i', ./hls_threshold.hpp:24->hls_threshold.cpp:21) [19]  (1.016 ns)
 	'store' operation ('store_ln24', ./hls_threshold.hpp:24->hls_threshold.cpp:21) of variable 'i', ./hls_threshold.hpp:24->hls_threshold.cpp:21 32 bit on local variable 'i', ./hls_threshold.hpp:24->hls_threshold.cpp:21 [42]  (0.427 ns)
 	blocking operation 0.049 ns on control path)
 

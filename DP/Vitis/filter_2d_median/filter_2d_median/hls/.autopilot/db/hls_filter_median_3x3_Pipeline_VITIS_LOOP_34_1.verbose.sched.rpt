@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_filter_median_3x3_Pipeline_VITIS_LOOP_34_1'
 ================================================================
-* Date:           Thu Jun 18 19:19:21 2026
+* Date:           Thu Jun 25 10:54:08 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        filter_2d_median
@@ -280,10 +280,10 @@ The critical path consists of the following:
 
  <State 2>: 1.562ns
 The critical path consists of the following:
-	'load' operation 13 bit ('out_x_load', hls_filter_median.cpp:126) on local variable 'out_x', hls_filter_median.cpp:28 [147]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln116', hls_filter_median.cpp:116) [152]  (0.831 ns)
-	'select' operation 13 bit ('out_y', hls_filter_median.cpp:122) [159]  (0.303 ns)
-	'store' operation ('store_ln29', hls_filter_median.cpp:29) of variable 'out_y', hls_filter_median.cpp:122 13 bit on local variable 'out_y', hls_filter_median.cpp:29 [160]  (0.427 ns)
+	'load' operation 13 bit ('x', hls_filter_median.cpp:138) on local variable 'x', hls_filter_median.cpp:26 [39]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln134', hls_filter_median.cpp:134) [165]  (0.831 ns)
+	'select' operation 13 bit ('y', hls_filter_median.cpp:134) [169]  (0.303 ns)
+	'store' operation ('store_ln27', hls_filter_median.cpp:27) of variable 'y', hls_filter_median.cpp:134 13 bit on local variable 'y', hls_filter_median.cpp:27 [177]  (0.427 ns)
 
  <State 3>: 6.262ns
 The critical path consists of the following:

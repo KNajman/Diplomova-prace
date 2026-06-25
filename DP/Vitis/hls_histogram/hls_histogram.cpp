@@ -1,7 +1,5 @@
 #include "hls_histogram.hpp"
 
-#include "hls_histogram.hpp"
-
 void hls_histogram_gray(
     hls::stream<axis_gray> &stream_in, 
     ap_uint<32> hist_out[HIST_BINS_8BIT],

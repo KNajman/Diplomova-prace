@@ -28,7 +28,7 @@ int run_histogram_test(const char* test_name, int width, int height, const vecto
 
     int total_pixels = width * height;
     uint32_t sw_hist[HIST_BINS_8BIT];
-    uint32_t hw_hist[HIST_BINS_8BIT];
+    ap_uint<32> hw_hist[HIST_BINS_8BIT];
 
     hls::stream<axis_gray> s_axis_video("stream_in");
 

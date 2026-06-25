@@ -9,7 +9,7 @@
 
 
 
-# 1 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp" 1
+# 1 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp" 1
 
 
 
@@ -63064,15 +63064,15 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 }
 # 491 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_fixed.h" 2
 # 440 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_int.h" 2
-# 5 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp" 2
-# 17 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp"
+# 5 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp" 2
+# 17 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp"
 template <typename PIXEL_TYPE>
 struct axi_stream_video {
     PIXEL_TYPE data;
     ap_uint<1> user;
     ap_uint<1> last;
 };
-# 32 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp"
+# 33 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp"
 template <int NUM_CHANNELS, int PIXEL_WIDTH = 8>
 struct color_pixel {
 
@@ -63148,7 +63148,7 @@ struct color_pixel {
         return static_cast<unsigned int>(packed);
     }
 };
-# 118 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp"
+# 119 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp"
 const ap_int<16> rec601_coeffs[3][3] = {
     {77, 150, 29},
     {-43, -85, 128},
@@ -85175,133 +85175,144 @@ void hls_threshold_gray(hls::stream<axis_gray> &s_axis_video,
 
 
 
+
 using namespace std;
 
 
 
 
 void sw_threshold_golden(const vector<uint8_t> &src, vector<uint8_t> &dst,
-                         int width, int height,
-                         uint8_t thresh_val, int thresh_type) {
-    for (int i = 0; i < width * height; i++) {
-        uint8_t pixel_in = src[i];
-        if (thresh_type == 0) {
-            dst[i] = (pixel_in > thresh_val) ? 255 : 0;
-        } else if (thresh_type == 1) {
-            dst[i] = (pixel_in > thresh_val) ? thresh_val : pixel_in;
-        } else {
-            dst[i] = (pixel_in > thresh_val) ? 0 : pixel_in;
-        }
+                         int width, int height, uint8_t thresh_val,
+                         int thresh_type) {
+  for (int i = 0; i < width * height; i++) {
+    uint8_t pixel_in = src[i];
+    if (thresh_type == 0) {
+      dst[i] = (pixel_in > thresh_val) ? 255 : 0;
+    } else if (thresh_type == 1) {
+      dst[i] = (pixel_in > thresh_val) ? thresh_val : pixel_in;
+    } else {
+      dst[i] = (pixel_in > thresh_val) ? 0 : pixel_in;
     }
+  }
 }
 
 
 
 
-int run_threshold_test(const char* test_name, int width, int height,
+int run_threshold_test(const char *test_name, int width, int height,
                        int thresh_type, uint8_t thresh_val) {
 
-    cout << "Spoustim test: " << test_name << " (Prah = " << (int)thresh_val << ")" << endl;
+  cout << "Spoustim test: " << test_name << " (Prah = " << (int)thresh_val
+       << ")" << endl;
 
-    int total_pixels = width * height;
-    vector<uint8_t> sw_src(total_pixels);
-    vector<uint8_t> sw_dst(total_pixels);
+  int total_pixels = width * height;
+  vector<uint8_t> sw_src(total_pixels);
+  vector<uint8_t> sw_dst(total_pixels);
 
-    hls::stream<axis_gray> s_axis_video("stream_in");
-    hls::stream<axis_gray> m_axis_video("stream_out");
-
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            uint8_t val = x % 256;
-            sw_src[y * width + x] = val;
+  hls::stream<axis_gray> s_axis_video("stream_in");
+  hls::stream<axis_gray> m_axis_video("stream_out");
 
 
-            axis_gray in_packet;
-            in_packet.data.channel[0] = val;
-            in_packet.user = (x == 0 && y == 0) ? 1 : 0;
-            in_packet.last = (x == width - 1) ? 1 : 0;
-            s_axis_video.write(in_packet);
-        }
+  for (int y = 0; y < height; y++) {
+    for (int x = 0; x < width; x++) {
+      uint8_t val = x % 256;
+      sw_src[y * width + x] = val;
+
+
+      axis_gray in_packet;
+      in_packet.data.channel[0] = val;
+      in_packet.user = (x == 0 && y == 0) ? 1 : 0;
+      in_packet.last = (x == width - 1) ? 1 : 0;
+      s_axis_video.write(in_packet);
     }
+  }
 
 
-    sw_threshold_golden(sw_src, sw_dst, width, height, thresh_val, thresh_type);
+  sw_threshold_golden(sw_src, sw_dst, width, height, thresh_val, thresh_type);
 
 
-    hls_threshold_gray(s_axis_video, m_axis_video, thresh_val, thresh_type, width, height);
+  hls_threshold_gray(s_axis_video, m_axis_video, thresh_val, thresh_type, width,
+                     height);
 
 
-    int errors = 0;
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            if (m_axis_video.empty()) {
-                cout << "-> CHYBA: HW stream je predcasne prazdny na pozici [" << x << "," << y << "]" << endl;
-                return total_pixels;
-            }
+  int errors = 0;
+  for (int y = 0; y < height; y++) {
+    for (int x = 0; x < width; x++) {
+      if (m_axis_video.empty()) {
+        cout << "-> CHYBA: HW stream je predcasne prazdny na pozici [" << x
+             << "," << y << "]" << endl;
+        return total_pixels;
+      }
 
-            axis_gray out_packet = m_axis_video.read();
-            uint8_t hw_val = out_packet.data.channel[0];
-            uint8_t sw_val = sw_dst[y * width + x];
-
-
-            bool expected_user = (x == 0 && y == 0) ? 1 : 0;
-            bool expected_last = (x == width - 1) ? 1 : 0;
-
-            if (out_packet.user != expected_user || out_packet.last != expected_last) {
-                if (errors < 5) cout << "-> CHYBA TUSER/TLAST na pozici [" << x << "," << y << "]" << endl;
-                errors++;
-            }
+      axis_gray out_packet = m_axis_video.read();
+      uint8_t hw_val = out_packet.data.channel[0];
+      uint8_t sw_val = sw_dst[y * width + x];
 
 
-            if (hw_val != sw_val) {
-                if (errors < 10) {
-                    cout << "-> Mismatch @[" << x << "," << y << "]: "
-                         << "HW=" << (int)hw_val << ", SW=" << (int)sw_val << endl;
-                }
-                errors++;
-            }
-        }
-    }
+      bool expected_user = (x == 0 && y == 0) ? 1 : 0;
+      bool expected_last = (x == width - 1) ? 1 : 0;
 
-    if (!m_axis_video.empty()) {
-        cout << "-> CHYBA: HW stream obsahuje prebytecna data!" << endl;
+      if (out_packet.user != expected_user ||
+          out_packet.last != expected_last) {
+        if (errors < 5)
+          cout << "-> CHYBA TUSER/TLAST na pozici [" << x << "," << y << "]"
+               << endl;
         errors++;
+      }
+
+
+      if (hw_val != sw_val) {
+        if (errors < 10) {
+          cout << "-> Mismatch @[" << x << "," << y << "]: "
+               << "HW=" << (int)hw_val << ", SW=" << (int)sw_val << endl;
+        }
+        errors++;
+      }
     }
+  }
 
-    if (errors == 0) cout << "-> VYSLEDEK: OK" << endl << endl;
-    else cout << "-> VYSLEDEK: SELHALO s " << errors << " chybami!" << endl << endl;
+  if (!m_axis_video.empty()) {
+    cout << "-> CHYBA: HW stream obsahuje prebytecna data!" << endl;
+    errors++;
+  }
 
-    return errors;
+  if (errors == 0)
+    cout << "-> VYSLEDEK: OK" << endl << endl;
+  else
+    cout << "-> VYSLEDEK: SELHALO s " << errors << " chybami!" << endl << endl;
+
+  return errors;
 }
 
 
 
 
 int main() {
-    cout << "=========================================" << endl;
-    cout << " SPUSTENI TB PRO HLS_THRESHOLD_GRAY" << endl;
-    cout << "=========================================" << endl << endl;
+  cout << "=========================================" << endl;
+  cout << " SPUSTENI TB PRO HLS_THRESHOLD_GRAY" << endl;
+  cout << "=========================================" << endl << endl;
 
-    int fails = 0;
-
-
-    const int W = 256;
-    const int H = 4;
-    const uint8_t THRESH = 127;
-
-    fails += run_threshold_test("THRESH_BINARY", W, H, 0, THRESH);
-    fails += run_threshold_test("THRESH_TRUNC", W, H, 1, THRESH);
-    fails += run_threshold_test("THRESH_TOZERO_INV", W, H, 2, THRESH);
-
-    cout << "=========================================" << endl;
-    if (fails == 0) {
-        cout << " VSECHNY TESTY PROSOU USPESNE!" << endl;
-    } else {
-        cout << " TESTY SELHALY! Celkovy pocet chybnych testu: " << fails << endl;
-    }
-    cout << "=========================================" << endl;
+  int fails = 0;
 
 
-    return (fails == 0) ? 0 : 1;
+  const int W = 256;
+  const int H = 4;
+  uint8_t THRESH = 127;
+
+  fails += run_threshold_test("THRESH_BINARY", W, H, 0, THRESH);
+  THRESH = 58;
+  fails += run_threshold_test("THRESH_TRUNC", W, H, 1, THRESH);
+  THRESH = 247;
+  fails += run_threshold_test("THRESH_TOZERO_INV", W, H, 2, THRESH);
+
+  cout << "=========================================" << endl;
+  if (fails == 0) {
+    cout << " VSECHNY TESTY PROSOU USPESNE!" << endl;
+  } else {
+    cout << " TESTY SELHALY! Celkovy pocet chybnych testu: " << fails << endl;
+  }
+  cout << "=========================================" << endl;
+
+
+  return fails;
 }

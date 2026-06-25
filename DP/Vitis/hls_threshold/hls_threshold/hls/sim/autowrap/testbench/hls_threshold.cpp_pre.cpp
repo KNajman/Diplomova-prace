@@ -9,7 +9,7 @@
 
 
 
-# 1 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp" 1
+# 1 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp" 1
 
 
 
@@ -63064,15 +63064,15 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 }
 # 491 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_fixed.h" 2
 # 440 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_int.h" 2
-# 5 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp" 2
-# 17 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp"
+# 5 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp" 2
+# 17 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp"
 template <typename PIXEL_TYPE>
 struct axi_stream_video {
     PIXEL_TYPE data;
     ap_uint<1> user;
     ap_uint<1> last;
 };
-# 32 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp"
+# 33 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp"
 template <int NUM_CHANNELS, int PIXEL_WIDTH = 8>
 struct color_pixel {
 
@@ -63148,7 +63148,7 @@ struct color_pixel {
         return static_cast<unsigned int>(packed);
     }
 };
-# 118 "D:/Repos/_DP/DP/Vitis/hls_threshold/hls_video_types.hpp"
+# 119 "D:/Repos/_DP/DP/Vitis/hls_threshold/../hls_video_types.hpp"
 const ap_int<16> rec601_coeffs[3][3] = {
     {77, 150, 29},
     {-43, -85, 128},

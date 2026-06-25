@@ -158,7 +158,7 @@ extern "C" {
 
 
 
-# 1 "./hls_video_types.hpp" 1
+# 1 "./../hls_video_types.hpp" 1
 
 
 
@@ -49469,15 +49469,15 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 }
 # 491 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_fixed.h" 2
 # 440 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_int.h" 2
-# 5 "./hls_video_types.hpp" 2
-# 17 "./hls_video_types.hpp"
+# 5 "./../hls_video_types.hpp" 2
+# 17 "./../hls_video_types.hpp"
 template <typename PIXEL_TYPE>
 struct axi_stream_video {
     PIXEL_TYPE data;
     ap_uint<1> user;
     ap_uint<1> last;
 };
-# 32 "./hls_video_types.hpp"
+# 33 "./../hls_video_types.hpp"
 template <int NUM_CHANNELS, int PIXEL_WIDTH = 8>
 struct color_pixel {
 
@@ -49490,7 +49490,7 @@ struct color_pixel {
 
     color_pixel() {
 #pragma HLS INLINE
-        VITIS_LOOP_44_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+        VITIS_LOOP_45_1: for (int i = 0; i < NUM_CHANNELS; i++) {
 #pragma HLS UNROLL
             channel[i] = 0;
         }
@@ -49504,7 +49504,7 @@ struct color_pixel {
 
     color_pixel(ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data) {
 #pragma HLS INLINE
-        VITIS_LOOP_58_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+        VITIS_LOOP_59_1: for (int i = 0; i < NUM_CHANNELS; i++) {
 #pragma HLS UNROLL
 
             channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
@@ -49520,7 +49520,7 @@ struct color_pixel {
     color_pixel(unsigned int cpu_data) {
 #pragma HLS INLINE
         ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = cpu_data;
-        VITIS_LOOP_74_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+        VITIS_LOOP_75_1: for (int i = 0; i < NUM_CHANNELS; i++) {
 #pragma HLS UNROLL
             channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
         }
@@ -49535,7 +49535,7 @@ struct color_pixel {
     operator ap_uint<NUM_CHANNELS * PIXEL_WIDTH>() const {
 #pragma HLS INLINE
         ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = 0;
-        VITIS_LOOP_89_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+        VITIS_LOOP_90_1: for (int i = 0; i < NUM_CHANNELS; i++) {
 #pragma HLS UNROLL
 
             packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH) = channel[i];
@@ -49553,7 +49553,7 @@ struct color_pixel {
         return static_cast<unsigned int>(packed);
     }
 };
-# 118 "./hls_video_types.hpp"
+# 119 "./../hls_video_types.hpp"
 const ap_int<16> rec601_coeffs[3][3] = {
     {77, 150, 29},
     {-43, -85, 128},

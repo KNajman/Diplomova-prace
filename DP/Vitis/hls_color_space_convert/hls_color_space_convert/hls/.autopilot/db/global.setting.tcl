@@ -41,9 +41,9 @@ set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xck26:-sfvc784:-2LV-c
 set SourceFiles {sc {} c ../../hls_color_space_convert.cpp}
-set SourceFlags {sc {} c {{}}}
+set SourceFlags {sc {} c -ID:/Repos/_DP/DP/Vitis}
 set DirectiveFile {}
-set TBFiles {verilog D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp bc D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp vhdl D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp sc D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp cas D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_csc.cpp c {}}
+set TBFiles {verilog D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_color_space_convert.cpp bc D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_color_space_convert.cpp vhdl D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_color_space_convert.cpp sc D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_color_space_convert.cpp cas D:/Repos/_DP/DP/Vitis/hls_color_space_convert/tb_color_space_convert.cpp c {}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

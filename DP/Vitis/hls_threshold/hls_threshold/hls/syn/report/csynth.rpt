@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'hls_threshold_gray'
 ================================================================
 + General Information: 
-    * Date:           Fri Apr 10 08:38:20 2026
+    * Date:           Thu Jun 25 10:38:04 2026
     * Version:        2025.2 (Build 6295257 on Nov 14 2025)
     * Project:        hls_threshold
     * Solution:       hls (Vivado IP Flow Target)
@@ -129,26 +129,26 @@
 == Pragma Report
 ================================================================
 * Valid Pragma Syntax
-+-----------+-----------------------------------------------+--------------------------------------------------------------------------+
-| Type      | Options                                       | Location                                                                 |
-+-----------+-----------------------------------------------+--------------------------------------------------------------------------+
-| INTERFACE | axis port = s_axis_video                      | in hls_threshold_gray (hls_threshold.cpp:11)                             |
-| INTERFACE | axis port = m_axis_video                      | in hls_threshold_gray (hls_threshold.cpp:12)                             |
-| INTERFACE | s_axilite port = thresh_val bundle = control  | in hls_threshold_gray (hls_threshold.cpp:13)                             |
-| INTERFACE | s_axilite port = thresh_type bundle = control | in hls_threshold_gray (hls_threshold.cpp:14)                             |
-| INTERFACE | s_axilite port = width bundle = control       | in hls_threshold_gray (hls_threshold.cpp:15)                             |
-| INTERFACE | s_axilite port = height bundle = control      | in hls_threshold_gray (hls_threshold.cpp:16)                             |
-| INTERFACE | s_axilite port = return bundle = control      | in hls_threshold_gray (hls_threshold.cpp:17)                             |
-| PIPELINE  | II = 1                                        | in hls_threshold (hls_threshold.hpp:25)                                  |
-| INLINE    |                                               | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:43)       |
-| UNROLL    |                                               | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:45)       |
-| INLINE    |                                               | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:57)       |
-| UNROLL    |                                               | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:59)       |
-| INLINE    |                                               | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:72)       |
-| UNROLL    |                                               | in color_pixel<num_channels, pixel_width> (hls_video_types.hpp:75)       |
-| INLINE    |                                               | in operator ap_uint<num_channels * pixel_width> (hls_video_types.hpp:87) |
-| UNROLL    |                                               | in operator ap_uint<num_channels * pixel_width> (hls_video_types.hpp:90) |
-| INLINE    |                                               | in operator unsigned int (hls_video_types.hpp:102)                       |
-+-----------+-----------------------------------------------+--------------------------------------------------------------------------+
++-----------+-----------------------------------------------+-----------------------------------------------------------------------------+
+| Type      | Options                                       | Location                                                                    |
++-----------+-----------------------------------------------+-----------------------------------------------------------------------------+
+| INLINE    |                                               | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:44)       |
+| UNROLL    |                                               | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:46)       |
+| INLINE    |                                               | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:58)       |
+| UNROLL    |                                               | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:60)       |
+| INLINE    |                                               | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:73)       |
+| UNROLL    |                                               | in color_pixel<num_channels, pixel_width> (../hls_video_types.hpp:76)       |
+| INLINE    |                                               | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:88) |
+| UNROLL    |                                               | in operator ap_uint<num_channels * pixel_width> (../hls_video_types.hpp:91) |
+| INLINE    |                                               | in operator unsigned int (../hls_video_types.hpp:103)                       |
+| INTERFACE | axis port = s_axis_video                      | in hls_threshold_gray (hls_threshold.cpp:11)                                |
+| INTERFACE | axis port = m_axis_video                      | in hls_threshold_gray (hls_threshold.cpp:12)                                |
+| INTERFACE | s_axilite port = thresh_val bundle = control  | in hls_threshold_gray (hls_threshold.cpp:13)                                |
+| INTERFACE | s_axilite port = thresh_type bundle = control | in hls_threshold_gray (hls_threshold.cpp:14)                                |
+| INTERFACE | s_axilite port = width bundle = control       | in hls_threshold_gray (hls_threshold.cpp:15)                                |
+| INTERFACE | s_axilite port = height bundle = control      | in hls_threshold_gray (hls_threshold.cpp:16)                                |
+| INTERFACE | s_axilite port = return bundle = control      | in hls_threshold_gray (hls_threshold.cpp:17)                                |
+| PIPELINE  | II = 1                                        | in hls_threshold (hls_threshold.hpp:25)                                     |
++-----------+-----------------------------------------------+-----------------------------------------------------------------------------+
 
 

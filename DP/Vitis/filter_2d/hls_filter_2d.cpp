@@ -12,6 +12,7 @@ update_window(hls::stream<axis_gray> &s_axis_video, ap_uint<COORD_BITS> width,
               ap_uint<PIXEL_WIDTH> line_buffer[KERNEL_SIZE - 1][MAX_IMG_WIDTH],
               ap_uint<PIXEL_WIDTH> window[KERNEL_SIZE][KERNEL_SIZE],
               ap_uint<COORD_BITS> &x, ap_uint<PIXEL_WIDTH> &new_pixel) {
+#pragma HLS inline 
   if (i < total_pixels) {
     new_pixel = s_axis_video.read().data;
   } else {

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_histogram_gray'
 ================================================================
-* Date:           Fri Apr 10 08:56:59 2026
+* Date:           Thu Jun 25 12:08:26 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_histogram
@@ -38,9 +38,9 @@
         |                                                        |                                             |  Latency (cycles) |  Latency (absolute) |  Interval |      Pipeline     |
         |                        Instance                        |                    Module                   |   min   |   max   |    min   |    max   | min | max |        Type       |
         +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
-        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_22_1  |      258|      258|  2.580 us|  2.580 us|    0|    0|  loop pipeline stp|
-        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_36_2  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
-        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_77_3  |      259|      259|  2.590 us|  2.590 us|    0|    0|  loop pipeline stp|
+        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_19_1  |      258|      258|  2.580 us|  2.580 us|    0|    0|  loop pipeline stp|
+        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_32_2  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
+        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_68_3  |      259|      259|  2.590 us|  2.590 us|    0|    0|  loop pipeline stp|
         +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
 
         * Loop: 
@@ -76,9 +76,9 @@
     |                        Instance                        |                    Module                   | BRAM_18K| DSP|  FF | LUT | URAM|
     +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
     |control_s_axi_U                                         |control_s_axi                                |        2|   0|  192|  238|    0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_22_1  |        0|   0|   11|   60|    0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_36_2  |        0|   0|   81|  240|    0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_77_3  |        0|   0|   23|   71|    0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_19_1  |        0|   0|   11|   60|    0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_32_2  |        0|   0|   81|  240|    0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_68_3  |        0|   0|   23|   71|    0|
     |mul_32s_32s_32_1_1_U9                                   |mul_32s_32s_32_1_1                           |        0|   3|    0|   20|    0|
     +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
     |Total                                                   |                                             |        2|   3|  307|  629|    0|
@@ -103,7 +103,7 @@
     +---------------------+----------+----+---+----+------------+------------+
     |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +---------------------+----------+----+---+----+------------+------------+
-    |icmp_ln36_fu_132_p2  |      icmp|   0|  0|  39|          32|           1|
+    |icmp_ln32_fu_132_p2  |      icmp|   0|  0|  39|          32|           1|
     |local_hist_we0       |        or|   0|  0|   2|           1|           1|
     +---------------------+----------+----+---+----+------------+------------+
     |Total                |          |   0|  0|  41|          33|           2|
@@ -129,10 +129,10 @@
     |                                 Name                                | FF | LUT| Bits| Const Bits|
     +---------------------------------------------------------------------+----+----+-----+-----------+
     |ap_CS_fsm                                                            |   7|   0|    7|          0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102_ap_start_reg  |   1|   0|    1|          0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108_ap_start_reg  |   1|   0|    1|          0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118_ap_start_reg  |   1|   0|    1|          0|
-    |icmp_ln36_reg_167                                                    |   1|   0|    1|          0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102_ap_start_reg  |   1|   0|    1|          0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108_ap_start_reg  |   1|   0|    1|          0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118_ap_start_reg  |   1|   0|    1|          0|
+    |icmp_ln32_reg_167                                                    |   1|   0|    1|          0|
     |total_pixels_reg_162                                                 |  32|   0|   32|          0|
     +---------------------------------------------------------------------+----+----+-----+-----------+
     |Total                                                                |  43|   0|   43|          0|

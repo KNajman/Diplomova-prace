@@ -39,7 +39,7 @@
 | + hls_threshold_gray | hls_threshold.cpp:6    | 578          | 53            | 40           | 39          | 55            |
 |  + hls_threshold<8>  | hls_threshold.hpp:15   | 559          |               |              |             |               |
 |   + axi_stream_video | hls_video_types.hpp:18 |  44          |               |              |             |               |
-|      color_pixel     | hls_video_types.hpp:42 |  39          |               |              |             |               |
+|      color_pixel     | hls_video_types.hpp:43 |  39          |               |              |             |               |
 +----------------------+------------------------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings

@@ -49742,75 +49742,65 @@ class stream : public stream<__STREAM_T__, 0> {
 template <int PIXEL_WIDTH = 8, int HIST_SIZE = 256>
 void histogram_core(
     hls::stream<axi_stream_video<color_pixel<1, PIXEL_WIDTH>>> &stream_in,
-    ap_uint<32> hist_out[HIST_SIZE],
-    ap_uint<32> width,
-    ap_uint<32> height)
-{
+    ap_uint<32> hist_out[HIST_SIZE], ap_uint<32> width, ap_uint<32> height) {
 
-    uint32_t local_hist[HIST_SIZE];
+  ap_uint<32> local_hist[HIST_SIZE];
 #pragma HLS BIND_STORAGE variable = local_hist type = ram_t2p impl = bram
 
 
-    VITIS_LOOP_22_1: for (int i = 0; i < HIST_SIZE; i++)
-    {
+  VITIS_LOOP_19_1: for (int i = 0; i < HIST_SIZE; i++) {
 #pragma HLS PIPELINE II = 1
-        local_hist[i] = 0;
-    }
+    local_hist[i] = 0;
+  }
 
 
-    ap_uint<PIXEL_WIDTH> old_pixel = 0;
-    uint32_t old_count = 0;
-    bool is_first_pixel = true;
+  ap_uint<PIXEL_WIDTH> old_pixel = 0;
+  ap_uint<32> old_count = 0;
+  bool is_first_pixel = true;
 
-    ap_uint<32> total_pixels = width * height;
+  ap_uint<32> total_pixels = width * height;
 
 
-    VITIS_LOOP_36_2: for (ap_uint<32> i = 0; i < total_pixels; i++)
-    {
+  VITIS_LOOP_32_2: for (ap_uint<32> i = 0; i < total_pixels; i++) {
 #pragma HLS PIPELINE II = 1
 
 
-        axi_stream_video<color_pixel<1, PIXEL_WIDTH>> packet = stream_in.read();
-        ap_uint<PIXEL_WIDTH> curr_pixel = packet.data.channel[0];
+    axi_stream_video<color_pixel<1, PIXEL_WIDTH>> packet = stream_in.read();
+    ap_uint<PIXEL_WIDTH> curr_pixel = packet.data.channel[0];
 
-        uint32_t current_count;
-
-
-        if (!is_first_pixel && (curr_pixel == old_pixel))
-        {
-
-            current_count = old_count + 1;
-        }
-        else
-        {
-
-            current_count = local_hist[curr_pixel] + 1;
+    ap_uint<32> current_count;
 
 
-            if (!is_first_pixel)
-            {
-                local_hist[old_pixel] = old_count;
-            }
-        }
+    if (!is_first_pixel && (curr_pixel == old_pixel)) {
 
 
-        old_pixel = curr_pixel;
-        old_count = current_count;
-        is_first_pixel = false;
-    }
+      current_count = old_count + 1;
+    } else {
+
+      current_count = local_hist[curr_pixel] + 1;
 
 
-    if (!is_first_pixel)
-    {
+      if (!is_first_pixel) {
         local_hist[old_pixel] = old_count;
+      }
     }
 
 
-    VITIS_LOOP_77_3: for (int i = 0; i < HIST_SIZE; i++)
-    {
+    old_pixel = curr_pixel;
+    old_count = current_count;
+    is_first_pixel = false;
+  }
+
+
+  if (!is_first_pixel) {
+    local_hist[old_pixel] = old_count;
+  }
+
+
+  VITIS_LOOP_68_3: for (int i = 0; i < HIST_SIZE; i++) {
 #pragma HLS PIPELINE II = 1
-        hist_out[i] = local_hist[i];
-    }
+    hist_out[i] = local_hist[i];
+  }
 }
 
 
@@ -49818,14 +49808,10 @@ void histogram_core(
 
 const int HIST_BINS_8BIT = 256;
 
-__attribute__((sdx_kernel("hls_histogram_gray", 0))) void hls_histogram_gray(
-    hls::stream<axis_gray> &stream_in,
-    ap_uint<32> hist_out[HIST_BINS_8BIT],
-    ap_uint<32> width,
-    ap_uint<32> height);
+__attribute__((sdx_kernel("hls_histogram_gray", 0))) void hls_histogram_gray(hls::stream<axis_gray> &stream_in,
+                        ap_uint<32> hist_out[HIST_BINS_8BIT], ap_uint<32> width,
+                        ap_uint<32> height);
 # 2 "hls_histogram.cpp" 2
-
-
 
 __attribute__((sdx_kernel("hls_histogram_gray", 0))) void hls_histogram_gray(
     hls::stream<axis_gray> &stream_in,
@@ -49835,7 +49821,7 @@ __attribute__((sdx_kernel("hls_histogram_gray", 0))) void hls_histogram_gray(
 ) {
 #line 1 "directive"
 #pragma HLSDIRECTIVE TOP name=hls_histogram_gray
-# 10 "hls_histogram.cpp"
+# 8 "hls_histogram.cpp"
 
 
 #pragma HLS INTERFACE axis port = stream_in

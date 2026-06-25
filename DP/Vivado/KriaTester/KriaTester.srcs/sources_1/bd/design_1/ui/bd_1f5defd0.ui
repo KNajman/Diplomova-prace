@@ -1,0 +1,30 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.738125",
+   "Default View_TopLeft":"9,-112",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
+#  -string -flagsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 320 -y 90 -defaultsOSRD
+preplace inst axi_vdma_0 -pg 1 -lvl 4 -x 1430 -y 300 -defaultsOSRD
+preplace inst ps8_0_axi_periph -pg 1 -lvl 2 -x 770 -y 170 -defaultsOSRD
+preplace inst rst_ps8_0_99M -pg 1 -lvl 1 -x 320 -y 290 -defaultsOSRD
+preplace inst hls_passthrough_0 -pg 1 -lvl 3 -x 1090 -y 270 -defaultsOSRD
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 3 630 340 930 370 NJ
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 20 180 620 350 920 360 1260
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 2 30 190 610
+preplace netloc ps8_0_axi_periph_M00_AXI 1 2 2 NJ 160 1250
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 N 60
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM1_FPD 1 1 1 N 80
+preplace netloc axi_vdma_0_M_AXIS_MM2S 1 2 3 930 170 NJ 170 1600
+preplace netloc hls_passthrough_0_out_stream 1 3 1 1250 250n
+preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 910 180n
+levelinfo -pg 1 0 320 770 1090 1430 1620
+pagesize -pg 1 -db -bbox -sgen 0 0 1620 430
+"
+}
+{
+   "da_axi4_cnt":"3",
+   "da_clkrst_cnt":"2",
+   "da_zynq_ultra_ps_e_cnt":"1"
+}

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_histogram_gray'
 ================================================================
-* Date:           Fri Apr 10 08:56:59 2026
+* Date:           Thu Jun 25 12:08:26 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_histogram
@@ -38,9 +38,9 @@
         |                                                        |                                             |  Latency (cycles) |  Latency (absolute) |  Interval |      Pipeline     |
         |                        Instance                        |                    Module                   |   min   |   max   |    min   |    max   | min | max |        Type       |
         +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
-        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_22_1  |      258|      258|  2.580 us|  2.580 us|    0|    0|  loop pipeline stp|
-        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_36_2  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
-        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_77_3  |      259|      259|  2.590 us|  2.590 us|    0|    0|  loop pipeline stp|
+        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_19_1  |      258|      258|  2.580 us|  2.580 us|    0|    0|  loop pipeline stp|
+        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_32_2  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
+        |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_68_3  |      259|      259|  2.590 us|  2.590 us|    0|    0|  loop pipeline stp|
         +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
 
         * Loop: 
@@ -76,9 +76,9 @@
     |                        Instance                        |                    Module                   | BRAM_18K| DSP|  FF | LUT | URAM|
     +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
     |control_s_axi_U                                         |control_s_axi                                |        2|   0|  192|  238|    0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_22_1  |        0|   0|   11|   60|    0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_36_2  |        0|   0|   81|  240|    0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_77_3  |        0|   0|   23|   71|    0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102  |hls_histogram_gray_Pipeline_VITIS_LOOP_19_1  |        0|   0|   11|   60|    0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108  |hls_histogram_gray_Pipeline_VITIS_LOOP_32_2  |        0|   0|   81|  240|    0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118  |hls_histogram_gray_Pipeline_VITIS_LOOP_68_3  |        0|   0|   23|   71|    0|
     |mul_32s_32s_32_1_1_U9                                   |mul_32s_32s_32_1_1                           |        0|   3|    0|   20|    0|
     +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
     |Total                                                   |                                             |        2|   3|  307|  629|    0|
@@ -103,7 +103,7 @@
     +---------------------+----------+----+---+----+------------+------------+
     |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +---------------------+----------+----+---+----+------------+------------+
-    |icmp_ln36_fu_132_p2  |      icmp|   0|  0|  39|          32|           1|
+    |icmp_ln32_fu_132_p2  |      icmp|   0|  0|  39|          32|           1|
     |local_hist_we0       |        or|   0|  0|   2|           1|           1|
     +---------------------+----------+----+---+----+------------+------------+
     |Total                |          |   0|  0|  41|          33|           2|
@@ -129,10 +129,10 @@
     |                                 Name                                | FF | LUT| Bits| Const Bits|
     +---------------------------------------------------------------------+----+----+-----+-----------+
     |ap_CS_fsm                                                            |   7|   0|    7|          0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102_ap_start_reg  |   1|   0|    1|          0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108_ap_start_reg  |   1|   0|    1|          0|
-    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118_ap_start_reg  |   1|   0|    1|          0|
-    |icmp_ln36_reg_167                                                    |   1|   0|    1|          0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102_ap_start_reg  |   1|   0|    1|          0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108_ap_start_reg  |   1|   0|    1|          0|
+    |grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118_ap_start_reg  |   1|   0|    1|          0|
+    |icmp_ln32_reg_167                                                    |   1|   0|    1|          0|
     |total_pixels_reg_162                                                 |  32|   0|   32|          0|
     +---------------------------------------------------------------------+----+----+-----+-----------+
     |Total                                                                |  43|   0|   43|          0|
@@ -216,24 +216,24 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 1.23>
 ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%old_pixel_loc = alloca i64 1"   --->   Operation 8 'alloca' 'old_pixel_loc' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%old_count_loc = alloca i64 1"   --->   Operation 9 'alloca' 'old_count_loc' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 10 [1/1] (1.23ns)   --->   "%local_hist = alloca i64 1" [./hls_histogram.hpp:18->hls_histogram.cpp:19]   --->   Operation 10 'alloca' 'local_hist' <Predicate = true> <Delay = 1.23> <CoreInst = "RAM_T2P_BRAM">   --->   Core 98 'RAM_T2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.23> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
-ST_1 : Operation 11 [2/2] (0.00ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32 %local_hist"   --->   Operation 11 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_1 : Operation 10 [1/1] (1.23ns)   --->   "%local_hist = alloca i64 1" [./hls_histogram.hpp:15->hls_histogram.cpp:17]   --->   Operation 10 'alloca' 'local_hist' <Predicate = true> <Delay = 1.23> <CoreInst = "RAM_T2P_BRAM">   --->   Core 98 'RAM_T2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.23> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 11 [2/2] (0.00ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, i32 %local_hist"   --->   Operation 11 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
 
 State 2 <SV = 1> <Delay = 1.63>
-ST_2 : Operation 12 [1/2] (1.63ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_22_1, i32 %local_hist"   --->   Operation 12 'call' 'call_ln0' <Predicate = true> <Delay = 1.63> <CoreType = "Generic">   --->   Generic Core
+ST_2 : Operation 12 [1/2] (1.63ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_19_1, i32 %local_hist"   --->   Operation 12 'call' 'call_ln0' <Predicate = true> <Delay = 1.63> <CoreType = "Generic">   --->   Generic Core
 
 State 3 <SV = 2> <Delay = 6.78>
 ST_3 : Operation 13 [1/1] (1.00ns)   --->   "%height_read = read i32 @_ssdm_op_Read.s_axilite.i32, i32 %height"   --->   Operation 13 'read' 'height_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
 ST_3 : Operation 14 [1/1] (1.00ns)   --->   "%width_read = read i32 @_ssdm_op_Read.s_axilite.i32, i32 %width"   --->   Operation 14 'read' 'width_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 120 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
-ST_3 : Operation 15 [1/1] (3.42ns)   --->   "%total_pixels = mul i32 %height_read, i32 %width_read" [./hls_histogram.hpp:33->hls_histogram.cpp:19]   --->   Operation 15 'mul' 'total_pixels' <Predicate = true> <Delay = 3.42> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 3.42> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 16 [2/2] (2.36ns)   --->   "%call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc" [./hls_histogram.hpp:33->hls_histogram.cpp:19]   --->   Operation 16 'call' 'call_ln33' <Predicate = true> <Delay = 2.36> <CoreType = "Generic">   --->   Generic Core
-ST_3 : Operation 17 [1/1] (1.01ns)   --->   "%icmp_ln36 = icmp_eq  i32 %total_pixels, i32 0" [./hls_histogram.hpp:36->hls_histogram.cpp:19]   --->   Operation 17 'icmp' 'icmp_ln36' <Predicate = true> <Delay = 1.01> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 15 [1/1] (3.42ns)   --->   "%total_pixels = mul i32 %height_read, i32 %width_read" [./hls_histogram.hpp:29->hls_histogram.cpp:17]   --->   Operation 15 'mul' 'total_pixels' <Predicate = true> <Delay = 3.42> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 3.42> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 16 [2/2] (2.36ns)   --->   "%call_ln29 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc" [./hls_histogram.hpp:29->hls_histogram.cpp:17]   --->   Operation 16 'call' 'call_ln29' <Predicate = true> <Delay = 2.36> <CoreType = "Generic">   --->   Generic Core
+ST_3 : Operation 17 [1/1] (1.01ns)   --->   "%icmp_ln32 = icmp_eq  i32 %total_pixels, i32 0" [./hls_histogram.hpp:32->hls_histogram.cpp:17]   --->   Operation 17 'icmp' 'icmp_ln32' <Predicate = true> <Delay = 1.01> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
 
 State 4 <SV = 3> <Delay = 0.00>
-ST_4 : Operation 18 [1/2] (0.00ns)   --->   "%call_ln33 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_36_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc" [./hls_histogram.hpp:33->hls_histogram.cpp:19]   --->   Operation 18 'call' 'call_ln33' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_4 : Operation 18 [1/2] (0.00ns)   --->   "%call_ln29 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_32_2, i32 %total_pixels, i24 %stream_in, i32 %local_hist, i32 %old_count_loc, i8 %old_pixel_loc" [./hls_histogram.hpp:29->hls_histogram.cpp:17]   --->   Operation 18 'call' 'call_ln29' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
 
 State 5 <SV = 4> <Delay = 1.23>
-ST_5 : Operation 19 [1/1] (0.00ns)   --->   "%spectopmodule_ln5 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_9" [hls_histogram.cpp:5]   --->   Operation 19 'spectopmodule' 'spectopmodule_ln5' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 19 [1/1] (0.00ns)   --->   "%spectopmodule_ln3 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_9" [hls_histogram.cpp:3]   --->   Operation 19 'spectopmodule' 'spectopmodule_ln3' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i24 %stream_in, void @empty, i32 1, i32 1, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 21 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i24 %stream_in"   --->   Operation 21 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %hist_out, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_4, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
@@ -247,21 +247,21 @@ ST_5 : Operation 29 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void
 ST_5 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %height, void @empty_2, i32 4294967295, i32 4294967295, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_8, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 30 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %height, void @empty_7, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_2, i32 0, i32 0, void @empty_1, i32 0, i32 0, void @empty_3, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 33 [1/1] (0.00ns)   --->   "%specmemcore_ln19 = specmemcore void @_ssdm_op_SpecMemCore, i32 %local_hist, i64 666, i64 30, i64 18446744073709551615, i1 0" [./hls_histogram.hpp:19->hls_histogram.cpp:19]   --->   Operation 33 'specmemcore' 'specmemcore_ln19' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 33 [1/1] (0.00ns)   --->   "%specmemcore_ln16 = specmemcore void @_ssdm_op_SpecMemCore, i32 %local_hist, i64 666, i64 30, i64 18446744073709551615, i1 0" [./hls_histogram.hpp:16->hls_histogram.cpp:17]   --->   Operation 33 'specmemcore' 'specmemcore_ln16' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 34 [1/1] (0.00ns)   --->   "%old_count_loc_load = load i32 %old_count_loc"   --->   Operation 34 'load' 'old_count_loc_load' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 35 [1/1] (0.00ns)   --->   "%old_pixel_loc_load = load i8 %old_pixel_loc"   --->   Operation 35 'load' 'old_pixel_loc_load' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln36 = br i1 %icmp_ln36, void %if.then16.i.split, void %VITIS_LOOP_77_3.i" [./hls_histogram.hpp:36->hls_histogram.cpp:19]   --->   Operation 36 'br' 'br_ln36' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln73 = zext i8 %old_pixel_loc_load" [./hls_histogram.hpp:73->hls_histogram.cpp:19]   --->   Operation 37 'zext' 'zext_ln73' <Predicate = (!icmp_ln36)> <Delay = 0.00>
-ST_5 : Operation 38 [1/1] (0.00ns)   --->   "%local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i64 %zext_ln73" [./hls_histogram.hpp:73->hls_histogram.cpp:19]   --->   Operation 38 'getelementptr' 'local_hist_addr_1' <Predicate = (!icmp_ln36)> <Delay = 0.00>
-ST_5 : Operation 39 [1/1] ( I:1.23ns O:1.23ns )   --->   "%store_ln73 = store i32 %old_count_loc_load, i8 %local_hist_addr_1" [./hls_histogram.hpp:73->hls_histogram.cpp:19]   --->   Operation 39 'store' 'store_ln73' <Predicate = (!icmp_ln36)> <Delay = 1.23> <CoreInst = "RAM_T2P_BRAM">   --->   Core 98 'RAM_T2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.23> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
-ST_5 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln74 = br void %VITIS_LOOP_77_3.i" [./hls_histogram.hpp:74->hls_histogram.cpp:19]   --->   Operation 40 'br' 'br_ln74' <Predicate = (!icmp_ln36)> <Delay = 0.00>
+ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln32 = br i1 %icmp_ln32, void %if.then20.i.split, void %VITIS_LOOP_68_3.i" [./hls_histogram.hpp:32->hls_histogram.cpp:17]   --->   Operation 36 'br' 'br_ln32' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln64 = zext i8 %old_pixel_loc_load" [./hls_histogram.hpp:64->hls_histogram.cpp:17]   --->   Operation 37 'zext' 'zext_ln64' <Predicate = (!icmp_ln32)> <Delay = 0.00>
+ST_5 : Operation 38 [1/1] (0.00ns)   --->   "%local_hist_addr_1 = getelementptr i32 %local_hist, i64 0, i64 %zext_ln64" [./hls_histogram.hpp:64->hls_histogram.cpp:17]   --->   Operation 38 'getelementptr' 'local_hist_addr_1' <Predicate = (!icmp_ln32)> <Delay = 0.00>
+ST_5 : Operation 39 [1/1] ( I:1.23ns O:1.23ns )   --->   "%store_ln64 = store i32 %old_count_loc_load, i8 %local_hist_addr_1" [./hls_histogram.hpp:64->hls_histogram.cpp:17]   --->   Operation 39 'store' 'store_ln64' <Predicate = (!icmp_ln32)> <Delay = 1.23> <CoreInst = "RAM_T2P_BRAM">   --->   Core 98 'RAM_T2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.23> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_5 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln65 = br void %VITIS_LOOP_68_3.i" [./hls_histogram.hpp:65->hls_histogram.cpp:17]   --->   Operation 40 'br' 'br_ln65' <Predicate = (!icmp_ln32)> <Delay = 0.00>
 
 State 6 <SV = 5> <Delay = 0.00>
-ST_6 : Operation 41 [2/2] (0.00ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, i32 %local_hist, i32 %hist_out"   --->   Operation 41 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_6 : Operation 41 [2/2] (0.00ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, i32 %local_hist, i32 %hist_out"   --->   Operation 41 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
 
 State 7 <SV = 6> <Delay = 0.00>
-ST_7 : Operation 42 [1/2] (0.00ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_77_3, i32 %local_hist, i32 %hist_out"   --->   Operation 42 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
-ST_7 : Operation 43 [1/1] (0.00ns)   --->   "%ret_ln20 = ret" [hls_histogram.cpp:20]   --->   Operation 43 'ret' 'ret_ln20' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 42 [1/2] (0.00ns)   --->   "%call_ln0 = call void @hls_histogram_gray_Pipeline_VITIS_LOOP_68_3, i32 %local_hist, i32 %hist_out"   --->   Operation 42 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_7 : Operation 43 [1/1] (0.00ns)   --->   "%ret_ln18 = ret" [hls_histogram.cpp:18]   --->   Operation 43 'ret' 'ret_ln18' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -292,9 +292,9 @@ call_ln0           (call         ) [ 00000000]
 height_read        (read         ) [ 00000000]
 width_read         (read         ) [ 00000000]
 total_pixels       (mul          ) [ 00001000]
-icmp_ln36          (icmp         ) [ 00001100]
-call_ln33          (call         ) [ 00000000]
-spectopmodule_ln5  (spectopmodule) [ 00000000]
+icmp_ln32          (icmp         ) [ 00001100]
+call_ln29          (call         ) [ 00000000]
+spectopmodule_ln3  (spectopmodule) [ 00000000]
 specinterface_ln0  (specinterface) [ 00000000]
 specbitsmap_ln0    (specbitsmap  ) [ 00000000]
 specinterface_ln0  (specinterface) [ 00000000]
@@ -308,16 +308,16 @@ specbitsmap_ln0    (specbitsmap  ) [ 00000000]
 specinterface_ln0  (specinterface) [ 00000000]
 specinterface_ln0  (specinterface) [ 00000000]
 specinterface_ln0  (specinterface) [ 00000000]
-specmemcore_ln19   (specmemcore  ) [ 00000000]
+specmemcore_ln16   (specmemcore  ) [ 00000000]
 old_count_loc_load (load         ) [ 00000000]
 old_pixel_loc_load (load         ) [ 00000000]
-br_ln36            (br           ) [ 00000000]
-zext_ln73          (zext         ) [ 00000000]
+br_ln32            (br           ) [ 00000000]
+zext_ln64          (zext         ) [ 00000000]
 local_hist_addr_1  (getelementptr) [ 00000000]
-store_ln73         (store        ) [ 00000000]
-br_ln74            (br           ) [ 00000000]
+store_ln64         (store        ) [ 00000000]
+br_ln65            (br           ) [ 00000000]
 call_ln0           (call         ) [ 00000000]
-ret_ln20           (ret          ) [ 00000000]
+ret_ln18           (ret          ) [ 00000000]
 </LifeTime>
 
 <model>
@@ -374,7 +374,7 @@ ret_ln20           (ret          ) [ 00000000]
 <pin id="11" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="hls_histogram_gray_Pipeline_VITIS_LOOP_22_1"/></StgValue>
+<StgValue><ssdm name="hls_histogram_gray_Pipeline_VITIS_LOOP_19_1"/></StgValue>
 </bind>
 </comp>
 
@@ -392,7 +392,7 @@ ret_ln20           (ret          ) [ 00000000]
 <pin id="15" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="hls_histogram_gray_Pipeline_VITIS_LOOP_36_2"/></StgValue>
+<StgValue><ssdm name="hls_histogram_gray_Pipeline_VITIS_LOOP_32_2"/></StgValue>
 </bind>
 </comp>
 
@@ -617,7 +617,7 @@ ret_ln20           (ret          ) [ 00000000]
 <pin id="65" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="hls_histogram_gray_Pipeline_VITIS_LOOP_77_3"/></StgValue>
+<StgValue><ssdm name="hls_histogram_gray_Pipeline_VITIS_LOOP_68_3"/></StgValue>
 </bind>
 </comp>
 
@@ -691,7 +691,7 @@ ret_ln20           (ret          ) [ 00000000]
 </bind>
 </comp>
 
-<comp id="96" class="1004" name="store_ln73_access_fu_96">
+<comp id="96" class="1004" name="store_ln64_access_fu_96">
 <pin_list>
 <pin id="97" dir="0" index="0" bw="8" slack="0"/>
 <pin id="98" dir="0" index="1" bw="32" slack="0"/>
@@ -700,11 +700,11 @@ ret_ln20           (ret          ) [ 00000000]
 </pin_list>
 <bind>
 <opcode="store(28) " fcode="store"/>
-<opset="store_ln73/5 "/>
+<opset="store_ln64/5 "/>
 </bind>
 </comp>
 
-<comp id="102" class="1004" name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102">
+<comp id="102" class="1004" name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102">
 <pin_list>
 <pin id="103" dir="0" index="0" bw="0" slack="0"/>
 <pin id="104" dir="0" index="1" bw="32" slack="0"/>
@@ -716,7 +716,7 @@ ret_ln20           (ret          ) [ 00000000]
 </bind>
 </comp>
 
-<comp id="108" class="1004" name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108">
+<comp id="108" class="1004" name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108">
 <pin_list>
 <pin id="109" dir="0" index="0" bw="0" slack="0"/>
 <pin id="110" dir="0" index="1" bw="32" slack="0"/>
@@ -728,11 +728,11 @@ ret_ln20           (ret          ) [ 00000000]
 </pin_list>
 <bind>
 <opcode="call(48) " fcode="call"/>
-<opset="call_ln33/3 "/>
+<opset="call_ln29/3 "/>
 </bind>
 </comp>
 
-<comp id="118" class="1004" name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118">
+<comp id="118" class="1004" name="grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118">
 <pin_list>
 <pin id="119" dir="0" index="0" bw="0" slack="0"/>
 <pin id="120" dir="0" index="1" bw="32" slack="2147483647"/>
@@ -757,7 +757,7 @@ ret_ln20           (ret          ) [ 00000000]
 </bind>
 </comp>
 
-<comp id="132" class="1004" name="icmp_ln36_fu_132">
+<comp id="132" class="1004" name="icmp_ln32_fu_132">
 <pin_list>
 <pin id="133" dir="0" index="0" bw="32" slack="0"/>
 <pin id="134" dir="0" index="1" bw="32" slack="0"/>
@@ -765,7 +765,7 @@ ret_ln20           (ret          ) [ 00000000]
 </pin_list>
 <bind>
 <opcode="icmp(45) " fcode="icmp"/>
-<opset="icmp_ln36/3 "/>
+<opset="icmp_ln32/3 "/>
 </bind>
 </comp>
 
@@ -791,14 +791,14 @@ ret_ln20           (ret          ) [ 00000000]
 </bind>
 </comp>
 
-<comp id="145" class="1004" name="zext_ln73_fu_145">
+<comp id="145" class="1004" name="zext_ln64_fu_145">
 <pin_list>
 <pin id="146" dir="0" index="0" bw="8" slack="0"/>
 <pin id="147" dir="1" index="1" bw="64" slack="0"/>
 </pin_list>
 <bind>
 <opcode="zext(34) " fcode="zext"/>
-<opset="zext_ln73/5 "/>
+<opset="zext_ln64/5 "/>
 </bind>
 </comp>
 
@@ -832,13 +832,13 @@ ret_ln20           (ret          ) [ 00000000]
 </bind>
 </comp>
 
-<comp id="167" class="1005" name="icmp_ln36_reg_167">
+<comp id="167" class="1005" name="icmp_ln32_reg_167">
 <pin_list>
 <pin id="168" dir="0" index="0" bw="1" slack="2"/>
 <pin id="169" dir="1" index="1" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<opset="icmp_ln36 "/>
+<opset="icmp_ln32 "/>
 </bind>
 </comp>
 
@@ -926,13 +926,13 @@ ret_ln20           (ret          ) [ 00000000]
 		call_ln0 : 1
 	State 2
 	State 3
-		call_ln33 : 1
-		icmp_ln36 : 1
+		call_ln29 : 1
+		icmp_ln32 : 1
 	State 4
 	State 5
-		zext_ln73 : 1
+		zext_ln64 : 1
 		local_hist_addr_1 : 2
-		store_ln73 : 3
+		store_ln64 : 3
 	State 6
 	State 7
 
@@ -945,18 +945,18 @@ ret_ln20           (ret          ) [ 00000000]
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
 | Operation|                     Functional Unit                    |   DSP   |  Delay  |    FF   |   LUT   |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
-|          | grp_hls_histogram_gray_Pipeline_VITIS_LOOP_22_1_fu_102 |    0    |    0    |    9    |    32   |
-|   call   | grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108 |    0    |  0.854  |    83   |   143   |
-|          | grp_hls_histogram_gray_Pipeline_VITIS_LOOP_77_3_fu_118 |    0    |  1.281  |   122   |    59   |
+|          | grp_hls_histogram_gray_Pipeline_VITIS_LOOP_19_1_fu_102 |    0    |    0    |    9    |    32   |
+|   call   | grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108 |    0    |  0.854  |    83   |   143   |
+|          | grp_hls_histogram_gray_Pipeline_VITIS_LOOP_68_3_fu_118 |    0    |  1.281  |   122   |    59   |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
-|   icmp   |                    icmp_ln36_fu_132                    |    0    |    0    |    0    |    39   |
+|   icmp   |                    icmp_ln32_fu_132                    |    0    |    0    |    0    |    39   |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
 |    mul   |                   total_pixels_fu_125                  |    3    |    0    |    0    |    20   |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
 |   read   |                 height_read_read_fu_78                 |    0    |    0    |    0    |    0    |
 |          |                  width_read_read_fu_84                 |    0    |    0    |    0    |    0    |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
-|   zext   |                    zext_ln73_fu_145                    |    0    |    0    |    0    |    0    |
+|   zext   |                    zext_ln64_fu_145                    |    0    |    0    |    0    |    0    |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
 |   Total  |                                                        |    3    |  2.135  |   214   |   293   |
 |----------|--------------------------------------------------------|---------|---------|---------|---------|
@@ -974,7 +974,7 @@ Memories:
 +---------------------+--------+
 |                     |   FF   |
 +---------------------+--------+
-|  icmp_ln36_reg_167  |    1   |
+|  icmp_ln32_reg_167  |    1   |
 |old_count_loc_reg_156|   32   |
 |old_pixel_loc_reg_150|    8   |
 | total_pixels_reg_162|   32   |
@@ -986,7 +986,7 @@ Memories:
 |--------------------------------------------------------|------|------|------|--------||---------||---------||---------|
 |                          Comp                          |  Pin | Size |  BW  | S x BW ||  Delay  ||    FF   ||   LUT   |
 |--------------------------------------------------------|------|------|------|--------||---------||---------||---------|
-| grp_hls_histogram_gray_Pipeline_VITIS_LOOP_36_2_fu_108 |  p1  |   2  |  32  |   64   ||    0    ||    9    |
+| grp_hls_histogram_gray_Pipeline_VITIS_LOOP_32_2_fu_108 |  p1  |   2  |  32  |   64   ||    0    ||    9    |
 |--------------------------------------------------------|------|------|------|--------||---------||---------||---------|
 |                          Total                         |      |      |      |   64   ||  0.427  ||    0    ||    9    |
 |--------------------------------------------------------|------|------|------|--------||---------||---------||---------|

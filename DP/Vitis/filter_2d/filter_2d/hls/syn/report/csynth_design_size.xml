@@ -33,14 +33,14 @@
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
                 <row id="0" col0="hls_filter_2d" col1="hls_filter_2d.cpp:114" col2="3774" col3="620" col4="569" col5="435" col6="503">
-                    <row id="2" col0="update_window" col1="hls_filter_2d.cpp:8" col2="499" col3="111" col4="86" col5="" col6="">
-                        <row id="1" col0="operator ap_uint" col1="hls_video_types.hpp:87" col2="83" col3="" col4="" col5="" col6=""/>
+                    <row id="4" col0="update_window" col1="hls_filter_2d.cpp:8" col2="499" col3="111" col4="86" col5="" col6="">
+                        <row id="2" col0="operator ap_uint" col1="hls_video_types.hpp:87" col2="83" col3="" col4="" col5="" col6=""/>
                     </row>
-                    <row id="5" col0="compute_and_write_output" col1="hls_filter_2d.cpp:49" col2="2604" col3="441" col4="364" col5="" col6="">
-                        <row id="6" col0="axi_stream_video" col1="hls_video_types.hpp:18" col2="44" col3="" col4="" col5="" col6="">
+                    <row id="6" col0="compute_and_write_output" col1="hls_filter_2d.cpp:49" col2="2604" col3="441" col4="364" col5="" col6="">
+                        <row id="1" col0="axi_stream_video" col1="hls_video_types.hpp:18" col2="44" col3="" col4="" col5="" col6="">
                             <row id="3" col0="color_pixel" col1="hls_video_types.hpp:43" col2="39" col3="" col4="" col5="" col6=""/>
                         </row>
-                        <row id="4" col0="color_pixel" col1="hls_video_types.hpp:57" col2="77" col3="" col4="" col5="" col6=""/>
+                        <row id="5" col0="color_pixel" col1="hls_video_types.hpp:57" col2="77" col3="" col4="" col5="" col6=""/>
                     </row>
                 </row>
             </rows>
