@@ -34,10 +34,10 @@
             string file_queue_in_stream [$];                                                         
             integer bitwidth_queue_in_stream [$];                                                    
                                                                                                                
-            svr_pkg::svr_master_sequence#(42) svr_port_in_stream_seq;            
-            svr_pkg::svr_random_sequence#(42) svr_port_random_port_in_stream_seq;
+            svr_pkg::svr_master_sequence#(32) svr_port_in_stream_seq;            
+            svr_pkg::svr_random_sequence#(32) svr_port_random_port_in_stream_seq;
 
-            svr_pkg::svr_slave_sequence #(42) svr_port_out_stream_seq;            
+            svr_pkg::svr_slave_sequence #(32) svr_port_out_stream_seq;            
 
             axi_pkg::axi_busdatas_master_sequence#(4, 32) axi_master_wr_control_seq;
             axi_pkg::axi_busdatas_master_sequence#(4, 32) axi_master_poll_control_seq;
@@ -68,13 +68,13 @@
                         begin
                             string keystr_delay;
                             file_queue_in_stream.push_back(`AUTOTB_TVIN_in_stream_in_stream_TDATA);
-                            bitwidth_queue_in_stream.push_back(32);
+                            bitwidth_queue_in_stream.push_back(24);
 
                             file_queue_in_stream.push_back(`AUTOTB_TVIN_in_stream_in_stream_TKEEP);
-                            bitwidth_queue_in_stream.push_back(4);
+                            bitwidth_queue_in_stream.push_back(3);
 
                             file_queue_in_stream.push_back(`AUTOTB_TVIN_in_stream_in_stream_TSTRB);
-                            bitwidth_queue_in_stream.push_back(4);
+                            bitwidth_queue_in_stream.push_back(3);
 
                             file_queue_in_stream.push_back(`AUTOTB_TVIN_in_stream_in_stream_TUSER);
                             bitwidth_queue_in_stream.push_back(1);
@@ -110,15 +110,15 @@
                             axi_master_wr_control_seq.ap_ready   = refm.ap_ready_for_nexttrans  ;
                             axi_master_wr_control_seq.finish     = refm.finish ;
                             axi_master_wr_control_seq.isusr_delay = axi_pkg::NO_DELAY;
-                            for(int i=0; i<16; i++) begin
+                            for(int i=0; i<36; i++) begin
                                 fork
                                     begin // configure start to enable DUT
                                         axi_master_wr_control_seq.wr_addr_data.push_back( (1<<0)+(0<<32) );
-                                        `uvm_info("control start dut by axilite", $sformatf("%0dth(total 16): begin to set start bit",i), UVM_LOW)
+                                        `uvm_info("control start dut by axilite", $sformatf("%0dth(total 36): begin to set start bit",i), UVM_LOW)
                                         `uvm_send(axi_master_wr_control_seq);
                                     end
                                     begin
-                                        `uvm_info("control wait for ap_ready for next trans", $sformatf("%0dth(total 16): begin to wait",i), UVM_LOW)
+                                        `uvm_info("control wait for ap_ready for next trans", $sformatf("%0dth(total 36): begin to wait",i), UVM_LOW)
                                         wait(refm.dut2tb_ap_ready.triggered);
                                         wait(refm.ap_done_for_nexttrans.triggered);
                                         #0.01; //make sure mem incr_rd_page_idx is called first
@@ -127,7 +127,7 @@
                             end
                         end
                         begin
-                            for(int j=0; j<16; j=j+refm.ap_done_cnt) begin
+                            for(int j=0; j<36; j=j+refm.ap_done_cnt) begin
                                 wait(misc_if.dut2tb_ap_done_kernel == 1);
                                 `uvm_info("test finish control", $sformatf("ap_done of kernel is triggered"), UVM_LOW)
                                 @(posedge misc_if.clock);
@@ -141,7 +141,7 @@
                                         repeat(2) @(posedge misc_if.clock);
                                     end
                                     begin
-                                        `uvm_info("test finish control", $sformatf("%0dth(total 16) ap_done_for_nexttrans begin to wait",j), UVM_LOW)
+                                        `uvm_info("test finish control", $sformatf("%0dth(total 36) ap_done_for_nexttrans begin to wait",j), UVM_LOW)
                                         @refm.dut2tb_ap_done;
                                     end
                                 join_any
@@ -160,7 +160,7 @@
                 end
 
                 begin
-                    for(int j=0; j<16; j=j+refm.ap_done_cnt) @refm.ap_done_for_nexttrans;
+                    for(int j=0; j<36; j=j+refm.ap_done_cnt) @refm.ap_done_for_nexttrans;
                     `uvm_info(this.get_full_name(), "autotb finished", UVM_LOW)
                     -> refm.finish;
                     refm.misc_if.finished = 1;

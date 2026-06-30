@@ -14,8 +14,8 @@
         hls_passthrough_virtual_sequencer hls_passthrough_virtual_sqr;                                                      
         hls_passthrough_config hls_passthrough_cfg;                                                                         
                                                                                                                     
-        svr_pkg::svr_env#(42) env_master_svr_in_stream;
-        svr_pkg::svr_env#(42) env_slave_svr_out_stream;
+        svr_pkg::svr_env#(32) env_master_svr_in_stream;
+        svr_pkg::svr_env#(32) env_slave_svr_out_stream;
         axi_pkg::axi_env#(4,4,4,3,1) axi_lite_control;
                                                                                                                     
         hls_passthrough_reference_model   refm;                                                                         
@@ -45,7 +45,7 @@
         hls_passthrough_cfg = hls_passthrough_config::type_id::create("hls_passthrough_cfg", this);                           
                                                                                                                     
         hls_passthrough_cfg.port_in_stream_cfg.svr_type = svr_pkg::SVR_MASTER ;
-        env_master_svr_in_stream  = svr_env#(42)::type_id::create("env_master_svr_in_stream", this);
+        env_master_svr_in_stream  = svr_env#(32)::type_id::create("env_master_svr_in_stream", this);
         uvm_config_db#(svr_pkg::svr_config)::set(this, "env_master_svr_in_stream*", "cfg", hls_passthrough_cfg.port_in_stream_cfg);
         hls_passthrough_cfg.port_in_stream_cfg.prt_type = svr_pkg::AXIS;
         hls_passthrough_cfg.port_in_stream_cfg.is_active = svr_pkg::SVR_ACTIVE;
@@ -53,7 +53,7 @@
         hls_passthrough_cfg.port_in_stream_cfg.reset_level = svr_pkg::RESET_LEVEL_LOW;
  
         hls_passthrough_cfg.port_out_stream_cfg.svr_type = svr_pkg::SVR_SLAVE ;
-        env_slave_svr_out_stream  = svr_env#(42)::type_id::create("env_slave_svr_out_stream", this);
+        env_slave_svr_out_stream  = svr_env#(32)::type_id::create("env_slave_svr_out_stream", this);
         uvm_config_db#(svr_pkg::svr_config)::set(this, "env_slave_svr_out_stream*", "cfg", hls_passthrough_cfg.port_out_stream_cfg);
         hls_passthrough_cfg.port_out_stream_cfg.prt_type = svr_pkg::AXIS;
         hls_passthrough_cfg.port_out_stream_cfg.is_active = svr_pkg::SVR_ACTIVE;

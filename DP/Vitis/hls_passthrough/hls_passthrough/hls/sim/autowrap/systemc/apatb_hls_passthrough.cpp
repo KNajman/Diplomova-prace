@@ -1304,7 +1304,7 @@ extern "C"
 void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* __xlx_apatb_param_in_stream_V_keep_V, void* __xlx_apatb_param_in_stream_V_strb_V, void* __xlx_apatb_param_in_stream_V_user_V, void* __xlx_apatb_param_in_stream_V_last_V, void* __xlx_apatb_param_out_stream_V_data_V, void* __xlx_apatb_param_out_stream_V_keep_V, void* __xlx_apatb_param_out_stream_V_strb_V, void* __xlx_apatb_param_out_stream_V_user_V, void* __xlx_apatb_param_out_stream_V_last_V)
 {
   static hls::sim::Stream<hls::sim::Byte<4>> port0 {
-    .width = 32,
+    .width = 24,
     .name = "in_stream_V_data_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(WRAPC_STREAM_SIZE_IN_in_stream_V_data_V),
@@ -1318,7 +1318,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port0.hasWrite = false;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port1 {
-    .width = 4,
+    .width = 3,
     .name = "in_stream_V_keep_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(WRAPC_STREAM_SIZE_IN_in_stream_V_keep_V),
@@ -1332,7 +1332,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port1.hasWrite = false;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port2 {
-    .width = 4,
+    .width = 3,
     .name = "in_stream_V_strb_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(WRAPC_STREAM_SIZE_IN_in_stream_V_strb_V),
@@ -1374,7 +1374,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port4.hasWrite = false;
 
   static hls::sim::Stream<hls::sim::Byte<4>> port5 {
-    .width = 32,
+    .width = 24,
     .name = "out_stream_V_data_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_out_stream_V_data_V),
@@ -1388,7 +1388,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port5.hasWrite = true;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port6 {
-    .width = 4,
+    .width = 3,
     .name = "out_stream_V_keep_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_out_stream_V_keep_V),
@@ -1402,7 +1402,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port6.hasWrite = true;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port7 {
-    .width = 4,
+    .width = 3,
     .name = "out_stream_V_strb_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_out_stream_V_strb_V),

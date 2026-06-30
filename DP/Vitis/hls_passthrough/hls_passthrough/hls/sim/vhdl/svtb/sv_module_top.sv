@@ -33,29 +33,29 @@ module sv_module_top;
     end
 
 
-    svr_if #(42)  svr_in_stream_if    (.clk  (apatb_hls_passthrough_top.AESL_clock), .rst(apatb_hls_passthrough_top.AESL_reset));
+    svr_if #(32)  svr_in_stream_if    (.clk  (apatb_hls_passthrough_top.AESL_clock), .rst(apatb_hls_passthrough_top.AESL_reset));
     assign svr_in_stream_if.ready = apatb_hls_passthrough_top.in_stream_TREADY;
     assign apatb_hls_passthrough_top.in_stream_TVALID = svr_in_stream_if.valid;
-    assign apatb_hls_passthrough_top.in_stream_TDATA = svr_in_stream_if.data[31:0];
-    assign apatb_hls_passthrough_top.in_stream_TKEEP = svr_in_stream_if.data[35:32];
-    assign apatb_hls_passthrough_top.in_stream_TSTRB = svr_in_stream_if.data[39:36];
-    assign apatb_hls_passthrough_top.in_stream_TUSER = svr_in_stream_if.data[40:40];
-    assign apatb_hls_passthrough_top.in_stream_TLAST = svr_in_stream_if.data[41:41];
+    assign apatb_hls_passthrough_top.in_stream_TDATA = svr_in_stream_if.data[23:0];
+    assign apatb_hls_passthrough_top.in_stream_TKEEP = svr_in_stream_if.data[26:24];
+    assign apatb_hls_passthrough_top.in_stream_TSTRB = svr_in_stream_if.data[29:27];
+    assign apatb_hls_passthrough_top.in_stream_TUSER = svr_in_stream_if.data[30:30];
+    assign apatb_hls_passthrough_top.in_stream_TLAST = svr_in_stream_if.data[31:31];
     initial begin
-        uvm_config_db #( virtual svr_if#(42) )::set(null, "uvm_test_top.top_env.env_master_svr_in_stream.*", "vif", svr_in_stream_if);
+        uvm_config_db #( virtual svr_if#(32) )::set(null, "uvm_test_top.top_env.env_master_svr_in_stream.*", "vif", svr_in_stream_if);
     end
 
 
-    svr_if #(42)  svr_out_stream_if    (.clk  (apatb_hls_passthrough_top.AESL_clock), .rst(apatb_hls_passthrough_top.AESL_reset));
+    svr_if #(32)  svr_out_stream_if    (.clk  (apatb_hls_passthrough_top.AESL_clock), .rst(apatb_hls_passthrough_top.AESL_reset));
     assign apatb_hls_passthrough_top.out_stream_TREADY = svr_out_stream_if.ready;
     assign svr_out_stream_if.valid = apatb_hls_passthrough_top.out_stream_TVALID;
-    assign svr_out_stream_if.data[31:0] = apatb_hls_passthrough_top.out_stream_TDATA;
-    assign svr_out_stream_if.data[35:32] = apatb_hls_passthrough_top.out_stream_TKEEP;
-    assign svr_out_stream_if.data[39:36] = apatb_hls_passthrough_top.out_stream_TSTRB;
-    assign svr_out_stream_if.data[40:40] = apatb_hls_passthrough_top.out_stream_TUSER;
-    assign svr_out_stream_if.data[41:41] = apatb_hls_passthrough_top.out_stream_TLAST;
+    assign svr_out_stream_if.data[23:0] = apatb_hls_passthrough_top.out_stream_TDATA;
+    assign svr_out_stream_if.data[26:24] = apatb_hls_passthrough_top.out_stream_TKEEP;
+    assign svr_out_stream_if.data[29:27] = apatb_hls_passthrough_top.out_stream_TSTRB;
+    assign svr_out_stream_if.data[30:30] = apatb_hls_passthrough_top.out_stream_TUSER;
+    assign svr_out_stream_if.data[31:31] = apatb_hls_passthrough_top.out_stream_TLAST;
     initial begin
-        uvm_config_db #( virtual svr_if#(42) )::set(null, "uvm_test_top.top_env.env_slave_svr_out_stream.*", "vif", svr_out_stream_if);
+        uvm_config_db #( virtual svr_if#(32) )::set(null, "uvm_test_top.top_env.env_slave_svr_out_stream.*", "vif", svr_out_stream_if);
     end
 
 

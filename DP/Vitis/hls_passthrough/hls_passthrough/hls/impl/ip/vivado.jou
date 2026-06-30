@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Mon Jun 22 10:46:55 2026
-# Process ID         : 5296
+# Start of session at: Tue Jun 30 11:54:35 2026
+# Process ID         : 27916
 # Current directory  : D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough/hls/impl/ip
 # Command line       : vivado.exe -notrace -mode batch -source run_ippack.tcl
 # Log file           : D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough/hls/impl/ip/vivado.log
@@ -17,8 +17,8 @@
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 12723 MB
-# Swap memory        : 9126 MB
-# Total Virtual      : 21850 MB
-# Available Virtual  : 9599 MB
+# Swap memory        : 9492 MB
+# Total Virtual      : 22216 MB
+# Available Virtual  : 6111 MB
 #-----------------------------------------------------------
 source run_ippack.tcl -notrace

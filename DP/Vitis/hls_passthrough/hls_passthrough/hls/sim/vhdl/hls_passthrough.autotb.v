@@ -49,19 +49,19 @@
 `define AUTOTB_TVOUT_out_stream_V_last_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvout_out_stream_V_last_V.dat"
 module `AUTOTB_TOP;
 
-parameter AUTOTB_TRANSACTION_NUM = 16;
+parameter AUTOTB_TRANSACTION_NUM = 36;
 parameter PROGRESS_TIMEOUT = 10000000;
-parameter LATENCY_ESTIMATION = 1;
-parameter LENGTH_in_stream_V_data_V = 1;
-parameter LENGTH_in_stream_V_keep_V = 1;
-parameter LENGTH_in_stream_V_last_V = 1;
-parameter LENGTH_in_stream_V_strb_V = 1;
-parameter LENGTH_in_stream_V_user_V = 1;
-parameter LENGTH_out_stream_V_data_V = 1;
-parameter LENGTH_out_stream_V_keep_V = 1;
-parameter LENGTH_out_stream_V_last_V = 1;
-parameter LENGTH_out_stream_V_strb_V = 1;
-parameter LENGTH_out_stream_V_user_V = 1;
+parameter LATENCY_ESTIMATION = -1;
+parameter LENGTH_in_stream_V_data_V = 64;
+parameter LENGTH_in_stream_V_keep_V = 64;
+parameter LENGTH_in_stream_V_last_V = 64;
+parameter LENGTH_in_stream_V_strb_V = 64;
+parameter LENGTH_in_stream_V_user_V = 64;
+parameter LENGTH_out_stream_V_data_V = 64;
+parameter LENGTH_out_stream_V_keep_V = 64;
+parameter LENGTH_out_stream_V_last_V = 64;
+parameter LENGTH_out_stream_V_strb_V = 64;
+parameter LENGTH_out_stream_V_user_V = 64;
 
 reg AESL_clock;
 reg rst;
@@ -101,16 +101,16 @@ wire [1 : 0] control_BRESP;
 wire  control_INTERRUPT;
 wire  in_stream_TVALID;
 wire  out_stream_TREADY;
-wire [31 : 0] in_stream_TDATA;
+wire [23 : 0] in_stream_TDATA;
 wire  in_stream_TREADY;
-wire [3 : 0] in_stream_TKEEP;
-wire [3 : 0] in_stream_TSTRB;
+wire [2 : 0] in_stream_TKEEP;
+wire [2 : 0] in_stream_TSTRB;
 wire [0 : 0] in_stream_TUSER;
 wire [0 : 0] in_stream_TLAST;
-wire [31 : 0] out_stream_TDATA;
+wire [23 : 0] out_stream_TDATA;
 wire  out_stream_TVALID;
-wire [3 : 0] out_stream_TKEEP;
-wire [3 : 0] out_stream_TSTRB;
+wire [2 : 0] out_stream_TKEEP;
+wire [2 : 0] out_stream_TSTRB;
 wire [0 : 0] out_stream_TUSER;
 wire [0 : 0] out_stream_TLAST;
 integer done_cnt = 0;
@@ -313,13 +313,6 @@ initial begin : simulation_progress
                     progress_timeout = progress_timeout - 1;
                 end
             end
-        end
-        // non-dataflow design && latency is predictable && no AXI master/slave interface
-        get_intra_progress(intra_progress);
-        if (intra_progress > 1000) begin
-            $display("// RTL Simulation : transaction %0d run-time latency is greater than %0f time(s) of the prediction @ \"%0t\"", start_cnt, intra_progress, $time);
-            $display("////////////////////////////////////////////////////////////////////////////////////");
-            $finish;
         end
     end
     print_progress();

@@ -9,8 +9,8 @@
     `define HLS_PASSTHROUGH_VIRTUAL_SEQUENCER__SV                    
                                                                        
     class hls_passthrough_virtual_sequencer extends uvm_sequencer;         
-        svr_master_sequencer#(42) svr_port_in_stream_sqr;
-        svr_slave_sequencer#(42) svr_port_out_stream_sqr;
+        svr_master_sequencer#(32) svr_port_in_stream_sqr;
+        svr_slave_sequencer#(32) svr_port_out_stream_sqr;
         axi_pkg::axi_virtual_sequencer control_sqr; 
  
         function new (string name, uvm_component parent);              

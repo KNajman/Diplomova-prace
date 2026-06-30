@@ -57,7 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param general.usePosixSpawnForFork 1
-set_param bd.open.in_stealth_mode 1
+set_param bd.open.in_stealth_mode 2
 set_msg_config  -id {Board 49-26}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xck26-sfvc784-2LV-c
@@ -121,10 +121,8 @@ set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_0/smartconnect.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_rst_ps8_0_99M_0/design_DMA_2C_rst_ps8_0_99M_0_board.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_rst_ps8_0_99M_0/design_DMA_2C_rst_ps8_0_99M_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_dma_0_0/design_DMA_2C_axi_dma_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_1/bd_ee55_psr_aclk_0_board.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_2/bd_ee55_arsw_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/Repos/_DP/DP/Vivado/DP.gen/sources_1/bd/design_DMA_2C/ip/design_DMA_2C_axi_smc_1_0/bd_0/ip/ip_3/bd_ee55_rsw_0_ooc.xdc]

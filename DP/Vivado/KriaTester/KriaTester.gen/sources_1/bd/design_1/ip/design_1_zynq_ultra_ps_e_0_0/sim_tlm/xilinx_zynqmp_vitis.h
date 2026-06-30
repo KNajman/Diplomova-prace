@@ -44,11 +44,11 @@
 // PART OF THIS FILE AT ALL TIMES.
 ////////////////////////////////////////////////////////////
 /*
- * Xilinx SystemC/TLM-2.0 ZynqMP Wrapper.
+ * Amd SystemC/TLM-2.0 ZynqMP Wrapper.
  *
- * Written by Edgar E. Iglesias <edgar.iglesias@xilinx.com>
+ * Written by Edgar E. Iglesias <edgar.iglesias@Amd.com>
  *
- * Copyright (c) 2016, Xilinx Inc.
+ * Copyright (c) 2016, Amd Inc.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy

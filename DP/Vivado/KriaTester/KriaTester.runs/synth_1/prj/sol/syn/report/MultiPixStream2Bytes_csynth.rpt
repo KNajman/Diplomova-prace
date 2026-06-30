@@ -1,0 +1,194 @@
+
+
+================================================================
+== Vitis HLS Report for 'MultiPixStream2Bytes'
+================================================================
+* Date:           Tue Jun 30 12:03:25 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 14 2025)
+* Project:        prj
+* Solution:       sol (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xck26-sfvc784-2LV-c
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.652 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+---------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |    Interval   | Pipeline|
+    |   min   |   max   |    min    |    max    | min |   max   |   Type  |
+    +---------+---------+-----------+-----------+-----+---------+---------+
+    |        1|  4151521|  10.000 ns|  41.515 ms|    1|  4151521|       no|
+    +---------+---------+-----------+-----------+-----+---------+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------------------------+-------------------------------------------------+---------+---------+-----------+-----------+-----+-----+-------------------+
+        |                                                            |                                                 |  Latency (cycles) |   Latency (absolute)  |  Interval |      Pipeline     |
+        |                          Instance                          |                      Module                     |   min   |   max   |    min    |    max    | min | max |        Type       |
+        +------------------------------------------------------------+-------------------------------------------------+---------+---------+-----------+-----------+-----+-----+-------------------+
+        |grp_MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1_fu_196  |MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1  |        2|     3842|  20.000 ns|  38.420 us|    0|    0|  loop pipeline stp|
+        +------------------------------------------------------------+-------------------------------------------------+---------+---------+-----------+-----------+-----+-----+-------------------+
+
+        * Loop: 
+        +------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |                  |  Latency (cycles) | Iteration|  Initiation Interval  |    Trip   |          |
+        |     Loop Name    |   min   |   max   |  Latency |  achieved |   target  |   Count   | Pipelined|
+        +------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |- loop_RGB8_YUV8  |      256|  4151520|  4 ~ 3844|          -|          -|  64 ~ 1080|        no|
+        +------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     225|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     1|     343|     615|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       0|      47|    -|
+|Register         |        -|     -|      62|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     1|     405|     887|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |      288|  1248|  234240|  117120|   64|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|    ~0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------------------------+-------------------------------------------------+---------+----+-----+-----+-----+
+    |                          Instance                          |                      Module                     | BRAM_18K| DSP|  FF | LUT | URAM|
+    +------------------------------------------------------------+-------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1_fu_196  |MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1  |        0|   0|  343|  610|    0|
+    |mul_11ns_13ns_23_1_1_U62                                    |mul_11ns_13ns_23_1_1                             |        0|   1|    0|    5|    0|
+    +------------------------------------------------------------+-------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                       |                                                 |        0|   1|  343|  615|    0|
+    +------------------------------------------------------------+-------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |add_ln1072_fu_261_p2     |         +|   0|  0|  21|          14|           3|
+    |add_ln1073_fu_277_p2     |         +|   0|  0|  18|          11|           2|
+    |add_ln1081_fu_361_p2     |         +|   0|  0|  19|           8|           6|
+    |add_ln1095_fu_385_p2     |         +|   0|  0|  17|          10|           2|
+    |y_2_fu_474_p2            |         +|   0|  0|  18|          11|           1|
+    |sub_ln1081_fu_355_p2     |         -|   0|  0|  19|           8|           8|
+    |icmp_ln1077_fu_321_p2    |      icmp|   0|  0|  10|           3|           1|
+    |icmp_ln1086_fu_469_p2    |      icmp|   0|  0|  18|          11|          11|
+    |icmp_ln1095_1_fu_407_p2  |      icmp|   0|  0|  12|           4|           2|
+    |icmp_ln1095_2_fu_423_p2  |      icmp|   0|  0|   9|           2|           1|
+    |icmp_ln1095_3_fu_429_p2  |      icmp|   0|  0|  12|           4|           3|
+    |icmp_ln1095_4_fu_435_p2  |      icmp|   0|  0|  12|           4|           3|
+    |icmp_ln1095_5_fu_441_p2  |      icmp|   0|  0|  12|           4|           3|
+    |icmp_ln1095_fu_401_p2    |      icmp|   0|  0|  10|           3|           1|
+    |icmp_ln1110_fu_455_p2    |      icmp|   0|  0|   9|           2|           2|
+    |ap_block_state1          |        or|   0|  0|   2|           1|           1|
+    |remainPix_fu_327_p3      |    select|   0|  0|   5|           1|           5|
+    |remainTrx_fu_377_p3      |    select|   0|  0|   2|           1|           2|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |Total                    |          |   0|  0| 225|         102|          57|
+    +-------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------+----+-----------+-----+-----------+
+    |    Name    | LUT| Input Size| Bits| Total Bits|
+    +------------+----+-----------+-----+-----------+
+    |ap_NS_fsm   |  20|          4|    1|          4|
+    |ap_done     |   9|          2|    1|          2|
+    |real_start  |   9|          2|    1|          2|
+    |y_fu_168    |   9|          2|   11|         22|
+    +------------+----+-----------+-----+-----------+
+    |Total       |  47|         10|   14|         30|
+    +------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                   Name                                  | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+    |Height_val_read_reg_489                                                  |  11|   0|   11|          0|
+    |VideoFormat_val_read_reg_485                                             |   6|   0|    6|          0|
+    |add_ln1095_reg_511                                                       |  10|   0|   10|          0|
+    |ap_CS_fsm                                                                |   3|   0|    3|          0|
+    |ap_done_reg                                                              |   1|   0|    1|          0|
+    |grp_MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1_fu_196_ap_start_reg  |   1|   0|    1|          0|
+    |icmp_ln1077_reg_506                                                      |   1|   0|    1|          0|
+    |icmp_ln1095_1_reg_521                                                    |   1|   0|    1|          0|
+    |icmp_ln1095_2_reg_526                                                    |   1|   0|    1|          0|
+    |icmp_ln1095_3_reg_531                                                    |   1|   0|    1|          0|
+    |icmp_ln1095_4_reg_536                                                    |   1|   0|    1|          0|
+    |icmp_ln1095_5_reg_541                                                    |   1|   0|    1|          0|
+    |icmp_ln1095_reg_516                                                      |   1|   0|    1|          0|
+    |icmp_ln1110_reg_551                                                      |   1|   0|    1|          0|
+    |start_once_reg                                                           |   1|   0|    1|          0|
+    |tmp_6_reg_546                                                            |   1|   0|    1|          0|
+    |trunc_ln1_cast_reg_501                                                   |   9|   0|    9|          0|
+    |y_fu_168                                                                 |  11|   0|   11|          0|
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                    |  62|   0|   62|          0|
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+----------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++---------------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|start_full_n               |   in|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|ap_continue                |   in|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|start_out                  |  out|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|start_write                |  out|    1|  ap_ctrl_hs|  MultiPixStream2Bytes|  return value|
+|img_dout                   |   in|   24|     ap_fifo|                   img|       pointer|
+|img_empty_n                |   in|    1|     ap_fifo|                   img|       pointer|
+|img_read                   |  out|    1|     ap_fifo|                   img|       pointer|
+|img_num_data_valid         |   in|    3|     ap_fifo|                   img|       pointer|
+|img_fifo_cap               |   in|    3|     ap_fifo|                   img|       pointer|
+|bytePlanes_din             |  out|   64|     ap_fifo|            bytePlanes|       pointer|
+|bytePlanes_full_n          |   in|    1|     ap_fifo|            bytePlanes|       pointer|
+|bytePlanes_write           |  out|    1|     ap_fifo|            bytePlanes|       pointer|
+|bytePlanes_num_data_valid  |   in|   32|     ap_fifo|            bytePlanes|       pointer|
+|bytePlanes_fifo_cap        |   in|   32|     ap_fifo|            bytePlanes|       pointer|
+|Height_val                 |   in|   11|   ap_stable|            Height_val|        scalar|
+|WidthInPix_val             |   in|   11|   ap_stable|        WidthInPix_val|        scalar|
+|WidthInBytes_val           |   in|   14|   ap_stable|      WidthInBytes_val|        scalar|
+|VideoFormat_val            |   in|    6|   ap_stable|       VideoFormat_val|        scalar|
++---------------------------+-----+-----+------------+----------------------+--------------+
+

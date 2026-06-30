@@ -4,7 +4,7 @@ XHls_passthrough_Config XHls_passthrough_ConfigTable[] __attribute__ ((section (
 
 	{
 		"xlnx,hls-passthrough-1.0", /* compatible */
-		0xa0010000 /* reg */
+		0xa0020000 /* reg */
 	},
 	 {
 		 NULL

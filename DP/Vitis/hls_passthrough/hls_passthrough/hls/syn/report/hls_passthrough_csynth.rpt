@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_passthrough'
 ================================================================
-* Date:           Mon Jun 22 10:45:59 2026
+* Date:           Tue Jun 30 11:47:17 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_passthrough
@@ -20,24 +20,29 @@
     +--------+----------+----------+------------+
     |  Clock |  Target  | Estimated| Uncertainty|
     +--------+----------+----------+------------+
-    |ap_clk  |  10.00 ns|  0.576 ns|     2.70 ns|
+    |ap_clk  |  10.00 ns|  0.554 ns|     2.70 ns|
     +--------+----------+----------+------------+
 
 + Latency: 
     * Summary: 
-    +---------+---------+-----------+-----------+-----+-----+---------+
-    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
-    |   min   |   max   |    min    |    max    | min | max |   Type  |
-    +---------+---------+-----------+-----------+-----+-----+---------+
-    |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
-    +---------+---------+-----------+-----------+-----+-----+---------+
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        N/A
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_14_1  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
 
 
 
@@ -53,10 +58,10 @@
 |FIFO             |        -|     -|       -|       -|    -|
 |Instance         |        0|     -|      36|      40|    0|
 |Memory           |        -|     -|       -|       -|    -|
-|Multiplexer      |        -|     -|       0|      18|    -|
-|Register         |        -|     -|       2|       -|    -|
+|Multiplexer      |        -|     -|       0|      36|    -|
+|Register         |        -|     -|       4|       -|    -|
 +-----------------+---------+------+--------+--------+-----+
-|Total            |        0|     0|      38|      66|    0|
+|Total            |        0|     0|      40|      84|    0|
 +-----------------+---------+------+--------+--------+-----+
 |Available        |      288|  1248|  234240|  117120|   64|
 +-----------------+---------+------+--------+--------+-----+
@@ -95,24 +100,28 @@
     +----------------------------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
-    +------------------------+----+-----------+-----+-----------+
-    |          Name          | LUT| Input Size| Bits| Total Bits|
-    +------------------------+----+-----------+-----+-----------+
-    |in_stream_TDATA_blk_n   |   9|          2|    1|          2|
-    |out_stream_TDATA_blk_n  |   9|          2|    1|          2|
-    +------------------------+----+-----------+-----+-----------+
-    |Total                   |  18|          4|    2|          4|
-    +------------------------+----+-----------+-----+-----------+
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                       |   9|          2|    1|          2|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   9|          2|    1|          2|
+    |in_stream_TDATA_blk_n             |   9|          2|    1|          2|
+    |out_stream_TDATA_blk_n            |   9|          2|    1|          2|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  36|          8|    4|          8|
+    +----------------------------------+----+-----------+-----+-----------+
 
     * Register: 
-    +-------------------------+---+----+-----+-----------+
-    |           Name          | FF| LUT| Bits| Const Bits|
-    +-------------------------+---+----+-----+-----------+
-    |ap_CS_fsm                |  1|   0|    1|          0|
-    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
-    +-------------------------+---+----+-----+-----------+
-    |Total                    |  2|   0|    2|          0|
-    +-------------------------+---+----+-----+-----------+
+    +----------------------------------+---+----+-----+-----------+
+    |               Name               | FF| LUT| Bits| Const Bits|
+    +----------------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                         |  1|   0|    1|          0|
+    |ap_done_reg                       |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |  1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |  1|   0|    1|          0|
+    +----------------------------------+---+----+-----+-----------+
+    |Total                             |  4|   0|    4|          0|
+    +----------------------------------+---+----+-----+-----------+
 
 
 
@@ -149,13 +158,13 @@
 |out_stream_TREADY      |   in|    1|        axis|  out_stream_V_last_V|       pointer|
 |out_stream_TVALID      |  out|    1|        axis|  out_stream_V_last_V|       pointer|
 |out_stream_TLAST       |  out|    1|        axis|  out_stream_V_last_V|       pointer|
-|in_stream_TDATA        |   in|   32|        axis|   in_stream_V_data_V|       pointer|
-|in_stream_TKEEP        |   in|    4|        axis|   in_stream_V_keep_V|       pointer|
-|in_stream_TSTRB        |   in|    4|        axis|   in_stream_V_strb_V|       pointer|
+|in_stream_TDATA        |   in|   24|        axis|   in_stream_V_data_V|       pointer|
+|in_stream_TKEEP        |   in|    3|        axis|   in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB        |   in|    3|        axis|   in_stream_V_strb_V|       pointer|
 |in_stream_TUSER        |   in|    1|        axis|   in_stream_V_user_V|       pointer|
-|out_stream_TDATA       |  out|   32|        axis|  out_stream_V_data_V|       pointer|
-|out_stream_TKEEP       |  out|    4|        axis|  out_stream_V_keep_V|       pointer|
-|out_stream_TSTRB       |  out|    4|        axis|  out_stream_V_strb_V|       pointer|
+|out_stream_TDATA       |  out|   24|        axis|  out_stream_V_data_V|       pointer|
+|out_stream_TKEEP       |  out|    3|        axis|  out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB       |  out|    3|        axis|  out_stream_V_strb_V|       pointer|
 |out_stream_TUSER       |  out|    1|        axis|  out_stream_V_user_V|       pointer|
 +-----------------------+-----+-----+------------+---------------------+--------------+
 

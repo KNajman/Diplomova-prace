@@ -22,8 +22,8 @@ class hls_passthrough_subsystem_monitor extends uvm_component;
     `uvm_component_utils_begin(hls_passthrough_subsystem_monitor)
     `uvm_component_utils_end
 
-    uvm_analysis_imp_svr_master_in_stream#(svr_pkg::svr_transfer#(42), hls_passthrough_subsystem_monitor) svr_master_in_stream_imp;
-    uvm_analysis_imp_svr_slave_out_stream#(svr_pkg::svr_transfer#(42), hls_passthrough_subsystem_monitor) svr_slave_out_stream_imp;
+    uvm_analysis_imp_svr_master_in_stream#(svr_pkg::svr_transfer#(32), hls_passthrough_subsystem_monitor) svr_master_in_stream_imp;
+    uvm_analysis_imp_svr_slave_out_stream#(svr_pkg::svr_transfer#(32), hls_passthrough_subsystem_monitor) svr_slave_out_stream_imp;
     uvm_analysis_imp_axi_wtr_control#(axi_pkg::axi_transfer, hls_passthrough_subsystem_monitor) control_wtr_imp;
     uvm_analysis_imp_axi_rtr_control#(axi_pkg::axi_transfer, hls_passthrough_subsystem_monitor) control_rtr_imp;
 
@@ -47,12 +47,12 @@ class hls_passthrough_subsystem_monitor extends uvm_component;
         control_rtr_imp = new("control_rtr_imp", this);
     endfunction
 
-    virtual function void write_svr_master_in_stream(svr_transfer#(42) tr);
+    virtual function void write_svr_master_in_stream(svr_transfer#(32) tr);
         refm.write_svr_master_in_stream(tr);
         scbd.write_svr_master_in_stream(tr);
     endfunction
 
-    virtual function void write_svr_slave_out_stream(svr_transfer#(42) tr);
+    virtual function void write_svr_slave_out_stream(svr_transfer#(32) tr);
         refm.write_svr_slave_out_stream(tr);
         scbd.write_svr_slave_out_stream(tr);
     endfunction
