@@ -38,9 +38,9 @@
                                                                                            
         file_agent_pkg::file_read_agent#(32) file_rd_TVOUT_transaction_size;               
                                                                                            
-        file_agent_pkg::file_write_agent#(32) file_wr_port_out_stream_out_stream_TDATA;
-        file_agent_pkg::file_write_agent#(4) file_wr_port_out_stream_out_stream_TKEEP;
-        file_agent_pkg::file_write_agent#(4) file_wr_port_out_stream_out_stream_TSTRB;
+        file_agent_pkg::file_write_agent#(24) file_wr_port_out_stream_out_stream_TDATA;
+        file_agent_pkg::file_write_agent#(3) file_wr_port_out_stream_out_stream_TKEEP;
+        file_agent_pkg::file_write_agent#(3) file_wr_port_out_stream_out_stream_TSTRB;
         file_agent_pkg::file_write_agent#(1) file_wr_port_out_stream_out_stream_TUSER;
         file_agent_pkg::file_write_agent#(1) file_wr_port_out_stream_out_stream_TLAST;
                                                                                                
@@ -71,9 +71,9 @@
             `uvm_info(this.get_full_name(), "get reference model by uvm_config_db", UVM_MEDIUM) 
             file_rd_TVOUT_transaction_size = file_agent_pkg::file_read_agent#(32)::type_id::create("file_rd_TVOUT_transaction_size", this);
                                                                                                
-            file_wr_port_out_stream_out_stream_TDATA = file_agent_pkg::file_write_agent#(32)::type_id::create("file_wr_port_out_stream_out_stream_TDATA", this);
-            file_wr_port_out_stream_out_stream_TKEEP = file_agent_pkg::file_write_agent#(4)::type_id::create("file_wr_port_out_stream_out_stream_TKEEP", this);
-            file_wr_port_out_stream_out_stream_TSTRB = file_agent_pkg::file_write_agent#(4)::type_id::create("file_wr_port_out_stream_out_stream_TSTRB", this);
+            file_wr_port_out_stream_out_stream_TDATA = file_agent_pkg::file_write_agent#(24)::type_id::create("file_wr_port_out_stream_out_stream_TDATA", this);
+            file_wr_port_out_stream_out_stream_TKEEP = file_agent_pkg::file_write_agent#(3)::type_id::create("file_wr_port_out_stream_out_stream_TKEEP", this);
+            file_wr_port_out_stream_out_stream_TSTRB = file_agent_pkg::file_write_agent#(3)::type_id::create("file_wr_port_out_stream_out_stream_TSTRB", this);
             file_wr_port_out_stream_out_stream_TUSER = file_agent_pkg::file_write_agent#(1)::type_id::create("file_wr_port_out_stream_out_stream_TUSER", this);
             file_wr_port_out_stream_out_stream_TLAST = file_agent_pkg::file_write_agent#(1)::type_id::create("file_wr_port_out_stream_out_stream_TLAST", this);
         endfunction                                                                            
@@ -180,33 +180,33 @@
              end                                                                               
          endfunction                                                                           
                                                                                                
-        virtual function void write_svr_master_in_stream(svr_transfer#(42) tr);
+        virtual function void write_svr_master_in_stream(svr_transfer#(32) tr);
             `uvm_info(this.get_full_name(), "port in_stream collected one pkt", UVM_DEBUG);          
         endfunction
                    
-        virtual function void write_svr_slave_out_stream(svr_transfer#(42) tr);
+        virtual function void write_svr_slave_out_stream(svr_transfer#(32) tr);
             `uvm_info(this.get_full_name(), "port out_stream collected one pkt", UVM_DEBUG);          
-            file_wr_port_out_stream_out_stream_TDATA.write_TVOUT_data(tr.data[31: 0]);
+            file_wr_port_out_stream_out_stream_TDATA.write_TVOUT_data(tr.data[23: 0]);
             write_file_done_out_stream_out_stream_TDATA = file_wr_port_out_stream_out_stream_TDATA.is_write_file_done();
             write_section_done_out_stream_out_stream_TDATA = file_wr_port_out_stream_out_stream_TDATA.is_write_section_done();
             if(write_section_done_out_stream_out_stream_TDATA) 
                 `uvm_info("out_stream rx data done", "signal name:out_stream_TDATA", UVM_MEDIUM)
-            file_wr_port_out_stream_out_stream_TKEEP.write_TVOUT_data(tr.data[35: 32]);
+            file_wr_port_out_stream_out_stream_TKEEP.write_TVOUT_data(tr.data[26: 24]);
             write_file_done_out_stream_out_stream_TKEEP = file_wr_port_out_stream_out_stream_TKEEP.is_write_file_done();
             write_section_done_out_stream_out_stream_TKEEP = file_wr_port_out_stream_out_stream_TKEEP.is_write_section_done();
             if(write_section_done_out_stream_out_stream_TKEEP) 
                 `uvm_info("out_stream rx data done", "signal name:out_stream_TKEEP", UVM_MEDIUM)
-            file_wr_port_out_stream_out_stream_TSTRB.write_TVOUT_data(tr.data[39: 36]);
+            file_wr_port_out_stream_out_stream_TSTRB.write_TVOUT_data(tr.data[29: 27]);
             write_file_done_out_stream_out_stream_TSTRB = file_wr_port_out_stream_out_stream_TSTRB.is_write_file_done();
             write_section_done_out_stream_out_stream_TSTRB = file_wr_port_out_stream_out_stream_TSTRB.is_write_section_done();
             if(write_section_done_out_stream_out_stream_TSTRB) 
                 `uvm_info("out_stream rx data done", "signal name:out_stream_TSTRB", UVM_MEDIUM)
-            file_wr_port_out_stream_out_stream_TUSER.write_TVOUT_data(tr.data[40: 40]);
+            file_wr_port_out_stream_out_stream_TUSER.write_TVOUT_data(tr.data[30: 30]);
             write_file_done_out_stream_out_stream_TUSER = file_wr_port_out_stream_out_stream_TUSER.is_write_file_done();
             write_section_done_out_stream_out_stream_TUSER = file_wr_port_out_stream_out_stream_TUSER.is_write_section_done();
             if(write_section_done_out_stream_out_stream_TUSER) 
                 `uvm_info("out_stream rx data done", "signal name:out_stream_TUSER", UVM_MEDIUM)
-            file_wr_port_out_stream_out_stream_TLAST.write_TVOUT_data(tr.data[41: 41]);
+            file_wr_port_out_stream_out_stream_TLAST.write_TVOUT_data(tr.data[31: 31]);
             write_file_done_out_stream_out_stream_TLAST = file_wr_port_out_stream_out_stream_TLAST.is_write_file_done();
             write_section_done_out_stream_out_stream_TLAST = file_wr_port_out_stream_out_stream_TLAST.is_write_section_done();
             if(write_section_done_out_stream_out_stream_TLAST) 

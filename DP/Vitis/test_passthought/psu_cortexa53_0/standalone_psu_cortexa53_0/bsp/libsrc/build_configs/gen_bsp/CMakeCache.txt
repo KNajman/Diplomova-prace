@@ -238,8 +238,8 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=D:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-strip.exe
 
-//The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/cortexa53_toolchain.cmake
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/cortexa53_toolchain.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -297,15 +297,6 @@ avbuf_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 avbuf_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/avbuf/src
-
-//Value Computed by CMake
-axidma_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/axidma/src
-
-//Value Computed by CMake
-axidma_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-axidma_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/axidma/src
 
 //Value Computed by CMake
 axipmon_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/axipmon/src
@@ -387,15 +378,6 @@ dppsu_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 dppsu_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/dppsu/src
-
-//Value Computed by CMake
-emacps_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/emacps/src
-
-//Value Computed by CMake
-emacps_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-emacps_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/emacps/src
 
 //Value Computed by CMake
 gpiops_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src
@@ -602,6 +584,24 @@ usbpsu_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 usbpsu_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/usbpsu/src
+
+//Value Computed by CMake
+v_frmbuf_rd_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/v_frmbuf_rd/src
+
+//Value Computed by CMake
+v_frmbuf_rd_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+v_frmbuf_rd_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/v_frmbuf_rd/src
+
+//Value Computed by CMake
+v_frmbuf_wr_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/v_frmbuf_wr/src
+
+//Value Computed by CMake
+v_frmbuf_wr_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+v_frmbuf_wr_SOURCE_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/v_frmbuf_wr/src
 
 //Value Computed by CMake
 video_common_BINARY_DIR:STATIC=D:/Repos/_DP/DP/Vitis/test_passthought/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/video_common/src

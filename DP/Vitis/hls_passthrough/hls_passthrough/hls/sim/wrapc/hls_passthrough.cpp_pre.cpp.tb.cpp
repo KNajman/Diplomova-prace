@@ -85347,39 +85347,48 @@ using axis_ycbcr = axi_stream_video<ycbcr_pixel>;
 using axis_hsv = axi_stream_video<hsv_pixel>;
 # 8 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.hpp" 2
 
-const int AXI_DMA_WIDTH = 32;
-using axis_video_dma = ap_axiu<AXI_DMA_WIDTH, 1, 0, 0>;
 
-void hls_passthrough(hls::stream<axis_video_dma> &in_stream,
-                     hls::stream<axis_video_dma> &out_stream);
+
+
+
+
+
+
+const int AXI_STREAM_WIDTH = 24;
+
+using axis_video = ap_axiu<AXI_STREAM_WIDTH, 1, 0, 0>;
+
+void hls_passthrough(hls::stream<axis_video> &in_stream,
+                     hls::stream<axis_video> &out_stream);
 # 2 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.cpp" 2
 
 
 
 
-void hls_passthrough(hls::stream<axis_video_dma> &in_stream, hls::stream<axis_video_dma> &out_stream)
-{
-#pragma HLS INTERFACE axis port=in_stream
-#pragma HLS INTERFACE axis port=out_stream
+void hls_passthrough(hls::stream<axis_video> &in_stream,
+                     hls::stream<axis_video> &out_stream) {
+#pragma HLS INTERFACE axis port = in_stream
+#pragma HLS INTERFACE axis port = out_stream
 
+#pragma HLS INTERFACE s_axilite port = return bundle = control
 
-#pragma HLS INTERFACE s_axilite port=return bundle=control
-
-#pragma HLS PIPELINE II=1
-
-    axis_video_dma in_packet = in_stream.read();
-    axis_video_dma out_packet = in_packet;
-    out_stream.write(out_packet);
+  bool eol = 0;
+  while (!eol) {
+#pragma HLS PIPELINE II = 1
+    axis_video packet = in_stream.read();
+    eol = packet.last;
+    out_stream.write(packet);
+  }
 }
 #ifndef HLS_FASTSIM
 #ifdef __cplusplus
 extern "C"
 #endif
-void apatb_hls_passthrough_ir(hls::stream<hls::axis<ap_uint<32>, 1>> &, hls::stream<hls::axis<ap_uint<32>, 1>> &);
+void apatb_hls_passthrough_ir(hls::stream<hls::axis<ap_uint<24>, 1>> &, hls::stream<hls::axis<ap_uint<24>, 1>> &);
 #ifdef __cplusplus
 extern "C"
 #endif
-void hls_passthrough_hw_stub(hls::stream<hls::axis<ap_uint<32>, 1>> &in_stream, hls::stream<hls::axis<ap_uint<32>, 1>> &out_stream){
+void hls_passthrough_hw_stub(hls::stream<hls::axis<ap_uint<24>, 1>> &in_stream, hls::stream<hls::axis<ap_uint<24>, 1>> &out_stream){
 hls_passthrough(in_stream, out_stream);
 return ;
 }
@@ -85390,11 +85399,11 @@ void refine_signal_handler();
 #ifdef __cplusplus
 extern "C"
 #endif
-void apatb_hls_passthrough_sw(hls::stream<hls::axis<ap_uint<32>, 1>> &in_stream, hls::stream<hls::axis<ap_uint<32>, 1>> &out_stream){
+void apatb_hls_passthrough_sw(hls::stream<hls::axis<ap_uint<24>, 1>> &in_stream, hls::stream<hls::axis<ap_uint<24>, 1>> &out_stream){
 refine_signal_handler();
 apatb_hls_passthrough_ir(in_stream, out_stream);
 return ;
 }
 #endif
-# 19 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.cpp"
+# 20 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.cpp"
 

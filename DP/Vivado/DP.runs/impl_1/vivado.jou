@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Thu May 14 16:54:30 2026
-# Process ID         : 20988
+# Start of session at: Mon Jun 29 11:00:59 2026
+# Process ID         : 22304
 # Current directory  : D:/Repos/_DP/DP/Vivado/DP.runs/impl_1
 # Command line       : vivado.exe -log design_DMA_2C_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source design_DMA_2C_wrapper.tcl -notrace
 # Log file           : D:/Repos/_DP/DP/Vivado/DP.runs/impl_1/design_DMA_2C_wrapper.vdi
@@ -17,8 +17,8 @@
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 12723 MB
-# Swap memory        : 11811 MB
-# Total Virtual      : 24534 MB
-# Available Virtual  : 7912 MB
+# Swap memory        : 9126 MB
+# Total Virtual      : 21850 MB
+# Available Virtual  : 7054 MB
 #-----------------------------------------------------------
 source design_DMA_2C_wrapper.tcl -notrace

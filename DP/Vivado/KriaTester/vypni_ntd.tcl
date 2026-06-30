@@ -1,0 +1,2 @@
+set_param drc.disable_ntd_flow true
+set_param device.disable_ntd_flow true

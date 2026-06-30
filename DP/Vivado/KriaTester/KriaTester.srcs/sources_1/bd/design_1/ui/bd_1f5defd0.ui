@@ -1,30 +1,42 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.738125",
-   "Default View_TopLeft":"9,-112",
+   "Default View_ScaleFactor":"0.6875",
+   "Default View_TopLeft":"320,1",
    "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 320 -y 90 -defaultsOSRD
-preplace inst axi_vdma_0 -pg 1 -lvl 4 -x 1430 -y 300 -defaultsOSRD
-preplace inst ps8_0_axi_periph -pg 1 -lvl 2 -x 770 -y 170 -defaultsOSRD
-preplace inst rst_ps8_0_99M -pg 1 -lvl 1 -x 320 -y 290 -defaultsOSRD
-preplace inst hls_passthrough_0 -pg 1 -lvl 3 -x 1090 -y 270 -defaultsOSRD
-preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 3 630 340 930 370 NJ
-preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 20 180 620 350 920 360 1260
-preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 2 30 190 610
-preplace netloc ps8_0_axi_periph_M00_AXI 1 2 2 NJ 160 1250
-preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 N 60
-preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM1_FPD 1 1 1 N 80
-preplace netloc axi_vdma_0_M_AXIS_MM2S 1 2 3 930 170 NJ 170 1600
-preplace netloc hls_passthrough_0_out_stream 1 3 1 1250 250n
-preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 910 180n
-levelinfo -pg 1 0 320 770 1090 1430 1620
-pagesize -pg 1 -db -bbox -sgen 0 0 1620 430
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 650 -y 200 -defaultsOSRD
+preplace inst rst_ps8_0_99M -pg 1 -lvl 1 -x 650 -y 410 -defaultsOSRD
+preplace inst hls_passthrough_0 -pg 1 -lvl 3 -x 1460 -y 290 -defaultsOSRD
+preplace inst VFB_READ -pg 1 -lvl 3 -x 1460 -y 120 -defaultsOSRD
+preplace inst VFB_WRITE -pg 1 -lvl 3 -x 1460 -y 480 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 1 -x 650 -y 570 -defaultsOSRD
+preplace inst axis_data_fifo_0 -pg 1 -lvl 4 -x 1810 -y 370 -defaultsOSRD
+preplace inst ps8_0_axi_periph -pg 1 -lvl 2 -x 1110 -y 280 -defaultsOSRD
+preplace netloc VFB_READ_interrupt 1 0 4 320 10 N 10 NJ 10 1660
+preplace netloc VFB_WRITE_interrupt 1 0 4 340 660 N 660 N 660 1630
+preplace netloc hls_passthrough_0_interrupt 1 0 4 360 650 N 650 N 650 1650
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 3 970 110 1270J 40 1670
+preplace netloc xlconcat_0_dout 1 0 2 360 310 940
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 330 80 960 120 1260 390 N
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 2 350 90 940
+preplace netloc VFB_READ_m_axi_mm_video 1 0 4 340 20 NJ 20 NJ 20 1650
+preplace netloc VFB_READ_m_axis_video 1 2 2 1290J 200 1630
+preplace netloc VFB_WRITE_m_axi_mm_video 1 0 4 360 30 NJ 30 NJ 30 1640
+preplace netloc axis_data_fifo_0_M_AXIS 1 2 3 1290 380 1680 290 1930
+preplace netloc hls_passthrough_0_out_stream 1 3 1 1660 280n
+preplace netloc ps8_0_axi_periph_M00_AXI 1 2 1 N 260
+preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 1280 100n
+preplace netloc ps8_0_axi_periph_M02_AXI 1 2 1 1250 300n
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 N 180
+levelinfo -pg 1 0 650 1110 1460 1810 1950
+pagesize -pg 1 -db -bbox -sgen 0 0 2020 810
 "
 }
 {
-   "da_axi4_cnt":"3",
-   "da_clkrst_cnt":"2",
+   "da_axi4_cnt":"19",
+   "da_axi4_s2mm_cnt":"1",
+   "da_board_cnt":"1",
+   "da_clkrst_cnt":"5",
    "da_zynq_ultra_ps_e_cnt":"1"
 }

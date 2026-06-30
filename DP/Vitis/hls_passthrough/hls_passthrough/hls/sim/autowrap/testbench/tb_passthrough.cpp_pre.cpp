@@ -5,142 +5,101 @@
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
 # 1 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp" 2
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iostream" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iostream" 3
+# 1 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.hpp" 1
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 1 3
-# 256 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 3
-namespace std
-{
-  typedef long long unsigned int size_t;
-  typedef long long int ptrdiff_t;
 
 
-  typedef decltype(nullptr) nullptr_t;
+# 1 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_axi_sdata.h" 1
+# 15 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_axi_sdata.h"
+# 1 "D:/AMDDesignTools/2025.2/Vitis/include/ap_int.h" 1
+# 10 "D:/AMDDesignTools/2025.2/Vitis/include/ap_int.h"
+# 1 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 1
+# 41 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h"
+# 1 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h" 1
+# 54 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
+enum ap_q_mode {
+  AP_RND,
+  AP_RND_ZERO,
+  AP_RND_MIN_INF,
+  AP_RND_INF,
+  AP_RND_CONV,
+  AP_TRN,
+  AP_TRN_ZERO,
+};
+# 76 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
+enum ap_o_mode {
+  AP_SAT,
+  AP_SAT_ZERO,
+  AP_SAT_SYM,
+  AP_WRAP,
+  AP_WRAP_SM,
+};
+# 133 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
+template <int _AP_W, bool _AP_S>
+struct ap_int_base;
 
-}
-# 278 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 3
-namespace std
-{
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
-}
-namespace __gnu_cxx
-{
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
-}
-# 528 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/os_defines.h" 1 3
-# 529 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
+template <int _AP_W>
+struct ap_int;
 
+template <int _AP_W>
+struct ap_uint;
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/cpu_defines.h" 1 3
-# 532 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
-# 39 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iostream" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ostream" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ostream" 3
+template <int _AP_W, bool _AP_S>
+struct ap_range_ref;
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ios" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ios" 3
+template <int _AP_W, bool _AP_S>
+struct ap_bit_ref;
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iosfwd" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iosfwd" 3
+template <int _AP_W1, typename _AP_T1, int _AP_W2, typename _AP_T2>
+struct ap_concat_ref;
 
+template <int _AP_W, int _AP_I, bool _AP_S = true, ap_q_mode _AP_Q = AP_TRN,
+          ap_o_mode _AP_O = AP_WRAP, int _AP_N = 0>
+struct ap_fixed_base;
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 1 3
-# 38 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 3
+template <int _AP_W, int _AP_I, ap_q_mode _AP_Q = AP_TRN,
+          ap_o_mode _AP_O = AP_WRAP, int _AP_N = 0>
+struct ap_fixed;
 
+template <int _AP_W, int _AP_I, ap_q_mode _AP_Q = AP_TRN,
+          ap_o_mode _AP_O = AP_WRAP, int _AP_N = 0>
+struct ap_ufixed;
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/memoryfwd.h" 1 3
-# 47 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/memoryfwd.h" 3
+template <int _AP_W, int _AP_I, bool _AP_S, ap_q_mode _AP_Q, ap_o_mode _AP_O,
+          int _AP_N>
+struct af_range_ref;
 
+template <int _AP_W, int _AP_I, bool _AP_S, ap_q_mode _AP_Q, ap_o_mode _AP_O,
+          int _AP_N>
+struct af_bit_ref;
 
 
-namespace std
-{
-# 63 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/memoryfwd.h" 3
-  template<typename>
-    class allocator;
+enum BaseMode { AP_BIN = 2, AP_OCT = 8, AP_DEC = 10, AP_HEX = 16 };
+# 187 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
+typedef signed long long ap_slong;
+typedef unsigned long long ap_ulong;
 
-  template<>
-    class allocator<void>;
 
+enum {
+  _AP_SIZE_char = 8,
+  _AP_SIZE_short = sizeof(short) * 8,
+  _AP_SIZE_int = sizeof(int) * 8,
+  _AP_SIZE_long = sizeof(long) * 8,
+  _AP_SIZE_ap_slong = sizeof(ap_slong) * 8
+};
+# 42 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
 
 
-  template<typename, typename>
-    struct uses_allocator;
 
 
 
 
 
-}
-# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 2 3
 
-namespace std
-{
-# 52 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 3
-  template<class _CharT>
-    struct char_traits;
-
-  template<> struct char_traits<char>;
-
-
-  template<> struct char_traits<wchar_t>;
-
-
-
-
-
-
-
-  template<> struct char_traits<char16_t>;
-  template<> struct char_traits<char32_t>;
-
-
-namespace __cxx11 {
-
-  template<typename _CharT, typename _Traits = char_traits<_CharT>,
-           typename _Alloc = allocator<_CharT> >
-    class basic_string;
-
-}
-
-
-  typedef basic_string<char> string;
-
-
-
-  typedef basic_string<wchar_t> wstring;
-# 93 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 3
-  typedef basic_string<char16_t> u16string;
-
-
-  typedef basic_string<char32_t> u32string;
-
-
-
-
-
-}
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iosfwd" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/postypes.h" 1 3
-# 39 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/postypes.h" 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cwchar" 1 3
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cwchar" 3
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 1 3
-
-
-
-
-
-
-
-
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 1 3
+# 15 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt.h" 1 3
 # 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt.h" 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw.h" 1 3
@@ -329,9 +288,45 @@ typedef struct threadlocaleinfostruct {
 } threadlocinfo;
 # 501 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt.h" 3
 #pragma pack(pop)
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt_stdio_config.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 2 3
+# 16 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
+# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 1 3
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 1 3
+# 256 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 3
+namespace std
+{
+  typedef long long unsigned int size_t;
+  typedef long long int ptrdiff_t;
+
+
+  typedef decltype(nullptr) nullptr_t;
+
+}
+# 278 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 3
+namespace std
+{
+  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+}
+namespace __gnu_cxx
+{
+  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+}
+# 528 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/os_defines.h" 1 3
+# 529 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/cpu_defines.h" 1 3
+# 532 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/c++config.h" 2 3
+# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 2 3
+# 75 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt_wstdlib.h" 1 3
 # 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt_wstdlib.h" 3
 extern "C" {
@@ -366,14 +361,926 @@ extern "C" {
 
 
 }
-# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
-# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 1 3
+# 21 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\limits.h" 1 3
+# 22 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 2 3
+# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
 #pragma pack(push,_CRT_PACKING)
 
 
 extern "C" {
-# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+# 50 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  typedef int (__attribute__((__cdecl__)) *_onexit_t)(void);
+# 60 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  typedef struct _div_t {
+    int quot;
+    int rem;
+  } div_t;
+
+  typedef struct _ldiv_t {
+    long quot;
+    long rem;
+  } ldiv_t;
+
+
+
+
+
+#pragma pack(4)
+  typedef struct {
+    unsigned char ld[10];
+  } _LDOUBLE;
+#pragma pack()
+
+
+
+  typedef struct {
+    double x;
+  } _CRT_DOUBLE;
+
+  typedef struct {
+    float f;
+  } _CRT_FLOAT;
+
+
+
+
+  typedef struct {
+    long double x;
+  } _LONGDOUBLE;
+
+
+
+#pragma pack(4)
+  typedef struct {
+    unsigned char ld12[12];
+  } _LDBL12;
+#pragma pack()
+# 116 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern int * __imp___mb_cur_max;
+
+
+
+
+__attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_func(void);
+# 143 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  typedef void (__attribute__((__cdecl__)) *_purecall_handler)(void);
+
+  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _set_purecall_handler(_purecall_handler _Handler);
+  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _get_purecall_handler(void);
+
+  typedef void (__attribute__((__cdecl__)) *_invalid_parameter_handler)(const wchar_t *,const wchar_t *,const wchar_t *,unsigned int,uintptr_t);
+  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _set_invalid_parameter_handler(_invalid_parameter_handler _Handler);
+  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _get_invalid_parameter_handler(void);
+
+
+
+  __attribute__ ((__dllimport__)) extern int *__attribute__((__cdecl__)) _errno(void);
+
+  errno_t __attribute__((__cdecl__)) _set_errno(int _Value);
+  errno_t __attribute__((__cdecl__)) _get_errno(int *_Value);
+
+  __attribute__ ((__dllimport__)) unsigned long *__attribute__((__cdecl__)) __doserrno(void);
+
+  errno_t __attribute__((__cdecl__)) _set_doserrno(unsigned long _Value);
+  errno_t __attribute__((__cdecl__)) _get_doserrno(unsigned long *_Value);
+# 173 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern __attribute__((dllimport)) char *_sys_errlist[1];
+  extern __attribute__((dllimport)) int _sys_nerr;
+
+
+
+
+
+  __attribute__ ((__dllimport__)) char ***__attribute__((__cdecl__)) __p___argv(void);
+  __attribute__ ((__dllimport__)) int *__attribute__((__cdecl__)) __p__fmode(void);
+# 191 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  errno_t __attribute__((__cdecl__)) _get_pgmptr(char **_Value);
+  errno_t __attribute__((__cdecl__)) _get_wpgmptr(wchar_t **_Value);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_fmode(int _Mode);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_fmode(int *_PMode);
+# 282 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern int * __imp___argc;
+
+
+
+  extern char *** __imp___argv;
+
+
+
+  extern wchar_t *** __imp___wargv;
+# 322 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  extern char *** __imp__environ;
+
+
+
+
+  extern wchar_t *** __imp__wenviron;
+
+
+
+
+
+
+  extern char ** __imp__pgmptr;
+
+
+
+
+  extern wchar_t ** __imp__wpgmptr;
+
+
+
+
+  extern unsigned int * __imp__osplatform;
+
+
+
+
+  extern unsigned int * __imp__osver;
+
+
+
+
+  extern unsigned int * __imp__winver;
+
+
+
+
+  extern unsigned int * __imp__winmajor;
+
+
+
+
+  extern unsigned int * __imp__winminor;
+
+
+
+
+
+  errno_t __attribute__((__cdecl__)) _get_osplatform(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_osver(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_winver(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_winmajor(unsigned int *_Value);
+  errno_t __attribute__((__cdecl__)) _get_winminor(unsigned int *_Value);
+
+
+
+
+  extern "C++" {
+    template <typename _CountofType,size_t _SizeOfArray> char (*__countof_helper( _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
+
+  }
+
+
+
+
+
+  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) exit(int _Code) __attribute__ ((__noreturn__));
+  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) _exit(int _Code) __attribute__ ((__noreturn__));
+
+
+
+
+
+
+  void __attribute__((__cdecl__)) _Exit(int) __attribute__ ((__noreturn__));
+# 405 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  void __attribute__((__cdecl__)) __attribute__ ((__noreturn__)) abort(void);
+
+
+
+
+  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_abort_behavior(unsigned int _Flags,unsigned int _Mask);
+
+
+
+  int __attribute__((__cdecl__)) abs(int _X);
+  long __attribute__((__cdecl__)) labs(long _X);
+
+
+  __extension__ long long __attribute__((__cdecl__)) _abs64(long long);
+
+  extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) long long __attribute__((__cdecl__)) _abs64(long long x) {
+    return __builtin_llabs(x);
+  }
+
+
+  int __attribute__((__cdecl__)) atexit(void (__attribute__((__cdecl__)) *)(void));
+
+
+
+
+
+  double __attribute__((__cdecl__)) atof(const char *_String);
+  double __attribute__((__cdecl__)) _atof_l(const char *_String,_locale_t _Locale);
+
+  int __attribute__((__cdecl__)) atoi(const char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoi_l(const char *_Str,_locale_t _Locale);
+  long __attribute__((__cdecl__)) atol(const char *_Str);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atol_l(const char *_Str,_locale_t _Locale);
+
+
+  void *__attribute__((__cdecl__)) bsearch(const void *_Key,const void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
+  void __attribute__((__cdecl__)) qsort(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
+
+  unsigned short __attribute__((__cdecl__)) _byteswap_ushort(unsigned short _Short);
+  unsigned long __attribute__((__cdecl__)) _byteswap_ulong (unsigned long _Long);
+  __extension__ unsigned long long __attribute__((__cdecl__)) _byteswap_uint64(unsigned long long _Int64);
+  div_t __attribute__((__cdecl__)) div(int _Numerator,int _Denominator);
+  char *__attribute__((__cdecl__)) getenv(const char *_VarName) ;
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _itoa(int _Value,char *_Dest,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _i64toa(long long _Val,char *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ui64toa(unsigned long long _Val,char *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _atoi64(const char *_String);
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _atoi64_l(const char *_String,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _strtoi64(const char *_String,char **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _strtoi64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _strtoui64(const char *_String,char **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _strtoui64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
+  ldiv_t __attribute__((__cdecl__)) ldiv(long _Numerator,long _Denominator);
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ltoa(long _Value,char *_Dest,int _Radix) ;
+  int __attribute__((__cdecl__)) mblen(const char *_Ch,size_t _MaxCount);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mblen_l(const char *_Ch,size_t _MaxCount,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen(const char *_Str);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen_l(const char *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen(const char *_Str,size_t _MaxCount);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen_l(const char *_Str,size_t _MaxCount,_locale_t _Locale);
+  int __attribute__((__cdecl__)) mbtowc(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mbtowc_l(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes,_locale_t _Locale);
+  size_t __attribute__((__cdecl__)) mbstowcs(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstowcs_l(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale);
+  int __attribute__((__cdecl__)) mkstemp(char *template_name);
+  int __attribute__((__cdecl__)) rand(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_error_mode(int _Mode);
+  void __attribute__((__cdecl__)) srand(unsigned int _Seed);
+# 483 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+inline __attribute__((__cdecl__))
+double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
+{
+  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
+  return __mingw_strtod( _Str, _EndPtr);
+}
+
+inline __attribute__((__cdecl__))
+float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
+{
+  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
+  return __mingw_strtof( _Str, _EndPtr);
+}
+
+
+
+
+
+
+  long double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtold(const char * __restrict__ , char ** __restrict__ );
+
+
+  extern double __attribute__((__cdecl__)) __attribute__ ((__nothrow__))
+  __strtod (const char * __restrict__ , char ** __restrict__);
+
+
+
+
+
+
+
+  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
+  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
+  long double __attribute__((__cdecl__)) __mingw_strtold(const char * __restrict__, char ** __restrict__);
+
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _strtod_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,_locale_t _Locale);
+  long __attribute__((__cdecl__)) strtol(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtol_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+  unsigned long __attribute__((__cdecl__)) strtoul(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoul_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+
+
+  int __attribute__((__cdecl__)) system(const char *_Command);
+
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ultoa(unsigned long _Value,char *_Dest,int _Radix) ;
+  int __attribute__((__cdecl__)) wctomb(char *_MbCh,wchar_t _WCh) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wctomb_l(char *_MbCh,wchar_t _WCh,_locale_t _Locale) ;
+  size_t __attribute__((__cdecl__)) wcstombs(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount) ;
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _wcstombs_l(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale) ;
+
+
+
+  void *__attribute__((__cdecl__)) calloc(size_t _NumOfElements,size_t _SizeOfElements);
+  void __attribute__((__cdecl__)) free(void *_Memory);
+  void *__attribute__((__cdecl__)) malloc(size_t _Size);
+  void *__attribute__((__cdecl__)) realloc(void *_Memory,size_t _NewSize);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _recalloc(void *_Memory,size_t _Count,size_t _Size);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _aligned_free(void *_Memory);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_malloc(size_t _Size,size_t _Alignment);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_malloc(size_t _Size,size_t _Alignment,size_t _Offset);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_realloc(void *_Memory,size_t _Size,size_t _Alignment);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_realloc(void *_Memory,size_t _Size,size_t _Alignment,size_t _Offset);
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment,size_t _Offset);
+
+
+
+
+
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _itow(int _Value,wchar_t *_Dest,int _Radix) ;
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ltow(long _Value,wchar_t *_Dest,int _Radix) ;
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ultow(unsigned long _Value,wchar_t *_Dest,int _Radix) ;
+
+  double __attribute__((__cdecl__)) __mingw_wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
+  float __attribute__((__cdecl__)) __mingw_wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
+  long double __attribute__((__cdecl__)) __mingw_wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
+
+
+  inline __attribute__((__cdecl__))
+  double __attribute__((__cdecl__)) wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
+    return __mingw_wcstod(_Str,_EndPtr);
+  }
+  inline __attribute__((__cdecl__))
+  float __attribute__((__cdecl__)) wcstof(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
+    return __mingw_wcstof(_Str,_EndPtr);
+  }
+
+
+
+
+
+
+  long double __attribute__((__cdecl__)) wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
+
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wcstod_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,_locale_t _Locale);
+  long __attribute__((__cdecl__)) wcstol(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstol_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+  unsigned long __attribute__((__cdecl__)) wcstoul(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
+  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoul_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wgetenv(const wchar_t *_VarName) ;
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wsystem(const wchar_t *_Command);
+
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof(const wchar_t *_Str);
+  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof_l(const wchar_t *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi(const wchar_t *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi_l(const wchar_t *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol(const wchar_t *_Str);
+  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol_l(const wchar_t *_Str,_locale_t _Locale);
+
+  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _i64tow(long long _Val,wchar_t *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ui64tow(unsigned long long _Val,wchar_t *_DstBuf,int _Radix) ;
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wtoi64(const wchar_t *_Str);
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wtoi64_l(const wchar_t *_Str,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wcstoi64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wcstoi64_l(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _wcstoui64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
+  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _wcstoui64_l(const wchar_t *_Str ,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putenv(const char *_EnvString);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wputenv(const wchar_t *_EnvString);
+
+
+
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fullpath(char *_FullPath,const char *_Path,size_t _SizeInBytes);
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl(_CRT_DOUBLE *_Result,char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl(_LDOUBLE *_Result,char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt(_CRT_FLOAT *_Result,char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl_l(_CRT_DOUBLE *_Result,char *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl_l(_LDOUBLE *_Result,char *_Str,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt_l(_CRT_FLOAT *_Result,char *_Str,_locale_t _Locale);
+# 634 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+unsigned long __attribute__((__cdecl__)) _lrotl(unsigned long,int);
+unsigned long __attribute__((__cdecl__)) _lrotr(unsigned long,int);
+
+
+
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _makepath(char *_Path,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
+  _onexit_t __attribute__((__cdecl__)) _onexit(_onexit_t _Func);
+
+
+
+  void __attribute__((__cdecl__)) perror(const char *_ErrMsg);
+
+
+
+
+
+  __extension__ unsigned long long __attribute__((__cdecl__)) _rotl64(unsigned long long _Val,int _Shift);
+  __extension__ unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long Value,int Shift);
+
+
+
+
+
+
+  unsigned int __attribute__((__cdecl__)) _rotr(unsigned int _Val,int _Shift);
+  unsigned int __attribute__((__cdecl__)) _rotl(unsigned int _Val,int _Shift);
+
+
+  __extension__ unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long _Val,int _Shift);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _searchenv(const char *_Filename,const char *_EnvVar,char *_ResultPath) ;
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _splitpath(const char *_FullPath,char *_Drive,char *_Dir,char *_Filename,char *_Ext) ;
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _swab(char *_Buf1,char *_Buf2,int _SizeInBytes);
+
+
+
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wfullpath(wchar_t *_FullPath,const wchar_t *_Path,size_t _SizeInWords);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wmakepath(wchar_t *_ResultPath,const wchar_t *_Drive,const wchar_t *_Dir,const wchar_t *_Filename,const wchar_t *_Ext);
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wperror(const wchar_t *_ErrMsg);
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsearchenv(const wchar_t *_Filename,const wchar_t *_EnvVar,wchar_t *_ResultPath) ;
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsplitpath(const wchar_t *_FullPath,wchar_t *_Drive,wchar_t *_Dir,wchar_t *_Filename,wchar_t *_Ext) ;
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _beep(unsigned _Frequency,unsigned _Duration) __attribute__ ((__deprecated__));
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _seterrormode(int _Mode) __attribute__ ((__deprecated__));
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _sleep(unsigned long _Duration) __attribute__ ((__deprecated__));
+# 705 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+  char *__attribute__((__cdecl__)) ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
+  char *__attribute__((__cdecl__)) fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
+  char *__attribute__((__cdecl__)) gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
+  char *__attribute__((__cdecl__)) itoa(int _Val,char *_DstBuf,int _Radix) ;
+  char *__attribute__((__cdecl__)) ltoa(long _Val,char *_DstBuf,int _Radix) ;
+  int __attribute__((__cdecl__)) putenv(const char *_EnvString) ;
+
+
+
+  void __attribute__((__cdecl__)) swab(char *_Buf1,char *_Buf2,int _SizeInBytes) ;
+
+
+  char *__attribute__((__cdecl__)) ultoa(unsigned long _Val,char *_Dstbuf,int _Radix) ;
+  _onexit_t __attribute__((__cdecl__)) onexit(_onexit_t _Func);
+
+
+
+
+
+  typedef struct { __extension__ long long quot, rem; } lldiv_t;
+
+  __extension__ lldiv_t __attribute__((__cdecl__)) lldiv(long long, long long);
+
+  __extension__ long long __attribute__((__cdecl__)) llabs(long long);
+
+
+
+
+  __extension__ long long __attribute__((__cdecl__)) strtoll(const char * __restrict__, char ** __restrict, int);
+  __extension__ unsigned long long __attribute__((__cdecl__)) strtoull(const char * __restrict__, char ** __restrict__, int);
+
+
+  __extension__ long long __attribute__((__cdecl__)) atoll (const char *);
+
+
+  __extension__ long long __attribute__((__cdecl__)) wtoll (const wchar_t *);
+  __extension__ char *__attribute__((__cdecl__)) lltoa (long long, char *, int);
+  __extension__ char *__attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
+  __extension__ wchar_t *__attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
+  __extension__ wchar_t *__attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
+# 760 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
+}
+
+
+#pragma pack(pop)
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
+# 30 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
+# 31 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 2 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 2 3
+
+
+extern "C" {
+
+
+  __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) bsearch_s(const void *_Key,const void *_Base,rsize_t _NumOfElements,rsize_t _SizeOfElements,int (__attribute__((__cdecl__)) * _PtFuncCompare)(void *, const void *, const void *), void *_Context);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _dupenv_s(char **_PBuffer,size_t *_PBufferSizeInBytes,const char *_VarName);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) getenv_s(size_t *_ReturnSize,char *_DstBuf,rsize_t _DstSize,const char *_VarName);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) getenv_s(size_t * _ReturnSize, char (&_Dest)[__size], const char * _VarName) { return getenv_s(_ReturnSize, _Dest, __size, _VarName); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _itoa_s(int _Value,char *_DstBuf,size_t _Size,int _Radix);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _itoa_s(int _Value, char (&_Dest)[__size], int _Radix) { return _itoa_s(_Value, _Dest, __size, _Radix); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _i64toa_s(long long _Val,char *_DstBuf,size_t _Size,int _Radix);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ui64toa_s(unsigned long long _Val,char *_DstBuf,size_t _Size,int _Radix);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ltoa_s(long _Val,char *_DstBuf,size_t _Size,int _Radix);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _ltoa_s(long _Value, char (&_Dest)[__size], int _Radix) { return _ltoa_s(_Value, _Dest, __size, _Radix); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) mbstowcs_s(size_t *_PtNumOfCharConverted,wchar_t *_DstBuf,size_t _SizeInWords,const char *_SrcBuf,size_t _MaxCount);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) mbstowcs_s(size_t * _PtNumOfCharConverted, wchar_t (&_Dest)[__size], const char * _Source, size_t _MaxCount) { return mbstowcs_s(_PtNumOfCharConverted, _Dest, __size, _Source, _MaxCount); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _mbstowcs_s_l(size_t *_PtNumOfCharConverted,wchar_t *_DstBuf,size_t _SizeInWords,const char *_SrcBuf,size_t _MaxCount,_locale_t _Locale);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _mbstowcs_s_l(size_t * _PtNumOfCharConverted, wchar_t (&_Dest)[__size], const char * _Source, size_t _MaxCount, _locale_t _Locale) { return _mbstowcs_s_l(_PtNumOfCharConverted, _Dest, __size, _Source, _MaxCount, _Locale); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ultoa_s(unsigned long _Val,char *_DstBuf,size_t _Size,int _Radix);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _ultoa_s(unsigned long _Value, char (&_Dest)[__size], int _Radix) { return _ultoa_s(_Value, _Dest, __size, _Radix); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wctomb_s(int *_SizeConverted,char *_MbCh,rsize_t _SizeInBytes,wchar_t _WCh);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wctomb_s_l(int *_SizeConverted,char *_MbCh,size_t _SizeInBytes,wchar_t _WCh,_locale_t _Locale);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wcstombs_s(size_t *_PtNumOfCharConverted,char *_Dst,size_t _DstSizeInBytes,const wchar_t *_Src,size_t _MaxCountInBytes);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) wcstombs_s(size_t* _PtNumOfCharConverted, char (&_Dst)[__size], const wchar_t* _Src, size_t _MaxCountInBytes) { return wcstombs_s(_PtNumOfCharConverted, _Dst, __size, _Src, _MaxCountInBytes); } }
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcstombs_s_l(size_t *_PtNumOfCharConverted,char *_Dst,size_t _DstSizeInBytes,const wchar_t *_Src,size_t _MaxCountInBytes,_locale_t _Locale);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _wcstombs_s_l(size_t* _PtNumOfCharConverted, char (&_Dst)[__size], const wchar_t* _Src, size_t _MaxCountInBytes, _locale_t _Locale) { return _wcstombs_s_l(_PtNumOfCharConverted, _Dst, __size, _Src, _MaxCountInBytes, _Locale); } }
+
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ecvt_s(char *_DstBuf,size_t _Size,double _Val,int _NumOfDights,int *_PtDec,int *_PtSign);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _fcvt_s(char *_DstBuf,size_t _Size,double _Val,int _NumOfDec,int *_PtDec,int *_PtSign);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _gcvt_s(char *_DstBuf,size_t _Size,double _Val,int _NumOfDigits);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _makepath_s(char *_PathResult,size_t _Size,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _putenv_s(const char *_Name,const char *_Value);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _searchenv_s(const char *_Filename,const char *_EnvVar,char *_ResultPath,size_t _SizeInBytes);
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _splitpath_s(const char *_FullPath,char *_Drive,size_t _DriveSize,char *_Dir,size_t _DirSize,char *_Filename,size_t _FilenameSize,char *_Ext,size_t _ExtSize);
+  extern "C++" { template <size_t __drive_size, size_t __dir_size, size_t __name_size, size_t __ext_size> inline errno_t __attribute__((__cdecl__)) _splitpath_s(const char *_Dest, char (&__drive)[__drive_size], char (&__dir)[__dir_size], char (&__name)[__name_size], char (&__ext)[__ext_size]) { return _splitpath_s(_Dest, __drive, __drive_size, __dir, __dir_size, __name, __name_size, __ext, __ext_size); } }
+
+
+
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) qsort_s(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(void *,const void *,const void *),void *_Context);
+
+
+
+
+
+}
+# 766 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 1 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+#pragma pack(push,_CRT_PACKING)
+
+
+extern "C" {
+# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+  typedef struct _heapinfo {
+    int *_pentry;
+    size_t _size;
+    int _useflag;
+  } _HEAPINFO;
+
+
+  extern unsigned int _amblksiz;
+# 74 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+void * __mingw_aligned_malloc (size_t _Size, size_t _Alignment);
+void __mingw_aligned_free (void *_Memory);
+void * __mingw_aligned_offset_realloc (void *_Memory, size_t _Size, size_t _Alignment, size_t _Offset);
+void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
+
+
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 1 3
+# 13 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
+# 30 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
+# 31 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 2 3
+# 14 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 2 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 1 3
+# 17 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 2 3
+# 30 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 3
+static __inline__ void *__attribute__((__always_inline__, __nodebug__,
+                                       __malloc__, __alloc_size__(1),
+                                       __alloc_align__(2)))
+_mm_malloc(size_t __size, size_t __align) {
+  if (__align == 1) {
+    return malloc(__size);
+  }
+
+  if (!(__align & (__align - 1)) && __align < sizeof(void *))
+    __align = sizeof(void *);
+
+  void *__mallocedMemory;
+
+  __mallocedMemory = __mingw_aligned_malloc(__size, __align);
+
+
+
+
+
+
+
+  return __mallocedMemory;
+}
+
+static __inline__ void __attribute__((__always_inline__, __nodebug__))
+_mm_free(void *__p)
+{
+
+  __mingw_aligned_free(__p);
+
+
+
+
+
+}
+# 81 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 2 3
+
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _resetstkoflw (void);
+
+  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _set_malloc_crt_max_wait(unsigned long _NewValue);
+
+  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _expand(void *_Memory,size_t _NewSize);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _msize(void *_Memory);
+
+
+
+
+
+
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _get_sbh_threshold(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_sbh_threshold(size_t _NewValue);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_amblksiz(size_t _Value);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_amblksiz(size_t *_Value);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapadd(void *_Memory,size_t _Size);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapchk(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapmin(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapset(unsigned int _Fill);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapwalk(_HEAPINFO *_EntryInfo);
+  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _heapused(size_t *_Used,size_t *_Commit);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _get_heap_handle(void);
+# 120 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+  static __inline void *_MarkAllocaS(void *_Ptr,unsigned int _Marker) {
+    if(_Ptr) {
+      *((unsigned int*)_Ptr) = _Marker;
+      _Ptr = (char*)_Ptr + 16;
+    }
+    return _Ptr;
+  }
+# 139 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+  static __inline void __attribute__((__cdecl__)) _freea(void *_Memory) {
+    unsigned int _Marker;
+    if(_Memory) {
+      _Memory = (char*)_Memory - 16;
+      _Marker = *(unsigned int *)_Memory;
+      if(_Marker==0xDDDD) {
+ free(_Memory);
+      }
+
+
+
+
+
+    }
+  }
+# 182 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
+}
+
+
+#pragma pack(pop)
+# 767 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
+# 76 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 1 3
+# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
+# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
+extern "C++"
+{
+namespace std
+{
+
+
+  using ::abs;
+
+
+  inline long
+  abs(long __i) { return __builtin_labs(__i); }
+
+
+
+  inline long long
+  abs(long long __x) { return __builtin_llabs (__x); }
+# 70 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
+  inline constexpr double
+  abs(double __x)
+  { return __builtin_fabs(__x); }
+
+  inline constexpr float
+  abs(float __x)
+  { return __builtin_fabsf(__x); }
+
+  inline constexpr long double
+  abs(long double __x)
+  { return __builtin_fabsl(__x); }
+
+
+
+  inline constexpr __int128
+  abs(__int128 __x) { return __x >= 0 ? __x : -__x; }
+# 101 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
+  inline constexpr
+  __float128
+  abs(__float128 __x)
+  { return __x < 0 ? -__x : __x; }
+
+
+
+}
+}
+# 78 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 2 3
+# 121 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
+extern "C++"
+{
+namespace std
+{
+
+
+  using ::div_t;
+  using ::ldiv_t;
+
+  using ::abort;
+
+
+
+  using ::atexit;
+
+
+
+
+
+  using ::atof;
+  using ::atoi;
+  using ::atol;
+  using ::bsearch;
+  using ::calloc;
+  using ::div;
+  using ::exit;
+  using ::free;
+  using ::getenv;
+  using ::labs;
+  using ::ldiv;
+  using ::malloc;
+
+  using ::mblen;
+  using ::mbstowcs;
+  using ::mbtowc;
+
+  using ::qsort;
+
+
+
+
+
+  using ::rand;
+  using ::realloc;
+  using ::srand;
+  using ::strtod;
+  using ::strtol;
+  using ::strtoul;
+  using ::system;
+
+  using ::wcstombs;
+  using ::wctomb;
+
+
+
+  inline ldiv_t
+  div(long __i, long __j) { return ldiv(__i, __j); }
+
+
+
+
+}
+# 195 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
+namespace __gnu_cxx
+{
+
+
+
+  using ::lldiv_t;
+
+
+
+
+
+  using ::_Exit;
+
+
+
+  using ::llabs;
+
+  inline lldiv_t
+  div(long long __n, long long __d)
+  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
+
+  using ::lldiv;
+# 227 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
+  using ::atoll;
+  using ::strtoll;
+  using ::strtoull;
+
+  using ::strtof;
+  using ::strtold;
+
+
+}
+
+namespace std
+{
+
+  using ::__gnu_cxx::lldiv_t;
+
+  using ::__gnu_cxx::_Exit;
+
+  using ::__gnu_cxx::llabs;
+  using ::__gnu_cxx::div;
+  using ::__gnu_cxx::lldiv;
+
+  using ::__gnu_cxx::atoll;
+  using ::__gnu_cxx::strtof;
+  using ::__gnu_cxx::strtoll;
+  using ::__gnu_cxx::strtoull;
+  using ::__gnu_cxx::strtold;
+}
+
+
+
+}
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 2 3
+
+using std::abort;
+using std::atexit;
+using std::exit;
+# 51 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
+using std::div_t;
+using std::ldiv_t;
+
+using std::abs;
+using std::atof;
+using std::atoi;
+using std::atol;
+using std::bsearch;
+using std::calloc;
+using std::div;
+using std::free;
+using std::getenv;
+using std::labs;
+using std::ldiv;
+using std::malloc;
+
+using std::mblen;
+using std::mbstowcs;
+using std::mbtowc;
+
+using std::qsort;
+using std::rand;
+using std::realloc;
+using std::srand;
+using std::strtod;
+using std::strtol;
+using std::strtoul;
+using std::system;
+
+using std::wcstombs;
+using std::wctomb;
+# 18 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 2 3
+
+
+
+extern "C" {
+
+
+__attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wassert(const wchar_t *_Message,const wchar_t *_File,unsigned _Line);
+__attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _assert (const char *_Message, const char *_File, unsigned _Line);
+
+
+}
+# 51 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
+# 64 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h"
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\corecrt_stdio_config.h" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
+
+#pragma pack(push,_CRT_PACKING)
+# 23 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+extern "C" {
+# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
   struct _iobuf {
+
+
+
     char *_ptr;
     int _cnt;
     char *_base;
@@ -382,15 +1289,1011 @@ extern "C" {
     int _charbuf;
     int _bufsiz;
     char *_tmpfname;
+
   };
   typedef struct _iobuf FILE;
+# 91 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 1 3
 
 
+
+
+  typedef long _off_t;
+
+  typedef long off32_t;
+
+
+
+
+
+  __extension__ typedef long long _off64_t;
+
+  __extension__ typedef long long off64_t;
+# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 3
+typedef off32_t off_t;
+# 92 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
 
 __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
 
 
   __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __iob_func(void);
+# 115 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __extension__ typedef long long fpos_t;
+# 156 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vsscanf (const char * __restrict__ _Str,const char * __restrict__ Format,va_list argp);
+extern
+  __attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_scanf(const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vscanf(const char * __restrict__ Format, va_list argp);
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfscanf (FILE * __restrict__ fp, const char * __restrict__ Format,va_list argp);
+
+extern
+  __attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_vsnprintf(char * __restrict__ _DstBuf,size_t _MaxCount,const char * __restrict__ _Format,
+                               va_list _ArgList);
+extern
+  __attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_snprintf(char * __restrict__ s, size_t n, const char * __restrict__ format, ...);
+extern
+  __attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_printf(const char * __restrict__ , ... ) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vprintf (const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fprintf (FILE * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfprintf (FILE * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_sprintf (char * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vsprintf (char * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__((nonnull (1,2)))
+  int __attribute__((__cdecl__)) __mingw_asprintf(char ** __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__((nonnull (1,2)))
+  int __attribute__((__cdecl__)) __mingw_vasprintf(char ** __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+
+extern
+  __attribute__((__format__ (ms_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (ms_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __ms_scanf(const char * __restrict__ _Format,...);
+extern
+  __attribute__((__format__ (ms_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
+
+extern
+  __attribute__((__format__ (ms_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __ms_printf(const char * __restrict__ , ... ) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (ms_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __ms_vprintf (const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (ms_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_fprintf (FILE * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (ms_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_vfprintf (FILE * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (ms_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_sprintf (char * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
+extern
+  __attribute__((__format__ (ms_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_vsprintf (char * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
+# 285 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+extern "C++" {
+
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int sscanf(const char *__source, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsscanf( __source, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+int scanf(const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfscanf( (__acrt_iob_func(0)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int fscanf(FILE *__stream, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfscanf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshadow"
+
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vsscanf (const char *__source, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vsscanf( __source, __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+int vscanf(const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfscanf( (__acrt_iob_func(0)), __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vfscanf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfscanf( __stream, __format, __local_argv );
+}
+
+
+#pragma GCC diagnostic pop
+
+
+
+
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int fprintf (FILE *__stream, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+int printf (const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfprintf( (__acrt_iob_func(1)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+# 394 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
+int sprintf (char *__stream, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vfprintf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfprintf( __stream, __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+int vprintf (const char *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfprintf( (__acrt_iob_func(1)), __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
+int vsprintf (char *__stream, const char *__format, __builtin_va_list __local_argv)
+{
+# 433 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  return __mingw_vsprintf( __stream, __format, __local_argv );
+}
+# 449 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+int snprintf (char *__stream, size_t __n, const char *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsnprintf( __stream, __n, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+inline __attribute__((__cdecl__))
+__attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
+int vsnprintf (char *__stream, size_t __n, const char *__format, __builtin_va_list __local_argv)
+{
+
+
+
+  return __mingw_vsnprintf( __stream, __n, __format, __local_argv );
+}
+# 479 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+}
+# 603 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _filbuf(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flsbuf(int _Ch,FILE *_File);
+
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fsopen(const char *_Filename,const char *_Mode,int _ShFlag);
+
+  void __attribute__((__cdecl__)) clearerr(FILE *_File);
+  int __attribute__((__cdecl__)) fclose(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fcloseall(void);
+
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fdopen(int _FileHandle,const char *_Mode);
+
+  int __attribute__((__cdecl__)) feof(FILE *_File);
+  int __attribute__((__cdecl__)) ferror(FILE *_File);
+  int __attribute__((__cdecl__)) fflush(FILE *_File);
+  int __attribute__((__cdecl__)) fgetc(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fgetchar(void);
+  int __attribute__((__cdecl__)) fgetpos(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
+  int __attribute__((__cdecl__)) fgetpos64(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
+  char *__attribute__((__cdecl__)) fgets(char * __restrict__ _Buf,int _MaxCount,FILE * __restrict__ _File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fileno(FILE *_File);
+
+
+
+  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _tempnam(const char *_DirName,const char *_FilePrefix);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flushall(void);
+  FILE *__attribute__((__cdecl__)) fopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode) ;
+  FILE *fopen64(const char * __restrict__ filename,const char * __restrict__ mode);
+  int __attribute__((__cdecl__)) fputc(int _Ch,FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fputchar(int _Ch);
+  int __attribute__((__cdecl__)) fputs(const char * __restrict__ _Str,FILE * __restrict__ _File);
+  size_t __attribute__((__cdecl__)) fread(void * __restrict__ _DstBuf,size_t _ElementSize,size_t _Count,FILE * __restrict__ _File);
+  FILE *__attribute__((__cdecl__)) freopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode,FILE * __restrict__ _File) ;
+  int __attribute__((__cdecl__)) fsetpos(FILE *_File,const fpos_t *_Pos);
+  int __attribute__((__cdecl__)) fsetpos64(FILE *_File,const fpos_t *_Pos);
+  int __attribute__((__cdecl__)) fseek(FILE *_File,long _Offset,int _Origin);
+  long __attribute__((__cdecl__)) ftell(FILE *_File);
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fseeki64(FILE *_File,long long _Offset,int _Origin);
+  __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _ftelli64(FILE *_File);
+# 662 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  int fseeko64(FILE* stream, _off64_t offset, int whence);
+  int fseeko(FILE* stream, _off_t offset, int whence);
+
+  _off_t ftello(FILE * stream);
+  _off64_t ftello64(FILE * stream);
+# 683 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  size_t __attribute__((__cdecl__)) fwrite(const void * __restrict__ _Str,size_t _Size,size_t _Count,FILE * __restrict__ _File);
+  int __attribute__((__cdecl__)) getc(FILE *_File);
+  int __attribute__((__cdecl__)) getchar(void);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _getmaxstdio(void);
+  char *__attribute__((__cdecl__)) gets(char *_Buffer) ;
+  int __attribute__((__cdecl__)) _getw(FILE *_File);
+
+
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _pclose(FILE *_File);
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _popen(const char *_Command,const char *_Mode);
+
+
+
+
+
+  int __attribute__((__cdecl__)) putc(int _Ch,FILE *_File);
+  int __attribute__((__cdecl__)) putchar(int _Ch);
+  int __attribute__((__cdecl__)) puts(const char *_Str);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putw(int _Word,FILE *_File);
+
+
+  int __attribute__((__cdecl__)) remove(const char *_Filename);
+  int __attribute__((__cdecl__)) rename(const char *_OldFilename,const char *_NewFilename);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _unlink(const char *_Filename);
+
+  int __attribute__((__cdecl__)) unlink(const char *_Filename) ;
+
+
+  void __attribute__((__cdecl__)) rewind(FILE *_File);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _rmtmp(void);
+  void __attribute__((__cdecl__)) setbuf(FILE * __restrict__ _File,char * __restrict__ _Buffer) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _setmaxstdio(int _Max);
+  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_output_format(unsigned int _Format);
+  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _get_output_format(void);
+  int __attribute__((__cdecl__)) setvbuf(FILE * __restrict__ _File,char * __restrict__ _Buf,int _Mode,size_t _Size);
+# 746 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__pure__))
+  __attribute__((__format__ (ms_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf(const char * __restrict__ _Format,...);
+  __attribute__((__format__ (ms_scanf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf(const char * __restrict__ _Src,size_t _MaxCount,const char * __restrict__ _Format,...) ;
+
+  __attribute__ ((__pure__))
+  __attribute__((__format__ (ms_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf(const char * __restrict__ _Format,va_list _ArgList);
+  FILE *__attribute__((__cdecl__)) tmpfile(void) ;
+  char *__attribute__((__cdecl__)) tmpnam(char *_Buffer);
+  int __attribute__((__cdecl__)) ungetc(int _Ch,FILE *_File);
+# 774 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__((__format__ (ms_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,...) ;
+  __attribute__((__format__ (ms_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,va_list _Args) ;
+# 940 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_printf_count_output(int _Value);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _get_printf_count_output(void);
+
+
+
+
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vswscanf (const wchar_t * __restrict__ _Str,const wchar_t * __restrict__ Format,va_list argp);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_wscanf(const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vwscanf(const wchar_t * __restrict__ Format, va_list argp);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfwscanf (FILE * __restrict__ fp, const wchar_t * __restrict__ Format,va_list argp);
+
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+                                                      __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_wprintf(const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __mingw_vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
+                                                      __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_snwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, ...);
+                                                      __attribute__ ((__nonnull__ (3)))
+  int __attribute__((__cdecl__)) __mingw_vsnwprintf (wchar_t * __restrict__ , size_t, const wchar_t * __restrict__ , va_list);
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_swprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ , ...);
+                                                      __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __mingw_vswprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ ,va_list);
+
+                                                    __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...);
+                                                    __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __ms_wscanf(const wchar_t * __restrict__ _Format,...);
+                                                    __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
+                                                     __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __ms_wprintf(const wchar_t * __restrict__ _Format,...);
+                                                    __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
+                                                    __attribute__ ((__nonnull__ (1)))
+  int __attribute__((__cdecl__)) __ms_vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_swprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ , ...);
+                                                     __attribute__ ((__nonnull__ (2)))
+  int __attribute__((__cdecl__)) __ms_vswprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ ,va_list);
+# 1008 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+inline __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int swscanf(const wchar_t *__source, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vswscanf( __source, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (1)))
+int wscanf(const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwscanf( (__acrt_iob_func(0)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int fwscanf(FILE *__stream, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwscanf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+inline __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int vswscanf (const wchar_t * __restrict__ __source, const wchar_t * __restrict__ __format, __builtin_va_list __local_argv)
+{
+  return __mingw_vswscanf( __source, __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (1)))
+int vwscanf(const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwscanf( (__acrt_iob_func(0)), __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+                                                     __attribute__ ((__nonnull__ (2)))
+int vfwscanf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwscanf( __stream, __format, __local_argv );
+}
+
+
+
+
+inline __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int fwprintf (FILE *__stream, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (1)))
+int wprintf (const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vfwprintf( (__acrt_iob_func(1)), __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+inline __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int vfwprintf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwprintf( __stream, __format, __local_argv );
+}
+
+inline __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (1)))
+int vwprintf (const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return __mingw_vfwprintf( (__acrt_iob_func(1)), __format, __local_argv );
+}
+# 1116 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+inline __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int snwprintf (wchar_t *__stream, size_t __n, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  __retval = __mingw_vsnwprintf( __stream, __n, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+inline __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int vsnwprintf (wchar_t *__stream, size_t __n, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+
+
+
+  return __mingw_vsnwprintf( __stream, __n, __format, __local_argv );
+}
+# 1269 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfsopen(const wchar_t *_Filename,const wchar_t *_Mode,int _ShFlag);
+
+
+  wint_t __attribute__((__cdecl__)) fgetwc(FILE *_File);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fgetwchar(void);
+  wint_t __attribute__((__cdecl__)) fputwc(wchar_t _Ch,FILE *_File);
+  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fputwchar(wchar_t _Ch);
+  wint_t __attribute__((__cdecl__)) getwc(FILE *_File);
+  wint_t __attribute__((__cdecl__)) getwchar(void);
+  wint_t __attribute__((__cdecl__)) putwc(wchar_t _Ch,FILE *_File);
+  wint_t __attribute__((__cdecl__)) putwchar(wchar_t _Ch);
+  wint_t __attribute__((__cdecl__)) ungetwc(wint_t _Ch,FILE *_File);
+  wchar_t *__attribute__((__cdecl__)) fgetws(wchar_t * __restrict__ _Dst,int _SizeInWords,FILE * __restrict__ _File);
+  int __attribute__((__cdecl__)) fputws(const wchar_t * __restrict__ _Str,FILE * __restrict__ _File);
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _getws(wchar_t *_String) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putws(const wchar_t *_Str);
+# 1351 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf(const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,...) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,va_list _Args) ;
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
+# 1381 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,va_list _Args);
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
+# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 1 3
+# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 2 3
+# 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int vswprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+  return vsnwprintf( __stream, __count, __format, __local_argv );
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (3)))
+int swprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv;
+
+  __builtin_va_start( __local_argv, __format );
+  __retval = vswprintf( __stream, __count, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+
+
+extern "C++" {
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int vswprintf (wchar_t *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
+{
+
+  return __mingw_vswprintf( __stream, __format, __local_argv );
+
+
+
+}
+
+static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
+                                                      __attribute__ ((__nonnull__ (2)))
+int swprintf (wchar_t *__stream, const wchar_t *__format, ...)
+{
+  int __retval;
+  __builtin_va_list __local_argv;
+
+  __builtin_va_start( __local_argv, __format );
+  __retval = vswprintf( __stream, __format, __local_argv );
+  __builtin_va_end( __local_argv );
+  return __retval;
+}
+
+}
+# 1387 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
+# 1396 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtempnam(const wchar_t *_Directory,const wchar_t *_FilePrefix);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf(const wchar_t * __restrict__ _Src,size_t _MaxCount,const wchar_t * __restrict__ _Format,...);
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfdopen(int _FileHandle ,const wchar_t *_Mode);
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfopen(const wchar_t * __restrict__ _Filename,const wchar_t *__restrict__ _Mode) ;
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfreopen(const wchar_t * __restrict__ _Filename,const wchar_t * __restrict__ _Mode,FILE * __restrict__ _OldFile) ;
+
+
+
+
+
+  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wpopen(const wchar_t *_Command,const wchar_t *_Mode);
+
+
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wremove(const wchar_t *_Filename);
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtmpnam(wchar_t *_Buffer);
+# 1456 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _lock_file(FILE *_File);
+  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _unlock_file(FILE *_File);
+# 1474 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  char *__attribute__((__cdecl__)) tempnam(const char *_Directory,const char *_FilePrefix) ;
+  int __attribute__((__cdecl__)) fcloseall(void) ;
+  FILE *__attribute__((__cdecl__)) fdopen(int _FileHandle,const char *_Format) ;
+  int __attribute__((__cdecl__)) fgetchar(void) ;
+  int __attribute__((__cdecl__)) fileno(FILE *_File) ;
+  int __attribute__((__cdecl__)) flushall(void) ;
+  int __attribute__((__cdecl__)) fputchar(int _Ch) ;
+  int __attribute__((__cdecl__)) getw(FILE *_File) ;
+  int __attribute__((__cdecl__)) putw(int _Ch,FILE *_File) ;
+  int __attribute__((__cdecl__)) rmtmp(void) ;
+# 1500 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+int __attribute__((__cdecl__)) __mingw_str_wide_utf8 (const wchar_t * const wptr, char **mbptr, size_t * buflen);
+# 1514 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+int __attribute__((__cdecl__)) __mingw_str_utf8_wide (const char *const mbptr, wchar_t ** wptr, size_t * buflen);
+# 1523 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+void __attribute__((__cdecl__)) __mingw_str_free(void *ptr);
+
+
+
+
+
+
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnl(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnle(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlp(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlpe(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnv(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnve(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvp(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvpe(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
+# 1554 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnv(int _Mode,const char *_Filename,const char *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnve(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvp(int _Mode,const char *_Filename,const char *const *_ArgList);
+  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvpe(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
+
+
+
+
+}
+
+
+
+
+
+
+
+#pragma pack(pop)
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 1 3
+
+
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
+# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 2 3
+# 21 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
+extern "C" {
+
+
+
+
+
+
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) clearerr_s(FILE *_File);
+
+  size_t __attribute__((__cdecl__)) fread_s(void *_DstBuf,size_t _DstSize,size_t _ElementSize,size_t _Count,FILE *_File);
+# 494 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
+  int __attribute__((__cdecl__)) fprintf_s(FILE *_File,const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fscanf_s_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) fscanf_s(FILE *_File, const char *_Format, ...);
+  int __attribute__((__cdecl__)) printf_s(const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scanf_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scanf_s_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) scanf_s(const char *_Format, ...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_c(char *_DstBuf,size_t _MaxCount,const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_c(char *_DstBuf,size_t _MaxCount,const char *_Format,va_list _ArgList);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fscanf_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sscanf_l(const char *_Src,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sscanf_s_l(const char *_Src,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) sscanf_s(const char *_Src,const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf_s(const char *_Src,size_t _MaxCount,const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf_l(const char *_Src,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf_s_l(const char *_Src,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
+  int __attribute__((__cdecl__)) vfprintf_s(FILE *_File,const char *_Format,va_list _ArgList);
+  int __attribute__((__cdecl__)) vprintf_s(const char *_Format,va_list _ArgList);
+
+  int __attribute__((__cdecl__)) vsnprintf_s(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,va_list _ArgList);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_s(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,va_list _ArgList);
+
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) vsprintf_s(char *_DstBuf,size_t _Size,const char *_Format,va_list _ArgList);
+
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) sprintf_s(char *_DstBuf,size_t _DstSize,const char *_Format,...);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_s(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,...);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_p(FILE *_File,const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_p(const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_p(char *_Dst,size_t _MaxCount,const char *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_p(FILE *_File,const char *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_p(const char *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_p(char *_Dst,size_t _MaxCount,const char *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf_p(const char *_Format,...);
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vscprintf_p(const char *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_p_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_p_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_p_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_l(FILE *_File,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_p_l(FILE *_File,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_l(char *_DstBuf,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_p_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_l(char *_DstBuf,const char *_Format,_locale_t,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_p_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf_p_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf_p_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_s_l(const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_s_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_s_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_s_l(FILE *_File,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_s_l(char *_DstBuf,size_t _DstSize,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_s_l(char *_DstBuf,size_t _DstSize,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_s_l(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_s_l(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_c_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_c_l(char *_DstBuf,size_t _MaxCount,const char *,_locale_t _Locale,va_list _ArgList);
+
+
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) vsnprintf_s(char (&_DstBuf)[__size], size_t _MaxCount, const char* _Format, va_list _ArgList) { return vsnprintf_s(_DstBuf,__size,_MaxCount,_Format,_ArgList); } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _vsnprintf_s(char (&_DstBuf)[__size], size_t _MaxCount, const char* _Format, va_list _ArgList) { return _vsnprintf_s(_DstBuf,__size,_MaxCount,_Format,_ArgList); } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) vsprintf_s(char (&_DstBuf)[__size], const char* _Format, va_list _ArgList) { return vsprintf_s(_DstBuf,__size,_Format,_ArgList); } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) sprintf_s(char (&_DstBuf)[__size], const char* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = vsprintf_s(_DstBuf,__size,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _snprintf_s(char (&_DstBuf)[__size], size_t _MaxCount, const char* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = _vsnprintf_s(_DstBuf,__size,_MaxCount,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) fopen_s(FILE **_File,const char *_Filename,const char *_Mode);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) freopen_s(FILE** _File, const char *_Filename, const char *_Mode, FILE *_Stream);
+
+  __attribute__ ((__dllimport__)) char* __attribute__((__cdecl__)) gets_s(char*,rsize_t);
+  extern "C++" { template <size_t __size> inline char* __attribute__((__cdecl__)) get_s(char (&_DstBuf)[__size]) { return get_s(_DstBuf,__size); } }
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) tmpnam_s(char*,rsize_t);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) tmpnam_s(char (&_DstBuf)[__size]) { return tmpnam_s(_DstBuf,__size); } }
+
+
+
+
+  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _getws_s(wchar_t *_Str,size_t _SizeInWords);
+  extern "C++" { template <size_t __size> inline wchar_t* __attribute__((__cdecl__)) _getws_s(wchar_t (&_DstBuf)[__size]) { return _getws_s(_DstBuf,__size); } }
+# 786 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
+  int __attribute__((__cdecl__)) fwprintf_s(FILE *_File,const wchar_t *_Format,...);
+  int __attribute__((__cdecl__)) wprintf_s(const wchar_t *_Format,...);
+  int __attribute__((__cdecl__)) vfwprintf_s(FILE *_File,const wchar_t *_Format,va_list _ArgList);
+  int __attribute__((__cdecl__)) vwprintf_s(const wchar_t *_Format,va_list _ArgList);
+
+  int __attribute__((__cdecl__)) vswprintf_s(wchar_t *_Dst,size_t _SizeInWords,const wchar_t *_Format,va_list _ArgList);
+
+  int __attribute__((__cdecl__)) swprintf_s(wchar_t *_Dst,size_t _SizeInWords,const wchar_t *_Format,...);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_s(wchar_t *_DstBuf,size_t _DstSizeInWords,size_t _MaxCount,const wchar_t *_Format,va_list _ArgList);
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_s(wchar_t *_DstBuf,size_t _DstSizeInWords,size_t _MaxCount,const wchar_t *_Format,...);
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_s_l(const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_s_l(const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_s_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_s_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwscanf_s_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) fwscanf_s(FILE *_File, const wchar_t *_Format, ...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swscanf_s_l(const wchar_t *_Src,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) swscanf_s(const wchar_t *_Src,const wchar_t *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_s(const wchar_t *_Src,size_t _MaxCount,const wchar_t *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_s_l(const wchar_t *_Src,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wscanf_s_l(const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) wscanf_s(const wchar_t *_Format, ...);
+
+
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) vswprintf_s(wchar_t (&_Dst)[__size], const wchar_t* _Format, va_list _ArgList) { return vswprintf_s(_Dst,__size,_Format,_ArgList); } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) swprintf_s(wchar_t (&_Dst)[__size], const wchar_t* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = vswprintf_s(_Dst,__size,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _vsnwprintf_s(wchar_t (&_DstBuf)[__size], size_t _MaxCount, const wchar_t* _Format, va_list _ArgList) { return _vsnwprintf_s(_DstBuf,__size,_MaxCount,_Format,_ArgList); } }
+  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _snwprintf_s(wchar_t (&_DstBuf)[__size], size_t _MaxCount, const wchar_t* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = _vsnwprintf_s(_DstBuf,__size,_MaxCount,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wfopen_s(FILE **_File,const wchar_t *_Filename,const wchar_t *_Mode);
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wfreopen_s(FILE **_File,const wchar_t *_Filename,const wchar_t *_Mode,FILE *_OldFile);
+
+  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wtmpnam_s(wchar_t *_DstBuf,size_t _SizeInWords);
+  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _wtmpnam_s(wchar_t (&_DstBuf)[__size]) { return _wtmpnam_s(_DstBuf,__size); } }
+
+
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_p(FILE *_File,const wchar_t *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_p(const wchar_t *_Format,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_p(FILE *_File,const wchar_t *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_p(const wchar_t *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_p(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,...);
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vswprintf_p(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_p(const wchar_t *_Format,...);
+  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vscwprintf_p(const wchar_t *_Format,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_l(const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_p_l(const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_l(const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_p_l(const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_p_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_p_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c_l(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_p_l(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c_l(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_p_l(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_l(const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_p_l(const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf_p_l(const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_l(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_l(wchar_t *_DstBuf,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __swprintf_l(wchar_t *_Dest,const wchar_t *_Format,_locale_t _Plocinfo,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __vswprintf_l(wchar_t *_Dest,const wchar_t *_Format,_locale_t _Plocinfo,va_list _Args);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf_l(const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwscanf_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swscanf_l(const wchar_t *_Src,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_l(const wchar_t *_Src,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
+  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wscanf_l(const wchar_t *_Format,_locale_t _Locale,...);
+# 872 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
+}
+# 1573 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
+# 65 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
+# 67 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
+# 159 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h"
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iostream" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iostream" 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ostream" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ostream" 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ios" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ios" 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iosfwd" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iosfwd" 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 1 3
+# 38 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/memoryfwd.h" 1 3
+# 47 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/memoryfwd.h" 3
+
+
+
+namespace std
+{
+# 63 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/memoryfwd.h" 3
+  template<typename>
+    class allocator;
+
+  template<>
+    class allocator<void>;
+
+
+
+  template<typename, typename>
+    struct uses_allocator;
+
+
+
+
+
+}
+# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 2 3
+
+namespace std
+{
+# 52 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 3
+  template<class _CharT>
+    struct char_traits;
+
+  template<> struct char_traits<char>;
+
+
+  template<> struct char_traits<wchar_t>;
+
+
+
+
+
+
+
+  template<> struct char_traits<char16_t>;
+  template<> struct char_traits<char32_t>;
+
+
+namespace __cxx11 {
+
+  template<typename _CharT, typename _Traits = char_traits<_CharT>,
+           typename _Alloc = allocator<_CharT> >
+    class basic_string;
+
+}
+
+
+  typedef basic_string<char> string;
+
+
+
+  typedef basic_string<wchar_t> wstring;
+# 93 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stringfwd.h" 3
+  typedef basic_string<char16_t> u16string;
+
+
+  typedef basic_string<char32_t> u32string;
+
+
+
+
+
+}
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iosfwd" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/postypes.h" 1 3
+# 39 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/postypes.h" 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cwchar" 1 3
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cwchar" 3
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 1 3
+# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+#pragma pack(push,_CRT_PACKING)
+
+
+extern "C" {
+# 56 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
+__attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
 # 82 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
   typedef unsigned long _fsize_t;
 
@@ -532,23 +2435,6 @@ __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wexecve(const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wexecvp(const wchar_t *_Filename,const wchar_t *const *_ArgList);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wexecvpe(const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
-
-
-
-
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnl(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnle(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlp(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnlpe(int _Mode,const wchar_t *_Filename,const wchar_t *_ArgList,...);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnv(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnve(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvp(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _wspawnvpe(int _Mode,const wchar_t *_Filename,const wchar_t *const *_ArgList,const wchar_t *const *_Env);
-
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wsystem(const wchar_t *_Command);
 # 398 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
   typedef unsigned short _ino_t;
 
@@ -564,25 +2450,7 @@ __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func
 
 
 
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 1 3
 
-
-
-
-  typedef long _off_t;
-
-  typedef long off32_t;
-
-
-
-
-
-  __extension__ typedef long long _off64_t;
-
-  __extension__ typedef long long off64_t;
-# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_off_t.h" 3
-typedef off32_t off_t;
-# 413 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_stat64.h" 1 3
 # 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\_mingw_stat64.h" 3
   struct _stat32 {
@@ -683,378 +2551,7 @@ typedef off32_t off_t;
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vcwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _cwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vcwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-# 465 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vswscanf (const wchar_t * __restrict__ _Str,const wchar_t * __restrict__ Format,va_list argp);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_wscanf(const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vwscanf(const wchar_t * __restrict__ Format, va_list argp);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfwscanf (FILE * __restrict__ fp, const wchar_t * __restrict__ Format,va_list argp);
-
-
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-                                                      __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_wprintf(const wchar_t * __restrict__ _Format,...);
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
-                                                      __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_snwprintf (wchar_t * __restrict__ s, size_t n, const wchar_t * __restrict__ format, ...);
-                                                      __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_vsnwprintf (wchar_t * __restrict__ , size_t, const wchar_t * __restrict__ , va_list);
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_swprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ , ...);
-                                                      __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vswprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ ,va_list);
-
-                                                    __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_swscanf(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,...);
-                                                    __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_wscanf(const wchar_t * __restrict__ _Format,...);
-                                                    __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_fwscanf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_fwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-                                                     __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_wprintf(const wchar_t * __restrict__ _Format,...);
-                                                    __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_vfwprintf(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
-                                                    __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_vwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_swprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ , ...);
-                                                     __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_vswprintf(wchar_t * __restrict__ , const wchar_t * __restrict__ ,va_list);
-# 541 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                     __attribute__ ((__nonnull__ (2)))
-int swscanf(const wchar_t *__source, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vswscanf( __source, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                     __attribute__ ((__nonnull__ (1)))
-int wscanf(const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfwscanf( (__acrt_iob_func(0)), __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                     __attribute__ ((__nonnull__ (2)))
-int fwscanf(FILE *__stream, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfwscanf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                     __attribute__ ((__nonnull__ (2)))
-int vswscanf (const wchar_t *__source, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vswscanf( __source, __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                     __attribute__ ((__nonnull__ (1)))
-int vwscanf(const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfwscanf( (__acrt_iob_func(0)), __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                     __attribute__ ((__nonnull__ (2)))
-int vfwscanf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfwscanf( __stream, __format, __local_argv );
-}
-
-
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (2)))
-int fwprintf (FILE *__stream, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfwprintf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (1)))
-int wprintf (const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfwprintf( (__acrt_iob_func(1)), __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (2)))
-int vfwprintf (FILE *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfwprintf( __stream, __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (1)))
-int vwprintf (const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfwprintf( (__acrt_iob_func(1)), __format, __local_argv );
-}
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (3)))
-int snwprintf (wchar_t *__stream, size_t __n, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vsnwprintf( __stream, __n, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (3)))
-int vsnwprintf (wchar_t *__stream, size_t __n, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vsnwprintf( __stream, __n, __format, __local_argv );
-}
-# 784 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfsopen(const wchar_t *_Filename,const wchar_t *_Mode,int _ShFlag);
-
-
-  wint_t __attribute__((__cdecl__)) fgetwc(FILE *_File);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fgetwchar(void);
-  wint_t __attribute__((__cdecl__)) fputwc(wchar_t _Ch,FILE *_File);
-  __attribute__ ((__dllimport__)) wint_t __attribute__((__cdecl__)) _fputwchar(wchar_t _Ch);
-  wint_t __attribute__((__cdecl__)) getwc(FILE *_File);
-  wint_t __attribute__((__cdecl__)) getwchar(void);
-  wint_t __attribute__((__cdecl__)) putwc(wchar_t _Ch,FILE *_File);
-  wint_t __attribute__((__cdecl__)) putwchar(wchar_t _Ch);
-  wint_t __attribute__((__cdecl__)) ungetwc(wint_t _Ch,FILE *_File);
-  wchar_t *__attribute__((__cdecl__)) fgetws(wchar_t * __restrict__ _Dst,int _SizeInWords,FILE * __restrict__ _File);
-  int __attribute__((__cdecl__)) fputws(const wchar_t * __restrict__ _Str,FILE * __restrict__ _File);
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _getws(wchar_t *_String) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putws(const wchar_t *_Str);
-# 848 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf(const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_l(wchar_t * __restrict__ ,size_t _SizeInWords,const wchar_t * __restrict__ _Format,_locale_t _Locale,... ) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c(wchar_t * __restrict__ _DstBuf,size_t _SizeInWords,const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,...) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf(wchar_t * __restrict__ _Dest,size_t _Count,const wchar_t * __restrict__ _Format,va_list _Args) ;
-# 1159 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_p(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_p(const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_p(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_p(const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_p(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,...);
-  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vswprintf_p(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_p(const wchar_t * __restrict__ _Format,...);
-  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vscwprintf_p(const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_p_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_p_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_c_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_p_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_c_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_p_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf_p_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_l(wchar_t * __restrict__ _DstBuf,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,va_list _Args);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __swprintf_l(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,_locale_t _Plocinfo,...) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_l(wchar_t * __restrict__ _Dest,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) __vswprintf_l(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Format,_locale_t _Plocinfo,va_list _Args) ;
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 1 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\vadefs.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 2 3
-# 25 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\swprintf.inl" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (3)))
-int vswprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-  return vsnwprintf( __stream, __count, __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (3)))
-int swprintf (wchar_t *__stream, size_t __count, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv;
-
-  __builtin_va_start( __local_argv, __format );
-  __retval = vswprintf( __stream, __count, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-
-extern "C++" {
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (2)))
-int vswprintf (wchar_t *__stream, const wchar_t *__format, __builtin_va_list __local_argv)
-{
-
-  return __mingw_vswprintf( __stream, __format, __local_argv );
-
-
-
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-                                                      __attribute__ ((__nonnull__ (2)))
-int swprintf (wchar_t *__stream, const wchar_t *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv;
-
-  __builtin_va_start( __local_argv, __format );
-  __retval = vswprintf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-}
-# 1193 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 2 3
-# 1202 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtempnam(const wchar_t *_Directory,const wchar_t *_FilePrefix);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf(const wchar_t * __restrict__ _Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscwprintf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwscanf_l(FILE * __restrict__ _File,const wchar_t * __restrict__ _Format,_locale_t _Locale,...) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swscanf_l(const wchar_t * __restrict__ _Src,const wchar_t * __restrict__ _Format,_locale_t _Locale,...) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf(const wchar_t * __restrict__ _Src,size_t _MaxCount,const wchar_t * __restrict__ _Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_l(const wchar_t * __restrict__ _Src,size_t _MaxCount,const wchar_t * __restrict__ _Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wscanf_l(const wchar_t * __restrict__ _Format,_locale_t _Locale,...) ;
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfdopen(int _FileHandle ,const wchar_t *_Mode);
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfopen(const wchar_t * __restrict__ _Filename,const wchar_t * __restrict__ _Mode) ;
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wfreopen(const wchar_t * __restrict__ _Filename,const wchar_t * __restrict__ _Mode,FILE * __restrict__ _OldFile) ;
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wperror(const wchar_t *_ErrMsg);
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _wpopen(const wchar_t *_Command,const wchar_t *_Mode);
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wremove(const wchar_t *_Filename);
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wtmpnam(wchar_t *_Buffer);
-# 1253 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _itow(int _Value,wchar_t *_Dest,int _Radix) ;
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ltow(long _Value,wchar_t *_Dest,int _Radix) ;
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ultow(unsigned long _Value,wchar_t *_Dest,int _Radix) ;
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wcstod_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,_locale_t _Locale);
-
-  double __attribute__((__cdecl__)) __mingw_wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
-  float __attribute__((__cdecl__)) __mingw_wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
-  long double __attribute__((__cdecl__)) __mingw_wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
-
-
-  static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-  double __attribute__((__cdecl__)) wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
-    return __mingw_wcstod(_Str,_EndPtr);
-  }
-  static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-  float __attribute__((__cdecl__)) wcstof(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
-    return __mingw_wcstof(_Str,_EndPtr);
-  }
-
-
-
-
-
-
-  long double __attribute__((__cdecl__)) wcstold (const wchar_t * __restrict__, wchar_t ** __restrict__);
-
-  long __attribute__((__cdecl__)) wcstol(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wcstol_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-  unsigned long __attribute__((__cdecl__)) wcstoul(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _wcstoul_l(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wgetenv(const wchar_t *_VarName) ;
-
-
-
-
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof(const wchar_t *_Str);
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _wtof_l(const wchar_t *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi(const wchar_t *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wtoi_l(const wchar_t *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol(const wchar_t *_Str);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _wtol_l(const wchar_t *_Str,_locale_t _Locale);
-
-  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _i64tow(long long _Val,wchar_t *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _ui64tow(unsigned long long _Val,wchar_t *_DstBuf,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wtoi64(const wchar_t *_Str);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wtoi64_l(const wchar_t *_Str,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wcstoi64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _wcstoi64_l(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _wcstoui64(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _wcstoui64_l(const wchar_t *_Str,wchar_t **_EndPtr,int _Radix,_locale_t _Locale);
-
-
-
-
-
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wfullpath(wchar_t *_FullPath,const wchar_t *_Path,size_t _SizeInWords);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wmakepath(wchar_t *_ResultPath,const wchar_t *_Drive,const wchar_t *_Dir,const wchar_t *_Filename,const wchar_t *_Ext);
-
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wputenv(const wchar_t *_EnvString);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsearchenv(const wchar_t *_Filename,const wchar_t *_EnvVar,wchar_t *_ResultPath) ;
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wsplitpath(const wchar_t *_FullPath,wchar_t *_Drive,wchar_t *_Dir,wchar_t *_Filename,wchar_t *_Ext) ;
-
-
-
-
-
+# 1322 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
   __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wcsdup(const wchar_t *_Str);
   wchar_t *__attribute__((__cdecl__)) wcscat(wchar_t * __restrict__ _Dest,const wchar_t * __restrict__ _Source) ;
                 wchar_t *__attribute__((__cdecl__)) wcschr(const wchar_t *_Str,wchar_t _Ch);
@@ -1183,16 +2680,7 @@ int swprintf (wchar_t *__stream, const wchar_t *__format, ...)
 
   void *__attribute__((__cdecl__)) memmove(void *_Dst,const void *_Src,size_t _MaxCount);
   void *__attribute__((__cdecl__)) memcpy(void * __restrict__ _Dst,const void * __restrict__ _Src,size_t _MaxCount) ;
-# 1528 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-int __attribute__((__cdecl__)) __mingw_str_wide_utf8 (const wchar_t * const wptr, char **mbptr, size_t * buflen);
-# 1542 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-int __attribute__((__cdecl__)) __mingw_str_utf8_wide (const char *const mbptr, wchar_t ** wptr, size_t * buflen);
-# 1551 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
-void __attribute__((__cdecl__)) __mingw_str_free(void *ptr);
-
-
-
-
+# 1556 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\wchar.h" 3
 }
 
 
@@ -1228,59 +2716,7 @@ extern "C" {
   __attribute__((dllimport)) int __attribute__((__cdecl__)) _vcwprintf_s (const wchar_t *_Format,va_list _ArgList);
   __attribute__((dllimport)) int __attribute__((__cdecl__)) _cwprintf_s_l (const wchar_t *_Format,_locale_t _Locale,...);
   __attribute__((dllimport)) int __attribute__((__cdecl__)) _vcwprintf_s_l (const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
-
-
-
-
-  __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _getws_s(wchar_t *_Str,size_t _SizeInWords);
-  extern "C++" { template <size_t __size> inline wchar_t* __attribute__((__cdecl__)) _getws_s(wchar_t (&_DstBuf)[__size]) { return _getws_s(_DstBuf,__size); } }
-# 249 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/wchar_s.h" 3
-  int __attribute__((__cdecl__)) fwprintf_s(FILE *_File,const wchar_t *_Format,...);
-  int __attribute__((__cdecl__)) wprintf_s(const wchar_t *_Format,...);
-  int __attribute__((__cdecl__)) vfwprintf_s(FILE *_File,const wchar_t *_Format,va_list _ArgList);
-  int __attribute__((__cdecl__)) vwprintf_s(const wchar_t *_Format,va_list _ArgList);
-
-  int __attribute__((__cdecl__)) vswprintf_s(wchar_t *_Dst,size_t _SizeInWords,const wchar_t *_Format,va_list _ArgList);
-
-  int __attribute__((__cdecl__)) swprintf_s(wchar_t *_Dst,size_t _SizeInWords,const wchar_t *_Format,...);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_s(wchar_t *_DstBuf,size_t _DstSizeInWords,size_t _MaxCount,const wchar_t *_Format,va_list _ArgList);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_s(wchar_t *_DstBuf,size_t _DstSizeInWords,size_t _MaxCount,const wchar_t *_Format,...);
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wprintf_s_l(const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vwprintf_s_l(const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwprintf_s_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfwprintf_s_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vswprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnwprintf_s_l(wchar_t *_DstBuf,size_t _DstSize,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fwscanf_s_l(FILE *_File,const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) fwscanf_s(FILE *_File, const wchar_t *_Format, ...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _swscanf_s_l(const wchar_t *_Src,const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) swscanf_s(const wchar_t *_Src,const wchar_t *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_s(const wchar_t *_Src,size_t _MaxCount,const wchar_t *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snwscanf_s_l(const wchar_t *_Src,size_t _MaxCount,const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wscanf_s_l(const wchar_t *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) wscanf_s(const wchar_t *_Format, ...);
-
-
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) vswprintf_s(wchar_t (&_Dst)[__size], const wchar_t* _Format, va_list _ArgList) { return vswprintf_s(_Dst,__size,_Format,_ArgList); } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) swprintf_s(wchar_t (&_Dst)[__size], const wchar_t* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = vswprintf_s(_Dst,__size,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _vsnwprintf_s(wchar_t (&_DstBuf)[__size], size_t _MaxCount, const wchar_t* _Format, va_list _ArgList) { return _vsnwprintf_s(_DstBuf,__size,_MaxCount,_Format,_ArgList); } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _snwprintf_s(wchar_t (&_DstBuf)[__size], size_t _MaxCount, const wchar_t* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = _vsnwprintf_s(_DstBuf,__size,_MaxCount,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wfopen_s(FILE **_File,const wchar_t *_Filename,const wchar_t *_Mode);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wfreopen_s(FILE **_File,const wchar_t *_Filename,const wchar_t *_Mode,FILE *_OldFile);
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wtmpnam_s(wchar_t *_DstBuf,size_t _SizeInWords);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _wtmpnam_s(wchar_t (&_DstBuf)[__size]) { return _wtmpnam_s(_DstBuf,__size); } }
-
-
-
-
+# 295 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/wchar_s.h" 3
   __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) wcstok_s(wchar_t *_Str,const wchar_t *_Delim,wchar_t **_Context);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcserror_s(wchar_t *_Buf,size_t _SizeInWords,int _ErrNum);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) __wcserror_s(wchar_t *_Buffer,size_t _SizeInWords,const wchar_t *_ErrMsg);
@@ -9338,12 +10774,7 @@ namespace std
 # 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 1 3
 # 52 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stdint.h" 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 1 3
-# 28 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\crtdefs.h" 1 3
-# 29 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 2 3
-
-
-
+# 32 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 3
 # 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\stddef.h" 1 3
 # 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdint.h" 2 3
 
@@ -9658,508 +11089,7 @@ namespace std
 
 
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 1 3
-# 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-#pragma pack(push,_CRT_PACKING)
-# 23 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-extern "C" {
-# 93 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-__attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
-
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __iob_func(void);
-# 115 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __extension__ typedef long long fpos_t;
-# 156 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vsscanf (const char * __restrict__ _Str,const char * __restrict__ Format,va_list argp);
-extern
-  __attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_scanf(const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vscanf(const char * __restrict__ Format, va_list argp);
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfscanf (FILE * __restrict__ fp, const char * __restrict__ Format,va_list argp);
-
-extern
-  __attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_vsnprintf(char * __restrict__ _DstBuf,size_t _MaxCount,const char * __restrict__ _Format,
-                               va_list _ArgList);
-extern
-  __attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-  int __attribute__((__cdecl__)) __mingw_snprintf(char * __restrict__ s, size_t n, const char * __restrict__ format, ...);
-extern
-  __attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_printf(const char * __restrict__ , ... ) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __mingw_vprintf (const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_fprintf (FILE * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vfprintf (FILE * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_sprintf (char * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __mingw_vsprintf (char * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 3))) __attribute__((nonnull (1,2)))
-  int __attribute__((__cdecl__)) __mingw_asprintf(char ** __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (gnu_printf, 2, 0))) __attribute__((nonnull (1,2)))
-  int __attribute__((__cdecl__)) __mingw_vasprintf(char ** __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-
-extern
-  __attribute__((__format__ (ms_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_sscanf(const char * __restrict__ _Src,const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (ms_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_scanf(const char * __restrict__ _Format,...);
-extern
-  __attribute__((__format__ (ms_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_fscanf(FILE * __restrict__ _File,const char * __restrict__ _Format,...);
-
-extern
-  __attribute__((__format__ (ms_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_printf(const char * __restrict__ , ... ) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (ms_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  int __attribute__((__cdecl__)) __ms_vprintf (const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (ms_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_fprintf (FILE * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (ms_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_vfprintf (FILE * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (ms_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_sprintf (char * __restrict__ , const char * __restrict__ , ...) __attribute__ ((__nothrow__));
-extern
-  __attribute__((__format__ (ms_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-  int __attribute__((__cdecl__)) __ms_vsprintf (char * __restrict__ , const char * __restrict__ , va_list) __attribute__ ((__nothrow__));
-# 285 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-extern "C++" {
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-int sscanf(const char *__source, const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vsscanf( __source, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_scanf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-int scanf(const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfscanf( (__acrt_iob_func(0)), __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_scanf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-int fscanf(FILE *__stream, const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfscanf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-int vsscanf (const char *__source, const char *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vsscanf( __source, __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_scanf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-int vscanf(const char *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfscanf( (__acrt_iob_func(0)), __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_scanf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-int vfscanf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfscanf( __stream, __format, __local_argv );
-}
-
-
-#pragma GCC diagnostic pop
-
-
-
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-int fprintf (FILE *__stream, const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfprintf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-int printf (const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vfprintf( (__acrt_iob_func(1)), __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-# 394 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 2, 3))) __attribute__ ((__nonnull__ (2)))
-int sprintf (char *__stream, const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vsprintf( __stream, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-int vfprintf (FILE *__stream, const char *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfprintf( __stream, __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-int vprintf (const char *__format, __builtin_va_list __local_argv)
-{
-  return __mingw_vfprintf( (__acrt_iob_func(1)), __format, __local_argv );
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 2, 0))) __attribute__ ((__nonnull__ (2)))
-int vsprintf (char *__stream, const char *__format, __builtin_va_list __local_argv)
-{
-# 433 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  return __mingw_vsprintf( __stream, __format, __local_argv );
-}
-# 449 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-int snprintf (char *__stream, size_t __n, const char *__format, ...)
-{
-  int __retval;
-  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-  __retval = __mingw_vsnprintf( __stream, __n, __format, __local_argv );
-  __builtin_va_end( __local_argv );
-  return __retval;
-}
-
-
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-__attribute__((__format__ (gnu_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-int vsnprintf (char *__stream, size_t __n, const char *__format, __builtin_va_list __local_argv)
-{
-
-
-
-  return __mingw_vsnprintf( __stream, __n, __format, __local_argv );
-}
-# 479 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-}
-# 603 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _filbuf(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flsbuf(int _Ch,FILE *_File);
-
-
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fsopen(const char *_Filename,const char *_Mode,int _ShFlag);
-
-  void __attribute__((__cdecl__)) clearerr(FILE *_File);
-  int __attribute__((__cdecl__)) fclose(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fcloseall(void);
-
-
-
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _fdopen(int _FileHandle,const char *_Mode);
-
-  int __attribute__((__cdecl__)) feof(FILE *_File);
-  int __attribute__((__cdecl__)) ferror(FILE *_File);
-  int __attribute__((__cdecl__)) fflush(FILE *_File);
-  int __attribute__((__cdecl__)) fgetc(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fgetchar(void);
-  int __attribute__((__cdecl__)) fgetpos(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
-  int __attribute__((__cdecl__)) fgetpos64(FILE * __restrict__ _File ,fpos_t * __restrict__ _Pos);
-  char *__attribute__((__cdecl__)) fgets(char * __restrict__ _Buf,int _MaxCount,FILE * __restrict__ _File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fileno(FILE *_File);
-
-
-
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _tempnam(const char *_DirName,const char *_FilePrefix);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _flushall(void);
-  FILE *__attribute__((__cdecl__)) fopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode) ;
-  FILE *fopen64(const char * __restrict__ filename,const char * __restrict__ mode);
-  int __attribute__((__cdecl__)) fputc(int _Ch,FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fputchar(int _Ch);
-  int __attribute__((__cdecl__)) fputs(const char * __restrict__ _Str,FILE * __restrict__ _File);
-  size_t __attribute__((__cdecl__)) fread(void * __restrict__ _DstBuf,size_t _ElementSize,size_t _Count,FILE * __restrict__ _File);
-  FILE *__attribute__((__cdecl__)) freopen(const char * __restrict__ _Filename,const char * __restrict__ _Mode,FILE * __restrict__ _File) ;
-  int __attribute__((__cdecl__)) fsetpos(FILE *_File,const fpos_t *_Pos);
-  int __attribute__((__cdecl__)) fsetpos64(FILE *_File,const fpos_t *_Pos);
-  int __attribute__((__cdecl__)) fseek(FILE *_File,long _Offset,int _Origin);
-  long __attribute__((__cdecl__)) ftell(FILE *_File);
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fseeki64(FILE *_File,long long _Offset,int _Origin);
-  __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _ftelli64(FILE *_File);
-# 662 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  int fseeko64(FILE* stream, _off64_t offset, int whence);
-  int fseeko(FILE* stream, _off_t offset, int whence);
-
-  _off_t ftello(FILE * stream);
-  _off64_t ftello64(FILE * stream);
-# 683 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  size_t __attribute__((__cdecl__)) fwrite(const void * __restrict__ _Str,size_t _Size,size_t _Count,FILE * __restrict__ _File);
-  int __attribute__((__cdecl__)) getc(FILE *_File);
-  int __attribute__((__cdecl__)) getchar(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _getmaxstdio(void);
-  char *__attribute__((__cdecl__)) gets(char *_Buffer) ;
-  int __attribute__((__cdecl__)) _getw(FILE *_File);
-
-
-  void __attribute__((__cdecl__)) perror(const char *_ErrMsg);
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _pclose(FILE *_File);
-  __attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) _popen(const char *_Command,const char *_Mode);
-
-
-
-
-
-  int __attribute__((__cdecl__)) putc(int _Ch,FILE *_File);
-  int __attribute__((__cdecl__)) putchar(int _Ch);
-  int __attribute__((__cdecl__)) puts(const char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putw(int _Word,FILE *_File);
-
-
-  int __attribute__((__cdecl__)) remove(const char *_Filename);
-  int __attribute__((__cdecl__)) rename(const char *_OldFilename,const char *_NewFilename);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _unlink(const char *_Filename);
-
-  int __attribute__((__cdecl__)) unlink(const char *_Filename) ;
-
-
-  void __attribute__((__cdecl__)) rewind(FILE *_File);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _rmtmp(void);
-  void __attribute__((__cdecl__)) setbuf(FILE * __restrict__ _File,char * __restrict__ _Buffer) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _setmaxstdio(int _Max);
-  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_output_format(unsigned int _Format);
-  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _get_output_format(void);
-  int __attribute__((__cdecl__)) setvbuf(FILE * __restrict__ _File,char * __restrict__ _Buf,int _Mode,size_t _Size);
-# 746 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__pure__))
-  __attribute__((__format__ (ms_printf, 1, 2))) __attribute__ ((__nonnull__ (1)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf(const char * __restrict__ _Format,...);
-  __attribute__((__format__ (ms_scanf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf(const char * __restrict__ _Src,size_t _MaxCount,const char * __restrict__ _Format,...) ;
-
-  __attribute__ ((__pure__))
-  __attribute__((__format__ (ms_printf, 1, 0))) __attribute__ ((__nonnull__ (1)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf(const char * __restrict__ _Format,va_list _ArgList);
-  FILE *__attribute__((__cdecl__)) tmpfile(void) ;
-  char *__attribute__((__cdecl__)) tmpnam(char *_Buffer);
-  int __attribute__((__cdecl__)) ungetc(int _Ch,FILE *_File);
-# 774 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__((__format__ (ms_printf, 3, 4))) __attribute__ ((__nonnull__ (3)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,...) ;
-  __attribute__((__format__ (ms_printf, 3, 0))) __attribute__ ((__nonnull__ (3)))
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf(char * __restrict__ _Dest,size_t _Count,const char * __restrict__ _Format,va_list _Args) ;
-# 940 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_printf_count_output(int _Value);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _get_printf_count_output(void);
-# 1456 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _lock_file(FILE *_File);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _unlock_file(FILE *_File);
-# 1474 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  char *__attribute__((__cdecl__)) tempnam(const char *_Directory,const char *_FilePrefix) ;
-  int __attribute__((__cdecl__)) fcloseall(void) ;
-  FILE *__attribute__((__cdecl__)) fdopen(int _FileHandle,const char *_Format) ;
-  int __attribute__((__cdecl__)) fgetchar(void) ;
-  int __attribute__((__cdecl__)) fileno(FILE *_File) ;
-  int __attribute__((__cdecl__)) flushall(void) ;
-  int __attribute__((__cdecl__)) fputchar(int _Ch) ;
-  int __attribute__((__cdecl__)) getw(FILE *_File) ;
-  int __attribute__((__cdecl__)) putw(int _Ch,FILE *_File) ;
-  int __attribute__((__cdecl__)) rmtmp(void) ;
-# 1554 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 3
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnv(int _Mode,const char *_Filename,const char *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnve(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvp(int _Mode,const char *_Filename,const char *const *_ArgList);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnvpe(int _Mode,const char *_Filename,const char *const *_ArgList,const char *const *_Env);
-
-
-
-
-}
-
-
-
-
-
-
-
-#pragma pack(pop)
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 1 3
-
-
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 1 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 2 3
-# 21 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
-extern "C" {
-
-
-
-
-
-
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) clearerr_s(FILE *_File);
-
-  size_t __attribute__((__cdecl__)) fread_s(void *_DstBuf,size_t _DstSize,size_t _ElementSize,size_t _Count,FILE *_File);
-# 494 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
-  int __attribute__((__cdecl__)) fprintf_s(FILE *_File,const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fscanf_s_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) fscanf_s(FILE *_File, const char *_Format, ...);
-  int __attribute__((__cdecl__)) printf_s(const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scanf_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scanf_s_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) scanf_s(const char *_Format, ...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_c(char *_DstBuf,size_t _MaxCount,const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_c(char *_DstBuf,size_t _MaxCount,const char *_Format,va_list _ArgList);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fscanf_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sscanf_l(const char *_Src,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sscanf_s_l(const char *_Src,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) sscanf_s(const char *_Src,const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf_s(const char *_Src,size_t _MaxCount,const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf_l(const char *_Src,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snscanf_s_l(const char *_Src,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
-  int __attribute__((__cdecl__)) vfprintf_s(FILE *_File,const char *_Format,va_list _ArgList);
-  int __attribute__((__cdecl__)) vprintf_s(const char *_Format,va_list _ArgList);
-
-  int __attribute__((__cdecl__)) vsnprintf_s(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,va_list _ArgList);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_s(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,va_list _ArgList);
-
-  __attribute__((dllimport)) int __attribute__((__cdecl__)) vsprintf_s(char *_DstBuf,size_t _Size,const char *_Format,va_list _ArgList);
-
-  __attribute__((dllimport)) int __attribute__((__cdecl__)) sprintf_s(char *_DstBuf,size_t _DstSize,const char *_Format,...);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_s(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,...);
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_p(FILE *_File,const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_p(const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_p(char *_Dst,size_t _MaxCount,const char *_Format,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_p(FILE *_File,const char *_Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_p(const char *_Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_p(char *_Dst,size_t _MaxCount,const char *_Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf_p(const char *_Format,...);
-  __attribute__((dllimport)) int __attribute__((__cdecl__)) _vscprintf_p(const char *_Format,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_p_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_p_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_p_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_l(FILE *_File,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_p_l(FILE *_File,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_l(char *_DstBuf,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_p_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_l(char *_DstBuf,const char *_Format,_locale_t,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_p_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _scprintf_p_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vscprintf_p_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _printf_s_l(const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vprintf_s_l(const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _fprintf_s_l(FILE *_File,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vfprintf_s_l(FILE *_File,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _sprintf_s_l(char *_DstBuf,size_t _DstSize,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsprintf_s_l(char *_DstBuf,size_t _DstSize,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_s_l(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_s_l(char *_DstBuf,size_t _DstSize,size_t _MaxCount,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _snprintf_c_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,...);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_l(char *_DstBuf,size_t _MaxCount,const char *_Format,_locale_t _Locale,va_list _ArgList);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _vsnprintf_c_l(char *_DstBuf,size_t _MaxCount,const char *,_locale_t _Locale,va_list _ArgList);
-
-
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) vsnprintf_s(char (&_DstBuf)[__size], size_t _MaxCount, const char* _Format, va_list _ArgList) { return vsnprintf_s(_DstBuf,__size,_MaxCount,_Format,_ArgList); } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _vsnprintf_s(char (&_DstBuf)[__size], size_t _MaxCount, const char* _Format, va_list _ArgList) { return _vsnprintf_s(_DstBuf,__size,_MaxCount,_Format,_ArgList); } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) vsprintf_s(char (&_DstBuf)[__size], const char* _Format, va_list _ArgList) { return vsprintf_s(_DstBuf,__size,_Format,_ArgList); } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) sprintf_s(char (&_DstBuf)[__size], const char* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = vsprintf_s(_DstBuf,__size,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
-  extern "C++" { template <size_t __size> inline int __attribute__((__cdecl__)) _snprintf_s(char (&_DstBuf)[__size], size_t _MaxCount, const char* _Format, ...) { va_list __vaargs; __builtin_va_start(__vaargs,_Format); int __retval = _vsnprintf_s(_DstBuf,__size,_MaxCount,_Format,__vaargs); __builtin_va_end(__vaargs); return __retval; } }
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) fopen_s(FILE **_File,const char *_Filename,const char *_Mode);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) freopen_s(FILE** _File, const char *_Filename, const char *_Mode, FILE *_Stream);
-
-  __attribute__ ((__dllimport__)) char* __attribute__((__cdecl__)) gets_s(char*,rsize_t);
-  extern "C++" { template <size_t __size> inline char* __attribute__((__cdecl__)) get_s(char (&_DstBuf)[__size]) { return get_s(_DstBuf,__size); } }
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) tmpnam_s(char*,rsize_t);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) tmpnam_s(char (&_DstBuf)[__size]) { return tmpnam_s(_DstBuf,__size); } }
-# 872 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdio_s.h" 3
-}
-# 1573 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdio.h" 2 3
-# 13 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 2 3
-
-
+# 15 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\locale.h" 3
 #pragma pack(push,_CRT_PACKING)
 
 
@@ -10335,13 +11265,6 @@ extern "C" {
 
 
 int __attribute__((__cdecl__)) isblank(int _C);
-# 209 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\ctype.h" 3
-  extern int * __imp___mb_cur_max;
-
-
-
-
-__attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_func(void);
 # 297 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\ctype.h" 3
 }
 # 43 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cctype" 2 3
@@ -10557,15 +11480,6 @@ namespace __cxx11 {
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\errno.h" 1 3
 # 12 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\errno.h" 3
 extern "C" {
-
-
-
-
-__attribute__ ((__dllimport__)) extern int *__attribute__((__cdecl__)) _errno(void);
-
-
-errno_t __attribute__((__cdecl__)) _set_errno(int _Value);
-errno_t __attribute__((__cdecl__)) _get_errno(int *_Value);
 # 239 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\errno.h" 3
 }
 # 64 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\pthread.h" 2 3
@@ -10665,24 +11579,7 @@ extern "C" {
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _endthread(void) __attribute__ ((__noreturn__));
   __attribute__ ((__dllimport__)) uintptr_t __attribute__((__cdecl__)) _beginthreadex(void *_Security,unsigned _StackSize,_beginthreadex_proc_type _StartAddress,void *_ArgList,unsigned _InitFlag,unsigned *_ThrdAddr);
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _endthreadex(unsigned _Retval) __attribute__ ((__noreturn__));
-
-
-
-  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) exit(int _Code) __attribute__ ((__noreturn__));
-  void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) _exit(int _Code) __attribute__ ((__noreturn__));
-
-
-
-
-
-
-  void __attribute__((__cdecl__)) _Exit(int) __attribute__ ((__noreturn__));
-# 59 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\process.h" 3
-  void __attribute__((__cdecl__)) __attribute__ ((__noreturn__)) abort(void);
-
-
-
-
+# 64 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\process.h" 3
   typedef void ( *_tls_callback_type)(void*,unsigned long,void*);
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _register_thread_local_exe_atexit_callback(_tls_callback_type callback);
 
@@ -10703,8 +11600,6 @@ extern "C" {
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnle(int _Mode,const char *_Filename,const char *_ArgList,...);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnlp(int _Mode,const char *_Filename,const char *_ArgList,...);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _spawnlpe(int _Mode,const char *_Filename,const char *_ArgList,...);
-# 95 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\process.h" 3
-  int __attribute__((__cdecl__)) system(const char *_Command);
 # 129 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\process.h" 3
   intptr_t __attribute__((__cdecl__)) _loaddll(char *_Filename);
   int __attribute__((__cdecl__)) _unloaddll(intptr_t _Handle);
@@ -10755,11 +11650,7 @@ extern "C" {
 
 }
 # 67 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\pthread.h" 2 3
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 1 3
-# 21 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\limits.h" 1 3
-# 22 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\limits.h" 2 3
-# 68 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\pthread.h" 2 3
+
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\signal.h" 1 3
 # 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\signal.h" 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\pthread_signal.h" 1 3
@@ -15944,742 +16835,6 @@ namespace __cxx11 {
 
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 1 3
 # 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
-# 75 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
-# 26 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-#pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 50 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  typedef int (__attribute__((__cdecl__)) *_onexit_t)(void);
-# 60 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  typedef struct _div_t {
-    int quot;
-    int rem;
-  } div_t;
-
-  typedef struct _ldiv_t {
-    long quot;
-    long rem;
-  } ldiv_t;
-
-
-
-
-
-#pragma pack(4)
-  typedef struct {
-    unsigned char ld[10];
-  } _LDOUBLE;
-#pragma pack()
-
-
-
-  typedef struct {
-    double x;
-  } _CRT_DOUBLE;
-
-  typedef struct {
-    float f;
-  } _CRT_FLOAT;
-
-
-
-
-  typedef struct {
-    long double x;
-  } _LONGDOUBLE;
-
-
-
-#pragma pack(4)
-  typedef struct {
-    unsigned char ld12[12];
-  } _LDBL12;
-#pragma pack()
-# 143 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  typedef void (__attribute__((__cdecl__)) *_purecall_handler)(void);
-
-  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _set_purecall_handler(_purecall_handler _Handler);
-  __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _get_purecall_handler(void);
-
-  typedef void (__attribute__((__cdecl__)) *_invalid_parameter_handler)(const wchar_t *,const wchar_t *,const wchar_t *,unsigned int,uintptr_t);
-  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _set_invalid_parameter_handler(_invalid_parameter_handler _Handler);
-  __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _get_invalid_parameter_handler(void);
-# 159 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  __attribute__ ((__dllimport__)) unsigned long *__attribute__((__cdecl__)) __doserrno(void);
-
-  errno_t __attribute__((__cdecl__)) _set_doserrno(unsigned long _Value);
-  errno_t __attribute__((__cdecl__)) _get_doserrno(unsigned long *_Value);
-# 173 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  extern __attribute__((dllimport)) char *_sys_errlist[1];
-  extern __attribute__((dllimport)) int _sys_nerr;
-
-
-
-
-
-  __attribute__ ((__dllimport__)) char ***__attribute__((__cdecl__)) __p___argv(void);
-  __attribute__ ((__dllimport__)) int *__attribute__((__cdecl__)) __p__fmode(void);
-# 191 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  errno_t __attribute__((__cdecl__)) _get_pgmptr(char **_Value);
-  errno_t __attribute__((__cdecl__)) _get_wpgmptr(wchar_t **_Value);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_fmode(int _Mode);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_fmode(int *_PMode);
-# 282 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  extern int * __imp___argc;
-
-
-
-  extern char *** __imp___argv;
-
-
-
-  extern wchar_t *** __imp___wargv;
-# 322 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  extern char *** __imp__environ;
-
-
-
-
-  extern wchar_t *** __imp__wenviron;
-
-
-
-
-
-
-  extern char ** __imp__pgmptr;
-
-
-
-
-  extern wchar_t ** __imp__wpgmptr;
-
-
-
-
-  extern unsigned int * __imp__osplatform;
-
-
-
-
-  extern unsigned int * __imp__osver;
-
-
-
-
-  extern unsigned int * __imp__winver;
-
-
-
-
-  extern unsigned int * __imp__winmajor;
-
-
-
-
-  extern unsigned int * __imp__winminor;
-
-
-
-
-
-  errno_t __attribute__((__cdecl__)) _get_osplatform(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_osver(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_winver(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_winmajor(unsigned int *_Value);
-  errno_t __attribute__((__cdecl__)) _get_winminor(unsigned int *_Value);
-
-
-
-
-  extern "C++" {
-    template <typename _CountofType,size_t _SizeOfArray> char (*__countof_helper( _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
-
-  }
-# 410 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  __attribute__ ((__dllimport__)) unsigned int __attribute__((__cdecl__)) _set_abort_behavior(unsigned int _Flags,unsigned int _Mask);
-
-
-
-  int __attribute__((__cdecl__)) abs(int _X);
-  long __attribute__((__cdecl__)) labs(long _X);
-
-
-  __extension__ long long __attribute__((__cdecl__)) _abs64(long long);
-
-  extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) long long __attribute__((__cdecl__)) _abs64(long long x) {
-    return __builtin_llabs(x);
-  }
-
-
-  int __attribute__((__cdecl__)) atexit(void (__attribute__((__cdecl__)) *)(void));
-
-
-
-
-
-  double __attribute__((__cdecl__)) atof(const char *_String);
-  double __attribute__((__cdecl__)) _atof_l(const char *_String,_locale_t _Locale);
-
-  int __attribute__((__cdecl__)) atoi(const char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoi_l(const char *_Str,_locale_t _Locale);
-  long __attribute__((__cdecl__)) atol(const char *_Str);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atol_l(const char *_Str,_locale_t _Locale);
-
-
-  void *__attribute__((__cdecl__)) bsearch(const void *_Key,const void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
-  void __attribute__((__cdecl__)) qsort(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(const void *,const void *));
-
-  unsigned short __attribute__((__cdecl__)) _byteswap_ushort(unsigned short _Short);
-  unsigned long __attribute__((__cdecl__)) _byteswap_ulong (unsigned long _Long);
-  __extension__ unsigned long long __attribute__((__cdecl__)) _byteswap_uint64(unsigned long long _Int64);
-  div_t __attribute__((__cdecl__)) div(int _Numerator,int _Denominator);
-  char *__attribute__((__cdecl__)) getenv(const char *_VarName) ;
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _itoa(int _Value,char *_Dest,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _i64toa(long long _Val,char *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ui64toa(unsigned long long _Val,char *_DstBuf,int _Radix) ;
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _atoi64(const char *_String);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _atoi64_l(const char *_String,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _strtoi64(const char *_String,char **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _strtoi64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _strtoui64(const char *_String,char **_EndPtr,int _Radix);
-  __extension__ __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _strtoui64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
-  ldiv_t __attribute__((__cdecl__)) ldiv(long _Numerator,long _Denominator);
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ltoa(long _Value,char *_Dest,int _Radix) ;
-  int __attribute__((__cdecl__)) mblen(const char *_Ch,size_t _MaxCount);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mblen_l(const char *_Ch,size_t _MaxCount,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen(const char *_Str);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen_l(const char *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen(const char *_Str,size_t _MaxCount);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen_l(const char *_Str,size_t _MaxCount,_locale_t _Locale);
-  int __attribute__((__cdecl__)) mbtowc(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mbtowc_l(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes,_locale_t _Locale);
-  size_t __attribute__((__cdecl__)) mbstowcs(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstowcs_l(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale);
-  int __attribute__((__cdecl__)) mkstemp(char *template_name);
-  int __attribute__((__cdecl__)) rand(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_error_mode(int _Mode);
-  void __attribute__((__cdecl__)) srand(unsigned int _Seed);
-# 483 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
-{
-  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
-  return __mingw_strtod( _Str, _EndPtr);
-}
-
-static __attribute__ ((__unused__)) __inline__ __attribute__((__cdecl__))
-float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
-{
-  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
-  return __mingw_strtof( _Str, _EndPtr);
-}
-
-
-
-
-
-
-  long double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtold(const char * __restrict__ , char ** __restrict__ );
-
-
-  extern double __attribute__((__cdecl__)) __attribute__ ((__nothrow__))
-  __strtod (const char * __restrict__ , char ** __restrict__);
-
-
-
-
-
-
-
-  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
-  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
-  long double __attribute__((__cdecl__)) __mingw_strtold(const char * __restrict__, char ** __restrict__);
-
-  __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _strtod_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,_locale_t _Locale);
-  long __attribute__((__cdecl__)) strtol(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtol_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-  unsigned long __attribute__((__cdecl__)) strtoul(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix);
-  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoul_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
-
-
-
-
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ultoa(unsigned long _Value,char *_Dest,int _Radix) ;
-  int __attribute__((__cdecl__)) wctomb(char *_MbCh,wchar_t _WCh) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wctomb_l(char *_MbCh,wchar_t _WCh,_locale_t _Locale) ;
-  size_t __attribute__((__cdecl__)) wcstombs(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount) ;
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _wcstombs_l(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale) ;
-
-
-
-  void *__attribute__((__cdecl__)) calloc(size_t _NumOfElements,size_t _SizeOfElements);
-  void __attribute__((__cdecl__)) free(void *_Memory);
-  void *__attribute__((__cdecl__)) malloc(size_t _Size);
-  void *__attribute__((__cdecl__)) realloc(void *_Memory,size_t _NewSize);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _recalloc(void *_Memory,size_t _Count,size_t _Size);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _aligned_free(void *_Memory);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_malloc(size_t _Size,size_t _Alignment);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_malloc(size_t _Size,size_t _Alignment,size_t _Offset);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_realloc(void *_Memory,size_t _Size,size_t _Alignment);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_realloc(void *_Memory,size_t _Size,size_t _Alignment,size_t _Offset);
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment,size_t _Offset);
-# 604 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putenv(const char *_EnvString);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wputenv(const wchar_t *_EnvString);
-
-
-
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fullpath(char *_FullPath,const char *_Path,size_t _SizeInBytes);
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
-  __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl(_CRT_DOUBLE *_Result,char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl(_LDOUBLE *_Result,char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt(_CRT_FLOAT *_Result,char *_Str);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl_l(_CRT_DOUBLE *_Result,char *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl_l(_LDOUBLE *_Result,char *_Str,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt_l(_CRT_FLOAT *_Result,char *_Str,_locale_t _Locale);
-# 634 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-unsigned long __attribute__((__cdecl__)) _lrotl(unsigned long,int);
-unsigned long __attribute__((__cdecl__)) _lrotr(unsigned long,int);
-
-
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _makepath(char *_Path,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
-  _onexit_t __attribute__((__cdecl__)) _onexit(_onexit_t _Func);
-# 652 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  __extension__ unsigned long long __attribute__((__cdecl__)) _rotl64(unsigned long long _Val,int _Shift);
-  __extension__ unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long Value,int Shift);
-
-
-
-
-
-
-  unsigned int __attribute__((__cdecl__)) _rotr(unsigned int _Val,int _Shift);
-  unsigned int __attribute__((__cdecl__)) _rotl(unsigned int _Val,int _Shift);
-
-
-  __extension__ unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long _Val,int _Shift);
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _searchenv(const char *_Filename,const char *_EnvVar,char *_ResultPath) ;
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _splitpath(const char *_FullPath,char *_Drive,char *_Dir,char *_Filename,char *_Ext) ;
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _swab(char *_Buf1,char *_Buf2,int _SizeInBytes);
-# 681 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _beep(unsigned _Frequency,unsigned _Duration) __attribute__ ((__deprecated__));
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _seterrormode(int _Mode) __attribute__ ((__deprecated__));
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _sleep(unsigned long _Duration) __attribute__ ((__deprecated__));
-# 705 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-  char *__attribute__((__cdecl__)) ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
-  char *__attribute__((__cdecl__)) fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
-  char *__attribute__((__cdecl__)) gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
-  char *__attribute__((__cdecl__)) itoa(int _Val,char *_DstBuf,int _Radix) ;
-  char *__attribute__((__cdecl__)) ltoa(long _Val,char *_DstBuf,int _Radix) ;
-  int __attribute__((__cdecl__)) putenv(const char *_EnvString) ;
-
-
-
-  void __attribute__((__cdecl__)) swab(char *_Buf1,char *_Buf2,int _SizeInBytes) ;
-
-
-  char *__attribute__((__cdecl__)) ultoa(unsigned long _Val,char *_Dstbuf,int _Radix) ;
-  _onexit_t __attribute__((__cdecl__)) onexit(_onexit_t _Func);
-
-
-
-
-
-  typedef struct { __extension__ long long quot, rem; } lldiv_t;
-
-  __extension__ lldiv_t __attribute__((__cdecl__)) lldiv(long long, long long);
-
-  __extension__ long long __attribute__((__cdecl__)) llabs(long long);
-
-
-
-
-  __extension__ long long __attribute__((__cdecl__)) strtoll(const char * __restrict__, char ** __restrict, int);
-  __extension__ unsigned long long __attribute__((__cdecl__)) strtoull(const char * __restrict__, char ** __restrict__, int);
-
-
-  __extension__ long long __attribute__((__cdecl__)) atoll (const char *);
-
-
-  __extension__ long long __attribute__((__cdecl__)) wtoll (const wchar_t *);
-  __extension__ char *__attribute__((__cdecl__)) lltoa (long long, char *, int);
-  __extension__ char *__attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
-  __extension__ wchar_t *__attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
-  __extension__ wchar_t *__attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
-# 760 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 3
-}
-
-
-#pragma pack(pop)
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 1 3
-
-
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
-# 30 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
-# 31 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 2 3
-# 10 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\sec_api/stdlib_s.h" 2 3
-
-
-extern "C" {
-
-
-  __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) bsearch_s(const void *_Key,const void *_Base,rsize_t _NumOfElements,rsize_t _SizeOfElements,int (__attribute__((__cdecl__)) * _PtFuncCompare)(void *, const void *, const void *), void *_Context);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _dupenv_s(char **_PBuffer,size_t *_PBufferSizeInBytes,const char *_VarName);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) getenv_s(size_t *_ReturnSize,char *_DstBuf,rsize_t _DstSize,const char *_VarName);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) getenv_s(size_t * _ReturnSize, char (&_Dest)[__size], const char * _VarName) { return getenv_s(_ReturnSize, _Dest, __size, _VarName); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _itoa_s(int _Value,char *_DstBuf,size_t _Size,int _Radix);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _itoa_s(int _Value, char (&_Dest)[__size], int _Radix) { return _itoa_s(_Value, _Dest, __size, _Radix); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _i64toa_s(long long _Val,char *_DstBuf,size_t _Size,int _Radix);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ui64toa_s(unsigned long long _Val,char *_DstBuf,size_t _Size,int _Radix);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ltoa_s(long _Val,char *_DstBuf,size_t _Size,int _Radix);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _ltoa_s(long _Value, char (&_Dest)[__size], int _Radix) { return _ltoa_s(_Value, _Dest, __size, _Radix); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) mbstowcs_s(size_t *_PtNumOfCharConverted,wchar_t *_DstBuf,size_t _SizeInWords,const char *_SrcBuf,size_t _MaxCount);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) mbstowcs_s(size_t * _PtNumOfCharConverted, wchar_t (&_Dest)[__size], const char * _Source, size_t _MaxCount) { return mbstowcs_s(_PtNumOfCharConverted, _Dest, __size, _Source, _MaxCount); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _mbstowcs_s_l(size_t *_PtNumOfCharConverted,wchar_t *_DstBuf,size_t _SizeInWords,const char *_SrcBuf,size_t _MaxCount,_locale_t _Locale);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _mbstowcs_s_l(size_t * _PtNumOfCharConverted, wchar_t (&_Dest)[__size], const char * _Source, size_t _MaxCount, _locale_t _Locale) { return _mbstowcs_s_l(_PtNumOfCharConverted, _Dest, __size, _Source, _MaxCount, _Locale); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ultoa_s(unsigned long _Val,char *_DstBuf,size_t _Size,int _Radix);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _ultoa_s(unsigned long _Value, char (&_Dest)[__size], int _Radix) { return _ultoa_s(_Value, _Dest, __size, _Radix); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wctomb_s(int *_SizeConverted,char *_MbCh,rsize_t _SizeInBytes,wchar_t _WCh);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wctomb_s_l(int *_SizeConverted,char *_MbCh,size_t _SizeInBytes,wchar_t _WCh,_locale_t _Locale);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wcstombs_s(size_t *_PtNumOfCharConverted,char *_Dst,size_t _DstSizeInBytes,const wchar_t *_Src,size_t _MaxCountInBytes);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) wcstombs_s(size_t* _PtNumOfCharConverted, char (&_Dst)[__size], const wchar_t* _Src, size_t _MaxCountInBytes) { return wcstombs_s(_PtNumOfCharConverted, _Dst, __size, _Src, _MaxCountInBytes); } }
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcstombs_s_l(size_t *_PtNumOfCharConverted,char *_Dst,size_t _DstSizeInBytes,const wchar_t *_Src,size_t _MaxCountInBytes,_locale_t _Locale);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _wcstombs_s_l(size_t* _PtNumOfCharConverted, char (&_Dst)[__size], const wchar_t* _Src, size_t _MaxCountInBytes, _locale_t _Locale) { return _wcstombs_s_l(_PtNumOfCharConverted, _Dst, __size, _Src, _MaxCountInBytes, _Locale); } }
-
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ecvt_s(char *_DstBuf,size_t _Size,double _Val,int _NumOfDights,int *_PtDec,int *_PtSign);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _fcvt_s(char *_DstBuf,size_t _Size,double _Val,int _NumOfDec,int *_PtDec,int *_PtSign);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _gcvt_s(char *_DstBuf,size_t _Size,double _Val,int _NumOfDigits);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _makepath_s(char *_PathResult,size_t _Size,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _putenv_s(const char *_Name,const char *_Value);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _searchenv_s(const char *_Filename,const char *_EnvVar,char *_ResultPath,size_t _SizeInBytes);
-
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _splitpath_s(const char *_FullPath,char *_Drive,size_t _DriveSize,char *_Dir,size_t _DirSize,char *_Filename,size_t _FilenameSize,char *_Ext,size_t _ExtSize);
-  extern "C++" { template <size_t __drive_size, size_t __dir_size, size_t __name_size, size_t __ext_size> inline errno_t __attribute__((__cdecl__)) _splitpath_s(const char *_Dest, char (&__drive)[__drive_size], char (&__dir)[__dir_size], char (&__name)[__name_size], char (&__ext)[__ext_size]) { return _splitpath_s(_Dest, __drive, __drive_size, __dir, __dir_size, __name, __name_size, __ext, __ext_size); } }
-
-
-
-  __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) qsort_s(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(void *,const void *,const void *),void *_Context);
-
-
-
-
-
-}
-# 766 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 1 3
-# 11 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-#pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-  typedef struct _heapinfo {
-    int *_pentry;
-    size_t _size;
-    int _useflag;
-  } _HEAPINFO;
-
-
-  extern unsigned int _amblksiz;
-# 74 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-void * __mingw_aligned_malloc (size_t _Size, size_t _Alignment);
-void __mingw_aligned_free (void *_Memory);
-void * __mingw_aligned_offset_realloc (void *_Memory, size_t _Size, size_t _Alignment, size_t _Offset);
-void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
-
-
-# 1 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 1 3
-# 13 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
-# 30 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 1 3
-# 31 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 2 3
-# 14 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 2 3
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 1 3
-# 17 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 2 3
-# 30 "D:\\AMDDesignTools\\2025.2\\Vitis\\win64\\tools\\clang-16\\lib\\clang\\16\\include\\mm_malloc.h" 3
-static __inline__ void *__attribute__((__always_inline__, __nodebug__,
-                                       __malloc__, __alloc_size__(1),
-                                       __alloc_align__(2)))
-_mm_malloc(size_t __size, size_t __align) {
-  if (__align == 1) {
-    return malloc(__size);
-  }
-
-  if (!(__align & (__align - 1)) && __align < sizeof(void *))
-    __align = sizeof(void *);
-
-  void *__mallocedMemory;
-
-  __mallocedMemory = __mingw_aligned_malloc(__size, __align);
-
-
-
-
-
-
-
-  return __mallocedMemory;
-}
-
-static __inline__ void __attribute__((__always_inline__, __nodebug__))
-_mm_free(void *__p)
-{
-
-  __mingw_aligned_free(__p);
-
-
-
-
-
-}
-# 81 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 2 3
-
-
-
-
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _resetstkoflw (void);
-
-  __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _set_malloc_crt_max_wait(unsigned long _NewValue);
-
-  __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _expand(void *_Memory,size_t _NewSize);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _msize(void *_Memory);
-
-
-
-
-
-
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _get_sbh_threshold(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_sbh_threshold(size_t _NewValue);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_amblksiz(size_t _Value);
-  __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_amblksiz(size_t *_Value);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapadd(void *_Memory,size_t _Size);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapchk(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapmin(void);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapset(unsigned int _Fill);
-  __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapwalk(_HEAPINFO *_EntryInfo);
-  __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _heapused(size_t *_Used,size_t *_Commit);
-  __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _get_heap_handle(void);
-# 120 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-  static __inline void *_MarkAllocaS(void *_Ptr,unsigned int _Marker) {
-    if(_Ptr) {
-      *((unsigned int*)_Ptr) = _Marker;
-      _Ptr = (char*)_Ptr + 16;
-    }
-    return _Ptr;
-  }
-# 139 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-  static __inline void __attribute__((__cdecl__)) _freea(void *_Memory) {
-    unsigned int _Marker;
-    if(_Memory) {
-      _Memory = (char*)_Memory - 16;
-      _Marker = *(unsigned int *)_Memory;
-      if(_Marker==0xDDDD) {
- free(_Memory);
-      }
-
-
-
-
-
-    }
-  }
-# 182 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\malloc.h" 3
-}
-
-
-#pragma pack(pop)
-# 767 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\stdlib.h" 2 3
-# 76 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 2 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 1 3
-# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
-# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
-extern "C++"
-{
-namespace std
-{
-
-
-  using ::abs;
-
-
-  inline long
-  abs(long __i) { return __builtin_labs(__i); }
-
-
-
-  inline long long
-  abs(long long __x) { return __builtin_llabs (__x); }
-# 70 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
-  inline constexpr double
-  abs(double __x)
-  { return __builtin_fabs(__x); }
-
-  inline constexpr float
-  abs(float __x)
-  { return __builtin_fabsf(__x); }
-
-  inline constexpr long double
-  abs(long double __x)
-  { return __builtin_fabsl(__x); }
-
-
-
-  inline constexpr __int128
-  abs(__int128 __x) { return __x >= 0 ? __x : -__x; }
-# 101 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/std_abs.h" 3
-  inline constexpr
-  __float128
-  abs(__float128 __x)
-  { return __x < 0 ? -__x : __x; }
-
-
-
-}
-}
-# 78 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 2 3
-# 121 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
-extern "C++"
-{
-namespace std
-{
-
-
-  using ::div_t;
-  using ::ldiv_t;
-
-  using ::abort;
-
-
-
-  using ::atexit;
-
-
-
-
-
-  using ::atof;
-  using ::atoi;
-  using ::atol;
-  using ::bsearch;
-  using ::calloc;
-  using ::div;
-  using ::exit;
-  using ::free;
-  using ::getenv;
-  using ::labs;
-  using ::ldiv;
-  using ::malloc;
-
-  using ::mblen;
-  using ::mbstowcs;
-  using ::mbtowc;
-
-  using ::qsort;
-
-
-
-
-
-  using ::rand;
-  using ::realloc;
-  using ::srand;
-  using ::strtod;
-  using ::strtol;
-  using ::strtoul;
-  using ::system;
-
-  using ::wcstombs;
-  using ::wctomb;
-
-
-
-  inline ldiv_t
-  div(long __i, long __j) { return ldiv(__i, __j); }
-
-
-
-
-}
-# 195 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
-namespace __gnu_cxx
-{
-
-
-
-  using ::lldiv_t;
-
-
-
-
-
-  using ::_Exit;
-
-
-
-  using ::llabs;
-
-  inline lldiv_t
-  div(long long __n, long long __d)
-  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
-
-  using ::lldiv;
-# 227 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
-  using ::atoll;
-  using ::strtoll;
-  using ::strtoull;
-
-  using ::strtof;
-  using ::strtold;
-
-
-}
-
-namespace std
-{
-
-  using ::__gnu_cxx::lldiv_t;
-
-  using ::__gnu_cxx::_Exit;
-
-  using ::__gnu_cxx::llabs;
-  using ::__gnu_cxx::div;
-  using ::__gnu_cxx::lldiv;
-
-  using ::__gnu_cxx::atoll;
-  using ::__gnu_cxx::strtof;
-  using ::__gnu_cxx::strtoll;
-  using ::__gnu_cxx::strtoull;
-  using ::__gnu_cxx::strtold;
-}
-
-
-
-}
 # 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ext/string_conversions.h" 2 3
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cwchar" 1 3
 # 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cwchar" 3
@@ -26902,6895 +27057,8 @@ namespace std
 
 
 }
-# 2 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp" 2
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+# 160 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
 
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 3
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 1 3
-# 38 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ctime" 1 3
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ctime" 3
-# 58 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ctime" 3
-namespace std
-{
-  using ::clock_t;
-  using ::time_t;
-  using ::tm;
-
-  using ::clock;
-  using ::difftime;
-  using ::mktime;
-  using ::time;
-  using ::asctime;
-  using ::ctime;
-  using ::gmtime;
-  using ::localtime;
-  using ::strftime;
-}
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
-
-namespace std
-{
-# 52 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  class time_base
-  {
-  public:
-    enum dateorder { no_order, dmy, mdy, ymd, ydm };
-  };
-
-  template<typename _CharT>
-    struct __timepunct_cache : public locale::facet
-    {
-
-      static const _CharT* _S_timezones[14];
-
-      const _CharT* _M_date_format;
-      const _CharT* _M_date_era_format;
-      const _CharT* _M_time_format;
-      const _CharT* _M_time_era_format;
-      const _CharT* _M_date_time_format;
-      const _CharT* _M_date_time_era_format;
-      const _CharT* _M_am;
-      const _CharT* _M_pm;
-      const _CharT* _M_am_pm_format;
-
-
-      const _CharT* _M_day1;
-      const _CharT* _M_day2;
-      const _CharT* _M_day3;
-      const _CharT* _M_day4;
-      const _CharT* _M_day5;
-      const _CharT* _M_day6;
-      const _CharT* _M_day7;
-
-
-      const _CharT* _M_aday1;
-      const _CharT* _M_aday2;
-      const _CharT* _M_aday3;
-      const _CharT* _M_aday4;
-      const _CharT* _M_aday5;
-      const _CharT* _M_aday6;
-      const _CharT* _M_aday7;
-
-
-      const _CharT* _M_month01;
-      const _CharT* _M_month02;
-      const _CharT* _M_month03;
-      const _CharT* _M_month04;
-      const _CharT* _M_month05;
-      const _CharT* _M_month06;
-      const _CharT* _M_month07;
-      const _CharT* _M_month08;
-      const _CharT* _M_month09;
-      const _CharT* _M_month10;
-      const _CharT* _M_month11;
-      const _CharT* _M_month12;
-
-
-      const _CharT* _M_amonth01;
-      const _CharT* _M_amonth02;
-      const _CharT* _M_amonth03;
-      const _CharT* _M_amonth04;
-      const _CharT* _M_amonth05;
-      const _CharT* _M_amonth06;
-      const _CharT* _M_amonth07;
-      const _CharT* _M_amonth08;
-      const _CharT* _M_amonth09;
-      const _CharT* _M_amonth10;
-      const _CharT* _M_amonth11;
-      const _CharT* _M_amonth12;
-
-      bool _M_allocated;
-
-      __timepunct_cache(size_t __refs = 0) : facet(__refs),
-      _M_date_format(0), _M_date_era_format(0), _M_time_format(0),
-      _M_time_era_format(0), _M_date_time_format(0),
-      _M_date_time_era_format(0), _M_am(0), _M_pm(0),
-      _M_am_pm_format(0), _M_day1(0), _M_day2(0), _M_day3(0),
-      _M_day4(0), _M_day5(0), _M_day6(0), _M_day7(0),
-      _M_aday1(0), _M_aday2(0), _M_aday3(0), _M_aday4(0),
-      _M_aday5(0), _M_aday6(0), _M_aday7(0), _M_month01(0),
-      _M_month02(0), _M_month03(0), _M_month04(0), _M_month05(0),
-      _M_month06(0), _M_month07(0), _M_month08(0), _M_month09(0),
-      _M_month10(0), _M_month11(0), _M_month12(0), _M_amonth01(0),
-      _M_amonth02(0), _M_amonth03(0), _M_amonth04(0),
-      _M_amonth05(0), _M_amonth06(0), _M_amonth07(0),
-      _M_amonth08(0), _M_amonth09(0), _M_amonth10(0),
-      _M_amonth11(0), _M_amonth12(0), _M_allocated(false)
-      { }
-
-      ~__timepunct_cache();
-
-    private:
-      __timepunct_cache&
-      operator=(const __timepunct_cache&);
-
-      explicit
-      __timepunct_cache(const __timepunct_cache&);
-    };
-
-  template<typename _CharT>
-    __timepunct_cache<_CharT>::~__timepunct_cache()
-    {
-      if (_M_allocated)
- {
-
- }
-    }
-
-
-  template<>
-    const char*
-    __timepunct_cache<char>::_S_timezones[14];
-
-
-  template<>
-    const wchar_t*
-    __timepunct_cache<wchar_t>::_S_timezones[14];
-
-
-
-  template<typename _CharT>
-    const _CharT* __timepunct_cache<_CharT>::_S_timezones[14];
-
-  template<typename _CharT>
-    class __timepunct : public locale::facet
-    {
-    public:
-
-      typedef _CharT __char_type;
-      typedef __timepunct_cache<_CharT> __cache_type;
-
-    protected:
-      __cache_type* _M_data;
-      __c_locale _M_c_locale_timepunct;
-      const char* _M_name_timepunct;
-
-    public:
-
-      static locale::id id;
-
-      explicit
-      __timepunct(size_t __refs = 0);
-
-      explicit
-      __timepunct(__cache_type* __cache, size_t __refs = 0);
-# 206 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      __timepunct(__c_locale __cloc, const char* __s, size_t __refs = 0);
-
-
-
-      void
-      _M_put(_CharT* __s, size_t __maxlen, const _CharT* __format,
-      const tm* __tm) const throw ();
-
-      void
-      _M_date_formats(const _CharT** __date) const
-      {
-
- __date[0] = _M_data->_M_date_format;
- __date[1] = _M_data->_M_date_era_format;
-      }
-
-      void
-      _M_time_formats(const _CharT** __time) const
-      {
-
- __time[0] = _M_data->_M_time_format;
- __time[1] = _M_data->_M_time_era_format;
-      }
-
-      void
-      _M_date_time_formats(const _CharT** __dt) const
-      {
-
- __dt[0] = _M_data->_M_date_time_format;
- __dt[1] = _M_data->_M_date_time_era_format;
-      }
-
-
-      void
-      _M_am_pm_format(const _CharT*) const
-      { }
-
-
-      void
-      _M_am_pm(const _CharT** __ampm) const
-      {
- __ampm[0] = _M_data->_M_am;
- __ampm[1] = _M_data->_M_pm;
-      }
-
-      void
-      _M_days(const _CharT** __days) const
-      {
- __days[0] = _M_data->_M_day1;
- __days[1] = _M_data->_M_day2;
- __days[2] = _M_data->_M_day3;
- __days[3] = _M_data->_M_day4;
- __days[4] = _M_data->_M_day5;
- __days[5] = _M_data->_M_day6;
- __days[6] = _M_data->_M_day7;
-      }
-
-      void
-      _M_days_abbreviated(const _CharT** __days) const
-      {
- __days[0] = _M_data->_M_aday1;
- __days[1] = _M_data->_M_aday2;
- __days[2] = _M_data->_M_aday3;
- __days[3] = _M_data->_M_aday4;
- __days[4] = _M_data->_M_aday5;
- __days[5] = _M_data->_M_aday6;
- __days[6] = _M_data->_M_aday7;
-      }
-
-      void
-      _M_months(const _CharT** __months) const
-      {
- __months[0] = _M_data->_M_month01;
- __months[1] = _M_data->_M_month02;
- __months[2] = _M_data->_M_month03;
- __months[3] = _M_data->_M_month04;
- __months[4] = _M_data->_M_month05;
- __months[5] = _M_data->_M_month06;
- __months[6] = _M_data->_M_month07;
- __months[7] = _M_data->_M_month08;
- __months[8] = _M_data->_M_month09;
- __months[9] = _M_data->_M_month10;
- __months[10] = _M_data->_M_month11;
- __months[11] = _M_data->_M_month12;
-      }
-
-      void
-      _M_months_abbreviated(const _CharT** __months) const
-      {
- __months[0] = _M_data->_M_amonth01;
- __months[1] = _M_data->_M_amonth02;
- __months[2] = _M_data->_M_amonth03;
- __months[3] = _M_data->_M_amonth04;
- __months[4] = _M_data->_M_amonth05;
- __months[5] = _M_data->_M_amonth06;
- __months[6] = _M_data->_M_amonth07;
- __months[7] = _M_data->_M_amonth08;
- __months[8] = _M_data->_M_amonth09;
- __months[9] = _M_data->_M_amonth10;
- __months[10] = _M_data->_M_amonth11;
- __months[11] = _M_data->_M_amonth12;
-      }
-
-    protected:
-      virtual
-      ~__timepunct();
-
-
-      void
-      _M_initialize_timepunct(__c_locale __cloc = 0);
-    };
-
-  template<typename _CharT>
-    locale::id __timepunct<_CharT>::id;
-
-
-  template<>
-    void
-    __timepunct<char>::_M_initialize_timepunct(__c_locale __cloc);
-
-  template<>
-    void
-    __timepunct<char>::_M_put(char*, size_t, const char*, const tm*) const throw ();
-
-
-  template<>
-    void
-    __timepunct<wchar_t>::_M_initialize_timepunct(__c_locale __cloc);
-
-  template<>
-    void
-    __timepunct<wchar_t>::_M_put(wchar_t*, size_t, const wchar_t*,
-     const tm*) const throw ();
-
-
-
-}
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/time_members.h" 1 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/time_members.h" 3
-namespace std
-{
-
-
-  template<typename _CharT>
-    __timepunct<_CharT>::__timepunct(size_t __refs)
-    : facet(__refs), _M_data(0)
-    {
-      _M_name_timepunct = _S_get_c_name();
-      _M_initialize_timepunct();
-    }
-
-  template<typename _CharT>
-    __timepunct<_CharT>::__timepunct(__cache_type* __cache, size_t __refs)
-    : facet(__refs), _M_data(__cache)
-    {
-      _M_name_timepunct = _S_get_c_name();
-      _M_initialize_timepunct();
-    }
-
-  template<typename _CharT>
-    __timepunct<_CharT>::__timepunct(__c_locale __cloc, const char* __s,
-         size_t __refs)
-    : facet(__refs), _M_data(0)
-    {
-      if (__builtin_strcmp(__s, _S_get_c_name()) != 0)
- {
-   const size_t __len = __builtin_strlen(__s) + 1;
-   char* __tmp = new char[__len];
-   __builtin_memcpy(__tmp, __s, __len);
-   _M_name_timepunct = __tmp;
- }
-      else
- _M_name_timepunct = _S_get_c_name();
-
-      try
- { _M_initialize_timepunct(__cloc); }
-      catch(...)
- {
-   if (_M_name_timepunct != _S_get_c_name())
-     delete [] _M_name_timepunct;
-   throw;
- }
-    }
-
-  template<typename _CharT>
-    __timepunct<_CharT>::~__timepunct()
-    {
-      if (_M_name_timepunct != _S_get_c_name())
- delete [] _M_name_timepunct;
-      delete _M_data;
-      _S_destroy_c_locale(_M_c_locale_timepunct);
-    }
-
-
-}
-# 347 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
-
-namespace std
-{
-
-
-namespace __cxx11 {
-# 367 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  template<typename _CharT, typename _InIter>
-    class time_get : public locale::facet, public time_base
-    {
-    public:
-
-
-
-      typedef _CharT char_type;
-      typedef _InIter iter_type;
-
-
-
-      static locale::id id;
-# 388 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      time_get(size_t __refs = 0)
-      : facet (__refs) { }
-# 405 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      dateorder
-      date_order() const
-      { return this->do_date_order(); }
-# 429 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get_time(iter_type __beg, iter_type __end, ios_base& __io,
-        ios_base::iostate& __err, tm* __tm) const
-      { return this->do_get_time(__beg, __end, __io, __err, __tm); }
-# 454 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get_date(iter_type __beg, iter_type __end, ios_base& __io,
-        ios_base::iostate& __err, tm* __tm) const
-      { return this->do_get_date(__beg, __end, __io, __err, __tm); }
-# 482 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get_weekday(iter_type __beg, iter_type __end, ios_base& __io,
-    ios_base::iostate& __err, tm* __tm) const
-      { return this->do_get_weekday(__beg, __end, __io, __err, __tm); }
-# 511 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get_monthname(iter_type __beg, iter_type __end, ios_base& __io,
-      ios_base::iostate& __err, tm* __tm) const
-      { return this->do_get_monthname(__beg, __end, __io, __err, __tm); }
-# 537 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get_year(iter_type __beg, iter_type __end, ios_base& __io,
-        ios_base::iostate& __err, tm* __tm) const
-      { return this->do_get_year(__beg, __end, __io, __err, __tm); }
-# 558 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      inline
-      iter_type get(iter_type __s, iter_type __end, ios_base& __io,
-                    ios_base::iostate& __err, tm* __tm, char __format,
-                    char __modifier = 0) const
-      {
-        return this->do_get(__s, __end, __io, __err, __tm, __format,
-                            __modifier);
-      }
-# 585 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type get(iter_type __s, iter_type __end, ios_base& __io,
-                    ios_base::iostate& __err, tm* __tm, const char_type* __fmt,
-                    const char_type* __fmtend) const;
-
-
-    protected:
-
-      virtual
-      ~time_get() { }
-# 605 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual dateorder
-      do_date_order() const;
-# 623 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get_time(iter_type __beg, iter_type __end, ios_base& __io,
-    ios_base::iostate& __err, tm* __tm) const;
-# 642 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get_date(iter_type __beg, iter_type __end, ios_base& __io,
-    ios_base::iostate& __err, tm* __tm) const;
-# 661 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get_weekday(iter_type __beg, iter_type __end, ios_base&,
-       ios_base::iostate& __err, tm* __tm) const;
-# 680 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get_monthname(iter_type __beg, iter_type __end, ios_base&,
-         ios_base::iostate& __err, tm* __tm) const;
-# 699 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get_year(iter_type __beg, iter_type __end, ios_base& __io,
-    ios_base::iostate& __err, tm* __tm) const;
-# 722 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual
-
-      iter_type
-      do_get(iter_type __s, iter_type __end, ios_base& __f,
-             ios_base::iostate& __err, tm* __tm,
-             char __format, char __modifier) const;
-
-
-
-      iter_type
-      _M_extract_num(iter_type __beg, iter_type __end, int& __member,
-       int __min, int __max, size_t __len,
-       ios_base& __io, ios_base::iostate& __err) const;
-
-
-      iter_type
-      _M_extract_name(iter_type __beg, iter_type __end, int& __member,
-        const _CharT** __names, size_t __indexlen,
-        ios_base& __io, ios_base::iostate& __err) const;
-
-
-      iter_type
-      _M_extract_wday_or_month(iter_type __beg, iter_type __end, int& __member,
-          const _CharT** __names, size_t __indexlen,
-          ios_base& __io, ios_base::iostate& __err) const;
-
-
-      iter_type
-      _M_extract_via_format(iter_type __beg, iter_type __end, ios_base& __io,
-       ios_base::iostate& __err, tm* __tm,
-       const _CharT* __format) const;
-    };
-
-  template<typename _CharT, typename _InIter>
-    locale::id time_get<_CharT, _InIter>::id;
-
-
-  template<typename _CharT, typename _InIter>
-    class time_get_byname : public time_get<_CharT, _InIter>
-    {
-    public:
-
-      typedef _CharT char_type;
-      typedef _InIter iter_type;
-
-      explicit
-      time_get_byname(const char*, size_t __refs = 0)
-      : time_get<_CharT, _InIter>(__refs) { }
-
-
-      explicit
-      time_get_byname(const string& __s, size_t __refs = 0)
-      : time_get_byname(__s.c_str(), __refs) { }
-
-
-    protected:
-      virtual
-      ~time_get_byname() { }
-    };
-
-}
-# 796 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  template<typename _CharT, typename _OutIter>
-    class time_put : public locale::facet
-    {
-    public:
-
-
-
-      typedef _CharT char_type;
-      typedef _OutIter iter_type;
-
-
-
-      static locale::id id;
-# 817 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      time_put(size_t __refs = 0)
-      : facet(__refs) { }
-# 836 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
-   const _CharT* __beg, const _CharT* __end) const;
-# 856 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      put(iter_type __s, ios_base& __io, char_type __fill,
-   const tm* __tm, char __format, char __mod = 0) const
-      { return this->do_put(__s, __io, __fill, __tm, __format, __mod); }
-
-    protected:
-
-      virtual
-      ~time_put()
-      { }
-# 883 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
-      char __format, char __mod) const;
-    };
-
-  template<typename _CharT, typename _OutIter>
-    locale::id time_put<_CharT, _OutIter>::id;
-
-
-  template<typename _CharT, typename _OutIter>
-    class time_put_byname : public time_put<_CharT, _OutIter>
-    {
-    public:
-
-      typedef _CharT char_type;
-      typedef _OutIter iter_type;
-
-      explicit
-      time_put_byname(const char*, size_t __refs = 0)
-      : time_put<_CharT, _OutIter>(__refs)
-      { }
-
-
-      explicit
-      time_put_byname(const string& __s, size_t __refs = 0)
-      : time_put_byname(__s.c_str(), __refs) { }
-
-
-    protected:
-      virtual
-      ~time_put_byname() { }
-    };
-# 928 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  class money_base
-  {
-  public:
-    enum part { none, space, symbol, sign, value };
-    struct pattern { char field[4]; };
-
-    static const pattern _S_default_pattern;
-
-    enum
-    {
-      _S_minus,
-      _S_zero,
-      _S_end = 11
-    };
-
-
-
-    static const char* _S_atoms;
-
-
-
-    __attribute__ ((__const__)) static pattern
-    _S_construct_pattern(char __precedes, char __space, char __posn) throw ();
-  };
-
-  template<typename _CharT, bool _Intl>
-    struct __moneypunct_cache : public locale::facet
-    {
-      const char* _M_grouping;
-      size_t _M_grouping_size;
-      bool _M_use_grouping;
-      _CharT _M_decimal_point;
-      _CharT _M_thousands_sep;
-      const _CharT* _M_curr_symbol;
-      size_t _M_curr_symbol_size;
-      const _CharT* _M_positive_sign;
-      size_t _M_positive_sign_size;
-      const _CharT* _M_negative_sign;
-      size_t _M_negative_sign_size;
-      int _M_frac_digits;
-      money_base::pattern _M_pos_format;
-      money_base::pattern _M_neg_format;
-
-
-
-
-      _CharT _M_atoms[money_base::_S_end];
-
-      bool _M_allocated;
-
-      __moneypunct_cache(size_t __refs = 0) : facet(__refs),
-      _M_grouping(0), _M_grouping_size(0), _M_use_grouping(false),
-      _M_decimal_point(_CharT()), _M_thousands_sep(_CharT()),
-      _M_curr_symbol(0), _M_curr_symbol_size(0),
-      _M_positive_sign(0), _M_positive_sign_size(0),
-      _M_negative_sign(0), _M_negative_sign_size(0),
-      _M_frac_digits(0),
-      _M_pos_format(money_base::pattern()),
-      _M_neg_format(money_base::pattern()), _M_allocated(false)
-      { }
-
-      ~__moneypunct_cache();
-
-      void
-      _M_cache(const locale& __loc);
-
-    private:
-      __moneypunct_cache&
-      operator=(const __moneypunct_cache&);
-
-      explicit
-      __moneypunct_cache(const __moneypunct_cache&);
-    };
-
-  template<typename _CharT, bool _Intl>
-    __moneypunct_cache<_CharT, _Intl>::~__moneypunct_cache()
-    {
-      if (_M_allocated)
- {
-   delete [] _M_grouping;
-   delete [] _M_curr_symbol;
-   delete [] _M_positive_sign;
-   delete [] _M_negative_sign;
- }
-    }
-
-namespace __cxx11 {
-# 1023 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  template<typename _CharT, bool _Intl>
-    class moneypunct : public locale::facet, public money_base
-    {
-    public:
-
-
-
-      typedef _CharT char_type;
-      typedef basic_string<_CharT> string_type;
-
-      typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
-
-    private:
-      __cache_type* _M_data;
-
-    public:
-
-
-      static const bool intl = _Intl;
-
-      static locale::id id;
-# 1052 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      moneypunct(size_t __refs = 0)
-      : facet(__refs), _M_data(0)
-      { _M_initialize_moneypunct(); }
-# 1065 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      moneypunct(__cache_type* __cache, size_t __refs = 0)
-      : facet(__refs), _M_data(__cache)
-      { _M_initialize_moneypunct(); }
-# 1080 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      moneypunct(__c_locale __cloc, const char* __s, size_t __refs = 0)
-      : facet(__refs), _M_data(0)
-      { _M_initialize_moneypunct(__cloc, __s); }
-# 1094 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      char_type
-      decimal_point() const
-      { return this->do_decimal_point(); }
-# 1107 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      char_type
-      thousands_sep() const
-      { return this->do_thousands_sep(); }
-# 1137 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      string
-      grouping() const
-      { return this->do_grouping(); }
-# 1150 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      string_type
-      curr_symbol() const
-      { return this->do_curr_symbol(); }
-# 1167 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      string_type
-      positive_sign() const
-      { return this->do_positive_sign(); }
-# 1184 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      string_type
-      negative_sign() const
-      { return this->do_negative_sign(); }
-# 1200 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      int
-      frac_digits() const
-      { return this->do_frac_digits(); }
-# 1236 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      pattern
-      pos_format() const
-      { return this->do_pos_format(); }
-
-      pattern
-      neg_format() const
-      { return this->do_neg_format(); }
-
-
-    protected:
-
-      virtual
-      ~moneypunct();
-# 1258 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual char_type
-      do_decimal_point() const
-      { return _M_data->_M_decimal_point; }
-# 1270 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual char_type
-      do_thousands_sep() const
-      { return _M_data->_M_thousands_sep; }
-# 1283 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual string
-      do_grouping() const
-      { return _M_data->_M_grouping; }
-# 1296 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual string_type
-      do_curr_symbol() const
-      { return _M_data->_M_curr_symbol; }
-# 1309 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual string_type
-      do_positive_sign() const
-      { return _M_data->_M_positive_sign; }
-# 1322 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual string_type
-      do_negative_sign() const
-      { return _M_data->_M_negative_sign; }
-# 1336 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual int
-      do_frac_digits() const
-      { return _M_data->_M_frac_digits; }
-# 1350 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual pattern
-      do_pos_format() const
-      { return _M_data->_M_pos_format; }
-# 1364 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual pattern
-      do_neg_format() const
-      { return _M_data->_M_neg_format; }
-
-
-       void
-       _M_initialize_moneypunct(__c_locale __cloc = 0,
-    const char* __name = 0);
-    };
-
-  template<typename _CharT, bool _Intl>
-    locale::id moneypunct<_CharT, _Intl>::id;
-
-  template<typename _CharT, bool _Intl>
-    const bool moneypunct<_CharT, _Intl>::intl;
-
-  template<>
-    moneypunct<char, true>::~moneypunct();
-
-  template<>
-    moneypunct<char, false>::~moneypunct();
-
-  template<>
-    void
-    moneypunct<char, true>::_M_initialize_moneypunct(__c_locale, const char*);
-
-  template<>
-    void
-    moneypunct<char, false>::_M_initialize_moneypunct(__c_locale, const char*);
-
-
-  template<>
-    moneypunct<wchar_t, true>::~moneypunct();
-
-  template<>
-    moneypunct<wchar_t, false>::~moneypunct();
-
-  template<>
-    void
-    moneypunct<wchar_t, true>::_M_initialize_moneypunct(__c_locale,
-       const char*);
-
-  template<>
-    void
-    moneypunct<wchar_t, false>::_M_initialize_moneypunct(__c_locale,
-        const char*);
-
-
-
-  template<typename _CharT, bool _Intl>
-    class moneypunct_byname : public moneypunct<_CharT, _Intl>
-    {
-    public:
-      typedef _CharT char_type;
-      typedef basic_string<_CharT> string_type;
-
-      static const bool intl = _Intl;
-
-      explicit
-      moneypunct_byname(const char* __s, size_t __refs = 0)
-      : moneypunct<_CharT, _Intl>(__refs)
-      {
- if (__builtin_strcmp(__s, "C") != 0
-     && __builtin_strcmp(__s, "POSIX") != 0)
-   {
-     __c_locale __tmp;
-     this->_S_create_c_locale(__tmp, __s);
-     this->_M_initialize_moneypunct(__tmp);
-     this->_S_destroy_c_locale(__tmp);
-   }
-      }
-
-
-      explicit
-      moneypunct_byname(const string& __s, size_t __refs = 0)
-      : moneypunct_byname(__s.c_str(), __refs) { }
-
-
-    protected:
-      virtual
-      ~moneypunct_byname() { }
-    };
-
-  template<typename _CharT, bool _Intl>
-    const bool moneypunct_byname<_CharT, _Intl>::intl;
-
-}
-
-namespace __cxx11 {
-# 1467 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  template<typename _CharT, typename _InIter>
-    class money_get : public locale::facet
-    {
-    public:
-
-
-
-      typedef _CharT char_type;
-      typedef _InIter iter_type;
-      typedef basic_string<_CharT> string_type;
-
-
-
-      static locale::id id;
-# 1489 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      money_get(size_t __refs = 0) : facet(__refs) { }
-# 1519 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
-   ios_base::iostate& __err, long double& __units) const
-      { return this->do_get(__s, __end, __intl, __io, __err, __units); }
-# 1550 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
-   ios_base::iostate& __err, string_type& __digits) const
-      { return this->do_get(__s, __end, __intl, __io, __err, __digits); }
-
-    protected:
-
-      virtual
-      ~money_get() { }
-# 1574 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
-      ios_base::iostate& __err, long double& __units) const;
-# 1586 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
-      ios_base::iostate& __err, string_type& __digits) const;
-# 1598 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      template<bool _Intl>
-        iter_type
-        _M_extract(iter_type __s, iter_type __end, ios_base& __io,
-     ios_base::iostate& __err, string& __digits) const;
-    };
-
-  template<typename _CharT, typename _InIter>
-    locale::id money_get<_CharT, _InIter>::id;
-# 1620 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  template<typename _CharT, typename _OutIter>
-    class money_put : public locale::facet
-    {
-    public:
-
-
-      typedef _CharT char_type;
-      typedef _OutIter iter_type;
-      typedef basic_string<_CharT> string_type;
-
-
-
-      static locale::id id;
-# 1641 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      money_put(size_t __refs = 0) : facet(__refs) { }
-# 1661 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      put(iter_type __s, bool __intl, ios_base& __io,
-   char_type __fill, long double __units) const
-      { return this->do_put(__s, __intl, __io, __fill, __units); }
-# 1684 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      iter_type
-      put(iter_type __s, bool __intl, ios_base& __io,
-   char_type __fill, const string_type& __digits) const
-      { return this->do_put(__s, __intl, __io, __fill, __digits); }
-
-    protected:
-
-      virtual
-      ~money_put() { }
-# 1719 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
-      long double __units) const;
-# 1743 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual iter_type
-      do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
-      const string_type& __digits) const;
-# 1755 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      template<bool _Intl>
-        iter_type
-        _M_insert(iter_type __s, ios_base& __io, char_type __fill,
-    const string_type& __digits) const;
-    };
-
-  template<typename _CharT, typename _OutIter>
-    locale::id money_put<_CharT, _OutIter>::id;
-
-}
-
-
-
-
-
-  struct messages_base
-  {
-    typedef int catalog;
-  };
-
-namespace __cxx11 {
-# 1798 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-  template<typename _CharT>
-    class messages : public locale::facet, public messages_base
-    {
-    public:
-
-
-
-      typedef _CharT char_type;
-      typedef basic_string<_CharT> string_type;
-
-
-    protected:
-
-
-      __c_locale _M_c_locale_messages;
-      const char* _M_name_messages;
-
-    public:
-
-      static locale::id id;
-# 1826 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      messages(size_t __refs = 0);
-# 1840 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      explicit
-      messages(__c_locale __cloc, const char* __s, size_t __refs = 0);
-# 1853 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      catalog
-      open(const basic_string<char>& __s, const locale& __loc) const
-      { return this->do_open(__s, __loc); }
-# 1871 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      catalog
-      open(const basic_string<char>&, const locale&, const char*) const;
-# 1889 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      string_type
-      get(catalog __c, int __set, int __msgid, const string_type& __s) const
-      { return this->do_get(__c, __set, __msgid, __s); }
-# 1900 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      void
-      close(catalog __c) const
-      { return this->do_close(__c); }
-
-    protected:
-
-      virtual
-      ~messages();
-# 1920 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual catalog
-      do_open(const basic_string<char>&, const locale&) const;
-# 1939 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
-      virtual string_type
-      do_get(catalog, int, int, const string_type& __dfault) const;
-
-
-
-
-
-
-      virtual void
-      do_close(catalog) const;
-
-
-      char*
-      _M_convert_to_char(const string_type& __msg) const
-      {
-
- return reinterpret_cast<char*>(const_cast<_CharT*>(__msg.c_str()));
-      }
-
-
-      string_type
-      _M_convert_from_char(char*) const
-      {
-
- return string_type();
-      }
-     };
-
-  template<typename _CharT>
-    locale::id messages<_CharT>::id;
-
-
-  template<>
-    string
-    messages<char>::do_get(catalog, int, int, const string&) const;
-
-
-  template<>
-    wstring
-    messages<wchar_t>::do_get(catalog, int, int, const wstring&) const;
-
-
-
-   template<typename _CharT>
-    class messages_byname : public messages<_CharT>
-    {
-    public:
-      typedef _CharT char_type;
-      typedef basic_string<_CharT> string_type;
-
-      explicit
-      messages_byname(const char* __s, size_t __refs = 0);
-
-
-      explicit
-      messages_byname(const string& __s, size_t __refs = 0)
-      : messages_byname(__s.c_str(), __refs) { }
-
-
-    protected:
-      virtual
-      ~messages_byname()
-      { }
-    };
-
-}
-
-
-}
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/messages_members.h" 1 3
-# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/messages_members.h" 3
-namespace std
-{
-
-
-
-  template<typename _CharT>
-     messages<_CharT>::messages(size_t __refs)
-     : facet(__refs)
-     { _M_c_locale_messages = _S_get_c_locale(); }
-
-  template<typename _CharT>
-     messages<_CharT>::messages(__c_locale, const char*, size_t __refs)
-     : facet(__refs)
-     { _M_c_locale_messages = _S_get_c_locale(); }
-
-  template<typename _CharT>
-    typename messages<_CharT>::catalog
-    messages<_CharT>::open(const basic_string<char>& __s, const locale& __loc,
-      const char*) const
-    { return this->do_open(__s, __loc); }
-
-
-  template<typename _CharT>
-    messages<_CharT>::~messages()
-    { _S_destroy_c_locale(_M_c_locale_messages); }
-
-  template<typename _CharT>
-    typename messages<_CharT>::catalog
-    messages<_CharT>::do_open(const basic_string<char>&, const locale&) const
-    { return 0; }
-
-  template<typename _CharT>
-    typename messages<_CharT>::string_type
-    messages<_CharT>::do_get(catalog, int, int,
-        const string_type& __dfault) const
-    { return __dfault; }
-
-  template<typename _CharT>
-    void
-    messages<_CharT>::do_close(catalog) const
-    { }
-
-
-   template<typename _CharT>
-     messages_byname<_CharT>::messages_byname(const char* __s, size_t __refs)
-     : messages<_CharT>(__refs)
-     {
- if (__builtin_strcmp(__s, "C") != 0
-     && __builtin_strcmp(__s, "POSIX") != 0)
-   {
-     this->_S_destroy_c_locale(this->_M_c_locale_messages);
-     this->_S_create_c_locale(this->_M_c_locale_messages, __s);
-   }
-     }
-
-
-}
-# 2011 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 1 3
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-
-namespace std
-{
-
-
-
-  class codecvt_base
-  {
-  public:
-    enum result
-    {
-      ok,
-      partial,
-      error,
-      noconv
-    };
-  };
-# 67 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-  template<typename _InternT, typename _ExternT, typename _StateT>
-    class __codecvt_abstract_base
-    : public locale::facet, public codecvt_base
-    {
-    public:
-
-      typedef codecvt_base::result result;
-      typedef _InternT intern_type;
-      typedef _ExternT extern_type;
-      typedef _StateT state_type;
-# 115 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-      result
-      out(state_type& __state, const intern_type* __from,
-   const intern_type* __from_end, const intern_type*& __from_next,
-   extern_type* __to, extern_type* __to_end,
-   extern_type*& __to_next) const
-      {
- return this->do_out(__state, __from, __from_end, __from_next,
-       __to, __to_end, __to_next);
-      }
-# 154 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-      result
-      unshift(state_type& __state, extern_type* __to, extern_type* __to_end,
-       extern_type*& __to_next) const
-      { return this->do_unshift(__state, __to,__to_end,__to_next); }
-# 195 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-      result
-      in(state_type& __state, const extern_type* __from,
-  const extern_type* __from_end, const extern_type*& __from_next,
-  intern_type* __to, intern_type* __to_end,
-  intern_type*& __to_next) const
-      {
- return this->do_in(__state, __from, __from_end, __from_next,
-      __to, __to_end, __to_next);
-      }
-
-      int
-      encoding() const throw()
-      { return this->do_encoding(); }
-
-      bool
-      always_noconv() const throw()
-      { return this->do_always_noconv(); }
-
-      int
-      length(state_type& __state, const extern_type* __from,
-      const extern_type* __end, size_t __max) const
-      { return this->do_length(__state, __from, __end, __max); }
-
-      int
-      max_length() const throw()
-      { return this->do_max_length(); }
-
-    protected:
-      explicit
-      __codecvt_abstract_base(size_t __refs = 0) : locale::facet(__refs) { }
-
-      virtual
-      ~__codecvt_abstract_base() { }
-# 236 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-      virtual result
-      do_out(state_type& __state, const intern_type* __from,
-      const intern_type* __from_end, const intern_type*& __from_next,
-      extern_type* __to, extern_type* __to_end,
-      extern_type*& __to_next) const = 0;
-
-      virtual result
-      do_unshift(state_type& __state, extern_type* __to,
-   extern_type* __to_end, extern_type*& __to_next) const = 0;
-
-      virtual result
-      do_in(state_type& __state, const extern_type* __from,
-     const extern_type* __from_end, const extern_type*& __from_next,
-     intern_type* __to, intern_type* __to_end,
-     intern_type*& __to_next) const = 0;
-
-      virtual int
-      do_encoding() const throw() = 0;
-
-      virtual bool
-      do_always_noconv() const throw() = 0;
-
-      virtual int
-      do_length(state_type&, const extern_type* __from,
-  const extern_type* __end, size_t __max) const = 0;
-
-      virtual int
-      do_max_length() const throw() = 0;
-    };
-# 273 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-   template<typename _InternT, typename _ExternT, typename _StateT>
-    class codecvt
-    : public __codecvt_abstract_base<_InternT, _ExternT, _StateT>
-    {
-    public:
-
-      typedef codecvt_base::result result;
-      typedef _InternT intern_type;
-      typedef _ExternT extern_type;
-      typedef _StateT state_type;
-
-    protected:
-      __c_locale _M_c_locale_codecvt;
-
-    public:
-      static locale::id id;
-
-      explicit
-      codecvt(size_t __refs = 0)
-      : __codecvt_abstract_base<_InternT, _ExternT, _StateT> (__refs),
- _M_c_locale_codecvt(0)
-      { }
-
-      explicit
-      codecvt(__c_locale __cloc, size_t __refs = 0);
-
-    protected:
-      virtual
-      ~codecvt() { }
-
-      virtual result
-      do_out(state_type& __state, const intern_type* __from,
-      const intern_type* __from_end, const intern_type*& __from_next,
-      extern_type* __to, extern_type* __to_end,
-      extern_type*& __to_next) const;
-
-      virtual result
-      do_unshift(state_type& __state, extern_type* __to,
-   extern_type* __to_end, extern_type*& __to_next) const;
-
-      virtual result
-      do_in(state_type& __state, const extern_type* __from,
-     const extern_type* __from_end, const extern_type*& __from_next,
-     intern_type* __to, intern_type* __to_end,
-     intern_type*& __to_next) const;
-
-      virtual int
-      do_encoding() const throw();
-
-      virtual bool
-      do_always_noconv() const throw();
-
-      virtual int
-      do_length(state_type&, const extern_type* __from,
-  const extern_type* __end, size_t __max) const;
-
-      virtual int
-      do_max_length() const throw();
-    };
-
-  template<typename _InternT, typename _ExternT, typename _StateT>
-    locale::id codecvt<_InternT, _ExternT, _StateT>::id;
-
-
-  template<>
-    class codecvt<char, char, mbstate_t>
-    : public __codecvt_abstract_base<char, char, mbstate_t>
-    {
-      friend class messages<char>;
-
-    public:
-
-      typedef char intern_type;
-      typedef char extern_type;
-      typedef mbstate_t state_type;
-
-    protected:
-      __c_locale _M_c_locale_codecvt;
-
-    public:
-      static locale::id id;
-
-      explicit
-      codecvt(size_t __refs = 0);
-
-      explicit
-      codecvt(__c_locale __cloc, size_t __refs = 0);
-
-    protected:
-      virtual
-      ~codecvt();
-
-      virtual result
-      do_out(state_type& __state, const intern_type* __from,
-      const intern_type* __from_end, const intern_type*& __from_next,
-      extern_type* __to, extern_type* __to_end,
-      extern_type*& __to_next) const;
-
-      virtual result
-      do_unshift(state_type& __state, extern_type* __to,
-   extern_type* __to_end, extern_type*& __to_next) const;
-
-      virtual result
-      do_in(state_type& __state, const extern_type* __from,
-     const extern_type* __from_end, const extern_type*& __from_next,
-     intern_type* __to, intern_type* __to_end,
-     intern_type*& __to_next) const;
-
-      virtual int
-      do_encoding() const throw();
-
-      virtual bool
-      do_always_noconv() const throw();
-
-      virtual int
-      do_length(state_type&, const extern_type* __from,
-  const extern_type* __end, size_t __max) const;
-
-      virtual int
-      do_max_length() const throw();
-  };
-
-
-
-
-
-
-  template<>
-    class codecvt<wchar_t, char, mbstate_t>
-    : public __codecvt_abstract_base<wchar_t, char, mbstate_t>
-    {
-      friend class messages<wchar_t>;
-
-    public:
-
-      typedef wchar_t intern_type;
-      typedef char extern_type;
-      typedef mbstate_t state_type;
-
-    protected:
-      __c_locale _M_c_locale_codecvt;
-
-    public:
-      static locale::id id;
-
-      explicit
-      codecvt(size_t __refs = 0);
-
-      explicit
-      codecvt(__c_locale __cloc, size_t __refs = 0);
-
-    protected:
-      virtual
-      ~codecvt();
-
-      virtual result
-      do_out(state_type& __state, const intern_type* __from,
-      const intern_type* __from_end, const intern_type*& __from_next,
-      extern_type* __to, extern_type* __to_end,
-      extern_type*& __to_next) const;
-
-      virtual result
-      do_unshift(state_type& __state,
-   extern_type* __to, extern_type* __to_end,
-   extern_type*& __to_next) const;
-
-      virtual result
-      do_in(state_type& __state,
-      const extern_type* __from, const extern_type* __from_end,
-      const extern_type*& __from_next,
-      intern_type* __to, intern_type* __to_end,
-      intern_type*& __to_next) const;
-
-      virtual
-      int do_encoding() const throw();
-
-      virtual
-      bool do_always_noconv() const throw();
-
-      virtual
-      int do_length(state_type&, const extern_type* __from,
-      const extern_type* __end, size_t __max) const;
-
-      virtual int
-      do_max_length() const throw();
-    };
-
-
-
-
-
-
-
-  template<>
-    class codecvt<char16_t, char, mbstate_t>
-    : public __codecvt_abstract_base<char16_t, char, mbstate_t>
-    {
-    public:
-
-      typedef char16_t intern_type;
-      typedef char extern_type;
-      typedef mbstate_t state_type;
-
-    public:
-      static locale::id id;
-
-      explicit
-      codecvt(size_t __refs = 0)
-      : __codecvt_abstract_base<char16_t, char, mbstate_t>(__refs) { }
-
-    protected:
-      virtual
-      ~codecvt();
-
-      virtual result
-      do_out(state_type& __state, const intern_type* __from,
-      const intern_type* __from_end, const intern_type*& __from_next,
-      extern_type* __to, extern_type* __to_end,
-      extern_type*& __to_next) const;
-
-      virtual result
-      do_unshift(state_type& __state,
-   extern_type* __to, extern_type* __to_end,
-   extern_type*& __to_next) const;
-
-      virtual result
-      do_in(state_type& __state,
-      const extern_type* __from, const extern_type* __from_end,
-      const extern_type*& __from_next,
-      intern_type* __to, intern_type* __to_end,
-      intern_type*& __to_next) const;
-
-      virtual
-      int do_encoding() const throw();
-
-      virtual
-      bool do_always_noconv() const throw();
-
-      virtual
-      int do_length(state_type&, const extern_type* __from,
-      const extern_type* __end, size_t __max) const;
-
-      virtual int
-      do_max_length() const throw();
-    };
-
-
-
-
-
-  template<>
-    class codecvt<char32_t, char, mbstate_t>
-    : public __codecvt_abstract_base<char32_t, char, mbstate_t>
-    {
-    public:
-
-      typedef char32_t intern_type;
-      typedef char extern_type;
-      typedef mbstate_t state_type;
-
-    public:
-      static locale::id id;
-
-      explicit
-      codecvt(size_t __refs = 0)
-      : __codecvt_abstract_base<char32_t, char, mbstate_t>(__refs) { }
-
-    protected:
-      virtual
-      ~codecvt();
-
-      virtual result
-      do_out(state_type& __state, const intern_type* __from,
-      const intern_type* __from_end, const intern_type*& __from_next,
-      extern_type* __to, extern_type* __to_end,
-      extern_type*& __to_next) const;
-
-      virtual result
-      do_unshift(state_type& __state,
-   extern_type* __to, extern_type* __to_end,
-   extern_type*& __to_next) const;
-
-      virtual result
-      do_in(state_type& __state,
-      const extern_type* __from, const extern_type* __from_end,
-      const extern_type*& __from_next,
-      intern_type* __to, intern_type* __to_end,
-      intern_type*& __to_next) const;
-
-      virtual
-      int do_encoding() const throw();
-
-      virtual
-      bool do_always_noconv() const throw();
-
-      virtual
-      int do_length(state_type&, const extern_type* __from,
-      const extern_type* __end, size_t __max) const;
-
-      virtual int
-      do_max_length() const throw();
-    };
-# 695 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-  template<typename _InternT, typename _ExternT, typename _StateT>
-    class codecvt_byname : public codecvt<_InternT, _ExternT, _StateT>
-    {
-    public:
-      explicit
-      codecvt_byname(const char* __s, size_t __refs = 0)
-      : codecvt<_InternT, _ExternT, _StateT>(__refs)
-      {
- if (__builtin_strcmp(__s, "C") != 0
-     && __builtin_strcmp(__s, "POSIX") != 0)
-   {
-     this->_S_destroy_c_locale(this->_M_c_locale_codecvt);
-     this->_S_create_c_locale(this->_M_c_locale_codecvt, __s);
-   }
-      }
-
-
-      explicit
-      codecvt_byname(const string& __s, size_t __refs = 0)
-      : codecvt_byname(__s.c_str(), __refs) { }
-
-
-    protected:
-      virtual
-      ~codecvt_byname() { }
-    };
-
-
-  template<>
-    class codecvt_byname<char16_t, char, mbstate_t>
-    : public codecvt<char16_t, char, mbstate_t>
-    {
-    public:
-      explicit
-      codecvt_byname(const char*, size_t __refs = 0)
-      : codecvt<char16_t, char, mbstate_t>(__refs) { }
-
-      explicit
-      codecvt_byname(const string& __s, size_t __refs = 0)
-      : codecvt_byname(__s.c_str(), __refs) { }
-
-    protected:
-      virtual
-      ~codecvt_byname() { }
-    };
-
-  template<>
-    class codecvt_byname<char32_t, char, mbstate_t>
-    : public codecvt<char32_t, char, mbstate_t>
-    {
-    public:
-      explicit
-      codecvt_byname(const char*, size_t __refs = 0)
-      : codecvt<char32_t, char, mbstate_t>(__refs) { }
-
-      explicit
-      codecvt_byname(const string& __s, size_t __refs = 0)
-      : codecvt_byname(__s.c_str(), __refs) { }
-
-    protected:
-      virtual
-      ~codecvt_byname() { }
-    };
-# 802 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-  extern template class codecvt_byname<char, char, mbstate_t>;
-
-  extern template
-    const codecvt<char, char, mbstate_t>&
-    use_facet<codecvt<char, char, mbstate_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<codecvt<char, char, mbstate_t> >(const locale&);
-
-
-  extern template class codecvt_byname<wchar_t, char, mbstate_t>;
-
-  extern template
-    const codecvt<wchar_t, char, mbstate_t>&
-    use_facet<codecvt<wchar_t, char, mbstate_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<codecvt<wchar_t, char, mbstate_t> >(const locale&);
-
-
-
-  extern template class codecvt_byname<char16_t, char, mbstate_t>;
-  extern template class codecvt_byname<char32_t, char, mbstate_t>;
-# 838 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
-}
-# 2014 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 1 3
-# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
-
-namespace std
-{
-
-
-  template<typename _CharT, bool _Intl>
-    struct __use_cache<__moneypunct_cache<_CharT, _Intl> >
-    {
-      const __moneypunct_cache<_CharT, _Intl>*
-      operator() (const locale& __loc) const
-      {
- const size_t __i = moneypunct<_CharT, _Intl>::id._M_id();
- const locale::facet** __caches = __loc._M_impl->_M_caches;
- if (!__caches[__i])
-   {
-     __moneypunct_cache<_CharT, _Intl>* __tmp = 0;
-     try
-       {
-  __tmp = new __moneypunct_cache<_CharT, _Intl>;
-  __tmp->_M_cache(__loc);
-       }
-     catch(...)
-       {
-  delete __tmp;
-  throw;
-       }
-     __loc._M_impl->_M_install_cache(__tmp, __i);
-   }
- return static_cast<
-   const __moneypunct_cache<_CharT, _Intl>*>(__caches[__i]);
-      }
-    };
-
-  template<typename _CharT, bool _Intl>
-    void
-    __moneypunct_cache<_CharT, _Intl>::_M_cache(const locale& __loc)
-    {
-      const moneypunct<_CharT, _Intl>& __mp =
- use_facet<moneypunct<_CharT, _Intl> >(__loc);
-
-      _M_decimal_point = __mp.decimal_point();
-      _M_thousands_sep = __mp.thousands_sep();
-      _M_frac_digits = __mp.frac_digits();
-
-      char* __grouping = 0;
-      _CharT* __curr_symbol = 0;
-      _CharT* __positive_sign = 0;
-      _CharT* __negative_sign = 0;
-      try
- {
-   const string& __g = __mp.grouping();
-   _M_grouping_size = __g.size();
-   __grouping = new char[_M_grouping_size];
-   __g.copy(__grouping, _M_grouping_size);
-   _M_use_grouping = (_M_grouping_size
-        && static_cast<signed char>(__grouping[0]) > 0
-        && (__grouping[0]
-     != __gnu_cxx::__numeric_traits<char>::__max));
-
-   const basic_string<_CharT>& __cs = __mp.curr_symbol();
-   _M_curr_symbol_size = __cs.size();
-   __curr_symbol = new _CharT[_M_curr_symbol_size];
-   __cs.copy(__curr_symbol, _M_curr_symbol_size);
-
-   const basic_string<_CharT>& __ps = __mp.positive_sign();
-   _M_positive_sign_size = __ps.size();
-   __positive_sign = new _CharT[_M_positive_sign_size];
-   __ps.copy(__positive_sign, _M_positive_sign_size);
-
-   const basic_string<_CharT>& __ns = __mp.negative_sign();
-   _M_negative_sign_size = __ns.size();
-   __negative_sign = new _CharT[_M_negative_sign_size];
-   __ns.copy(__negative_sign, _M_negative_sign_size);
-
-   _M_pos_format = __mp.pos_format();
-   _M_neg_format = __mp.neg_format();
-
-   const ctype<_CharT>& __ct = use_facet<ctype<_CharT> >(__loc);
-   __ct.widen(money_base::_S_atoms,
-       money_base::_S_atoms + money_base::_S_end, _M_atoms);
-
-   _M_grouping = __grouping;
-   _M_curr_symbol = __curr_symbol;
-   _M_positive_sign = __positive_sign;
-   _M_negative_sign = __negative_sign;
-   _M_allocated = true;
- }
-      catch(...)
- {
-   delete [] __grouping;
-   delete [] __curr_symbol;
-   delete [] __positive_sign;
-   delete [] __negative_sign;
-   throw;
- }
-    }
-
-namespace __cxx11 {
-
-  template<typename _CharT, typename _InIter>
-    template<bool _Intl>
-      _InIter
-      money_get<_CharT, _InIter>::
-      _M_extract(iter_type __beg, iter_type __end, ios_base& __io,
-   ios_base::iostate& __err, string& __units) const
-      {
- typedef char_traits<_CharT> __traits_type;
- typedef typename string_type::size_type size_type;
- typedef money_base::part part;
- typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
-
- const locale& __loc = __io._M_getloc();
- const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
- __use_cache<__cache_type> __uc;
- const __cache_type* __lc = __uc(__loc);
- const char_type* __lit = __lc->_M_atoms;
-
-
- bool __negative = false;
-
- size_type __sign_size = 0;
-
- const bool __mandatory_sign = (__lc->_M_positive_sign_size
-           && __lc->_M_negative_sign_size);
-
- string __grouping_tmp;
- if (__lc->_M_use_grouping)
-   __grouping_tmp.reserve(32);
-
- int __last_pos = 0;
-
- int __n = 0;
-
- bool __testvalid = true;
-
- bool __testdecfound = false;
-
-
- string __res;
- __res.reserve(32);
-
- const char_type* __lit_zero = __lit + money_base::_S_zero;
- const money_base::pattern __p = __lc->_M_neg_format;
- for (int __i = 0; __i < 4 && __testvalid; ++__i)
-   {
-     const part __which = static_cast<part>(__p.field[__i]);
-     switch (__which)
-       {
-       case money_base::symbol:
-
-
-
-
-  if (__io.flags() & ios_base::showbase || __sign_size > 1
-      || __i == 0
-      || (__i == 1 && (__mandatory_sign
-         || (static_cast<part>(__p.field[0])
-      == money_base::sign)
-         || (static_cast<part>(__p.field[2])
-      == money_base::space)))
-      || (__i == 2 && ((static_cast<part>(__p.field[3])
-          == money_base::value)
-         || (__mandatory_sign
-      && (static_cast<part>(__p.field[3])
-          == money_base::sign)))))
-    {
-      const size_type __len = __lc->_M_curr_symbol_size;
-      size_type __j = 0;
-      for (; __beg != __end && __j < __len
-      && *__beg == __lc->_M_curr_symbol[__j];
-    ++__beg, (void)++__j);
-      if (__j != __len
-   && (__j || __io.flags() & ios_base::showbase))
-        __testvalid = false;
-    }
-  break;
-       case money_base::sign:
-
-  if (__lc->_M_positive_sign_size && __beg != __end
-      && *__beg == __lc->_M_positive_sign[0])
-    {
-      __sign_size = __lc->_M_positive_sign_size;
-      ++__beg;
-    }
-  else if (__lc->_M_negative_sign_size && __beg != __end
-    && *__beg == __lc->_M_negative_sign[0])
-    {
-      __negative = true;
-      __sign_size = __lc->_M_negative_sign_size;
-      ++__beg;
-    }
-  else if (__lc->_M_positive_sign_size
-    && !__lc->_M_negative_sign_size)
-
-
-    __negative = true;
-  else if (__mandatory_sign)
-    __testvalid = false;
-  break;
-       case money_base::value:
-
-
-  for (; __beg != __end; ++__beg)
-    {
-      const char_type __c = *__beg;
-      const char_type* __q = __traits_type::find(__lit_zero,
-              10, __c);
-      if (__q != 0)
-        {
-   __res += money_base::_S_atoms[__q - __lit];
-   ++__n;
-        }
-      else if (__c == __lc->_M_decimal_point
-        && !__testdecfound)
-        {
-   if (__lc->_M_frac_digits <= 0)
-     break;
-
-   __last_pos = __n;
-   __n = 0;
-   __testdecfound = true;
-        }
-      else if (__lc->_M_use_grouping
-        && __c == __lc->_M_thousands_sep
-        && !__testdecfound)
-        {
-   if (__n)
-     {
-
-       __grouping_tmp += static_cast<char>(__n);
-       __n = 0;
-     }
-   else
-     {
-       __testvalid = false;
-       break;
-     }
-        }
-      else
-        break;
-    }
-  if (__res.empty())
-    __testvalid = false;
-  break;
-       case money_base::space:
-
-  if (__beg != __end && __ctype.is(ctype_base::space, *__beg))
-    ++__beg;
-  else
-    __testvalid = false;
-
-       case money_base::none:
-
-  if (__i != 3)
-    for (; __beg != __end
-    && __ctype.is(ctype_base::space, *__beg); ++__beg);
-  break;
-       }
-   }
-
-
- if (__sign_size > 1 && __testvalid)
-   {
-     const char_type* __sign = __negative ? __lc->_M_negative_sign
-                                          : __lc->_M_positive_sign;
-     size_type __i = 1;
-     for (; __beg != __end && __i < __sign_size
-     && *__beg == __sign[__i]; ++__beg, (void)++__i);
-
-     if (__i != __sign_size)
-       __testvalid = false;
-   }
-
- if (__testvalid)
-   {
-
-     if (__res.size() > 1)
-       {
-  const size_type __first = __res.find_first_not_of('0');
-  const bool __only_zeros = __first == string::npos;
-  if (__first)
-    __res.erase(0, __only_zeros ? __res.size() - 1 : __first);
-       }
-
-
-     if (__negative && __res[0] != '0')
-       __res.insert(__res.begin(), '-');
-
-
-     if (__grouping_tmp.size())
-       {
-
-  __grouping_tmp += static_cast<char>(__testdecfound ? __last_pos
-                         : __n);
-  if (!std::__verify_grouping(__lc->_M_grouping,
-         __lc->_M_grouping_size,
-         __grouping_tmp))
-    __err |= ios_base::failbit;
-       }
-
-
-     if (__testdecfound && __n != __lc->_M_frac_digits)
-       __testvalid = false;
-   }
-
-
- if (!__testvalid)
-   __err |= ios_base::failbit;
- else
-   __units.swap(__res);
-
-
- if (__beg == __end)
-   __err |= ios_base::eofbit;
- return __beg;
-      }
-# 368 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
-  template<typename _CharT, typename _InIter>
-    _InIter
-    money_get<_CharT, _InIter>::
-    do_get(iter_type __beg, iter_type __end, bool __intl, ios_base& __io,
-    ios_base::iostate& __err, long double& __units) const
-    {
-      string __str;
-      __beg = __intl ? _M_extract<true>(__beg, __end, __io, __err, __str)
-              : _M_extract<false>(__beg, __end, __io, __err, __str);
-      std::__convert_to_v(__str.c_str(), __units, __err, _S_get_c_locale());
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    money_get<_CharT, _InIter>::
-    do_get(iter_type __beg, iter_type __end, bool __intl, ios_base& __io,
-    ios_base::iostate& __err, string_type& __digits) const
-    {
-      typedef typename string::size_type size_type;
-
-      const locale& __loc = __io._M_getloc();
-      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
-      string __str;
-      __beg = __intl ? _M_extract<true>(__beg, __end, __io, __err, __str)
-              : _M_extract<false>(__beg, __end, __io, __err, __str);
-      const size_type __len = __str.size();
-      if (__len)
- {
-   __digits.resize(__len);
-   __ctype.widen(__str.data(), __str.data() + __len, &__digits[0]);
- }
-      return __beg;
-    }
-
-  template<typename _CharT, typename _OutIter>
-    template<bool _Intl>
-      _OutIter
-      money_put<_CharT, _OutIter>::
-      _M_insert(iter_type __s, ios_base& __io, char_type __fill,
-  const string_type& __digits) const
-      {
- typedef typename string_type::size_type size_type;
- typedef money_base::part part;
- typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
-
- const locale& __loc = __io._M_getloc();
- const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
- __use_cache<__cache_type> __uc;
- const __cache_type* __lc = __uc(__loc);
- const char_type* __lit = __lc->_M_atoms;
-
-
-
- const char_type* __beg = __digits.data();
-
- money_base::pattern __p;
- const char_type* __sign;
- size_type __sign_size;
- if (!(*__beg == __lit[money_base::_S_minus]))
-   {
-     __p = __lc->_M_pos_format;
-     __sign = __lc->_M_positive_sign;
-     __sign_size = __lc->_M_positive_sign_size;
-   }
- else
-   {
-     __p = __lc->_M_neg_format;
-     __sign = __lc->_M_negative_sign;
-     __sign_size = __lc->_M_negative_sign_size;
-     if (__digits.size())
-       ++__beg;
-   }
-
-
- size_type __len = __ctype.scan_not(ctype_base::digit, __beg,
-        __beg + __digits.size()) - __beg;
- if (__len)
-   {
-
-
-
-     string_type __value;
-     __value.reserve(2 * __len);
-
-
-
-     long __paddec = __len - __lc->_M_frac_digits;
-     if (__paddec > 0)
-         {
-  if (__lc->_M_frac_digits < 0)
-    __paddec = __len;
-    if (__lc->_M_grouping_size)
-      {
-      __value.assign(2 * __paddec, char_type());
-       _CharT* __vend =
-        std::__add_grouping(&__value[0], __lc->_M_thousands_sep,
-       __lc->_M_grouping,
-       __lc->_M_grouping_size,
-       __beg, __beg + __paddec);
-      __value.erase(__vend - &__value[0]);
-      }
-    else
-    __value.assign(__beg, __paddec);
-       }
-
-
-     if (__lc->_M_frac_digits > 0)
-       {
-  __value += __lc->_M_decimal_point;
-  if (__paddec >= 0)
-    __value.append(__beg + __paddec, __lc->_M_frac_digits);
-  else
-    {
-
-      __value.append(-__paddec, __lit[money_base::_S_zero]);
-      __value.append(__beg, __len);
-    }
-         }
-
-
-     const ios_base::fmtflags __f = __io.flags()
-                                    & ios_base::adjustfield;
-     __len = __value.size() + __sign_size;
-     __len += ((__io.flags() & ios_base::showbase)
-        ? __lc->_M_curr_symbol_size : 0);
-
-     string_type __res;
-     __res.reserve(2 * __len);
-
-     const size_type __width = static_cast<size_type>(__io.width());
-     const bool __testipad = (__f == ios_base::internal
-         && __len < __width);
-
-     for (int __i = 0; __i < 4; ++__i)
-       {
-  const part __which = static_cast<part>(__p.field[__i]);
-  switch (__which)
-    {
-    case money_base::symbol:
-      if (__io.flags() & ios_base::showbase)
-        __res.append(__lc->_M_curr_symbol,
-       __lc->_M_curr_symbol_size);
-      break;
-    case money_base::sign:
-
-
-
-      if (__sign_size)
-        __res += __sign[0];
-      break;
-    case money_base::value:
-      __res += __value;
-      break;
-    case money_base::space:
-
-
-
-      if (__testipad)
-        __res.append(__width - __len, __fill);
-      else
-        __res += __fill;
-      break;
-    case money_base::none:
-      if (__testipad)
-        __res.append(__width - __len, __fill);
-      break;
-    }
-       }
-
-
-     if (__sign_size > 1)
-       __res.append(__sign + 1, __sign_size - 1);
-
-
-     __len = __res.size();
-     if (__width > __len)
-       {
-  if (__f == ios_base::left)
-
-    __res.append(__width - __len, __fill);
-  else
-
-    __res.insert(0, __width - __len, __fill);
-  __len = __width;
-       }
-
-
-     __s = std::__write(__s, __res.data(), __len);
-   }
- __io.width(0);
- return __s;
-      }
-# 574 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
-  template<typename _CharT, typename _OutIter>
-    _OutIter
-    money_put<_CharT, _OutIter>::
-    do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
-    long double __units) const
-    {
-      const locale __loc = __io.getloc();
-      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
-
-      int __cs_size = 64;
-      char* __cs = static_cast<char*>(__builtin_alloca(__cs_size));
-
-
-      int __len = std::__convert_from_v(_S_get_c_locale(), __cs, __cs_size,
-     "%.*Lf", 0, __units);
-
-      if (__len >= __cs_size)
- {
-   __cs_size = __len + 1;
-   __cs = static_cast<char*>(__builtin_alloca(__cs_size));
-   __len = std::__convert_from_v(_S_get_c_locale(), __cs, __cs_size,
-     "%.*Lf", 0, __units);
- }
-# 606 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
-      string_type __digits(__len, char_type());
-      __ctype.widen(__cs, __cs + __len, &__digits[0]);
-      return __intl ? _M_insert<true>(__s, __io, __fill, __digits)
-             : _M_insert<false>(__s, __io, __fill, __digits);
-    }
-
-  template<typename _CharT, typename _OutIter>
-    _OutIter
-    money_put<_CharT, _OutIter>::
-    do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
-    const string_type& __digits) const
-    { return __intl ? _M_insert<true>(__s, __io, __fill, __digits)
-             : _M_insert<false>(__s, __io, __fill, __digits); }
-
-}
-
-
-
-
-  template<typename _CharT, typename _InIter>
-    time_base::dateorder
-    time_get<_CharT, _InIter>::do_date_order() const
-    { return time_base::no_order; }
-
-
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    _M_extract_via_format(iter_type __beg, iter_type __end, ios_base& __io,
-     ios_base::iostate& __err, tm* __tm,
-     const _CharT* __format) const
-    {
-      const locale& __loc = __io._M_getloc();
-      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
-      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-      const size_t __len = char_traits<_CharT>::length(__format);
-
-      ios_base::iostate __tmperr = ios_base::goodbit;
-      size_t __i = 0;
-      for (; __beg != __end && __i < __len && !__tmperr; ++__i)
- {
-   if (__ctype.narrow(__format[__i], 0) == '%')
-     {
-
-       char __c = __ctype.narrow(__format[++__i], 0);
-       int __mem = 0;
-       if (__c == 'E' || __c == 'O')
-  __c = __ctype.narrow(__format[++__i], 0);
-       switch (__c)
-  {
-    const char* __cs;
-    _CharT __wcs[10];
-  case 'a':
-
-    const char_type* __days1[7];
-    __tp._M_days_abbreviated(__days1);
-    __beg = _M_extract_name(__beg, __end, __mem, __days1,
-       7, __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_wday = __mem;
-    break;
-  case 'A':
-
-    const char_type* __days2[7];
-    __tp._M_days(__days2);
-    __beg = _M_extract_name(__beg, __end, __mem, __days2,
-       7, __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_wday = __mem;
-    break;
-  case 'h':
-  case 'b':
-
-    const char_type* __months1[12];
-    __tp._M_months_abbreviated(__months1);
-    __beg = _M_extract_name(__beg, __end, __mem,
-       __months1, 12, __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_mon = __mem;
-    break;
-  case 'B':
-
-    const char_type* __months2[12];
-    __tp._M_months(__months2);
-    __beg = _M_extract_name(__beg, __end, __mem,
-       __months2, 12, __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_mon = __mem;
-    break;
-  case 'c':
-
-    const char_type* __dt[2];
-    __tp._M_date_time_formats(__dt);
-    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
-      __tm, __dt[0]);
-    break;
-  case 'd':
-
-    __beg = _M_extract_num(__beg, __end, __mem, 1, 31, 2,
-      __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_mday = __mem;
-    break;
-  case 'e':
-
-
-    if (__ctype.is(ctype_base::space, *__beg))
-      __beg = _M_extract_num(++__beg, __end, __mem, 1, 9,
-        1, __io, __tmperr);
-    else
-      __beg = _M_extract_num(__beg, __end, __mem, 10, 31,
-        2, __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_mday = __mem;
-    break;
-  case 'D':
-
-    __cs = "%m/%d/%y";
-    __ctype.widen(__cs, __cs + 9, __wcs);
-    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
-      __tm, __wcs);
-    break;
-  case 'H':
-
-    __beg = _M_extract_num(__beg, __end, __mem, 0, 23, 2,
-      __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_hour = __mem;
-    break;
-  case 'I':
-
-    __beg = _M_extract_num(__beg, __end, __mem, 1, 12, 2,
-      __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_hour = __mem;
-    break;
-  case 'm':
-
-    __beg = _M_extract_num(__beg, __end, __mem, 1, 12, 2,
-      __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_mon = __mem - 1;
-    break;
-  case 'M':
-
-    __beg = _M_extract_num(__beg, __end, __mem, 0, 59, 2,
-      __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_min = __mem;
-    break;
-  case 'n':
-    if (__ctype.narrow(*__beg, 0) == '\n')
-      ++__beg;
-    else
-      __tmperr |= ios_base::failbit;
-    break;
-  case 'R':
-
-    __cs = "%H:%M";
-    __ctype.widen(__cs, __cs + 6, __wcs);
-    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
-      __tm, __wcs);
-    break;
-  case 'S':
-
-
-
-    __beg = _M_extract_num(__beg, __end, __mem, 0, 60, 2,
-
-
-
-      __io, __tmperr);
-    if (!__tmperr)
-    __tm->tm_sec = __mem;
-    break;
-  case 't':
-    if (__ctype.narrow(*__beg, 0) == '\t')
-      ++__beg;
-    else
-      __tmperr |= ios_base::failbit;
-    break;
-  case 'T':
-
-    __cs = "%H:%M:%S";
-    __ctype.widen(__cs, __cs + 9, __wcs);
-    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
-      __tm, __wcs);
-    break;
-  case 'x':
-
-    const char_type* __dates[2];
-    __tp._M_date_formats(__dates);
-    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
-      __tm, __dates[0]);
-    break;
-  case 'X':
-
-    const char_type* __times[2];
-    __tp._M_time_formats(__times);
-    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
-      __tm, __times[0]);
-    break;
-  case 'y':
-  case 'C':
-
-  case 'Y':
-
-
-
-
-    __beg = _M_extract_num(__beg, __end, __mem, 0, 9999, 4,
-      __io, __tmperr);
-    if (!__tmperr)
-      __tm->tm_year = __mem < 0 ? __mem + 100 : __mem - 1900;
-    break;
-  case 'Z':
-
-    if (__ctype.is(ctype_base::upper, *__beg))
-      {
-        int __tmp;
-        __beg = _M_extract_name(__beg, __end, __tmp,
-           __timepunct_cache<_CharT>::_S_timezones,
-           14, __io, __tmperr);
-
-
-        if (__beg != __end && !__tmperr && __tmp == 0
-     && (*__beg == __ctype.widen('-')
-         || *__beg == __ctype.widen('+')))
-   {
-     __beg = _M_extract_num(__beg, __end, __tmp, 0, 23, 2,
-       __io, __tmperr);
-     __beg = _M_extract_num(__beg, __end, __tmp, 0, 59, 2,
-       __io, __tmperr);
-   }
-      }
-    else
-      __tmperr |= ios_base::failbit;
-    break;
-  default:
-
-    __tmperr |= ios_base::failbit;
-  }
-     }
-   else
-     {
-
-       if (__format[__i] == *__beg)
-  ++__beg;
-       else
-  __tmperr |= ios_base::failbit;
-     }
- }
-
-      if (__tmperr || __i != __len)
- __err |= ios_base::failbit;
-
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    _M_extract_num(iter_type __beg, iter_type __end, int& __member,
-     int __min, int __max, size_t __len,
-     ios_base& __io, ios_base::iostate& __err) const
-    {
-      const locale& __loc = __io._M_getloc();
-      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
-
-      int __mult = __len == 2 ? 10 : (__len == 4 ? 1000 : 1);
-
-      ++__min;
-      size_t __i = 0;
-      int __value = 0;
-      for (; __beg != __end && __i < __len; ++__beg, (void)++__i)
- {
-   const char __c = __ctype.narrow(*__beg, '*');
-   if (__c >= '0' && __c <= '9')
-     {
-       __value = __value * 10 + (__c - '0');
-       const int __valuec = __value * __mult;
-       if (__valuec > __max || __valuec + __mult < __min)
-  break;
-       __mult /= 10;
-     }
-   else
-     break;
- }
-      if (__i == __len)
- __member = __value;
-
-      else if (__len == 4 && __i == 2)
- __member = __value - 100;
-      else
- __err |= ios_base::failbit;
-
-      return __beg;
-    }
-
-
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    _M_extract_name(iter_type __beg, iter_type __end, int& __member,
-      const _CharT** __names, size_t __indexlen,
-      ios_base& __io, ios_base::iostate& __err) const
-    {
-      typedef char_traits<_CharT> __traits_type;
-      const locale& __loc = __io._M_getloc();
-      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
-      int* __matches = static_cast<int*>(__builtin_alloca(sizeof(int)
-         * __indexlen));
-      size_t __nmatches = 0;
-      size_t __pos = 0;
-      bool __testvalid = true;
-      const char_type* __name;
-
-
-
-
-
-      if (__beg != __end)
- {
-   const char_type __c = *__beg;
-   for (size_t __i1 = 0; __i1 < __indexlen; ++__i1)
-     if (__c == __names[__i1][0]
-  || __c == __ctype.toupper(__names[__i1][0]))
-       __matches[__nmatches++] = __i1;
- }
-
-      while (__nmatches > 1)
- {
-
-   size_t __minlen = __traits_type::length(__names[__matches[0]]);
-   for (size_t __i2 = 1; __i2 < __nmatches; ++__i2)
-     __minlen = std::min(__minlen,
-         __traits_type::length(__names[__matches[__i2]]));
-   ++__beg;
-   ++__pos;
-   if (__pos < __minlen && __beg != __end)
-     for (size_t __i3 = 0; __i3 < __nmatches;)
-       {
-  __name = __names[__matches[__i3]];
-  if (!(__name[__pos] == *__beg))
-    __matches[__i3] = __matches[--__nmatches];
-  else
-    ++__i3;
-       }
-   else
-     break;
- }
-
-      if (__nmatches == 1)
- {
-
-   ++__beg;
-   ++__pos;
-   __name = __names[__matches[0]];
-   const size_t __len = __traits_type::length(__name);
-   while (__pos < __len && __beg != __end && __name[__pos] == *__beg)
-     ++__beg, (void)++__pos;
-
-   if (__len == __pos)
-     __member = __matches[0];
-   else
-     __testvalid = false;
- }
-      else
- __testvalid = false;
-      if (!__testvalid)
- __err |= ios_base::failbit;
-
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    _M_extract_wday_or_month(iter_type __beg, iter_type __end, int& __member,
-        const _CharT** __names, size_t __indexlen,
-        ios_base& __io, ios_base::iostate& __err) const
-    {
-      typedef char_traits<_CharT> __traits_type;
-      const locale& __loc = __io._M_getloc();
-      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
-
-      int* __matches = static_cast<int*>(__builtin_alloca(2 * sizeof(int)
-         * __indexlen));
-      size_t __nmatches = 0;
-      size_t* __matches_lengths = 0;
-      size_t __pos = 0;
-
-      if (__beg != __end)
- {
-   const char_type __c = *__beg;
-   for (size_t __i = 0; __i < 2 * __indexlen; ++__i)
-     if (__c == __names[__i][0]
-  || __c == __ctype.toupper(__names[__i][0]))
-       __matches[__nmatches++] = __i;
- }
-
-      if (__nmatches)
- {
-   ++__beg;
-   ++__pos;
-
-   __matches_lengths
-     = static_cast<size_t*>(__builtin_alloca(sizeof(size_t)
-          * __nmatches));
-   for (size_t __i = 0; __i < __nmatches; ++__i)
-     __matches_lengths[__i]
-       = __traits_type::length(__names[__matches[__i]]);
- }
-
-      for (; __beg != __end; ++__beg, (void)++__pos)
- {
-   size_t __nskipped = 0;
-   const char_type __c = *__beg;
-   for (size_t __i = 0; __i < __nmatches;)
-     {
-       const char_type* __name = __names[__matches[__i]];
-       if (__pos >= __matches_lengths[__i])
-  ++__nskipped, ++__i;
-       else if (!(__name[__pos] == __c))
-  {
-    --__nmatches;
-    __matches[__i] = __matches[__nmatches];
-    __matches_lengths[__i] = __matches_lengths[__nmatches];
-  }
-       else
-  ++__i;
-     }
-   if (__nskipped == __nmatches)
-     break;
- }
-
-      if ((__nmatches == 1 && __matches_lengths[0] == __pos)
-   || (__nmatches == 2 && (__matches_lengths[0] == __pos
-      || __matches_lengths[1] == __pos)))
- __member = (__matches[0] >= __indexlen
-      ? __matches[0] - __indexlen : __matches[0]);
-      else
- __err |= ios_base::failbit;
-
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    do_get_time(iter_type __beg, iter_type __end, ios_base& __io,
-  ios_base::iostate& __err, tm* __tm) const
-    {
-      const locale& __loc = __io._M_getloc();
-      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
-      const char_type* __times[2];
-      __tp._M_time_formats(__times);
-      __beg = _M_extract_via_format(__beg, __end, __io, __err,
-        __tm, __times[0]);
-      if (__beg == __end)
- __err |= ios_base::eofbit;
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    do_get_date(iter_type __beg, iter_type __end, ios_base& __io,
-  ios_base::iostate& __err, tm* __tm) const
-    {
-      const locale& __loc = __io._M_getloc();
-      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
-      const char_type* __dates[2];
-      __tp._M_date_formats(__dates);
-      __beg = _M_extract_via_format(__beg, __end, __io, __err,
-        __tm, __dates[0]);
-      if (__beg == __end)
- __err |= ios_base::eofbit;
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    do_get_weekday(iter_type __beg, iter_type __end, ios_base& __io,
-     ios_base::iostate& __err, tm* __tm) const
-    {
-      const locale& __loc = __io._M_getloc();
-      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
-      const char_type* __days[14];
-      __tp._M_days_abbreviated(__days);
-      __tp._M_days(__days + 7);
-      int __tmpwday;
-      ios_base::iostate __tmperr = ios_base::goodbit;
-
-      __beg = _M_extract_wday_or_month(__beg, __end, __tmpwday, __days, 7,
-           __io, __tmperr);
-      if (!__tmperr)
- __tm->tm_wday = __tmpwday;
-      else
- __err |= ios_base::failbit;
-
-      if (__beg == __end)
- __err |= ios_base::eofbit;
-      return __beg;
-     }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    do_get_monthname(iter_type __beg, iter_type __end,
-                     ios_base& __io, ios_base::iostate& __err, tm* __tm) const
-    {
-      const locale& __loc = __io._M_getloc();
-      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
-      const char_type* __months[24];
-      __tp._M_months_abbreviated(__months);
-      __tp._M_months(__months + 12);
-      int __tmpmon;
-      ios_base::iostate __tmperr = ios_base::goodbit;
-
-      __beg = _M_extract_wday_or_month(__beg, __end, __tmpmon, __months, 12,
-           __io, __tmperr);
-      if (!__tmperr)
- __tm->tm_mon = __tmpmon;
-      else
- __err |= ios_base::failbit;
-
-      if (__beg == __end)
- __err |= ios_base::eofbit;
-      return __beg;
-    }
-
-  template<typename _CharT, typename _InIter>
-    _InIter
-    time_get<_CharT, _InIter>::
-    do_get_year(iter_type __beg, iter_type __end, ios_base& __io,
-  ios_base::iostate& __err, tm* __tm) const
-    {
-      int __tmpyear;
-      ios_base::iostate __tmperr = ios_base::goodbit;
-
-      __beg = _M_extract_num(__beg, __end, __tmpyear, 0, 9999, 4,
-        __io, __tmperr);
-      if (!__tmperr)
- __tm->tm_year = __tmpyear < 0 ? __tmpyear + 100 : __tmpyear - 1900;
-      else
- __err |= ios_base::failbit;
-
-      if (__beg == __end)
- __err |= ios_base::eofbit;
-      return __beg;
-    }
-
-
-  template<typename _CharT, typename _InIter>
-    inline
-    _InIter
-    time_get<_CharT, _InIter>::
-    get(iter_type __s, iter_type __end, ios_base& __io,
-        ios_base::iostate& __err, tm* __tm, const char_type* __fmt,
-        const char_type* __fmtend) const
-    {
-      const locale& __loc = __io._M_getloc();
-      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
-      __err = ios_base::goodbit;
-      while (__fmt != __fmtend &&
-             __err == ios_base::goodbit)
-        {
-          if (__s == __end)
-            {
-              __err = ios_base::eofbit | ios_base::failbit;
-              break;
-            }
-          else if (__ctype.narrow(*__fmt, 0) == '%')
-            {
-              char __format;
-              char __mod = 0;
-              if (++__fmt == __fmtend)
-                {
-                  __err = ios_base::failbit;
-                  break;
-                }
-              const char __c = __ctype.narrow(*__fmt, 0);
-              if (__c != 'E' && __c != 'O')
-                __format = __c;
-              else if (++__fmt != __fmtend)
-                {
-                  __mod = __c;
-                  __format = __ctype.narrow(*__fmt, 0);
-                }
-              else
-                {
-                  __err = ios_base::failbit;
-                  break;
-                }
-              __s = this->do_get(__s, __end, __io, __err, __tm, __format,
-     __mod);
-              ++__fmt;
-            }
-          else if (__ctype.is(ctype_base::space, *__fmt))
-            {
-              ++__fmt;
-              while (__fmt != __fmtend &&
-                     __ctype.is(ctype_base::space, *__fmt))
-                ++__fmt;
-
-              while (__s != __end &&
-                     __ctype.is(ctype_base::space, *__s))
-                ++__s;
-            }
-
-          else if (__ctype.tolower(*__s) == __ctype.tolower(*__fmt) ||
-                   __ctype.toupper(*__s) == __ctype.toupper(*__fmt))
-            {
-              ++__s;
-              ++__fmt;
-            }
-          else
-            {
-              __err = ios_base::failbit;
-              break;
-            }
-        }
-      return __s;
-    }
-
-  template<typename _CharT, typename _InIter>
-    inline
-    _InIter
-    time_get<_CharT, _InIter>::
-    do_get(iter_type __beg, iter_type __end, ios_base& __io,
-           ios_base::iostate& __err, tm* __tm,
-           char __format, char __mod) const
-    {
-      const locale& __loc = __io._M_getloc();
-      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
-      __err = ios_base::goodbit;
-
-      char_type __fmt[4];
-      __fmt[0] = __ctype.widen('%');
-      if (!__mod)
-        {
-          __fmt[1] = __format;
-          __fmt[2] = char_type();
-        }
-      else
-        {
-          __fmt[1] = __mod;
-          __fmt[2] = __format;
-          __fmt[3] = char_type();
-        }
-
-      __beg = _M_extract_via_format(__beg, __end, __io, __err, __tm, __fmt);
-      if (__beg == __end)
- __err |= ios_base::eofbit;
-      return __beg;
-    }
-
-
-
-  template<typename _CharT, typename _OutIter>
-    _OutIter
-    time_put<_CharT, _OutIter>::
-    put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
- const _CharT* __beg, const _CharT* __end) const
-    {
-      const locale& __loc = __io._M_getloc();
-      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
-      for (; __beg != __end; ++__beg)
- if (__ctype.narrow(*__beg, 0) != '%')
-   {
-     *__s = *__beg;
-     ++__s;
-   }
- else if (++__beg != __end)
-   {
-     char __format;
-     char __mod = 0;
-     const char __c = __ctype.narrow(*__beg, 0);
-     if (__c != 'E' && __c != 'O')
-       __format = __c;
-     else if (++__beg != __end)
-       {
-  __mod = __c;
-  __format = __ctype.narrow(*__beg, 0);
-       }
-     else
-       break;
-     __s = this->do_put(__s, __io, __fill, __tm, __format, __mod);
-   }
- else
-   break;
-      return __s;
-    }
-
-  template<typename _CharT, typename _OutIter>
-    _OutIter
-    time_put<_CharT, _OutIter>::
-    do_put(iter_type __s, ios_base& __io, char_type, const tm* __tm,
-    char __format, char __mod) const
-    {
-      const locale& __loc = __io._M_getloc();
-      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
-      __timepunct<_CharT> const& __tp = use_facet<__timepunct<_CharT> >(__loc);
-
-
-
-      const size_t __maxlen = 128;
-      char_type __res[__maxlen];
-
-
-
-
-
-
-      char_type __fmt[4];
-      __fmt[0] = __ctype.widen('%');
-      if (!__mod)
- {
-   __fmt[1] = __format;
-   __fmt[2] = char_type();
- }
-      else
- {
-   __fmt[1] = __mod;
-   __fmt[2] = __format;
-   __fmt[3] = char_type();
- }
-
-      __tp._M_put(__res, __maxlen, __fmt, __tm);
-
-
-      return std::__write(__s, __res, char_traits<char_type>::length(__res));
-    }
-
-
-
-
-
-  extern template class moneypunct<char, false>;
-  extern template class moneypunct<char, true>;
-  extern template class moneypunct_byname<char, false>;
-  extern template class moneypunct_byname<char, true>;
-  extern template class __cxx11:: money_get<char>;
-  extern template class __cxx11:: money_put<char>;
-  extern template class __timepunct<char>;
-  extern template class time_put<char>;
-  extern template class time_put_byname<char>;
-  extern template class time_get<char>;
-  extern template class time_get_byname<char>;
-  extern template class messages<char>;
-  extern template class messages_byname<char>;
-
-  extern template
-    const moneypunct<char, true>&
-    use_facet<moneypunct<char, true> >(const locale&);
-
-  extern template
-    const moneypunct<char, false>&
-    use_facet<moneypunct<char, false> >(const locale&);
-
-  extern template
-    const money_put<char>&
-    use_facet<money_put<char> >(const locale&);
-
-  extern template
-    const money_get<char>&
-    use_facet<money_get<char> >(const locale&);
-
-  extern template
-    const __timepunct<char>&
-    use_facet<__timepunct<char> >(const locale&);
-
-  extern template
-    const time_put<char>&
-    use_facet<time_put<char> >(const locale&);
-
-  extern template
-    const time_get<char>&
-    use_facet<time_get<char> >(const locale&);
-
-  extern template
-    const messages<char>&
-    use_facet<messages<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<moneypunct<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<money_put<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<money_get<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<__timepunct<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<time_put<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<time_get<char> >(const locale&);
-
-  extern template
-    bool
-    has_facet<messages<char> >(const locale&);
-
-
-  extern template class moneypunct<wchar_t, false>;
-  extern template class moneypunct<wchar_t, true>;
-  extern template class moneypunct_byname<wchar_t, false>;
-  extern template class moneypunct_byname<wchar_t, true>;
-  extern template class __cxx11:: money_get<wchar_t>;
-  extern template class __cxx11:: money_put<wchar_t>;
-  extern template class __timepunct<wchar_t>;
-  extern template class time_put<wchar_t>;
-  extern template class time_put_byname<wchar_t>;
-  extern template class time_get<wchar_t>;
-  extern template class time_get_byname<wchar_t>;
-  extern template class messages<wchar_t>;
-  extern template class messages_byname<wchar_t>;
-
-  extern template
-    const moneypunct<wchar_t, true>&
-    use_facet<moneypunct<wchar_t, true> >(const locale&);
-
-  extern template
-    const moneypunct<wchar_t, false>&
-    use_facet<moneypunct<wchar_t, false> >(const locale&);
-
-  extern template
-    const money_put<wchar_t>&
-    use_facet<money_put<wchar_t> >(const locale&);
-
-  extern template
-    const money_get<wchar_t>&
-    use_facet<money_get<wchar_t> >(const locale&);
-
-  extern template
-    const __timepunct<wchar_t>&
-    use_facet<__timepunct<wchar_t> >(const locale&);
-
-  extern template
-    const time_put<wchar_t>&
-    use_facet<time_put<wchar_t> >(const locale&);
-
-  extern template
-    const time_get<wchar_t>&
-    use_facet<time_get<wchar_t> >(const locale&);
-
-  extern template
-    const messages<wchar_t>&
-    use_facet<messages<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<moneypunct<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<money_put<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<money_get<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<__timepunct<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<time_put<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<time_get<wchar_t> >(const locale&);
-
-  extern template
-    bool
-    has_facet<messages<wchar_t> >(const locale&);
-
-
-
-
-}
-# 2016 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
-# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 2 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 1 3
-# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 1 3
-# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 1 3
-# 59 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
-# 69 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 1 3
-# 67 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
-namespace std
-{
-
-
-  namespace rel_ops
-  {
-# 85 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
-    template <class _Tp>
-      inline bool
-      operator!=(const _Tp& __x, const _Tp& __y)
-      { return !(__x == __y); }
-# 98 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
-    template <class _Tp>
-      inline bool
-      operator>(const _Tp& __x, const _Tp& __y)
-      { return __y < __x; }
-# 111 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
-    template <class _Tp>
-      inline bool
-      operator<=(const _Tp& __x, const _Tp& __y)
-      { return !(__y < __x); }
-# 124 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
-    template <class _Tp>
-      inline bool
-      operator>=(const _Tp& __x, const _Tp& __y)
-      { return !(__x < __y); }
-  }
-
-
-}
-# 70 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 2 3
-
-
-
-
-
-
-
-
-namespace std
-{
-
-
-
-  template<typename _Tp>
-    struct tuple_size;
-
-
-
-
-
-  template<typename _Tp,
-    typename _Up = typename remove_cv<_Tp>::type,
-    typename = typename enable_if<is_same<_Tp, _Up>::value>::type,
-    size_t = tuple_size<_Tp>::value>
-    using __enable_if_has_tuple_size = _Tp;
-
-  template<typename _Tp>
-    struct tuple_size<const __enable_if_has_tuple_size<_Tp>>
-    : public tuple_size<_Tp> { };
-
-  template<typename _Tp>
-    struct tuple_size<volatile __enable_if_has_tuple_size<_Tp>>
-    : public tuple_size<_Tp> { };
-
-  template<typename _Tp>
-    struct tuple_size<const volatile __enable_if_has_tuple_size<_Tp>>
-    : public tuple_size<_Tp> { };
-
-
-  template<std::size_t __i, typename _Tp>
-    struct tuple_element;
-
-
-  template<std::size_t __i, typename _Tp>
-    using __tuple_element_t = typename tuple_element<__i, _Tp>::type;
-
-  template<std::size_t __i, typename _Tp>
-    struct tuple_element<__i, const _Tp>
-    {
-      typedef typename add_const<__tuple_element_t<__i, _Tp>>::type type;
-    };
-
-  template<std::size_t __i, typename _Tp>
-    struct tuple_element<__i, volatile _Tp>
-    {
-      typedef typename add_volatile<__tuple_element_t<__i, _Tp>>::type type;
-    };
-
-  template<std::size_t __i, typename _Tp>
-    struct tuple_element<__i, const volatile _Tp>
-    {
-      typedef typename add_cv<__tuple_element_t<__i, _Tp>>::type type;
-    };
-
-
-
-
-
-
-
-  template<std::size_t __i, typename _Tp>
-    using tuple_element_t = typename tuple_element<__i, _Tp>::type;
-
-
-
-
-
-  template<typename _T1, typename _T2>
-    struct __is_tuple_like_impl<std::pair<_T1, _T2>> : true_type
-    { };
-
-
-  template<class _Tp1, class _Tp2>
-    struct tuple_size<std::pair<_Tp1, _Tp2>>
-    : public integral_constant<std::size_t, 2> { };
-
-
-  template<class _Tp1, class _Tp2>
-    struct tuple_element<0, std::pair<_Tp1, _Tp2>>
-    { typedef _Tp1 type; };
-
-
-  template<class _Tp1, class _Tp2>
-    struct tuple_element<1, std::pair<_Tp1, _Tp2>>
-    { typedef _Tp2 type; };
-
-  template<std::size_t _Int>
-    struct __pair_get;
-
-  template<>
-    struct __pair_get<0>
-    {
-      template<typename _Tp1, typename _Tp2>
-        static constexpr _Tp1&
-        __get(std::pair<_Tp1, _Tp2>& __pair) noexcept
-        { return __pair.first; }
-
-      template<typename _Tp1, typename _Tp2>
-        static constexpr _Tp1&&
-        __move_get(std::pair<_Tp1, _Tp2>&& __pair) noexcept
-        { return std::forward<_Tp1>(__pair.first); }
-
-      template<typename _Tp1, typename _Tp2>
-        static constexpr const _Tp1&
-        __const_get(const std::pair<_Tp1, _Tp2>& __pair) noexcept
-        { return __pair.first; }
-
-      template<typename _Tp1, typename _Tp2>
-        static constexpr const _Tp1&&
-        __const_move_get(const std::pair<_Tp1, _Tp2>&& __pair) noexcept
-        { return std::forward<const _Tp1>(__pair.first); }
-    };
-
-  template<>
-    struct __pair_get<1>
-    {
-      template<typename _Tp1, typename _Tp2>
-        static constexpr _Tp2&
-        __get(std::pair<_Tp1, _Tp2>& __pair) noexcept
-        { return __pair.second; }
-
-      template<typename _Tp1, typename _Tp2>
-        static constexpr _Tp2&&
-        __move_get(std::pair<_Tp1, _Tp2>&& __pair) noexcept
-        { return std::forward<_Tp2>(__pair.second); }
-
-      template<typename _Tp1, typename _Tp2>
-        static constexpr const _Tp2&
-        __const_get(const std::pair<_Tp1, _Tp2>& __pair) noexcept
-        { return __pair.second; }
-
-      template<typename _Tp1, typename _Tp2>
-        static constexpr const _Tp2&&
-        __const_move_get(const std::pair<_Tp1, _Tp2>&& __pair) noexcept
-        { return std::forward<const _Tp2>(__pair.second); }
-    };
-
-  template<std::size_t _Int, class _Tp1, class _Tp2>
-    constexpr typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&
-    get(std::pair<_Tp1, _Tp2>& __in) noexcept
-    { return __pair_get<_Int>::__get(__in); }
-
-  template<std::size_t _Int, class _Tp1, class _Tp2>
-    constexpr typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&&
-    get(std::pair<_Tp1, _Tp2>&& __in) noexcept
-    { return __pair_get<_Int>::__move_get(std::move(__in)); }
-
-  template<std::size_t _Int, class _Tp1, class _Tp2>
-    constexpr const typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&
-    get(const std::pair<_Tp1, _Tp2>& __in) noexcept
-    { return __pair_get<_Int>::__const_get(__in); }
-
-  template<std::size_t _Int, class _Tp1, class _Tp2>
-    constexpr const typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&&
-    get(const std::pair<_Tp1, _Tp2>&& __in) noexcept
-    { return __pair_get<_Int>::__const_move_get(std::move(__in)); }
-
-
-
-
-
-  template <typename _Tp, typename _Up>
-    constexpr _Tp&
-    get(pair<_Tp, _Up>& __p) noexcept
-    { return __p.first; }
-
-  template <typename _Tp, typename _Up>
-    constexpr const _Tp&
-    get(const pair<_Tp, _Up>& __p) noexcept
-    { return __p.first; }
-
-  template <typename _Tp, typename _Up>
-    constexpr _Tp&&
-    get(pair<_Tp, _Up>&& __p) noexcept
-    { return std::move(__p.first); }
-
-  template <typename _Tp, typename _Up>
-    constexpr const _Tp&&
-    get(const pair<_Tp, _Up>&& __p) noexcept
-    { return std::move(__p.first); }
-
-  template <typename _Tp, typename _Up>
-    constexpr _Tp&
-    get(pair<_Up, _Tp>& __p) noexcept
-    { return __p.second; }
-
-  template <typename _Tp, typename _Up>
-    constexpr const _Tp&
-    get(const pair<_Up, _Tp>& __p) noexcept
-    { return __p.second; }
-
-  template <typename _Tp, typename _Up>
-    constexpr _Tp&&
-    get(pair<_Up, _Tp>&& __p) noexcept
-    { return std::move(__p.second); }
-
-  template <typename _Tp, typename _Up>
-    constexpr const _Tp&&
-    get(const pair<_Up, _Tp>&& __p) noexcept
-    { return std::move(__p.second); }
-
-
-
-
-  template <typename _Tp, typename _Up = _Tp>
-    inline _Tp
-    exchange(_Tp& __obj, _Up&& __new_val)
-    { return std::__exchange(__obj, std::forward<_Up>(__new_val)); }
-
-
-
-
-  template<size_t... _Indexes> struct _Index_tuple { };
-# 301 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
-  template<size_t _Num>
-    struct _Build_index_tuple
-    {
-
-      template<typename, size_t... _Indices>
-        using _IdxTuple = _Index_tuple<_Indices...>;
-
-      using __type = __make_integer_seq<_IdxTuple, size_t, _Num>;
-
-
-
-    };
-
-
-
-
-
-
-  template<typename _Tp, _Tp... _Idx>
-    struct integer_sequence
-    {
-      typedef _Tp value_type;
-      static constexpr size_t size() noexcept { return sizeof...(_Idx); }
-    };
-
-
-  template<typename _Tp, _Tp _Num>
-    using make_integer_sequence
-
-      = __make_integer_seq<integer_sequence, _Tp, _Num>;
-
-
-
-
-
-
-
-  template<size_t... _Idx>
-    using index_sequence = integer_sequence<size_t, _Idx...>;
-
-
-  template<size_t _Num>
-    using make_index_sequence = make_integer_sequence<size_t, _Num>;
-
-
-  template<typename... _Types>
-    using index_sequence_for = make_index_sequence<sizeof...(_Types)>;
-# 397 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
-}
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 1 3
-# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 1 3
-# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
-# 43 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
-namespace std
-{
-
-
-  template<typename _Tp, std::size_t _Nm>
-    struct __array_traits
-    {
-      typedef _Tp _Type[_Nm];
-      typedef __is_swappable<_Tp> _Is_swappable;
-      typedef __is_nothrow_swappable<_Tp> _Is_nothrow_swappable;
-
-      static constexpr _Tp&
-      _S_ref(const _Type& __t, std::size_t __n) noexcept
-      { return const_cast<_Tp&>(__t[__n]); }
-
-      static constexpr _Tp*
-      _S_ptr(const _Type& __t) noexcept
-      { return const_cast<_Tp*>(__t); }
-    };
-
- template<typename _Tp>
-   struct __array_traits<_Tp, 0>
-   {
-     struct _Type { };
-     typedef true_type _Is_swappable;
-     typedef true_type _Is_nothrow_swappable;
-
-     static constexpr _Tp&
-     _S_ref(const _Type&, std::size_t) noexcept
-     { return *static_cast<_Tp*>(nullptr); }
-
-     static constexpr _Tp*
-     _S_ptr(const _Type&) noexcept
-     { return nullptr; }
-   };
-# 93 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
-  template<typename _Tp, std::size_t _Nm>
-    struct array
-    {
-      typedef _Tp value_type;
-      typedef value_type* pointer;
-      typedef const value_type* const_pointer;
-      typedef value_type& reference;
-      typedef const value_type& const_reference;
-      typedef value_type* iterator;
-      typedef const value_type* const_iterator;
-      typedef std::size_t size_type;
-      typedef std::ptrdiff_t difference_type;
-      typedef std::reverse_iterator<iterator> reverse_iterator;
-      typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
-
-
-      typedef std::__array_traits<_Tp, _Nm> _AT_Type;
-      typename _AT_Type::_Type _M_elems;
-
-
-
-
-      void
-      fill(const value_type& __u)
-      { std::fill_n(begin(), size(), __u); }
-
-      void
-      swap(array& __other)
-      noexcept(_AT_Type::_Is_nothrow_swappable::value)
-      { std::swap_ranges(begin(), end(), __other.begin()); }
-
-
-                           iterator
-      begin() noexcept
-      { return iterator(data()); }
-
-                           const_iterator
-      begin() const noexcept
-      { return const_iterator(data()); }
-
-                           iterator
-      end() noexcept
-      { return iterator(data() + _Nm); }
-
-                           const_iterator
-      end() const noexcept
-      { return const_iterator(data() + _Nm); }
-
-                           reverse_iterator
-      rbegin() noexcept
-      { return reverse_iterator(end()); }
-
-                           const_reverse_iterator
-      rbegin() const noexcept
-      { return const_reverse_iterator(end()); }
-
-                           reverse_iterator
-      rend() noexcept
-      { return reverse_iterator(begin()); }
-
-                           const_reverse_iterator
-      rend() const noexcept
-      { return const_reverse_iterator(begin()); }
-
-                           const_iterator
-      cbegin() const noexcept
-      { return const_iterator(data()); }
-
-                           const_iterator
-      cend() const noexcept
-      { return const_iterator(data() + _Nm); }
-
-                           const_reverse_iterator
-      crbegin() const noexcept
-      { return const_reverse_iterator(end()); }
-
-                           const_reverse_iterator
-      crend() const noexcept
-      { return const_reverse_iterator(begin()); }
-
-
-      constexpr size_type
-      size() const noexcept { return _Nm; }
-
-      constexpr size_type
-      max_size() const noexcept { return _Nm; }
-
-                         constexpr bool
-      empty() const noexcept { return size() == 0; }
-
-
-                           reference
-      operator[](size_type __n) noexcept
-      { return _AT_Type::_S_ref(_M_elems, __n); }
-
-      constexpr const_reference
-      operator[](size_type __n) const noexcept
-      { return _AT_Type::_S_ref(_M_elems, __n); }
-
-                           reference
-      at(size_type __n)
-      {
- if (__n >= _Nm)
-   std::__throw_out_of_range_fmt(("array::at: __n (which is %zu) " ">= _Nm (which is %zu)"),
-
-     __n, _Nm);
- return _AT_Type::_S_ref(_M_elems, __n);
-      }
-
-      constexpr const_reference
-      at(size_type __n) const
-      {
-
-
- return __n < _Nm ? _AT_Type::_S_ref(_M_elems, __n)
-   : (std::__throw_out_of_range_fmt(("array::at: __n (which is %zu) " ">= _Nm (which is %zu)"),
-
-        __n, _Nm),
-      _AT_Type::_S_ref(_M_elems, 0));
-      }
-
-                           reference
-      front() noexcept
-      { return *begin(); }
-
-      constexpr const_reference
-      front() const noexcept
-      { return _AT_Type::_S_ref(_M_elems, 0); }
-
-                           reference
-      back() noexcept
-      { return _Nm ? *(end() - 1) : *end(); }
-
-      constexpr const_reference
-      back() const noexcept
-      {
- return _Nm ? _AT_Type::_S_ref(_M_elems, _Nm - 1)
-             : _AT_Type::_S_ref(_M_elems, 0);
-      }
-
-                           pointer
-      data() noexcept
-      { return _AT_Type::_S_ptr(_M_elems); }
-
-                           const_pointer
-      data() const noexcept
-      { return _AT_Type::_S_ptr(_M_elems); }
-    };
-# 250 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
-  template<typename _Tp, std::size_t _Nm>
-    inline bool
-    operator==(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
-    { return std::equal(__one.begin(), __one.end(), __two.begin()); }
-
-  template<typename _Tp, std::size_t _Nm>
-    inline bool
-    operator!=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
-    { return !(__one == __two); }
-
-  template<typename _Tp, std::size_t _Nm>
-    inline bool
-    operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
-    {
-      return std::lexicographical_compare(__a.begin(), __a.end(),
-       __b.begin(), __b.end());
-    }
-
-  template<typename _Tp, std::size_t _Nm>
-    inline bool
-    operator>(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
-    { return __two < __one; }
-
-  template<typename _Tp, std::size_t _Nm>
-    inline bool
-    operator<=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
-    { return !(__one > __two); }
-
-  template<typename _Tp, std::size_t _Nm>
-    inline bool
-    operator>=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
-    { return !(__one < __two); }
-
-
-  template<typename _Tp, std::size_t _Nm>
-    inline
-
-
-    typename enable_if<
-      std::__array_traits<_Tp, _Nm>::_Is_swappable::value
-    >::type
-
-
-
-    swap(array<_Tp, _Nm>& __one, array<_Tp, _Nm>& __two)
-    noexcept(noexcept(__one.swap(__two)))
-    { __one.swap(__two); }
-
-
-  template<typename _Tp, std::size_t _Nm>
-    typename enable_if<
-      !std::__array_traits<_Tp, _Nm>::_Is_swappable::value>::type
-    swap(array<_Tp, _Nm>&, array<_Tp, _Nm>&) = delete;
-
-
-  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
-    constexpr _Tp&
-    get(array<_Tp, _Nm>& __arr) noexcept
-    {
-      static_assert(_Int < _Nm, "array index is within bounds");
-      return std::__array_traits<_Tp, _Nm>::
- _S_ref(__arr._M_elems, _Int);
-    }
-
-  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
-    constexpr _Tp&&
-    get(array<_Tp, _Nm>&& __arr) noexcept
-    {
-      static_assert(_Int < _Nm, "array index is within bounds");
-      return std::move(std::get<_Int>(__arr));
-    }
-
-  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
-    constexpr const _Tp&
-    get(const array<_Tp, _Nm>& __arr) noexcept
-    {
-      static_assert(_Int < _Nm, "array index is within bounds");
-      return std::__array_traits<_Tp, _Nm>::
- _S_ref(__arr._M_elems, _Int);
-    }
-
-  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
-    constexpr const _Tp&&
-    get(const array<_Tp, _Nm>&& __arr) noexcept
-    {
-      static_assert(_Int < _Nm, "array index is within bounds");
-      return std::move(std::get<_Int>(__arr));
-    }
-
-
-}
-
-namespace std
-{
-
-
-
-
-
-  template<typename _Tp>
-    struct tuple_size;
-
-
-  template<typename _Tp, std::size_t _Nm>
-    struct tuple_size<std::array<_Tp, _Nm>>
-    : public integral_constant<std::size_t, _Nm> { };
-
-
-  template<std::size_t _Int, typename _Tp>
-    struct tuple_element;
-
-
-  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
-    struct tuple_element<_Int, std::array<_Tp, _Nm>>
-    {
-      static_assert(_Int < _Nm, "index is out of bounds");
-      typedef _Tp type;
-    };
-
-  template<typename _Tp, std::size_t _Nm>
-    struct __is_tuple_like_impl<std::array<_Tp, _Nm>> : true_type
-    { };
-
-
-}
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/uses_allocator.h" 1 3
-# 35 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/uses_allocator.h" 3
-namespace std
-{
-
-
-
-  struct __erased_type { };
-
-
-
-
-  template<typename _Alloc, typename _Tp>
-    using __is_erased_or_convertible
-      = __or_<is_convertible<_Alloc, _Tp>, is_same<_Tp, __erased_type>>;
-
-
-  struct allocator_arg_t { explicit allocator_arg_t() = default; };
-
-                    constexpr allocator_arg_t allocator_arg =
-    allocator_arg_t();
-
-  template<typename _Tp, typename _Alloc, typename = __void_t<>>
-    struct __uses_allocator_helper
-    : false_type { };
-
-  template<typename _Tp, typename _Alloc>
-    struct __uses_allocator_helper<_Tp, _Alloc,
-       __void_t<typename _Tp::allocator_type>>
-    : __is_erased_or_convertible<_Alloc, typename _Tp::allocator_type>::type
-    { };
-
-
-  template<typename _Tp, typename _Alloc>
-    struct uses_allocator
-    : __uses_allocator_helper<_Tp, _Alloc>::type
-    { };
-
-  struct __uses_alloc_base { };
-
-  struct __uses_alloc0 : __uses_alloc_base
-  {
-    struct _Sink { void operator=(const void*) { } } _M_a;
-  };
-
-  template<typename _Alloc>
-    struct __uses_alloc1 : __uses_alloc_base { const _Alloc* _M_a; };
-
-  template<typename _Alloc>
-    struct __uses_alloc2 : __uses_alloc_base { const _Alloc* _M_a; };
-
-  template<bool, typename _Tp, typename _Alloc, typename... _Args>
-    struct __uses_alloc;
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    struct __uses_alloc<true, _Tp, _Alloc, _Args...>
-    : conditional<
-        is_constructible<_Tp, allocator_arg_t, const _Alloc&, _Args...>::value,
-        __uses_alloc1<_Alloc>,
-        __uses_alloc2<_Alloc>>::type
-    {
-
-
-      static_assert(__or_<
-   is_constructible<_Tp, allocator_arg_t, const _Alloc&, _Args...>,
-   is_constructible<_Tp, _Args..., const _Alloc&>>::value,
-   "construction with an allocator must be possible"
-   " if uses_allocator is true");
-    };
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    struct __uses_alloc<false, _Tp, _Alloc, _Args...>
-    : __uses_alloc0 { };
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    using __uses_alloc_t =
-      __uses_alloc<uses_allocator<_Tp, _Alloc>::value, _Tp, _Alloc, _Args...>;
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    inline __uses_alloc_t<_Tp, _Alloc, _Args...>
-    __use_alloc(const _Alloc& __a)
-    {
-      __uses_alloc_t<_Tp, _Alloc, _Args...> __ret;
-      __ret._M_a = std::__addressof(__a);
-      return __ret;
-    }
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    void
-    __use_alloc(const _Alloc&&) = delete;
-
-
-
-
-
-
-
-  template<template<typename...> class _Predicate,
-    typename _Tp, typename _Alloc, typename... _Args>
-    struct __is_uses_allocator_predicate
-    : conditional<uses_allocator<_Tp, _Alloc>::value,
-      __or_<_Predicate<_Tp, allocator_arg_t, _Alloc, _Args...>,
-     _Predicate<_Tp, _Args..., _Alloc>>,
-      _Predicate<_Tp, _Args...>>::type { };
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    struct __is_uses_allocator_constructible
-    : __is_uses_allocator_predicate<is_constructible, _Tp, _Alloc, _Args...>
-    { };
-
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-                      constexpr bool __is_uses_allocator_constructible_v =
-      __is_uses_allocator_constructible<_Tp, _Alloc, _Args...>::value;
-
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    struct __is_nothrow_uses_allocator_constructible
-    : __is_uses_allocator_predicate<is_nothrow_constructible,
-        _Tp, _Alloc, _Args...>
-    { };
-
-
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-                      constexpr bool
-    __is_nothrow_uses_allocator_constructible_v =
-      __is_nothrow_uses_allocator_constructible<_Tp, _Alloc, _Args...>::value;
-
-
-  template<typename _Tp, typename... _Args>
-    void __uses_allocator_construct_impl(__uses_alloc0 __a, _Tp* __ptr,
-      _Args&&... __args)
-    { ::new ((void*)__ptr) _Tp(std::forward<_Args>(__args)...); }
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    void __uses_allocator_construct_impl(__uses_alloc1<_Alloc> __a, _Tp* __ptr,
-      _Args&&... __args)
-    {
-      ::new ((void*)__ptr) _Tp(allocator_arg, *__a._M_a,
-          std::forward<_Args>(__args)...);
-    }
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    void __uses_allocator_construct_impl(__uses_alloc2<_Alloc> __a, _Tp* __ptr,
-      _Args&&... __args)
-    { ::new ((void*)__ptr) _Tp(std::forward<_Args>(__args)..., *__a._M_a); }
-
-  template<typename _Tp, typename _Alloc, typename... _Args>
-    void __uses_allocator_construct(const _Alloc& __a, _Tp* __ptr,
-        _Args&&... __args)
-    {
-      std::__uses_allocator_construct_impl(
-   std::__use_alloc<_Tp, _Alloc, _Args...>(__a), __ptr,
-   std::forward<_Args>(__args)...);
-    }
-
-
-}
-# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 2 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/invoke.h" 1 3
-# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/invoke.h" 3
-
-
-
-
-
-
-
-namespace std
-{
-# 52 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/invoke.h" 3
-  template<typename _Tp, typename _Up = typename __inv_unwrap<_Tp>::type>
-    constexpr _Up&&
-    __invfwd(typename remove_reference<_Tp>::type& __t) noexcept
-    { return static_cast<_Up&&>(__t); }
-
-  template<typename _Res, typename _Fn, typename... _Args>
-    constexpr _Res
-    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
-    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
-
-  template<typename _Res, typename _MemFun, typename _Tp, typename... _Args>
-    constexpr _Res
-    __invoke_impl(__invoke_memfun_ref, _MemFun&& __f, _Tp&& __t,
-    _Args&&... __args)
-    { return (__invfwd<_Tp>(__t).*__f)(std::forward<_Args>(__args)...); }
-
-  template<typename _Res, typename _MemFun, typename _Tp, typename... _Args>
-    constexpr _Res
-    __invoke_impl(__invoke_memfun_deref, _MemFun&& __f, _Tp&& __t,
-    _Args&&... __args)
-    {
-      return ((*std::forward<_Tp>(__t)).*__f)(std::forward<_Args>(__args)...);
-    }
-
-  template<typename _Res, typename _MemPtr, typename _Tp>
-    constexpr _Res
-    __invoke_impl(__invoke_memobj_ref, _MemPtr&& __f, _Tp&& __t)
-    { return __invfwd<_Tp>(__t).*__f; }
-
-  template<typename _Res, typename _MemPtr, typename _Tp>
-    constexpr _Res
-    __invoke_impl(__invoke_memobj_deref, _MemPtr&& __f, _Tp&& __t)
-    { return (*std::forward<_Tp>(__t)).*__f; }
-
-
-  template<typename _Callable, typename... _Args>
-    constexpr typename __invoke_result<_Callable, _Args...>::type
-    __invoke(_Callable&& __fn, _Args&&... __args)
-    noexcept(__is_nothrow_invocable<_Callable, _Args...>::value)
-    {
-      using __result = __invoke_result<_Callable, _Args...>;
-      using __type = typename __result::type;
-      using __tag = typename __result::__invoke_type;
-      return std::__invoke_impl<__type>(__tag{}, std::forward<_Callable>(__fn),
-     std::forward<_Args>(__args)...);
-    }
-
-
-}
-# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 2 3
-
-namespace std
-{
-
-
-
-
-
-
-
-  template<typename... _Elements>
-    class tuple;
-
-  template<typename _Tp>
-    struct __is_empty_non_tuple : is_empty<_Tp> { };
-
-
-  template<typename _El0, typename... _El>
-    struct __is_empty_non_tuple<tuple<_El0, _El...>> : false_type { };
-
-
-  template<typename _Tp>
-    using __empty_not_final
-    = typename conditional<__is_final(_Tp), false_type,
-      __is_empty_non_tuple<_Tp>>::type;
-
-  template<std::size_t _Idx, typename _Head,
-    bool = __empty_not_final<_Head>::value>
-    struct _Head_base;
-
-  template<std::size_t _Idx, typename _Head>
-    struct _Head_base<_Idx, _Head, true>
-    : public _Head
-    {
-      constexpr _Head_base()
-      : _Head() { }
-
-      constexpr _Head_base(const _Head& __h)
-      : _Head(__h) { }
-
-      constexpr _Head_base(const _Head_base&) = default;
-      constexpr _Head_base(_Head_base&&) = default;
-
-      template<typename _UHead>
-        constexpr _Head_base(_UHead&& __h)
- : _Head(std::forward<_UHead>(__h)) { }
-
-      _Head_base(allocator_arg_t, __uses_alloc0)
-      : _Head() { }
-
-      template<typename _Alloc>
- _Head_base(allocator_arg_t, __uses_alloc1<_Alloc> __a)
- : _Head(allocator_arg, *__a._M_a) { }
-
-      template<typename _Alloc>
- _Head_base(allocator_arg_t, __uses_alloc2<_Alloc> __a)
- : _Head(*__a._M_a) { }
-
-      template<typename _UHead>
- _Head_base(__uses_alloc0, _UHead&& __uhead)
- : _Head(std::forward<_UHead>(__uhead)) { }
-
-      template<typename _Alloc, typename _UHead>
- _Head_base(__uses_alloc1<_Alloc> __a, _UHead&& __uhead)
- : _Head(allocator_arg, *__a._M_a, std::forward<_UHead>(__uhead)) { }
-
-      template<typename _Alloc, typename _UHead>
- _Head_base(__uses_alloc2<_Alloc> __a, _UHead&& __uhead)
- : _Head(std::forward<_UHead>(__uhead), *__a._M_a) { }
-
-      static constexpr _Head&
-      _M_head(_Head_base& __b) noexcept { return __b; }
-
-      static constexpr const _Head&
-      _M_head(const _Head_base& __b) noexcept { return __b; }
-    };
-
-  template<std::size_t _Idx, typename _Head>
-    struct _Head_base<_Idx, _Head, false>
-    {
-      constexpr _Head_base()
-      : _M_head_impl() { }
-
-      constexpr _Head_base(const _Head& __h)
-      : _M_head_impl(__h) { }
-
-      constexpr _Head_base(const _Head_base&) = default;
-      constexpr _Head_base(_Head_base&&) = default;
-
-      template<typename _UHead>
-        constexpr _Head_base(_UHead&& __h)
- : _M_head_impl(std::forward<_UHead>(__h)) { }
-
-      _Head_base(allocator_arg_t, __uses_alloc0)
-      : _M_head_impl() { }
-
-      template<typename _Alloc>
- _Head_base(allocator_arg_t, __uses_alloc1<_Alloc> __a)
- : _M_head_impl(allocator_arg, *__a._M_a) { }
-
-      template<typename _Alloc>
- _Head_base(allocator_arg_t, __uses_alloc2<_Alloc> __a)
- : _M_head_impl(*__a._M_a) { }
-
-      template<typename _UHead>
- _Head_base(__uses_alloc0, _UHead&& __uhead)
- : _M_head_impl(std::forward<_UHead>(__uhead)) { }
-
-      template<typename _Alloc, typename _UHead>
- _Head_base(__uses_alloc1<_Alloc> __a, _UHead&& __uhead)
- : _M_head_impl(allocator_arg, *__a._M_a, std::forward<_UHead>(__uhead))
- { }
-
-      template<typename _Alloc, typename _UHead>
- _Head_base(__uses_alloc2<_Alloc> __a, _UHead&& __uhead)
- : _M_head_impl(std::forward<_UHead>(__uhead), *__a._M_a) { }
-
-      static constexpr _Head&
-      _M_head(_Head_base& __b) noexcept { return __b._M_head_impl; }
-
-      static constexpr const _Head&
-      _M_head(const _Head_base& __b) noexcept { return __b._M_head_impl; }
-
-      _Head _M_head_impl;
-    };
-# 176 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
-  template<std::size_t _Idx, typename... _Elements>
-    struct _Tuple_impl;
-
-
-
-
-
-
-  template<std::size_t _Idx, typename _Head, typename... _Tail>
-    struct _Tuple_impl<_Idx, _Head, _Tail...>
-    : public _Tuple_impl<_Idx + 1, _Tail...>,
-      private _Head_base<_Idx, _Head>
-    {
-      template<std::size_t, typename...> friend class _Tuple_impl;
-
-      typedef _Tuple_impl<_Idx + 1, _Tail...> _Inherited;
-      typedef _Head_base<_Idx, _Head> _Base;
-
-      static constexpr _Head&
-      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
-
-      static constexpr const _Head&
-      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
-
-      static constexpr _Inherited&
-      _M_tail(_Tuple_impl& __t) noexcept { return __t; }
-
-      static constexpr const _Inherited&
-      _M_tail(const _Tuple_impl& __t) noexcept { return __t; }
-
-      constexpr _Tuple_impl()
-      : _Inherited(), _Base() { }
-
-      explicit
-      constexpr _Tuple_impl(const _Head& __head, const _Tail&... __tail)
-      : _Inherited(__tail...), _Base(__head) { }
-
-      template<typename _UHead, typename... _UTail, typename = typename
-               enable_if<sizeof...(_Tail) == sizeof...(_UTail)>::type>
-        explicit
-        constexpr _Tuple_impl(_UHead&& __head, _UTail&&... __tail)
- : _Inherited(std::forward<_UTail>(__tail)...),
-   _Base(std::forward<_UHead>(__head)) { }
-
-      constexpr _Tuple_impl(const _Tuple_impl&) = default;
-
-
-
-      _Tuple_impl& operator=(const _Tuple_impl&) = delete;
-
-      constexpr
-      _Tuple_impl(_Tuple_impl&& __in)
-      noexcept(__and_<is_nothrow_move_constructible<_Head>,
-               is_nothrow_move_constructible<_Inherited>>::value)
-      : _Inherited(std::move(_M_tail(__in))),
- _Base(std::forward<_Head>(_M_head(__in))) { }
-
-      template<typename... _UElements>
-        constexpr _Tuple_impl(const _Tuple_impl<_Idx, _UElements...>& __in)
- : _Inherited(_Tuple_impl<_Idx, _UElements...>::_M_tail(__in)),
-   _Base(_Tuple_impl<_Idx, _UElements...>::_M_head(__in)) { }
-
-      template<typename _UHead, typename... _UTails>
-        constexpr _Tuple_impl(_Tuple_impl<_Idx, _UHead, _UTails...>&& __in)
- : _Inherited(std::move
-       (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in))),
-   _Base(std::forward<_UHead>
-  (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in))) { }
-
-      template<typename _Alloc>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a)
- : _Inherited(__tag, __a),
-          _Base(__tag, __use_alloc<_Head>(__a)) { }
-
-      template<typename _Alloc>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-      const _Head& __head, const _Tail&... __tail)
- : _Inherited(__tag, __a, __tail...),
-          _Base(__use_alloc<_Head, _Alloc, _Head>(__a), __head) { }
-
-      template<typename _Alloc, typename _UHead, typename... _UTail,
-               typename = typename enable_if<sizeof...(_Tail)
-          == sizeof...(_UTail)>::type>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             _UHead&& __head, _UTail&&... __tail)
- : _Inherited(__tag, __a, std::forward<_UTail>(__tail)...),
-          _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
-         std::forward<_UHead>(__head)) { }
-
-      template<typename _Alloc>
-        _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             const _Tuple_impl& __in)
- : _Inherited(__tag, __a, _M_tail(__in)),
-          _Base(__use_alloc<_Head, _Alloc, _Head>(__a), _M_head(__in)) { }
-
-      template<typename _Alloc>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             _Tuple_impl&& __in)
- : _Inherited(__tag, __a, std::move(_M_tail(__in))),
-   _Base(__use_alloc<_Head, _Alloc, _Head>(__a),
-         std::forward<_Head>(_M_head(__in))) { }
-
-      template<typename _Alloc, typename _UHead, typename... _UTails>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-      const _Tuple_impl<_Idx, _UHead, _UTails...>& __in)
- : _Inherited(__tag, __a,
-       _Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in)),
-   _Base(__use_alloc<_Head, _Alloc, const _UHead&>(__a),
-  _Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in)) { }
-
-      template<typename _Alloc, typename _UHead, typename... _UTails>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             _Tuple_impl<_Idx, _UHead, _UTails...>&& __in)
- : _Inherited(__tag, __a, std::move
-       (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in))),
-   _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
-                std::forward<_UHead>
-  (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in))) { }
-
-      template<typename... _UElements>
-        void
-        _M_assign(const _Tuple_impl<_Idx, _UElements...>& __in)
-        {
-   _M_head(*this) = _Tuple_impl<_Idx, _UElements...>::_M_head(__in);
-   _M_tail(*this)._M_assign(
-       _Tuple_impl<_Idx, _UElements...>::_M_tail(__in));
- }
-
-      template<typename _UHead, typename... _UTails>
-        void
-        _M_assign(_Tuple_impl<_Idx, _UHead, _UTails...>&& __in)
-        {
-   _M_head(*this) = std::forward<_UHead>
-     (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in));
-   _M_tail(*this)._M_assign(
-       std::move(_Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in)));
- }
-
-    protected:
-      void
-      _M_swap(_Tuple_impl& __in)
-      {
- using std::swap;
- swap(_M_head(*this), _M_head(__in));
- _Inherited::_M_swap(_M_tail(__in));
-      }
-    };
-
-
-  template<std::size_t _Idx, typename _Head>
-    struct _Tuple_impl<_Idx, _Head>
-    : private _Head_base<_Idx, _Head>
-    {
-      template<std::size_t, typename...> friend class _Tuple_impl;
-
-      typedef _Head_base<_Idx, _Head> _Base;
-
-      static constexpr _Head&
-      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
-
-      static constexpr const _Head&
-      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
-
-      constexpr _Tuple_impl()
-      : _Base() { }
-
-      explicit
-      constexpr _Tuple_impl(const _Head& __head)
-      : _Base(__head) { }
-
-      template<typename _UHead>
-        explicit
-        constexpr _Tuple_impl(_UHead&& __head)
- : _Base(std::forward<_UHead>(__head)) { }
-
-      constexpr _Tuple_impl(const _Tuple_impl&) = default;
-
-
-
-      _Tuple_impl& operator=(const _Tuple_impl&) = delete;
-
-      constexpr
-      _Tuple_impl(_Tuple_impl&& __in)
-      noexcept(is_nothrow_move_constructible<_Head>::value)
-      : _Base(std::forward<_Head>(_M_head(__in))) { }
-
-      template<typename _UHead>
-        constexpr _Tuple_impl(const _Tuple_impl<_Idx, _UHead>& __in)
- : _Base(_Tuple_impl<_Idx, _UHead>::_M_head(__in)) { }
-
-      template<typename _UHead>
-        constexpr _Tuple_impl(_Tuple_impl<_Idx, _UHead>&& __in)
- : _Base(std::forward<_UHead>(_Tuple_impl<_Idx, _UHead>::_M_head(__in)))
- { }
-
-      template<typename _Alloc>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a)
- : _Base(__tag, __use_alloc<_Head>(__a)) { }
-
-      template<typename _Alloc>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-      const _Head& __head)
- : _Base(__use_alloc<_Head, _Alloc, _Head>(__a), __head) { }
-
-      template<typename _Alloc, typename _UHead>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             _UHead&& __head)
- : _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
-         std::forward<_UHead>(__head)) { }
-
-      template<typename _Alloc>
-        _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             const _Tuple_impl& __in)
- : _Base(__use_alloc<_Head, _Alloc, _Head>(__a), _M_head(__in)) { }
-
-      template<typename _Alloc>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             _Tuple_impl&& __in)
- : _Base(__use_alloc<_Head, _Alloc, _Head>(__a),
-         std::forward<_Head>(_M_head(__in))) { }
-
-      template<typename _Alloc, typename _UHead>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             const _Tuple_impl<_Idx, _UHead>& __in)
- : _Base(__use_alloc<_Head, _Alloc, const _UHead&>(__a),
-  _Tuple_impl<_Idx, _UHead>::_M_head(__in)) { }
-
-      template<typename _Alloc, typename _UHead>
- _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
-             _Tuple_impl<_Idx, _UHead>&& __in)
- : _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
-                std::forward<_UHead>(_Tuple_impl<_Idx, _UHead>::_M_head(__in)))
- { }
-
-      template<typename _UHead>
-        void
-        _M_assign(const _Tuple_impl<_Idx, _UHead>& __in)
-        {
-   _M_head(*this) = _Tuple_impl<_Idx, _UHead>::_M_head(__in);
- }
-
-      template<typename _UHead>
-        void
-        _M_assign(_Tuple_impl<_Idx, _UHead>&& __in)
-        {
-   _M_head(*this)
-     = std::forward<_UHead>(_Tuple_impl<_Idx, _UHead>::_M_head(__in));
- }
-
-    protected:
-      void
-      _M_swap(_Tuple_impl& __in)
-      {
- using std::swap;
- swap(_M_head(*this), _M_head(__in));
-      }
-    };
-
-
-
-  template<bool, typename... _Elements>
-  struct _TC
-  {
-    template<typename... _UElements>
-    static constexpr bool _ConstructibleTuple()
-    {
-      return __and_<is_constructible<_Elements, const _UElements&>...>::value;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _ImplicitlyConvertibleTuple()
-    {
-      return __and_<is_convertible<const _UElements&, _Elements>...>::value;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _MoveConstructibleTuple()
-    {
-      return __and_<is_constructible<_Elements, _UElements&&>...>::value;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _ImplicitlyMoveConvertibleTuple()
-    {
-      return __and_<is_convertible<_UElements&&, _Elements>...>::value;
-    }
-
-    template<typename _SrcTuple>
-    static constexpr bool _NonNestedTuple()
-    {
-      return __and_<__not_<is_same<tuple<_Elements...>,
-        __remove_cvref_t<_SrcTuple>>>,
-                     __not_<is_convertible<_SrcTuple, _Elements...>>,
-                     __not_<is_constructible<_Elements..., _SrcTuple>>
-              >::value;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _NotSameTuple()
-    {
-      return __not_<is_same<tuple<_Elements...>,
-        __remove_cvref_t<_UElements>...>>::value;
-    }
-  };
-
-  template<typename... _Elements>
-  struct _TC<false, _Elements...>
-  {
-    template<typename... _UElements>
-    static constexpr bool _ConstructibleTuple()
-    {
-      return false;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _ImplicitlyConvertibleTuple()
-    {
-      return false;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _MoveConstructibleTuple()
-    {
-      return false;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _ImplicitlyMoveConvertibleTuple()
-    {
-      return false;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _NonNestedTuple()
-    {
-      return true;
-    }
-
-    template<typename... _UElements>
-    static constexpr bool _NotSameTuple()
-    {
-      return true;
-    }
-  };
-
-
-  template<typename... _Elements>
-    class tuple : public _Tuple_impl<0, _Elements...>
-    {
-      typedef _Tuple_impl<0, _Elements...> _Inherited;
-
-
-
-      template<typename _Dummy>
-      struct _TC2
-      {
-        static constexpr bool _DefaultConstructibleTuple()
-        {
-          return __and_<is_default_constructible<_Elements>...>::value;
-        }
-        static constexpr bool _ImplicitlyDefaultConstructibleTuple()
-        {
-          return __and_<__is_implicitly_default_constructible<_Elements>...>
-            ::value;
-        }
-      };
-
-      template<typename... _UElements>
- static constexpr
- __enable_if_t<sizeof...(_UElements) == sizeof...(_Elements), bool>
- __assignable()
- { return __and_<is_assignable<_Elements&, _UElements>...>::value; }
-
-      template<typename... _UElements>
- static constexpr bool __nothrow_assignable()
- {
-   return
-     __and_<is_nothrow_assignable<_Elements&, _UElements>...>::value;
- }
-
-    public:
-      template<typename _Dummy = void,
-               typename enable_if<_TC2<_Dummy>::
-                                    _ImplicitlyDefaultConstructibleTuple(),
-                                  bool>::type = true>
-      constexpr tuple()
-      : _Inherited() { }
-
-      template<typename _Dummy = void,
-               typename enable_if<_TC2<_Dummy>::
-                                    _DefaultConstructibleTuple()
-                                  &&
-                                  !_TC2<_Dummy>::
-                                    _ImplicitlyDefaultConstructibleTuple(),
-                                  bool>::type = false>
-      explicit constexpr tuple()
-      : _Inherited() { }
-
-
-
-      template<typename _Dummy> using _TCC =
-        _TC<is_same<_Dummy, void>::value,
-            _Elements...>;
-
-      template<typename _Dummy = void,
-               typename enable_if<
-                 _TCC<_Dummy>::template
-                   _ConstructibleTuple<_Elements...>()
-                 && _TCC<_Dummy>::template
-                   _ImplicitlyConvertibleTuple<_Elements...>()
-                 && (sizeof...(_Elements) >= 1),
-               bool>::type=true>
-        constexpr tuple(const _Elements&... __elements)
-      : _Inherited(__elements...) { }
-
-      template<typename _Dummy = void,
-               typename enable_if<
-                 _TCC<_Dummy>::template
-                   _ConstructibleTuple<_Elements...>()
-                 && !_TCC<_Dummy>::template
-                   _ImplicitlyConvertibleTuple<_Elements...>()
-                 && (sizeof...(_Elements) >= 1),
-               bool>::type=false>
-      explicit constexpr tuple(const _Elements&... __elements)
-      : _Inherited(__elements...) { }
-
-
-
-      template<typename... _UElements> using _TMC =
-                  _TC<(sizeof...(_Elements) == sizeof...(_UElements))
-        && (_TC<(sizeof...(_UElements)==1), _Elements...>::
-     template _NotSameTuple<_UElements...>()),
-                      _Elements...>;
-
-
-
-      template<typename... _UElements> using _TMCT =
-                  _TC<(sizeof...(_Elements) == sizeof...(_UElements))
-        && !is_same<tuple<_Elements...>,
-      tuple<_UElements...>>::value,
-                      _Elements...>;
-
-      template<typename... _UElements, typename
-        enable_if<
-    _TMC<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && _TMC<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
-                  && (sizeof...(_Elements) >= 1),
-        bool>::type=true>
-        constexpr tuple(_UElements&&... __elements)
-        : _Inherited(std::forward<_UElements>(__elements)...) { }
-
-      template<typename... _UElements, typename
-        enable_if<
-    _TMC<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && !_TMC<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
-                  && (sizeof...(_Elements) >= 1),
-        bool>::type=false>
-        explicit constexpr tuple(_UElements&&... __elements)
- : _Inherited(std::forward<_UElements>(__elements)...) { }
-
-      constexpr tuple(const tuple&) = default;
-
-      constexpr tuple(tuple&&) = default;
-
-
-
-      template<typename _Dummy> using _TNTC =
-        _TC<is_same<_Dummy, void>::value && sizeof...(_Elements) == 1,
-            _Elements...>;
-
-      template<typename... _UElements, typename _Dummy = void, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _ConstructibleTuple<_UElements...>()
-                  && _TMCT<_UElements...>::template
-                    _ImplicitlyConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<const tuple<_UElements...>&>(),
-        bool>::type=true>
-        constexpr tuple(const tuple<_UElements...>& __in)
-        : _Inherited(static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
-        { }
-
-      template<typename... _UElements, typename _Dummy = void, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _ConstructibleTuple<_UElements...>()
-                  && !_TMCT<_UElements...>::template
-                    _ImplicitlyConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<const tuple<_UElements...>&>(),
-        bool>::type=false>
-        explicit constexpr tuple(const tuple<_UElements...>& __in)
-        : _Inherited(static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
-        { }
-
-      template<typename... _UElements, typename _Dummy = void, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && _TMCT<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<tuple<_UElements...>&&>(),
-        bool>::type=true>
-        constexpr tuple(tuple<_UElements...>&& __in)
-        : _Inherited(static_cast<_Tuple_impl<0, _UElements...>&&>(__in)) { }
-
-      template<typename... _UElements, typename _Dummy = void, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && !_TMCT<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<tuple<_UElements...>&&>(),
-        bool>::type=false>
-        explicit constexpr tuple(tuple<_UElements...>&& __in)
-        : _Inherited(static_cast<_Tuple_impl<0, _UElements...>&&>(__in)) { }
-
-
-
-      template<typename _Alloc>
- tuple(allocator_arg_t __tag, const _Alloc& __a)
- : _Inherited(__tag, __a) { }
-
-      template<typename _Alloc, typename _Dummy = void,
-               typename enable_if<
-                 _TCC<_Dummy>::template
-                   _ConstructibleTuple<_Elements...>()
-                 && _TCC<_Dummy>::template
-                   _ImplicitlyConvertibleTuple<_Elements...>(),
-               bool>::type=true>
- tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const _Elements&... __elements)
- : _Inherited(__tag, __a, __elements...) { }
-
-      template<typename _Alloc, typename _Dummy = void,
-               typename enable_if<
-                 _TCC<_Dummy>::template
-                   _ConstructibleTuple<_Elements...>()
-                 && !_TCC<_Dummy>::template
-                   _ImplicitlyConvertibleTuple<_Elements...>(),
-               bool>::type=false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-                       const _Elements&... __elements)
- : _Inherited(__tag, __a, __elements...) { }
-
-      template<typename _Alloc, typename... _UElements, typename
-        enable_if<_TMC<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && _TMC<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>(),
-        bool>::type=true>
- tuple(allocator_arg_t __tag, const _Alloc& __a,
-       _UElements&&... __elements)
- : _Inherited(__tag, __a, std::forward<_UElements>(__elements)...)
-        { }
-
-      template<typename _Alloc, typename... _UElements, typename
-        enable_if<_TMC<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && !_TMC<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>(),
-        bool>::type=false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-       _UElements&&... __elements)
- : _Inherited(__tag, __a, std::forward<_UElements>(__elements)...)
-        { }
-
-      template<typename _Alloc>
- tuple(allocator_arg_t __tag, const _Alloc& __a, const tuple& __in)
- : _Inherited(__tag, __a, static_cast<const _Inherited&>(__in)) { }
-
-      template<typename _Alloc>
- tuple(allocator_arg_t __tag, const _Alloc& __a, tuple&& __in)
- : _Inherited(__tag, __a, static_cast<_Inherited&&>(__in)) { }
-
-      template<typename _Alloc, typename _Dummy = void,
-        typename... _UElements, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _ConstructibleTuple<_UElements...>()
-                  && _TMCT<_UElements...>::template
-                    _ImplicitlyConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<const tuple<_UElements...>&>(),
-        bool>::type=true>
- tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const tuple<_UElements...>& __in)
- : _Inherited(__tag, __a,
-              static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
- { }
-
-      template<typename _Alloc, typename _Dummy = void,
-        typename... _UElements, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _ConstructibleTuple<_UElements...>()
-                  && !_TMCT<_UElements...>::template
-                    _ImplicitlyConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<const tuple<_UElements...>&>(),
-        bool>::type=false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const tuple<_UElements...>& __in)
- : _Inherited(__tag, __a,
-              static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
- { }
-
-      template<typename _Alloc, typename _Dummy = void,
-        typename... _UElements, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && _TMCT<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<tuple<_UElements...>&&>(),
-        bool>::type=true>
- tuple(allocator_arg_t __tag, const _Alloc& __a,
-       tuple<_UElements...>&& __in)
- : _Inherited(__tag, __a,
-              static_cast<_Tuple_impl<0, _UElements...>&&>(__in))
- { }
-
-      template<typename _Alloc, typename _Dummy = void,
-        typename... _UElements, typename
-        enable_if<_TMCT<_UElements...>::template
-                    _MoveConstructibleTuple<_UElements...>()
-                  && !_TMCT<_UElements...>::template
-                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
-                  && _TNTC<_Dummy>::template
-                    _NonNestedTuple<tuple<_UElements...>&&>(),
-        bool>::type=false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-       tuple<_UElements...>&& __in)
- : _Inherited(__tag, __a,
-              static_cast<_Tuple_impl<0, _UElements...>&&>(__in))
- { }
-
-
-
-      tuple&
-      operator=(typename conditional<__assignable<const _Elements&...>(),
-         const tuple&,
-         const __nonesuch_no_braces&>::type __in)
-      noexcept(__nothrow_assignable<const _Elements&...>())
-      {
- this->_M_assign(__in);
- return *this;
-      }
-
-      tuple&
-      operator=(typename conditional<__assignable<_Elements...>(),
-         tuple&&,
-         __nonesuch_no_braces&&>::type __in)
-      noexcept(__nothrow_assignable<_Elements...>())
-      {
- this->_M_assign(std::move(__in));
- return *this;
-      }
-
-      template<typename... _UElements>
- __enable_if_t<__assignable<const _UElements&...>(), tuple&>
- operator=(const tuple<_UElements...>& __in)
- noexcept(__nothrow_assignable<const _UElements&...>())
- {
-   this->_M_assign(__in);
-   return *this;
- }
-
-      template<typename... _UElements>
- __enable_if_t<__assignable<_UElements...>(), tuple&>
- operator=(tuple<_UElements...>&& __in)
- noexcept(__nothrow_assignable<_UElements...>())
- {
-   this->_M_assign(std::move(__in));
-   return *this;
- }
-
-
-      void
-      swap(tuple& __in)
-      noexcept(__and_<__is_nothrow_swappable<_Elements>...>::value)
-      { _Inherited::_M_swap(__in); }
-    };
-# 875 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
-  template<>
-    class tuple<>
-    {
-    public:
-      void swap(tuple&) noexcept { }
-
-
-      tuple() = default;
-
-      template<typename _Alloc>
- tuple(allocator_arg_t, const _Alloc&) { }
-      template<typename _Alloc>
- tuple(allocator_arg_t, const _Alloc&, const tuple&) { }
-    };
-
-
-
-  template<typename _T1, typename _T2>
-    class tuple<_T1, _T2> : public _Tuple_impl<0, _T1, _T2>
-    {
-      typedef _Tuple_impl<0, _T1, _T2> _Inherited;
-
-      template<typename _U1, typename _U2>
- static constexpr bool __assignable()
- {
-   return __and_<is_assignable<_T1&, _U1>,
-   is_assignable<_T2&, _U2>>::value;
- }
-
-      template<typename _U1, typename _U2>
- static constexpr bool __nothrow_assignable()
- {
-   return __and_<is_nothrow_assignable<_T1&, _U1>,
-   is_nothrow_assignable<_T2&, _U2>>::value;
- }
-
-    public:
-      template <typename _U1 = _T1,
-                typename _U2 = _T2,
-                typename enable_if<__and_<
-                                     __is_implicitly_default_constructible<_U1>,
-                                     __is_implicitly_default_constructible<_U2>>
-                                   ::value, bool>::type = true>
- constexpr tuple()
- : _Inherited() { }
-
-      template <typename _U1 = _T1,
-                typename _U2 = _T2,
-                typename enable_if<
-                  __and_<
-                    is_default_constructible<_U1>,
-                    is_default_constructible<_U2>,
-                    __not_<
-                      __and_<__is_implicitly_default_constructible<_U1>,
-                             __is_implicitly_default_constructible<_U2>>>>
-                  ::value, bool>::type = false>
- explicit constexpr tuple()
- : _Inherited() { }
-
-
-
-      template<typename _Dummy> using _TCC =
-        _TC<is_same<_Dummy, void>::value, _T1, _T2>;
-
-      template<typename _Dummy = void, typename
-               enable_if<_TCC<_Dummy>::template
-                           _ConstructibleTuple<_T1, _T2>()
-                         && _TCC<_Dummy>::template
-                           _ImplicitlyConvertibleTuple<_T1, _T2>(),
- bool>::type = true>
-        constexpr tuple(const _T1& __a1, const _T2& __a2)
-        : _Inherited(__a1, __a2) { }
-
-      template<typename _Dummy = void, typename
-               enable_if<_TCC<_Dummy>::template
-                           _ConstructibleTuple<_T1, _T2>()
-                         && !_TCC<_Dummy>::template
-                           _ImplicitlyConvertibleTuple<_T1, _T2>(),
- bool>::type = false>
-        explicit constexpr tuple(const _T1& __a1, const _T2& __a2)
-        : _Inherited(__a1, __a2) { }
-
-
-
-      using _TMC = _TC<true, _T1, _T2>;
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>()
-           && !is_same<__remove_cvref_t<_U1>, allocator_arg_t>::value,
- bool>::type = true>
-        constexpr tuple(_U1&& __a1, _U2&& __a2)
- : _Inherited(std::forward<_U1>(__a1), std::forward<_U2>(__a2)) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>()
-           && !is_same<__remove_cvref_t<_U1>, allocator_arg_t>::value,
- bool>::type = false>
-        explicit constexpr tuple(_U1&& __a1, _U2&& __a2)
- : _Inherited(std::forward<_U1>(__a1), std::forward<_U2>(__a2)) { }
-
-      constexpr tuple(const tuple&) = default;
-
-      constexpr tuple(tuple&&) = default;
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
-        constexpr tuple(const tuple<_U1, _U2>& __in)
- : _Inherited(static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in)) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
-        explicit constexpr tuple(const tuple<_U1, _U2>& __in)
- : _Inherited(static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in)) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
-        constexpr tuple(tuple<_U1, _U2>&& __in)
- : _Inherited(static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in)) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
-        explicit constexpr tuple(tuple<_U1, _U2>&& __in)
- : _Inherited(static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in)) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
-        constexpr tuple(const pair<_U1, _U2>& __in)
- : _Inherited(__in.first, __in.second) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
-        explicit constexpr tuple(const pair<_U1, _U2>& __in)
- : _Inherited(__in.first, __in.second) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
-        constexpr tuple(pair<_U1, _U2>&& __in)
- : _Inherited(std::forward<_U1>(__in.first),
-       std::forward<_U2>(__in.second)) { }
-
-      template<typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
-        explicit constexpr tuple(pair<_U1, _U2>&& __in)
- : _Inherited(std::forward<_U1>(__in.first),
-       std::forward<_U2>(__in.second)) { }
-
-
-
-      template<typename _Alloc>
- tuple(allocator_arg_t __tag, const _Alloc& __a)
- : _Inherited(__tag, __a) { }
-
-      template<typename _Alloc, typename _Dummy = void,
-               typename enable_if<
-                 _TCC<_Dummy>::template
-                   _ConstructibleTuple<_T1, _T2>()
-                 && _TCC<_Dummy>::template
-                   _ImplicitlyConvertibleTuple<_T1, _T2>(),
-               bool>::type=true>
-
- tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const _T1& __a1, const _T2& __a2)
- : _Inherited(__tag, __a, __a1, __a2) { }
-
-      template<typename _Alloc, typename _Dummy = void,
-               typename enable_if<
-                 _TCC<_Dummy>::template
-                   _ConstructibleTuple<_T1, _T2>()
-                 && !_TCC<_Dummy>::template
-                   _ImplicitlyConvertibleTuple<_T1, _T2>(),
-               bool>::type=false>
-
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const _T1& __a1, const _T2& __a2)
- : _Inherited(__tag, __a, __a1, __a2) { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
- tuple(allocator_arg_t __tag, const _Alloc& __a, _U1&& __a1, _U2&& __a2)
- : _Inherited(__tag, __a, std::forward<_U1>(__a1),
-              std::forward<_U2>(__a2)) { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-                       _U1&& __a1, _U2&& __a2)
- : _Inherited(__tag, __a, std::forward<_U1>(__a1),
-              std::forward<_U2>(__a2)) { }
-
-      template<typename _Alloc>
- tuple(allocator_arg_t __tag, const _Alloc& __a, const tuple& __in)
- : _Inherited(__tag, __a, static_cast<const _Inherited&>(__in)) { }
-
-      template<typename _Alloc>
- tuple(allocator_arg_t __tag, const _Alloc& __a, tuple&& __in)
- : _Inherited(__tag, __a, static_cast<_Inherited&&>(__in)) { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
- tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const tuple<_U1, _U2>& __in)
- : _Inherited(__tag, __a,
-              static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in))
- { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const tuple<_U1, _U2>& __in)
- : _Inherited(__tag, __a,
-              static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in))
- { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
- tuple(allocator_arg_t __tag, const _Alloc& __a, tuple<_U1, _U2>&& __in)
- : _Inherited(__tag, __a, static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in))
- { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
- explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-                       tuple<_U1, _U2>&& __in)
- : _Inherited(__tag, __a, static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in))
- { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
-        tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const pair<_U1, _U2>& __in)
- : _Inherited(__tag, __a, __in.first, __in.second) { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _ConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
-        explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-       const pair<_U1, _U2>& __in)
- : _Inherited(__tag, __a, __in.first, __in.second) { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && _TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = true>
-        tuple(allocator_arg_t __tag, const _Alloc& __a, pair<_U1, _U2>&& __in)
- : _Inherited(__tag, __a, std::forward<_U1>(__in.first),
-       std::forward<_U2>(__in.second)) { }
-
-      template<typename _Alloc, typename _U1, typename _U2, typename
-        enable_if<_TMC::template
-                    _MoveConstructibleTuple<_U1, _U2>()
-                  && !_TMC::template
-                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
- bool>::type = false>
-        explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
-                       pair<_U1, _U2>&& __in)
- : _Inherited(__tag, __a, std::forward<_U1>(__in.first),
-       std::forward<_U2>(__in.second)) { }
-
-      tuple&
-      operator=(typename conditional<__assignable<const _T1&, const _T2&>(),
-         const tuple&,
-         const __nonesuch_no_braces&>::type __in)
-      noexcept(__nothrow_assignable<const _T1&, const _T2&>())
-      {
- this->_M_assign(__in);
- return *this;
-      }
-
-      tuple&
-      operator=(typename conditional<__assignable<_T1, _T2>(),
-         tuple&&,
-         __nonesuch_no_braces&&>::type __in)
-      noexcept(__nothrow_assignable<_T1, _T2>())
-      {
- this->_M_assign(std::move(__in));
- return *this;
-      }
-
-      template<typename _U1, typename _U2>
- __enable_if_t<__assignable<const _U1&, const _U2&>(), tuple&>
- operator=(const tuple<_U1, _U2>& __in)
- noexcept(__nothrow_assignable<const _U1&, const _U2&>())
- {
-   this->_M_assign(__in);
-   return *this;
- }
-
-      template<typename _U1, typename _U2>
- __enable_if_t<__assignable<_U1, _U2>(), tuple&>
- operator=(tuple<_U1, _U2>&& __in)
- noexcept(__nothrow_assignable<_U1, _U2>())
- {
-   this->_M_assign(std::move(__in));
-   return *this;
- }
-
-      template<typename _U1, typename _U2>
- __enable_if_t<__assignable<const _U1&, const _U2&>(), tuple&>
- operator=(const pair<_U1, _U2>& __in)
- noexcept(__nothrow_assignable<const _U1&, const _U2&>())
- {
-   this->_M_head(*this) = __in.first;
-   this->_M_tail(*this)._M_head(*this) = __in.second;
-   return *this;
- }
-
-      template<typename _U1, typename _U2>
- __enable_if_t<__assignable<_U1, _U2>(), tuple&>
- operator=(pair<_U1, _U2>&& __in)
- noexcept(__nothrow_assignable<_U1, _U2>())
- {
-   this->_M_head(*this) = std::forward<_U1>(__in.first);
-   this->_M_tail(*this)._M_head(*this) = std::forward<_U2>(__in.second);
-   return *this;
- }
-
-      void
-      swap(tuple& __in)
-      noexcept(__and_<__is_nothrow_swappable<_T1>,
-        __is_nothrow_swappable<_T2>>::value)
-      { _Inherited::_M_swap(__in); }
-    };
-
-
-
-  template<typename... _Elements>
-    struct tuple_size<tuple<_Elements...>>
-    : public integral_constant<std::size_t, sizeof...(_Elements)> { };
-# 1284 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
-  template<std::size_t __i, typename _Head, typename... _Tail>
-    struct tuple_element<__i, tuple<_Head, _Tail...> >
-    : tuple_element<__i - 1, tuple<_Tail...> > { };
-
-
-
-
-  template<typename _Head, typename... _Tail>
-    struct tuple_element<0, tuple<_Head, _Tail...> >
-    {
-      typedef _Head type;
-    };
-
-
-
-
-  template<size_t __i>
-    struct tuple_element<__i, tuple<>>
-    {
-      static_assert(__i < tuple_size<tuple<>>::value,
-   "tuple index is in range");
-    };
-
-  template<std::size_t __i, typename _Head, typename... _Tail>
-    constexpr _Head&
-    __get_helper(_Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
-
-  template<std::size_t __i, typename _Head, typename... _Tail>
-    constexpr const _Head&
-    __get_helper(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
-
-
-  template<std::size_t __i, typename... _Elements>
-    constexpr __tuple_element_t<__i, tuple<_Elements...>>&
-    get(tuple<_Elements...>& __t) noexcept
-    { return std::__get_helper<__i>(__t); }
-
-
-  template<std::size_t __i, typename... _Elements>
-    constexpr const __tuple_element_t<__i, tuple<_Elements...>>&
-    get(const tuple<_Elements...>& __t) noexcept
-    { return std::__get_helper<__i>(__t); }
-
-
-  template<std::size_t __i, typename... _Elements>
-    constexpr __tuple_element_t<__i, tuple<_Elements...>>&&
-    get(tuple<_Elements...>&& __t) noexcept
-    {
-      typedef __tuple_element_t<__i, tuple<_Elements...>> __element_type;
-      return std::forward<__element_type&&>(std::get<__i>(__t));
-    }
-
-
-  template<std::size_t __i, typename... _Elements>
-    constexpr const __tuple_element_t<__i, tuple<_Elements...>>&&
-    get(const tuple<_Elements...>&& __t) noexcept
-    {
-      typedef __tuple_element_t<__i, tuple<_Elements...>> __element_type;
-      return std::forward<const __element_type&&>(std::get<__i>(__t));
-    }
-
-
-
-
-
-  template<typename _Head, size_t __i, typename... _Tail>
-    constexpr _Head&
-    __get_helper2(_Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
-
-  template<typename _Head, size_t __i, typename... _Tail>
-    constexpr const _Head&
-    __get_helper2(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
-
-
-  template <typename _Tp, typename... _Types>
-    constexpr _Tp&
-    get(tuple<_Types...>& __t) noexcept
-    { return std::__get_helper2<_Tp>(__t); }
-
-
-  template <typename _Tp, typename... _Types>
-    constexpr _Tp&&
-    get(tuple<_Types...>&& __t) noexcept
-    { return std::forward<_Tp&&>(std::__get_helper2<_Tp>(__t)); }
-
-
-  template <typename _Tp, typename... _Types>
-    constexpr const _Tp&
-    get(const tuple<_Types...>& __t) noexcept
-    { return std::__get_helper2<_Tp>(__t); }
-
-
-
-  template <typename _Tp, typename... _Types>
-    constexpr const _Tp&&
-    get(const tuple<_Types...>&& __t) noexcept
-    { return std::forward<const _Tp&&>(std::__get_helper2<_Tp>(__t)); }
-
-
-
-  template<typename _Tp, typename _Up, size_t __i, size_t __size>
-    struct __tuple_compare
-    {
-      static constexpr bool
-      __eq(const _Tp& __t, const _Up& __u)
-      {
- return bool(std::get<__i>(__t) == std::get<__i>(__u))
-   && __tuple_compare<_Tp, _Up, __i + 1, __size>::__eq(__t, __u);
-      }
-
-      static constexpr bool
-      __less(const _Tp& __t, const _Up& __u)
-      {
- return bool(std::get<__i>(__t) < std::get<__i>(__u))
-   || (!bool(std::get<__i>(__u) < std::get<__i>(__t))
-       && __tuple_compare<_Tp, _Up, __i + 1, __size>::__less(__t, __u));
-      }
-    };
-
-  template<typename _Tp, typename _Up, size_t __size>
-    struct __tuple_compare<_Tp, _Up, __size, __size>
-    {
-      static constexpr bool
-      __eq(const _Tp&, const _Up&) { return true; }
-
-      static constexpr bool
-      __less(const _Tp&, const _Up&) { return false; }
-    };
-
-  template<typename... _TElements, typename... _UElements>
-    constexpr bool
-    operator==(const tuple<_TElements...>& __t,
-        const tuple<_UElements...>& __u)
-    {
-      static_assert(sizeof...(_TElements) == sizeof...(_UElements),
-   "tuple objects can only be compared if they have equal sizes.");
-      using __compare = __tuple_compare<tuple<_TElements...>,
-     tuple<_UElements...>,
-     0, sizeof...(_TElements)>;
-      return __compare::__eq(__t, __u);
-    }
-
-  template<typename... _TElements, typename... _UElements>
-    constexpr bool
-    operator<(const tuple<_TElements...>& __t,
-       const tuple<_UElements...>& __u)
-    {
-      static_assert(sizeof...(_TElements) == sizeof...(_UElements),
-   "tuple objects can only be compared if they have equal sizes.");
-      using __compare = __tuple_compare<tuple<_TElements...>,
-     tuple<_UElements...>,
-     0, sizeof...(_TElements)>;
-      return __compare::__less(__t, __u);
-    }
-
-  template<typename... _TElements, typename... _UElements>
-    constexpr bool
-    operator!=(const tuple<_TElements...>& __t,
-        const tuple<_UElements...>& __u)
-    { return !(__t == __u); }
-
-  template<typename... _TElements, typename... _UElements>
-    constexpr bool
-    operator>(const tuple<_TElements...>& __t,
-       const tuple<_UElements...>& __u)
-    { return __u < __t; }
-
-  template<typename... _TElements, typename... _UElements>
-    constexpr bool
-    operator<=(const tuple<_TElements...>& __t,
-        const tuple<_UElements...>& __u)
-    { return !(__u < __t); }
-
-  template<typename... _TElements, typename... _UElements>
-    constexpr bool
-    operator>=(const tuple<_TElements...>& __t,
-        const tuple<_UElements...>& __u)
-    { return !(__t < __u); }
-
-
-  template<typename... _Elements>
-    constexpr tuple<typename __decay_and_strip<_Elements>::__type...>
-    make_tuple(_Elements&&... __args)
-    {
-      typedef tuple<typename __decay_and_strip<_Elements>::__type...>
- __result_type;
-      return __result_type(std::forward<_Elements>(__args)...);
-    }
-
-
-
-
-  template<typename... _Elements>
-    constexpr tuple<_Elements&&...>
-    forward_as_tuple(_Elements&&... __args) noexcept
-    { return tuple<_Elements&&...>(std::forward<_Elements>(__args)...); }
-
-  template<size_t, typename, typename, size_t>
-    struct __make_tuple_impl;
-
-  template<size_t _Idx, typename _Tuple, typename... _Tp, size_t _Nm>
-    struct __make_tuple_impl<_Idx, tuple<_Tp...>, _Tuple, _Nm>
-    : __make_tuple_impl<_Idx + 1,
-   tuple<_Tp..., __tuple_element_t<_Idx, _Tuple>>,
-   _Tuple, _Nm>
-    { };
-
-  template<std::size_t _Nm, typename _Tuple, typename... _Tp>
-    struct __make_tuple_impl<_Nm, tuple<_Tp...>, _Tuple, _Nm>
-    {
-      typedef tuple<_Tp...> __type;
-    };
-
-  template<typename _Tuple>
-    struct __do_make_tuple
-    : __make_tuple_impl<0, tuple<>, _Tuple, std::tuple_size<_Tuple>::value>
-    { };
-
-
-  template<typename _Tuple>
-    struct __make_tuple
-    : public __do_make_tuple<__remove_cvref_t<_Tuple>>
-    { };
-
-
-  template<typename...>
-    struct __combine_tuples;
-
-  template<>
-    struct __combine_tuples<>
-    {
-      typedef tuple<> __type;
-    };
-
-  template<typename... _Ts>
-    struct __combine_tuples<tuple<_Ts...>>
-    {
-      typedef tuple<_Ts...> __type;
-    };
-
-  template<typename... _T1s, typename... _T2s, typename... _Rem>
-    struct __combine_tuples<tuple<_T1s...>, tuple<_T2s...>, _Rem...>
-    {
-      typedef typename __combine_tuples<tuple<_T1s..., _T2s...>,
-     _Rem...>::__type __type;
-    };
-
-
-  template<typename... _Tpls>
-    struct __tuple_cat_result
-    {
-      typedef typename __combine_tuples
-        <typename __make_tuple<_Tpls>::__type...>::__type __type;
-    };
-
-
-
-  template<typename...>
-    struct __make_1st_indices;
-
-  template<>
-    struct __make_1st_indices<>
-    {
-      typedef std::_Index_tuple<> __type;
-    };
-
-  template<typename _Tp, typename... _Tpls>
-    struct __make_1st_indices<_Tp, _Tpls...>
-    {
-      typedef typename std::_Build_index_tuple<std::tuple_size<
- typename std::remove_reference<_Tp>::type>::value>::__type __type;
-    };
-
-
-
-
-  template<typename _Ret, typename _Indices, typename... _Tpls>
-    struct __tuple_concater;
-
-  template<typename _Ret, std::size_t... _Is, typename _Tp, typename... _Tpls>
-    struct __tuple_concater<_Ret, std::_Index_tuple<_Is...>, _Tp, _Tpls...>
-    {
-      template<typename... _Us>
-        static constexpr _Ret
-        _S_do(_Tp&& __tp, _Tpls&&... __tps, _Us&&... __us)
-        {
-   typedef typename __make_1st_indices<_Tpls...>::__type __idx;
-   typedef __tuple_concater<_Ret, __idx, _Tpls...> __next;
-   return __next::_S_do(std::forward<_Tpls>(__tps)...,
-          std::forward<_Us>(__us)...,
-          std::get<_Is>(std::forward<_Tp>(__tp))...);
- }
-    };
-
-  template<typename _Ret>
-    struct __tuple_concater<_Ret, std::_Index_tuple<>>
-    {
-      template<typename... _Us>
- static constexpr _Ret
- _S_do(_Us&&... __us)
-        {
-   return _Ret(std::forward<_Us>(__us)...);
- }
-    };
-
-
-  template<typename... _Tpls, typename = typename
-           enable_if<__and_<__is_tuple_like<_Tpls>...>::value>::type>
-    constexpr auto
-    tuple_cat(_Tpls&&... __tpls)
-    -> typename __tuple_cat_result<_Tpls...>::__type
-    {
-      typedef typename __tuple_cat_result<_Tpls...>::__type __ret;
-      typedef typename __make_1st_indices<_Tpls...>::__type __idx;
-      typedef __tuple_concater<__ret, __idx, _Tpls...> __concater;
-      return __concater::_S_do(std::forward<_Tpls>(__tpls)...);
-    }
-
-
-
-
-  template<typename... _Elements>
-    constexpr tuple<_Elements&...>
-    tie(_Elements&... __args) noexcept
-    { return tuple<_Elements&...>(__args...); }
-
-
-  template<typename... _Elements>
-    inline
-
-
-    typename enable_if<__and_<__is_swappable<_Elements>...>::value
-      >::type
-
-
-
-    swap(tuple<_Elements...>& __x, tuple<_Elements...>& __y)
-    noexcept(noexcept(__x.swap(__y)))
-    { __x.swap(__y); }
-
-
-  template<typename... _Elements>
-    typename enable_if<!__and_<__is_swappable<_Elements>...>::value>::type
-    swap(tuple<_Elements...>&, tuple<_Elements...>&) = delete;
-
-
-
-
-
-
-  struct _Swallow_assign
-  {
-    template<class _Tp>
-      constexpr const _Swallow_assign&
-      operator=(const _Tp&) const
-      { return *this; }
-  };
-
-
-
-                    constexpr _Swallow_assign ignore{};
-
-
-  template<typename... _Types, typename _Alloc>
-    struct uses_allocator<tuple<_Types...>, _Alloc> : true_type { };
-
-
-  template<class _T1, class _T2>
-    template<typename... _Args1, typename... _Args2>
-      inline
-      pair<_T1, _T2>::
-      pair(piecewise_construct_t,
-    tuple<_Args1...> __first, tuple<_Args2...> __second)
-      : pair(__first, __second,
-      typename _Build_index_tuple<sizeof...(_Args1)>::__type(),
-      typename _Build_index_tuple<sizeof...(_Args2)>::__type())
-      { }
-
-  template<class _T1, class _T2>
-    template<typename... _Args1, std::size_t... _Indexes1,
-             typename... _Args2, std::size_t... _Indexes2>
-      inline
-      pair<_T1, _T2>::
-      pair(tuple<_Args1...>& __tuple1, tuple<_Args2...>& __tuple2,
-    _Index_tuple<_Indexes1...>, _Index_tuple<_Indexes2...>)
-      : first(std::forward<_Args1>(std::get<_Indexes1>(__tuple1))...),
-        second(std::forward<_Args2>(std::get<_Indexes2>(__tuple2))...)
-      { }
-# 1719 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
-}
-# 38 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 2 3
-
-
-
-namespace std
-{
-
-
-
-
-
-
-
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-  template<typename> class auto_ptr;
-#pragma GCC diagnostic pop
-
-
-
-  template<typename _Tp>
-    struct default_delete
-    {
-
-      constexpr default_delete() noexcept = default;
-
-
-
-
-
-
-      template<typename _Up, typename = typename
-        enable_if<is_convertible<_Up*, _Tp*>::value>::type>
-        default_delete(const default_delete<_Up>&) noexcept { }
-
-
-      void
-      operator()(_Tp* __ptr) const
-      {
- static_assert(!is_void<_Tp>::value,
-        "can't delete pointer to incomplete type");
- static_assert(sizeof(_Tp)>0,
-        "can't delete pointer to incomplete type");
- delete __ptr;
-      }
-    };
-
-
-
-
-  template<typename _Tp>
-    struct default_delete<_Tp[]>
-    {
-    public:
-
-      constexpr default_delete() noexcept = default;
-# 104 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Up, typename = typename
-        enable_if<is_convertible<_Up(*)[], _Tp(*)[]>::value>::type>
-        default_delete(const default_delete<_Up[]>&) noexcept { }
-
-
-      template<typename _Up>
-      typename enable_if<is_convertible<_Up(*)[], _Tp(*)[]>::value>::type
- operator()(_Up* __ptr) const
-      {
- static_assert(sizeof(_Tp)>0,
-        "can't delete pointer to incomplete type");
- delete [] __ptr;
-      }
-    };
-
-  template <typename _Tp, typename _Dp>
-    class __uniq_ptr_impl
-    {
-      template <typename _Up, typename _Ep, typename = void>
- struct _Ptr
- {
-   using type = _Up*;
- };
-
-      template <typename _Up, typename _Ep>
- struct
- _Ptr<_Up, _Ep, __void_t<typename remove_reference<_Ep>::type::pointer>>
- {
-   using type = typename remove_reference<_Ep>::type::pointer;
- };
-
-    public:
-      using _DeleterConstraint = enable_if<
-        __and_<__not_<is_pointer<_Dp>>,
-        is_default_constructible<_Dp>>::value>;
-
-      using pointer = typename _Ptr<_Tp, _Dp>::type;
-
-      static_assert( !is_rvalue_reference<_Dp>::value,
-       "unique_ptr's deleter type must be a function object type"
-       " or an lvalue reference type" );
-
-      __uniq_ptr_impl() = default;
-      __uniq_ptr_impl(pointer __p) : _M_t() { _M_ptr() = __p; }
-
-      template<typename _Del>
-      __uniq_ptr_impl(pointer __p, _Del&& __d)
- : _M_t(__p, std::forward<_Del>(__d)) { }
-
-      pointer& _M_ptr() { return std::get<0>(_M_t); }
-      pointer _M_ptr() const { return std::get<0>(_M_t); }
-      _Dp& _M_deleter() { return std::get<1>(_M_t); }
-      const _Dp& _M_deleter() const { return std::get<1>(_M_t); }
-
-      void
-      swap(__uniq_ptr_impl& __rhs) noexcept
-      {
- using std::swap;
- swap(this->_M_ptr(), __rhs._M_ptr());
- swap(this->_M_deleter(), __rhs._M_deleter());
-      }
-
-    private:
-      tuple<pointer, _Dp> _M_t;
-    };
-
-
-  template <typename _Tp, typename _Dp = default_delete<_Tp>>
-    class unique_ptr
-    {
-      template <typename _Up>
- using _DeleterConstraint =
-   typename __uniq_ptr_impl<_Tp, _Up>::_DeleterConstraint::type;
-
-      __uniq_ptr_impl<_Tp, _Dp> _M_t;
-
-    public:
-      using pointer = typename __uniq_ptr_impl<_Tp, _Dp>::pointer;
-      using element_type = _Tp;
-      using deleter_type = _Dp;
-
-    private:
-
-
-      template<typename _Up, typename _Ep>
- using __safe_conversion_up = __and_<
-   is_convertible<typename unique_ptr<_Up, _Ep>::pointer, pointer>,
-   __not_<is_array<_Up>>
-        >;
-
-    public:
-
-
-
-      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
- constexpr unique_ptr() noexcept
- : _M_t()
- { }
-
-
-
-
-
-
-
-      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
- explicit
- unique_ptr(pointer __p) noexcept
- : _M_t(__p)
-        { }
-# 222 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Del = deleter_type,
-        typename = _Require<is_copy_constructible<_Del>>>
- unique_ptr(pointer __p, const deleter_type& __d) noexcept
- : _M_t(__p, __d) { }
-# 234 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Del = deleter_type,
-        typename = _Require<is_move_constructible<_Del>>>
- unique_ptr(pointer __p,
-     __enable_if_t<!is_lvalue_reference<_Del>::value,
-     _Del&&> __d) noexcept
- : _M_t(__p, std::move(__d))
- { }
-
-      template<typename _Del = deleter_type,
-        typename _DelUnref = typename remove_reference<_Del>::type>
- unique_ptr(pointer,
-     __enable_if_t<is_lvalue_reference<_Del>::value,
-     _DelUnref&&>) = delete;
-
-
-      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
- constexpr unique_ptr(nullptr_t) noexcept
- : _M_t()
- { }
-
-
-
-
-      unique_ptr(unique_ptr&& __u) noexcept
-      : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
-
-
-
-
-
-
-
-      template<typename _Up, typename _Ep, typename = _Require<
-               __safe_conversion_up<_Up, _Ep>,
-        typename conditional<is_reference<_Dp>::value,
-        is_same<_Ep, _Dp>,
-        is_convertible<_Ep, _Dp>>::type>>
- unique_ptr(unique_ptr<_Up, _Ep>&& __u) noexcept
- : _M_t(__u.release(), std::forward<_Ep>(__u.get_deleter()))
- { }
-
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
-      template<typename _Up, typename = _Require<
-        is_convertible<_Up*, _Tp*>, is_same<_Dp, default_delete<_Tp>>>>
- unique_ptr(auto_ptr<_Up>&& __u) noexcept;
-#pragma GCC diagnostic pop
-
-
-
-      ~unique_ptr() noexcept
-      {
- static_assert(__is_invocable<deleter_type&, pointer>::value,
-        "unique_ptr's deleter must be invocable with a pointer");
- auto& __ptr = _M_t._M_ptr();
- if (__ptr != nullptr)
-   get_deleter()(std::move(__ptr));
- __ptr = pointer();
-      }
-# 304 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      unique_ptr&
-      operator=(unique_ptr&& __u) noexcept
-      {
- reset(__u.release());
- get_deleter() = std::forward<deleter_type>(__u.get_deleter());
- return *this;
-      }
-# 319 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Up, typename _Ep>
-        typename enable_if< __and_<
-          __safe_conversion_up<_Up, _Ep>,
-          is_assignable<deleter_type&, _Ep&&>
-          >::value,
-          unique_ptr&>::type
- operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
- {
-   reset(__u.release());
-   get_deleter() = std::forward<_Ep>(__u.get_deleter());
-   return *this;
- }
-
-
-      unique_ptr&
-      operator=(nullptr_t) noexcept
-      {
- reset();
- return *this;
-      }
-
-
-
-
-      typename add_lvalue_reference<element_type>::type
-      operator*() const
-      {
-                                     ;
- return *get();
-      }
-
-
-      pointer
-      operator->() const noexcept
-      {
-                                             ;
- return get();
-      }
-
-
-      pointer
-      get() const noexcept
-      { return _M_t._M_ptr(); }
-
-
-      deleter_type&
-      get_deleter() noexcept
-      { return _M_t._M_deleter(); }
-
-
-      const deleter_type&
-      get_deleter() const noexcept
-      { return _M_t._M_deleter(); }
-
-
-      explicit operator bool() const noexcept
-      { return get() == pointer() ? false : true; }
-
-
-
-
-      pointer
-      release() noexcept
-      {
- pointer __p = get();
- _M_t._M_ptr() = pointer();
- return __p;
-      }
-
-
-
-
-
-
-
-      void
-      reset(pointer __p = pointer()) noexcept
-      {
- static_assert(__is_invocable<deleter_type&, pointer>::value,
-        "unique_ptr's deleter must be invocable with a pointer");
- using std::swap;
- swap(_M_t._M_ptr(), __p);
- if (__p != pointer())
-   get_deleter()(std::move(__p));
-      }
-
-
-      void
-      swap(unique_ptr& __u) noexcept
-      {
- static_assert(__is_swappable<_Dp>::value, "deleter must be swappable");
- _M_t.swap(__u._M_t);
-      }
-
-
-      unique_ptr(const unique_ptr&) = delete;
-      unique_ptr& operator=(const unique_ptr&) = delete;
-  };
-
-
-
-
-
-  template<typename _Tp, typename _Dp>
-    class unique_ptr<_Tp[], _Dp>
-    {
-      template <typename _Up>
-      using _DeleterConstraint =
- typename __uniq_ptr_impl<_Tp, _Up>::_DeleterConstraint::type;
-
-      __uniq_ptr_impl<_Tp, _Dp> _M_t;
-
-      template<typename _Up>
- using __remove_cv = typename remove_cv<_Up>::type;
-
-
-      template<typename _Up>
- using __is_derived_Tp
-   = __and_< is_base_of<_Tp, _Up>,
-      __not_<is_same<__remove_cv<_Tp>, __remove_cv<_Up>>> >;
-
-    public:
-      using pointer = typename __uniq_ptr_impl<_Tp, _Dp>::pointer;
-      using element_type = _Tp;
-      using deleter_type = _Dp;
-
-
-
-      template<typename _Up, typename _Ep,
-               typename _UPtr = unique_ptr<_Up, _Ep>,
-        typename _UP_pointer = typename _UPtr::pointer,
-        typename _UP_element_type = typename _UPtr::element_type>
- using __safe_conversion_up = __and_<
-          is_array<_Up>,
-          is_same<pointer, element_type*>,
-          is_same<_UP_pointer, _UP_element_type*>,
-          is_convertible<_UP_element_type(*)[], element_type(*)[]>
-        >;
-
-
-      template<typename _Up>
-        using __safe_conversion_raw = __and_<
-          __or_<__or_<is_same<_Up, pointer>,
-                      is_same<_Up, nullptr_t>>,
-                __and_<is_pointer<_Up>,
-                       is_same<pointer, element_type*>,
-                       is_convertible<
-                         typename remove_pointer<_Up>::type(*)[],
-                         element_type(*)[]>
-                >
-          >
-        >;
-
-
-
-
-      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
- constexpr unique_ptr() noexcept
- : _M_t()
- { }
-# 487 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Up,
-        typename _Vp = _Dp,
-        typename = _DeleterConstraint<_Vp>,
-        typename = typename enable_if<
-                 __safe_conversion_raw<_Up>::value, bool>::type>
- explicit
- unique_ptr(_Up __p) noexcept
- : _M_t(__p)
-        { }
-# 505 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Up, typename _Del = deleter_type,
-        typename = _Require<__safe_conversion_raw<_Up>,
-       is_copy_constructible<_Del>>>
-      unique_ptr(_Up __p, const deleter_type& __d) noexcept
-      : _M_t(__p, __d) { }
-# 519 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Up, typename _Del = deleter_type,
-        typename = _Require<__safe_conversion_raw<_Up>,
-       is_move_constructible<_Del>>>
- unique_ptr(_Up __p,
-     __enable_if_t<!is_lvalue_reference<_Del>::value,
-     _Del&&> __d) noexcept
- : _M_t(std::move(__p), std::move(__d))
- { }
-
-      template<typename _Up, typename _Del = deleter_type,
-        typename _DelUnref = typename remove_reference<_Del>::type,
-        typename = _Require<__safe_conversion_raw<_Up>>>
- unique_ptr(_Up,
-     __enable_if_t<is_lvalue_reference<_Del>::value,
-     _DelUnref&&>) = delete;
-
-
-      unique_ptr(unique_ptr&& __u) noexcept
-      : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
-
-
-      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
- constexpr unique_ptr(nullptr_t) noexcept
- : _M_t()
-        { }
-
-      template<typename _Up, typename _Ep, typename = _Require<
-        __safe_conversion_up<_Up, _Ep>,
-        typename conditional<is_reference<_Dp>::value,
-        is_same<_Ep, _Dp>,
-        is_convertible<_Ep, _Dp>>::type>>
- unique_ptr(unique_ptr<_Up, _Ep>&& __u) noexcept
- : _M_t(__u.release(), std::forward<_Ep>(__u.get_deleter()))
- { }
-
-
-      ~unique_ptr()
-      {
- auto& __ptr = _M_t._M_ptr();
- if (__ptr != nullptr)
-   get_deleter()(__ptr);
- __ptr = pointer();
-      }
-# 571 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      unique_ptr&
-      operator=(unique_ptr&& __u) noexcept
-      {
- reset(__u.release());
- get_deleter() = std::forward<deleter_type>(__u.get_deleter());
- return *this;
-      }
-# 586 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-      template<typename _Up, typename _Ep>
- typename
- enable_if<__and_<__safe_conversion_up<_Up, _Ep>,
-                         is_assignable<deleter_type&, _Ep&&>
-                  >::value,
-                  unique_ptr&>::type
- operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
- {
-   reset(__u.release());
-   get_deleter() = std::forward<_Ep>(__u.get_deleter());
-   return *this;
- }
-
-
-      unique_ptr&
-      operator=(nullptr_t) noexcept
-      {
- reset();
- return *this;
-      }
-
-
-
-
-      typename std::add_lvalue_reference<element_type>::type
-      operator[](size_t __i) const
-      {
-                                     ;
- return get()[__i];
-      }
-
-
-      pointer
-      get() const noexcept
-      { return _M_t._M_ptr(); }
-
-
-      deleter_type&
-      get_deleter() noexcept
-      { return _M_t._M_deleter(); }
-
-
-      const deleter_type&
-      get_deleter() const noexcept
-      { return _M_t._M_deleter(); }
-
-
-      explicit operator bool() const noexcept
-      { return get() == pointer() ? false : true; }
-
-
-
-
-      pointer
-      release() noexcept
-      {
- pointer __p = get();
- _M_t._M_ptr() = pointer();
- return __p;
-      }
-
-
-
-
-
-
-
-      template <typename _Up,
-                typename = _Require<
-                  __or_<is_same<_Up, pointer>,
-                        __and_<is_same<pointer, element_type*>,
-                               is_pointer<_Up>,
-                               is_convertible<
-                                 typename remove_pointer<_Up>::type(*)[],
-                                 element_type(*)[]
-                               >
-                        >
-                  >
-               >>
-      void
-      reset(_Up __p) noexcept
-      {
- pointer __ptr = __p;
- using std::swap;
- swap(_M_t._M_ptr(), __ptr);
- if (__ptr != nullptr)
-   get_deleter()(__ptr);
-      }
-
-      void reset(nullptr_t = nullptr) noexcept
-      {
-        reset(pointer());
-      }
-
-
-      void
-      swap(unique_ptr& __u) noexcept
-      {
- static_assert(__is_swappable<_Dp>::value, "deleter must be swappable");
- _M_t.swap(__u._M_t);
-      }
-
-
-      unique_ptr(const unique_ptr&) = delete;
-      unique_ptr& operator=(const unique_ptr&) = delete;
-    };
-
-  template<typename _Tp, typename _Dp>
-    inline
-
-
-    typename enable_if<__is_swappable<_Dp>::value>::type
-
-
-
-    swap(unique_ptr<_Tp, _Dp>& __x,
-  unique_ptr<_Tp, _Dp>& __y) noexcept
-    { __x.swap(__y); }
-
-
-  template<typename _Tp, typename _Dp>
-    typename enable_if<!__is_swappable<_Dp>::value>::type
-    swap(unique_ptr<_Tp, _Dp>&,
-  unique_ptr<_Tp, _Dp>&) = delete;
-
-
-  template<typename _Tp, typename _Dp,
-    typename _Up, typename _Ep>
-                       inline bool
-    operator==(const unique_ptr<_Tp, _Dp>& __x,
-        const unique_ptr<_Up, _Ep>& __y)
-    { return __x.get() == __y.get(); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator==(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
-    { return !__x; }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator==(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
-    { return !__x; }
-
-  template<typename _Tp, typename _Dp,
-    typename _Up, typename _Ep>
-                       inline bool
-    operator!=(const unique_ptr<_Tp, _Dp>& __x,
-        const unique_ptr<_Up, _Ep>& __y)
-    { return __x.get() != __y.get(); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator!=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
-    { return (bool)__x; }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator!=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
-    { return (bool)__x; }
-
-  template<typename _Tp, typename _Dp,
-    typename _Up, typename _Ep>
-                       inline bool
-    operator<(const unique_ptr<_Tp, _Dp>& __x,
-       const unique_ptr<_Up, _Ep>& __y)
-    {
-      typedef typename
- std::common_type<typename unique_ptr<_Tp, _Dp>::pointer,
-                  typename unique_ptr<_Up, _Ep>::pointer>::type _CT;
-      return std::less<_CT>()(__x.get(), __y.get());
-    }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
-    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
-         nullptr); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
-    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
-         __x.get()); }
-
-  template<typename _Tp, typename _Dp,
-    typename _Up, typename _Ep>
-                       inline bool
-    operator<=(const unique_ptr<_Tp, _Dp>& __x,
-        const unique_ptr<_Up, _Ep>& __y)
-    { return !(__y < __x); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator<=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
-    { return !(nullptr < __x); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator<=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
-    { return !(__x < nullptr); }
-
-  template<typename _Tp, typename _Dp,
-    typename _Up, typename _Ep>
-                       inline bool
-    operator>(const unique_ptr<_Tp, _Dp>& __x,
-       const unique_ptr<_Up, _Ep>& __y)
-    { return (__y < __x); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator>(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
-    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
-         __x.get()); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator>(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
-    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
-         nullptr); }
-
-  template<typename _Tp, typename _Dp,
-    typename _Up, typename _Ep>
-                       inline bool
-    operator>=(const unique_ptr<_Tp, _Dp>& __x,
-        const unique_ptr<_Up, _Ep>& __y)
-    { return !(__x < __y); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator>=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
-    { return !(__x < nullptr); }
-
-  template<typename _Tp, typename _Dp>
-                       inline bool
-    operator>=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
-    { return !(nullptr < __x); }
-
-
-  template<typename _Tp, typename _Dp>
-    struct hash<unique_ptr<_Tp, _Dp>>
-    : public __hash_base<size_t, unique_ptr<_Tp, _Dp>>,
-    private __poison_hash<typename unique_ptr<_Tp, _Dp>::pointer>
-    {
-      size_t
-      operator()(const unique_ptr<_Tp, _Dp>& __u) const noexcept
-      {
- typedef unique_ptr<_Tp, _Dp> _UP;
- return std::hash<typename _UP::pointer>()(__u.get());
-      }
-    };
-
-
-
-
-
-  template<typename _Tp>
-    struct _MakeUniq
-    { typedef unique_ptr<_Tp> __single_object; };
-
-  template<typename _Tp>
-    struct _MakeUniq<_Tp[]>
-    { typedef unique_ptr<_Tp[]> __array; };
-
-  template<typename _Tp, size_t _Bound>
-    struct _MakeUniq<_Tp[_Bound]>
-    { struct __invalid_type { }; };
-
-
-  template<typename _Tp, typename... _Args>
-    inline typename _MakeUniq<_Tp>::__single_object
-    make_unique(_Args&&... __args)
-    { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
-
-
-  template<typename _Tp>
-    inline typename _MakeUniq<_Tp>::__array
-    make_unique(size_t __num)
-    { return unique_ptr<_Tp>(new remove_extent_t<_Tp>[__num]()); }
-
-
-  template<typename _Tp, typename... _Args>
-    inline typename _MakeUniq<_Tp>::__invalid_type
-    make_unique(_Args&&...) = delete;
-# 888 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
-}
-# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 2 3
-
-namespace std
-{
-
-
-
-
-
-
-
-  template<typename _OutStr, typename _InChar, typename _Codecvt,
-    typename _State, typename _Fn>
-    bool
-    __do_str_codecvt(const _InChar* __first, const _InChar* __last,
-       _OutStr& __outstr, const _Codecvt& __cvt, _State& __state,
-       size_t& __count, _Fn __fn)
-    {
-      if (__first == __last)
- {
-   __outstr.clear();
-   __count = 0;
-   return true;
- }
-
-      size_t __outchars = 0;
-      auto __next = __first;
-      const auto __maxlen = __cvt.max_length() + 1;
-
-      codecvt_base::result __result;
-      do
- {
-   __outstr.resize(__outstr.size() + (__last - __next) * __maxlen);
-   auto __outnext = &__outstr.front() + __outchars;
-   auto const __outlast = &__outstr.back() + 1;
-   __result = (__cvt.*__fn)(__state, __next, __last, __next,
-     __outnext, __outlast, __outnext);
-   __outchars = __outnext - &__outstr.front();
- }
-      while (__result == codecvt_base::partial && __next != __last
-      && (__outstr.size() - __outchars) < __maxlen);
-
-      if (__result == codecvt_base::error)
- {
-   __count = __next - __first;
-   return false;
- }
-
-
-
-      if (is_same<typename _Codecvt::intern_type,
-           typename _Codecvt::extern_type>())
- if (__result == codecvt_base::noconv)
-   {
-     __outstr.assign(__first, __last);
-     __count = __last - __first;
-     return true;
-   }
-
-      __outstr.resize(__outchars);
-      __count = __next - __first;
-      return true;
-    }
-
-
-  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
-    inline bool
-    __str_codecvt_in(const char* __first, const char* __last,
-       basic_string<_CharT, _Traits, _Alloc>& __outstr,
-       const codecvt<_CharT, char, _State>& __cvt,
-       _State& __state, size_t& __count)
-    {
-      using _Codecvt = codecvt<_CharT, char, _State>;
-      using _ConvFn
- = codecvt_base::result
-   (_Codecvt::*)(_State&, const char*, const char*, const char*&,
-   _CharT*, _CharT*, _CharT*&) const;
-      _ConvFn __fn = &codecvt<_CharT, char, _State>::in;
-      return __do_str_codecvt(__first, __last, __outstr, __cvt, __state,
-         __count, __fn);
-    }
-
-
-  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
-    inline bool
-    __str_codecvt_in(const char* __first, const char* __last,
-       basic_string<_CharT, _Traits, _Alloc>& __outstr,
-       const codecvt<_CharT, char, _State>& __cvt)
-    {
-      _State __state = {};
-      size_t __n;
-      return __str_codecvt_in(__first, __last, __outstr, __cvt, __state, __n);
-    }
-
-
-  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
-    inline bool
-    __str_codecvt_in_all(const char* __first, const char* __last,
-    basic_string<_CharT, _Traits, _Alloc>& __outstr,
-    const codecvt<_CharT, char, _State>& __cvt)
-    {
-      _State __state = {};
-      size_t __n;
-      return __str_codecvt_in(__first, __last, __outstr, __cvt, __state, __n)
- && (__n == (__last - __first));
-    }
-
-
-  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
-    inline bool
-    __str_codecvt_out(const _CharT* __first, const _CharT* __last,
-        basic_string<char, _Traits, _Alloc>& __outstr,
-        const codecvt<_CharT, char, _State>& __cvt,
-        _State& __state, size_t& __count)
-    {
-      using _Codecvt = codecvt<_CharT, char, _State>;
-      using _ConvFn
- = codecvt_base::result
-   (_Codecvt::*)(_State&, const _CharT*, const _CharT*, const _CharT*&,
-   char*, char*, char*&) const;
-      _ConvFn __fn = &codecvt<_CharT, char, _State>::out;
-      return __do_str_codecvt(__first, __last, __outstr, __cvt, __state,
-         __count, __fn);
-    }
-
-
-  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
-    inline bool
-    __str_codecvt_out(const _CharT* __first, const _CharT* __last,
-        basic_string<char, _Traits, _Alloc>& __outstr,
-        const codecvt<_CharT, char, _State>& __cvt)
-    {
-      _State __state = {};
-      size_t __n;
-      return __str_codecvt_out(__first, __last, __outstr, __cvt, __state, __n);
-    }
-
-
-  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
-    inline bool
-    __str_codecvt_out_all(const _CharT* __first, const _CharT* __last,
-     basic_string<char, _Traits, _Alloc>& __outstr,
-     const codecvt<_CharT, char, _State>& __cvt)
-    {
-      _State __state = {};
-      size_t __n;
-      return __str_codecvt_out(__first, __last, __outstr, __cvt, __state, __n)
- && (__n == (__last - __first));
-    }
-# 226 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
-namespace __cxx11 {
-
-
-  template<typename _Codecvt, typename _Elem = wchar_t,
-    typename _Wide_alloc = allocator<_Elem>,
-    typename _Byte_alloc = allocator<char>>
-    class wstring_convert
-    {
-    public:
-      typedef basic_string<char, char_traits<char>, _Byte_alloc> byte_string;
-      typedef basic_string<_Elem, char_traits<_Elem>, _Wide_alloc> wide_string;
-      typedef typename _Codecvt::state_type state_type;
-      typedef typename wide_string::traits_type::int_type int_type;
-
-
-      wstring_convert() : _M_cvt(new _Codecvt()) { }
-
-
-
-
-
-
-
-      explicit
-      wstring_convert(_Codecvt* __pcvt) : _M_cvt(__pcvt)
-      {
- if (!_M_cvt)
-   __throw_logic_error("wstring_convert");
-      }
-# 264 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
-      wstring_convert(_Codecvt* __pcvt, state_type __state)
-      : _M_cvt(__pcvt), _M_state(__state), _M_with_cvtstate(true)
-      {
- if (!_M_cvt)
-   __throw_logic_error("wstring_convert");
-      }
-
-
-
-
-
-
-      explicit
-      wstring_convert(const byte_string& __byte_err,
-        const wide_string& __wide_err = wide_string())
-      : _M_cvt(new _Codecvt),
- _M_byte_err_string(__byte_err), _M_wide_err_string(__wide_err),
- _M_with_strings(true)
-      {
- if (!_M_cvt)
-   __throw_logic_error("wstring_convert");
-      }
-
-      ~wstring_convert() = default;
-
-
-
-      wstring_convert(const wstring_convert&) = delete;
-      wstring_convert& operator=(const wstring_convert&) = delete;
-
-
-      wide_string
-      from_bytes(char __byte)
-      {
- char __bytes[2] = { __byte };
- return from_bytes(__bytes, __bytes+1);
-      }
-
-      wide_string
-      from_bytes(const char* __ptr)
-      { return from_bytes(__ptr, __ptr+char_traits<char>::length(__ptr)); }
-
-      wide_string
-      from_bytes(const byte_string& __str)
-      {
- auto __ptr = __str.data();
- return from_bytes(__ptr, __ptr + __str.size());
-      }
-
-      wide_string
-      from_bytes(const char* __first, const char* __last)
-      {
- if (!_M_with_cvtstate)
-   _M_state = state_type();
- wide_string __out{ _M_wide_err_string.get_allocator() };
- if (__str_codecvt_in(__first, __last, __out, *_M_cvt, _M_state,
-        _M_count))
-   return __out;
- if (_M_with_strings)
-   return _M_wide_err_string;
- __throw_range_error("wstring_convert::from_bytes");
-      }
-
-
-
-      byte_string
-      to_bytes(_Elem __wchar)
-      {
- _Elem __wchars[2] = { __wchar };
- return to_bytes(__wchars, __wchars+1);
-      }
-
-      byte_string
-      to_bytes(const _Elem* __ptr)
-      {
- return to_bytes(__ptr, __ptr+wide_string::traits_type::length(__ptr));
-      }
-
-      byte_string
-      to_bytes(const wide_string& __wstr)
-      {
- auto __ptr = __wstr.data();
- return to_bytes(__ptr, __ptr + __wstr.size());
-      }
-
-      byte_string
-      to_bytes(const _Elem* __first, const _Elem* __last)
-      {
- if (!_M_with_cvtstate)
-   _M_state = state_type();
- byte_string __out{ _M_byte_err_string.get_allocator() };
- if (__str_codecvt_out(__first, __last, __out, *_M_cvt, _M_state,
-         _M_count))
-   return __out;
- if (_M_with_strings)
-   return _M_byte_err_string;
- __throw_range_error("wstring_convert::to_bytes");
-      }
-
-
-
-
-
-      size_t converted() const noexcept { return _M_count; }
-
-
-      state_type state() const { return _M_state; }
-
-    private:
-      unique_ptr<_Codecvt> _M_cvt;
-      byte_string _M_byte_err_string;
-      wide_string _M_wide_err_string;
-      state_type _M_state = state_type();
-      size_t _M_count = 0;
-      bool _M_with_cvtstate = false;
-      bool _M_with_strings = false;
-    };
-
-}
-
-
-  template<typename _Codecvt, typename _Elem = wchar_t,
-    typename _Tr = char_traits<_Elem>>
-    class wbuffer_convert : public basic_streambuf<_Elem, _Tr>
-    {
-      typedef basic_streambuf<_Elem, _Tr> _Wide_streambuf;
-
-    public:
-      typedef typename _Codecvt::state_type state_type;
-
-
-      wbuffer_convert() : wbuffer_convert(nullptr) { }
-# 405 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
-      explicit
-      wbuffer_convert(streambuf* __bytebuf, _Codecvt* __pcvt = new _Codecvt,
-        state_type __state = state_type())
-      : _M_buf(__bytebuf), _M_cvt(__pcvt), _M_state(__state)
-      {
- if (!_M_cvt)
-   __throw_logic_error("wbuffer_convert");
-
- _M_always_noconv = _M_cvt->always_noconv();
-
- if (_M_buf)
-   {
-     this->setp(_M_put_area, _M_put_area + _S_buffer_length);
-     this->setg(_M_get_area + _S_putback_length,
-         _M_get_area + _S_putback_length,
-         _M_get_area + _S_putback_length);
-   }
-      }
-
-      ~wbuffer_convert() = default;
-
-
-
-      wbuffer_convert(const wbuffer_convert&) = delete;
-      wbuffer_convert& operator=(const wbuffer_convert&) = delete;
-
-      streambuf* rdbuf() const noexcept { return _M_buf; }
-
-      streambuf*
-      rdbuf(streambuf *__bytebuf) noexcept
-      {
- auto __prev = _M_buf;
- _M_buf = __bytebuf;
- return __prev;
-      }
-
-
-      state_type state() const noexcept { return _M_state; }
-
-    protected:
-      int
-      sync()
-      { return _M_buf && _M_conv_put() && !_M_buf->pubsync() ? 0 : -1; }
-
-      typename _Wide_streambuf::int_type
-      overflow(typename _Wide_streambuf::int_type __out)
-      {
- if (!_M_buf || !_M_conv_put())
-   return _Tr::eof();
- else if (!_Tr::eq_int_type(__out, _Tr::eof()))
-   return this->sputc(__out);
- return _Tr::not_eof(__out);
-      }
-
-      typename _Wide_streambuf::int_type
-      underflow()
-      {
- if (!_M_buf)
-   return _Tr::eof();
-
- if (this->gptr() < this->egptr() || (_M_buf && _M_conv_get()))
-   return _Tr::to_int_type(*this->gptr());
- else
-   return _Tr::eof();
-      }
-
-      streamsize
-      xsputn(const typename _Wide_streambuf::char_type* __s, streamsize __n)
-      {
- if (!_M_buf || __n == 0)
-   return 0;
- streamsize __done = 0;
- do
- {
-   auto __nn = std::min<streamsize>(this->epptr() - this->pptr(),
-        __n - __done);
-   _Tr::copy(this->pptr(), __s + __done, __nn);
-   this->pbump(__nn);
-   __done += __nn;
- } while (__done < __n && _M_conv_put());
- return __done;
-      }
-
-    private:
-
-      bool
-      _M_conv_get()
-      {
- const streamsize __pb1 = this->gptr() - this->eback();
- const streamsize __pb2 = _S_putback_length;
- const streamsize __npb = std::min(__pb1, __pb2);
-
- _Tr::move(_M_get_area + _S_putback_length - __npb,
-    this->gptr() - __npb, __npb);
-
- streamsize __nbytes = sizeof(_M_get_buf) - _M_unconv;
- __nbytes = std::min(__nbytes, _M_buf->in_avail());
- if (__nbytes < 1)
-   __nbytes = 1;
- __nbytes = _M_buf->sgetn(_M_get_buf + _M_unconv, __nbytes);
- if (__nbytes < 1)
-   return false;
- __nbytes += _M_unconv;
-
-
-
- _Elem* __outbuf = _M_get_area + _S_putback_length;
- _Elem* __outnext = __outbuf;
- const char* __bnext = _M_get_buf;
-
- codecvt_base::result __result;
- if (_M_always_noconv)
-   __result = codecvt_base::noconv;
- else
-   {
-     _Elem* __outend = _M_get_area + _S_buffer_length;
-
-     __result = _M_cvt->in(_M_state,
-      __bnext, __bnext + __nbytes, __bnext,
-      __outbuf, __outend, __outnext);
-   }
-
- if (__result == codecvt_base::noconv)
-   {
-
-     auto __get_buf = reinterpret_cast<const _Elem*>(_M_get_buf);
-     _Tr::copy(__outbuf, __get_buf, __nbytes);
-     _M_unconv = 0;
-     return true;
-   }
-
- if ((_M_unconv = _M_get_buf + __nbytes - __bnext))
-   char_traits<char>::move(_M_get_buf, __bnext, _M_unconv);
-
- this->setg(__outbuf, __outbuf, __outnext);
-
- return __result != codecvt_base::error;
-      }
-
-
-      bool
-      _M_put(...)
-      { return false; }
-
-      bool
-      _M_put(const char* __p, streamsize __n)
-      {
- if (_M_buf->sputn(__p, __n) < __n)
-   return false;
- return true;
-      }
-
-
-      bool
-      _M_conv_put()
-      {
- _Elem* const __first = this->pbase();
- const _Elem* const __last = this->pptr();
- const streamsize __pending = __last - __first;
-
- if (_M_always_noconv)
-   return _M_put(__first, __pending);
-
- char __outbuf[2 * _S_buffer_length];
-
- const _Elem* __next = __first;
- const _Elem* __start;
- do
-   {
-     __start = __next;
-     char* __outnext = __outbuf;
-     char* const __outlast = __outbuf + sizeof(__outbuf);
-     auto __result = _M_cvt->out(_M_state, __next, __last, __next,
-     __outnext, __outlast, __outnext);
-     if (__result == codecvt_base::error)
-       return false;
-     else if (__result == codecvt_base::noconv)
-       return _M_put(__next, __pending);
-
-     if (!_M_put(__outbuf, __outnext - __outbuf))
-       return false;
-   }
- while (__next != __last && __next != __start);
-
- if (__next != __last)
-   _Tr::move(__first, __next, __last - __next);
-
- this->pbump(__first - __next);
- return __next != __first;
-      }
-
-      streambuf* _M_buf;
-      unique_ptr<_Codecvt> _M_cvt;
-      state_type _M_state;
-
-      static const streamsize _S_buffer_length = 32;
-      static const streamsize _S_putback_length = 3;
-      _Elem _M_put_area[_S_buffer_length];
-      _Elem _M_get_area[_S_buffer_length];
-      streamsize _M_unconv = 0;
-      char _M_get_buf[_S_buffer_length-_S_putback_length];
-      bool _M_always_noconv;
-    };
-
-
-
-
-
-
-}
-# 44 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 2 3
-# 44 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 2 3
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 1 3
-# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 3
 
 
 
@@ -34652,663 +27920,12 @@ namespace std
 
 }
 # 880 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\sstream" 2 3
-# 39 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 2 3
+# 166 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
 
-namespace std
-{
 
 
-  namespace __detail {
 
 
-
-    template<typename _String, typename _CharT>
-      struct _Quoted_string
-      {
- static_assert(is_reference<_String>::value
-     || is_pointer<_String>::value,
-        "String type must be pointer or reference");
-
- _Quoted_string(_String __str, _CharT __del, _CharT __esc)
- : _M_string(__str), _M_delim{__del}, _M_escape{__esc}
- { }
-
- _Quoted_string&
- operator=(_Quoted_string&) = delete;
-
- _String _M_string;
- _CharT _M_delim;
- _CharT _M_escape;
-      };
-# 91 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 3
-    template<typename _CharT, typename _Traits>
-      std::basic_ostream<_CharT, _Traits>&
-      operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-   const _Quoted_string<const _CharT*, _CharT>& __str)
-      {
- std::basic_ostringstream<_CharT, _Traits> __ostr;
- __ostr << __str._M_delim;
- for (const _CharT* __c = __str._M_string; *__c; ++__c)
-   {
-     if (*__c == __str._M_delim || *__c == __str._M_escape)
-       __ostr << __str._M_escape;
-     __ostr << *__c;
-   }
- __ostr << __str._M_delim;
-
- return __os << __ostr.str();
-      }
-
-
-
-
-
-
-
-    template<typename _CharT, typename _Traits, typename _String>
-      std::basic_ostream<_CharT, _Traits>&
-      operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-   const _Quoted_string<_String, _CharT>& __str)
-      {
- std::basic_ostringstream<_CharT, _Traits> __ostr;
- __ostr << __str._M_delim;
- for (auto __c : __str._M_string)
-   {
-     if (__c == __str._M_delim || __c == __str._M_escape)
-       __ostr << __str._M_escape;
-     __ostr << __c;
-   }
- __ostr << __str._M_delim;
-
- return __os << __ostr.str();
-      }
-
-
-
-
-
-    template<typename _CharT, typename _Traits, typename _Alloc>
-      std::basic_istream<_CharT, _Traits>&
-      operator>>(std::basic_istream<_CharT, _Traits>& __is,
-   const _Quoted_string<basic_string<_CharT, _Traits, _Alloc>&,
-          _CharT>& __str)
-      {
- _CharT __c;
- __is >> __c;
- if (!__is.good())
-   return __is;
- if (__c != __str._M_delim)
-   {
-     __is.unget();
-     __is >> __str._M_string;
-     return __is;
-   }
- __str._M_string.clear();
- std::ios_base::fmtflags __flags
-   = __is.flags(__is.flags() & ~std::ios_base::skipws);
- do
-   {
-     __is >> __c;
-     if (!__is.good())
-       break;
-     if (__c == __str._M_escape)
-       {
-  __is >> __c;
-  if (!__is.good())
-    break;
-       }
-     else if (__c == __str._M_delim)
-       break;
-     __str._M_string += __c;
-   }
- while (true);
- __is.setf(__flags);
-
- return __is;
-      }
-  }
-
-
-}
-# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 2 3
-
-
-
-namespace std
-{
-
-
-
-
-
-  struct _Resetiosflags { ios_base::fmtflags _M_mask; };
-# 65 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  inline _Resetiosflags
-  resetiosflags(ios_base::fmtflags __mask)
-  { return { __mask }; }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Resetiosflags __f)
-    {
-      __is.setf(ios_base::fmtflags(0), __f._M_mask);
-      return __is;
-    }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Resetiosflags __f)
-    {
-      __os.setf(ios_base::fmtflags(0), __f._M_mask);
-      return __os;
-    }
-
-
-  struct _Setiosflags { ios_base::fmtflags _M_mask; };
-# 95 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  inline _Setiosflags
-  setiosflags(ios_base::fmtflags __mask)
-  { return { __mask }; }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Setiosflags __f)
-    {
-      __is.setf(__f._M_mask);
-      return __is;
-    }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setiosflags __f)
-    {
-      __os.setf(__f._M_mask);
-      return __os;
-    }
-
-
-  struct _Setbase { int _M_base; };
-# 126 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  inline _Setbase
-  setbase(int __base)
-  { return { __base }; }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Setbase __f)
-    {
-      __is.setf(__f._M_base == 8 ? ios_base::oct :
-  __f._M_base == 10 ? ios_base::dec :
-  __f._M_base == 16 ? ios_base::hex :
-  ios_base::fmtflags(0), ios_base::basefield);
-      return __is;
-    }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setbase __f)
-    {
-      __os.setf(__f._M_base == 8 ? ios_base::oct :
-  __f._M_base == 10 ? ios_base::dec :
-  __f._M_base == 16 ? ios_base::hex :
-  ios_base::fmtflags(0), ios_base::basefield);
-      return __os;
-    }
-
-
-  template<typename _CharT>
-    struct _Setfill { _CharT _M_c; };
-# 163 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  template<typename _CharT>
-    inline _Setfill<_CharT>
-    setfill(_CharT __c)
-    { return { __c }; }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Setfill<_CharT> __f)
-    {
-      __is.fill(__f._M_c);
-      return __is;
-    }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setfill<_CharT> __f)
-    {
-      __os.fill(__f._M_c);
-      return __os;
-    }
-
-
-  struct _Setprecision { int _M_n; };
-# 194 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  inline _Setprecision
-  setprecision(int __n)
-  { return { __n }; }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Setprecision __f)
-    {
-      __is.precision(__f._M_n);
-      return __is;
-    }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setprecision __f)
-    {
-      __os.precision(__f._M_n);
-      return __os;
-    }
-
-
-  struct _Setw { int _M_n; };
-# 224 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  inline _Setw
-  setw(int __n)
-  { return { __n }; }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Setw __f)
-    {
-      __is.width(__f._M_n);
-      return __is;
-    }
-
-  template<typename _CharT, typename _Traits>
-    inline basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setw __f)
-    {
-      __os.width(__f._M_n);
-      return __os;
-    }
-
-
-
-  template<typename _MoneyT>
-    struct _Get_money { _MoneyT& _M_mon; bool _M_intl; };
-# 257 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  template<typename _MoneyT>
-    inline _Get_money<_MoneyT>
-    get_money(_MoneyT& __mon, bool __intl = false)
-    { return { __mon, __intl }; }
-
-  template<typename _CharT, typename _Traits, typename _MoneyT>
-    basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Get_money<_MoneyT> __f)
-    {
-      typename basic_istream<_CharT, _Traits>::sentry __cerb(__is, false);
-      if (__cerb)
- {
-   ios_base::iostate __err = ios_base::goodbit;
-   try
-     {
-       typedef istreambuf_iterator<_CharT, _Traits> _Iter;
-       typedef money_get<_CharT, _Iter> _MoneyGet;
-
-       const _MoneyGet& __mg = use_facet<_MoneyGet>(__is.getloc());
-       __mg.get(_Iter(__is.rdbuf()), _Iter(), __f._M_intl,
-         __is, __err, __f._M_mon);
-     }
-   catch(__cxxabiv1::__forced_unwind&)
-     {
-       __is._M_setstate(ios_base::badbit);
-       throw;
-     }
-   catch(...)
-     { __is._M_setstate(ios_base::badbit); }
-   if (__err)
-     __is.setstate(__err);
- }
-      return __is;
-    }
-
-
-  template<typename _MoneyT>
-    struct _Put_money { const _MoneyT& _M_mon; bool _M_intl; };
-# 304 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  template<typename _MoneyT>
-    inline _Put_money<_MoneyT>
-    put_money(const _MoneyT& __mon, bool __intl = false)
-    { return { __mon, __intl }; }
-
-  template<typename _CharT, typename _Traits, typename _MoneyT>
-    basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_money<_MoneyT> __f)
-    {
-      typename basic_ostream<_CharT, _Traits>::sentry __cerb(__os);
-      if (__cerb)
- {
-   ios_base::iostate __err = ios_base::goodbit;
-   try
-     {
-       typedef ostreambuf_iterator<_CharT, _Traits> _Iter;
-       typedef money_put<_CharT, _Iter> _MoneyPut;
-
-       const _MoneyPut& __mp = use_facet<_MoneyPut>(__os.getloc());
-       if (__mp.put(_Iter(__os.rdbuf()), __f._M_intl, __os,
-      __os.fill(), __f._M_mon).failed())
-  __err |= ios_base::badbit;
-     }
-   catch(__cxxabiv1::__forced_unwind&)
-     {
-       __os._M_setstate(ios_base::badbit);
-       throw;
-     }
-   catch(...)
-     { __os._M_setstate(ios_base::badbit); }
-   if (__err)
-     __os.setstate(__err);
- }
-      return __os;
-    }
-
-  template<typename _CharT>
-    struct _Put_time
-    {
-      const std::tm* _M_tmb;
-      const _CharT* _M_fmt;
-    };
-# 356 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  template<typename _CharT>
-    inline _Put_time<_CharT>
-    put_time(const std::tm* __tmb, const _CharT* __fmt)
-    { return { __tmb, __fmt }; }
-
-  template<typename _CharT, typename _Traits>
-    basic_ostream<_CharT, _Traits>&
-    operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_time<_CharT> __f)
-    {
-      typename basic_ostream<_CharT, _Traits>::sentry __cerb(__os);
-      if (__cerb)
-        {
-          ios_base::iostate __err = ios_base::goodbit;
-          try
-            {
-              typedef ostreambuf_iterator<_CharT, _Traits> _Iter;
-              typedef time_put<_CharT, _Iter> _TimePut;
-
-              const _CharT* const __fmt_end = __f._M_fmt +
-                _Traits::length(__f._M_fmt);
-
-              const _TimePut& __mp = use_facet<_TimePut>(__os.getloc());
-              if (__mp.put(_Iter(__os.rdbuf()), __os, __os.fill(),
-                           __f._M_tmb, __f._M_fmt, __fmt_end).failed())
-                __err |= ios_base::badbit;
-            }
-          catch(__cxxabiv1::__forced_unwind&)
-            {
-              __os._M_setstate(ios_base::badbit);
-              throw;
-            }
-          catch(...)
-            { __os._M_setstate(ios_base::badbit); }
-          if (__err)
-            __os.setstate(__err);
-        }
-      return __os;
-    }
-
-  template<typename _CharT>
-    struct _Get_time
-    {
-      std::tm* _M_tmb;
-      const _CharT* _M_fmt;
-    };
-# 411 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  template<typename _CharT>
-    inline _Get_time<_CharT>
-    get_time(std::tm* __tmb, const _CharT* __fmt)
-    { return { __tmb, __fmt }; }
-
-  template<typename _CharT, typename _Traits>
-    basic_istream<_CharT, _Traits>&
-    operator>>(basic_istream<_CharT, _Traits>& __is, _Get_time<_CharT> __f)
-    {
-      typename basic_istream<_CharT, _Traits>::sentry __cerb(__is, false);
-      if (__cerb)
-        {
-          ios_base::iostate __err = ios_base::goodbit;
-          try
-            {
-              typedef istreambuf_iterator<_CharT, _Traits> _Iter;
-              typedef time_get<_CharT, _Iter> _TimeGet;
-
-              const _CharT* const __fmt_end = __f._M_fmt +
-                _Traits::length(__f._M_fmt);
-
-              const _TimeGet& __mg = use_facet<_TimeGet>(__is.getloc());
-              __mg.get(_Iter(__is.rdbuf()), _Iter(), __is,
-                       __err, __f._M_tmb, __f._M_fmt, __fmt_end);
-            }
-          catch(__cxxabiv1::__forced_unwind&)
-            {
-              __is._M_setstate(ios_base::badbit);
-              throw;
-            }
-          catch(...)
-            { __is._M_setstate(ios_base::badbit); }
-          if (__err)
-            __is.setstate(__err);
-        }
-      return __is;
-    }
-# 459 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  template<typename _CharT>
-    inline auto
-    quoted(const _CharT* __string,
-    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
-    {
-      return __detail::_Quoted_string<const _CharT*, _CharT>(__string, __delim,
-            __escape);
-    }
-
-  template<typename _CharT, typename _Traits, typename _Alloc>
-    inline auto
-    quoted(const basic_string<_CharT, _Traits, _Alloc>& __string,
-    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
-    {
-      return __detail::_Quoted_string<
- const basic_string<_CharT, _Traits, _Alloc>&, _CharT>(
-     __string, __delim, __escape);
-    }
-
-  template<typename _CharT, typename _Traits, typename _Alloc>
-    inline auto
-    quoted(basic_string<_CharT, _Traits, _Alloc>& __string,
-    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
-    {
-      return __detail::_Quoted_string<
- basic_string<_CharT, _Traits, _Alloc>&, _CharT>(
-     __string, __delim, __escape);
-    }
-# 508 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
-  extern template ostream& operator<<(ostream&, _Setfill<char>);
-  extern template ostream& operator<<(ostream&, _Setiosflags);
-  extern template ostream& operator<<(ostream&, _Resetiosflags);
-  extern template ostream& operator<<(ostream&, _Setbase);
-  extern template ostream& operator<<(ostream&, _Setprecision);
-  extern template ostream& operator<<(ostream&, _Setw);
-  extern template istream& operator>>(istream&, _Setfill<char>);
-  extern template istream& operator>>(istream&, _Setiosflags);
-  extern template istream& operator>>(istream&, _Resetiosflags);
-  extern template istream& operator>>(istream&, _Setbase);
-  extern template istream& operator>>(istream&, _Setprecision);
-  extern template istream& operator>>(istream&, _Setw);
-
-
-  extern template wostream& operator<<(wostream&, _Setfill<wchar_t>);
-  extern template wostream& operator<<(wostream&, _Setiosflags);
-  extern template wostream& operator<<(wostream&, _Resetiosflags);
-  extern template wostream& operator<<(wostream&, _Setbase);
-  extern template wostream& operator<<(wostream&, _Setprecision);
-  extern template wostream& operator<<(wostream&, _Setw);
-  extern template wistream& operator>>(wistream&, _Setfill<wchar_t>);
-  extern template wistream& operator>>(wistream&, _Setiosflags);
-  extern template wistream& operator>>(wistream&, _Resetiosflags);
-  extern template wistream& operator>>(wistream&, _Setbase);
-  extern template wistream& operator>>(wistream&, _Setprecision);
-  extern template wistream& operator>>(wistream&, _Setw);
-
-
-
-
-}
-# 3 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp" 2
-# 1 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.hpp" 1
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_axi_sdata.h" 1
-# 15 "D:/AMDDesignTools/2025.2/Vitis/include\\ap_axi_sdata.h"
-# 1 "D:/AMDDesignTools/2025.2/Vitis/include/ap_int.h" 1
-# 10 "D:/AMDDesignTools/2025.2/Vitis/include/ap_int.h"
-# 1 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 1
-# 41 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h"
-# 1 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h" 1
-# 54 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
-enum ap_q_mode {
-  AP_RND,
-  AP_RND_ZERO,
-  AP_RND_MIN_INF,
-  AP_RND_INF,
-  AP_RND_CONV,
-  AP_TRN,
-  AP_TRN_ZERO,
-};
-# 76 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
-enum ap_o_mode {
-  AP_SAT,
-  AP_SAT_ZERO,
-  AP_SAT_SYM,
-  AP_WRAP,
-  AP_WRAP_SM,
-};
-# 133 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
-template <int _AP_W, bool _AP_S>
-struct ap_int_base;
-
-template <int _AP_W>
-struct ap_int;
-
-template <int _AP_W>
-struct ap_uint;
-
-template <int _AP_W, bool _AP_S>
-struct ap_range_ref;
-
-template <int _AP_W, bool _AP_S>
-struct ap_bit_ref;
-
-template <int _AP_W1, typename _AP_T1, int _AP_W2, typename _AP_T2>
-struct ap_concat_ref;
-
-template <int _AP_W, int _AP_I, bool _AP_S = true, ap_q_mode _AP_Q = AP_TRN,
-          ap_o_mode _AP_O = AP_WRAP, int _AP_N = 0>
-struct ap_fixed_base;
-
-template <int _AP_W, int _AP_I, ap_q_mode _AP_Q = AP_TRN,
-          ap_o_mode _AP_O = AP_WRAP, int _AP_N = 0>
-struct ap_fixed;
-
-template <int _AP_W, int _AP_I, ap_q_mode _AP_Q = AP_TRN,
-          ap_o_mode _AP_O = AP_WRAP, int _AP_N = 0>
-struct ap_ufixed;
-
-template <int _AP_W, int _AP_I, bool _AP_S, ap_q_mode _AP_Q, ap_o_mode _AP_O,
-          int _AP_N>
-struct af_range_ref;
-
-template <int _AP_W, int _AP_I, bool _AP_S, ap_q_mode _AP_Q, ap_o_mode _AP_O,
-          int _AP_N>
-struct af_bit_ref;
-
-
-enum BaseMode { AP_BIN = 2, AP_OCT = 8, AP_DEC = 10, AP_HEX = 16 };
-# 187 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_decl.h"
-typedef signed long long ap_slong;
-typedef unsigned long long ap_ulong;
-
-
-enum {
-  _AP_SIZE_char = 8,
-  _AP_SIZE_short = sizeof(short) * 8,
-  _AP_SIZE_int = sizeof(int) * 8,
-  _AP_SIZE_long = sizeof(long) * 8,
-  _AP_SIZE_ap_slong = sizeof(ap_slong) * 8
-};
-# 42 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
-
-
-
-
-
-
-
-
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 1 3
-# 17 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
-# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 1 3
-# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\cstdlib" 3
-# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 2 3
-
-using std::abort;
-using std::atexit;
-using std::exit;
-# 51 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 3
-using std::div_t;
-using std::ldiv_t;
-
-using std::abs;
-using std::atof;
-using std::atoi;
-using std::atol;
-using std::bsearch;
-using std::calloc;
-using std::div;
-using std::free;
-using std::getenv;
-using std::labs;
-using std::ldiv;
-using std::malloc;
-
-using std::mblen;
-using std::mbstowcs;
-using std::mbtowc;
-
-using std::qsort;
-using std::rand;
-using std::realloc;
-using std::srand;
-using std::strtod;
-using std::strtol;
-using std::strtoul;
-using std::system;
-
-using std::wcstombs;
-using std::wctomb;
-# 18 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\x86_64-w64-mingw32\\include\\assert.h" 2 3
-
-
-
-extern "C" {
-
-
-__attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _wassert(const wchar_t *_Message,const wchar_t *_File,unsigned _Line);
-__attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _assert (const char *_Message, const char *_File, unsigned _Line);
-
-
-}
-# 51 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
-# 66 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h"
-# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\stdlib.h" 1 3
-# 67 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h" 2
-# 171 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_common.h"
 enum { CHAR_IS_SIGNED = (char)-1 < 0 };
 
 
@@ -43205,7 +35822,7404 @@ namespace std
 }
 }
 # 97 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_private.h" 2
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
 
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 3
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 1 3
+# 38 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ctime" 1 3
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ctime" 3
+# 58 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\ctime" 3
+namespace std
+{
+  using ::clock_t;
+  using ::time_t;
+  using ::tm;
+
+  using ::clock;
+  using ::difftime;
+  using ::mktime;
+  using ::time;
+  using ::asctime;
+  using ::ctime;
+  using ::gmtime;
+  using ::localtime;
+  using ::strftime;
+}
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
+
+namespace std
+{
+# 52 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  class time_base
+  {
+  public:
+    enum dateorder { no_order, dmy, mdy, ymd, ydm };
+  };
+
+  template<typename _CharT>
+    struct __timepunct_cache : public locale::facet
+    {
+
+      static const _CharT* _S_timezones[14];
+
+      const _CharT* _M_date_format;
+      const _CharT* _M_date_era_format;
+      const _CharT* _M_time_format;
+      const _CharT* _M_time_era_format;
+      const _CharT* _M_date_time_format;
+      const _CharT* _M_date_time_era_format;
+      const _CharT* _M_am;
+      const _CharT* _M_pm;
+      const _CharT* _M_am_pm_format;
+
+
+      const _CharT* _M_day1;
+      const _CharT* _M_day2;
+      const _CharT* _M_day3;
+      const _CharT* _M_day4;
+      const _CharT* _M_day5;
+      const _CharT* _M_day6;
+      const _CharT* _M_day7;
+
+
+      const _CharT* _M_aday1;
+      const _CharT* _M_aday2;
+      const _CharT* _M_aday3;
+      const _CharT* _M_aday4;
+      const _CharT* _M_aday5;
+      const _CharT* _M_aday6;
+      const _CharT* _M_aday7;
+
+
+      const _CharT* _M_month01;
+      const _CharT* _M_month02;
+      const _CharT* _M_month03;
+      const _CharT* _M_month04;
+      const _CharT* _M_month05;
+      const _CharT* _M_month06;
+      const _CharT* _M_month07;
+      const _CharT* _M_month08;
+      const _CharT* _M_month09;
+      const _CharT* _M_month10;
+      const _CharT* _M_month11;
+      const _CharT* _M_month12;
+
+
+      const _CharT* _M_amonth01;
+      const _CharT* _M_amonth02;
+      const _CharT* _M_amonth03;
+      const _CharT* _M_amonth04;
+      const _CharT* _M_amonth05;
+      const _CharT* _M_amonth06;
+      const _CharT* _M_amonth07;
+      const _CharT* _M_amonth08;
+      const _CharT* _M_amonth09;
+      const _CharT* _M_amonth10;
+      const _CharT* _M_amonth11;
+      const _CharT* _M_amonth12;
+
+      bool _M_allocated;
+
+      __timepunct_cache(size_t __refs = 0) : facet(__refs),
+      _M_date_format(0), _M_date_era_format(0), _M_time_format(0),
+      _M_time_era_format(0), _M_date_time_format(0),
+      _M_date_time_era_format(0), _M_am(0), _M_pm(0),
+      _M_am_pm_format(0), _M_day1(0), _M_day2(0), _M_day3(0),
+      _M_day4(0), _M_day5(0), _M_day6(0), _M_day7(0),
+      _M_aday1(0), _M_aday2(0), _M_aday3(0), _M_aday4(0),
+      _M_aday5(0), _M_aday6(0), _M_aday7(0), _M_month01(0),
+      _M_month02(0), _M_month03(0), _M_month04(0), _M_month05(0),
+      _M_month06(0), _M_month07(0), _M_month08(0), _M_month09(0),
+      _M_month10(0), _M_month11(0), _M_month12(0), _M_amonth01(0),
+      _M_amonth02(0), _M_amonth03(0), _M_amonth04(0),
+      _M_amonth05(0), _M_amonth06(0), _M_amonth07(0),
+      _M_amonth08(0), _M_amonth09(0), _M_amonth10(0),
+      _M_amonth11(0), _M_amonth12(0), _M_allocated(false)
+      { }
+
+      ~__timepunct_cache();
+
+    private:
+      __timepunct_cache&
+      operator=(const __timepunct_cache&);
+
+      explicit
+      __timepunct_cache(const __timepunct_cache&);
+    };
+
+  template<typename _CharT>
+    __timepunct_cache<_CharT>::~__timepunct_cache()
+    {
+      if (_M_allocated)
+ {
+
+ }
+    }
+
+
+  template<>
+    const char*
+    __timepunct_cache<char>::_S_timezones[14];
+
+
+  template<>
+    const wchar_t*
+    __timepunct_cache<wchar_t>::_S_timezones[14];
+
+
+
+  template<typename _CharT>
+    const _CharT* __timepunct_cache<_CharT>::_S_timezones[14];
+
+  template<typename _CharT>
+    class __timepunct : public locale::facet
+    {
+    public:
+
+      typedef _CharT __char_type;
+      typedef __timepunct_cache<_CharT> __cache_type;
+
+    protected:
+      __cache_type* _M_data;
+      __c_locale _M_c_locale_timepunct;
+      const char* _M_name_timepunct;
+
+    public:
+
+      static locale::id id;
+
+      explicit
+      __timepunct(size_t __refs = 0);
+
+      explicit
+      __timepunct(__cache_type* __cache, size_t __refs = 0);
+# 206 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      __timepunct(__c_locale __cloc, const char* __s, size_t __refs = 0);
+
+
+
+      void
+      _M_put(_CharT* __s, size_t __maxlen, const _CharT* __format,
+      const tm* __tm) const throw ();
+
+      void
+      _M_date_formats(const _CharT** __date) const
+      {
+
+ __date[0] = _M_data->_M_date_format;
+ __date[1] = _M_data->_M_date_era_format;
+      }
+
+      void
+      _M_time_formats(const _CharT** __time) const
+      {
+
+ __time[0] = _M_data->_M_time_format;
+ __time[1] = _M_data->_M_time_era_format;
+      }
+
+      void
+      _M_date_time_formats(const _CharT** __dt) const
+      {
+
+ __dt[0] = _M_data->_M_date_time_format;
+ __dt[1] = _M_data->_M_date_time_era_format;
+      }
+
+
+      void
+      _M_am_pm_format(const _CharT*) const
+      { }
+
+
+      void
+      _M_am_pm(const _CharT** __ampm) const
+      {
+ __ampm[0] = _M_data->_M_am;
+ __ampm[1] = _M_data->_M_pm;
+      }
+
+      void
+      _M_days(const _CharT** __days) const
+      {
+ __days[0] = _M_data->_M_day1;
+ __days[1] = _M_data->_M_day2;
+ __days[2] = _M_data->_M_day3;
+ __days[3] = _M_data->_M_day4;
+ __days[4] = _M_data->_M_day5;
+ __days[5] = _M_data->_M_day6;
+ __days[6] = _M_data->_M_day7;
+      }
+
+      void
+      _M_days_abbreviated(const _CharT** __days) const
+      {
+ __days[0] = _M_data->_M_aday1;
+ __days[1] = _M_data->_M_aday2;
+ __days[2] = _M_data->_M_aday3;
+ __days[3] = _M_data->_M_aday4;
+ __days[4] = _M_data->_M_aday5;
+ __days[5] = _M_data->_M_aday6;
+ __days[6] = _M_data->_M_aday7;
+      }
+
+      void
+      _M_months(const _CharT** __months) const
+      {
+ __months[0] = _M_data->_M_month01;
+ __months[1] = _M_data->_M_month02;
+ __months[2] = _M_data->_M_month03;
+ __months[3] = _M_data->_M_month04;
+ __months[4] = _M_data->_M_month05;
+ __months[5] = _M_data->_M_month06;
+ __months[6] = _M_data->_M_month07;
+ __months[7] = _M_data->_M_month08;
+ __months[8] = _M_data->_M_month09;
+ __months[9] = _M_data->_M_month10;
+ __months[10] = _M_data->_M_month11;
+ __months[11] = _M_data->_M_month12;
+      }
+
+      void
+      _M_months_abbreviated(const _CharT** __months) const
+      {
+ __months[0] = _M_data->_M_amonth01;
+ __months[1] = _M_data->_M_amonth02;
+ __months[2] = _M_data->_M_amonth03;
+ __months[3] = _M_data->_M_amonth04;
+ __months[4] = _M_data->_M_amonth05;
+ __months[5] = _M_data->_M_amonth06;
+ __months[6] = _M_data->_M_amonth07;
+ __months[7] = _M_data->_M_amonth08;
+ __months[8] = _M_data->_M_amonth09;
+ __months[9] = _M_data->_M_amonth10;
+ __months[10] = _M_data->_M_amonth11;
+ __months[11] = _M_data->_M_amonth12;
+      }
+
+    protected:
+      virtual
+      ~__timepunct();
+
+
+      void
+      _M_initialize_timepunct(__c_locale __cloc = 0);
+    };
+
+  template<typename _CharT>
+    locale::id __timepunct<_CharT>::id;
+
+
+  template<>
+    void
+    __timepunct<char>::_M_initialize_timepunct(__c_locale __cloc);
+
+  template<>
+    void
+    __timepunct<char>::_M_put(char*, size_t, const char*, const tm*) const throw ();
+
+
+  template<>
+    void
+    __timepunct<wchar_t>::_M_initialize_timepunct(__c_locale __cloc);
+
+  template<>
+    void
+    __timepunct<wchar_t>::_M_put(wchar_t*, size_t, const wchar_t*,
+     const tm*) const throw ();
+
+
+
+}
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/time_members.h" 1 3
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/time_members.h" 3
+namespace std
+{
+
+
+  template<typename _CharT>
+    __timepunct<_CharT>::__timepunct(size_t __refs)
+    : facet(__refs), _M_data(0)
+    {
+      _M_name_timepunct = _S_get_c_name();
+      _M_initialize_timepunct();
+    }
+
+  template<typename _CharT>
+    __timepunct<_CharT>::__timepunct(__cache_type* __cache, size_t __refs)
+    : facet(__refs), _M_data(__cache)
+    {
+      _M_name_timepunct = _S_get_c_name();
+      _M_initialize_timepunct();
+    }
+
+  template<typename _CharT>
+    __timepunct<_CharT>::__timepunct(__c_locale __cloc, const char* __s,
+         size_t __refs)
+    : facet(__refs), _M_data(0)
+    {
+      if (__builtin_strcmp(__s, _S_get_c_name()) != 0)
+ {
+   const size_t __len = __builtin_strlen(__s) + 1;
+   char* __tmp = new char[__len];
+   __builtin_memcpy(__tmp, __s, __len);
+   _M_name_timepunct = __tmp;
+ }
+      else
+ _M_name_timepunct = _S_get_c_name();
+
+      try
+ { _M_initialize_timepunct(__cloc); }
+      catch(...)
+ {
+   if (_M_name_timepunct != _S_get_c_name())
+     delete [] _M_name_timepunct;
+   throw;
+ }
+    }
+
+  template<typename _CharT>
+    __timepunct<_CharT>::~__timepunct()
+    {
+      if (_M_name_timepunct != _S_get_c_name())
+ delete [] _M_name_timepunct;
+      delete _M_data;
+      _S_destroy_c_locale(_M_c_locale_timepunct);
+    }
+
+
+}
+# 347 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
+
+namespace std
+{
+
+
+namespace __cxx11 {
+# 367 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _InIter>
+    class time_get : public locale::facet, public time_base
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef _InIter iter_type;
+
+
+
+      static locale::id id;
+# 388 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      time_get(size_t __refs = 0)
+      : facet (__refs) { }
+# 405 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      dateorder
+      date_order() const
+      { return this->do_date_order(); }
+# 429 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get_time(iter_type __beg, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_time(__beg, __end, __io, __err, __tm); }
+# 454 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get_date(iter_type __beg, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_date(__beg, __end, __io, __err, __tm); }
+# 482 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get_weekday(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_weekday(__beg, __end, __io, __err, __tm); }
+# 511 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get_monthname(iter_type __beg, iter_type __end, ios_base& __io,
+      ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_monthname(__beg, __end, __io, __err, __tm); }
+# 537 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get_year(iter_type __beg, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm) const
+      { return this->do_get_year(__beg, __end, __io, __err, __tm); }
+# 558 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      inline
+      iter_type get(iter_type __s, iter_type __end, ios_base& __io,
+                    ios_base::iostate& __err, tm* __tm, char __format,
+                    char __modifier = 0) const
+      {
+        return this->do_get(__s, __end, __io, __err, __tm, __format,
+                            __modifier);
+      }
+# 585 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type get(iter_type __s, iter_type __end, ios_base& __io,
+                    ios_base::iostate& __err, tm* __tm, const char_type* __fmt,
+                    const char_type* __fmtend) const;
+
+
+    protected:
+
+      virtual
+      ~time_get() { }
+# 605 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual dateorder
+      do_date_order() const;
+# 623 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_time(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const;
+# 642 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_date(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const;
+# 661 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_weekday(iter_type __beg, iter_type __end, ios_base&,
+       ios_base::iostate& __err, tm* __tm) const;
+# 680 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_monthname(iter_type __beg, iter_type __end, ios_base&,
+         ios_base::iostate& __err, tm* __tm) const;
+# 699 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get_year(iter_type __beg, iter_type __end, ios_base& __io,
+    ios_base::iostate& __err, tm* __tm) const;
+# 722 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual
+
+      iter_type
+      do_get(iter_type __s, iter_type __end, ios_base& __f,
+             ios_base::iostate& __err, tm* __tm,
+             char __format, char __modifier) const;
+
+
+
+      iter_type
+      _M_extract_num(iter_type __beg, iter_type __end, int& __member,
+       int __min, int __max, size_t __len,
+       ios_base& __io, ios_base::iostate& __err) const;
+
+
+      iter_type
+      _M_extract_name(iter_type __beg, iter_type __end, int& __member,
+        const _CharT** __names, size_t __indexlen,
+        ios_base& __io, ios_base::iostate& __err) const;
+
+
+      iter_type
+      _M_extract_wday_or_month(iter_type __beg, iter_type __end, int& __member,
+          const _CharT** __names, size_t __indexlen,
+          ios_base& __io, ios_base::iostate& __err) const;
+
+
+      iter_type
+      _M_extract_via_format(iter_type __beg, iter_type __end, ios_base& __io,
+       ios_base::iostate& __err, tm* __tm,
+       const _CharT* __format) const;
+    };
+
+  template<typename _CharT, typename _InIter>
+    locale::id time_get<_CharT, _InIter>::id;
+
+
+  template<typename _CharT, typename _InIter>
+    class time_get_byname : public time_get<_CharT, _InIter>
+    {
+    public:
+
+      typedef _CharT char_type;
+      typedef _InIter iter_type;
+
+      explicit
+      time_get_byname(const char*, size_t __refs = 0)
+      : time_get<_CharT, _InIter>(__refs) { }
+
+
+      explicit
+      time_get_byname(const string& __s, size_t __refs = 0)
+      : time_get_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~time_get_byname() { }
+    };
+
+}
+# 796 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _OutIter>
+    class time_put : public locale::facet
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef _OutIter iter_type;
+
+
+
+      static locale::id id;
+# 817 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      time_put(size_t __refs = 0)
+      : facet(__refs) { }
+# 836 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
+   const _CharT* __beg, const _CharT* __end) const;
+# 856 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, ios_base& __io, char_type __fill,
+   const tm* __tm, char __format, char __mod = 0) const
+      { return this->do_put(__s, __io, __fill, __tm, __format, __mod); }
+
+    protected:
+
+      virtual
+      ~time_put()
+      { }
+# 883 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
+      char __format, char __mod) const;
+    };
+
+  template<typename _CharT, typename _OutIter>
+    locale::id time_put<_CharT, _OutIter>::id;
+
+
+  template<typename _CharT, typename _OutIter>
+    class time_put_byname : public time_put<_CharT, _OutIter>
+    {
+    public:
+
+      typedef _CharT char_type;
+      typedef _OutIter iter_type;
+
+      explicit
+      time_put_byname(const char*, size_t __refs = 0)
+      : time_put<_CharT, _OutIter>(__refs)
+      { }
+
+
+      explicit
+      time_put_byname(const string& __s, size_t __refs = 0)
+      : time_put_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~time_put_byname() { }
+    };
+# 928 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  class money_base
+  {
+  public:
+    enum part { none, space, symbol, sign, value };
+    struct pattern { char field[4]; };
+
+    static const pattern _S_default_pattern;
+
+    enum
+    {
+      _S_minus,
+      _S_zero,
+      _S_end = 11
+    };
+
+
+
+    static const char* _S_atoms;
+
+
+
+    __attribute__ ((__const__)) static pattern
+    _S_construct_pattern(char __precedes, char __space, char __posn) throw ();
+  };
+
+  template<typename _CharT, bool _Intl>
+    struct __moneypunct_cache : public locale::facet
+    {
+      const char* _M_grouping;
+      size_t _M_grouping_size;
+      bool _M_use_grouping;
+      _CharT _M_decimal_point;
+      _CharT _M_thousands_sep;
+      const _CharT* _M_curr_symbol;
+      size_t _M_curr_symbol_size;
+      const _CharT* _M_positive_sign;
+      size_t _M_positive_sign_size;
+      const _CharT* _M_negative_sign;
+      size_t _M_negative_sign_size;
+      int _M_frac_digits;
+      money_base::pattern _M_pos_format;
+      money_base::pattern _M_neg_format;
+
+
+
+
+      _CharT _M_atoms[money_base::_S_end];
+
+      bool _M_allocated;
+
+      __moneypunct_cache(size_t __refs = 0) : facet(__refs),
+      _M_grouping(0), _M_grouping_size(0), _M_use_grouping(false),
+      _M_decimal_point(_CharT()), _M_thousands_sep(_CharT()),
+      _M_curr_symbol(0), _M_curr_symbol_size(0),
+      _M_positive_sign(0), _M_positive_sign_size(0),
+      _M_negative_sign(0), _M_negative_sign_size(0),
+      _M_frac_digits(0),
+      _M_pos_format(money_base::pattern()),
+      _M_neg_format(money_base::pattern()), _M_allocated(false)
+      { }
+
+      ~__moneypunct_cache();
+
+      void
+      _M_cache(const locale& __loc);
+
+    private:
+      __moneypunct_cache&
+      operator=(const __moneypunct_cache&);
+
+      explicit
+      __moneypunct_cache(const __moneypunct_cache&);
+    };
+
+  template<typename _CharT, bool _Intl>
+    __moneypunct_cache<_CharT, _Intl>::~__moneypunct_cache()
+    {
+      if (_M_allocated)
+ {
+   delete [] _M_grouping;
+   delete [] _M_curr_symbol;
+   delete [] _M_positive_sign;
+   delete [] _M_negative_sign;
+ }
+    }
+
+namespace __cxx11 {
+# 1023 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  template<typename _CharT, bool _Intl>
+    class moneypunct : public locale::facet, public money_base
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+      typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
+
+    private:
+      __cache_type* _M_data;
+
+    public:
+
+
+      static const bool intl = _Intl;
+
+      static locale::id id;
+# 1052 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      moneypunct(size_t __refs = 0)
+      : facet(__refs), _M_data(0)
+      { _M_initialize_moneypunct(); }
+# 1065 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      moneypunct(__cache_type* __cache, size_t __refs = 0)
+      : facet(__refs), _M_data(__cache)
+      { _M_initialize_moneypunct(); }
+# 1080 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      moneypunct(__c_locale __cloc, const char* __s, size_t __refs = 0)
+      : facet(__refs), _M_data(0)
+      { _M_initialize_moneypunct(__cloc, __s); }
+# 1094 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      char_type
+      decimal_point() const
+      { return this->do_decimal_point(); }
+# 1107 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      char_type
+      thousands_sep() const
+      { return this->do_thousands_sep(); }
+# 1137 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      string
+      grouping() const
+      { return this->do_grouping(); }
+# 1150 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      string_type
+      curr_symbol() const
+      { return this->do_curr_symbol(); }
+# 1167 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      string_type
+      positive_sign() const
+      { return this->do_positive_sign(); }
+# 1184 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      string_type
+      negative_sign() const
+      { return this->do_negative_sign(); }
+# 1200 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      int
+      frac_digits() const
+      { return this->do_frac_digits(); }
+# 1236 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      pattern
+      pos_format() const
+      { return this->do_pos_format(); }
+
+      pattern
+      neg_format() const
+      { return this->do_neg_format(); }
+
+
+    protected:
+
+      virtual
+      ~moneypunct();
+# 1258 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual char_type
+      do_decimal_point() const
+      { return _M_data->_M_decimal_point; }
+# 1270 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual char_type
+      do_thousands_sep() const
+      { return _M_data->_M_thousands_sep; }
+# 1283 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual string
+      do_grouping() const
+      { return _M_data->_M_grouping; }
+# 1296 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_curr_symbol() const
+      { return _M_data->_M_curr_symbol; }
+# 1309 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_positive_sign() const
+      { return _M_data->_M_positive_sign; }
+# 1322 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_negative_sign() const
+      { return _M_data->_M_negative_sign; }
+# 1336 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual int
+      do_frac_digits() const
+      { return _M_data->_M_frac_digits; }
+# 1350 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual pattern
+      do_pos_format() const
+      { return _M_data->_M_pos_format; }
+# 1364 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual pattern
+      do_neg_format() const
+      { return _M_data->_M_neg_format; }
+
+
+       void
+       _M_initialize_moneypunct(__c_locale __cloc = 0,
+    const char* __name = 0);
+    };
+
+  template<typename _CharT, bool _Intl>
+    locale::id moneypunct<_CharT, _Intl>::id;
+
+  template<typename _CharT, bool _Intl>
+    const bool moneypunct<_CharT, _Intl>::intl;
+
+  template<>
+    moneypunct<char, true>::~moneypunct();
+
+  template<>
+    moneypunct<char, false>::~moneypunct();
+
+  template<>
+    void
+    moneypunct<char, true>::_M_initialize_moneypunct(__c_locale, const char*);
+
+  template<>
+    void
+    moneypunct<char, false>::_M_initialize_moneypunct(__c_locale, const char*);
+
+
+  template<>
+    moneypunct<wchar_t, true>::~moneypunct();
+
+  template<>
+    moneypunct<wchar_t, false>::~moneypunct();
+
+  template<>
+    void
+    moneypunct<wchar_t, true>::_M_initialize_moneypunct(__c_locale,
+       const char*);
+
+  template<>
+    void
+    moneypunct<wchar_t, false>::_M_initialize_moneypunct(__c_locale,
+        const char*);
+
+
+
+  template<typename _CharT, bool _Intl>
+    class moneypunct_byname : public moneypunct<_CharT, _Intl>
+    {
+    public:
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+      static const bool intl = _Intl;
+
+      explicit
+      moneypunct_byname(const char* __s, size_t __refs = 0)
+      : moneypunct<_CharT, _Intl>(__refs)
+      {
+ if (__builtin_strcmp(__s, "C") != 0
+     && __builtin_strcmp(__s, "POSIX") != 0)
+   {
+     __c_locale __tmp;
+     this->_S_create_c_locale(__tmp, __s);
+     this->_M_initialize_moneypunct(__tmp);
+     this->_S_destroy_c_locale(__tmp);
+   }
+      }
+
+
+      explicit
+      moneypunct_byname(const string& __s, size_t __refs = 0)
+      : moneypunct_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~moneypunct_byname() { }
+    };
+
+  template<typename _CharT, bool _Intl>
+    const bool moneypunct_byname<_CharT, _Intl>::intl;
+
+}
+
+namespace __cxx11 {
+# 1467 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _InIter>
+    class money_get : public locale::facet
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef _InIter iter_type;
+      typedef basic_string<_CharT> string_type;
+
+
+
+      static locale::id id;
+# 1489 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      money_get(size_t __refs = 0) : facet(__refs) { }
+# 1519 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+   ios_base::iostate& __err, long double& __units) const
+      { return this->do_get(__s, __end, __intl, __io, __err, __units); }
+# 1550 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+   ios_base::iostate& __err, string_type& __digits) const
+      { return this->do_get(__s, __end, __intl, __io, __err, __digits); }
+
+    protected:
+
+      virtual
+      ~money_get() { }
+# 1574 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+      ios_base::iostate& __err, long double& __units) const;
+# 1586 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_get(iter_type __s, iter_type __end, bool __intl, ios_base& __io,
+      ios_base::iostate& __err, string_type& __digits) const;
+# 1598 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      template<bool _Intl>
+        iter_type
+        _M_extract(iter_type __s, iter_type __end, ios_base& __io,
+     ios_base::iostate& __err, string& __digits) const;
+    };
+
+  template<typename _CharT, typename _InIter>
+    locale::id money_get<_CharT, _InIter>::id;
+# 1620 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  template<typename _CharT, typename _OutIter>
+    class money_put : public locale::facet
+    {
+    public:
+
+
+      typedef _CharT char_type;
+      typedef _OutIter iter_type;
+      typedef basic_string<_CharT> string_type;
+
+
+
+      static locale::id id;
+# 1641 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      money_put(size_t __refs = 0) : facet(__refs) { }
+# 1661 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, bool __intl, ios_base& __io,
+   char_type __fill, long double __units) const
+      { return this->do_put(__s, __intl, __io, __fill, __units); }
+# 1684 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      iter_type
+      put(iter_type __s, bool __intl, ios_base& __io,
+   char_type __fill, const string_type& __digits) const
+      { return this->do_put(__s, __intl, __io, __fill, __digits); }
+
+    protected:
+
+      virtual
+      ~money_put() { }
+# 1719 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+      long double __units) const;
+# 1743 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual iter_type
+      do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+      const string_type& __digits) const;
+# 1755 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      template<bool _Intl>
+        iter_type
+        _M_insert(iter_type __s, ios_base& __io, char_type __fill,
+    const string_type& __digits) const;
+    };
+
+  template<typename _CharT, typename _OutIter>
+    locale::id money_put<_CharT, _OutIter>::id;
+
+}
+
+
+
+
+
+  struct messages_base
+  {
+    typedef int catalog;
+  };
+
+namespace __cxx11 {
+# 1798 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+  template<typename _CharT>
+    class messages : public locale::facet, public messages_base
+    {
+    public:
+
+
+
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+
+    protected:
+
+
+      __c_locale _M_c_locale_messages;
+      const char* _M_name_messages;
+
+    public:
+
+      static locale::id id;
+# 1826 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      messages(size_t __refs = 0);
+# 1840 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      explicit
+      messages(__c_locale __cloc, const char* __s, size_t __refs = 0);
+# 1853 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      catalog
+      open(const basic_string<char>& __s, const locale& __loc) const
+      { return this->do_open(__s, __loc); }
+# 1871 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      catalog
+      open(const basic_string<char>&, const locale&, const char*) const;
+# 1889 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      string_type
+      get(catalog __c, int __set, int __msgid, const string_type& __s) const
+      { return this->do_get(__c, __set, __msgid, __s); }
+# 1900 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      void
+      close(catalog __c) const
+      { return this->do_close(__c); }
+
+    protected:
+
+      virtual
+      ~messages();
+# 1920 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual catalog
+      do_open(const basic_string<char>&, const locale&) const;
+# 1939 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 3
+      virtual string_type
+      do_get(catalog, int, int, const string_type& __dfault) const;
+
+
+
+
+
+
+      virtual void
+      do_close(catalog) const;
+
+
+      char*
+      _M_convert_to_char(const string_type& __msg) const
+      {
+
+ return reinterpret_cast<char*>(const_cast<_CharT*>(__msg.c_str()));
+      }
+
+
+      string_type
+      _M_convert_from_char(char*) const
+      {
+
+ return string_type();
+      }
+     };
+
+  template<typename _CharT>
+    locale::id messages<_CharT>::id;
+
+
+  template<>
+    string
+    messages<char>::do_get(catalog, int, int, const string&) const;
+
+
+  template<>
+    wstring
+    messages<wchar_t>::do_get(catalog, int, int, const wstring&) const;
+
+
+
+   template<typename _CharT>
+    class messages_byname : public messages<_CharT>
+    {
+    public:
+      typedef _CharT char_type;
+      typedef basic_string<_CharT> string_type;
+
+      explicit
+      messages_byname(const char* __s, size_t __refs = 0);
+
+
+      explicit
+      messages_byname(const string& __s, size_t __refs = 0)
+      : messages_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~messages_byname()
+      { }
+    };
+
+}
+
+
+}
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/messages_members.h" 1 3
+# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\x86_64-w64-mingw32\\bits/messages_members.h" 3
+namespace std
+{
+
+
+
+  template<typename _CharT>
+     messages<_CharT>::messages(size_t __refs)
+     : facet(__refs)
+     { _M_c_locale_messages = _S_get_c_locale(); }
+
+  template<typename _CharT>
+     messages<_CharT>::messages(__c_locale, const char*, size_t __refs)
+     : facet(__refs)
+     { _M_c_locale_messages = _S_get_c_locale(); }
+
+  template<typename _CharT>
+    typename messages<_CharT>::catalog
+    messages<_CharT>::open(const basic_string<char>& __s, const locale& __loc,
+      const char*) const
+    { return this->do_open(__s, __loc); }
+
+
+  template<typename _CharT>
+    messages<_CharT>::~messages()
+    { _S_destroy_c_locale(_M_c_locale_messages); }
+
+  template<typename _CharT>
+    typename messages<_CharT>::catalog
+    messages<_CharT>::do_open(const basic_string<char>&, const locale&) const
+    { return 0; }
+
+  template<typename _CharT>
+    typename messages<_CharT>::string_type
+    messages<_CharT>::do_get(catalog, int, int,
+        const string_type& __dfault) const
+    { return __dfault; }
+
+  template<typename _CharT>
+    void
+    messages<_CharT>::do_close(catalog) const
+    { }
+
+
+   template<typename _CharT>
+     messages_byname<_CharT>::messages_byname(const char* __s, size_t __refs)
+     : messages<_CharT>(__refs)
+     {
+ if (__builtin_strcmp(__s, "C") != 0
+     && __builtin_strcmp(__s, "POSIX") != 0)
+   {
+     this->_S_destroy_c_locale(this->_M_c_locale_messages);
+     this->_S_create_c_locale(this->_M_c_locale_messages, __s);
+   }
+     }
+
+
+}
+# 2011 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 1 3
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+
+namespace std
+{
+
+
+
+  class codecvt_base
+  {
+  public:
+    enum result
+    {
+      ok,
+      partial,
+      error,
+      noconv
+    };
+  };
+# 67 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+  template<typename _InternT, typename _ExternT, typename _StateT>
+    class __codecvt_abstract_base
+    : public locale::facet, public codecvt_base
+    {
+    public:
+
+      typedef codecvt_base::result result;
+      typedef _InternT intern_type;
+      typedef _ExternT extern_type;
+      typedef _StateT state_type;
+# 115 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+      result
+      out(state_type& __state, const intern_type* __from,
+   const intern_type* __from_end, const intern_type*& __from_next,
+   extern_type* __to, extern_type* __to_end,
+   extern_type*& __to_next) const
+      {
+ return this->do_out(__state, __from, __from_end, __from_next,
+       __to, __to_end, __to_next);
+      }
+# 154 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+      result
+      unshift(state_type& __state, extern_type* __to, extern_type* __to_end,
+       extern_type*& __to_next) const
+      { return this->do_unshift(__state, __to,__to_end,__to_next); }
+# 195 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+      result
+      in(state_type& __state, const extern_type* __from,
+  const extern_type* __from_end, const extern_type*& __from_next,
+  intern_type* __to, intern_type* __to_end,
+  intern_type*& __to_next) const
+      {
+ return this->do_in(__state, __from, __from_end, __from_next,
+      __to, __to_end, __to_next);
+      }
+
+      int
+      encoding() const throw()
+      { return this->do_encoding(); }
+
+      bool
+      always_noconv() const throw()
+      { return this->do_always_noconv(); }
+
+      int
+      length(state_type& __state, const extern_type* __from,
+      const extern_type* __end, size_t __max) const
+      { return this->do_length(__state, __from, __end, __max); }
+
+      int
+      max_length() const throw()
+      { return this->do_max_length(); }
+
+    protected:
+      explicit
+      __codecvt_abstract_base(size_t __refs = 0) : locale::facet(__refs) { }
+
+      virtual
+      ~__codecvt_abstract_base() { }
+# 236 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+      virtual result
+      do_out(state_type& __state, const intern_type* __from,
+      const intern_type* __from_end, const intern_type*& __from_next,
+      extern_type* __to, extern_type* __to_end,
+      extern_type*& __to_next) const = 0;
+
+      virtual result
+      do_unshift(state_type& __state, extern_type* __to,
+   extern_type* __to_end, extern_type*& __to_next) const = 0;
+
+      virtual result
+      do_in(state_type& __state, const extern_type* __from,
+     const extern_type* __from_end, const extern_type*& __from_next,
+     intern_type* __to, intern_type* __to_end,
+     intern_type*& __to_next) const = 0;
+
+      virtual int
+      do_encoding() const throw() = 0;
+
+      virtual bool
+      do_always_noconv() const throw() = 0;
+
+      virtual int
+      do_length(state_type&, const extern_type* __from,
+  const extern_type* __end, size_t __max) const = 0;
+
+      virtual int
+      do_max_length() const throw() = 0;
+    };
+# 273 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+   template<typename _InternT, typename _ExternT, typename _StateT>
+    class codecvt
+    : public __codecvt_abstract_base<_InternT, _ExternT, _StateT>
+    {
+    public:
+
+      typedef codecvt_base::result result;
+      typedef _InternT intern_type;
+      typedef _ExternT extern_type;
+      typedef _StateT state_type;
+
+    protected:
+      __c_locale _M_c_locale_codecvt;
+
+    public:
+      static locale::id id;
+
+      explicit
+      codecvt(size_t __refs = 0)
+      : __codecvt_abstract_base<_InternT, _ExternT, _StateT> (__refs),
+ _M_c_locale_codecvt(0)
+      { }
+
+      explicit
+      codecvt(__c_locale __cloc, size_t __refs = 0);
+
+    protected:
+      virtual
+      ~codecvt() { }
+
+      virtual result
+      do_out(state_type& __state, const intern_type* __from,
+      const intern_type* __from_end, const intern_type*& __from_next,
+      extern_type* __to, extern_type* __to_end,
+      extern_type*& __to_next) const;
+
+      virtual result
+      do_unshift(state_type& __state, extern_type* __to,
+   extern_type* __to_end, extern_type*& __to_next) const;
+
+      virtual result
+      do_in(state_type& __state, const extern_type* __from,
+     const extern_type* __from_end, const extern_type*& __from_next,
+     intern_type* __to, intern_type* __to_end,
+     intern_type*& __to_next) const;
+
+      virtual int
+      do_encoding() const throw();
+
+      virtual bool
+      do_always_noconv() const throw();
+
+      virtual int
+      do_length(state_type&, const extern_type* __from,
+  const extern_type* __end, size_t __max) const;
+
+      virtual int
+      do_max_length() const throw();
+    };
+
+  template<typename _InternT, typename _ExternT, typename _StateT>
+    locale::id codecvt<_InternT, _ExternT, _StateT>::id;
+
+
+  template<>
+    class codecvt<char, char, mbstate_t>
+    : public __codecvt_abstract_base<char, char, mbstate_t>
+    {
+      friend class messages<char>;
+
+    public:
+
+      typedef char intern_type;
+      typedef char extern_type;
+      typedef mbstate_t state_type;
+
+    protected:
+      __c_locale _M_c_locale_codecvt;
+
+    public:
+      static locale::id id;
+
+      explicit
+      codecvt(size_t __refs = 0);
+
+      explicit
+      codecvt(__c_locale __cloc, size_t __refs = 0);
+
+    protected:
+      virtual
+      ~codecvt();
+
+      virtual result
+      do_out(state_type& __state, const intern_type* __from,
+      const intern_type* __from_end, const intern_type*& __from_next,
+      extern_type* __to, extern_type* __to_end,
+      extern_type*& __to_next) const;
+
+      virtual result
+      do_unshift(state_type& __state, extern_type* __to,
+   extern_type* __to_end, extern_type*& __to_next) const;
+
+      virtual result
+      do_in(state_type& __state, const extern_type* __from,
+     const extern_type* __from_end, const extern_type*& __from_next,
+     intern_type* __to, intern_type* __to_end,
+     intern_type*& __to_next) const;
+
+      virtual int
+      do_encoding() const throw();
+
+      virtual bool
+      do_always_noconv() const throw();
+
+      virtual int
+      do_length(state_type&, const extern_type* __from,
+  const extern_type* __end, size_t __max) const;
+
+      virtual int
+      do_max_length() const throw();
+  };
+
+
+
+
+
+
+  template<>
+    class codecvt<wchar_t, char, mbstate_t>
+    : public __codecvt_abstract_base<wchar_t, char, mbstate_t>
+    {
+      friend class messages<wchar_t>;
+
+    public:
+
+      typedef wchar_t intern_type;
+      typedef char extern_type;
+      typedef mbstate_t state_type;
+
+    protected:
+      __c_locale _M_c_locale_codecvt;
+
+    public:
+      static locale::id id;
+
+      explicit
+      codecvt(size_t __refs = 0);
+
+      explicit
+      codecvt(__c_locale __cloc, size_t __refs = 0);
+
+    protected:
+      virtual
+      ~codecvt();
+
+      virtual result
+      do_out(state_type& __state, const intern_type* __from,
+      const intern_type* __from_end, const intern_type*& __from_next,
+      extern_type* __to, extern_type* __to_end,
+      extern_type*& __to_next) const;
+
+      virtual result
+      do_unshift(state_type& __state,
+   extern_type* __to, extern_type* __to_end,
+   extern_type*& __to_next) const;
+
+      virtual result
+      do_in(state_type& __state,
+      const extern_type* __from, const extern_type* __from_end,
+      const extern_type*& __from_next,
+      intern_type* __to, intern_type* __to_end,
+      intern_type*& __to_next) const;
+
+      virtual
+      int do_encoding() const throw();
+
+      virtual
+      bool do_always_noconv() const throw();
+
+      virtual
+      int do_length(state_type&, const extern_type* __from,
+      const extern_type* __end, size_t __max) const;
+
+      virtual int
+      do_max_length() const throw();
+    };
+
+
+
+
+
+
+
+  template<>
+    class codecvt<char16_t, char, mbstate_t>
+    : public __codecvt_abstract_base<char16_t, char, mbstate_t>
+    {
+    public:
+
+      typedef char16_t intern_type;
+      typedef char extern_type;
+      typedef mbstate_t state_type;
+
+    public:
+      static locale::id id;
+
+      explicit
+      codecvt(size_t __refs = 0)
+      : __codecvt_abstract_base<char16_t, char, mbstate_t>(__refs) { }
+
+    protected:
+      virtual
+      ~codecvt();
+
+      virtual result
+      do_out(state_type& __state, const intern_type* __from,
+      const intern_type* __from_end, const intern_type*& __from_next,
+      extern_type* __to, extern_type* __to_end,
+      extern_type*& __to_next) const;
+
+      virtual result
+      do_unshift(state_type& __state,
+   extern_type* __to, extern_type* __to_end,
+   extern_type*& __to_next) const;
+
+      virtual result
+      do_in(state_type& __state,
+      const extern_type* __from, const extern_type* __from_end,
+      const extern_type*& __from_next,
+      intern_type* __to, intern_type* __to_end,
+      intern_type*& __to_next) const;
+
+      virtual
+      int do_encoding() const throw();
+
+      virtual
+      bool do_always_noconv() const throw();
+
+      virtual
+      int do_length(state_type&, const extern_type* __from,
+      const extern_type* __end, size_t __max) const;
+
+      virtual int
+      do_max_length() const throw();
+    };
+
+
+
+
+
+  template<>
+    class codecvt<char32_t, char, mbstate_t>
+    : public __codecvt_abstract_base<char32_t, char, mbstate_t>
+    {
+    public:
+
+      typedef char32_t intern_type;
+      typedef char extern_type;
+      typedef mbstate_t state_type;
+
+    public:
+      static locale::id id;
+
+      explicit
+      codecvt(size_t __refs = 0)
+      : __codecvt_abstract_base<char32_t, char, mbstate_t>(__refs) { }
+
+    protected:
+      virtual
+      ~codecvt();
+
+      virtual result
+      do_out(state_type& __state, const intern_type* __from,
+      const intern_type* __from_end, const intern_type*& __from_next,
+      extern_type* __to, extern_type* __to_end,
+      extern_type*& __to_next) const;
+
+      virtual result
+      do_unshift(state_type& __state,
+   extern_type* __to, extern_type* __to_end,
+   extern_type*& __to_next) const;
+
+      virtual result
+      do_in(state_type& __state,
+      const extern_type* __from, const extern_type* __from_end,
+      const extern_type*& __from_next,
+      intern_type* __to, intern_type* __to_end,
+      intern_type*& __to_next) const;
+
+      virtual
+      int do_encoding() const throw();
+
+      virtual
+      bool do_always_noconv() const throw();
+
+      virtual
+      int do_length(state_type&, const extern_type* __from,
+      const extern_type* __end, size_t __max) const;
+
+      virtual int
+      do_max_length() const throw();
+    };
+# 695 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+  template<typename _InternT, typename _ExternT, typename _StateT>
+    class codecvt_byname : public codecvt<_InternT, _ExternT, _StateT>
+    {
+    public:
+      explicit
+      codecvt_byname(const char* __s, size_t __refs = 0)
+      : codecvt<_InternT, _ExternT, _StateT>(__refs)
+      {
+ if (__builtin_strcmp(__s, "C") != 0
+     && __builtin_strcmp(__s, "POSIX") != 0)
+   {
+     this->_S_destroy_c_locale(this->_M_c_locale_codecvt);
+     this->_S_create_c_locale(this->_M_c_locale_codecvt, __s);
+   }
+      }
+
+
+      explicit
+      codecvt_byname(const string& __s, size_t __refs = 0)
+      : codecvt_byname(__s.c_str(), __refs) { }
+
+
+    protected:
+      virtual
+      ~codecvt_byname() { }
+    };
+
+
+  template<>
+    class codecvt_byname<char16_t, char, mbstate_t>
+    : public codecvt<char16_t, char, mbstate_t>
+    {
+    public:
+      explicit
+      codecvt_byname(const char*, size_t __refs = 0)
+      : codecvt<char16_t, char, mbstate_t>(__refs) { }
+
+      explicit
+      codecvt_byname(const string& __s, size_t __refs = 0)
+      : codecvt_byname(__s.c_str(), __refs) { }
+
+    protected:
+      virtual
+      ~codecvt_byname() { }
+    };
+
+  template<>
+    class codecvt_byname<char32_t, char, mbstate_t>
+    : public codecvt<char32_t, char, mbstate_t>
+    {
+    public:
+      explicit
+      codecvt_byname(const char*, size_t __refs = 0)
+      : codecvt<char32_t, char, mbstate_t>(__refs) { }
+
+      explicit
+      codecvt_byname(const string& __s, size_t __refs = 0)
+      : codecvt_byname(__s.c_str(), __refs) { }
+
+    protected:
+      virtual
+      ~codecvt_byname() { }
+    };
+# 802 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+  extern template class codecvt_byname<char, char, mbstate_t>;
+
+  extern template
+    const codecvt<char, char, mbstate_t>&
+    use_facet<codecvt<char, char, mbstate_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<codecvt<char, char, mbstate_t> >(const locale&);
+
+
+  extern template class codecvt_byname<wchar_t, char, mbstate_t>;
+
+  extern template
+    const codecvt<wchar_t, char, mbstate_t>&
+    use_facet<codecvt<wchar_t, char, mbstate_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<codecvt<wchar_t, char, mbstate_t> >(const locale&);
+
+
+
+  extern template class codecvt_byname<char16_t, char, mbstate_t>;
+  extern template class codecvt_byname<char32_t, char, mbstate_t>;
+# 838 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/codecvt.h" 3
+}
+# 2014 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 1 3
+# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
+
+namespace std
+{
+
+
+  template<typename _CharT, bool _Intl>
+    struct __use_cache<__moneypunct_cache<_CharT, _Intl> >
+    {
+      const __moneypunct_cache<_CharT, _Intl>*
+      operator() (const locale& __loc) const
+      {
+ const size_t __i = moneypunct<_CharT, _Intl>::id._M_id();
+ const locale::facet** __caches = __loc._M_impl->_M_caches;
+ if (!__caches[__i])
+   {
+     __moneypunct_cache<_CharT, _Intl>* __tmp = 0;
+     try
+       {
+  __tmp = new __moneypunct_cache<_CharT, _Intl>;
+  __tmp->_M_cache(__loc);
+       }
+     catch(...)
+       {
+  delete __tmp;
+  throw;
+       }
+     __loc._M_impl->_M_install_cache(__tmp, __i);
+   }
+ return static_cast<
+   const __moneypunct_cache<_CharT, _Intl>*>(__caches[__i]);
+      }
+    };
+
+  template<typename _CharT, bool _Intl>
+    void
+    __moneypunct_cache<_CharT, _Intl>::_M_cache(const locale& __loc)
+    {
+      const moneypunct<_CharT, _Intl>& __mp =
+ use_facet<moneypunct<_CharT, _Intl> >(__loc);
+
+      _M_decimal_point = __mp.decimal_point();
+      _M_thousands_sep = __mp.thousands_sep();
+      _M_frac_digits = __mp.frac_digits();
+
+      char* __grouping = 0;
+      _CharT* __curr_symbol = 0;
+      _CharT* __positive_sign = 0;
+      _CharT* __negative_sign = 0;
+      try
+ {
+   const string& __g = __mp.grouping();
+   _M_grouping_size = __g.size();
+   __grouping = new char[_M_grouping_size];
+   __g.copy(__grouping, _M_grouping_size);
+   _M_use_grouping = (_M_grouping_size
+        && static_cast<signed char>(__grouping[0]) > 0
+        && (__grouping[0]
+     != __gnu_cxx::__numeric_traits<char>::__max));
+
+   const basic_string<_CharT>& __cs = __mp.curr_symbol();
+   _M_curr_symbol_size = __cs.size();
+   __curr_symbol = new _CharT[_M_curr_symbol_size];
+   __cs.copy(__curr_symbol, _M_curr_symbol_size);
+
+   const basic_string<_CharT>& __ps = __mp.positive_sign();
+   _M_positive_sign_size = __ps.size();
+   __positive_sign = new _CharT[_M_positive_sign_size];
+   __ps.copy(__positive_sign, _M_positive_sign_size);
+
+   const basic_string<_CharT>& __ns = __mp.negative_sign();
+   _M_negative_sign_size = __ns.size();
+   __negative_sign = new _CharT[_M_negative_sign_size];
+   __ns.copy(__negative_sign, _M_negative_sign_size);
+
+   _M_pos_format = __mp.pos_format();
+   _M_neg_format = __mp.neg_format();
+
+   const ctype<_CharT>& __ct = use_facet<ctype<_CharT> >(__loc);
+   __ct.widen(money_base::_S_atoms,
+       money_base::_S_atoms + money_base::_S_end, _M_atoms);
+
+   _M_grouping = __grouping;
+   _M_curr_symbol = __curr_symbol;
+   _M_positive_sign = __positive_sign;
+   _M_negative_sign = __negative_sign;
+   _M_allocated = true;
+ }
+      catch(...)
+ {
+   delete [] __grouping;
+   delete [] __curr_symbol;
+   delete [] __positive_sign;
+   delete [] __negative_sign;
+   throw;
+ }
+    }
+
+namespace __cxx11 {
+
+  template<typename _CharT, typename _InIter>
+    template<bool _Intl>
+      _InIter
+      money_get<_CharT, _InIter>::
+      _M_extract(iter_type __beg, iter_type __end, ios_base& __io,
+   ios_base::iostate& __err, string& __units) const
+      {
+ typedef char_traits<_CharT> __traits_type;
+ typedef typename string_type::size_type size_type;
+ typedef money_base::part part;
+ typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
+
+ const locale& __loc = __io._M_getloc();
+ const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+ __use_cache<__cache_type> __uc;
+ const __cache_type* __lc = __uc(__loc);
+ const char_type* __lit = __lc->_M_atoms;
+
+
+ bool __negative = false;
+
+ size_type __sign_size = 0;
+
+ const bool __mandatory_sign = (__lc->_M_positive_sign_size
+           && __lc->_M_negative_sign_size);
+
+ string __grouping_tmp;
+ if (__lc->_M_use_grouping)
+   __grouping_tmp.reserve(32);
+
+ int __last_pos = 0;
+
+ int __n = 0;
+
+ bool __testvalid = true;
+
+ bool __testdecfound = false;
+
+
+ string __res;
+ __res.reserve(32);
+
+ const char_type* __lit_zero = __lit + money_base::_S_zero;
+ const money_base::pattern __p = __lc->_M_neg_format;
+ for (int __i = 0; __i < 4 && __testvalid; ++__i)
+   {
+     const part __which = static_cast<part>(__p.field[__i]);
+     switch (__which)
+       {
+       case money_base::symbol:
+
+
+
+
+  if (__io.flags() & ios_base::showbase || __sign_size > 1
+      || __i == 0
+      || (__i == 1 && (__mandatory_sign
+         || (static_cast<part>(__p.field[0])
+      == money_base::sign)
+         || (static_cast<part>(__p.field[2])
+      == money_base::space)))
+      || (__i == 2 && ((static_cast<part>(__p.field[3])
+          == money_base::value)
+         || (__mandatory_sign
+      && (static_cast<part>(__p.field[3])
+          == money_base::sign)))))
+    {
+      const size_type __len = __lc->_M_curr_symbol_size;
+      size_type __j = 0;
+      for (; __beg != __end && __j < __len
+      && *__beg == __lc->_M_curr_symbol[__j];
+    ++__beg, (void)++__j);
+      if (__j != __len
+   && (__j || __io.flags() & ios_base::showbase))
+        __testvalid = false;
+    }
+  break;
+       case money_base::sign:
+
+  if (__lc->_M_positive_sign_size && __beg != __end
+      && *__beg == __lc->_M_positive_sign[0])
+    {
+      __sign_size = __lc->_M_positive_sign_size;
+      ++__beg;
+    }
+  else if (__lc->_M_negative_sign_size && __beg != __end
+    && *__beg == __lc->_M_negative_sign[0])
+    {
+      __negative = true;
+      __sign_size = __lc->_M_negative_sign_size;
+      ++__beg;
+    }
+  else if (__lc->_M_positive_sign_size
+    && !__lc->_M_negative_sign_size)
+
+
+    __negative = true;
+  else if (__mandatory_sign)
+    __testvalid = false;
+  break;
+       case money_base::value:
+
+
+  for (; __beg != __end; ++__beg)
+    {
+      const char_type __c = *__beg;
+      const char_type* __q = __traits_type::find(__lit_zero,
+              10, __c);
+      if (__q != 0)
+        {
+   __res += money_base::_S_atoms[__q - __lit];
+   ++__n;
+        }
+      else if (__c == __lc->_M_decimal_point
+        && !__testdecfound)
+        {
+   if (__lc->_M_frac_digits <= 0)
+     break;
+
+   __last_pos = __n;
+   __n = 0;
+   __testdecfound = true;
+        }
+      else if (__lc->_M_use_grouping
+        && __c == __lc->_M_thousands_sep
+        && !__testdecfound)
+        {
+   if (__n)
+     {
+
+       __grouping_tmp += static_cast<char>(__n);
+       __n = 0;
+     }
+   else
+     {
+       __testvalid = false;
+       break;
+     }
+        }
+      else
+        break;
+    }
+  if (__res.empty())
+    __testvalid = false;
+  break;
+       case money_base::space:
+
+  if (__beg != __end && __ctype.is(ctype_base::space, *__beg))
+    ++__beg;
+  else
+    __testvalid = false;
+
+       case money_base::none:
+
+  if (__i != 3)
+    for (; __beg != __end
+    && __ctype.is(ctype_base::space, *__beg); ++__beg);
+  break;
+       }
+   }
+
+
+ if (__sign_size > 1 && __testvalid)
+   {
+     const char_type* __sign = __negative ? __lc->_M_negative_sign
+                                          : __lc->_M_positive_sign;
+     size_type __i = 1;
+     for (; __beg != __end && __i < __sign_size
+     && *__beg == __sign[__i]; ++__beg, (void)++__i);
+
+     if (__i != __sign_size)
+       __testvalid = false;
+   }
+
+ if (__testvalid)
+   {
+
+     if (__res.size() > 1)
+       {
+  const size_type __first = __res.find_first_not_of('0');
+  const bool __only_zeros = __first == string::npos;
+  if (__first)
+    __res.erase(0, __only_zeros ? __res.size() - 1 : __first);
+       }
+
+
+     if (__negative && __res[0] != '0')
+       __res.insert(__res.begin(), '-');
+
+
+     if (__grouping_tmp.size())
+       {
+
+  __grouping_tmp += static_cast<char>(__testdecfound ? __last_pos
+                         : __n);
+  if (!std::__verify_grouping(__lc->_M_grouping,
+         __lc->_M_grouping_size,
+         __grouping_tmp))
+    __err |= ios_base::failbit;
+       }
+
+
+     if (__testdecfound && __n != __lc->_M_frac_digits)
+       __testvalid = false;
+   }
+
+
+ if (!__testvalid)
+   __err |= ios_base::failbit;
+ else
+   __units.swap(__res);
+
+
+ if (__beg == __end)
+   __err |= ios_base::eofbit;
+ return __beg;
+      }
+# 368 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
+  template<typename _CharT, typename _InIter>
+    _InIter
+    money_get<_CharT, _InIter>::
+    do_get(iter_type __beg, iter_type __end, bool __intl, ios_base& __io,
+    ios_base::iostate& __err, long double& __units) const
+    {
+      string __str;
+      __beg = __intl ? _M_extract<true>(__beg, __end, __io, __err, __str)
+              : _M_extract<false>(__beg, __end, __io, __err, __str);
+      std::__convert_to_v(__str.c_str(), __units, __err, _S_get_c_locale());
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    money_get<_CharT, _InIter>::
+    do_get(iter_type __beg, iter_type __end, bool __intl, ios_base& __io,
+    ios_base::iostate& __err, string_type& __digits) const
+    {
+      typedef typename string::size_type size_type;
+
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+      string __str;
+      __beg = __intl ? _M_extract<true>(__beg, __end, __io, __err, __str)
+              : _M_extract<false>(__beg, __end, __io, __err, __str);
+      const size_type __len = __str.size();
+      if (__len)
+ {
+   __digits.resize(__len);
+   __ctype.widen(__str.data(), __str.data() + __len, &__digits[0]);
+ }
+      return __beg;
+    }
+
+  template<typename _CharT, typename _OutIter>
+    template<bool _Intl>
+      _OutIter
+      money_put<_CharT, _OutIter>::
+      _M_insert(iter_type __s, ios_base& __io, char_type __fill,
+  const string_type& __digits) const
+      {
+ typedef typename string_type::size_type size_type;
+ typedef money_base::part part;
+ typedef __moneypunct_cache<_CharT, _Intl> __cache_type;
+
+ const locale& __loc = __io._M_getloc();
+ const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+ __use_cache<__cache_type> __uc;
+ const __cache_type* __lc = __uc(__loc);
+ const char_type* __lit = __lc->_M_atoms;
+
+
+
+ const char_type* __beg = __digits.data();
+
+ money_base::pattern __p;
+ const char_type* __sign;
+ size_type __sign_size;
+ if (!(*__beg == __lit[money_base::_S_minus]))
+   {
+     __p = __lc->_M_pos_format;
+     __sign = __lc->_M_positive_sign;
+     __sign_size = __lc->_M_positive_sign_size;
+   }
+ else
+   {
+     __p = __lc->_M_neg_format;
+     __sign = __lc->_M_negative_sign;
+     __sign_size = __lc->_M_negative_sign_size;
+     if (__digits.size())
+       ++__beg;
+   }
+
+
+ size_type __len = __ctype.scan_not(ctype_base::digit, __beg,
+        __beg + __digits.size()) - __beg;
+ if (__len)
+   {
+
+
+
+     string_type __value;
+     __value.reserve(2 * __len);
+
+
+
+     long __paddec = __len - __lc->_M_frac_digits;
+     if (__paddec > 0)
+         {
+  if (__lc->_M_frac_digits < 0)
+    __paddec = __len;
+    if (__lc->_M_grouping_size)
+      {
+      __value.assign(2 * __paddec, char_type());
+       _CharT* __vend =
+        std::__add_grouping(&__value[0], __lc->_M_thousands_sep,
+       __lc->_M_grouping,
+       __lc->_M_grouping_size,
+       __beg, __beg + __paddec);
+      __value.erase(__vend - &__value[0]);
+      }
+    else
+    __value.assign(__beg, __paddec);
+       }
+
+
+     if (__lc->_M_frac_digits > 0)
+       {
+  __value += __lc->_M_decimal_point;
+  if (__paddec >= 0)
+    __value.append(__beg + __paddec, __lc->_M_frac_digits);
+  else
+    {
+
+      __value.append(-__paddec, __lit[money_base::_S_zero]);
+      __value.append(__beg, __len);
+    }
+         }
+
+
+     const ios_base::fmtflags __f = __io.flags()
+                                    & ios_base::adjustfield;
+     __len = __value.size() + __sign_size;
+     __len += ((__io.flags() & ios_base::showbase)
+        ? __lc->_M_curr_symbol_size : 0);
+
+     string_type __res;
+     __res.reserve(2 * __len);
+
+     const size_type __width = static_cast<size_type>(__io.width());
+     const bool __testipad = (__f == ios_base::internal
+         && __len < __width);
+
+     for (int __i = 0; __i < 4; ++__i)
+       {
+  const part __which = static_cast<part>(__p.field[__i]);
+  switch (__which)
+    {
+    case money_base::symbol:
+      if (__io.flags() & ios_base::showbase)
+        __res.append(__lc->_M_curr_symbol,
+       __lc->_M_curr_symbol_size);
+      break;
+    case money_base::sign:
+
+
+
+      if (__sign_size)
+        __res += __sign[0];
+      break;
+    case money_base::value:
+      __res += __value;
+      break;
+    case money_base::space:
+
+
+
+      if (__testipad)
+        __res.append(__width - __len, __fill);
+      else
+        __res += __fill;
+      break;
+    case money_base::none:
+      if (__testipad)
+        __res.append(__width - __len, __fill);
+      break;
+    }
+       }
+
+
+     if (__sign_size > 1)
+       __res.append(__sign + 1, __sign_size - 1);
+
+
+     __len = __res.size();
+     if (__width > __len)
+       {
+  if (__f == ios_base::left)
+
+    __res.append(__width - __len, __fill);
+  else
+
+    __res.insert(0, __width - __len, __fill);
+  __len = __width;
+       }
+
+
+     __s = std::__write(__s, __res.data(), __len);
+   }
+ __io.width(0);
+ return __s;
+      }
+# 574 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    money_put<_CharT, _OutIter>::
+    do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+    long double __units) const
+    {
+      const locale __loc = __io.getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+
+      int __cs_size = 64;
+      char* __cs = static_cast<char*>(__builtin_alloca(__cs_size));
+
+
+      int __len = std::__convert_from_v(_S_get_c_locale(), __cs, __cs_size,
+     "%.*Lf", 0, __units);
+
+      if (__len >= __cs_size)
+ {
+   __cs_size = __len + 1;
+   __cs = static_cast<char*>(__builtin_alloca(__cs_size));
+   __len = std::__convert_from_v(_S_get_c_locale(), __cs, __cs_size,
+     "%.*Lf", 0, __units);
+ }
+# 606 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.tcc" 3
+      string_type __digits(__len, char_type());
+      __ctype.widen(__cs, __cs + __len, &__digits[0]);
+      return __intl ? _M_insert<true>(__s, __io, __fill, __digits)
+             : _M_insert<false>(__s, __io, __fill, __digits);
+    }
+
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    money_put<_CharT, _OutIter>::
+    do_put(iter_type __s, bool __intl, ios_base& __io, char_type __fill,
+    const string_type& __digits) const
+    { return __intl ? _M_insert<true>(__s, __io, __fill, __digits)
+             : _M_insert<false>(__s, __io, __fill, __digits); }
+
+}
+
+
+
+
+  template<typename _CharT, typename _InIter>
+    time_base::dateorder
+    time_get<_CharT, _InIter>::do_date_order() const
+    { return time_base::no_order; }
+
+
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_via_format(iter_type __beg, iter_type __end, ios_base& __io,
+     ios_base::iostate& __err, tm* __tm,
+     const _CharT* __format) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+      const size_t __len = char_traits<_CharT>::length(__format);
+
+      ios_base::iostate __tmperr = ios_base::goodbit;
+      size_t __i = 0;
+      for (; __beg != __end && __i < __len && !__tmperr; ++__i)
+ {
+   if (__ctype.narrow(__format[__i], 0) == '%')
+     {
+
+       char __c = __ctype.narrow(__format[++__i], 0);
+       int __mem = 0;
+       if (__c == 'E' || __c == 'O')
+  __c = __ctype.narrow(__format[++__i], 0);
+       switch (__c)
+  {
+    const char* __cs;
+    _CharT __wcs[10];
+  case 'a':
+
+    const char_type* __days1[7];
+    __tp._M_days_abbreviated(__days1);
+    __beg = _M_extract_name(__beg, __end, __mem, __days1,
+       7, __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_wday = __mem;
+    break;
+  case 'A':
+
+    const char_type* __days2[7];
+    __tp._M_days(__days2);
+    __beg = _M_extract_name(__beg, __end, __mem, __days2,
+       7, __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_wday = __mem;
+    break;
+  case 'h':
+  case 'b':
+
+    const char_type* __months1[12];
+    __tp._M_months_abbreviated(__months1);
+    __beg = _M_extract_name(__beg, __end, __mem,
+       __months1, 12, __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_mon = __mem;
+    break;
+  case 'B':
+
+    const char_type* __months2[12];
+    __tp._M_months(__months2);
+    __beg = _M_extract_name(__beg, __end, __mem,
+       __months2, 12, __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_mon = __mem;
+    break;
+  case 'c':
+
+    const char_type* __dt[2];
+    __tp._M_date_time_formats(__dt);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __dt[0]);
+    break;
+  case 'd':
+
+    __beg = _M_extract_num(__beg, __end, __mem, 1, 31, 2,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_mday = __mem;
+    break;
+  case 'e':
+
+
+    if (__ctype.is(ctype_base::space, *__beg))
+      __beg = _M_extract_num(++__beg, __end, __mem, 1, 9,
+        1, __io, __tmperr);
+    else
+      __beg = _M_extract_num(__beg, __end, __mem, 10, 31,
+        2, __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_mday = __mem;
+    break;
+  case 'D':
+
+    __cs = "%m/%d/%y";
+    __ctype.widen(__cs, __cs + 9, __wcs);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __wcs);
+    break;
+  case 'H':
+
+    __beg = _M_extract_num(__beg, __end, __mem, 0, 23, 2,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_hour = __mem;
+    break;
+  case 'I':
+
+    __beg = _M_extract_num(__beg, __end, __mem, 1, 12, 2,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_hour = __mem;
+    break;
+  case 'm':
+
+    __beg = _M_extract_num(__beg, __end, __mem, 1, 12, 2,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_mon = __mem - 1;
+    break;
+  case 'M':
+
+    __beg = _M_extract_num(__beg, __end, __mem, 0, 59, 2,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_min = __mem;
+    break;
+  case 'n':
+    if (__ctype.narrow(*__beg, 0) == '\n')
+      ++__beg;
+    else
+      __tmperr |= ios_base::failbit;
+    break;
+  case 'R':
+
+    __cs = "%H:%M";
+    __ctype.widen(__cs, __cs + 6, __wcs);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __wcs);
+    break;
+  case 'S':
+
+
+
+    __beg = _M_extract_num(__beg, __end, __mem, 0, 60, 2,
+
+
+
+      __io, __tmperr);
+    if (!__tmperr)
+    __tm->tm_sec = __mem;
+    break;
+  case 't':
+    if (__ctype.narrow(*__beg, 0) == '\t')
+      ++__beg;
+    else
+      __tmperr |= ios_base::failbit;
+    break;
+  case 'T':
+
+    __cs = "%H:%M:%S";
+    __ctype.widen(__cs, __cs + 9, __wcs);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __wcs);
+    break;
+  case 'x':
+
+    const char_type* __dates[2];
+    __tp._M_date_formats(__dates);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __dates[0]);
+    break;
+  case 'X':
+
+    const char_type* __times[2];
+    __tp._M_time_formats(__times);
+    __beg = _M_extract_via_format(__beg, __end, __io, __tmperr,
+      __tm, __times[0]);
+    break;
+  case 'y':
+  case 'C':
+
+  case 'Y':
+
+
+
+
+    __beg = _M_extract_num(__beg, __end, __mem, 0, 9999, 4,
+      __io, __tmperr);
+    if (!__tmperr)
+      __tm->tm_year = __mem < 0 ? __mem + 100 : __mem - 1900;
+    break;
+  case 'Z':
+
+    if (__ctype.is(ctype_base::upper, *__beg))
+      {
+        int __tmp;
+        __beg = _M_extract_name(__beg, __end, __tmp,
+           __timepunct_cache<_CharT>::_S_timezones,
+           14, __io, __tmperr);
+
+
+        if (__beg != __end && !__tmperr && __tmp == 0
+     && (*__beg == __ctype.widen('-')
+         || *__beg == __ctype.widen('+')))
+   {
+     __beg = _M_extract_num(__beg, __end, __tmp, 0, 23, 2,
+       __io, __tmperr);
+     __beg = _M_extract_num(__beg, __end, __tmp, 0, 59, 2,
+       __io, __tmperr);
+   }
+      }
+    else
+      __tmperr |= ios_base::failbit;
+    break;
+  default:
+
+    __tmperr |= ios_base::failbit;
+  }
+     }
+   else
+     {
+
+       if (__format[__i] == *__beg)
+  ++__beg;
+       else
+  __tmperr |= ios_base::failbit;
+     }
+ }
+
+      if (__tmperr || __i != __len)
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_num(iter_type __beg, iter_type __end, int& __member,
+     int __min, int __max, size_t __len,
+     ios_base& __io, ios_base::iostate& __err) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+
+      int __mult = __len == 2 ? 10 : (__len == 4 ? 1000 : 1);
+
+      ++__min;
+      size_t __i = 0;
+      int __value = 0;
+      for (; __beg != __end && __i < __len; ++__beg, (void)++__i)
+ {
+   const char __c = __ctype.narrow(*__beg, '*');
+   if (__c >= '0' && __c <= '9')
+     {
+       __value = __value * 10 + (__c - '0');
+       const int __valuec = __value * __mult;
+       if (__valuec > __max || __valuec + __mult < __min)
+  break;
+       __mult /= 10;
+     }
+   else
+     break;
+ }
+      if (__i == __len)
+ __member = __value;
+
+      else if (__len == 4 && __i == 2)
+ __member = __value - 100;
+      else
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_name(iter_type __beg, iter_type __end, int& __member,
+      const _CharT** __names, size_t __indexlen,
+      ios_base& __io, ios_base::iostate& __err) const
+    {
+      typedef char_traits<_CharT> __traits_type;
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+      int* __matches = static_cast<int*>(__builtin_alloca(sizeof(int)
+         * __indexlen));
+      size_t __nmatches = 0;
+      size_t __pos = 0;
+      bool __testvalid = true;
+      const char_type* __name;
+
+
+
+
+
+      if (__beg != __end)
+ {
+   const char_type __c = *__beg;
+   for (size_t __i1 = 0; __i1 < __indexlen; ++__i1)
+     if (__c == __names[__i1][0]
+  || __c == __ctype.toupper(__names[__i1][0]))
+       __matches[__nmatches++] = __i1;
+ }
+
+      while (__nmatches > 1)
+ {
+
+   size_t __minlen = __traits_type::length(__names[__matches[0]]);
+   for (size_t __i2 = 1; __i2 < __nmatches; ++__i2)
+     __minlen = std::min(__minlen,
+         __traits_type::length(__names[__matches[__i2]]));
+   ++__beg;
+   ++__pos;
+   if (__pos < __minlen && __beg != __end)
+     for (size_t __i3 = 0; __i3 < __nmatches;)
+       {
+  __name = __names[__matches[__i3]];
+  if (!(__name[__pos] == *__beg))
+    __matches[__i3] = __matches[--__nmatches];
+  else
+    ++__i3;
+       }
+   else
+     break;
+ }
+
+      if (__nmatches == 1)
+ {
+
+   ++__beg;
+   ++__pos;
+   __name = __names[__matches[0]];
+   const size_t __len = __traits_type::length(__name);
+   while (__pos < __len && __beg != __end && __name[__pos] == *__beg)
+     ++__beg, (void)++__pos;
+
+   if (__len == __pos)
+     __member = __matches[0];
+   else
+     __testvalid = false;
+ }
+      else
+ __testvalid = false;
+      if (!__testvalid)
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    _M_extract_wday_or_month(iter_type __beg, iter_type __end, int& __member,
+        const _CharT** __names, size_t __indexlen,
+        ios_base& __io, ios_base::iostate& __err) const
+    {
+      typedef char_traits<_CharT> __traits_type;
+      const locale& __loc = __io._M_getloc();
+      const ctype<_CharT>& __ctype = use_facet<ctype<_CharT> >(__loc);
+
+      int* __matches = static_cast<int*>(__builtin_alloca(2 * sizeof(int)
+         * __indexlen));
+      size_t __nmatches = 0;
+      size_t* __matches_lengths = 0;
+      size_t __pos = 0;
+
+      if (__beg != __end)
+ {
+   const char_type __c = *__beg;
+   for (size_t __i = 0; __i < 2 * __indexlen; ++__i)
+     if (__c == __names[__i][0]
+  || __c == __ctype.toupper(__names[__i][0]))
+       __matches[__nmatches++] = __i;
+ }
+
+      if (__nmatches)
+ {
+   ++__beg;
+   ++__pos;
+
+   __matches_lengths
+     = static_cast<size_t*>(__builtin_alloca(sizeof(size_t)
+          * __nmatches));
+   for (size_t __i = 0; __i < __nmatches; ++__i)
+     __matches_lengths[__i]
+       = __traits_type::length(__names[__matches[__i]]);
+ }
+
+      for (; __beg != __end; ++__beg, (void)++__pos)
+ {
+   size_t __nskipped = 0;
+   const char_type __c = *__beg;
+   for (size_t __i = 0; __i < __nmatches;)
+     {
+       const char_type* __name = __names[__matches[__i]];
+       if (__pos >= __matches_lengths[__i])
+  ++__nskipped, ++__i;
+       else if (!(__name[__pos] == __c))
+  {
+    --__nmatches;
+    __matches[__i] = __matches[__nmatches];
+    __matches_lengths[__i] = __matches_lengths[__nmatches];
+  }
+       else
+  ++__i;
+     }
+   if (__nskipped == __nmatches)
+     break;
+ }
+
+      if ((__nmatches == 1 && __matches_lengths[0] == __pos)
+   || (__nmatches == 2 && (__matches_lengths[0] == __pos
+      || __matches_lengths[1] == __pos)))
+ __member = (__matches[0] >= __indexlen
+      ? __matches[0] - __indexlen : __matches[0]);
+      else
+ __err |= ios_base::failbit;
+
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_time(iter_type __beg, iter_type __end, ios_base& __io,
+  ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const char_type* __times[2];
+      __tp._M_time_formats(__times);
+      __beg = _M_extract_via_format(__beg, __end, __io, __err,
+        __tm, __times[0]);
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_date(iter_type __beg, iter_type __end, ios_base& __io,
+  ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const char_type* __dates[2];
+      __tp._M_date_formats(__dates);
+      __beg = _M_extract_via_format(__beg, __end, __io, __err,
+        __tm, __dates[0]);
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_weekday(iter_type __beg, iter_type __end, ios_base& __io,
+     ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const char_type* __days[14];
+      __tp._M_days_abbreviated(__days);
+      __tp._M_days(__days + 7);
+      int __tmpwday;
+      ios_base::iostate __tmperr = ios_base::goodbit;
+
+      __beg = _M_extract_wday_or_month(__beg, __end, __tmpwday, __days, 7,
+           __io, __tmperr);
+      if (!__tmperr)
+ __tm->tm_wday = __tmpwday;
+      else
+ __err |= ios_base::failbit;
+
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+     }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_monthname(iter_type __beg, iter_type __end,
+                     ios_base& __io, ios_base::iostate& __err, tm* __tm) const
+    {
+      const locale& __loc = __io._M_getloc();
+      const __timepunct<_CharT>& __tp = use_facet<__timepunct<_CharT> >(__loc);
+      const char_type* __months[24];
+      __tp._M_months_abbreviated(__months);
+      __tp._M_months(__months + 12);
+      int __tmpmon;
+      ios_base::iostate __tmperr = ios_base::goodbit;
+
+      __beg = _M_extract_wday_or_month(__beg, __end, __tmpmon, __months, 12,
+           __io, __tmperr);
+      if (!__tmperr)
+ __tm->tm_mon = __tmpmon;
+      else
+ __err |= ios_base::failbit;
+
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+  template<typename _CharT, typename _InIter>
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get_year(iter_type __beg, iter_type __end, ios_base& __io,
+  ios_base::iostate& __err, tm* __tm) const
+    {
+      int __tmpyear;
+      ios_base::iostate __tmperr = ios_base::goodbit;
+
+      __beg = _M_extract_num(__beg, __end, __tmpyear, 0, 9999, 4,
+        __io, __tmperr);
+      if (!__tmperr)
+ __tm->tm_year = __tmpyear < 0 ? __tmpyear + 100 : __tmpyear - 1900;
+      else
+ __err |= ios_base::failbit;
+
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+
+  template<typename _CharT, typename _InIter>
+    inline
+    _InIter
+    time_get<_CharT, _InIter>::
+    get(iter_type __s, iter_type __end, ios_base& __io,
+        ios_base::iostate& __err, tm* __tm, const char_type* __fmt,
+        const char_type* __fmtend) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      __err = ios_base::goodbit;
+      while (__fmt != __fmtend &&
+             __err == ios_base::goodbit)
+        {
+          if (__s == __end)
+            {
+              __err = ios_base::eofbit | ios_base::failbit;
+              break;
+            }
+          else if (__ctype.narrow(*__fmt, 0) == '%')
+            {
+              char __format;
+              char __mod = 0;
+              if (++__fmt == __fmtend)
+                {
+                  __err = ios_base::failbit;
+                  break;
+                }
+              const char __c = __ctype.narrow(*__fmt, 0);
+              if (__c != 'E' && __c != 'O')
+                __format = __c;
+              else if (++__fmt != __fmtend)
+                {
+                  __mod = __c;
+                  __format = __ctype.narrow(*__fmt, 0);
+                }
+              else
+                {
+                  __err = ios_base::failbit;
+                  break;
+                }
+              __s = this->do_get(__s, __end, __io, __err, __tm, __format,
+     __mod);
+              ++__fmt;
+            }
+          else if (__ctype.is(ctype_base::space, *__fmt))
+            {
+              ++__fmt;
+              while (__fmt != __fmtend &&
+                     __ctype.is(ctype_base::space, *__fmt))
+                ++__fmt;
+
+              while (__s != __end &&
+                     __ctype.is(ctype_base::space, *__s))
+                ++__s;
+            }
+
+          else if (__ctype.tolower(*__s) == __ctype.tolower(*__fmt) ||
+                   __ctype.toupper(*__s) == __ctype.toupper(*__fmt))
+            {
+              ++__s;
+              ++__fmt;
+            }
+          else
+            {
+              __err = ios_base::failbit;
+              break;
+            }
+        }
+      return __s;
+    }
+
+  template<typename _CharT, typename _InIter>
+    inline
+    _InIter
+    time_get<_CharT, _InIter>::
+    do_get(iter_type __beg, iter_type __end, ios_base& __io,
+           ios_base::iostate& __err, tm* __tm,
+           char __format, char __mod) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      __err = ios_base::goodbit;
+
+      char_type __fmt[4];
+      __fmt[0] = __ctype.widen('%');
+      if (!__mod)
+        {
+          __fmt[1] = __format;
+          __fmt[2] = char_type();
+        }
+      else
+        {
+          __fmt[1] = __mod;
+          __fmt[2] = __format;
+          __fmt[3] = char_type();
+        }
+
+      __beg = _M_extract_via_format(__beg, __end, __io, __err, __tm, __fmt);
+      if (__beg == __end)
+ __err |= ios_base::eofbit;
+      return __beg;
+    }
+
+
+
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    time_put<_CharT, _OutIter>::
+    put(iter_type __s, ios_base& __io, char_type __fill, const tm* __tm,
+ const _CharT* __beg, const _CharT* __end) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      for (; __beg != __end; ++__beg)
+ if (__ctype.narrow(*__beg, 0) != '%')
+   {
+     *__s = *__beg;
+     ++__s;
+   }
+ else if (++__beg != __end)
+   {
+     char __format;
+     char __mod = 0;
+     const char __c = __ctype.narrow(*__beg, 0);
+     if (__c != 'E' && __c != 'O')
+       __format = __c;
+     else if (++__beg != __end)
+       {
+  __mod = __c;
+  __format = __ctype.narrow(*__beg, 0);
+       }
+     else
+       break;
+     __s = this->do_put(__s, __io, __fill, __tm, __format, __mod);
+   }
+ else
+   break;
+      return __s;
+    }
+
+  template<typename _CharT, typename _OutIter>
+    _OutIter
+    time_put<_CharT, _OutIter>::
+    do_put(iter_type __s, ios_base& __io, char_type, const tm* __tm,
+    char __format, char __mod) const
+    {
+      const locale& __loc = __io._M_getloc();
+      ctype<_CharT> const& __ctype = use_facet<ctype<_CharT> >(__loc);
+      __timepunct<_CharT> const& __tp = use_facet<__timepunct<_CharT> >(__loc);
+
+
+
+      const size_t __maxlen = 128;
+      char_type __res[__maxlen];
+
+
+
+
+
+
+      char_type __fmt[4];
+      __fmt[0] = __ctype.widen('%');
+      if (!__mod)
+ {
+   __fmt[1] = __format;
+   __fmt[2] = char_type();
+ }
+      else
+ {
+   __fmt[1] = __mod;
+   __fmt[2] = __format;
+   __fmt[3] = char_type();
+ }
+
+      __tp._M_put(__res, __maxlen, __fmt, __tm);
+
+
+      return std::__write(__s, __res, char_traits<char_type>::length(__res));
+    }
+
+
+
+
+
+  extern template class moneypunct<char, false>;
+  extern template class moneypunct<char, true>;
+  extern template class moneypunct_byname<char, false>;
+  extern template class moneypunct_byname<char, true>;
+  extern template class __cxx11:: money_get<char>;
+  extern template class __cxx11:: money_put<char>;
+  extern template class __timepunct<char>;
+  extern template class time_put<char>;
+  extern template class time_put_byname<char>;
+  extern template class time_get<char>;
+  extern template class time_get_byname<char>;
+  extern template class messages<char>;
+  extern template class messages_byname<char>;
+
+  extern template
+    const moneypunct<char, true>&
+    use_facet<moneypunct<char, true> >(const locale&);
+
+  extern template
+    const moneypunct<char, false>&
+    use_facet<moneypunct<char, false> >(const locale&);
+
+  extern template
+    const money_put<char>&
+    use_facet<money_put<char> >(const locale&);
+
+  extern template
+    const money_get<char>&
+    use_facet<money_get<char> >(const locale&);
+
+  extern template
+    const __timepunct<char>&
+    use_facet<__timepunct<char> >(const locale&);
+
+  extern template
+    const time_put<char>&
+    use_facet<time_put<char> >(const locale&);
+
+  extern template
+    const time_get<char>&
+    use_facet<time_get<char> >(const locale&);
+
+  extern template
+    const messages<char>&
+    use_facet<messages<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<moneypunct<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_put<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_get<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<__timepunct<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_put<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_get<char> >(const locale&);
+
+  extern template
+    bool
+    has_facet<messages<char> >(const locale&);
+
+
+  extern template class moneypunct<wchar_t, false>;
+  extern template class moneypunct<wchar_t, true>;
+  extern template class moneypunct_byname<wchar_t, false>;
+  extern template class moneypunct_byname<wchar_t, true>;
+  extern template class __cxx11:: money_get<wchar_t>;
+  extern template class __cxx11:: money_put<wchar_t>;
+  extern template class __timepunct<wchar_t>;
+  extern template class time_put<wchar_t>;
+  extern template class time_put_byname<wchar_t>;
+  extern template class time_get<wchar_t>;
+  extern template class time_get_byname<wchar_t>;
+  extern template class messages<wchar_t>;
+  extern template class messages_byname<wchar_t>;
+
+  extern template
+    const moneypunct<wchar_t, true>&
+    use_facet<moneypunct<wchar_t, true> >(const locale&);
+
+  extern template
+    const moneypunct<wchar_t, false>&
+    use_facet<moneypunct<wchar_t, false> >(const locale&);
+
+  extern template
+    const money_put<wchar_t>&
+    use_facet<money_put<wchar_t> >(const locale&);
+
+  extern template
+    const money_get<wchar_t>&
+    use_facet<money_get<wchar_t> >(const locale&);
+
+  extern template
+    const __timepunct<wchar_t>&
+    use_facet<__timepunct<wchar_t> >(const locale&);
+
+  extern template
+    const time_put<wchar_t>&
+    use_facet<time_put<wchar_t> >(const locale&);
+
+  extern template
+    const time_get<wchar_t>&
+    use_facet<time_get<wchar_t> >(const locale&);
+
+  extern template
+    const messages<wchar_t>&
+    use_facet<messages<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<moneypunct<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_put<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<money_get<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<__timepunct<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_put<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<time_get<wchar_t> >(const locale&);
+
+  extern template
+    bool
+    has_facet<messages<wchar_t> >(const locale&);
+
+
+
+
+}
+# 2016 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_facets_nonio.h" 2 3
+# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 1 3
+# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 1 3
+# 36 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 1 3
+# 59 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
+# 69 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 1 3
+# 67 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
+namespace std
+{
+
+
+  namespace rel_ops
+  {
+# 85 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
+    template <class _Tp>
+      inline bool
+      operator!=(const _Tp& __x, const _Tp& __y)
+      { return !(__x == __y); }
+# 98 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
+    template <class _Tp>
+      inline bool
+      operator>(const _Tp& __x, const _Tp& __y)
+      { return __y < __x; }
+# 111 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
+    template <class _Tp>
+      inline bool
+      operator<=(const _Tp& __x, const _Tp& __y)
+      { return !(__y < __x); }
+# 124 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/stl_relops.h" 3
+    template <class _Tp>
+      inline bool
+      operator>=(const _Tp& __x, const _Tp& __y)
+      { return !(__x < __y); }
+  }
+
+
+}
+# 70 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 2 3
+
+
+
+
+
+
+
+
+namespace std
+{
+
+
+
+  template<typename _Tp>
+    struct tuple_size;
+
+
+
+
+
+  template<typename _Tp,
+    typename _Up = typename remove_cv<_Tp>::type,
+    typename = typename enable_if<is_same<_Tp, _Up>::value>::type,
+    size_t = tuple_size<_Tp>::value>
+    using __enable_if_has_tuple_size = _Tp;
+
+  template<typename _Tp>
+    struct tuple_size<const __enable_if_has_tuple_size<_Tp>>
+    : public tuple_size<_Tp> { };
+
+  template<typename _Tp>
+    struct tuple_size<volatile __enable_if_has_tuple_size<_Tp>>
+    : public tuple_size<_Tp> { };
+
+  template<typename _Tp>
+    struct tuple_size<const volatile __enable_if_has_tuple_size<_Tp>>
+    : public tuple_size<_Tp> { };
+
+
+  template<std::size_t __i, typename _Tp>
+    struct tuple_element;
+
+
+  template<std::size_t __i, typename _Tp>
+    using __tuple_element_t = typename tuple_element<__i, _Tp>::type;
+
+  template<std::size_t __i, typename _Tp>
+    struct tuple_element<__i, const _Tp>
+    {
+      typedef typename add_const<__tuple_element_t<__i, _Tp>>::type type;
+    };
+
+  template<std::size_t __i, typename _Tp>
+    struct tuple_element<__i, volatile _Tp>
+    {
+      typedef typename add_volatile<__tuple_element_t<__i, _Tp>>::type type;
+    };
+
+  template<std::size_t __i, typename _Tp>
+    struct tuple_element<__i, const volatile _Tp>
+    {
+      typedef typename add_cv<__tuple_element_t<__i, _Tp>>::type type;
+    };
+
+
+
+
+
+
+
+  template<std::size_t __i, typename _Tp>
+    using tuple_element_t = typename tuple_element<__i, _Tp>::type;
+
+
+
+
+
+  template<typename _T1, typename _T2>
+    struct __is_tuple_like_impl<std::pair<_T1, _T2>> : true_type
+    { };
+
+
+  template<class _Tp1, class _Tp2>
+    struct tuple_size<std::pair<_Tp1, _Tp2>>
+    : public integral_constant<std::size_t, 2> { };
+
+
+  template<class _Tp1, class _Tp2>
+    struct tuple_element<0, std::pair<_Tp1, _Tp2>>
+    { typedef _Tp1 type; };
+
+
+  template<class _Tp1, class _Tp2>
+    struct tuple_element<1, std::pair<_Tp1, _Tp2>>
+    { typedef _Tp2 type; };
+
+  template<std::size_t _Int>
+    struct __pair_get;
+
+  template<>
+    struct __pair_get<0>
+    {
+      template<typename _Tp1, typename _Tp2>
+        static constexpr _Tp1&
+        __get(std::pair<_Tp1, _Tp2>& __pair) noexcept
+        { return __pair.first; }
+
+      template<typename _Tp1, typename _Tp2>
+        static constexpr _Tp1&&
+        __move_get(std::pair<_Tp1, _Tp2>&& __pair) noexcept
+        { return std::forward<_Tp1>(__pair.first); }
+
+      template<typename _Tp1, typename _Tp2>
+        static constexpr const _Tp1&
+        __const_get(const std::pair<_Tp1, _Tp2>& __pair) noexcept
+        { return __pair.first; }
+
+      template<typename _Tp1, typename _Tp2>
+        static constexpr const _Tp1&&
+        __const_move_get(const std::pair<_Tp1, _Tp2>&& __pair) noexcept
+        { return std::forward<const _Tp1>(__pair.first); }
+    };
+
+  template<>
+    struct __pair_get<1>
+    {
+      template<typename _Tp1, typename _Tp2>
+        static constexpr _Tp2&
+        __get(std::pair<_Tp1, _Tp2>& __pair) noexcept
+        { return __pair.second; }
+
+      template<typename _Tp1, typename _Tp2>
+        static constexpr _Tp2&&
+        __move_get(std::pair<_Tp1, _Tp2>&& __pair) noexcept
+        { return std::forward<_Tp2>(__pair.second); }
+
+      template<typename _Tp1, typename _Tp2>
+        static constexpr const _Tp2&
+        __const_get(const std::pair<_Tp1, _Tp2>& __pair) noexcept
+        { return __pair.second; }
+
+      template<typename _Tp1, typename _Tp2>
+        static constexpr const _Tp2&&
+        __const_move_get(const std::pair<_Tp1, _Tp2>&& __pair) noexcept
+        { return std::forward<const _Tp2>(__pair.second); }
+    };
+
+  template<std::size_t _Int, class _Tp1, class _Tp2>
+    constexpr typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&
+    get(std::pair<_Tp1, _Tp2>& __in) noexcept
+    { return __pair_get<_Int>::__get(__in); }
+
+  template<std::size_t _Int, class _Tp1, class _Tp2>
+    constexpr typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&&
+    get(std::pair<_Tp1, _Tp2>&& __in) noexcept
+    { return __pair_get<_Int>::__move_get(std::move(__in)); }
+
+  template<std::size_t _Int, class _Tp1, class _Tp2>
+    constexpr const typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&
+    get(const std::pair<_Tp1, _Tp2>& __in) noexcept
+    { return __pair_get<_Int>::__const_get(__in); }
+
+  template<std::size_t _Int, class _Tp1, class _Tp2>
+    constexpr const typename tuple_element<_Int, std::pair<_Tp1, _Tp2>>::type&&
+    get(const std::pair<_Tp1, _Tp2>&& __in) noexcept
+    { return __pair_get<_Int>::__const_move_get(std::move(__in)); }
+
+
+
+
+
+  template <typename _Tp, typename _Up>
+    constexpr _Tp&
+    get(pair<_Tp, _Up>& __p) noexcept
+    { return __p.first; }
+
+  template <typename _Tp, typename _Up>
+    constexpr const _Tp&
+    get(const pair<_Tp, _Up>& __p) noexcept
+    { return __p.first; }
+
+  template <typename _Tp, typename _Up>
+    constexpr _Tp&&
+    get(pair<_Tp, _Up>&& __p) noexcept
+    { return std::move(__p.first); }
+
+  template <typename _Tp, typename _Up>
+    constexpr const _Tp&&
+    get(const pair<_Tp, _Up>&& __p) noexcept
+    { return std::move(__p.first); }
+
+  template <typename _Tp, typename _Up>
+    constexpr _Tp&
+    get(pair<_Up, _Tp>& __p) noexcept
+    { return __p.second; }
+
+  template <typename _Tp, typename _Up>
+    constexpr const _Tp&
+    get(const pair<_Up, _Tp>& __p) noexcept
+    { return __p.second; }
+
+  template <typename _Tp, typename _Up>
+    constexpr _Tp&&
+    get(pair<_Up, _Tp>&& __p) noexcept
+    { return std::move(__p.second); }
+
+  template <typename _Tp, typename _Up>
+    constexpr const _Tp&&
+    get(const pair<_Up, _Tp>&& __p) noexcept
+    { return std::move(__p.second); }
+
+
+
+
+  template <typename _Tp, typename _Up = _Tp>
+    inline _Tp
+    exchange(_Tp& __obj, _Up&& __new_val)
+    { return std::__exchange(__obj, std::forward<_Up>(__new_val)); }
+
+
+
+
+  template<size_t... _Indexes> struct _Index_tuple { };
+# 301 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
+  template<size_t _Num>
+    struct _Build_index_tuple
+    {
+
+      template<typename, size_t... _Indices>
+        using _IdxTuple = _Index_tuple<_Indices...>;
+
+      using __type = __make_integer_seq<_IdxTuple, size_t, _Num>;
+
+
+
+    };
+
+
+
+
+
+
+  template<typename _Tp, _Tp... _Idx>
+    struct integer_sequence
+    {
+      typedef _Tp value_type;
+      static constexpr size_t size() noexcept { return sizeof...(_Idx); }
+    };
+
+
+  template<typename _Tp, _Tp _Num>
+    using make_integer_sequence
+
+      = __make_integer_seq<integer_sequence, _Tp, _Num>;
+
+
+
+
+
+
+
+  template<size_t... _Idx>
+    using index_sequence = integer_sequence<size_t, _Idx...>;
+
+
+  template<size_t _Num>
+    using make_index_sequence = make_integer_sequence<size_t, _Num>;
+
+
+  template<typename... _Types>
+    using index_sequence_for = make_index_sequence<sizeof...(_Types)>;
+# 397 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\utility" 3
+}
+# 37 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 1 3
+# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
+
+
+
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 1 3
+# 33 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
+# 43 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
+namespace std
+{
+
+
+  template<typename _Tp, std::size_t _Nm>
+    struct __array_traits
+    {
+      typedef _Tp _Type[_Nm];
+      typedef __is_swappable<_Tp> _Is_swappable;
+      typedef __is_nothrow_swappable<_Tp> _Is_nothrow_swappable;
+
+      static constexpr _Tp&
+      _S_ref(const _Type& __t, std::size_t __n) noexcept
+      { return const_cast<_Tp&>(__t[__n]); }
+
+      static constexpr _Tp*
+      _S_ptr(const _Type& __t) noexcept
+      { return const_cast<_Tp*>(__t); }
+    };
+
+ template<typename _Tp>
+   struct __array_traits<_Tp, 0>
+   {
+     struct _Type { };
+     typedef true_type _Is_swappable;
+     typedef true_type _Is_nothrow_swappable;
+
+     static constexpr _Tp&
+     _S_ref(const _Type&, std::size_t) noexcept
+     { return *static_cast<_Tp*>(nullptr); }
+
+     static constexpr _Tp*
+     _S_ptr(const _Type&) noexcept
+     { return nullptr; }
+   };
+# 93 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
+  template<typename _Tp, std::size_t _Nm>
+    struct array
+    {
+      typedef _Tp value_type;
+      typedef value_type* pointer;
+      typedef const value_type* const_pointer;
+      typedef value_type& reference;
+      typedef const value_type& const_reference;
+      typedef value_type* iterator;
+      typedef const value_type* const_iterator;
+      typedef std::size_t size_type;
+      typedef std::ptrdiff_t difference_type;
+      typedef std::reverse_iterator<iterator> reverse_iterator;
+      typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
+
+      typedef std::__array_traits<_Tp, _Nm> _AT_Type;
+      typename _AT_Type::_Type _M_elems;
+
+
+
+
+      void
+      fill(const value_type& __u)
+      { std::fill_n(begin(), size(), __u); }
+
+      void
+      swap(array& __other)
+      noexcept(_AT_Type::_Is_nothrow_swappable::value)
+      { std::swap_ranges(begin(), end(), __other.begin()); }
+
+
+                           iterator
+      begin() noexcept
+      { return iterator(data()); }
+
+                           const_iterator
+      begin() const noexcept
+      { return const_iterator(data()); }
+
+                           iterator
+      end() noexcept
+      { return iterator(data() + _Nm); }
+
+                           const_iterator
+      end() const noexcept
+      { return const_iterator(data() + _Nm); }
+
+                           reverse_iterator
+      rbegin() noexcept
+      { return reverse_iterator(end()); }
+
+                           const_reverse_iterator
+      rbegin() const noexcept
+      { return const_reverse_iterator(end()); }
+
+                           reverse_iterator
+      rend() noexcept
+      { return reverse_iterator(begin()); }
+
+                           const_reverse_iterator
+      rend() const noexcept
+      { return const_reverse_iterator(begin()); }
+
+                           const_iterator
+      cbegin() const noexcept
+      { return const_iterator(data()); }
+
+                           const_iterator
+      cend() const noexcept
+      { return const_iterator(data() + _Nm); }
+
+                           const_reverse_iterator
+      crbegin() const noexcept
+      { return const_reverse_iterator(end()); }
+
+                           const_reverse_iterator
+      crend() const noexcept
+      { return const_reverse_iterator(begin()); }
+
+
+      constexpr size_type
+      size() const noexcept { return _Nm; }
+
+      constexpr size_type
+      max_size() const noexcept { return _Nm; }
+
+                         constexpr bool
+      empty() const noexcept { return size() == 0; }
+
+
+                           reference
+      operator[](size_type __n) noexcept
+      { return _AT_Type::_S_ref(_M_elems, __n); }
+
+      constexpr const_reference
+      operator[](size_type __n) const noexcept
+      { return _AT_Type::_S_ref(_M_elems, __n); }
+
+                           reference
+      at(size_type __n)
+      {
+ if (__n >= _Nm)
+   std::__throw_out_of_range_fmt(("array::at: __n (which is %zu) " ">= _Nm (which is %zu)"),
+
+     __n, _Nm);
+ return _AT_Type::_S_ref(_M_elems, __n);
+      }
+
+      constexpr const_reference
+      at(size_type __n) const
+      {
+
+
+ return __n < _Nm ? _AT_Type::_S_ref(_M_elems, __n)
+   : (std::__throw_out_of_range_fmt(("array::at: __n (which is %zu) " ">= _Nm (which is %zu)"),
+
+        __n, _Nm),
+      _AT_Type::_S_ref(_M_elems, 0));
+      }
+
+                           reference
+      front() noexcept
+      { return *begin(); }
+
+      constexpr const_reference
+      front() const noexcept
+      { return _AT_Type::_S_ref(_M_elems, 0); }
+
+                           reference
+      back() noexcept
+      { return _Nm ? *(end() - 1) : *end(); }
+
+      constexpr const_reference
+      back() const noexcept
+      {
+ return _Nm ? _AT_Type::_S_ref(_M_elems, _Nm - 1)
+             : _AT_Type::_S_ref(_M_elems, 0);
+      }
+
+                           pointer
+      data() noexcept
+      { return _AT_Type::_S_ptr(_M_elems); }
+
+                           const_pointer
+      data() const noexcept
+      { return _AT_Type::_S_ptr(_M_elems); }
+    };
+# 250 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\array" 3
+  template<typename _Tp, std::size_t _Nm>
+    inline bool
+    operator==(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+    { return std::equal(__one.begin(), __one.end(), __two.begin()); }
+
+  template<typename _Tp, std::size_t _Nm>
+    inline bool
+    operator!=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+    { return !(__one == __two); }
+
+  template<typename _Tp, std::size_t _Nm>
+    inline bool
+    operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+    {
+      return std::lexicographical_compare(__a.begin(), __a.end(),
+       __b.begin(), __b.end());
+    }
+
+  template<typename _Tp, std::size_t _Nm>
+    inline bool
+    operator>(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+    { return __two < __one; }
+
+  template<typename _Tp, std::size_t _Nm>
+    inline bool
+    operator<=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+    { return !(__one > __two); }
+
+  template<typename _Tp, std::size_t _Nm>
+    inline bool
+    operator>=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+    { return !(__one < __two); }
+
+
+  template<typename _Tp, std::size_t _Nm>
+    inline
+
+
+    typename enable_if<
+      std::__array_traits<_Tp, _Nm>::_Is_swappable::value
+    >::type
+
+
+
+    swap(array<_Tp, _Nm>& __one, array<_Tp, _Nm>& __two)
+    noexcept(noexcept(__one.swap(__two)))
+    { __one.swap(__two); }
+
+
+  template<typename _Tp, std::size_t _Nm>
+    typename enable_if<
+      !std::__array_traits<_Tp, _Nm>::_Is_swappable::value>::type
+    swap(array<_Tp, _Nm>&, array<_Tp, _Nm>&) = delete;
+
+
+  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+    constexpr _Tp&
+    get(array<_Tp, _Nm>& __arr) noexcept
+    {
+      static_assert(_Int < _Nm, "array index is within bounds");
+      return std::__array_traits<_Tp, _Nm>::
+ _S_ref(__arr._M_elems, _Int);
+    }
+
+  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+    constexpr _Tp&&
+    get(array<_Tp, _Nm>&& __arr) noexcept
+    {
+      static_assert(_Int < _Nm, "array index is within bounds");
+      return std::move(std::get<_Int>(__arr));
+    }
+
+  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+    constexpr const _Tp&
+    get(const array<_Tp, _Nm>& __arr) noexcept
+    {
+      static_assert(_Int < _Nm, "array index is within bounds");
+      return std::__array_traits<_Tp, _Nm>::
+ _S_ref(__arr._M_elems, _Int);
+    }
+
+  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+    constexpr const _Tp&&
+    get(const array<_Tp, _Nm>&& __arr) noexcept
+    {
+      static_assert(_Int < _Nm, "array index is within bounds");
+      return std::move(std::get<_Int>(__arr));
+    }
+
+
+}
+
+namespace std
+{
+
+
+
+
+
+  template<typename _Tp>
+    struct tuple_size;
+
+
+  template<typename _Tp, std::size_t _Nm>
+    struct tuple_size<std::array<_Tp, _Nm>>
+    : public integral_constant<std::size_t, _Nm> { };
+
+
+  template<std::size_t _Int, typename _Tp>
+    struct tuple_element;
+
+
+  template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+    struct tuple_element<_Int, std::array<_Tp, _Nm>>
+    {
+      static_assert(_Int < _Nm, "index is out of bounds");
+      typedef _Tp type;
+    };
+
+  template<typename _Tp, std::size_t _Nm>
+    struct __is_tuple_like_impl<std::array<_Tp, _Nm>> : true_type
+    { };
+
+
+}
+# 40 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/uses_allocator.h" 1 3
+# 35 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/uses_allocator.h" 3
+namespace std
+{
+
+
+
+  struct __erased_type { };
+
+
+
+
+  template<typename _Alloc, typename _Tp>
+    using __is_erased_or_convertible
+      = __or_<is_convertible<_Alloc, _Tp>, is_same<_Tp, __erased_type>>;
+
+
+  struct allocator_arg_t { explicit allocator_arg_t() = default; };
+
+                    constexpr allocator_arg_t allocator_arg =
+    allocator_arg_t();
+
+  template<typename _Tp, typename _Alloc, typename = __void_t<>>
+    struct __uses_allocator_helper
+    : false_type { };
+
+  template<typename _Tp, typename _Alloc>
+    struct __uses_allocator_helper<_Tp, _Alloc,
+       __void_t<typename _Tp::allocator_type>>
+    : __is_erased_or_convertible<_Alloc, typename _Tp::allocator_type>::type
+    { };
+
+
+  template<typename _Tp, typename _Alloc>
+    struct uses_allocator
+    : __uses_allocator_helper<_Tp, _Alloc>::type
+    { };
+
+  struct __uses_alloc_base { };
+
+  struct __uses_alloc0 : __uses_alloc_base
+  {
+    struct _Sink { void operator=(const void*) { } } _M_a;
+  };
+
+  template<typename _Alloc>
+    struct __uses_alloc1 : __uses_alloc_base { const _Alloc* _M_a; };
+
+  template<typename _Alloc>
+    struct __uses_alloc2 : __uses_alloc_base { const _Alloc* _M_a; };
+
+  template<bool, typename _Tp, typename _Alloc, typename... _Args>
+    struct __uses_alloc;
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    struct __uses_alloc<true, _Tp, _Alloc, _Args...>
+    : conditional<
+        is_constructible<_Tp, allocator_arg_t, const _Alloc&, _Args...>::value,
+        __uses_alloc1<_Alloc>,
+        __uses_alloc2<_Alloc>>::type
+    {
+
+
+      static_assert(__or_<
+   is_constructible<_Tp, allocator_arg_t, const _Alloc&, _Args...>,
+   is_constructible<_Tp, _Args..., const _Alloc&>>::value,
+   "construction with an allocator must be possible"
+   " if uses_allocator is true");
+    };
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    struct __uses_alloc<false, _Tp, _Alloc, _Args...>
+    : __uses_alloc0 { };
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    using __uses_alloc_t =
+      __uses_alloc<uses_allocator<_Tp, _Alloc>::value, _Tp, _Alloc, _Args...>;
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    inline __uses_alloc_t<_Tp, _Alloc, _Args...>
+    __use_alloc(const _Alloc& __a)
+    {
+      __uses_alloc_t<_Tp, _Alloc, _Args...> __ret;
+      __ret._M_a = std::__addressof(__a);
+      return __ret;
+    }
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    void
+    __use_alloc(const _Alloc&&) = delete;
+
+
+
+
+
+
+
+  template<template<typename...> class _Predicate,
+    typename _Tp, typename _Alloc, typename... _Args>
+    struct __is_uses_allocator_predicate
+    : conditional<uses_allocator<_Tp, _Alloc>::value,
+      __or_<_Predicate<_Tp, allocator_arg_t, _Alloc, _Args...>,
+     _Predicate<_Tp, _Args..., _Alloc>>,
+      _Predicate<_Tp, _Args...>>::type { };
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    struct __is_uses_allocator_constructible
+    : __is_uses_allocator_predicate<is_constructible, _Tp, _Alloc, _Args...>
+    { };
+
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+                      constexpr bool __is_uses_allocator_constructible_v =
+      __is_uses_allocator_constructible<_Tp, _Alloc, _Args...>::value;
+
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    struct __is_nothrow_uses_allocator_constructible
+    : __is_uses_allocator_predicate<is_nothrow_constructible,
+        _Tp, _Alloc, _Args...>
+    { };
+
+
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+                      constexpr bool
+    __is_nothrow_uses_allocator_constructible_v =
+      __is_nothrow_uses_allocator_constructible<_Tp, _Alloc, _Args...>::value;
+
+
+  template<typename _Tp, typename... _Args>
+    void __uses_allocator_construct_impl(__uses_alloc0 __a, _Tp* __ptr,
+      _Args&&... __args)
+    { ::new ((void*)__ptr) _Tp(std::forward<_Args>(__args)...); }
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    void __uses_allocator_construct_impl(__uses_alloc1<_Alloc> __a, _Tp* __ptr,
+      _Args&&... __args)
+    {
+      ::new ((void*)__ptr) _Tp(allocator_arg, *__a._M_a,
+          std::forward<_Args>(__args)...);
+    }
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    void __uses_allocator_construct_impl(__uses_alloc2<_Alloc> __a, _Tp* __ptr,
+      _Args&&... __args)
+    { ::new ((void*)__ptr) _Tp(std::forward<_Args>(__args)..., *__a._M_a); }
+
+  template<typename _Tp, typename _Alloc, typename... _Args>
+    void __uses_allocator_construct(const _Alloc& __a, _Tp* __ptr,
+        _Args&&... __args)
+    {
+      std::__uses_allocator_construct_impl(
+   std::__use_alloc<_Tp, _Alloc, _Args...>(__a), __ptr,
+   std::forward<_Args>(__args)...);
+    }
+
+
+}
+# 41 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 2 3
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/invoke.h" 1 3
+# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/invoke.h" 3
+
+
+
+
+
+
+
+namespace std
+{
+# 52 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/invoke.h" 3
+  template<typename _Tp, typename _Up = typename __inv_unwrap<_Tp>::type>
+    constexpr _Up&&
+    __invfwd(typename remove_reference<_Tp>::type& __t) noexcept
+    { return static_cast<_Up&&>(__t); }
+
+  template<typename _Res, typename _Fn, typename... _Args>
+    constexpr _Res
+    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
+    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
+
+  template<typename _Res, typename _MemFun, typename _Tp, typename... _Args>
+    constexpr _Res
+    __invoke_impl(__invoke_memfun_ref, _MemFun&& __f, _Tp&& __t,
+    _Args&&... __args)
+    { return (__invfwd<_Tp>(__t).*__f)(std::forward<_Args>(__args)...); }
+
+  template<typename _Res, typename _MemFun, typename _Tp, typename... _Args>
+    constexpr _Res
+    __invoke_impl(__invoke_memfun_deref, _MemFun&& __f, _Tp&& __t,
+    _Args&&... __args)
+    {
+      return ((*std::forward<_Tp>(__t)).*__f)(std::forward<_Args>(__args)...);
+    }
+
+  template<typename _Res, typename _MemPtr, typename _Tp>
+    constexpr _Res
+    __invoke_impl(__invoke_memobj_ref, _MemPtr&& __f, _Tp&& __t)
+    { return __invfwd<_Tp>(__t).*__f; }
+
+  template<typename _Res, typename _MemPtr, typename _Tp>
+    constexpr _Res
+    __invoke_impl(__invoke_memobj_deref, _MemPtr&& __f, _Tp&& __t)
+    { return (*std::forward<_Tp>(__t)).*__f; }
+
+
+  template<typename _Callable, typename... _Args>
+    constexpr typename __invoke_result<_Callable, _Args...>::type
+    __invoke(_Callable&& __fn, _Args&&... __args)
+    noexcept(__is_nothrow_invocable<_Callable, _Args...>::value)
+    {
+      using __result = __invoke_result<_Callable, _Args...>;
+      using __type = typename __result::type;
+      using __tag = typename __result::__invoke_type;
+      return std::__invoke_impl<__type>(__tag{}, std::forward<_Callable>(__fn),
+     std::forward<_Args>(__args)...);
+    }
+
+
+}
+# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 2 3
+
+namespace std
+{
+
+
+
+
+
+
+
+  template<typename... _Elements>
+    class tuple;
+
+  template<typename _Tp>
+    struct __is_empty_non_tuple : is_empty<_Tp> { };
+
+
+  template<typename _El0, typename... _El>
+    struct __is_empty_non_tuple<tuple<_El0, _El...>> : false_type { };
+
+
+  template<typename _Tp>
+    using __empty_not_final
+    = typename conditional<__is_final(_Tp), false_type,
+      __is_empty_non_tuple<_Tp>>::type;
+
+  template<std::size_t _Idx, typename _Head,
+    bool = __empty_not_final<_Head>::value>
+    struct _Head_base;
+
+  template<std::size_t _Idx, typename _Head>
+    struct _Head_base<_Idx, _Head, true>
+    : public _Head
+    {
+      constexpr _Head_base()
+      : _Head() { }
+
+      constexpr _Head_base(const _Head& __h)
+      : _Head(__h) { }
+
+      constexpr _Head_base(const _Head_base&) = default;
+      constexpr _Head_base(_Head_base&&) = default;
+
+      template<typename _UHead>
+        constexpr _Head_base(_UHead&& __h)
+ : _Head(std::forward<_UHead>(__h)) { }
+
+      _Head_base(allocator_arg_t, __uses_alloc0)
+      : _Head() { }
+
+      template<typename _Alloc>
+ _Head_base(allocator_arg_t, __uses_alloc1<_Alloc> __a)
+ : _Head(allocator_arg, *__a._M_a) { }
+
+      template<typename _Alloc>
+ _Head_base(allocator_arg_t, __uses_alloc2<_Alloc> __a)
+ : _Head(*__a._M_a) { }
+
+      template<typename _UHead>
+ _Head_base(__uses_alloc0, _UHead&& __uhead)
+ : _Head(std::forward<_UHead>(__uhead)) { }
+
+      template<typename _Alloc, typename _UHead>
+ _Head_base(__uses_alloc1<_Alloc> __a, _UHead&& __uhead)
+ : _Head(allocator_arg, *__a._M_a, std::forward<_UHead>(__uhead)) { }
+
+      template<typename _Alloc, typename _UHead>
+ _Head_base(__uses_alloc2<_Alloc> __a, _UHead&& __uhead)
+ : _Head(std::forward<_UHead>(__uhead), *__a._M_a) { }
+
+      static constexpr _Head&
+      _M_head(_Head_base& __b) noexcept { return __b; }
+
+      static constexpr const _Head&
+      _M_head(const _Head_base& __b) noexcept { return __b; }
+    };
+
+  template<std::size_t _Idx, typename _Head>
+    struct _Head_base<_Idx, _Head, false>
+    {
+      constexpr _Head_base()
+      : _M_head_impl() { }
+
+      constexpr _Head_base(const _Head& __h)
+      : _M_head_impl(__h) { }
+
+      constexpr _Head_base(const _Head_base&) = default;
+      constexpr _Head_base(_Head_base&&) = default;
+
+      template<typename _UHead>
+        constexpr _Head_base(_UHead&& __h)
+ : _M_head_impl(std::forward<_UHead>(__h)) { }
+
+      _Head_base(allocator_arg_t, __uses_alloc0)
+      : _M_head_impl() { }
+
+      template<typename _Alloc>
+ _Head_base(allocator_arg_t, __uses_alloc1<_Alloc> __a)
+ : _M_head_impl(allocator_arg, *__a._M_a) { }
+
+      template<typename _Alloc>
+ _Head_base(allocator_arg_t, __uses_alloc2<_Alloc> __a)
+ : _M_head_impl(*__a._M_a) { }
+
+      template<typename _UHead>
+ _Head_base(__uses_alloc0, _UHead&& __uhead)
+ : _M_head_impl(std::forward<_UHead>(__uhead)) { }
+
+      template<typename _Alloc, typename _UHead>
+ _Head_base(__uses_alloc1<_Alloc> __a, _UHead&& __uhead)
+ : _M_head_impl(allocator_arg, *__a._M_a, std::forward<_UHead>(__uhead))
+ { }
+
+      template<typename _Alloc, typename _UHead>
+ _Head_base(__uses_alloc2<_Alloc> __a, _UHead&& __uhead)
+ : _M_head_impl(std::forward<_UHead>(__uhead), *__a._M_a) { }
+
+      static constexpr _Head&
+      _M_head(_Head_base& __b) noexcept { return __b._M_head_impl; }
+
+      static constexpr const _Head&
+      _M_head(const _Head_base& __b) noexcept { return __b._M_head_impl; }
+
+      _Head _M_head_impl;
+    };
+# 176 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
+  template<std::size_t _Idx, typename... _Elements>
+    struct _Tuple_impl;
+
+
+
+
+
+
+  template<std::size_t _Idx, typename _Head, typename... _Tail>
+    struct _Tuple_impl<_Idx, _Head, _Tail...>
+    : public _Tuple_impl<_Idx + 1, _Tail...>,
+      private _Head_base<_Idx, _Head>
+    {
+      template<std::size_t, typename...> friend class _Tuple_impl;
+
+      typedef _Tuple_impl<_Idx + 1, _Tail...> _Inherited;
+      typedef _Head_base<_Idx, _Head> _Base;
+
+      static constexpr _Head&
+      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+
+      static constexpr const _Head&
+      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+
+      static constexpr _Inherited&
+      _M_tail(_Tuple_impl& __t) noexcept { return __t; }
+
+      static constexpr const _Inherited&
+      _M_tail(const _Tuple_impl& __t) noexcept { return __t; }
+
+      constexpr _Tuple_impl()
+      : _Inherited(), _Base() { }
+
+      explicit
+      constexpr _Tuple_impl(const _Head& __head, const _Tail&... __tail)
+      : _Inherited(__tail...), _Base(__head) { }
+
+      template<typename _UHead, typename... _UTail, typename = typename
+               enable_if<sizeof...(_Tail) == sizeof...(_UTail)>::type>
+        explicit
+        constexpr _Tuple_impl(_UHead&& __head, _UTail&&... __tail)
+ : _Inherited(std::forward<_UTail>(__tail)...),
+   _Base(std::forward<_UHead>(__head)) { }
+
+      constexpr _Tuple_impl(const _Tuple_impl&) = default;
+
+
+
+      _Tuple_impl& operator=(const _Tuple_impl&) = delete;
+
+      constexpr
+      _Tuple_impl(_Tuple_impl&& __in)
+      noexcept(__and_<is_nothrow_move_constructible<_Head>,
+               is_nothrow_move_constructible<_Inherited>>::value)
+      : _Inherited(std::move(_M_tail(__in))),
+ _Base(std::forward<_Head>(_M_head(__in))) { }
+
+      template<typename... _UElements>
+        constexpr _Tuple_impl(const _Tuple_impl<_Idx, _UElements...>& __in)
+ : _Inherited(_Tuple_impl<_Idx, _UElements...>::_M_tail(__in)),
+   _Base(_Tuple_impl<_Idx, _UElements...>::_M_head(__in)) { }
+
+      template<typename _UHead, typename... _UTails>
+        constexpr _Tuple_impl(_Tuple_impl<_Idx, _UHead, _UTails...>&& __in)
+ : _Inherited(std::move
+       (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in))),
+   _Base(std::forward<_UHead>
+  (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in))) { }
+
+      template<typename _Alloc>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a)
+ : _Inherited(__tag, __a),
+          _Base(__tag, __use_alloc<_Head>(__a)) { }
+
+      template<typename _Alloc>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+      const _Head& __head, const _Tail&... __tail)
+ : _Inherited(__tag, __a, __tail...),
+          _Base(__use_alloc<_Head, _Alloc, _Head>(__a), __head) { }
+
+      template<typename _Alloc, typename _UHead, typename... _UTail,
+               typename = typename enable_if<sizeof...(_Tail)
+          == sizeof...(_UTail)>::type>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             _UHead&& __head, _UTail&&... __tail)
+ : _Inherited(__tag, __a, std::forward<_UTail>(__tail)...),
+          _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
+         std::forward<_UHead>(__head)) { }
+
+      template<typename _Alloc>
+        _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             const _Tuple_impl& __in)
+ : _Inherited(__tag, __a, _M_tail(__in)),
+          _Base(__use_alloc<_Head, _Alloc, _Head>(__a), _M_head(__in)) { }
+
+      template<typename _Alloc>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             _Tuple_impl&& __in)
+ : _Inherited(__tag, __a, std::move(_M_tail(__in))),
+   _Base(__use_alloc<_Head, _Alloc, _Head>(__a),
+         std::forward<_Head>(_M_head(__in))) { }
+
+      template<typename _Alloc, typename _UHead, typename... _UTails>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+      const _Tuple_impl<_Idx, _UHead, _UTails...>& __in)
+ : _Inherited(__tag, __a,
+       _Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in)),
+   _Base(__use_alloc<_Head, _Alloc, const _UHead&>(__a),
+  _Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in)) { }
+
+      template<typename _Alloc, typename _UHead, typename... _UTails>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             _Tuple_impl<_Idx, _UHead, _UTails...>&& __in)
+ : _Inherited(__tag, __a, std::move
+       (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in))),
+   _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
+                std::forward<_UHead>
+  (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in))) { }
+
+      template<typename... _UElements>
+        void
+        _M_assign(const _Tuple_impl<_Idx, _UElements...>& __in)
+        {
+   _M_head(*this) = _Tuple_impl<_Idx, _UElements...>::_M_head(__in);
+   _M_tail(*this)._M_assign(
+       _Tuple_impl<_Idx, _UElements...>::_M_tail(__in));
+ }
+
+      template<typename _UHead, typename... _UTails>
+        void
+        _M_assign(_Tuple_impl<_Idx, _UHead, _UTails...>&& __in)
+        {
+   _M_head(*this) = std::forward<_UHead>
+     (_Tuple_impl<_Idx, _UHead, _UTails...>::_M_head(__in));
+   _M_tail(*this)._M_assign(
+       std::move(_Tuple_impl<_Idx, _UHead, _UTails...>::_M_tail(__in)));
+ }
+
+    protected:
+      void
+      _M_swap(_Tuple_impl& __in)
+      {
+ using std::swap;
+ swap(_M_head(*this), _M_head(__in));
+ _Inherited::_M_swap(_M_tail(__in));
+      }
+    };
+
+
+  template<std::size_t _Idx, typename _Head>
+    struct _Tuple_impl<_Idx, _Head>
+    : private _Head_base<_Idx, _Head>
+    {
+      template<std::size_t, typename...> friend class _Tuple_impl;
+
+      typedef _Head_base<_Idx, _Head> _Base;
+
+      static constexpr _Head&
+      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+
+      static constexpr const _Head&
+      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+
+      constexpr _Tuple_impl()
+      : _Base() { }
+
+      explicit
+      constexpr _Tuple_impl(const _Head& __head)
+      : _Base(__head) { }
+
+      template<typename _UHead>
+        explicit
+        constexpr _Tuple_impl(_UHead&& __head)
+ : _Base(std::forward<_UHead>(__head)) { }
+
+      constexpr _Tuple_impl(const _Tuple_impl&) = default;
+
+
+
+      _Tuple_impl& operator=(const _Tuple_impl&) = delete;
+
+      constexpr
+      _Tuple_impl(_Tuple_impl&& __in)
+      noexcept(is_nothrow_move_constructible<_Head>::value)
+      : _Base(std::forward<_Head>(_M_head(__in))) { }
+
+      template<typename _UHead>
+        constexpr _Tuple_impl(const _Tuple_impl<_Idx, _UHead>& __in)
+ : _Base(_Tuple_impl<_Idx, _UHead>::_M_head(__in)) { }
+
+      template<typename _UHead>
+        constexpr _Tuple_impl(_Tuple_impl<_Idx, _UHead>&& __in)
+ : _Base(std::forward<_UHead>(_Tuple_impl<_Idx, _UHead>::_M_head(__in)))
+ { }
+
+      template<typename _Alloc>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a)
+ : _Base(__tag, __use_alloc<_Head>(__a)) { }
+
+      template<typename _Alloc>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+      const _Head& __head)
+ : _Base(__use_alloc<_Head, _Alloc, _Head>(__a), __head) { }
+
+      template<typename _Alloc, typename _UHead>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             _UHead&& __head)
+ : _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
+         std::forward<_UHead>(__head)) { }
+
+      template<typename _Alloc>
+        _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             const _Tuple_impl& __in)
+ : _Base(__use_alloc<_Head, _Alloc, _Head>(__a), _M_head(__in)) { }
+
+      template<typename _Alloc>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             _Tuple_impl&& __in)
+ : _Base(__use_alloc<_Head, _Alloc, _Head>(__a),
+         std::forward<_Head>(_M_head(__in))) { }
+
+      template<typename _Alloc, typename _UHead>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             const _Tuple_impl<_Idx, _UHead>& __in)
+ : _Base(__use_alloc<_Head, _Alloc, const _UHead&>(__a),
+  _Tuple_impl<_Idx, _UHead>::_M_head(__in)) { }
+
+      template<typename _Alloc, typename _UHead>
+ _Tuple_impl(allocator_arg_t __tag, const _Alloc& __a,
+             _Tuple_impl<_Idx, _UHead>&& __in)
+ : _Base(__use_alloc<_Head, _Alloc, _UHead>(__a),
+                std::forward<_UHead>(_Tuple_impl<_Idx, _UHead>::_M_head(__in)))
+ { }
+
+      template<typename _UHead>
+        void
+        _M_assign(const _Tuple_impl<_Idx, _UHead>& __in)
+        {
+   _M_head(*this) = _Tuple_impl<_Idx, _UHead>::_M_head(__in);
+ }
+
+      template<typename _UHead>
+        void
+        _M_assign(_Tuple_impl<_Idx, _UHead>&& __in)
+        {
+   _M_head(*this)
+     = std::forward<_UHead>(_Tuple_impl<_Idx, _UHead>::_M_head(__in));
+ }
+
+    protected:
+      void
+      _M_swap(_Tuple_impl& __in)
+      {
+ using std::swap;
+ swap(_M_head(*this), _M_head(__in));
+      }
+    };
+
+
+
+  template<bool, typename... _Elements>
+  struct _TC
+  {
+    template<typename... _UElements>
+    static constexpr bool _ConstructibleTuple()
+    {
+      return __and_<is_constructible<_Elements, const _UElements&>...>::value;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _ImplicitlyConvertibleTuple()
+    {
+      return __and_<is_convertible<const _UElements&, _Elements>...>::value;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _MoveConstructibleTuple()
+    {
+      return __and_<is_constructible<_Elements, _UElements&&>...>::value;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _ImplicitlyMoveConvertibleTuple()
+    {
+      return __and_<is_convertible<_UElements&&, _Elements>...>::value;
+    }
+
+    template<typename _SrcTuple>
+    static constexpr bool _NonNestedTuple()
+    {
+      return __and_<__not_<is_same<tuple<_Elements...>,
+        __remove_cvref_t<_SrcTuple>>>,
+                     __not_<is_convertible<_SrcTuple, _Elements...>>,
+                     __not_<is_constructible<_Elements..., _SrcTuple>>
+              >::value;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _NotSameTuple()
+    {
+      return __not_<is_same<tuple<_Elements...>,
+        __remove_cvref_t<_UElements>...>>::value;
+    }
+  };
+
+  template<typename... _Elements>
+  struct _TC<false, _Elements...>
+  {
+    template<typename... _UElements>
+    static constexpr bool _ConstructibleTuple()
+    {
+      return false;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _ImplicitlyConvertibleTuple()
+    {
+      return false;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _MoveConstructibleTuple()
+    {
+      return false;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _ImplicitlyMoveConvertibleTuple()
+    {
+      return false;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _NonNestedTuple()
+    {
+      return true;
+    }
+
+    template<typename... _UElements>
+    static constexpr bool _NotSameTuple()
+    {
+      return true;
+    }
+  };
+
+
+  template<typename... _Elements>
+    class tuple : public _Tuple_impl<0, _Elements...>
+    {
+      typedef _Tuple_impl<0, _Elements...> _Inherited;
+
+
+
+      template<typename _Dummy>
+      struct _TC2
+      {
+        static constexpr bool _DefaultConstructibleTuple()
+        {
+          return __and_<is_default_constructible<_Elements>...>::value;
+        }
+        static constexpr bool _ImplicitlyDefaultConstructibleTuple()
+        {
+          return __and_<__is_implicitly_default_constructible<_Elements>...>
+            ::value;
+        }
+      };
+
+      template<typename... _UElements>
+ static constexpr
+ __enable_if_t<sizeof...(_UElements) == sizeof...(_Elements), bool>
+ __assignable()
+ { return __and_<is_assignable<_Elements&, _UElements>...>::value; }
+
+      template<typename... _UElements>
+ static constexpr bool __nothrow_assignable()
+ {
+   return
+     __and_<is_nothrow_assignable<_Elements&, _UElements>...>::value;
+ }
+
+    public:
+      template<typename _Dummy = void,
+               typename enable_if<_TC2<_Dummy>::
+                                    _ImplicitlyDefaultConstructibleTuple(),
+                                  bool>::type = true>
+      constexpr tuple()
+      : _Inherited() { }
+
+      template<typename _Dummy = void,
+               typename enable_if<_TC2<_Dummy>::
+                                    _DefaultConstructibleTuple()
+                                  &&
+                                  !_TC2<_Dummy>::
+                                    _ImplicitlyDefaultConstructibleTuple(),
+                                  bool>::type = false>
+      explicit constexpr tuple()
+      : _Inherited() { }
+
+
+
+      template<typename _Dummy> using _TCC =
+        _TC<is_same<_Dummy, void>::value,
+            _Elements...>;
+
+      template<typename _Dummy = void,
+               typename enable_if<
+                 _TCC<_Dummy>::template
+                   _ConstructibleTuple<_Elements...>()
+                 && _TCC<_Dummy>::template
+                   _ImplicitlyConvertibleTuple<_Elements...>()
+                 && (sizeof...(_Elements) >= 1),
+               bool>::type=true>
+        constexpr tuple(const _Elements&... __elements)
+      : _Inherited(__elements...) { }
+
+      template<typename _Dummy = void,
+               typename enable_if<
+                 _TCC<_Dummy>::template
+                   _ConstructibleTuple<_Elements...>()
+                 && !_TCC<_Dummy>::template
+                   _ImplicitlyConvertibleTuple<_Elements...>()
+                 && (sizeof...(_Elements) >= 1),
+               bool>::type=false>
+      explicit constexpr tuple(const _Elements&... __elements)
+      : _Inherited(__elements...) { }
+
+
+
+      template<typename... _UElements> using _TMC =
+                  _TC<(sizeof...(_Elements) == sizeof...(_UElements))
+        && (_TC<(sizeof...(_UElements)==1), _Elements...>::
+     template _NotSameTuple<_UElements...>()),
+                      _Elements...>;
+
+
+
+      template<typename... _UElements> using _TMCT =
+                  _TC<(sizeof...(_Elements) == sizeof...(_UElements))
+        && !is_same<tuple<_Elements...>,
+      tuple<_UElements...>>::value,
+                      _Elements...>;
+
+      template<typename... _UElements, typename
+        enable_if<
+    _TMC<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && _TMC<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
+                  && (sizeof...(_Elements) >= 1),
+        bool>::type=true>
+        constexpr tuple(_UElements&&... __elements)
+        : _Inherited(std::forward<_UElements>(__elements)...) { }
+
+      template<typename... _UElements, typename
+        enable_if<
+    _TMC<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && !_TMC<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
+                  && (sizeof...(_Elements) >= 1),
+        bool>::type=false>
+        explicit constexpr tuple(_UElements&&... __elements)
+ : _Inherited(std::forward<_UElements>(__elements)...) { }
+
+      constexpr tuple(const tuple&) = default;
+
+      constexpr tuple(tuple&&) = default;
+
+
+
+      template<typename _Dummy> using _TNTC =
+        _TC<is_same<_Dummy, void>::value && sizeof...(_Elements) == 1,
+            _Elements...>;
+
+      template<typename... _UElements, typename _Dummy = void, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _ConstructibleTuple<_UElements...>()
+                  && _TMCT<_UElements...>::template
+                    _ImplicitlyConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<const tuple<_UElements...>&>(),
+        bool>::type=true>
+        constexpr tuple(const tuple<_UElements...>& __in)
+        : _Inherited(static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
+        { }
+
+      template<typename... _UElements, typename _Dummy = void, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _ConstructibleTuple<_UElements...>()
+                  && !_TMCT<_UElements...>::template
+                    _ImplicitlyConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<const tuple<_UElements...>&>(),
+        bool>::type=false>
+        explicit constexpr tuple(const tuple<_UElements...>& __in)
+        : _Inherited(static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
+        { }
+
+      template<typename... _UElements, typename _Dummy = void, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && _TMCT<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<tuple<_UElements...>&&>(),
+        bool>::type=true>
+        constexpr tuple(tuple<_UElements...>&& __in)
+        : _Inherited(static_cast<_Tuple_impl<0, _UElements...>&&>(__in)) { }
+
+      template<typename... _UElements, typename _Dummy = void, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && !_TMCT<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<tuple<_UElements...>&&>(),
+        bool>::type=false>
+        explicit constexpr tuple(tuple<_UElements...>&& __in)
+        : _Inherited(static_cast<_Tuple_impl<0, _UElements...>&&>(__in)) { }
+
+
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t __tag, const _Alloc& __a)
+ : _Inherited(__tag, __a) { }
+
+      template<typename _Alloc, typename _Dummy = void,
+               typename enable_if<
+                 _TCC<_Dummy>::template
+                   _ConstructibleTuple<_Elements...>()
+                 && _TCC<_Dummy>::template
+                   _ImplicitlyConvertibleTuple<_Elements...>(),
+               bool>::type=true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const _Elements&... __elements)
+ : _Inherited(__tag, __a, __elements...) { }
+
+      template<typename _Alloc, typename _Dummy = void,
+               typename enable_if<
+                 _TCC<_Dummy>::template
+                   _ConstructibleTuple<_Elements...>()
+                 && !_TCC<_Dummy>::template
+                   _ImplicitlyConvertibleTuple<_Elements...>(),
+               bool>::type=false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+                       const _Elements&... __elements)
+ : _Inherited(__tag, __a, __elements...) { }
+
+      template<typename _Alloc, typename... _UElements, typename
+        enable_if<_TMC<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && _TMC<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>(),
+        bool>::type=true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a,
+       _UElements&&... __elements)
+ : _Inherited(__tag, __a, std::forward<_UElements>(__elements)...)
+        { }
+
+      template<typename _Alloc, typename... _UElements, typename
+        enable_if<_TMC<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && !_TMC<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>(),
+        bool>::type=false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+       _UElements&&... __elements)
+ : _Inherited(__tag, __a, std::forward<_UElements>(__elements)...)
+        { }
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t __tag, const _Alloc& __a, const tuple& __in)
+ : _Inherited(__tag, __a, static_cast<const _Inherited&>(__in)) { }
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t __tag, const _Alloc& __a, tuple&& __in)
+ : _Inherited(__tag, __a, static_cast<_Inherited&&>(__in)) { }
+
+      template<typename _Alloc, typename _Dummy = void,
+        typename... _UElements, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _ConstructibleTuple<_UElements...>()
+                  && _TMCT<_UElements...>::template
+                    _ImplicitlyConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<const tuple<_UElements...>&>(),
+        bool>::type=true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const tuple<_UElements...>& __in)
+ : _Inherited(__tag, __a,
+              static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
+ { }
+
+      template<typename _Alloc, typename _Dummy = void,
+        typename... _UElements, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _ConstructibleTuple<_UElements...>()
+                  && !_TMCT<_UElements...>::template
+                    _ImplicitlyConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<const tuple<_UElements...>&>(),
+        bool>::type=false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const tuple<_UElements...>& __in)
+ : _Inherited(__tag, __a,
+              static_cast<const _Tuple_impl<0, _UElements...>&>(__in))
+ { }
+
+      template<typename _Alloc, typename _Dummy = void,
+        typename... _UElements, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && _TMCT<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<tuple<_UElements...>&&>(),
+        bool>::type=true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a,
+       tuple<_UElements...>&& __in)
+ : _Inherited(__tag, __a,
+              static_cast<_Tuple_impl<0, _UElements...>&&>(__in))
+ { }
+
+      template<typename _Alloc, typename _Dummy = void,
+        typename... _UElements, typename
+        enable_if<_TMCT<_UElements...>::template
+                    _MoveConstructibleTuple<_UElements...>()
+                  && !_TMCT<_UElements...>::template
+                    _ImplicitlyMoveConvertibleTuple<_UElements...>()
+                  && _TNTC<_Dummy>::template
+                    _NonNestedTuple<tuple<_UElements...>&&>(),
+        bool>::type=false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+       tuple<_UElements...>&& __in)
+ : _Inherited(__tag, __a,
+              static_cast<_Tuple_impl<0, _UElements...>&&>(__in))
+ { }
+
+
+
+      tuple&
+      operator=(typename conditional<__assignable<const _Elements&...>(),
+         const tuple&,
+         const __nonesuch_no_braces&>::type __in)
+      noexcept(__nothrow_assignable<const _Elements&...>())
+      {
+ this->_M_assign(__in);
+ return *this;
+      }
+
+      tuple&
+      operator=(typename conditional<__assignable<_Elements...>(),
+         tuple&&,
+         __nonesuch_no_braces&&>::type __in)
+      noexcept(__nothrow_assignable<_Elements...>())
+      {
+ this->_M_assign(std::move(__in));
+ return *this;
+      }
+
+      template<typename... _UElements>
+ __enable_if_t<__assignable<const _UElements&...>(), tuple&>
+ operator=(const tuple<_UElements...>& __in)
+ noexcept(__nothrow_assignable<const _UElements&...>())
+ {
+   this->_M_assign(__in);
+   return *this;
+ }
+
+      template<typename... _UElements>
+ __enable_if_t<__assignable<_UElements...>(), tuple&>
+ operator=(tuple<_UElements...>&& __in)
+ noexcept(__nothrow_assignable<_UElements...>())
+ {
+   this->_M_assign(std::move(__in));
+   return *this;
+ }
+
+
+      void
+      swap(tuple& __in)
+      noexcept(__and_<__is_nothrow_swappable<_Elements>...>::value)
+      { _Inherited::_M_swap(__in); }
+    };
+# 875 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
+  template<>
+    class tuple<>
+    {
+    public:
+      void swap(tuple&) noexcept { }
+
+
+      tuple() = default;
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t, const _Alloc&) { }
+      template<typename _Alloc>
+ tuple(allocator_arg_t, const _Alloc&, const tuple&) { }
+    };
+
+
+
+  template<typename _T1, typename _T2>
+    class tuple<_T1, _T2> : public _Tuple_impl<0, _T1, _T2>
+    {
+      typedef _Tuple_impl<0, _T1, _T2> _Inherited;
+
+      template<typename _U1, typename _U2>
+ static constexpr bool __assignable()
+ {
+   return __and_<is_assignable<_T1&, _U1>,
+   is_assignable<_T2&, _U2>>::value;
+ }
+
+      template<typename _U1, typename _U2>
+ static constexpr bool __nothrow_assignable()
+ {
+   return __and_<is_nothrow_assignable<_T1&, _U1>,
+   is_nothrow_assignable<_T2&, _U2>>::value;
+ }
+
+    public:
+      template <typename _U1 = _T1,
+                typename _U2 = _T2,
+                typename enable_if<__and_<
+                                     __is_implicitly_default_constructible<_U1>,
+                                     __is_implicitly_default_constructible<_U2>>
+                                   ::value, bool>::type = true>
+ constexpr tuple()
+ : _Inherited() { }
+
+      template <typename _U1 = _T1,
+                typename _U2 = _T2,
+                typename enable_if<
+                  __and_<
+                    is_default_constructible<_U1>,
+                    is_default_constructible<_U2>,
+                    __not_<
+                      __and_<__is_implicitly_default_constructible<_U1>,
+                             __is_implicitly_default_constructible<_U2>>>>
+                  ::value, bool>::type = false>
+ explicit constexpr tuple()
+ : _Inherited() { }
+
+
+
+      template<typename _Dummy> using _TCC =
+        _TC<is_same<_Dummy, void>::value, _T1, _T2>;
+
+      template<typename _Dummy = void, typename
+               enable_if<_TCC<_Dummy>::template
+                           _ConstructibleTuple<_T1, _T2>()
+                         && _TCC<_Dummy>::template
+                           _ImplicitlyConvertibleTuple<_T1, _T2>(),
+ bool>::type = true>
+        constexpr tuple(const _T1& __a1, const _T2& __a2)
+        : _Inherited(__a1, __a2) { }
+
+      template<typename _Dummy = void, typename
+               enable_if<_TCC<_Dummy>::template
+                           _ConstructibleTuple<_T1, _T2>()
+                         && !_TCC<_Dummy>::template
+                           _ImplicitlyConvertibleTuple<_T1, _T2>(),
+ bool>::type = false>
+        explicit constexpr tuple(const _T1& __a1, const _T2& __a2)
+        : _Inherited(__a1, __a2) { }
+
+
+
+      using _TMC = _TC<true, _T1, _T2>;
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>()
+           && !is_same<__remove_cvref_t<_U1>, allocator_arg_t>::value,
+ bool>::type = true>
+        constexpr tuple(_U1&& __a1, _U2&& __a2)
+ : _Inherited(std::forward<_U1>(__a1), std::forward<_U2>(__a2)) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>()
+           && !is_same<__remove_cvref_t<_U1>, allocator_arg_t>::value,
+ bool>::type = false>
+        explicit constexpr tuple(_U1&& __a1, _U2&& __a2)
+ : _Inherited(std::forward<_U1>(__a1), std::forward<_U2>(__a2)) { }
+
+      constexpr tuple(const tuple&) = default;
+
+      constexpr tuple(tuple&&) = default;
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+        constexpr tuple(const tuple<_U1, _U2>& __in)
+ : _Inherited(static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in)) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+        explicit constexpr tuple(const tuple<_U1, _U2>& __in)
+ : _Inherited(static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in)) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+        constexpr tuple(tuple<_U1, _U2>&& __in)
+ : _Inherited(static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in)) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+        explicit constexpr tuple(tuple<_U1, _U2>&& __in)
+ : _Inherited(static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in)) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+        constexpr tuple(const pair<_U1, _U2>& __in)
+ : _Inherited(__in.first, __in.second) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+        explicit constexpr tuple(const pair<_U1, _U2>& __in)
+ : _Inherited(__in.first, __in.second) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+        constexpr tuple(pair<_U1, _U2>&& __in)
+ : _Inherited(std::forward<_U1>(__in.first),
+       std::forward<_U2>(__in.second)) { }
+
+      template<typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+        explicit constexpr tuple(pair<_U1, _U2>&& __in)
+ : _Inherited(std::forward<_U1>(__in.first),
+       std::forward<_U2>(__in.second)) { }
+
+
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t __tag, const _Alloc& __a)
+ : _Inherited(__tag, __a) { }
+
+      template<typename _Alloc, typename _Dummy = void,
+               typename enable_if<
+                 _TCC<_Dummy>::template
+                   _ConstructibleTuple<_T1, _T2>()
+                 && _TCC<_Dummy>::template
+                   _ImplicitlyConvertibleTuple<_T1, _T2>(),
+               bool>::type=true>
+
+ tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const _T1& __a1, const _T2& __a2)
+ : _Inherited(__tag, __a, __a1, __a2) { }
+
+      template<typename _Alloc, typename _Dummy = void,
+               typename enable_if<
+                 _TCC<_Dummy>::template
+                   _ConstructibleTuple<_T1, _T2>()
+                 && !_TCC<_Dummy>::template
+                   _ImplicitlyConvertibleTuple<_T1, _T2>(),
+               bool>::type=false>
+
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const _T1& __a1, const _T2& __a2)
+ : _Inherited(__tag, __a, __a1, __a2) { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a, _U1&& __a1, _U2&& __a2)
+ : _Inherited(__tag, __a, std::forward<_U1>(__a1),
+              std::forward<_U2>(__a2)) { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+                       _U1&& __a1, _U2&& __a2)
+ : _Inherited(__tag, __a, std::forward<_U1>(__a1),
+              std::forward<_U2>(__a2)) { }
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t __tag, const _Alloc& __a, const tuple& __in)
+ : _Inherited(__tag, __a, static_cast<const _Inherited&>(__in)) { }
+
+      template<typename _Alloc>
+ tuple(allocator_arg_t __tag, const _Alloc& __a, tuple&& __in)
+ : _Inherited(__tag, __a, static_cast<_Inherited&&>(__in)) { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const tuple<_U1, _U2>& __in)
+ : _Inherited(__tag, __a,
+              static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in))
+ { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const tuple<_U1, _U2>& __in)
+ : _Inherited(__tag, __a,
+              static_cast<const _Tuple_impl<0, _U1, _U2>&>(__in))
+ { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+ tuple(allocator_arg_t __tag, const _Alloc& __a, tuple<_U1, _U2>&& __in)
+ : _Inherited(__tag, __a, static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in))
+ { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+ explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+                       tuple<_U1, _U2>&& __in)
+ : _Inherited(__tag, __a, static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in))
+ { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+        tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const pair<_U1, _U2>& __in)
+ : _Inherited(__tag, __a, __in.first, __in.second) { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _ConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+        explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+       const pair<_U1, _U2>& __in)
+ : _Inherited(__tag, __a, __in.first, __in.second) { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && _TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = true>
+        tuple(allocator_arg_t __tag, const _Alloc& __a, pair<_U1, _U2>&& __in)
+ : _Inherited(__tag, __a, std::forward<_U1>(__in.first),
+       std::forward<_U2>(__in.second)) { }
+
+      template<typename _Alloc, typename _U1, typename _U2, typename
+        enable_if<_TMC::template
+                    _MoveConstructibleTuple<_U1, _U2>()
+                  && !_TMC::template
+                    _ImplicitlyMoveConvertibleTuple<_U1, _U2>(),
+ bool>::type = false>
+        explicit tuple(allocator_arg_t __tag, const _Alloc& __a,
+                       pair<_U1, _U2>&& __in)
+ : _Inherited(__tag, __a, std::forward<_U1>(__in.first),
+       std::forward<_U2>(__in.second)) { }
+
+      tuple&
+      operator=(typename conditional<__assignable<const _T1&, const _T2&>(),
+         const tuple&,
+         const __nonesuch_no_braces&>::type __in)
+      noexcept(__nothrow_assignable<const _T1&, const _T2&>())
+      {
+ this->_M_assign(__in);
+ return *this;
+      }
+
+      tuple&
+      operator=(typename conditional<__assignable<_T1, _T2>(),
+         tuple&&,
+         __nonesuch_no_braces&&>::type __in)
+      noexcept(__nothrow_assignable<_T1, _T2>())
+      {
+ this->_M_assign(std::move(__in));
+ return *this;
+      }
+
+      template<typename _U1, typename _U2>
+ __enable_if_t<__assignable<const _U1&, const _U2&>(), tuple&>
+ operator=(const tuple<_U1, _U2>& __in)
+ noexcept(__nothrow_assignable<const _U1&, const _U2&>())
+ {
+   this->_M_assign(__in);
+   return *this;
+ }
+
+      template<typename _U1, typename _U2>
+ __enable_if_t<__assignable<_U1, _U2>(), tuple&>
+ operator=(tuple<_U1, _U2>&& __in)
+ noexcept(__nothrow_assignable<_U1, _U2>())
+ {
+   this->_M_assign(std::move(__in));
+   return *this;
+ }
+
+      template<typename _U1, typename _U2>
+ __enable_if_t<__assignable<const _U1&, const _U2&>(), tuple&>
+ operator=(const pair<_U1, _U2>& __in)
+ noexcept(__nothrow_assignable<const _U1&, const _U2&>())
+ {
+   this->_M_head(*this) = __in.first;
+   this->_M_tail(*this)._M_head(*this) = __in.second;
+   return *this;
+ }
+
+      template<typename _U1, typename _U2>
+ __enable_if_t<__assignable<_U1, _U2>(), tuple&>
+ operator=(pair<_U1, _U2>&& __in)
+ noexcept(__nothrow_assignable<_U1, _U2>())
+ {
+   this->_M_head(*this) = std::forward<_U1>(__in.first);
+   this->_M_tail(*this)._M_head(*this) = std::forward<_U2>(__in.second);
+   return *this;
+ }
+
+      void
+      swap(tuple& __in)
+      noexcept(__and_<__is_nothrow_swappable<_T1>,
+        __is_nothrow_swappable<_T2>>::value)
+      { _Inherited::_M_swap(__in); }
+    };
+
+
+
+  template<typename... _Elements>
+    struct tuple_size<tuple<_Elements...>>
+    : public integral_constant<std::size_t, sizeof...(_Elements)> { };
+# 1284 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
+  template<std::size_t __i, typename _Head, typename... _Tail>
+    struct tuple_element<__i, tuple<_Head, _Tail...> >
+    : tuple_element<__i - 1, tuple<_Tail...> > { };
+
+
+
+
+  template<typename _Head, typename... _Tail>
+    struct tuple_element<0, tuple<_Head, _Tail...> >
+    {
+      typedef _Head type;
+    };
+
+
+
+
+  template<size_t __i>
+    struct tuple_element<__i, tuple<>>
+    {
+      static_assert(__i < tuple_size<tuple<>>::value,
+   "tuple index is in range");
+    };
+
+  template<std::size_t __i, typename _Head, typename... _Tail>
+    constexpr _Head&
+    __get_helper(_Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+
+  template<std::size_t __i, typename _Head, typename... _Tail>
+    constexpr const _Head&
+    __get_helper(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+
+
+  template<std::size_t __i, typename... _Elements>
+    constexpr __tuple_element_t<__i, tuple<_Elements...>>&
+    get(tuple<_Elements...>& __t) noexcept
+    { return std::__get_helper<__i>(__t); }
+
+
+  template<std::size_t __i, typename... _Elements>
+    constexpr const __tuple_element_t<__i, tuple<_Elements...>>&
+    get(const tuple<_Elements...>& __t) noexcept
+    { return std::__get_helper<__i>(__t); }
+
+
+  template<std::size_t __i, typename... _Elements>
+    constexpr __tuple_element_t<__i, tuple<_Elements...>>&&
+    get(tuple<_Elements...>&& __t) noexcept
+    {
+      typedef __tuple_element_t<__i, tuple<_Elements...>> __element_type;
+      return std::forward<__element_type&&>(std::get<__i>(__t));
+    }
+
+
+  template<std::size_t __i, typename... _Elements>
+    constexpr const __tuple_element_t<__i, tuple<_Elements...>>&&
+    get(const tuple<_Elements...>&& __t) noexcept
+    {
+      typedef __tuple_element_t<__i, tuple<_Elements...>> __element_type;
+      return std::forward<const __element_type&&>(std::get<__i>(__t));
+    }
+
+
+
+
+
+  template<typename _Head, size_t __i, typename... _Tail>
+    constexpr _Head&
+    __get_helper2(_Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+
+  template<typename _Head, size_t __i, typename... _Tail>
+    constexpr const _Head&
+    __get_helper2(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+
+
+  template <typename _Tp, typename... _Types>
+    constexpr _Tp&
+    get(tuple<_Types...>& __t) noexcept
+    { return std::__get_helper2<_Tp>(__t); }
+
+
+  template <typename _Tp, typename... _Types>
+    constexpr _Tp&&
+    get(tuple<_Types...>&& __t) noexcept
+    { return std::forward<_Tp&&>(std::__get_helper2<_Tp>(__t)); }
+
+
+  template <typename _Tp, typename... _Types>
+    constexpr const _Tp&
+    get(const tuple<_Types...>& __t) noexcept
+    { return std::__get_helper2<_Tp>(__t); }
+
+
+
+  template <typename _Tp, typename... _Types>
+    constexpr const _Tp&&
+    get(const tuple<_Types...>&& __t) noexcept
+    { return std::forward<const _Tp&&>(std::__get_helper2<_Tp>(__t)); }
+
+
+
+  template<typename _Tp, typename _Up, size_t __i, size_t __size>
+    struct __tuple_compare
+    {
+      static constexpr bool
+      __eq(const _Tp& __t, const _Up& __u)
+      {
+ return bool(std::get<__i>(__t) == std::get<__i>(__u))
+   && __tuple_compare<_Tp, _Up, __i + 1, __size>::__eq(__t, __u);
+      }
+
+      static constexpr bool
+      __less(const _Tp& __t, const _Up& __u)
+      {
+ return bool(std::get<__i>(__t) < std::get<__i>(__u))
+   || (!bool(std::get<__i>(__u) < std::get<__i>(__t))
+       && __tuple_compare<_Tp, _Up, __i + 1, __size>::__less(__t, __u));
+      }
+    };
+
+  template<typename _Tp, typename _Up, size_t __size>
+    struct __tuple_compare<_Tp, _Up, __size, __size>
+    {
+      static constexpr bool
+      __eq(const _Tp&, const _Up&) { return true; }
+
+      static constexpr bool
+      __less(const _Tp&, const _Up&) { return false; }
+    };
+
+  template<typename... _TElements, typename... _UElements>
+    constexpr bool
+    operator==(const tuple<_TElements...>& __t,
+        const tuple<_UElements...>& __u)
+    {
+      static_assert(sizeof...(_TElements) == sizeof...(_UElements),
+   "tuple objects can only be compared if they have equal sizes.");
+      using __compare = __tuple_compare<tuple<_TElements...>,
+     tuple<_UElements...>,
+     0, sizeof...(_TElements)>;
+      return __compare::__eq(__t, __u);
+    }
+
+  template<typename... _TElements, typename... _UElements>
+    constexpr bool
+    operator<(const tuple<_TElements...>& __t,
+       const tuple<_UElements...>& __u)
+    {
+      static_assert(sizeof...(_TElements) == sizeof...(_UElements),
+   "tuple objects can only be compared if they have equal sizes.");
+      using __compare = __tuple_compare<tuple<_TElements...>,
+     tuple<_UElements...>,
+     0, sizeof...(_TElements)>;
+      return __compare::__less(__t, __u);
+    }
+
+  template<typename... _TElements, typename... _UElements>
+    constexpr bool
+    operator!=(const tuple<_TElements...>& __t,
+        const tuple<_UElements...>& __u)
+    { return !(__t == __u); }
+
+  template<typename... _TElements, typename... _UElements>
+    constexpr bool
+    operator>(const tuple<_TElements...>& __t,
+       const tuple<_UElements...>& __u)
+    { return __u < __t; }
+
+  template<typename... _TElements, typename... _UElements>
+    constexpr bool
+    operator<=(const tuple<_TElements...>& __t,
+        const tuple<_UElements...>& __u)
+    { return !(__u < __t); }
+
+  template<typename... _TElements, typename... _UElements>
+    constexpr bool
+    operator>=(const tuple<_TElements...>& __t,
+        const tuple<_UElements...>& __u)
+    { return !(__t < __u); }
+
+
+  template<typename... _Elements>
+    constexpr tuple<typename __decay_and_strip<_Elements>::__type...>
+    make_tuple(_Elements&&... __args)
+    {
+      typedef tuple<typename __decay_and_strip<_Elements>::__type...>
+ __result_type;
+      return __result_type(std::forward<_Elements>(__args)...);
+    }
+
+
+
+
+  template<typename... _Elements>
+    constexpr tuple<_Elements&&...>
+    forward_as_tuple(_Elements&&... __args) noexcept
+    { return tuple<_Elements&&...>(std::forward<_Elements>(__args)...); }
+
+  template<size_t, typename, typename, size_t>
+    struct __make_tuple_impl;
+
+  template<size_t _Idx, typename _Tuple, typename... _Tp, size_t _Nm>
+    struct __make_tuple_impl<_Idx, tuple<_Tp...>, _Tuple, _Nm>
+    : __make_tuple_impl<_Idx + 1,
+   tuple<_Tp..., __tuple_element_t<_Idx, _Tuple>>,
+   _Tuple, _Nm>
+    { };
+
+  template<std::size_t _Nm, typename _Tuple, typename... _Tp>
+    struct __make_tuple_impl<_Nm, tuple<_Tp...>, _Tuple, _Nm>
+    {
+      typedef tuple<_Tp...> __type;
+    };
+
+  template<typename _Tuple>
+    struct __do_make_tuple
+    : __make_tuple_impl<0, tuple<>, _Tuple, std::tuple_size<_Tuple>::value>
+    { };
+
+
+  template<typename _Tuple>
+    struct __make_tuple
+    : public __do_make_tuple<__remove_cvref_t<_Tuple>>
+    { };
+
+
+  template<typename...>
+    struct __combine_tuples;
+
+  template<>
+    struct __combine_tuples<>
+    {
+      typedef tuple<> __type;
+    };
+
+  template<typename... _Ts>
+    struct __combine_tuples<tuple<_Ts...>>
+    {
+      typedef tuple<_Ts...> __type;
+    };
+
+  template<typename... _T1s, typename... _T2s, typename... _Rem>
+    struct __combine_tuples<tuple<_T1s...>, tuple<_T2s...>, _Rem...>
+    {
+      typedef typename __combine_tuples<tuple<_T1s..., _T2s...>,
+     _Rem...>::__type __type;
+    };
+
+
+  template<typename... _Tpls>
+    struct __tuple_cat_result
+    {
+      typedef typename __combine_tuples
+        <typename __make_tuple<_Tpls>::__type...>::__type __type;
+    };
+
+
+
+  template<typename...>
+    struct __make_1st_indices;
+
+  template<>
+    struct __make_1st_indices<>
+    {
+      typedef std::_Index_tuple<> __type;
+    };
+
+  template<typename _Tp, typename... _Tpls>
+    struct __make_1st_indices<_Tp, _Tpls...>
+    {
+      typedef typename std::_Build_index_tuple<std::tuple_size<
+ typename std::remove_reference<_Tp>::type>::value>::__type __type;
+    };
+
+
+
+
+  template<typename _Ret, typename _Indices, typename... _Tpls>
+    struct __tuple_concater;
+
+  template<typename _Ret, std::size_t... _Is, typename _Tp, typename... _Tpls>
+    struct __tuple_concater<_Ret, std::_Index_tuple<_Is...>, _Tp, _Tpls...>
+    {
+      template<typename... _Us>
+        static constexpr _Ret
+        _S_do(_Tp&& __tp, _Tpls&&... __tps, _Us&&... __us)
+        {
+   typedef typename __make_1st_indices<_Tpls...>::__type __idx;
+   typedef __tuple_concater<_Ret, __idx, _Tpls...> __next;
+   return __next::_S_do(std::forward<_Tpls>(__tps)...,
+          std::forward<_Us>(__us)...,
+          std::get<_Is>(std::forward<_Tp>(__tp))...);
+ }
+    };
+
+  template<typename _Ret>
+    struct __tuple_concater<_Ret, std::_Index_tuple<>>
+    {
+      template<typename... _Us>
+ static constexpr _Ret
+ _S_do(_Us&&... __us)
+        {
+   return _Ret(std::forward<_Us>(__us)...);
+ }
+    };
+
+
+  template<typename... _Tpls, typename = typename
+           enable_if<__and_<__is_tuple_like<_Tpls>...>::value>::type>
+    constexpr auto
+    tuple_cat(_Tpls&&... __tpls)
+    -> typename __tuple_cat_result<_Tpls...>::__type
+    {
+      typedef typename __tuple_cat_result<_Tpls...>::__type __ret;
+      typedef typename __make_1st_indices<_Tpls...>::__type __idx;
+      typedef __tuple_concater<__ret, __idx, _Tpls...> __concater;
+      return __concater::_S_do(std::forward<_Tpls>(__tpls)...);
+    }
+
+
+
+
+  template<typename... _Elements>
+    constexpr tuple<_Elements&...>
+    tie(_Elements&... __args) noexcept
+    { return tuple<_Elements&...>(__args...); }
+
+
+  template<typename... _Elements>
+    inline
+
+
+    typename enable_if<__and_<__is_swappable<_Elements>...>::value
+      >::type
+
+
+
+    swap(tuple<_Elements...>& __x, tuple<_Elements...>& __y)
+    noexcept(noexcept(__x.swap(__y)))
+    { __x.swap(__y); }
+
+
+  template<typename... _Elements>
+    typename enable_if<!__and_<__is_swappable<_Elements>...>::value>::type
+    swap(tuple<_Elements...>&, tuple<_Elements...>&) = delete;
+
+
+
+
+
+
+  struct _Swallow_assign
+  {
+    template<class _Tp>
+      constexpr const _Swallow_assign&
+      operator=(const _Tp&) const
+      { return *this; }
+  };
+
+
+
+                    constexpr _Swallow_assign ignore{};
+
+
+  template<typename... _Types, typename _Alloc>
+    struct uses_allocator<tuple<_Types...>, _Alloc> : true_type { };
+
+
+  template<class _T1, class _T2>
+    template<typename... _Args1, typename... _Args2>
+      inline
+      pair<_T1, _T2>::
+      pair(piecewise_construct_t,
+    tuple<_Args1...> __first, tuple<_Args2...> __second)
+      : pair(__first, __second,
+      typename _Build_index_tuple<sizeof...(_Args1)>::__type(),
+      typename _Build_index_tuple<sizeof...(_Args2)>::__type())
+      { }
+
+  template<class _T1, class _T2>
+    template<typename... _Args1, std::size_t... _Indexes1,
+             typename... _Args2, std::size_t... _Indexes2>
+      inline
+      pair<_T1, _T2>::
+      pair(tuple<_Args1...>& __tuple1, tuple<_Args2...>& __tuple2,
+    _Index_tuple<_Indexes1...>, _Index_tuple<_Indexes2...>)
+      : first(std::forward<_Args1>(std::get<_Indexes1>(__tuple1))...),
+        second(std::forward<_Args2>(std::get<_Indexes2>(__tuple2))...)
+      { }
+# 1719 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\tuple" 3
+}
+# 38 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 2 3
+
+
+
+namespace std
+{
+
+
+
+
+
+
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+  template<typename> class auto_ptr;
+#pragma GCC diagnostic pop
+
+
+
+  template<typename _Tp>
+    struct default_delete
+    {
+
+      constexpr default_delete() noexcept = default;
+
+
+
+
+
+
+      template<typename _Up, typename = typename
+        enable_if<is_convertible<_Up*, _Tp*>::value>::type>
+        default_delete(const default_delete<_Up>&) noexcept { }
+
+
+      void
+      operator()(_Tp* __ptr) const
+      {
+ static_assert(!is_void<_Tp>::value,
+        "can't delete pointer to incomplete type");
+ static_assert(sizeof(_Tp)>0,
+        "can't delete pointer to incomplete type");
+ delete __ptr;
+      }
+    };
+
+
+
+
+  template<typename _Tp>
+    struct default_delete<_Tp[]>
+    {
+    public:
+
+      constexpr default_delete() noexcept = default;
+# 104 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Up, typename = typename
+        enable_if<is_convertible<_Up(*)[], _Tp(*)[]>::value>::type>
+        default_delete(const default_delete<_Up[]>&) noexcept { }
+
+
+      template<typename _Up>
+      typename enable_if<is_convertible<_Up(*)[], _Tp(*)[]>::value>::type
+ operator()(_Up* __ptr) const
+      {
+ static_assert(sizeof(_Tp)>0,
+        "can't delete pointer to incomplete type");
+ delete [] __ptr;
+      }
+    };
+
+  template <typename _Tp, typename _Dp>
+    class __uniq_ptr_impl
+    {
+      template <typename _Up, typename _Ep, typename = void>
+ struct _Ptr
+ {
+   using type = _Up*;
+ };
+
+      template <typename _Up, typename _Ep>
+ struct
+ _Ptr<_Up, _Ep, __void_t<typename remove_reference<_Ep>::type::pointer>>
+ {
+   using type = typename remove_reference<_Ep>::type::pointer;
+ };
+
+    public:
+      using _DeleterConstraint = enable_if<
+        __and_<__not_<is_pointer<_Dp>>,
+        is_default_constructible<_Dp>>::value>;
+
+      using pointer = typename _Ptr<_Tp, _Dp>::type;
+
+      static_assert( !is_rvalue_reference<_Dp>::value,
+       "unique_ptr's deleter type must be a function object type"
+       " or an lvalue reference type" );
+
+      __uniq_ptr_impl() = default;
+      __uniq_ptr_impl(pointer __p) : _M_t() { _M_ptr() = __p; }
+
+      template<typename _Del>
+      __uniq_ptr_impl(pointer __p, _Del&& __d)
+ : _M_t(__p, std::forward<_Del>(__d)) { }
+
+      pointer& _M_ptr() { return std::get<0>(_M_t); }
+      pointer _M_ptr() const { return std::get<0>(_M_t); }
+      _Dp& _M_deleter() { return std::get<1>(_M_t); }
+      const _Dp& _M_deleter() const { return std::get<1>(_M_t); }
+
+      void
+      swap(__uniq_ptr_impl& __rhs) noexcept
+      {
+ using std::swap;
+ swap(this->_M_ptr(), __rhs._M_ptr());
+ swap(this->_M_deleter(), __rhs._M_deleter());
+      }
+
+    private:
+      tuple<pointer, _Dp> _M_t;
+    };
+
+
+  template <typename _Tp, typename _Dp = default_delete<_Tp>>
+    class unique_ptr
+    {
+      template <typename _Up>
+ using _DeleterConstraint =
+   typename __uniq_ptr_impl<_Tp, _Up>::_DeleterConstraint::type;
+
+      __uniq_ptr_impl<_Tp, _Dp> _M_t;
+
+    public:
+      using pointer = typename __uniq_ptr_impl<_Tp, _Dp>::pointer;
+      using element_type = _Tp;
+      using deleter_type = _Dp;
+
+    private:
+
+
+      template<typename _Up, typename _Ep>
+ using __safe_conversion_up = __and_<
+   is_convertible<typename unique_ptr<_Up, _Ep>::pointer, pointer>,
+   __not_<is_array<_Up>>
+        >;
+
+    public:
+
+
+
+      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
+ constexpr unique_ptr() noexcept
+ : _M_t()
+ { }
+
+
+
+
+
+
+
+      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
+ explicit
+ unique_ptr(pointer __p) noexcept
+ : _M_t(__p)
+        { }
+# 222 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Del = deleter_type,
+        typename = _Require<is_copy_constructible<_Del>>>
+ unique_ptr(pointer __p, const deleter_type& __d) noexcept
+ : _M_t(__p, __d) { }
+# 234 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Del = deleter_type,
+        typename = _Require<is_move_constructible<_Del>>>
+ unique_ptr(pointer __p,
+     __enable_if_t<!is_lvalue_reference<_Del>::value,
+     _Del&&> __d) noexcept
+ : _M_t(__p, std::move(__d))
+ { }
+
+      template<typename _Del = deleter_type,
+        typename _DelUnref = typename remove_reference<_Del>::type>
+ unique_ptr(pointer,
+     __enable_if_t<is_lvalue_reference<_Del>::value,
+     _DelUnref&&>) = delete;
+
+
+      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
+ constexpr unique_ptr(nullptr_t) noexcept
+ : _M_t()
+ { }
+
+
+
+
+      unique_ptr(unique_ptr&& __u) noexcept
+      : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
+
+
+
+
+
+
+
+      template<typename _Up, typename _Ep, typename = _Require<
+               __safe_conversion_up<_Up, _Ep>,
+        typename conditional<is_reference<_Dp>::value,
+        is_same<_Ep, _Dp>,
+        is_convertible<_Ep, _Dp>>::type>>
+ unique_ptr(unique_ptr<_Up, _Ep>&& __u) noexcept
+ : _M_t(__u.release(), std::forward<_Ep>(__u.get_deleter()))
+ { }
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+      template<typename _Up, typename = _Require<
+        is_convertible<_Up*, _Tp*>, is_same<_Dp, default_delete<_Tp>>>>
+ unique_ptr(auto_ptr<_Up>&& __u) noexcept;
+#pragma GCC diagnostic pop
+
+
+
+      ~unique_ptr() noexcept
+      {
+ static_assert(__is_invocable<deleter_type&, pointer>::value,
+        "unique_ptr's deleter must be invocable with a pointer");
+ auto& __ptr = _M_t._M_ptr();
+ if (__ptr != nullptr)
+   get_deleter()(std::move(__ptr));
+ __ptr = pointer();
+      }
+# 304 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      unique_ptr&
+      operator=(unique_ptr&& __u) noexcept
+      {
+ reset(__u.release());
+ get_deleter() = std::forward<deleter_type>(__u.get_deleter());
+ return *this;
+      }
+# 319 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Up, typename _Ep>
+        typename enable_if< __and_<
+          __safe_conversion_up<_Up, _Ep>,
+          is_assignable<deleter_type&, _Ep&&>
+          >::value,
+          unique_ptr&>::type
+ operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
+ {
+   reset(__u.release());
+   get_deleter() = std::forward<_Ep>(__u.get_deleter());
+   return *this;
+ }
+
+
+      unique_ptr&
+      operator=(nullptr_t) noexcept
+      {
+ reset();
+ return *this;
+      }
+
+
+
+
+      typename add_lvalue_reference<element_type>::type
+      operator*() const
+      {
+                                     ;
+ return *get();
+      }
+
+
+      pointer
+      operator->() const noexcept
+      {
+                                             ;
+ return get();
+      }
+
+
+      pointer
+      get() const noexcept
+      { return _M_t._M_ptr(); }
+
+
+      deleter_type&
+      get_deleter() noexcept
+      { return _M_t._M_deleter(); }
+
+
+      const deleter_type&
+      get_deleter() const noexcept
+      { return _M_t._M_deleter(); }
+
+
+      explicit operator bool() const noexcept
+      { return get() == pointer() ? false : true; }
+
+
+
+
+      pointer
+      release() noexcept
+      {
+ pointer __p = get();
+ _M_t._M_ptr() = pointer();
+ return __p;
+      }
+
+
+
+
+
+
+
+      void
+      reset(pointer __p = pointer()) noexcept
+      {
+ static_assert(__is_invocable<deleter_type&, pointer>::value,
+        "unique_ptr's deleter must be invocable with a pointer");
+ using std::swap;
+ swap(_M_t._M_ptr(), __p);
+ if (__p != pointer())
+   get_deleter()(std::move(__p));
+      }
+
+
+      void
+      swap(unique_ptr& __u) noexcept
+      {
+ static_assert(__is_swappable<_Dp>::value, "deleter must be swappable");
+ _M_t.swap(__u._M_t);
+      }
+
+
+      unique_ptr(const unique_ptr&) = delete;
+      unique_ptr& operator=(const unique_ptr&) = delete;
+  };
+
+
+
+
+
+  template<typename _Tp, typename _Dp>
+    class unique_ptr<_Tp[], _Dp>
+    {
+      template <typename _Up>
+      using _DeleterConstraint =
+ typename __uniq_ptr_impl<_Tp, _Up>::_DeleterConstraint::type;
+
+      __uniq_ptr_impl<_Tp, _Dp> _M_t;
+
+      template<typename _Up>
+ using __remove_cv = typename remove_cv<_Up>::type;
+
+
+      template<typename _Up>
+ using __is_derived_Tp
+   = __and_< is_base_of<_Tp, _Up>,
+      __not_<is_same<__remove_cv<_Tp>, __remove_cv<_Up>>> >;
+
+    public:
+      using pointer = typename __uniq_ptr_impl<_Tp, _Dp>::pointer;
+      using element_type = _Tp;
+      using deleter_type = _Dp;
+
+
+
+      template<typename _Up, typename _Ep,
+               typename _UPtr = unique_ptr<_Up, _Ep>,
+        typename _UP_pointer = typename _UPtr::pointer,
+        typename _UP_element_type = typename _UPtr::element_type>
+ using __safe_conversion_up = __and_<
+          is_array<_Up>,
+          is_same<pointer, element_type*>,
+          is_same<_UP_pointer, _UP_element_type*>,
+          is_convertible<_UP_element_type(*)[], element_type(*)[]>
+        >;
+
+
+      template<typename _Up>
+        using __safe_conversion_raw = __and_<
+          __or_<__or_<is_same<_Up, pointer>,
+                      is_same<_Up, nullptr_t>>,
+                __and_<is_pointer<_Up>,
+                       is_same<pointer, element_type*>,
+                       is_convertible<
+                         typename remove_pointer<_Up>::type(*)[],
+                         element_type(*)[]>
+                >
+          >
+        >;
+
+
+
+
+      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
+ constexpr unique_ptr() noexcept
+ : _M_t()
+ { }
+# 487 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Up,
+        typename _Vp = _Dp,
+        typename = _DeleterConstraint<_Vp>,
+        typename = typename enable_if<
+                 __safe_conversion_raw<_Up>::value, bool>::type>
+ explicit
+ unique_ptr(_Up __p) noexcept
+ : _M_t(__p)
+        { }
+# 505 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Up, typename _Del = deleter_type,
+        typename = _Require<__safe_conversion_raw<_Up>,
+       is_copy_constructible<_Del>>>
+      unique_ptr(_Up __p, const deleter_type& __d) noexcept
+      : _M_t(__p, __d) { }
+# 519 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Up, typename _Del = deleter_type,
+        typename = _Require<__safe_conversion_raw<_Up>,
+       is_move_constructible<_Del>>>
+ unique_ptr(_Up __p,
+     __enable_if_t<!is_lvalue_reference<_Del>::value,
+     _Del&&> __d) noexcept
+ : _M_t(std::move(__p), std::move(__d))
+ { }
+
+      template<typename _Up, typename _Del = deleter_type,
+        typename _DelUnref = typename remove_reference<_Del>::type,
+        typename = _Require<__safe_conversion_raw<_Up>>>
+ unique_ptr(_Up,
+     __enable_if_t<is_lvalue_reference<_Del>::value,
+     _DelUnref&&>) = delete;
+
+
+      unique_ptr(unique_ptr&& __u) noexcept
+      : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
+
+
+      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
+ constexpr unique_ptr(nullptr_t) noexcept
+ : _M_t()
+        { }
+
+      template<typename _Up, typename _Ep, typename = _Require<
+        __safe_conversion_up<_Up, _Ep>,
+        typename conditional<is_reference<_Dp>::value,
+        is_same<_Ep, _Dp>,
+        is_convertible<_Ep, _Dp>>::type>>
+ unique_ptr(unique_ptr<_Up, _Ep>&& __u) noexcept
+ : _M_t(__u.release(), std::forward<_Ep>(__u.get_deleter()))
+ { }
+
+
+      ~unique_ptr()
+      {
+ auto& __ptr = _M_t._M_ptr();
+ if (__ptr != nullptr)
+   get_deleter()(__ptr);
+ __ptr = pointer();
+      }
+# 571 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      unique_ptr&
+      operator=(unique_ptr&& __u) noexcept
+      {
+ reset(__u.release());
+ get_deleter() = std::forward<deleter_type>(__u.get_deleter());
+ return *this;
+      }
+# 586 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+      template<typename _Up, typename _Ep>
+ typename
+ enable_if<__and_<__safe_conversion_up<_Up, _Ep>,
+                         is_assignable<deleter_type&, _Ep&&>
+                  >::value,
+                  unique_ptr&>::type
+ operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
+ {
+   reset(__u.release());
+   get_deleter() = std::forward<_Ep>(__u.get_deleter());
+   return *this;
+ }
+
+
+      unique_ptr&
+      operator=(nullptr_t) noexcept
+      {
+ reset();
+ return *this;
+      }
+
+
+
+
+      typename std::add_lvalue_reference<element_type>::type
+      operator[](size_t __i) const
+      {
+                                     ;
+ return get()[__i];
+      }
+
+
+      pointer
+      get() const noexcept
+      { return _M_t._M_ptr(); }
+
+
+      deleter_type&
+      get_deleter() noexcept
+      { return _M_t._M_deleter(); }
+
+
+      const deleter_type&
+      get_deleter() const noexcept
+      { return _M_t._M_deleter(); }
+
+
+      explicit operator bool() const noexcept
+      { return get() == pointer() ? false : true; }
+
+
+
+
+      pointer
+      release() noexcept
+      {
+ pointer __p = get();
+ _M_t._M_ptr() = pointer();
+ return __p;
+      }
+
+
+
+
+
+
+
+      template <typename _Up,
+                typename = _Require<
+                  __or_<is_same<_Up, pointer>,
+                        __and_<is_same<pointer, element_type*>,
+                               is_pointer<_Up>,
+                               is_convertible<
+                                 typename remove_pointer<_Up>::type(*)[],
+                                 element_type(*)[]
+                               >
+                        >
+                  >
+               >>
+      void
+      reset(_Up __p) noexcept
+      {
+ pointer __ptr = __p;
+ using std::swap;
+ swap(_M_t._M_ptr(), __ptr);
+ if (__ptr != nullptr)
+   get_deleter()(__ptr);
+      }
+
+      void reset(nullptr_t = nullptr) noexcept
+      {
+        reset(pointer());
+      }
+
+
+      void
+      swap(unique_ptr& __u) noexcept
+      {
+ static_assert(__is_swappable<_Dp>::value, "deleter must be swappable");
+ _M_t.swap(__u._M_t);
+      }
+
+
+      unique_ptr(const unique_ptr&) = delete;
+      unique_ptr& operator=(const unique_ptr&) = delete;
+    };
+
+  template<typename _Tp, typename _Dp>
+    inline
+
+
+    typename enable_if<__is_swappable<_Dp>::value>::type
+
+
+
+    swap(unique_ptr<_Tp, _Dp>& __x,
+  unique_ptr<_Tp, _Dp>& __y) noexcept
+    { __x.swap(__y); }
+
+
+  template<typename _Tp, typename _Dp>
+    typename enable_if<!__is_swappable<_Dp>::value>::type
+    swap(unique_ptr<_Tp, _Dp>&,
+  unique_ptr<_Tp, _Dp>&) = delete;
+
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+                       inline bool
+    operator==(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return __x.get() == __y.get(); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator==(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+    { return !__x; }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator==(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+    { return !__x; }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+                       inline bool
+    operator!=(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return __x.get() != __y.get(); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator!=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+    { return (bool)__x; }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator!=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+    { return (bool)__x; }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+                       inline bool
+    operator<(const unique_ptr<_Tp, _Dp>& __x,
+       const unique_ptr<_Up, _Ep>& __y)
+    {
+      typedef typename
+ std::common_type<typename unique_ptr<_Tp, _Dp>::pointer,
+                  typename unique_ptr<_Up, _Ep>::pointer>::type _CT;
+      return std::less<_CT>()(__x.get(), __y.get());
+    }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
+         nullptr); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
+         __x.get()); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+                       inline bool
+    operator<=(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return !(__y < __x); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator<=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return !(nullptr < __x); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator<=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return !(__x < nullptr); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+                       inline bool
+    operator>(const unique_ptr<_Tp, _Dp>& __x,
+       const unique_ptr<_Up, _Ep>& __y)
+    { return (__y < __x); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator>(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
+         __x.get()); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator>(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
+         nullptr); }
+
+  template<typename _Tp, typename _Dp,
+    typename _Up, typename _Ep>
+                       inline bool
+    operator>=(const unique_ptr<_Tp, _Dp>& __x,
+        const unique_ptr<_Up, _Ep>& __y)
+    { return !(__x < __y); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator>=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return !(__x < nullptr); }
+
+  template<typename _Tp, typename _Dp>
+                       inline bool
+    operator>=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return !(nullptr < __x); }
+
+
+  template<typename _Tp, typename _Dp>
+    struct hash<unique_ptr<_Tp, _Dp>>
+    : public __hash_base<size_t, unique_ptr<_Tp, _Dp>>,
+    private __poison_hash<typename unique_ptr<_Tp, _Dp>::pointer>
+    {
+      size_t
+      operator()(const unique_ptr<_Tp, _Dp>& __u) const noexcept
+      {
+ typedef unique_ptr<_Tp, _Dp> _UP;
+ return std::hash<typename _UP::pointer>()(__u.get());
+      }
+    };
+
+
+
+
+
+  template<typename _Tp>
+    struct _MakeUniq
+    { typedef unique_ptr<_Tp> __single_object; };
+
+  template<typename _Tp>
+    struct _MakeUniq<_Tp[]>
+    { typedef unique_ptr<_Tp[]> __array; };
+
+  template<typename _Tp, size_t _Bound>
+    struct _MakeUniq<_Tp[_Bound]>
+    { struct __invalid_type { }; };
+
+
+  template<typename _Tp, typename... _Args>
+    inline typename _MakeUniq<_Tp>::__single_object
+    make_unique(_Args&&... __args)
+    { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+
+
+  template<typename _Tp>
+    inline typename _MakeUniq<_Tp>::__array
+    make_unique(size_t __num)
+    { return unique_ptr<_Tp>(new remove_extent_t<_Tp>[__num]()); }
+
+
+  template<typename _Tp, typename... _Args>
+    inline typename _MakeUniq<_Tp>::__invalid_type
+    make_unique(_Args&&...) = delete;
+# 888 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/unique_ptr.h" 3
+}
+# 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 2 3
+
+namespace std
+{
+
+
+
+
+
+
+
+  template<typename _OutStr, typename _InChar, typename _Codecvt,
+    typename _State, typename _Fn>
+    bool
+    __do_str_codecvt(const _InChar* __first, const _InChar* __last,
+       _OutStr& __outstr, const _Codecvt& __cvt, _State& __state,
+       size_t& __count, _Fn __fn)
+    {
+      if (__first == __last)
+ {
+   __outstr.clear();
+   __count = 0;
+   return true;
+ }
+
+      size_t __outchars = 0;
+      auto __next = __first;
+      const auto __maxlen = __cvt.max_length() + 1;
+
+      codecvt_base::result __result;
+      do
+ {
+   __outstr.resize(__outstr.size() + (__last - __next) * __maxlen);
+   auto __outnext = &__outstr.front() + __outchars;
+   auto const __outlast = &__outstr.back() + 1;
+   __result = (__cvt.*__fn)(__state, __next, __last, __next,
+     __outnext, __outlast, __outnext);
+   __outchars = __outnext - &__outstr.front();
+ }
+      while (__result == codecvt_base::partial && __next != __last
+      && (__outstr.size() - __outchars) < __maxlen);
+
+      if (__result == codecvt_base::error)
+ {
+   __count = __next - __first;
+   return false;
+ }
+
+
+
+      if (is_same<typename _Codecvt::intern_type,
+           typename _Codecvt::extern_type>())
+ if (__result == codecvt_base::noconv)
+   {
+     __outstr.assign(__first, __last);
+     __count = __last - __first;
+     return true;
+   }
+
+      __outstr.resize(__outchars);
+      __count = __next - __first;
+      return true;
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_in(const char* __first, const char* __last,
+       basic_string<_CharT, _Traits, _Alloc>& __outstr,
+       const codecvt<_CharT, char, _State>& __cvt,
+       _State& __state, size_t& __count)
+    {
+      using _Codecvt = codecvt<_CharT, char, _State>;
+      using _ConvFn
+ = codecvt_base::result
+   (_Codecvt::*)(_State&, const char*, const char*, const char*&,
+   _CharT*, _CharT*, _CharT*&) const;
+      _ConvFn __fn = &codecvt<_CharT, char, _State>::in;
+      return __do_str_codecvt(__first, __last, __outstr, __cvt, __state,
+         __count, __fn);
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_in(const char* __first, const char* __last,
+       basic_string<_CharT, _Traits, _Alloc>& __outstr,
+       const codecvt<_CharT, char, _State>& __cvt)
+    {
+      _State __state = {};
+      size_t __n;
+      return __str_codecvt_in(__first, __last, __outstr, __cvt, __state, __n);
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_in_all(const char* __first, const char* __last,
+    basic_string<_CharT, _Traits, _Alloc>& __outstr,
+    const codecvt<_CharT, char, _State>& __cvt)
+    {
+      _State __state = {};
+      size_t __n;
+      return __str_codecvt_in(__first, __last, __outstr, __cvt, __state, __n)
+ && (__n == (__last - __first));
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_out(const _CharT* __first, const _CharT* __last,
+        basic_string<char, _Traits, _Alloc>& __outstr,
+        const codecvt<_CharT, char, _State>& __cvt,
+        _State& __state, size_t& __count)
+    {
+      using _Codecvt = codecvt<_CharT, char, _State>;
+      using _ConvFn
+ = codecvt_base::result
+   (_Codecvt::*)(_State&, const _CharT*, const _CharT*, const _CharT*&,
+   char*, char*, char*&) const;
+      _ConvFn __fn = &codecvt<_CharT, char, _State>::out;
+      return __do_str_codecvt(__first, __last, __outstr, __cvt, __state,
+         __count, __fn);
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_out(const _CharT* __first, const _CharT* __last,
+        basic_string<char, _Traits, _Alloc>& __outstr,
+        const codecvt<_CharT, char, _State>& __cvt)
+    {
+      _State __state = {};
+      size_t __n;
+      return __str_codecvt_out(__first, __last, __outstr, __cvt, __state, __n);
+    }
+
+
+  template<typename _CharT, typename _Traits, typename _Alloc, typename _State>
+    inline bool
+    __str_codecvt_out_all(const _CharT* __first, const _CharT* __last,
+     basic_string<char, _Traits, _Alloc>& __outstr,
+     const codecvt<_CharT, char, _State>& __cvt)
+    {
+      _State __state = {};
+      size_t __n;
+      return __str_codecvt_out(__first, __last, __outstr, __cvt, __state, __n)
+ && (__n == (__last - __first));
+    }
+# 226 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
+namespace __cxx11 {
+
+
+  template<typename _Codecvt, typename _Elem = wchar_t,
+    typename _Wide_alloc = allocator<_Elem>,
+    typename _Byte_alloc = allocator<char>>
+    class wstring_convert
+    {
+    public:
+      typedef basic_string<char, char_traits<char>, _Byte_alloc> byte_string;
+      typedef basic_string<_Elem, char_traits<_Elem>, _Wide_alloc> wide_string;
+      typedef typename _Codecvt::state_type state_type;
+      typedef typename wide_string::traits_type::int_type int_type;
+
+
+      wstring_convert() : _M_cvt(new _Codecvt()) { }
+
+
+
+
+
+
+
+      explicit
+      wstring_convert(_Codecvt* __pcvt) : _M_cvt(__pcvt)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wstring_convert");
+      }
+# 264 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
+      wstring_convert(_Codecvt* __pcvt, state_type __state)
+      : _M_cvt(__pcvt), _M_state(__state), _M_with_cvtstate(true)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wstring_convert");
+      }
+
+
+
+
+
+
+      explicit
+      wstring_convert(const byte_string& __byte_err,
+        const wide_string& __wide_err = wide_string())
+      : _M_cvt(new _Codecvt),
+ _M_byte_err_string(__byte_err), _M_wide_err_string(__wide_err),
+ _M_with_strings(true)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wstring_convert");
+      }
+
+      ~wstring_convert() = default;
+
+
+
+      wstring_convert(const wstring_convert&) = delete;
+      wstring_convert& operator=(const wstring_convert&) = delete;
+
+
+      wide_string
+      from_bytes(char __byte)
+      {
+ char __bytes[2] = { __byte };
+ return from_bytes(__bytes, __bytes+1);
+      }
+
+      wide_string
+      from_bytes(const char* __ptr)
+      { return from_bytes(__ptr, __ptr+char_traits<char>::length(__ptr)); }
+
+      wide_string
+      from_bytes(const byte_string& __str)
+      {
+ auto __ptr = __str.data();
+ return from_bytes(__ptr, __ptr + __str.size());
+      }
+
+      wide_string
+      from_bytes(const char* __first, const char* __last)
+      {
+ if (!_M_with_cvtstate)
+   _M_state = state_type();
+ wide_string __out{ _M_wide_err_string.get_allocator() };
+ if (__str_codecvt_in(__first, __last, __out, *_M_cvt, _M_state,
+        _M_count))
+   return __out;
+ if (_M_with_strings)
+   return _M_wide_err_string;
+ __throw_range_error("wstring_convert::from_bytes");
+      }
+
+
+
+      byte_string
+      to_bytes(_Elem __wchar)
+      {
+ _Elem __wchars[2] = { __wchar };
+ return to_bytes(__wchars, __wchars+1);
+      }
+
+      byte_string
+      to_bytes(const _Elem* __ptr)
+      {
+ return to_bytes(__ptr, __ptr+wide_string::traits_type::length(__ptr));
+      }
+
+      byte_string
+      to_bytes(const wide_string& __wstr)
+      {
+ auto __ptr = __wstr.data();
+ return to_bytes(__ptr, __ptr + __wstr.size());
+      }
+
+      byte_string
+      to_bytes(const _Elem* __first, const _Elem* __last)
+      {
+ if (!_M_with_cvtstate)
+   _M_state = state_type();
+ byte_string __out{ _M_byte_err_string.get_allocator() };
+ if (__str_codecvt_out(__first, __last, __out, *_M_cvt, _M_state,
+         _M_count))
+   return __out;
+ if (_M_with_strings)
+   return _M_byte_err_string;
+ __throw_range_error("wstring_convert::to_bytes");
+      }
+
+
+
+
+
+      size_t converted() const noexcept { return _M_count; }
+
+
+      state_type state() const { return _M_state; }
+
+    private:
+      unique_ptr<_Codecvt> _M_cvt;
+      byte_string _M_byte_err_string;
+      wide_string _M_wide_err_string;
+      state_type _M_state = state_type();
+      size_t _M_count = 0;
+      bool _M_with_cvtstate = false;
+      bool _M_with_strings = false;
+    };
+
+}
+
+
+  template<typename _Codecvt, typename _Elem = wchar_t,
+    typename _Tr = char_traits<_Elem>>
+    class wbuffer_convert : public basic_streambuf<_Elem, _Tr>
+    {
+      typedef basic_streambuf<_Elem, _Tr> _Wide_streambuf;
+
+    public:
+      typedef typename _Codecvt::state_type state_type;
+
+
+      wbuffer_convert() : wbuffer_convert(nullptr) { }
+# 405 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/locale_conv.h" 3
+      explicit
+      wbuffer_convert(streambuf* __bytebuf, _Codecvt* __pcvt = new _Codecvt,
+        state_type __state = state_type())
+      : _M_buf(__bytebuf), _M_cvt(__pcvt), _M_state(__state)
+      {
+ if (!_M_cvt)
+   __throw_logic_error("wbuffer_convert");
+
+ _M_always_noconv = _M_cvt->always_noconv();
+
+ if (_M_buf)
+   {
+     this->setp(_M_put_area, _M_put_area + _S_buffer_length);
+     this->setg(_M_get_area + _S_putback_length,
+         _M_get_area + _S_putback_length,
+         _M_get_area + _S_putback_length);
+   }
+      }
+
+      ~wbuffer_convert() = default;
+
+
+
+      wbuffer_convert(const wbuffer_convert&) = delete;
+      wbuffer_convert& operator=(const wbuffer_convert&) = delete;
+
+      streambuf* rdbuf() const noexcept { return _M_buf; }
+
+      streambuf*
+      rdbuf(streambuf *__bytebuf) noexcept
+      {
+ auto __prev = _M_buf;
+ _M_buf = __bytebuf;
+ return __prev;
+      }
+
+
+      state_type state() const noexcept { return _M_state; }
+
+    protected:
+      int
+      sync()
+      { return _M_buf && _M_conv_put() && !_M_buf->pubsync() ? 0 : -1; }
+
+      typename _Wide_streambuf::int_type
+      overflow(typename _Wide_streambuf::int_type __out)
+      {
+ if (!_M_buf || !_M_conv_put())
+   return _Tr::eof();
+ else if (!_Tr::eq_int_type(__out, _Tr::eof()))
+   return this->sputc(__out);
+ return _Tr::not_eof(__out);
+      }
+
+      typename _Wide_streambuf::int_type
+      underflow()
+      {
+ if (!_M_buf)
+   return _Tr::eof();
+
+ if (this->gptr() < this->egptr() || (_M_buf && _M_conv_get()))
+   return _Tr::to_int_type(*this->gptr());
+ else
+   return _Tr::eof();
+      }
+
+      streamsize
+      xsputn(const typename _Wide_streambuf::char_type* __s, streamsize __n)
+      {
+ if (!_M_buf || __n == 0)
+   return 0;
+ streamsize __done = 0;
+ do
+ {
+   auto __nn = std::min<streamsize>(this->epptr() - this->pptr(),
+        __n - __done);
+   _Tr::copy(this->pptr(), __s + __done, __nn);
+   this->pbump(__nn);
+   __done += __nn;
+ } while (__done < __n && _M_conv_put());
+ return __done;
+      }
+
+    private:
+
+      bool
+      _M_conv_get()
+      {
+ const streamsize __pb1 = this->gptr() - this->eback();
+ const streamsize __pb2 = _S_putback_length;
+ const streamsize __npb = std::min(__pb1, __pb2);
+
+ _Tr::move(_M_get_area + _S_putback_length - __npb,
+    this->gptr() - __npb, __npb);
+
+ streamsize __nbytes = sizeof(_M_get_buf) - _M_unconv;
+ __nbytes = std::min(__nbytes, _M_buf->in_avail());
+ if (__nbytes < 1)
+   __nbytes = 1;
+ __nbytes = _M_buf->sgetn(_M_get_buf + _M_unconv, __nbytes);
+ if (__nbytes < 1)
+   return false;
+ __nbytes += _M_unconv;
+
+
+
+ _Elem* __outbuf = _M_get_area + _S_putback_length;
+ _Elem* __outnext = __outbuf;
+ const char* __bnext = _M_get_buf;
+
+ codecvt_base::result __result;
+ if (_M_always_noconv)
+   __result = codecvt_base::noconv;
+ else
+   {
+     _Elem* __outend = _M_get_area + _S_buffer_length;
+
+     __result = _M_cvt->in(_M_state,
+      __bnext, __bnext + __nbytes, __bnext,
+      __outbuf, __outend, __outnext);
+   }
+
+ if (__result == codecvt_base::noconv)
+   {
+
+     auto __get_buf = reinterpret_cast<const _Elem*>(_M_get_buf);
+     _Tr::copy(__outbuf, __get_buf, __nbytes);
+     _M_unconv = 0;
+     return true;
+   }
+
+ if ((_M_unconv = _M_get_buf + __nbytes - __bnext))
+   char_traits<char>::move(_M_get_buf, __bnext, _M_unconv);
+
+ this->setg(__outbuf, __outbuf, __outnext);
+
+ return __result != codecvt_base::error;
+      }
+
+
+      bool
+      _M_put(...)
+      { return false; }
+
+      bool
+      _M_put(const char* __p, streamsize __n)
+      {
+ if (_M_buf->sputn(__p, __n) < __n)
+   return false;
+ return true;
+      }
+
+
+      bool
+      _M_conv_put()
+      {
+ _Elem* const __first = this->pbase();
+ const _Elem* const __last = this->pptr();
+ const streamsize __pending = __last - __first;
+
+ if (_M_always_noconv)
+   return _M_put(__first, __pending);
+
+ char __outbuf[2 * _S_buffer_length];
+
+ const _Elem* __next = __first;
+ const _Elem* __start;
+ do
+   {
+     __start = __next;
+     char* __outnext = __outbuf;
+     char* const __outlast = __outbuf + sizeof(__outbuf);
+     auto __result = _M_cvt->out(_M_state, __next, __last, __next,
+     __outnext, __outlast, __outnext);
+     if (__result == codecvt_base::error)
+       return false;
+     else if (__result == codecvt_base::noconv)
+       return _M_put(__next, __pending);
+
+     if (!_M_put(__outbuf, __outnext - __outbuf))
+       return false;
+   }
+ while (__next != __last && __next != __start);
+
+ if (__next != __last)
+   _Tr::move(__first, __next, __last - __next);
+
+ this->pbump(__first - __next);
+ return __next != __first;
+      }
+
+      streambuf* _M_buf;
+      unique_ptr<_Codecvt> _M_cvt;
+      state_type _M_state;
+
+      static const streamsize _S_buffer_length = 32;
+      static const streamsize _S_putback_length = 3;
+      _Elem _M_put_area[_S_buffer_length];
+      _Elem _M_get_area[_S_buffer_length];
+      streamsize _M_unconv = 0;
+      char _M_get_buf[_S_buffer_length-_S_putback_length];
+      bool _M_always_noconv;
+    };
+
+
+
+
+
+
+}
+# 44 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\locale" 2 3
+# 44 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 2 3
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 1 3
+# 34 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 3
+
+
+
+
+
+
+namespace std
+{
+
+
+  namespace __detail {
+
+
+
+    template<typename _String, typename _CharT>
+      struct _Quoted_string
+      {
+ static_assert(is_reference<_String>::value
+     || is_pointer<_String>::value,
+        "String type must be pointer or reference");
+
+ _Quoted_string(_String __str, _CharT __del, _CharT __esc)
+ : _M_string(__str), _M_delim{__del}, _M_escape{__esc}
+ { }
+
+ _Quoted_string&
+ operator=(_Quoted_string&) = delete;
+
+ _String _M_string;
+ _CharT _M_delim;
+ _CharT _M_escape;
+      };
+# 91 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\bits/quoted_string.h" 3
+    template<typename _CharT, typename _Traits>
+      std::basic_ostream<_CharT, _Traits>&
+      operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+   const _Quoted_string<const _CharT*, _CharT>& __str)
+      {
+ std::basic_ostringstream<_CharT, _Traits> __ostr;
+ __ostr << __str._M_delim;
+ for (const _CharT* __c = __str._M_string; *__c; ++__c)
+   {
+     if (*__c == __str._M_delim || *__c == __str._M_escape)
+       __ostr << __str._M_escape;
+     __ostr << *__c;
+   }
+ __ostr << __str._M_delim;
+
+ return __os << __ostr.str();
+      }
+
+
+
+
+
+
+
+    template<typename _CharT, typename _Traits, typename _String>
+      std::basic_ostream<_CharT, _Traits>&
+      operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+   const _Quoted_string<_String, _CharT>& __str)
+      {
+ std::basic_ostringstream<_CharT, _Traits> __ostr;
+ __ostr << __str._M_delim;
+ for (auto __c : __str._M_string)
+   {
+     if (__c == __str._M_delim || __c == __str._M_escape)
+       __ostr << __str._M_escape;
+     __ostr << __c;
+   }
+ __ostr << __str._M_delim;
+
+ return __os << __ostr.str();
+      }
+
+
+
+
+
+    template<typename _CharT, typename _Traits, typename _Alloc>
+      std::basic_istream<_CharT, _Traits>&
+      operator>>(std::basic_istream<_CharT, _Traits>& __is,
+   const _Quoted_string<basic_string<_CharT, _Traits, _Alloc>&,
+          _CharT>& __str)
+      {
+ _CharT __c;
+ __is >> __c;
+ if (!__is.good())
+   return __is;
+ if (__c != __str._M_delim)
+   {
+     __is.unget();
+     __is >> __str._M_string;
+     return __is;
+   }
+ __str._M_string.clear();
+ std::ios_base::fmtflags __flags
+   = __is.flags(__is.flags() & ~std::ios_base::skipws);
+ do
+   {
+     __is >> __c;
+     if (!__is.good())
+       break;
+     if (__c == __str._M_escape)
+       {
+  __is >> __c;
+  if (!__is.good())
+    break;
+       }
+     else if (__c == __str._M_delim)
+       break;
+     __str._M_string += __c;
+   }
+ while (true);
+ __is.setf(__flags);
+
+ return __is;
+      }
+  }
+
+
+}
+# 46 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 2 3
+
+
+
+namespace std
+{
+
+
+
+
+
+  struct _Resetiosflags { ios_base::fmtflags _M_mask; };
+# 65 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  inline _Resetiosflags
+  resetiosflags(ios_base::fmtflags __mask)
+  { return { __mask }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Resetiosflags __f)
+    {
+      __is.setf(ios_base::fmtflags(0), __f._M_mask);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Resetiosflags __f)
+    {
+      __os.setf(ios_base::fmtflags(0), __f._M_mask);
+      return __os;
+    }
+
+
+  struct _Setiosflags { ios_base::fmtflags _M_mask; };
+# 95 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  inline _Setiosflags
+  setiosflags(ios_base::fmtflags __mask)
+  { return { __mask }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setiosflags __f)
+    {
+      __is.setf(__f._M_mask);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setiosflags __f)
+    {
+      __os.setf(__f._M_mask);
+      return __os;
+    }
+
+
+  struct _Setbase { int _M_base; };
+# 126 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  inline _Setbase
+  setbase(int __base)
+  { return { __base }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setbase __f)
+    {
+      __is.setf(__f._M_base == 8 ? ios_base::oct :
+  __f._M_base == 10 ? ios_base::dec :
+  __f._M_base == 16 ? ios_base::hex :
+  ios_base::fmtflags(0), ios_base::basefield);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setbase __f)
+    {
+      __os.setf(__f._M_base == 8 ? ios_base::oct :
+  __f._M_base == 10 ? ios_base::dec :
+  __f._M_base == 16 ? ios_base::hex :
+  ios_base::fmtflags(0), ios_base::basefield);
+      return __os;
+    }
+
+
+  template<typename _CharT>
+    struct _Setfill { _CharT _M_c; };
+# 163 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  template<typename _CharT>
+    inline _Setfill<_CharT>
+    setfill(_CharT __c)
+    { return { __c }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setfill<_CharT> __f)
+    {
+      __is.fill(__f._M_c);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setfill<_CharT> __f)
+    {
+      __os.fill(__f._M_c);
+      return __os;
+    }
+
+
+  struct _Setprecision { int _M_n; };
+# 194 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  inline _Setprecision
+  setprecision(int __n)
+  { return { __n }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setprecision __f)
+    {
+      __is.precision(__f._M_n);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setprecision __f)
+    {
+      __os.precision(__f._M_n);
+      return __os;
+    }
+
+
+  struct _Setw { int _M_n; };
+# 224 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  inline _Setw
+  setw(int __n)
+  { return { __n }; }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Setw __f)
+    {
+      __is.width(__f._M_n);
+      return __is;
+    }
+
+  template<typename _CharT, typename _Traits>
+    inline basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Setw __f)
+    {
+      __os.width(__f._M_n);
+      return __os;
+    }
+
+
+
+  template<typename _MoneyT>
+    struct _Get_money { _MoneyT& _M_mon; bool _M_intl; };
+# 257 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  template<typename _MoneyT>
+    inline _Get_money<_MoneyT>
+    get_money(_MoneyT& __mon, bool __intl = false)
+    { return { __mon, __intl }; }
+
+  template<typename _CharT, typename _Traits, typename _MoneyT>
+    basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Get_money<_MoneyT> __f)
+    {
+      typename basic_istream<_CharT, _Traits>::sentry __cerb(__is, false);
+      if (__cerb)
+ {
+   ios_base::iostate __err = ios_base::goodbit;
+   try
+     {
+       typedef istreambuf_iterator<_CharT, _Traits> _Iter;
+       typedef money_get<_CharT, _Iter> _MoneyGet;
+
+       const _MoneyGet& __mg = use_facet<_MoneyGet>(__is.getloc());
+       __mg.get(_Iter(__is.rdbuf()), _Iter(), __f._M_intl,
+         __is, __err, __f._M_mon);
+     }
+   catch(__cxxabiv1::__forced_unwind&)
+     {
+       __is._M_setstate(ios_base::badbit);
+       throw;
+     }
+   catch(...)
+     { __is._M_setstate(ios_base::badbit); }
+   if (__err)
+     __is.setstate(__err);
+ }
+      return __is;
+    }
+
+
+  template<typename _MoneyT>
+    struct _Put_money { const _MoneyT& _M_mon; bool _M_intl; };
+# 304 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  template<typename _MoneyT>
+    inline _Put_money<_MoneyT>
+    put_money(const _MoneyT& __mon, bool __intl = false)
+    { return { __mon, __intl }; }
+
+  template<typename _CharT, typename _Traits, typename _MoneyT>
+    basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_money<_MoneyT> __f)
+    {
+      typename basic_ostream<_CharT, _Traits>::sentry __cerb(__os);
+      if (__cerb)
+ {
+   ios_base::iostate __err = ios_base::goodbit;
+   try
+     {
+       typedef ostreambuf_iterator<_CharT, _Traits> _Iter;
+       typedef money_put<_CharT, _Iter> _MoneyPut;
+
+       const _MoneyPut& __mp = use_facet<_MoneyPut>(__os.getloc());
+       if (__mp.put(_Iter(__os.rdbuf()), __f._M_intl, __os,
+      __os.fill(), __f._M_mon).failed())
+  __err |= ios_base::badbit;
+     }
+   catch(__cxxabiv1::__forced_unwind&)
+     {
+       __os._M_setstate(ios_base::badbit);
+       throw;
+     }
+   catch(...)
+     { __os._M_setstate(ios_base::badbit); }
+   if (__err)
+     __os.setstate(__err);
+ }
+      return __os;
+    }
+
+  template<typename _CharT>
+    struct _Put_time
+    {
+      const std::tm* _M_tmb;
+      const _CharT* _M_fmt;
+    };
+# 356 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  template<typename _CharT>
+    inline _Put_time<_CharT>
+    put_time(const std::tm* __tmb, const _CharT* __fmt)
+    { return { __tmb, __fmt }; }
+
+  template<typename _CharT, typename _Traits>
+    basic_ostream<_CharT, _Traits>&
+    operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_time<_CharT> __f)
+    {
+      typename basic_ostream<_CharT, _Traits>::sentry __cerb(__os);
+      if (__cerb)
+        {
+          ios_base::iostate __err = ios_base::goodbit;
+          try
+            {
+              typedef ostreambuf_iterator<_CharT, _Traits> _Iter;
+              typedef time_put<_CharT, _Iter> _TimePut;
+
+              const _CharT* const __fmt_end = __f._M_fmt +
+                _Traits::length(__f._M_fmt);
+
+              const _TimePut& __mp = use_facet<_TimePut>(__os.getloc());
+              if (__mp.put(_Iter(__os.rdbuf()), __os, __os.fill(),
+                           __f._M_tmb, __f._M_fmt, __fmt_end).failed())
+                __err |= ios_base::badbit;
+            }
+          catch(__cxxabiv1::__forced_unwind&)
+            {
+              __os._M_setstate(ios_base::badbit);
+              throw;
+            }
+          catch(...)
+            { __os._M_setstate(ios_base::badbit); }
+          if (__err)
+            __os.setstate(__err);
+        }
+      return __os;
+    }
+
+  template<typename _CharT>
+    struct _Get_time
+    {
+      std::tm* _M_tmb;
+      const _CharT* _M_fmt;
+    };
+# 411 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  template<typename _CharT>
+    inline _Get_time<_CharT>
+    get_time(std::tm* __tmb, const _CharT* __fmt)
+    { return { __tmb, __fmt }; }
+
+  template<typename _CharT, typename _Traits>
+    basic_istream<_CharT, _Traits>&
+    operator>>(basic_istream<_CharT, _Traits>& __is, _Get_time<_CharT> __f)
+    {
+      typename basic_istream<_CharT, _Traits>::sentry __cerb(__is, false);
+      if (__cerb)
+        {
+          ios_base::iostate __err = ios_base::goodbit;
+          try
+            {
+              typedef istreambuf_iterator<_CharT, _Traits> _Iter;
+              typedef time_get<_CharT, _Iter> _TimeGet;
+
+              const _CharT* const __fmt_end = __f._M_fmt +
+                _Traits::length(__f._M_fmt);
+
+              const _TimeGet& __mg = use_facet<_TimeGet>(__is.getloc());
+              __mg.get(_Iter(__is.rdbuf()), _Iter(), __is,
+                       __err, __f._M_tmb, __f._M_fmt, __fmt_end);
+            }
+          catch(__cxxabiv1::__forced_unwind&)
+            {
+              __is._M_setstate(ios_base::badbit);
+              throw;
+            }
+          catch(...)
+            { __is._M_setstate(ios_base::badbit); }
+          if (__err)
+            __is.setstate(__err);
+        }
+      return __is;
+    }
+# 459 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  template<typename _CharT>
+    inline auto
+    quoted(const _CharT* __string,
+    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
+    {
+      return __detail::_Quoted_string<const _CharT*, _CharT>(__string, __delim,
+            __escape);
+    }
+
+  template<typename _CharT, typename _Traits, typename _Alloc>
+    inline auto
+    quoted(const basic_string<_CharT, _Traits, _Alloc>& __string,
+    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
+    {
+      return __detail::_Quoted_string<
+ const basic_string<_CharT, _Traits, _Alloc>&, _CharT>(
+     __string, __delim, __escape);
+    }
+
+  template<typename _CharT, typename _Traits, typename _Alloc>
+    inline auto
+    quoted(basic_string<_CharT, _Traits, _Alloc>& __string,
+    _CharT __delim = _CharT('"'), _CharT __escape = _CharT('\\'))
+    {
+      return __detail::_Quoted_string<
+ basic_string<_CharT, _Traits, _Alloc>&, _CharT>(
+     __string, __delim, __escape);
+    }
+# 508 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/10.0.0/win64.o/nt\\include\\c++\\9.5.0\\iomanip" 3
+  extern template ostream& operator<<(ostream&, _Setfill<char>);
+  extern template ostream& operator<<(ostream&, _Setiosflags);
+  extern template ostream& operator<<(ostream&, _Resetiosflags);
+  extern template ostream& operator<<(ostream&, _Setbase);
+  extern template ostream& operator<<(ostream&, _Setprecision);
+  extern template ostream& operator<<(ostream&, _Setw);
+  extern template istream& operator>>(istream&, _Setfill<char>);
+  extern template istream& operator>>(istream&, _Setiosflags);
+  extern template istream& operator>>(istream&, _Resetiosflags);
+  extern template istream& operator>>(istream&, _Setbase);
+  extern template istream& operator>>(istream&, _Setprecision);
+  extern template istream& operator>>(istream&, _Setw);
+
+
+  extern template wostream& operator<<(wostream&, _Setfill<wchar_t>);
+  extern template wostream& operator<<(wostream&, _Setiosflags);
+  extern template wostream& operator<<(wostream&, _Resetiosflags);
+  extern template wostream& operator<<(wostream&, _Setbase);
+  extern template wostream& operator<<(wostream&, _Setprecision);
+  extern template wostream& operator<<(wostream&, _Setw);
+  extern template wistream& operator>>(wistream&, _Setfill<wchar_t>);
+  extern template wistream& operator>>(wistream&, _Setiosflags);
+  extern template wistream& operator>>(wistream&, _Resetiosflags);
+  extern template wistream& operator>>(wistream&, _Setbase);
+  extern template wistream& operator>>(wistream&, _Setprecision);
+  extern template wistream& operator>>(wistream&, _Setw);
+
+
+
+
+}
+# 98 "D:/AMDDesignTools/2025.2/Vitis/include\\etc/ap_private.h" 2
 
 
 
@@ -85326,133 +85340,157 @@ using axis_ycbcr = axi_stream_video<ycbcr_pixel>;
 using axis_hsv = axi_stream_video<hsv_pixel>;
 # 8 "D:/Repos/_DP/DP/Vitis/hls_passthrough/hls_passthrough.hpp" 2
 
-const int AXI_DMA_WIDTH = 32;
-using axis_video_dma = ap_axiu<AXI_DMA_WIDTH, 1, 0, 0>;
 
-void hls_passthrough(hls::stream<axis_video_dma> &in_stream,
-                     hls::stream<axis_video_dma> &out_stream);
-# 4 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp" 2
+
+
+
+
+
+
+const int AXI_STREAM_WIDTH = 24;
+
+using axis_video = ap_axiu<AXI_STREAM_WIDTH, 1, 0, 0>;
+
+void hls_passthrough(hls::stream<axis_video> &in_stream,
+                     hls::stream<axis_video> &out_stream);
+# 2 "D:/Repos/_DP/DP/Vitis/hls_passthrough/tb_passthrough.cpp" 2
+
+
+
 
 int main() {
-    const int WIDTH = 4;
-    const int HEIGHT = 4;
-    const int TOTAL_PIXELS = WIDTH * HEIGHT;
+  const int WIDTH = 64;
+  const int HEIGHT = 36;
+  const int TOTAL_PIXELS = WIDTH * HEIGHT;
 
 
-    hls::stream<axis_video_dma> in_stream("tb_in_stream");
-    hls::stream<axis_video_dma> out_stream("tb_out_stream");
+  hls::stream<axis_video> in_stream("tb_in_stream");
+  hls::stream<axis_video> out_stream("tb_out_stream");
 
-    std::cout << "==================================================" << std::endl;
-    std::cout << "START HLS PASSTHROUGH TESTBENCH" << std::endl;
-    std::cout << "==================================================" << std::endl;
-
-
-
-
-    std::cout << "-> Generuji vstupní obraz a plním in_stream..." << std::endl;
-
-    for (int r = 0; r < HEIGHT; r++) {
-        for (int c = 0; c < WIDTH; c++) {
-            axis_video_dma packet;
-
-
-            rgb_pixel pixel;
-            pixel.channel[0] = (r * 10) + c + 5;
-            pixel.channel[1] = (r * 20) + c + 10;
-            pixel.channel[2] = (r * 30) + c + 15;
-
-
-            packet.data = static_cast<ap_uint<AXI_DMA_WIDTH>>(pixel);
-
-
-            packet.keep = 0xF;
-            packet.strb = 0xF;
+  std::cout << "=================================================="
+            << std::endl;
+  std::cout << "START HLS PASSTHROUGH TESTBENCH" << std::endl;
+  std::cout << "=================================================="
+            << std::endl;
 
 
 
-            packet.user = (r == 0 && c == 0) ? 1 : 0;
 
-            packet.last = (c == WIDTH - 1) ? 1 : 0;
+  std::cout << "-> Generuji vstupní obraz a plním in_stream..." << std::endl;
+
+  for (int r = 0; r < HEIGHT; r++) {
+    for (int c = 0; c < WIDTH; c++) {
+      axis_video packet;
 
 
-            in_stream.write(packet);
-        }
+      rgb_pixel pixel;
+      pixel.channel[0] = (r * 10) + c + 5;
+      pixel.channel[1] = (r * 20) + c + 10;
+      pixel.channel[2] = (r * 30) + c + 15;
+
+
+
+      packet.data = pixel;
+
+
+      packet.keep = 0xF;
+      packet.strb = 0xF;
+
+
+
+      packet.user = (r == 0 && c == 0) ? 1 : 0;
+
+      packet.last = (c == WIDTH - 1) ? 1 : 0;
+
+
+      in_stream.write(packet);
     }
+  }
 
 
 
 
-    std::cout << "-> Spouštím HLS modul pro " << TOTAL_PIXELS << " pixelů..." << std::endl;
+  std::cout << "-> Spouštím HLS modul pro " << TOTAL_PIXELS << " pixelů..."
+            << std::endl;
 
-    for (int i = 0; i < TOTAL_PIXELS; i++) {
 
+  for (int r = 0; r < HEIGHT; r++) {
         hls_passthrough(in_stream, out_stream);
     }
 
 
 
 
-    std::cout << "-> Kontroluji výstupní data z out_stream..." << std::endl;
-    int error_count = 0;
+  std::cout << "-> Kontroluji výstupní data z out_stream..." << std::endl;
+  int error_count = 0;
 
-    for (int r = 0; r < HEIGHT; r++) {
-        for (int c = 0; c < WIDTH; c++) {
+  for (int r = 0; r < HEIGHT; r++) {
+    for (int c = 0; c < WIDTH; c++) {
 
-            if (out_stream.empty()) {
-                std::cerr << "CHYBA: Výstupní stream je prázdný předčasně! Pozice: ["
-                          << r << ", " << c << "]" << std::endl;
-                error_count++;
-                break;
-            }
-
-
-            axis_video_dma out_packet = out_stream.read();
-
-
-            rgb_pixel out_pixel(static_cast<unsigned int>(out_packet.data));
-
-
-            uint8_t exp_r = (r * 10) + c + 5;
-            uint8_t exp_g = (r * 20) + c + 10;
-            uint8_t exp_b = (r * 30) + c + 15;
-            ap_uint<1> exp_user = (r == 0 && c == 0) ? 1 : 0;
-            ap_uint<1> exp_last = (c == WIDTH - 1) ? 1 : 0;
-
-
-            bool match = (out_pixel.channel[0] == exp_r) &&
-                         (out_pixel.channel[1] == exp_g) &&
-                         (out_pixel.channel[2] == exp_b) &&
-                         (out_packet.user == exp_user) &&
-                         (out_packet.last == exp_last);
-
-            if (!match) {
-                error_count++;
-                std::cout << "NESHODA na pozici [" << r << ", " << c << "]:" << std::endl;
-                std::cout << "  Očekáváno: RGB(" << (int)exp_r << ", " << (int)exp_g << ", " << (int)exp_b
-                          << ") | USER=" << exp_user << " LAST=" << exp_last << std::endl;
-                std::cout << "  Získáno:   RGB(" << (int)out_pixel.channel[0] << ", " << (int)out_pixel.channel[1] << ", " << (int)out_pixel.channel[2]
-                          << ") | USER=" << out_packet.user << " LAST=" << out_packet.last << std::endl;
-            }
-        }
-    }
-
-
-    if (!out_stream.empty()) {
-        std::cerr << "CHYBA: Výstupní stream obsahuje neočekávaná data navíc!" << std::endl;
+      if (out_stream.empty()) {
+        std::cerr << "CHYBA: Výstupní stream je prázdný předčasně! Pozice: ["
+                  << r << ", " << c << "]" << std::endl;
         error_count++;
+        break;
+      }
+
+
+      axis_video out_packet = out_stream.read();
+
+
+      rgb_pixel out_pixel(static_cast<unsigned int>(out_packet.data));
+
+
+
+      uint8_t exp_r = (r * 10) + c + 5;
+      uint8_t exp_g = (r * 20) + c + 10;
+      uint8_t exp_b = (r * 30) + c + 15;
+      ap_uint<1> exp_user = (r == 0 && c == 0) ? 1 : 0;
+      ap_uint<1> exp_last = (c == WIDTH - 1) ? 1 : 0;
+
+
+      bool match =
+          (out_pixel.channel[0] == exp_r) && (out_pixel.channel[1] == exp_g) &&
+          (out_pixel.channel[2] == exp_b) && (out_packet.user == exp_user) &&
+          (out_packet.last == exp_last);
+
+      if (!match) {
+        error_count++;
+        std::cout << "NESHODA na pozici [" << r << ", " << c
+                  << "]:" << std::endl;
+        std::cout << "  Očekáváno: RGB(" << (int)exp_r << ", " << (int)exp_g
+                  << ", " << (int)exp_b << ") | USER=" << exp_user
+                  << " LAST=" << exp_last << std::endl;
+        std::cout << "  Získáno:   RGB(" << (int)out_pixel.channel[0] << ", "
+                  << (int)out_pixel.channel[1] << ", "
+                  << (int)out_pixel.channel[2] << ") | USER=" << out_packet.user
+                  << " LAST=" << out_packet.last << std::endl;
+      }
     }
+  }
+
+
+  if (!out_stream.empty()) {
+    std::cerr << "CHYBA: Výstupní stream obsahuje neočekávaná data navíc!"
+              << std::endl;
+    error_count++;
+  }
 
 
 
 
-    std::cout << "==================================================" << std::endl;
-    if (error_count == 0) {
-        std::cout << ">>> VÝSLEDEK: TEST ÚSPĚŠNĚ PROŠEL (PASSED) <<<" << std::endl;
-        std::cout << "==================================================" << std::endl;
-        return 0;
-    } else {
-        std::cout << ">>> VÝSLEDEK: TEST SELHAL (FAILED). Počet chyb: " << error_count << " <<<" << std::endl;
-        std::cout << "==================================================" << std::endl;
-        return 1;
-    }
+  std::cout << "=================================================="
+            << std::endl;
+  if (error_count == 0) {
+    std::cout << ">>> VÝSLEDEK: TEST ÚSPĚŠNĚ PROŠEL (PASSED) <<<" << std::endl;
+    std::cout << "=================================================="
+              << std::endl;
+    return 0;
+  } else {
+    std::cout << ">>> VÝSLEDEK: TEST SELHAL (FAILED). Počet chyb: "
+              << error_count << " <<<" << std::endl;
+    std::cout << "=================================================="
+              << std::endl;
+    return 1;
+  }
 }

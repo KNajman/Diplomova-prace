@@ -55,7 +55,7 @@ eval "::AESL_LIB_XILADAPTER::native_axis_add { \
     corename {in_stream} \
     metadata {  } \
     op interface \
-    ports { in_stream_TDATA { I 32 vector } } \
+    ports { in_stream_TDATA { I 24 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'in_stream_V_data_V'"
@@ -74,7 +74,7 @@ eval "::AESL_LIB_XILADAPTER::native_axis_add { \
     corename {in_stream} \
     metadata {  } \
     op interface \
-    ports { in_stream_TKEEP { I 4 vector } } \
+    ports { in_stream_TKEEP { I 3 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'in_stream_V_keep_V'"
@@ -93,7 +93,7 @@ eval "::AESL_LIB_XILADAPTER::native_axis_add { \
     corename {in_stream} \
     metadata {  } \
     op interface \
-    ports { in_stream_TSTRB { I 4 vector } } \
+    ports { in_stream_TSTRB { I 3 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'in_stream_V_strb_V'"
@@ -150,7 +150,7 @@ eval "::AESL_LIB_XILADAPTER::native_axis_add { \
     corename {out_stream} \
     metadata {  } \
     op interface \
-    ports { out_stream_TDATA { O 32 vector } } \
+    ports { out_stream_TDATA { O 24 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'out_stream_V_data_V'"
@@ -169,7 +169,7 @@ eval "::AESL_LIB_XILADAPTER::native_axis_add { \
     corename {out_stream} \
     metadata {  } \
     op interface \
-    ports { out_stream_TKEEP { O 4 vector } } \
+    ports { out_stream_TKEEP { O 3 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'out_stream_V_keep_V'"
@@ -188,7 +188,7 @@ eval "::AESL_LIB_XILADAPTER::native_axis_add { \
     corename {out_stream} \
     metadata {  } \
     op interface \
-    ports { out_stream_TSTRB { O 4 vector } } \
+    ports { out_stream_TSTRB { O 3 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'out_stream_V_strb_V'"
@@ -331,6 +331,27 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler hls_passthrough_regslice_both BINDTYPE {interface} TYPE {adapter} IMPL {reg_slice}
+}
+
+
+# flow_control definition:
+set InstName hls_passthrough_flow_control_loop_pipe_U
+set CompName hls_passthrough_flow_control_loop_pipe
+set name flow_control_loop_pipe
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control] == "::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control"} {
+eval "::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control { \
+    name ${name} \
+    prefix hls_passthrough_ \
+}"
+} else {
+puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control, check your platform lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $CompName BINDTYPE interface TYPE internal_upc_flow_control INSTNAME $InstName
 }
 
 

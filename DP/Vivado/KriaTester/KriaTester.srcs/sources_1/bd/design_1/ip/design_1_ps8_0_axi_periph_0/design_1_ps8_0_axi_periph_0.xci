@@ -4,14 +4,14 @@
     "xci_name": "design_1_ps8_0_axi_periph_0",
     "cell_name": "ps8_0_axi_periph",
     "component_reference": "xilinx.com:ip:axi_interconnect:2.1",
-    "ip_revision": "30",
+    "ip_revision": "38",
     "gen_directory": "../../../../../../KriaTester.gen/sources_1/bd/design_1/ip/design_1_ps8_0_axi_periph_0",
     "parameters": {
       "component_parameters": {
-        "NUM_SI": [ { "value": "2", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "NUM_MI": [ { "value": "2", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "NUM_SI": [ { "value": "1", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "NUM_MI": [ { "value": "3", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "STRATEGY": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "ENABLE_ADVANCED_OPTIONS": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "ENABLE_ADVANCED_OPTIONS": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "ENABLE_PROTOCOL_CHECKERS": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "XBAR_DATA_WIDTH": [ { "value": "32", "value_permission": "bd_and_user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PCHK_WAITS": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -325,28 +325,29 @@
         "Component_Name": [ { "value": "design_1_ps8_0_axi_periph_0", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
-        "ARCHITECTURE": [ { "value": "zynquplus" } ],
-        "BASE_BOARD_PART": [ { "value": "xilinx.com:kv260_som:part0:1.4" } ],
-        "BOARD_CONNECTIONS": [ { "value": "som240_1_connector xilinx.com:kv260_carrier:som240_1_connector:1.3" } ],
-        "DEVICE": [ { "value": "xck26" } ],
-        "PACKAGE": [ { "value": "sfvc784" } ],
-        "PREFHDL": [ { "value": "VHDL" } ],
-        "SILICON_REVISION": [ { "value": "" } ],
-        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
-        "SPEEDGRADE": [ { "value": "-2LV" } ],
-        "STATIC_POWER": [ { "value": "" } ],
-        "TEMPERATURE_GRADE": [ { "value": "C" } ]
+        "ARCHITECTURE": [ { "value": "zynquplus", "resolve_type": "generated", "usage": "all" } ],
+        "BASE_BOARD_PART": [ { "value": "xilinx.com:kv260_som:part0:1.4", "resolve_type": "generated", "usage": "all" } ],
+        "BOARD_CONNECTIONS": [ { "value": "som240_1_connector xilinx.com:kv260_carrier:som240_1_connector:1.3", "resolve_type": "generated", "usage": "all" } ],
+        "DEVICE": [ { "value": "xck26", "resolve_type": "generated", "usage": "all" } ],
+        "PACKAGE": [ { "value": "sfvc784", "resolve_type": "generated", "usage": "all" } ],
+        "PREFHDL": [ { "value": "VHDL", "resolve_type": "generated", "usage": "all" } ],
+        "SILICON_REVISION": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED", "resolve_type": "generated", "usage": "all" } ],
+        "SPEEDGRADE": [ { "value": "-2LV", "resolve_type": "generated", "usage": "all" } ],
+        "STATIC_POWER": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+        "TEMPERATURE_GRADE": [ { "value": "C", "resolve_type": "generated", "usage": "all" } ]
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator_AppCore" } ],
-        "IPREVISION": [ { "value": "30" } ],
+        "IPREVISION": [ { "value": "38" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../KriaTester.gen/sources_1/bd/design_1/ip/design_1_ps8_0_axi_periph_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
-        "SWVERSION": [ { "value": "2023.2" } ],
+        "SWVERSION": [ { "value": "2025.2" } ],
         "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
       }
     }
-  }
+  },
+  "checksum": "46b8068b"
 }

@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Jun 25 14:21:31 2026
+# Process ID: 11824
+# Current directory: D:/Repos/_DP/DP/Vivado/fractal/fractal_vivado
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15668 D:\Repos\_DP\DP\Vivado\fractal\fractal_vivado\fractal_vivado.xpr
+# Log file: D:/Repos/_DP/DP/Vivado/fractal/fractal_vivado/vivado.log
+# Journal file: D:/Repos/_DP/DP/Vivado/fractal/fractal_vivado\vivado.jou
+# Running On: N166A, OS: Windows, CPU Frequency: 2112 MHz, CPU Physical cores: 4, Host memory: 12723 MB
+#-----------------------------------------------------------
+start_gui
+open_project -part xcku11p-ffva1156-1-e D:/Repos/_DP/DP/Vivado/fractal/fractal_vivado/fractal_vivado.xpr
+open_project D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.xpr
+update_compile_order -fileset sources_1
+open_bd_design {D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.srcs/sources_1/bd/design_1/design_1.bd}

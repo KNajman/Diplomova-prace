@@ -13,7 +13,7 @@ class hls_passthrough_reference_model extends uvm_component;
     event allsvr_input_done;
     event allsvr_output_done;
     event write_start_finish;
-    int trans_num_total = 16;
+    int trans_num_total = 36;
     int trans_num_idx;
     int ap_done_cnt=1;
     event dut2tb_ap_ready;
@@ -129,14 +129,14 @@ misc_if.dut2tb_ap_done = 0;
         join
     endtask
 
-    virtual function void write_svr_master_in_stream(svr_transfer#(42) tr);
+    virtual function void write_svr_master_in_stream(svr_transfer#(32) tr);
     //  trans_size++;
         svr_in_stream_delay = tr.delay;
         svr_in_stream_cov.sample();
         `uvm_info(this.get_full_name(), "port a collected one pkt", UVM_DEBUG);
     endfunction
 
-    virtual function void write_svr_slave_out_stream(svr_transfer#(42) tr);
+    virtual function void write_svr_slave_out_stream(svr_transfer#(32) tr);
     //  trans_size++;
         svr_out_stream_delay = tr.delay;
         svr_out_stream_cov.sample();

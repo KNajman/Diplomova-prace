@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:hls:hls_passthrough:1.0
--- IP Revision: 2114608609
+-- IP Revision: 2114676054
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -75,18 +75,18 @@ ENTITY design_1_hls_passthrough_0_0 IS
     ap_clk : IN STD_LOGIC;
     ap_rst_n : IN STD_LOGIC;
     interrupt : OUT STD_LOGIC;
-    in_stream_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    in_stream_TKEEP : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    in_stream_TDATA : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+    in_stream_TKEEP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
     in_stream_TLAST : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     in_stream_TREADY : OUT STD_LOGIC;
-    in_stream_TSTRB : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    in_stream_TSTRB : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
     in_stream_TUSER : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     in_stream_TVALID : IN STD_LOGIC;
-    out_stream_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    out_stream_TKEEP : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    out_stream_TDATA : OUT STD_LOGIC_VECTOR(23 DOWNTO 0);
+    out_stream_TKEEP : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
     out_stream_TLAST : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     out_stream_TREADY : IN STD_LOGIC;
-    out_stream_TSTRB : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    out_stream_TSTRB : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
     out_stream_TUSER : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     out_stream_TVALID : OUT STD_LOGIC
   );
@@ -121,28 +121,28 @@ ARCHITECTURE design_1_hls_passthrough_0_0_arch OF design_1_hls_passthrough_0_0 I
       ap_clk : IN STD_LOGIC;
       ap_rst_n : IN STD_LOGIC;
       interrupt : OUT STD_LOGIC;
-      in_stream_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-      in_stream_TKEEP : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      in_stream_TDATA : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+      in_stream_TKEEP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
       in_stream_TLAST : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       in_stream_TREADY : OUT STD_LOGIC;
-      in_stream_TSTRB : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      in_stream_TSTRB : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
       in_stream_TUSER : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       in_stream_TVALID : IN STD_LOGIC;
-      out_stream_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      out_stream_TKEEP : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      out_stream_TDATA : OUT STD_LOGIC_VECTOR(23 DOWNTO 0);
+      out_stream_TKEEP : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
       out_stream_TLAST : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       out_stream_TREADY : IN STD_LOGIC;
-      out_stream_TSTRB : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      out_stream_TSTRB : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
       out_stream_TUSER : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       out_stream_TVALID : OUT STD_LOGIC
     );
   END COMPONENT hls_passthrough;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF design_1_hls_passthrough_0_0_arch: ARCHITECTURE IS "hls_passthrough,Vivado 2023.2";
+  ATTRIBUTE X_CORE_INFO OF design_1_hls_passthrough_0_0_arch: ARCHITECTURE IS "hls_passthrough,Vivado 2025.2";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF design_1_hls_passthrough_0_0_arch : ARCHITECTURE IS "design_1_hls_passthrough_0_0,hls_passthrough,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF design_1_hls_passthrough_0_0_arch: ARCHITECTURE IS "design_1_hls_passthrough_0_0,hls_passthrough,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=hls_passthrough,x_ipVersion=1.0,x_ipCoreRevision=2114608609,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S_AXI_CONTROL_ADDR_WIDTH=4,C_S_AXI_CONTROL_DATA_WIDTH=32}";
+  ATTRIBUTE CORE_GENERATION_INFO OF design_1_hls_passthrough_0_0_arch: ARCHITECTURE IS "design_1_hls_passthrough_0_0,hls_passthrough,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=hls_passthrough,x_ipVersion=1.0,x_ipCoreRevision=2114676054,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S_AXI_CONTROL_ADDR_WIDTH=4,C_S_AXI_CONTROL_DATA_WIDTH=32}";
   ATTRIBUTE SDX_KERNEL : STRING;
   ATTRIBUTE SDX_KERNEL OF hls_passthrough: COMPONENT IS "true";
   ATTRIBUTE SDX_KERNEL_TYPE : STRING;
@@ -152,32 +152,39 @@ ARCHITECTURE design_1_hls_passthrough_0_0_arch OF design_1_hls_passthrough_0_0 I
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF design_1_hls_passthrough_0_0_arch: ARCHITECTURE IS "HLS";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
+  ATTRIBUTE X_INTERFACE_MODE : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
-  ATTRIBUTE X_INTERFACE_PARAMETER OF ap_clk: SIGNAL IS "XIL_INTERFACENAME ap_clk, ASSOCIATED_BUSIF s_axi_control:in_stream:out_stream, ASSOCIATED_RESET ap_rst_n, FREQ_HZ 99999001, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF ap_clk: SIGNAL IS "xilinx.com:signal:clock:1.0 ap_clk CLK";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF ap_rst_n: SIGNAL IS "XIL_INTERFACENAME ap_rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_MODE OF ap_clk: SIGNAL IS "slave ap_clk";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF ap_clk: SIGNAL IS "XIL_INTERFACENAME ap_clk, ASSOCIATED_BUSIF s_axi_control:in_stream:out_stream, ASSOCIATED_RESET ap_rst_n, FREQ_HZ 99999001, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF ap_rst_n: SIGNAL IS "xilinx.com:signal:reset:1.0 ap_rst_n RST";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF in_stream_TDATA: SIGNAL IS "XIL_INTERFACENAME in_stream, TUSER_WIDTH 1, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_MODE OF ap_rst_n: SIGNAL IS "slave ap_rst_n";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF ap_rst_n: SIGNAL IS "XIL_INTERFACENAME ap_rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TDATA";
+  ATTRIBUTE X_INTERFACE_MODE OF in_stream_TDATA: SIGNAL IS "slave in_stream";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF in_stream_TDATA: SIGNAL IS "XIL_INTERFACENAME in_stream, TUSER_WIDTH 1, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TKEEP: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TKEEP";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TLAST: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TLAST";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TREADY";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TSTRB: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TSTRB";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TUSER: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TUSER";
   ATTRIBUTE X_INTERFACE_INFO OF in_stream_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 in_stream TVALID";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF interrupt: SIGNAL IS "XIL_INTERFACENAME interrupt, SENSITIVITY LEVEL_HIGH, PORTWIDTH 1";
   ATTRIBUTE X_INTERFACE_INFO OF interrupt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 interrupt INTERRUPT";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF out_stream_TDATA: SIGNAL IS "XIL_INTERFACENAME out_stream, TUSER_WIDTH 1, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_MODE OF interrupt: SIGNAL IS "master interrupt";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF interrupt: SIGNAL IS "XIL_INTERFACENAME interrupt, SENSITIVITY LEVEL_HIGH, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TDATA";
+  ATTRIBUTE X_INTERFACE_MODE OF out_stream_TDATA: SIGNAL IS "master out_stream";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF out_stream_TDATA: SIGNAL IS "XIL_INTERFACENAME out_stream, TUSER_WIDTH 1, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TKEEP: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TKEEP";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TLAST: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TLAST";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TREADY";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TSTRB: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TSTRB";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TUSER: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TUSER";
   ATTRIBUTE X_INTERFACE_INFO OF out_stream_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 out_stream TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARADDR";
+  ATTRIBUTE X_INTERFACE_MODE OF s_axi_control_ARADDR: SIGNAL IS "slave s_axi_control";
   ATTRIBUTE X_INTERFACE_PARAMETER OF s_axi_control_ARADDR: SIGNAL IS "XIL_INTERFACENAME s_axi_control, ADDR_WIDTH 4, DATA_WIDTH 32, PROTOCOL AXI4LITE, READ_WRITE_MODE READ_WRITE, FREQ_HZ 99999001, ID_WIDTH 0, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS" & 
 " 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
-  ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARADDR";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARREADY";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_ARVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control ARVALID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_control_AWADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 s_axi_control AWADDR";
