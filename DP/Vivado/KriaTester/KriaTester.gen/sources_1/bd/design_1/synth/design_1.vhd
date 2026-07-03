@@ -2,7 +2,7 @@
 --Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
---Date        : Tue Jun 30 11:59:34 2026
+--Date        : Thu Jul  2 12:59:45 2026
 --Host        : N166A running 64-bit major release  (build 9200)
 --Command     : generate_target design_1.bd
 --Design      : design_1
@@ -1191,7 +1191,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1 is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of design_1 : entity is "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=15,numReposBlks=10,numNonXlnxBlks=0,numHierBlks=5,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_axi4_s2mm_cnt=1,da_board_cnt=1,da_clkrst_cnt=5,da_zynq_ultra_ps_e_cnt=1,synth_mode=None}";
+  attribute CORE_GENERATION_INFO of design_1 : entity is "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=15,numReposBlks=10,numNonXlnxBlks=0,numHierBlks=5,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_axi4_s2mm_cnt=1,da_board_cnt=1,da_clkrst_cnt=5,da_zynq_ultra_ps_e_cnt=1,synth_mode=Hierarchical}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1 : entity is "design_1.hwdef";
 end design_1;
@@ -1340,10 +1340,10 @@ architecture STRUCTURE of design_1 is
   end component design_1_rst_ps8_0_99M_0;
   component design_1_hls_passthrough_0_0 is
   port (
-    s_axi_control_ARADDR : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_ARADDR : in STD_LOGIC_VECTOR ( 4 downto 0 );
     s_axi_control_ARREADY : out STD_LOGIC;
     s_axi_control_ARVALID : in STD_LOGIC;
-    s_axi_control_AWADDR : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_control_AWADDR : in STD_LOGIC_VECTOR ( 4 downto 0 );
     s_axi_control_AWREADY : out STD_LOGIC;
     s_axi_control_AWVALID : in STD_LOGIC;
     s_axi_control_BREADY : in STD_LOGIC;
@@ -1360,18 +1360,18 @@ architecture STRUCTURE of design_1 is
     ap_clk : in STD_LOGIC;
     ap_rst_n : in STD_LOGIC;
     interrupt : out STD_LOGIC;
-    in_stream_TDATA : in STD_LOGIC_VECTOR ( 23 downto 0 );
-    in_stream_TKEEP : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    in_stream_TDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    in_stream_TKEEP : in STD_LOGIC_VECTOR ( 3 downto 0 );
     in_stream_TLAST : in STD_LOGIC_VECTOR ( 0 to 0 );
     in_stream_TREADY : out STD_LOGIC;
-    in_stream_TSTRB : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    in_stream_TSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
     in_stream_TUSER : in STD_LOGIC_VECTOR ( 0 to 0 );
     in_stream_TVALID : in STD_LOGIC;
-    out_stream_TDATA : out STD_LOGIC_VECTOR ( 23 downto 0 );
-    out_stream_TKEEP : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    out_stream_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    out_stream_TKEEP : out STD_LOGIC_VECTOR ( 3 downto 0 );
     out_stream_TLAST : out STD_LOGIC_VECTOR ( 0 to 0 );
     out_stream_TREADY : in STD_LOGIC;
-    out_stream_TSTRB : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    out_stream_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
     out_stream_TUSER : out STD_LOGIC_VECTOR ( 0 to 0 );
     out_stream_TVALID : out STD_LOGIC
   );
@@ -1526,16 +1526,16 @@ architecture STRUCTURE of design_1 is
     s_axis_aclk : in STD_LOGIC;
     s_axis_tvalid : in STD_LOGIC;
     s_axis_tready : out STD_LOGIC;
-    s_axis_tdata : in STD_LOGIC_VECTOR ( 23 downto 0 );
-    s_axis_tstrb : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s_axis_tkeep : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s_axis_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axis_tstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axis_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s_axis_tlast : in STD_LOGIC;
     s_axis_tuser : in STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tvalid : out STD_LOGIC;
     m_axis_tready : in STD_LOGIC;
-    m_axis_tdata : out STD_LOGIC_VECTOR ( 23 downto 0 );
-    m_axis_tstrb : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axis_tkeep : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axis_tstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axis_tkeep : out STD_LOGIC_VECTOR ( 3 downto 0 );
     m_axis_tlast : out STD_LOGIC;
     m_axis_tuser : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
@@ -1615,19 +1615,19 @@ architecture STRUCTURE of design_1 is
   signal VFB_WRITE_m_axi_mm_video_WREADY : STD_LOGIC;
   signal VFB_WRITE_m_axi_mm_video_WSTRB : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal VFB_WRITE_m_axi_mm_video_WVALID : STD_LOGIC;
-  signal axis_data_fifo_0_M_AXIS_TDATA : STD_LOGIC_VECTOR ( 23 downto 0 );
-  signal axis_data_fifo_0_M_AXIS_TKEEP : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axis_data_fifo_0_M_AXIS_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal axis_data_fifo_0_M_AXIS_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axis_data_fifo_0_M_AXIS_TLAST : STD_LOGIC;
   signal axis_data_fifo_0_M_AXIS_TREADY : STD_LOGIC;
-  signal axis_data_fifo_0_M_AXIS_TSTRB : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal axis_data_fifo_0_M_AXIS_TSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axis_data_fifo_0_M_AXIS_TUSER : STD_LOGIC_VECTOR ( 0 to 0 );
   signal axis_data_fifo_0_M_AXIS_TVALID : STD_LOGIC;
   signal hls_passthrough_0_interrupt : STD_LOGIC;
-  signal hls_passthrough_0_out_stream_TDATA : STD_LOGIC_VECTOR ( 23 downto 0 );
-  signal hls_passthrough_0_out_stream_TKEEP : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal hls_passthrough_0_out_stream_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal hls_passthrough_0_out_stream_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal hls_passthrough_0_out_stream_TLAST : STD_LOGIC_VECTOR ( 0 to 0 );
   signal hls_passthrough_0_out_stream_TREADY : STD_LOGIC;
-  signal hls_passthrough_0_out_stream_TSTRB : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal hls_passthrough_0_out_stream_TSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal hls_passthrough_0_out_stream_TUSER : STD_LOGIC_VECTOR ( 0 to 0 );
   signal hls_passthrough_0_out_stream_TVALID : STD_LOGIC;
   signal ps8_0_axi_periph_M00_AXI_ARADDR : STD_LOGIC_VECTOR ( 39 downto 0 );
@@ -1875,20 +1875,20 @@ VFB_WRITE: component design_1_v_frmbuf_wr_0_0
     );
 axis_data_fifo_0: component design_1_axis_data_fifo_0_0
      port map (
-      m_axis_tdata(23 downto 0) => axis_data_fifo_0_M_AXIS_TDATA(23 downto 0),
-      m_axis_tkeep(2 downto 0) => axis_data_fifo_0_M_AXIS_TKEEP(2 downto 0),
+      m_axis_tdata(31 downto 0) => axis_data_fifo_0_M_AXIS_TDATA(31 downto 0),
+      m_axis_tkeep(3 downto 0) => axis_data_fifo_0_M_AXIS_TKEEP(3 downto 0),
       m_axis_tlast => axis_data_fifo_0_M_AXIS_TLAST,
       m_axis_tready => axis_data_fifo_0_M_AXIS_TREADY,
-      m_axis_tstrb(2 downto 0) => axis_data_fifo_0_M_AXIS_TSTRB(2 downto 0),
+      m_axis_tstrb(3 downto 0) => axis_data_fifo_0_M_AXIS_TSTRB(3 downto 0),
       m_axis_tuser(0) => axis_data_fifo_0_M_AXIS_TUSER(0),
       m_axis_tvalid => axis_data_fifo_0_M_AXIS_TVALID,
       s_axis_aclk => zynq_ultra_ps_e_0_pl_clk0,
       s_axis_aresetn => rst_ps8_0_99M_peripheral_aresetn(0),
-      s_axis_tdata(23 downto 0) => hls_passthrough_0_out_stream_TDATA(23 downto 0),
-      s_axis_tkeep(2 downto 0) => hls_passthrough_0_out_stream_TKEEP(2 downto 0),
+      s_axis_tdata(31 downto 0) => hls_passthrough_0_out_stream_TDATA(31 downto 0),
+      s_axis_tkeep(3 downto 0) => hls_passthrough_0_out_stream_TKEEP(3 downto 0),
       s_axis_tlast => hls_passthrough_0_out_stream_TLAST(0),
       s_axis_tready => hls_passthrough_0_out_stream_TREADY,
-      s_axis_tstrb(2 downto 0) => hls_passthrough_0_out_stream_TSTRB(2 downto 0),
+      s_axis_tstrb(3 downto 0) => hls_passthrough_0_out_stream_TSTRB(3 downto 0),
       s_axis_tuser(0) => hls_passthrough_0_out_stream_TUSER(0),
       s_axis_tvalid => hls_passthrough_0_out_stream_TVALID
     );
@@ -1896,25 +1896,28 @@ hls_passthrough_0: component design_1_hls_passthrough_0_0
      port map (
       ap_clk => zynq_ultra_ps_e_0_pl_clk0,
       ap_rst_n => rst_ps8_0_99M_peripheral_aresetn(0),
+      in_stream_TDATA(31 downto 24) => B"00000000",
       in_stream_TDATA(23 downto 0) => VFB_READ_m_axis_video_TDATA(23 downto 0),
+      in_stream_TKEEP(3) => '1',
       in_stream_TKEEP(2 downto 0) => VFB_READ_m_axis_video_TKEEP(2 downto 0),
       in_stream_TLAST(0) => VFB_READ_m_axis_video_TLAST(0),
       in_stream_TREADY => VFB_READ_m_axis_video_TREADY,
+      in_stream_TSTRB(3) => '1',
       in_stream_TSTRB(2 downto 0) => VFB_READ_m_axis_video_TSTRB(2 downto 0),
       in_stream_TUSER(0) => VFB_READ_m_axis_video_TUSER(0),
       in_stream_TVALID => VFB_READ_m_axis_video_TVALID,
       interrupt => hls_passthrough_0_interrupt,
-      out_stream_TDATA(23 downto 0) => hls_passthrough_0_out_stream_TDATA(23 downto 0),
-      out_stream_TKEEP(2 downto 0) => hls_passthrough_0_out_stream_TKEEP(2 downto 0),
+      out_stream_TDATA(31 downto 0) => hls_passthrough_0_out_stream_TDATA(31 downto 0),
+      out_stream_TKEEP(3 downto 0) => hls_passthrough_0_out_stream_TKEEP(3 downto 0),
       out_stream_TLAST(0) => hls_passthrough_0_out_stream_TLAST(0),
       out_stream_TREADY => hls_passthrough_0_out_stream_TREADY,
-      out_stream_TSTRB(2 downto 0) => hls_passthrough_0_out_stream_TSTRB(2 downto 0),
+      out_stream_TSTRB(3 downto 0) => hls_passthrough_0_out_stream_TSTRB(3 downto 0),
       out_stream_TUSER(0) => hls_passthrough_0_out_stream_TUSER(0),
       out_stream_TVALID => hls_passthrough_0_out_stream_TVALID,
-      s_axi_control_ARADDR(3 downto 0) => ps8_0_axi_periph_M00_AXI_ARADDR(3 downto 0),
+      s_axi_control_ARADDR(4 downto 0) => ps8_0_axi_periph_M00_AXI_ARADDR(4 downto 0),
       s_axi_control_ARREADY => ps8_0_axi_periph_M00_AXI_ARREADY,
       s_axi_control_ARVALID => ps8_0_axi_periph_M00_AXI_ARVALID(0),
-      s_axi_control_AWADDR(3 downto 0) => ps8_0_axi_periph_M00_AXI_AWADDR(3 downto 0),
+      s_axi_control_AWADDR(4 downto 0) => ps8_0_axi_periph_M00_AXI_AWADDR(4 downto 0),
       s_axi_control_AWREADY => ps8_0_axi_periph_M00_AXI_AWREADY,
       s_axi_control_AWVALID => ps8_0_axi_periph_M00_AXI_AWVALID(0),
       s_axi_control_BREADY => ps8_0_axi_periph_M00_AXI_BREADY(0),

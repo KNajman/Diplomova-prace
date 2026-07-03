@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="design_1_v_frmbuf_rd_0_0_v_frmbuf_rd,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=7.300000,HLS_SYN_LAT=-1,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=2309,HLS_SYN_LUT=3508,HLS_VERSION=2025_2}" *)
+(* CORE_GENERATION_INFO="design_1_v_frmbuf_rd_0_0_v_frmbuf_rd,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=7.300000,HLS_SYN_LAT=-1,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=2706,HLS_SYN_LUT=4583,HLS_VERSION=2025_2}" *)
 
 (* DowngradeIPIdentifiedWarnings="yes" *)
 module design_1_v_frmbuf_rd_0_0_v_frmbuf_rd (
@@ -598,7 +598,7 @@ design_1_v_frmbuf_rd_0_0_mul_14s_3ns_14_1_1 #(
     .din0_WIDTH( 14 ),
     .din1_WIDTH( 3 ),
     .dout_WIDTH( 14 ))
-mul_14s_3ns_14_1_1_U88(
+mul_14s_3ns_14_1_1_U112(
     .din0(trunc_ln135_reg_238),
     .din1(WidthInBytes_fu_222_p1),
     .dout(WidthInBytes_fu_222_p2)

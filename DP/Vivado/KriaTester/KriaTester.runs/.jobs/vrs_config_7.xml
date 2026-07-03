@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="design_1_axis_data_fifo_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_axis_data_fifo_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_hls_passthrough_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_hls_passthrough_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_ps8_0_axi_periph_imp_auto_ds_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_ps8_0_axi_periph_imp_auto_ds_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_ps8_0_axi_periph_imp_auto_pc_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_ps8_0_axi_periph_imp_auto_pc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_ps8_0_axi_periph_upgraded_ipi_imp_xbar_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_ps8_0_axi_periph_upgraded_ipi_imp_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_rst_ps8_0_99M_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_rst_ps8_0_99M_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_v_frmbuf_rd_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_v_frmbuf_rd_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_v_frmbuf_wr_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_v_frmbuf_wr_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_1_zynq_ultra_ps_e_0_0_synth_1" LaunchDir="D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/design_1_zynq_ultra_ps_e_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+		<Parameter Name="general.shortenLongPath" Val="true" Type="bool"/>
+		<Parameter Name="general.usePosixSpawnForFork" Val="true" Type="bool"/>
+	</Parameters>
+	<ProductInfo Name="vivado"/>
+</Runs>
+

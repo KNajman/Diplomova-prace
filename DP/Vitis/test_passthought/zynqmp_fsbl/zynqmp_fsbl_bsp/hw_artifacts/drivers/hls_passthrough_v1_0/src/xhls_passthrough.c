@@ -76,6 +76,40 @@ void XHls_passthrough_DisableAutoRestart(XHls_passthrough *InstancePtr) {
     XHls_passthrough_WriteReg(InstancePtr->Control_BaseAddress, XHLS_PASSTHROUGH_CONTROL_ADDR_AP_CTRL, 0);
 }
 
+void XHls_passthrough_Set_height(XHls_passthrough *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XHls_passthrough_WriteReg(InstancePtr->Control_BaseAddress, XHLS_PASSTHROUGH_CONTROL_ADDR_HEIGHT_DATA, Data);
+}
+
+u32 XHls_passthrough_Get_height(XHls_passthrough *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XHls_passthrough_ReadReg(InstancePtr->Control_BaseAddress, XHLS_PASSTHROUGH_CONTROL_ADDR_HEIGHT_DATA);
+    return Data;
+}
+
+void XHls_passthrough_Set_width(XHls_passthrough *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XHls_passthrough_WriteReg(InstancePtr->Control_BaseAddress, XHLS_PASSTHROUGH_CONTROL_ADDR_WIDTH_DATA, Data);
+}
+
+u32 XHls_passthrough_Get_width(XHls_passthrough *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XHls_passthrough_ReadReg(InstancePtr->Control_BaseAddress, XHLS_PASSTHROUGH_CONTROL_ADDR_WIDTH_DATA);
+    return Data;
+}
+
 void XHls_passthrough_InterruptGlobalEnable(XHls_passthrough *InstancePtr) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);

@@ -23,8 +23,8 @@ module design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_
         sof,
         cols,
         add_ln392,
-        empty_47,
-        empty_48,
+        empty_53,
+        empty_54,
         empty,
         m_axis_video_TDATA,
         m_axis_video_TVALID,
@@ -53,8 +53,8 @@ input   m_axis_video_TREADY;
 input  [0:0] sof;
 input  [10:0] cols;
 input  [11:0] add_ln392;
-input  [1:0] empty_47;
-input  [1:0] empty_48;
+input  [1:0] empty_53;
+input  [1:0] empty_54;
 input  [1:0] empty;
 output  [23:0] m_axis_video_TDATA;
 output   m_axis_video_TVALID;
@@ -154,12 +154,12 @@ end
     .def_WIDTH( 8 ),
     .sel_WIDTH( 2 ),
     .dout_WIDTH( 8 ))
-sparsemux_7_2_8_1_1_U40(
+sparsemux_7_2_8_1_1_U64(
     .din0(pix_fu_224_p1),
     .din1(tmp_4_fu_248_p4),
     .din2(tmp_4_fu_248_p6),
     .def(tmp_4_fu_248_p7),
-    .sel(empty_47),
+    .sel(empty_53),
     .dout(tmp_4_fu_248_p9)
 );
 
@@ -175,12 +175,12 @@ sparsemux_7_2_8_1_1_U40(
     .def_WIDTH( 8 ),
     .sel_WIDTH( 2 ),
     .dout_WIDTH( 8 ))
-sparsemux_7_2_8_1_1_U41(
+sparsemux_7_2_8_1_1_U65(
     .din0(pix_fu_224_p1),
     .din1(tmp_5_fu_267_p4),
     .din2(tmp_5_fu_267_p6),
     .def(tmp_5_fu_267_p7),
-    .sel(empty_48),
+    .sel(empty_54),
     .dout(tmp_5_fu_267_p9)
 );
 
@@ -196,7 +196,7 @@ sparsemux_7_2_8_1_1_U41(
     .def_WIDTH( 8 ),
     .sel_WIDTH( 2 ),
     .dout_WIDTH( 8 ))
-sparsemux_7_2_8_1_1_U42(
+sparsemux_7_2_8_1_1_U66(
     .din0(pix_fu_224_p1),
     .din1(tmp_6_fu_286_p4),
     .din2(tmp_6_fu_286_p6),

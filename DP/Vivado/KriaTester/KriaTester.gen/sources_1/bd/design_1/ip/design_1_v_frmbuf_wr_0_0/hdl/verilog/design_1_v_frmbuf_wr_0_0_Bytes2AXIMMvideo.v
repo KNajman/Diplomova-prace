@@ -279,7 +279,7 @@ wire   [31:0] zext_ln1539_fu_179_p1;
 reg   [31:0] zext_ln1539_reg_305;
 wire   [23:0] zext_ln1552_fu_193_p1;
 reg   [23:0] zext_ln1552_reg_310;
-reg   [28:0] trunc_ln4_reg_318;
+reg   [28:0] trunc_ln_reg_318;
 wire    ap_CS_fsm_state2;
 wire    grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_ap_start;
 wire    grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_ap_done;
@@ -322,8 +322,8 @@ reg    grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_ap_start_reg;
 wire    ap_CS_fsm_state4;
 wire    ap_CS_fsm_state5;
 wire  signed [31:0] sext_ln1552_fu_266_p1;
-reg   [10:0] y_fu_110;
-wire   [10:0] y_4_fu_215_p2;
+reg   [10:0] y_06_fu_110;
+wire   [10:0] y_12_fu_215_p2;
 wire   [0:0] icmp_ln1547_fu_210_p2;
 reg   [23:0] yoffset_fu_114;
 wire   [23:0] add_ln1558_fu_251_p2;
@@ -449,7 +449,7 @@ initial begin
 #0 ap_done_reg = 1'b0;
 #0 ap_CS_fsm = 109'd1;
 #0 grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_ap_start_reg = 1'b0;
-#0 y_fu_110 = 11'd0;
+#0 y_06_fu_110 = 11'd0;
 #0 yoffset_fu_114 = 24'd0;
 end
 
@@ -512,7 +512,7 @@ design_1_v_frmbuf_wr_0_0_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1 grp_Bytes2A
     .m_axi_mm_video_0_BID(m_axi_mm_video_0_BID),
     .m_axi_mm_video_0_BUSER(m_axi_mm_video_0_BUSER),
     .loopWidth(loopWidth_reg_300),
-    .sext_ln1552(trunc_ln4_reg_318)
+    .sext_ln1552(trunc_ln_reg_318)
 );
 
 always @ (posedge ap_clk) begin
@@ -549,9 +549,9 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
-        y_fu_110 <= 11'd0;
+        y_06_fu_110 <= 11'd0;
     end else if (((icmp_ln1547_fu_210_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        y_fu_110 <= y_4_fu_215_p2;
+        y_06_fu_110 <= y_12_fu_215_p2;
     end
 end
 
@@ -575,7 +575,7 @@ end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        trunc_ln4_reg_318 <= {{add_ln1552_fu_236_p2[31:3]}};
+        trunc_ln_reg_318 <= {{add_ln1552_fu_236_p2[31:3]}};
     end
 end
 
@@ -1362,7 +1362,7 @@ assign bytePlanes_read = grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_
 
 assign grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_ap_start = grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_ap_start_reg;
 
-assign icmp_ln1547_fu_210_p2 = ((y_fu_110 == Height_val_read_reg_290) ? 1'b1 : 1'b0);
+assign icmp_ln1547_fu_210_p2 = ((y_06_fu_110 == Height_val_read_reg_290) ? 1'b1 : 1'b0);
 
 assign loopWidth_fu_169_p4 = {{add_ln1539_fu_163_p2[13:3]}};
 
@@ -1404,11 +1404,11 @@ assign m_axi_mm_video_0_WSTRB = grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_
 
 assign m_axi_mm_video_0_WUSER = grp_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1_fu_153_m_axi_mm_video_0_WUSER;
 
-assign sext_ln1552_fu_266_p1 = $signed(trunc_ln4_reg_318);
+assign sext_ln1552_fu_266_p1 = $signed(trunc_ln_reg_318);
 
 assign shl_ln_fu_224_p3 = {{yoffset_fu_114}, {3'd0}};
 
-assign y_4_fu_215_p2 = (y_fu_110 + 11'd1);
+assign y_12_fu_215_p2 = (y_06_fu_110 + 11'd1);
 
 assign zext_ln1539_fu_179_p1 = loopWidth_fu_169_p4;
 

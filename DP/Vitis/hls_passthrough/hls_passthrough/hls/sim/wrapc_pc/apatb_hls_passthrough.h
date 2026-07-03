@@ -8,4 +8,6 @@
 
 extern "C" void AESL_WRAP_hls_passthrough (
 hls::stream<struct ap_axis<32, 0, 0, 0 > > (&in_stream),
-hls::stream<struct ap_axis<32, 0, 0, 0 > > (&out_stream));
+hls::stream<struct ap_axis<32, 0, 0, 0 > > (&out_stream),
+int height,
+int width);

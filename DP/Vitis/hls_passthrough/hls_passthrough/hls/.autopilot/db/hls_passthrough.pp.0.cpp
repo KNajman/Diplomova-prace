@@ -157,6 +157,140 @@ extern "C" {
 
 
 
+# 1 "./../hls_video_types.hpp" 1
+
+
+
+# 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_stream.h" 1
+# 13 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_stream.h"
+# 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h" 1
+# 23 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h"
+namespace hls {
+# 49 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h"
+template<typename __STREAM_T__, int DEPTH=0>
+class stream;
+
+template<typename __STREAM_T__>
+class stream<__STREAM_T__, 0>
+{
+  public:
+    using value_type = __STREAM_T__;
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char* name) {
+      (void)(name);
+    }
+
+
+  private:
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const stream< __STREAM_T__ >& chn):V(chn.V) {
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream& operator= (const stream< __STREAM_T__ >& chn) {
+        V = chn.V;
+        return *this;
+    }
+
+  public:
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void operator >> (__STREAM_T__& rdata) {
+        read(rdata);
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void operator << (const __STREAM_T__& wdata) {
+        write(wdata);
+    }
+
+
+  public:
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool empty() const {
+        return !__fpga_fifo_not_empty(&V);
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool full() const {
+        return !__fpga_fifo_not_full(&V);
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void read(__STREAM_T__& dout) {
+        __fpga_fifo_pop(&V, &dout);
+    }
+
+
+    inline __attribute__((noinline)) __attribute__((nodebug)) bool read_dep(__STREAM_T__& dout, volatile bool flag) {
+        __fpga_fifo_pop(&V, &dout);
+        return flag;
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) __STREAM_T__ read() {
+        __STREAM_T__ tmp;
+        read(tmp);
+        return tmp;
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool read_nb(__STREAM_T__& dout) {
+        __STREAM_T__ tmp;
+
+        if (__fpga_fifo_nb_pop(&V, &tmp)) {
+            dout = tmp;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void write(const __STREAM_T__& din) {
+        __fpga_fifo_push(&V, &din);
+    }
+
+
+    inline __attribute__((noinline)) __attribute__((nodebug)) bool write_dep(const __STREAM_T__& din, volatile bool flag) {
+        __fpga_fifo_push(&V, &din);
+        return flag;
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool write_nb(const __STREAM_T__& din) {
+        return __fpga_fifo_nb_push(&V, &din);
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) unsigned size() const {
+        return __fpga_fifo_size(&V);
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) unsigned capacity() const {
+        return __fpga_fifo_capacity(&V);
+    }
+
+
+    void set_name(const char* name) { (void)(name); }
+
+  public:
+    __STREAM_T__ V __attribute__((no_ctor));
+};
+
+template<typename __STREAM_T__, int DEPTH>
+class stream : public stream<__STREAM_T__, 0> {
+  public:
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {
+#pragma HLS stream variable=this depth=DEPTH
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char* name) {
+#pragma HLS stream variable=this depth=DEPTH
+      (void)(name);
+    }
+};
+}
+# 14 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\hls_stream.h" 2
+# 5 "./../hls_video_types.hpp" 2
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_axi_sdata.h" 1
 # 15 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_axi_sdata.h"
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/ap_int.h" 1
@@ -49467,136 +49601,7 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 # 491 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_fixed.h" 2
 # 440 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/ap_int.h" 2
 # 16 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_axi_sdata.h" 2
-# 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream.h" 1
-# 13 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream.h"
-# 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h" 1
-# 23 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h"
-namespace hls {
-# 49 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream_39.h"
-template<typename __STREAM_T__, int DEPTH=0>
-class stream;
 
-template<typename __STREAM_T__>
-class stream<__STREAM_T__, 0>
-{
-  public:
-    using value_type = __STREAM_T__;
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {
-    }
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char* name) {
-      (void)(name);
-    }
-
-
-  private:
-    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const stream< __STREAM_T__ >& chn):V(chn.V) {
-    }
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) stream& operator= (const stream< __STREAM_T__ >& chn) {
-        V = chn.V;
-        return *this;
-    }
-
-  public:
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) void operator >> (__STREAM_T__& rdata) {
-        read(rdata);
-    }
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) void operator << (const __STREAM_T__& wdata) {
-        write(wdata);
-    }
-
-
-  public:
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) bool empty() const {
-        return !__fpga_fifo_not_empty(&V);
-    }
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) bool full() const {
-        return !__fpga_fifo_not_full(&V);
-    }
-
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) void read(__STREAM_T__& dout) {
-        __fpga_fifo_pop(&V, &dout);
-    }
-
-
-    inline __attribute__((noinline)) __attribute__((nodebug)) bool read_dep(__STREAM_T__& dout, volatile bool flag) {
-        __fpga_fifo_pop(&V, &dout);
-        return flag;
-    }
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) __STREAM_T__ read() {
-        __STREAM_T__ tmp;
-        read(tmp);
-        return tmp;
-    }
-
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) bool read_nb(__STREAM_T__& dout) {
-        __STREAM_T__ tmp;
-
-        if (__fpga_fifo_nb_pop(&V, &tmp)) {
-            dout = tmp;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) void write(const __STREAM_T__& din) {
-        __fpga_fifo_push(&V, &din);
-    }
-
-
-    inline __attribute__((noinline)) __attribute__((nodebug)) bool write_dep(const __STREAM_T__& din, volatile bool flag) {
-        __fpga_fifo_push(&V, &din);
-        return flag;
-    }
-
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) bool write_nb(const __STREAM_T__& din) {
-        return __fpga_fifo_nb_push(&V, &din);
-    }
-
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) unsigned size() const {
-        return __fpga_fifo_size(&V);
-    }
-
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) unsigned capacity() const {
-        return __fpga_fifo_capacity(&V);
-    }
-
-
-    void set_name(const char* name) { (void)(name); }
-
-  public:
-    __STREAM_T__ V __attribute__((no_ctor));
-};
-
-template<typename __STREAM_T__, int DEPTH>
-class stream : public stream<__STREAM_T__, 0> {
-  public:
-    inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {
-#pragma HLS stream variable=this depth=DEPTH
-    }
-
-    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char* name) {
-#pragma HLS stream variable=this depth=DEPTH
-      (void)(name);
-    }
-};
-}
-# 14 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/hls_stream.h" 2
-# 17 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot\\ap_axi_sdata.h" 2
 # 1 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cassert" 1 3
 # 42 "D:/AMDDesignTools/2025.2/Vitis/tps/mingw/8.3.0/win64.o/nt\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0\\include\\c++\\cassert" 3
 
@@ -50001,40 +50006,43 @@ private:
 };
 
 }
-# 5 "./hls_passthrough.hpp" 2
-
-
-# 1 "./../hls_video_types.hpp" 1
-
-
-
+# 6 "./../hls_video_types.hpp" 2
 # 1 "D:/AMDDesignTools/2025.2/Vitis/common/technology/autopilot/ap_int.h" 1
-# 5 "./../hls_video_types.hpp" 2
-# 17 "./../hls_video_types.hpp"
-template <typename PIXEL_TYPE>
-struct axi_stream_video {
-    PIXEL_TYPE data;
-    ap_uint<1> user;
-    ap_uint<1> last;
+# 7 "./../hls_video_types.hpp" 2
+
+
+
+
+
+
+const int AXI_STREAM_WIDTH = 32;
+
+using axis_video = ap_axiu<AXI_STREAM_WIDTH, 1, 0, 0>;
+# 25 "./../hls_video_types.hpp"
+template <typename PIXEL_TYPE> struct axi_stream_video {
+  PIXEL_TYPE data;
+  ap_uint<1> user;
+
+  ap_uint<1> last;
+
 };
-# 33 "./../hls_video_types.hpp"
-template <int NUM_CHANNELS, int PIXEL_WIDTH = 8>
-struct color_pixel {
+# 41 "./../hls_video_types.hpp"
+template <int NUM_CHANNELS, int PIXEL_WIDTH = 8> struct color_pixel {
 
-    ap_uint<PIXEL_WIDTH> channel[NUM_CHANNELS];
-
+  ap_uint<PIXEL_WIDTH> channel[NUM_CHANNELS];
 
 
 
 
 
-    color_pixel() {
+
+  color_pixel() {
 #pragma HLS INLINE
-        VITIS_LOOP_45_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+    VITIS_LOOP_52_1: for (int i = 0; i < NUM_CHANNELS; i++) {
 #pragma HLS UNROLL
-            channel[i] = 0;
-        }
+      channel[i] = 0;
     }
+  }
 
 
 
@@ -50042,58 +50050,58 @@ struct color_pixel {
 
 
 
-    color_pixel(ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data) {
+  color_pixel(ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data) {
 #pragma HLS INLINE
-        VITIS_LOOP_59_1: for (int i = 0; i < NUM_CHANNELS; i++) {
-#pragma HLS UNROLL
-
-            channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
-        }
-    }
-
-
-
-
-
-
-
-    color_pixel(unsigned int cpu_data) {
-#pragma HLS INLINE
-        ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = cpu_data;
-        VITIS_LOOP_75_1: for (int i = 0; i < NUM_CHANNELS; i++) {
-#pragma HLS UNROLL
-            channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
-        }
-    }
-
-
-
-
-
-
-
-    operator ap_uint<NUM_CHANNELS * PIXEL_WIDTH>() const {
-#pragma HLS INLINE
-        ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = 0;
-        VITIS_LOOP_90_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+    VITIS_LOOP_66_1: for (int i = 0; i < NUM_CHANNELS; i++) {
 #pragma HLS UNROLL
 
-            packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH) = channel[i];
-        }
-        return packed_data;
+      channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
     }
+  }
 
 
 
 
 
-    operator unsigned int() const {
+
+
+  color_pixel(unsigned int cpu_data) {
 #pragma HLS INLINE
-        ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed = *this;
-        return static_cast<unsigned int>(packed);
+    ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = cpu_data;
+    VITIS_LOOP_82_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
+      channel[i] = packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH);
     }
+  }
+
+
+
+
+
+
+
+  operator ap_uint<NUM_CHANNELS *PIXEL_WIDTH>() const {
+#pragma HLS INLINE
+    ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed_data = 0;
+    VITIS_LOOP_97_1: for (int i = 0; i < NUM_CHANNELS; i++) {
+#pragma HLS UNROLL
+
+      packed_data((i + 1) * PIXEL_WIDTH - 1, i * PIXEL_WIDTH) = channel[i];
+    }
+    return packed_data;
+  }
+
+
+
+
+
+  operator unsigned int() const {
+#pragma HLS INLINE
+    ap_uint<NUM_CHANNELS * PIXEL_WIDTH> packed = *this;
+    return static_cast<unsigned int>(packed);
+  }
 };
-# 119 "./../hls_video_types.hpp"
+# 126 "./../hls_video_types.hpp"
 const ap_int<16> rec601_coeffs[3][3] = {
     {77, 150, 29},
     {-43, -85, 128},
@@ -50141,46 +50149,44 @@ using cmyk_pixel = color_pixel<4, 8>;
 using rgb10_pixel = color_pixel<3, 10>;
 
 
+
 using axis_gray = axi_stream_video<gray_pixel>;
 using axis_rgb = axi_stream_video<rgb_pixel>;
 using axis_ycbcr = axi_stream_video<ycbcr_pixel>;
 using axis_hsv = axi_stream_video<hsv_pixel>;
-# 8 "./hls_passthrough.hpp" 2
-
-
-
-
-
-
-
-
-const int AXI_STREAM_WIDTH = 24;
-
-using axis_video = ap_axiu<AXI_STREAM_WIDTH, 1, 0, 0>;
+# 5 "./hls_passthrough.hpp" 2
 
 __attribute__((sdx_kernel("hls_passthrough", 0))) void hls_passthrough(hls::stream<axis_video> &in_stream,
-                     hls::stream<axis_video> &out_stream);
+                     hls::stream<axis_video> &out_stream, int height,
+                     int width);
 # 2 "hls_passthrough.cpp" 2
 
 
 
 
 __attribute__((sdx_kernel("hls_passthrough", 0))) void hls_passthrough(hls::stream<axis_video> &in_stream,
-                     hls::stream<axis_video> &out_stream) {
+                     hls::stream<axis_video> &out_stream, int height,
+                     int width) {
 #line 1 "directive"
 #pragma HLSDIRECTIVE TOP name=hls_passthrough
-# 7 "hls_passthrough.cpp"
+# 8 "hls_passthrough.cpp"
+
 
 #pragma HLS INTERFACE axis port = in_stream
 #pragma HLS INTERFACE axis port = out_stream
 
+#pragma HLS INTERFACE s_axilite port = height bundle = control
+#pragma HLS INTERFACE s_axilite port = width bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
-  bool eol = 0;
-  VITIS_LOOP_14_1: while (!eol) {
+HLS_HEIGHT_LOOP:
+  for (int i = 0; i < height; i++) {
+#pragma HLS LOOP_FLATTEN
+  HLS_WIDTH_LOOP:
+    for (int j = 0; j < width; j++) {
 #pragma HLS PIPELINE II = 1
-    axis_video packet = in_stream.read();
-    eol = packet.last;
-    out_stream.write(packet);
+      axis_video packet = in_stream.read();
+      out_stream.write(packet);
+    }
   }
 }

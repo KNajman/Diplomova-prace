@@ -81,6 +81,8 @@ proc check_tvin_file {} {
          "c.hls_passthrough.autotvin_in_stream_V_strb_V.dat"
          "c.hls_passthrough.autotvin_in_stream_V_user_V.dat"
          "c.hls_passthrough.autotvin_in_stream_V_last_V.dat"
+         "c.hls_passthrough.autotvin_height.dat"
+         "c.hls_passthrough.autotvin_width.dat"
     }
     foreach rtlfile $rtlfilelist {
         if {[file isfile $rtlfile]} {

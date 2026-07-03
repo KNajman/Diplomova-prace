@@ -156,7 +156,7 @@ reg    ap_block_pp0_stage0_01001_grp1;
 reg   [10:0] x_fu_72;
 wire   [10:0] add_ln1552_fu_120_p2;
 wire    ap_loop_init;
-reg   [10:0] ap_sig_allocacmp_x_3;
+reg   [10:0] ap_sig_allocacmp_x_7;
 wire    ap_block_pp0_stage0;
 reg    ap_done_reg;
 wire    ap_continue_int;
@@ -299,9 +299,9 @@ end
 
 always @ (*) begin
     if (((1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_loop_init == 1'b1))) begin
-        ap_sig_allocacmp_x_3 = 11'd0;
+        ap_sig_allocacmp_x_7 = 11'd0;
     end else begin
-        ap_sig_allocacmp_x_3 = x_fu_72;
+        ap_sig_allocacmp_x_7 = x_fu_72;
     end
 end
 
@@ -348,7 +348,7 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln1552_fu_120_p2 = (ap_sig_allocacmp_x_3 + 11'd1);
+assign add_ln1552_fu_120_p2 = (ap_sig_allocacmp_x_7 + 11'd1);
 
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
@@ -382,7 +382,7 @@ assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
 
 assign ap_ready = ap_ready_sig;
 
-assign icmp_ln1552_fu_114_p2 = ((ap_sig_allocacmp_x_3 == loopWidth) ? 1'b1 : 1'b0);
+assign icmp_ln1552_fu_114_p2 = ((ap_sig_allocacmp_x_7 == loopWidth) ? 1'b1 : 1'b0);
 
 assign m_axi_mm_video_0_ARADDR = 32'd0;
 

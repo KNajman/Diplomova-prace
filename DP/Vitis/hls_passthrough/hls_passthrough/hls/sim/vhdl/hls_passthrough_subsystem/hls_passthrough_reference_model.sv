@@ -10,10 +10,17 @@
 `define HLS_PASSTHROUGH_REFERENCE_MODEL_SV
 
 class hls_passthrough_reference_model extends uvm_component;
+`define TV_IN_height "../tv/cdatafile/c.hls_passthrough.autotvin_height.dat"
+`define TV_OUT_height ""
+`define TV_IN_width "../tv/cdatafile/c.hls_passthrough.autotvin_width.dat"
+`define TV_OUT_width ""
+    bit  write_data_finish_control;
+    event allaxilite_write_data_finish;
+    event allaxilite_write_one_transaction_finish;
     event allsvr_input_done;
     event allsvr_output_done;
     event write_start_finish;
-    int trans_num_total = 36;
+    int trans_num_total = 1;
     int trans_num_idx;
     int ap_done_cnt=1;
     event dut2tb_ap_ready;
@@ -24,6 +31,8 @@ class hls_passthrough_reference_model extends uvm_component;
     hls_passthrough_config hls_passthrough_cfg;
     virtual interface misc_interface misc_if;
 
+    mem_model_pages#(32,8) mem_blk_pages_control_height;
+    mem_model_pages#(32,8) mem_blk_pages_control_width;
     int svr_in_stream_delay;
     covergroup svr_in_stream_cov;
         delay: coverpoint svr_in_stream_delay
@@ -59,13 +68,34 @@ class hls_passthrough_reference_model extends uvm_component;
     virtual task run_phase(uvm_phase phase);
         string fpath[$];
 misc_if.dut2tb_ap_done = 0;
+
+        fpath.push_back(`TV_IN_height);
+        mem_blk_pages_control_height = mem_model_pages#(32,8)::type_id::create("mem_blk_pages_control_height");
+        mem_blk_pages_control_height.tvinload_pagechk_atinit(fpath, 1*((32+7)/8), 0, 16);
+        fpath.delete;
+
+
+        fpath.push_back(`TV_IN_width);
+        mem_blk_pages_control_width = mem_model_pages#(32,8)::type_id::create("mem_blk_pages_control_width");
+        mem_blk_pages_control_width.tvinload_pagechk_atinit(fpath, 1*((32+7)/8), 0, 24);
+        fpath.delete;
+
         fork
+            forever begin
+                wait(write_data_finish_control);
+                `uvm_info("", "trigger_allaxilite_data_write_finish", UVM_LOW)
+                @(posedge misc_if.clock);
+                write_data_finish_control = 0;
+                -> allaxilite_write_data_finish;
+            end
             forever begin
                 //this is non-pipeline case
                 forever begin
                     @(negedge misc_if.clock);
                     if(misc_if.dut2tb_ap_done===1) break;
                 end
+                @(posedge misc_if.clock);
+                @allaxilite_write_data_finish;
                 @(posedge misc_if.clock);
                 -> ap_ready_for_nexttrans;
                 `uvm_info(this.get_full_name(), "trigger event ap_ready_for_nexttrans", UVM_LOW)
@@ -129,14 +159,14 @@ misc_if.dut2tb_ap_done = 0;
         join
     endtask
 
-    virtual function void write_svr_master_in_stream(svr_transfer#(32) tr);
+    virtual function void write_svr_master_in_stream(svr_transfer#(42) tr);
     //  trans_size++;
         svr_in_stream_delay = tr.delay;
         svr_in_stream_cov.sample();
         `uvm_info(this.get_full_name(), "port a collected one pkt", UVM_DEBUG);
     endfunction
 
-    virtual function void write_svr_slave_out_stream(svr_transfer#(32) tr);
+    virtual function void write_svr_slave_out_stream(svr_transfer#(42) tr);
     //  trans_size++;
         svr_out_stream_delay = tr.delay;
         svr_out_stream_cov.sample();

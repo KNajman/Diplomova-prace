@@ -56,7 +56,9 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param tcl.statsThreshold 360
 set_param general.usePosixSpawnForFork 1
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config  -id {Board 49-26}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xck26-sfvc784-2LV-c

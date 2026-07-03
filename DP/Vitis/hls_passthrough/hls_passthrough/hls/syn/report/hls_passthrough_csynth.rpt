@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'hls_passthrough'
 ================================================================
-* Date:           Tue Jun 30 11:47:17 2026
+* Date:           Fri Jul  3 10:11:02 2026
 
 * Version:        2025.2 (Build 6295257 on Nov 14 2025)
 * Project:        hls_passthrough
@@ -20,29 +20,29 @@
     +--------+----------+----------+------------+
     |  Clock |  Target  | Estimated| Uncertainty|
     +--------+----------+----------+------------+
-    |ap_clk  |  10.00 ns|  0.554 ns|     2.70 ns|
+    |ap_clk  |  10.00 ns|  6.430 ns|     2.70 ns|
     +--------+----------+----------+------------+
 
 + Latency: 
     * Summary: 
-    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
-    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
-    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
-    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
-    |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
-    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
 
     + Detail: 
         * Instance: 
-        N/A
+        +-------------------------------------------------------------------+---------------------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
+        |                                                                   |                                                         |  Latency (cycles) |  Latency (absolute) |  Interval |      Pipeline     |
+        |                              Instance                             |                          Module                         |   min   |   max   |    min   |    max   | min | max |        Type       |
+        +-------------------------------------------------------------------+---------------------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
+        |grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80  |hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP  |        ?|        ?|         ?|         ?|    0|    0|  loop pipeline stp|
+        +-------------------------------------------------------------------+---------------------------------------------------------+---------+---------+----------+----------+-----+-----+-------------------+
 
         * Loop: 
-        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
-        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
-        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
-        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
-        |- VITIS_LOOP_14_1  |        ?|        ?|         2|          1|          1|     ?|       yes|
-        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        N/A
 
 
 
@@ -54,29 +54,31 @@
 |       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
 +-----------------+---------+------+--------+--------+-----+
 |DSP              |        -|     -|       -|       -|    -|
-|Expression       |        -|     -|       0|       8|    -|
+|Expression       |        -|     -|       0|      72|    -|
 |FIFO             |        -|     -|       -|       -|    -|
-|Instance         |        0|     -|      36|      40|    0|
+|Instance         |        0|     4|     178|     386|    0|
 |Memory           |        -|     -|       -|       -|    -|
-|Multiplexer      |        -|     -|       0|      36|    -|
-|Register         |        -|     -|       4|       -|    -|
+|Multiplexer      |        -|     -|       0|      80|    -|
+|Register         |        -|     -|     109|       -|    -|
 +-----------------+---------+------+--------+--------+-----+
-|Total            |        0|     0|      40|      84|    0|
+|Total            |        0|     4|     287|     538|    0|
 +-----------------+---------+------+--------+--------+-----+
 |Available        |      288|  1248|  234240|  117120|   64|
 +-----------------+---------+------+--------+--------+-----+
-|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
+|Utilization (%)  |        0|    ~0|      ~0|      ~0|    0|
 +-----------------+---------+------+--------+--------+-----+
 
 + Detail: 
     * Instance: 
-    +-----------------+---------------+---------+----+----+----+-----+
-    |     Instance    |     Module    | BRAM_18K| DSP| FF | LUT| URAM|
-    +-----------------+---------------+---------+----+----+----+-----+
-    |control_s_axi_U  |control_s_axi  |        0|   0|  36|  40|    0|
-    +-----------------+---------------+---------+----+----+----+-----+
-    |Total            |               |        0|   0|  36|  40|    0|
-    +-----------------+---------------+---------+----+----+----+-----+
+    +-------------------------------------------------------------------+---------------------------------------------------------+---------+----+-----+-----+-----+
+    |                              Instance                             |                          Module                         | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------------------------------------+---------------------------------------------------------+---------+----+-----+-----+-----+
+    |control_s_axi_U                                                    |control_s_axi                                            |        0|   0|  112|  168|    0|
+    |grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80  |hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP  |        0|   0|   66|  198|    0|
+    |mul_32ns_31ns_62_1_1_U12                                           |mul_32ns_31ns_62_1_1                                     |        0|   4|    0|   20|    0|
+    +-------------------------------------------------------------------+---------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                              |                                                         |        0|   4|  178|  386|    0|
+    +-------------------------------------------------------------------+---------------------------------------------------------+---------+----+-----+-----+-----+
 
     * DSP: 
     N/A
@@ -88,40 +90,46 @@
     N/A
 
     * Expression: 
-    +----------------------------------+----------+----+---+----+------------+------------+
-    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +----------------------------------+----------+----+---+----+------------+------------+
-    |ap_block_pp0_stage0_01001         |        or|   0|  0|   2|           1|           1|
-    |ap_block_state1_pp0_stage0_iter0  |        or|   0|  0|   2|           1|           1|
-    |ap_block_state2_pp0_stage0_iter1  |        or|   0|  0|   2|           1|           1|
-    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
-    +----------------------------------+----------+----+---+----+------------+------------+
-    |Total                             |          |   0|  0|   8|           4|           5|
-    +----------------------------------+----------+----+---+----+------------+------------+
+    +-------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                                    Variable Name                                    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TREADY  |       and|   0|  0|   2|           1|           1|
+    |empty_fu_114_p2                                                                      |      icmp|   0|  0|  39|          32|           1|
+    |smax_fu_120_p3                                                                       |    select|   0|  0|  31|           1|          31|
+    +-------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                                                |          |   0|  0|  72|          34|          33|
+    +-------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
-    +----------------------------------+----+-----------+-----+-----------+
-    |               Name               | LUT| Input Size| Bits| Total Bits|
-    +----------------------------------+----+-----------+-----+-----------+
-    |ap_done_int                       |   9|          2|    1|          2|
-    |ap_loop_exit_ready_pp0_iter1_reg  |   9|          2|    1|          2|
-    |in_stream_TDATA_blk_n             |   9|          2|    1|          2|
-    |out_stream_TDATA_blk_n            |   9|          2|    1|          2|
-    +----------------------------------+----+-----------+-----+-----------+
-    |Total                             |  36|          8|    4|          8|
-    +----------------------------------+----+-----------+-----+-----------+
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                      |  26|          5|    1|          5|
+    |in_stream_TREADY_int_regslice  |   9|          2|    1|          2|
+    |out_stream_TDATA_int_regslice  |   9|          2|   32|         64|
+    |out_stream_TKEEP_int_regslice  |   9|          2|    4|          8|
+    |out_stream_TLAST_int_regslice  |   9|          2|    1|          2|
+    |out_stream_TSTRB_int_regslice  |   9|          2|    4|          8|
+    |out_stream_TUSER_int_regslice  |   9|          2|    1|          2|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          |  80|         17|   44|         91|
+    +-------------------------------+----+-----------+-----+-----------+
 
     * Register: 
-    +----------------------------------+---+----+-----+-----------+
-    |               Name               | FF| LUT| Bits| Const Bits|
-    +----------------------------------+---+----+-----+-----------+
-    |ap_CS_fsm                         |  1|   0|    1|          0|
-    |ap_done_reg                       |  1|   0|    1|          0|
-    |ap_enable_reg_pp0_iter1           |  1|   0|    1|          0|
-    |ap_loop_exit_ready_pp0_iter1_reg  |  1|   0|    1|          0|
-    +----------------------------------+---+----+-----+-----------+
-    |Total                             |  4|   0|    4|          0|
-    +----------------------------------+---+----+-----+-----------+
+    +--------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                      Name                                      | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                       |   4|   0|    4|          0|
+    |grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg  |   1|   0|    1|          0|
+    |mul_ln6_reg_138                                                                 |  62|   0|   62|          0|
+    |out_stream_TDATA_reg                                                            |  32|   0|   32|          0|
+    |out_stream_TKEEP_reg                                                            |   4|   0|    4|          0|
+    |out_stream_TLAST_reg                                                            |   1|   0|    1|          0|
+    |out_stream_TSTRB_reg                                                            |   4|   0|    4|          0|
+    |out_stream_TUSER_reg                                                            |   1|   0|    1|          0|
+    +--------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                           | 109|   0|  109|          0|
+    +--------------------------------------------------------------------------------+----+----+-----+-----------+
 
 
 
@@ -132,39 +140,39 @@
 +-----------------------+-----+-----+------------+---------------------+--------------+
 |       RTL Ports       | Dir | Bits|  Protocol  |    Source Object    |    C Type    |
 +-----------------------+-----+-----+------------+---------------------+--------------+
-|s_axi_control_AWVALID  |   in|    1|       s_axi|              control|   return void|
-|s_axi_control_AWREADY  |  out|    1|       s_axi|              control|   return void|
-|s_axi_control_AWADDR   |   in|    4|       s_axi|              control|   return void|
-|s_axi_control_WVALID   |   in|    1|       s_axi|              control|   return void|
-|s_axi_control_WREADY   |  out|    1|       s_axi|              control|   return void|
-|s_axi_control_WDATA    |   in|   32|       s_axi|              control|   return void|
-|s_axi_control_WSTRB    |   in|    4|       s_axi|              control|   return void|
-|s_axi_control_ARVALID  |   in|    1|       s_axi|              control|   return void|
-|s_axi_control_ARREADY  |  out|    1|       s_axi|              control|   return void|
-|s_axi_control_ARADDR   |   in|    4|       s_axi|              control|   return void|
-|s_axi_control_RVALID   |  out|    1|       s_axi|              control|   return void|
-|s_axi_control_RREADY   |   in|    1|       s_axi|              control|   return void|
-|s_axi_control_RDATA    |  out|   32|       s_axi|              control|   return void|
-|s_axi_control_RRESP    |  out|    2|       s_axi|              control|   return void|
-|s_axi_control_BVALID   |  out|    1|       s_axi|              control|   return void|
-|s_axi_control_BREADY   |   in|    1|       s_axi|              control|   return void|
-|s_axi_control_BRESP    |  out|    2|       s_axi|              control|   return void|
+|s_axi_control_AWVALID  |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_AWADDR   |   in|    5|       s_axi|              control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|              control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|              control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_ARADDR   |   in|    5|       s_axi|              control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|              control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|              control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|              control|        scalar|
 |ap_clk                 |   in|    1|  ap_ctrl_hs|      hls_passthrough|  return value|
 |ap_rst_n               |   in|    1|  ap_ctrl_hs|      hls_passthrough|  return value|
 |interrupt              |  out|    1|  ap_ctrl_hs|      hls_passthrough|  return value|
+|in_stream_TDATA        |   in|   32|        axis|   in_stream_V_data_V|       pointer|
 |in_stream_TVALID       |   in|    1|        axis|   in_stream_V_last_V|       pointer|
 |in_stream_TREADY       |  out|    1|        axis|   in_stream_V_last_V|       pointer|
 |in_stream_TLAST        |   in|    1|        axis|   in_stream_V_last_V|       pointer|
-|out_stream_TREADY      |   in|    1|        axis|  out_stream_V_last_V|       pointer|
-|out_stream_TVALID      |  out|    1|        axis|  out_stream_V_last_V|       pointer|
-|out_stream_TLAST       |  out|    1|        axis|  out_stream_V_last_V|       pointer|
-|in_stream_TDATA        |   in|   24|        axis|   in_stream_V_data_V|       pointer|
-|in_stream_TKEEP        |   in|    3|        axis|   in_stream_V_keep_V|       pointer|
-|in_stream_TSTRB        |   in|    3|        axis|   in_stream_V_strb_V|       pointer|
+|in_stream_TKEEP        |   in|    4|        axis|   in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB        |   in|    4|        axis|   in_stream_V_strb_V|       pointer|
 |in_stream_TUSER        |   in|    1|        axis|   in_stream_V_user_V|       pointer|
-|out_stream_TDATA       |  out|   24|        axis|  out_stream_V_data_V|       pointer|
-|out_stream_TKEEP       |  out|    3|        axis|  out_stream_V_keep_V|       pointer|
-|out_stream_TSTRB       |  out|    3|        axis|  out_stream_V_strb_V|       pointer|
+|out_stream_TDATA       |  out|   32|        axis|  out_stream_V_data_V|       pointer|
+|out_stream_TVALID      |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TREADY      |   in|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TLAST       |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TKEEP       |  out|    4|        axis|  out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB       |  out|    4|        axis|  out_stream_V_strb_V|       pointer|
 |out_stream_TUSER       |  out|    1|        axis|  out_stream_V_user_V|       pointer|
 +-----------------------+-----+-----+------------+---------------------+--------------+
 

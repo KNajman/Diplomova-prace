@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Tue Jun 30 11:59:47 2026
-# Process ID         : 10364
+# Start of session at: Thu Jul  2 10:34:25 2026
+# Process ID         : 11168
 # Current directory  : D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1
 # Command line       : vivado.exe -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file           : D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/design_1_wrapper.vds
@@ -17,12 +17,11 @@
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 12723 MB
-# Swap memory        : 9492 MB
-# Total Virtual      : 22216 MB
-# Available Virtual  : 5553 MB
+# Swap memory        : 9126 MB
+# Total Virtual      : 21850 MB
+# Available Virtual  : 12828 MB
 #-----------------------------------------------------------
 source design_1_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 532.688 ; gain = 220.199
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Repos/_DP/DP/ip_repo'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDDesignTools/2025.2/Vivado/data/ip'.
@@ -39,7 +38,7 @@ default limit of 519 characters.
 
 ****** vitis-run v2025.2 (64-bit)
   **** SW Build 6295257 on 2025-11-13-08:29:27
-  **** Start of session at: Tue Jun 30 12:00:07 2026
+  **** Start of session at: Thu Jul  2 10:34:44 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -110,13 +109,13 @@ INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64=false
 INFO: [HLS 200-1510] Running: config_rtl -module_prefix design_1_v_frmbuf_rd_0_0_ 
 INFO: [HLS 200-1510] Running: config_export -vendor xilinx.com -library ip -version 3.0 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.341 seconds; current allocated memory: 137.797 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.282 seconds; current allocated memory: 137.602 MB.
 INFO: [HLS 200-2191] C-Synthesis will use clang-16 as the compiler
 INFO: [HLS 200-10] Analyzing design file 'D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_v_frmbuf_rd_0_0/src/v_frmbuf_rd.cpp' ... 
 WARNING: [HLS 207-6591] unused parameter 'srcImg2' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:499:12)
 WARNING: [HLS 207-6591] unused parameter 'srcImg3' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:500:9)
 WARNING: [HLS 207-6591] unused parameter 'VideoFormat' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:505:16)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4 seconds. CPU system time: 0 seconds. Elapsed time: 48.96 seconds; current allocated memory: 156.414 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4 seconds. CPU system time: 0 seconds. Elapsed time: 46.037 seconds; current allocated memory: 155.941 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
 INFO: [HLS 200-1995] There were 1,909 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/syn/report/csynth_design_size.rpt:2)
 INFO: [HLS 200-1995] There were 825 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/syn/report/csynth_design_size.rpt:2)
@@ -160,12 +159,12 @@ WARNING: [HLS 214-358] Array transformation on index using bit extension logic m
 INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'img' with compact=bit mode in 24-bits (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:90:18)
 INFO: [HLS 214-376] Pipelining loop< VITIS_LOOP_367_1> at D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:367:20 due to pipeline_loops threshold
 INFO: [HLS 214-115] Multiple burst reads of variable length and bit width 64 in loop 'VITIS_LOOP_515_1'(D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:515:27) has been inferred on bundle 'mm_video'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:515:27)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 11.313 seconds; current allocated memory: 158.340 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 158.340 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 11.661 seconds; current allocated memory: 157.863 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.002 seconds; current allocated memory: 157.863 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.179 seconds; current allocated memory: 163.801 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.057 seconds; current allocated memory: 163.605 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 166.742 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.061 seconds; current allocated memory: 166.824 MB.
 WARNING: [XFORM 203-561] Updating loop upper bound from 65535 to 1920 for loop 'VITIS_LOOP_376_3' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:372:7) in function 'MultiPixStream2AXIvideo'.
 WARNING: [XFORM 203-561] Ignored invalid trip count directive (MAX (= 1920) < AVE (= 32767)) for loop 'VITIS_LOOP_376_3' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:372:7) in function 'MultiPixStream2AXIvideo'.
 WARNING: [XFORM 203-561] Updating loop upper bound from 65535 to 1080 for loop 'VITIS_LOOP_374_2' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_rd.cpp:372:7) in function 'MultiPixStream2AXIvideo'.
@@ -189,8 +188,8 @@ INFO: [XFORM 203-712] Applying dataflow to function 'FrmbufRdHlsDataFlow' (D:/Re
 	 'AXIMMvideo2Bytes'
 	 'Bytes2MultiPixStream'
 	 'MultiPixStream2AXIvideo'.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 2.019 seconds; current allocated memory: 189.656 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.258 seconds; current allocated memory: 262.914 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 2.025 seconds; current allocated memory: 189.488 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.221 seconds; current allocated memory: 262.773 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'v_frmbuf_rd' ...
 WARNING: [SYN 201-103] Legalizing function name 'reg<unsigned short>' to 'reg_unsigned_short_s'.
@@ -201,25 +200,25 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_515_1'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'VITIS_LOOP_515_1'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.452 seconds; current allocated memory: 266.594 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.226 seconds; current allocated memory: 266.469 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 267.590 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.026 seconds; current allocated memory: 267.461 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AXIMMvideo2Bytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.056 seconds; current allocated memory: 267.711 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.053 seconds; current allocated memory: 267.590 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.055 seconds; current allocated memory: 268.234 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.053 seconds; current allocated memory: 267.895 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'Bytes2MultiPixStream_Pipeline_VITIS_LOOP_1240_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -227,25 +226,25 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_1240_1'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 8, Depth = 9, loop 'VITIS_LOOP_1240_1'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.102 seconds; current allocated memory: 269.348 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.107 seconds; current allocated memory: 269.000 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.045 seconds; current allocated memory: 269.547 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.045 seconds; current allocated memory: 269.254 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'Bytes2MultiPixStream' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.095 seconds; current allocated memory: 269.910 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.075 seconds; current allocated memory: 269.469 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 269.914 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.043 seconds; current allocated memory: 269.617 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'reg_unsigned_short_s' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -253,13 +252,13 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining function 'reg<unsigned short>'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, function 'reg<unsigned short>'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.067 seconds; current allocated memory: 270.059 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.041 seconds; current allocated memory: 269.660 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.517 seconds; current allocated memory: 270.168 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.018 seconds; current allocated memory: 269.660 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -267,13 +266,13 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_367_1'.
 INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'VITIS_LOOP_367_1'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 270.547 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 269.875 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 270.574 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.028 seconds; current allocated memory: 270.020 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_3' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -281,49 +280,49 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_376_3'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_376_3'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.046 seconds; current allocated memory: 270.770 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.049 seconds; current allocated memory: 270.223 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 270.875 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.029 seconds; current allocated memory: 270.367 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'MultiPixStream2AXIvideo' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.045 seconds; current allocated memory: 270.977 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.041 seconds; current allocated memory: 270.688 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 271.023 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.031 seconds; current allocated memory: 270.895 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'FrmbufRdHlsDataFlow' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.041 seconds; current allocated memory: 271.348 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.042 seconds; current allocated memory: 271.301 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.73 seconds; current allocated memory: 271.680 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.031 seconds; current allocated memory: 271.480 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'v_frmbuf_rd' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.046 seconds; current allocated memory: 271.832 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.046 seconds; current allocated memory: 271.730 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.032 seconds; current allocated memory: 271.969 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.032 seconds; current allocated memory: 271.820 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AXIMMvideo2Bytes_Pipeline_VITIS_LOOP_515_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -341,50 +340,50 @@ WARNING: [RTGEN 206-101] Setting dangling out port 'AXIMMvideo2Bytes_Pipeline_VI
 WARNING: [RTGEN 206-101] Setting dangling out port 'AXIMMvideo2Bytes_Pipeline_VITIS_LOOP_515_1/m_axi_mm_video_0_ARREGION' to 0.
 WARNING: [RTGEN 206-101] Setting dangling out port 'AXIMMvideo2Bytes_Pipeline_VITIS_LOOP_515_1/m_axi_mm_video_0_ARUSER' to 0.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AXIMMvideo2Bytes_Pipeline_VITIS_LOOP_515_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 273.660 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.715 seconds; current allocated memory: 273.574 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AXIMMvideo2Bytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AXIMMvideo2Bytes'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.153 seconds; current allocated memory: 277.004 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.152 seconds; current allocated memory: 276.863 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'Bytes2MultiPixStream_Pipeline_VITIS_LOOP_1240_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Bytes2MultiPixStream_Pipeline_VITIS_LOOP_1240_1' pipeline 'VITIS_LOOP_1240_1' pipeline type 'loop pipeline'
 INFO: [RTGEN 206-100] Finished creating RTL model for 'Bytes2MultiPixStream_Pipeline_VITIS_LOOP_1240_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 1.76 seconds; current allocated memory: 278.785 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.23 seconds; current allocated memory: 278.730 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'Bytes2MultiPixStream' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Generating core module 'mul_11ns_13ns_23_1_1': 1 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'urem_11ns_3ns_2_15_seq_1': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'Bytes2MultiPixStream'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.385 seconds; current allocated memory: 281.613 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.174 seconds; current allocated memory: 281.652 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'reg_unsigned_short_s' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'reg_unsigned_short_s' pipeline 'reg<unsigned short>' pipeline type 'function pipeline'
 INFO: [RTGEN 206-100] Finished creating RTL model for 'reg_unsigned_short_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.133 seconds; current allocated memory: 283.266 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.442 seconds; current allocated memory: 283.180 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1' pipeline 'VITIS_LOOP_367_1' pipeline type 'loop pipeline'
 INFO: [RTGEN 206-100] Finished creating RTL model for 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1'.
 INFO: [RTMG 210-279] Implementing memory 'design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1_mapComp_ROM_AUTO_1R' using auto ROMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.231 seconds; current allocated memory: 283.426 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.101 seconds; current allocated memory: 283.262 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_3' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_3' pipeline 'VITIS_LOOP_376_3' pipeline type 'loop pipeline'
 INFO: [RTGEN 206-100] Generating core module 'sparsemux_7_2_8_1_1': 3 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_3'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.219 seconds; current allocated memory: 284.227 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.151 seconds; current allocated memory: 284.145 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'MultiPixStream2AXIvideo' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'MultiPixStream2AXIvideo'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.121 seconds; current allocated memory: 285.352 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.12 seconds; current allocated memory: 285.191 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'FrmbufRdHlsDataFlow' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -412,7 +411,7 @@ INFO: [RTMG 210-285] Implementing FIFO 'bytePlanes_U(design_1_v_frmbuf_rd_0_0_fi
 INFO: [RTMG 210-285] Implementing FIFO 'img_U(design_1_v_frmbuf_rd_0_0_fifo_w24_d2_S)' using Shift Registers.
 INFO: [RTMG 210-285] Implementing FIFO 'start_for_Bytes2MultiPixStream_U0_U(design_1_v_frmbuf_rd_0_0_start_for_Bytes2MultiPixStream_U0)' using Shift Registers.
 INFO: [RTMG 210-285] Implementing FIFO 'start_for_MultiPixStream2AXIvideo_U0_U(design_1_v_frmbuf_rd_0_0_start_for_MultiPixStream2AXIvideo_U0)' using Shift Registers.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.191 seconds; current allocated memory: 287.062 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.644 seconds; current allocated memory: 287.332 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'v_frmbuf_rd' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -438,15 +437,15 @@ INFO: [RTGEN 206-100] Generating core module 'mul_14s_3ns_14_1_1': 1 instance(s)
 INFO: [RTGEN 206-100] Finished creating RTL model for 'v_frmbuf_rd'.
 INFO: [RTMG 210-279] Implementing memory 'design_1_v_frmbuf_rd_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R' using auto ROMs.
 INFO: [RTMG 210-279] Implementing memory 'design_1_v_frmbuf_rd_0_0_MEMORY2LIVE_ROM_AUTO_1R' using auto ROMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.928 seconds; current allocated memory: 289.598 MB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.067 seconds; current allocated memory: 292.969 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.184 seconds; current allocated memory: 289.430 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.816 seconds; current allocated memory: 293.035 MB.
 INFO: [HLS 200-1603] Design has inferred MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
 INFO: [HLS 200-2225] Wrote inferred directives to file D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/syn/inferred_directives.ini
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2 seconds. CPU system time: 4 seconds. Elapsed time: 6.375 seconds; current allocated memory: 301.195 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2 seconds. CPU system time: 4 seconds. Elapsed time: 6.199 seconds; current allocated memory: 300.996 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for v_frmbuf_rd with prefix design_1_v_frmbuf_rd_0_0_.
 INFO: [VLOG 209-307] Generating Verilog RTL for v_frmbuf_rd with prefix design_1_v_frmbuf_rd_0_0_.
 INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
-INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:01:23; Allocated memory: 163.746 MB.
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:01:17; Allocated memory: 163.836 MB.
 INFO: [HLS 200-1510] Running: export_design -format ip_catalog 
 INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 !! WARNING !!
@@ -459,7 +458,7 @@ default limit of 519 characters.
   **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
   **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
   **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-  **** Start of session at: Tue Jun 30 12:01:42 2026
+  **** Start of session at: Thu Jul  2 10:36:12 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -469,7 +468,7 @@ INFO: Copied 1 ipmisc file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.ru
 INFO: Copied 33 verilog file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/hdl/verilog
 INFO: Copied 25 vhdl file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/hdl/vhdl
 INFO: Copied 10 swdriver file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/drivers
-ipx::create_core: Time (s): cpu = 00:00:14 ; elapsed = 00:00:10 . Memory (MB): peak = 539.527 ; gain = 215.492
+ipx::create_core: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 537.500 ; gain = 214.559
 INFO: Import ports from HDL: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/hdl/vhdl/design_1_v_frmbuf_rd_0_0_v_frmbuf_rd.vhd (design_1_v_frmbuf_rd_0_0_v_frmbuf_rd)
 INFO: Add axi4lite interface s_axi_CTRL
 INFO: Add clock interface ap_clk
@@ -485,18 +484,20 @@ INFO: Calling post_process_sysgen to specialize IP
 Generating sysgen info xml from json file
 INFO: Created IP D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/component.xml
 INFO: Created IP archive D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/xilinx_com_ip_v_frmbuf_rd_3_0.zip
-INFO: [Common 17-206] Exiting Vivado at Tue Jun 30 12:02:00 2026...
+INFO: [Common 17-206] Exiting Vivado at Thu Jul  2 10:36:28 2026...
 INFO: [HLS 200-802] Generated output file prj/sol/impl/export.zip
-INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:21; Allocated memory: 3.453 MB.
-INFO: [HLS 200-112] Total CPU user time: 11 seconds. Total CPU system time: 8 seconds. Total elapsed time: 110.722 seconds; peak allocated memory: 304.703 MB.
-INFO: [vitis-run 60-791] Total elapsed time: 0h 1m 53s
+INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:19; Allocated memory: 3.828 MB.
+INFO: [HLS 200-112] Total CPU user time: 11 seconds. Total CPU system time: 8 seconds. Total elapsed time: 102.603 seconds; peak allocated memory: 304.980 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 1m 44s
 INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_AXIMMvideo2Bytes.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_AXIMMvideo2Bytes_Pipeline_VITIS_LOOP_515_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_Bytes2MultiPixStream.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_Bytes2MultiPixStream_Pipeline_VITIS_LOOP_1240_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_CTRL_s_axi.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_fifo_w24_d2_S.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_fifo_w64_d481_B.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_flow_control_loop_pipe_sequential_init.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_FrmbufRdHlsDataFlow.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
@@ -508,19 +509,28 @@ WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_hls_
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MEMORY2LIVE_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MEMORY2LIVE_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_mm_video_m_axi.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_mul_11ns_13ns_23_1_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_mul_14s_3ns_14_1_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1_mapComp_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1_mapComp_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_3.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_reg_unsigned_short_s.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_regslice_both.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_sparsemux_7_2_8_1_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_start_for_Bytes2MultiPixStream_U0.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_start_for_MultiPixStream2AXIvideo_U0.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_urem_11ns_3ns_2_15_seq_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_v_frmbuf_rd.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_AXIMMvideo2Bytes.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_AXIMMvideo2Bytes_Pipeline_VITIS_LOOP_515_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_Bytes2MultiPixStream.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_Bytes2MultiPixStream_Pipeline_VITIS_LOOP_1240_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_CTRL_s_axi.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_fifo_w24_d2_S.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_fifo_w64_d481_B.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_flow_control_loop_pipe_sequential_init.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_FrmbufRdHlsDataFlow.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
@@ -532,12 +542,19 @@ WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_hls_
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MEMORY2LIVE_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MEMORY2LIVE_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_mm_video_m_axi.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_mul_11ns_13ns_23_1_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_mul_14s_3ns_14_1_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1_mapComp_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_367_1_mapComp_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_MultiPixStream2AXIvideo_Pipeline_VITIS_LOOP_376_3.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_reg_unsigned_short_s.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_regslice_both.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_sparsemux_7_2_8_1_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_start_for_Bytes2MultiPixStream_U0.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_start_for_MultiPixStream2AXIvideo_U0.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_urem_11ns_3ns_2_15_seq_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_rd_0_0_v_frmbuf_rd.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 !! WARNING !!
 "PYTHONPATH" variable is set greater than default max string limit of "519" characters.
@@ -547,7 +564,7 @@ default limit of 519 characters.
 
 ****** vitis-run v2025.2 (64-bit)
   **** SW Build 6295257 on 2025-11-13-08:29:27
-  **** Start of session at: Tue Jun 30 12:02:02 2026
+  **** Start of session at: Thu Jul  2 10:36:30 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -617,13 +634,13 @@ INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64=false
 INFO: [HLS 200-1510] Running: config_rtl -module_prefix design_1_v_frmbuf_wr_0_0_ 
 INFO: [HLS 200-1510] Running: config_export -vendor xilinx.com -library ip -version 3.0 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.292 seconds; current allocated memory: 136.969 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.281 seconds; current allocated memory: 137.785 MB.
 INFO: [HLS 200-2191] C-Synthesis will use clang-16 as the compiler
 INFO: [HLS 200-10] Analyzing design file 'D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_v_frmbuf_wr_0_0/src/v_frmbuf_wr.cpp' ... 
 WARNING: [HLS 207-6591] unused parameter 'dstImg2' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1528:30)
 WARNING: [HLS 207-6591] unused parameter 'dstImg3' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1529:15)
 WARNING: [HLS 207-6591] unused parameter 'VideoFormat' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1533:28)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4 seconds. CPU system time: 0 seconds. Elapsed time: 49.88 seconds; current allocated memory: 155.527 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4 seconds. CPU system time: 0 seconds. Elapsed time: 48.777 seconds; current allocated memory: 156.301 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
 INFO: [HLS 200-1995] There were 2,065 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/syn/report/csynth_design_size.rpt:2)
 INFO: [HLS 200-1995] There were 998 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/syn/report/csynth_design_size.rpt:2)
@@ -669,12 +686,12 @@ INFO: [HLS 214-178] Inlining function 'hls::axis<ap_uint<24>, 1ul, 1ul, 1ul, (un
 WARNING: [HLS 214-464] Skipping array undecay on variable length array 'HwReg_frm_buffer'. (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:98:0)
 INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'img' with compact=bit mode in 24-bits (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:100:18)
 INFO: [HLS 214-115] Multiple burst writes of variable length and bit width 64 in loop 'VITIS_LOOP_1552_1'(D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1552:28) has been inferred on bundle 'mm_video'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1552:28)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 12.378 seconds; current allocated memory: 157.578 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 157.578 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 11.014 seconds; current allocated memory: 158.355 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 158.355 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 162.906 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.062 seconds; current allocated memory: 163.645 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.058 seconds; current allocated memory: 165.344 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 166.195 MB.
 WARNING: [XFORM 203-561] Updating loop upper bound from 2731 to 480 for loop 'VITIS_LOOP_1090_1' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1090:32) in function 'MultiPixStream2Bytes'.
 WARNING: [XFORM 203-561] Ignored invalid trip count directive (MAX (= 480) < AVE (= 1365)) for loop 'VITIS_LOOP_1090_1' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1090:32) in function 'MultiPixStream2Bytes'.
 WARNING: [XFORM 203-561] Updating loop upper bound from 4320 to 1080 for loop 'loop_RGB8_YUV8' (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1088:1) in function 'MultiPixStream2Bytes'.
@@ -698,8 +715,8 @@ INFO: [XFORM 203-712] Applying dataflow to function 'FrmbufWrHlsDataFlow' (D:/Re
 	 'MultiPixStream2Bytes'
 	 'Bytes2AXIMMvideo'.
 INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1072:46) to (D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/.autopilot/db/v_frmbuf_wr.cpp:1086:3) in function 'MultiPixStream2Bytes'... converting 3 basic blocks.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 3.896 seconds; current allocated memory: 188.086 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.248 seconds; current allocated memory: 269.004 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 2.003 seconds; current allocated memory: 188.453 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.244 seconds; current allocated memory: 269.844 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'v_frmbuf_wr' ...
 WARNING: [SYN 201-103] Legalizing function name 'reg<unsigned short>' to 'reg_unsigned_short_s'.
@@ -710,13 +727,13 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining function 'reg<unsigned short>'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, function 'reg<unsigned short>'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.242 seconds; current allocated memory: 272.383 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.206 seconds; current allocated memory: 273.297 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.021 seconds; current allocated memory: 273.332 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.021 seconds; current allocated memory: 274.242 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AXIvideo2MultiPixStream_Pipeline_loop_wait_for_start' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -724,13 +741,13 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'loop_wait_for_start'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'loop_wait_for_start'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.034 seconds; current allocated memory: 273.977 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.036 seconds; current allocated memory: 274.965 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 274.078 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.028 seconds; current allocated memory: 275.113 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AXIvideo2MultiPixStream_Pipeline_loop_width' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -738,13 +755,13 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'loop_width'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'loop_width'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.057 seconds; current allocated memory: 274.633 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 275.852 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.033 seconds; current allocated memory: 274.793 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.059 seconds; current allocated memory: 275.953 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AXIvideo2MultiPixStream_Pipeline_loop_wait_for_eol' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -752,25 +769,25 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'loop_wait_for_eol'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'loop_wait_for_eol'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.305 seconds; current allocated memory: 275.109 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.053 seconds; current allocated memory: 276.176 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.026 seconds; current allocated memory: 275.191 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.035 seconds; current allocated memory: 276.230 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AXIvideo2MultiPixStream' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.041 seconds; current allocated memory: 275.340 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.042 seconds; current allocated memory: 276.516 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.031 seconds; current allocated memory: 275.629 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.035 seconds; current allocated memory: 276.664 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -778,25 +795,25 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_1090_1'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 8, Depth = 9, loop 'VITIS_LOOP_1090_1'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.105 seconds; current allocated memory: 277.199 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.109 seconds; current allocated memory: 278.480 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 277.312 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.054 seconds; current allocated memory: 278.625 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'MultiPixStream2Bytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.089 seconds; current allocated memory: 277.590 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.094 seconds; current allocated memory: 279.031 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.041 seconds; current allocated memory: 277.840 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.044 seconds; current allocated memory: 279.059 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -804,88 +821,88 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_1552_1'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'VITIS_LOOP_1552_1'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.052 seconds; current allocated memory: 278.340 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.063 seconds; current allocated memory: 279.398 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.571 seconds; current allocated memory: 278.344 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.53 seconds; current allocated memory: 279.531 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'Bytes2AXIMMvideo' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.056 seconds; current allocated memory: 278.762 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.074 seconds; current allocated memory: 279.965 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.051 seconds; current allocated memory: 278.980 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.078 seconds; current allocated memory: 280.266 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'FrmbufWrHlsDataFlow' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 279.203 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.101 seconds; current allocated memory: 280.457 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.037 seconds; current allocated memory: 279.258 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.042 seconds; current allocated memory: 280.512 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'v_frmbuf_wr' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.047 seconds; current allocated memory: 279.449 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.065 seconds; current allocated memory: 280.691 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.029 seconds; current allocated memory: 279.531 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.043 seconds; current allocated memory: 280.805 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'reg_unsigned_short_s' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'reg_unsigned_short_s' pipeline 'reg<unsigned short>' pipeline type 'function pipeline'
 INFO: [RTGEN 206-100] Finished creating RTL model for 'reg_unsigned_short_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 281.008 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.104 seconds; current allocated memory: 282.102 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AXIvideo2MultiPixStream_Pipeline_loop_wait_for_start' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AXIvideo2MultiPixStream_Pipeline_loop_wait_for_start'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.094 seconds; current allocated memory: 282.184 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.132 seconds; current allocated memory: 283.270 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AXIvideo2MultiPixStream_Pipeline_loop_width' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'AXIvideo2MultiPixStream_Pipeline_loop_width' pipeline 'loop_width' pipeline type 'loop pipeline'
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AXIvideo2MultiPixStream_Pipeline_loop_width'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 283.297 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.379 seconds; current allocated memory: 284.441 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AXIvideo2MultiPixStream_Pipeline_loop_wait_for_eol' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AXIvideo2MultiPixStream_Pipeline_loop_wait_for_eol'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.133 seconds; current allocated memory: 284.449 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.124 seconds; current allocated memory: 285.719 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AXIvideo2MultiPixStream' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AXIvideo2MultiPixStream'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.107 seconds; current allocated memory: 285.469 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 286.562 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1' pipeline 'VITIS_LOOP_1090_1' pipeline type 'loop pipeline'
 INFO: [RTGEN 206-100] Finished creating RTL model for 'MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.166 seconds; current allocated memory: 287.414 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.177 seconds; current allocated memory: 288.512 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'MultiPixStream2Bytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Generating core module 'mul_11ns_13ns_23_1_1': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'MultiPixStream2Bytes'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.186 seconds; current allocated memory: 290.977 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.208 seconds; current allocated memory: 291.918 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -904,12 +921,12 @@ WARNING: [RTGEN 206-101] Setting dangling out port 'Bytes2AXIMMvideo_Pipeline_VI
 WARNING: [RTGEN 206-101] Setting dangling out port 'Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1/m_axi_mm_video_0_AWUSER' to 0.
 WARNING: [RTGEN 206-101] Setting dangling out port 'Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1/m_axi_mm_video_0_BREADY' to 0.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.31 seconds; current allocated memory: 292.543 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.368 seconds; current allocated memory: 293.516 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'Bytes2AXIMMvideo' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'Bytes2AXIMMvideo'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.137 seconds; current allocated memory: 294.574 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.159 seconds; current allocated memory: 295.203 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'FrmbufWrHlsDataFlow' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -931,7 +948,7 @@ INFO: [RTMG 210-285] Implementing FIFO 'img_U(design_1_v_frmbuf_wr_0_0_fifo_w24_
 INFO: [RTMG 210-285] Implementing FIFO 'bytePlanes_U(design_1_v_frmbuf_wr_0_0_fifo_w64_d481_B)' using Block RAMs.
 INFO: [RTMG 210-285] Implementing FIFO 'start_for_MultiPixStream2Bytes_U0_U(design_1_v_frmbuf_wr_0_0_start_for_MultiPixStream2Bytes_U0)' using Shift Registers.
 INFO: [RTMG 210-285] Implementing FIFO 'start_for_Bytes2AXIMMvideo_U0_U(design_1_v_frmbuf_wr_0_0_start_for_Bytes2AXIMMvideo_U0)' using Shift Registers.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.172 seconds; current allocated memory: 296.363 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.181 seconds; current allocated memory: 296.949 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'v_frmbuf_wr' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -957,15 +974,15 @@ INFO: [RTGEN 206-100] Generating core module 'mul_14s_3ns_14_1_1': 1 instance(s)
 INFO: [RTGEN 206-100] Finished creating RTL model for 'v_frmbuf_wr'.
 INFO: [RTMG 210-279] Implementing memory 'design_1_v_frmbuf_wr_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R' using auto ROMs.
 INFO: [RTMG 210-279] Implementing memory 'design_1_v_frmbuf_wr_0_0_MEMORY2LIVE_ROM_AUTO_1R' using auto ROMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.211 seconds; current allocated memory: 298.863 MB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.945 seconds; current allocated memory: 302.430 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.843 seconds; current allocated memory: 300.016 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 1.953 seconds; current allocated memory: 303.277 MB.
 INFO: [HLS 200-1603] Design has inferred MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
 INFO: [HLS 200-2225] Wrote inferred directives to file D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/syn/inferred_directives.ini
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2 seconds. CPU system time: 5 seconds. Elapsed time: 6.353 seconds; current allocated memory: 310.445 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 5 seconds. CPU system time: 9 seconds. Elapsed time: 15.442 seconds; current allocated memory: 311.371 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for v_frmbuf_wr with prefix design_1_v_frmbuf_wr_0_0_.
 INFO: [VLOG 209-307] Generating Verilog RTL for v_frmbuf_wr with prefix design_1_v_frmbuf_wr_0_0_.
 INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
-INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:01:25; Allocated memory: 173.734 MB.
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:01:31; Allocated memory: 173.957 MB.
 INFO: [HLS 200-1510] Running: export_design -format ip_catalog 
 INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 !! WARNING !!
@@ -978,7 +995,7 @@ default limit of 519 characters.
   **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
   **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
   **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-  **** Start of session at: Tue Jun 30 12:03:38 2026
+  **** Start of session at: Thu Jul  2 10:38:14 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -988,7 +1005,7 @@ INFO: Copied 1 ipmisc file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.ru
 INFO: Copied 32 verilog file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/hdl/verilog
 INFO: Copied 23 vhdl file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/hdl/vhdl
 INFO: Copied 10 swdriver file(s) to D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/drivers
-ipx::create_core: Time (s): cpu = 00:00:17 ; elapsed = 00:00:11 . Memory (MB): peak = 537.379 ; gain = 214.551
+ipx::create_core: Time (s): cpu = 00:00:20 ; elapsed = 00:00:13 . Memory (MB): peak = 538.109 ; gain = 216.180
 INFO: Import ports from HDL: D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/hdl/vhdl/design_1_v_frmbuf_wr_0_0_v_frmbuf_wr.vhd (design_1_v_frmbuf_wr_0_0_v_frmbuf_wr)
 INFO: Add axi4lite interface s_axi_CTRL
 INFO: Add clock interface ap_clk
@@ -1004,11 +1021,11 @@ INFO: Calling post_process_sysgen to specialize IP
 Generating sysgen info xml from json file
 INFO: Created IP D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/component.xml
 INFO: Created IP archive D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/prj/sol/impl/ip/xilinx_com_ip_v_frmbuf_wr_3_0.zip
-INFO: [Common 17-206] Exiting Vivado at Tue Jun 30 12:03:58 2026...
+INFO: [Common 17-206] Exiting Vivado at Thu Jul  2 10:38:36 2026...
 INFO: [HLS 200-802] Generated output file prj/sol/impl/export.zip
-INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:23; Allocated memory: 3.855 MB.
-INFO: [HLS 200-112] Total CPU user time: 11 seconds. Total CPU system time: 9 seconds. Total elapsed time: 114.586 seconds; peak allocated memory: 314.348 MB.
-INFO: [vitis-run 60-791] Total elapsed time: 0h 1m 57s
+INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:26; Allocated memory: 3.914 MB.
+INFO: [HLS 200-112] Total CPU user time: 15 seconds. Total CPU system time: 14 seconds. Total elapsed time: 123.971 seconds; peak allocated memory: 315.328 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 2m 6s
 INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_AXIvideo2MultiPixStream.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_AXIvideo2MultiPixStream_Pipeline_loop_wait_for_eol.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
@@ -1019,6 +1036,7 @@ WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_Byte
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_CTRL_s_axi.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_fifo_w24_d2_S.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_fifo_w64_d481_B.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_flow_control_loop_pipe_sequential_init.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_FrmbufWrHlsDataFlow.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
@@ -1032,8 +1050,10 @@ WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_MEMORY2LIVE_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_MEMORY2LIVE_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_mm_video_m_axi.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_mul_11ns_13ns_23_1_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_mul_14s_3ns_14_1_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_MultiPixStream2Bytes.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
+WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_MultiPixStream2Bytes_Pipeline_VITIS_LOOP_1090_1.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_reg_unsigned_short_s.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_regslice_both.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_start_for_Bytes2AXIMMvideo_U0.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
@@ -1041,29 +1061,7 @@ WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_star
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_v_frmbuf_wr.v" already exists in file group "xilinx_veriloghlssynthesis", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_AXIvideo2MultiPixStream.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_AXIvideo2MultiPixStream_Pipeline_loop_wait_for_eol.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_AXIvideo2MultiPixStream_Pipeline_loop_wait_for_start.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_AXIvideo2MultiPixStream_Pipeline_loop_width.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_Bytes2AXIMMvideo.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_Bytes2AXIMMvideo_Pipeline_VITIS_LOOP_1552_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_BYTES_PER_PIXEL_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_CTRL_s_axi.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_fifo_w64_d481_B.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_flow_control_loop_pipe_sequential_init.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_FrmbufWrHlsDataFlow.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_detection_unit.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_detector.vh" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_idx0_monitor.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_idx1_monitor.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_idx2_monitor.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_kernel_monitor_top.vh" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_hls_deadlock_report_unit.vh" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_MEMORY2LIVE_ROM_AUTO_1R.dat" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_MEMORY2LIVE_ROM_AUTO_1R.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_mm_video_m_axi.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
-WARNING: [IP_Flow 19-1971] File named "hdl/verilog/design_1_v_frmbuf_wr_0_0_mul_14s_3ns_14_1_1.v" already exists in file group "xilinx_veriloghlssimulation", cannot add it again.
 INFO: [Common 17-14] Message 'IP_Flow 19-1971' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-compile_c: Time (s): cpu = 00:00:00 ; elapsed = 00:03:53 . Memory (MB): peak = 599.734 ; gain = 0.000
 Command: read_checkpoint -auto_incremental -incremental D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.srcs/utils_1/imports/synth_1/kria_top.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.srcs/utils_1/imports/synth_1/kria_top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -1076,9 +1074,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 30900
+INFO: [Synth 8-7075] Helper process launched with PID 24172
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1870.859 ; gain = 212.746
+Starting RTL Elaboration : Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 1871.188 ; gain = 210.277
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-11241] undeclared symbol 'dp_audi_ref_clk', assumed default net type 'wire' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/hdl/zynq_ultra_ps_e_v3_5_8.v:2502]
 INFO: [Synth 8-638] synthesizing module 'design_1_wrapper' [D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:18]
@@ -1326,45 +1324,56 @@ INFO: [Synth 8-226] default block is never used [D:/AMDDesignTools/2025.2/Vivado
 INFO: [Synth 8-226] default block is never used [D:/AMDDesignTools/2025.2/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1309]
 INFO: [Synth 8-3491] module 'design_1_hls_passthrough_0_0' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:56' bound to instance 'hls_passthrough_0' of component 'design_1_hls_passthrough_0_0' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/synth/design_1.vhd:1895]
 INFO: [Synth 8-638] synthesizing module 'design_1_hls_passthrough_0_0' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:95]
-	Parameter C_S_AXI_CONTROL_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_S_AXI_CONTROL_ADDR_WIDTH bound to: 5 - type: integer 
 	Parameter C_S_AXI_CONTROL_DATA_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:11' bound to instance 'U0' of component 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:205]
-INFO: [Synth 8-638] synthesizing module 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:53]
-	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:11' bound to instance 'U0' of component 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:205]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:53]
+INFO: [Synth 8-3491] module 'hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP.vhd:11' bound to instance 'grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80' of component 'hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:260]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP.vhd:37]
+INFO: [Synth 8-3491] module 'hls_passthrough_flow_control_loop_pipe_sequential_init' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_flow_control_loop_pipe_sequential_init.vhd:13' bound to instance 'flow_control_loop_pipe_sequential_init_U' of component 'hls_passthrough_flow_control_loop_pipe_sequential_init' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP.vhd:106]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_flow_control_loop_pipe_sequential_init' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_flow_control_loop_pipe_sequential_init.vhd:39]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_flow_control_loop_pipe_sequential_init' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_flow_control_loop_pipe_sequential_init.vhd:39]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP.vhd:37]
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 5 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_control_s_axi' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_control_s_axi.vhd:12' bound to instance 'control_s_axi_U' of component 'hls_passthrough_control_s_axi' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:211]
-INFO: [Synth 8-638] synthesizing module 'hls_passthrough_control_s_axi' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_control_s_axi.vhd:69]
-INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_control_s_axi' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_control_s_axi.vhd:69]
-INFO: [Synth 8-3491] module 'hls_passthrough_flow_control_loop_pipe' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_flow_control_loop_pipe.vhd:13' bound to instance 'flow_control_loop_pipe_U' of component 'hls_passthrough_flow_control_loop_pipe' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:242]
-INFO: [Synth 8-638] synthesizing module 'hls_passthrough_flow_control_loop_pipe' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_flow_control_loop_pipe.vhd:40]
-INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_flow_control_loop_pipe' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_flow_control_loop_pipe.vhd:40]
+INFO: [Synth 8-3491] module 'hls_passthrough_control_s_axi' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_control_s_axi.vhd:12' bound to instance 'control_s_axi_U' of component 'hls_passthrough_control_s_axi' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:284]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_control_s_axi' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_control_s_axi.vhd:77]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_control_s_axi' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_control_s_axi.vhd:77]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 31 - type: integer 
+	Parameter dout_WIDTH bound to: 62 - type: integer 
+INFO: [Synth 8-3491] module 'hls_passthrough_mul_32ns_31ns_62_1_1' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_mul_32ns_31ns_62_1_1.vhd:7' bound to instance 'mul_32ns_31ns_62_1_1_U12' of component 'hls_passthrough_mul_32ns_31ns_62_1_1' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:317]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_mul_32ns_31ns_62_1_1' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_mul_32ns_31ns_62_1_1.vhd:23]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_mul_32ns_31ns_62_1_1' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_mul_32ns_31ns_62_1_1.vhd:23]
 	Parameter DataWidth bound to: 24 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:258]
-INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:329]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
 	Parameter DataWidth bound to: 3 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:272]
-INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized1' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized1' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:343]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized1' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized1' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
 	Parameter DataWidth bound to: 3 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:286]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:357]
 	Parameter DataWidth bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:300]
-INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized3' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized3' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:371]
+INFO: [Synth 8-638] synthesizing module 'hls_passthrough_regslice_both__parameterized3' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough_regslice_both__parameterized3' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:29]
 	Parameter DataWidth bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:314]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_in_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:385]
 	Parameter DataWidth bound to: 24 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:328]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_data_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:399]
 	Parameter DataWidth bound to: 3 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:342]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_keep_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:413]
 	Parameter DataWidth bound to: 3 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:356]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_strb_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:427]
 	Parameter DataWidth bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:370]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_user_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:441]
 	Parameter DataWidth bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:384]
-INFO: [Synth 8-256] done synthesizing module 'hls_passthrough' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough.vhd:53]
+INFO: [Synth 8-3491] module 'hls_passthrough_regslice_both' declared at 'd:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_regslice_both.vhd:11' bound to instance 'regslice_both_out_stream_V_last_V_U' of component 'hls_passthrough_regslice_both' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:455]
+INFO: [Synth 8-256] done synthesizing module 'hls_passthrough' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough.vhd:53]
 INFO: [Synth 8-256] done synthesizing module 'design_1_hls_passthrough_0_0' (0#1) [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0/synth/design_1_hls_passthrough_0_0.vhd:95]
 INFO: [Synth 8-638] synthesizing module 'design_1_ps8_0_axi_periph_0' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/synth/design_1.vhd:806]
 INFO: [Synth 8-638] synthesizing module 'm00_couplers_imp_QJIMLI' [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/synth/design_1.vhd:58]
@@ -1550,7 +1559,8 @@ INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' throug
 WARNING: [Synth 8-6014] Unused sequential element gen_rd_b.gen_doutb_pipe.enb_pipe_reg[0] was removed.  [D:/AMDDesignTools/2025.2/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:3087]
 WARNING: [Synth 8-6014] Unused sequential element gdvld.data_valid_std_reg was removed.  [D:/AMDDesignTools/2025.2/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:550]
 WARNING: [Synth 8-6014] Unused sequential element gen_fwft.empty_fwft_fb_reg was removed.  [D:/AMDDesignTools/2025.2/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1404]
-INFO: [Synth 8-6014] Unused sequential element int_ap_done_reg was removed.  [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/aa51/hdl/vhdl/hls_passthrough_control_s_axi.vhd:287]
+INFO: [Synth 8-6014] Unused sequential element int_ap_done_reg was removed.  [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/5286/hdl/vhdl/hls_passthrough_control_s_axi.vhd:307]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-6014] Unused sequential element cmd_empty_reg was removed.  [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/21f8/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:1052]
 INFO: [Synth 8-6014] Unused sequential element cmd_depth_reg was removed.  [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/21f8/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:1053]
 INFO: [Synth 8-6014] Unused sequential element cmd_b_push_block_reg was removed.  [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/21f8/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:975]
@@ -1669,18 +1679,18 @@ WARNING: [Synth 8-7129] Port test_adc2_in[10] in module zynq_ultra_ps_e_v3_5_8_z
 WARNING: [Synth 8-7129] Port test_adc2_in[9] in module zynq_ultra_ps_e_v3_5_8_zynq_ultra_ps_e is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:41 ; elapsed = 00:00:46 . Memory (MB): peak = 2355.832 ; gain = 697.719
+Finished RTL Elaboration : Time (s): cpu = 00:00:38 ; elapsed = 00:00:46 . Memory (MB): peak = 2356.984 ; gain = 696.074
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2355.832 ; gain = 697.719
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:47 . Memory (MB): peak = 2356.984 ; gain = 696.074
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2355.832 ; gain = 697.719
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:47 . Memory (MB): peak = 2356.984 ; gain = 696.074
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2355.832 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.723 . Memory (MB): peak = 2356.984 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1688,7 +1698,6 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0/U0'
-create_clock: Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 2440.320 ; gain = 18.566
 Finished Parsing XDC File [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0/U0'
 Parsing XDC File [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0_board.xdc] for cell 'design_1_i/rst_ps8_0_99M/U0'
 Finished Parsing XDC File [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0_board.xdc] for cell 'design_1_i/rst_ps8_0_99M/U0'
@@ -1707,16 +1716,16 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/design_1_wra
 INFO: [Project 1-1714] 7 XPM XDC files have been applied to the design.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 2440.320 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 2443.902 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   SRL16 => SRL16E: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.803 . Memory (MB): peak = 2440.320 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.477 . Memory (MB): peak = 2443.902 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:28 ; elapsed = 00:01:41 . Memory (MB): peak = 2440.320 ; gain = 782.207
+Finished Constraint Validation : Time (s): cpu = 00:01:12 ; elapsed = 00:01:25 . Memory (MB): peak = 2443.902 ; gain = 782.992
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -1724,13 +1733,13 @@ Start Loading Part and Timing Information
 Loading part: xck26-sfvc784-2LV-c
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:28 ; elapsed = 00:01:41 . Memory (MB): peak = 2440.320 ; gain = 782.207
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:12 ; elapsed = 00:01:25 . Memory (MB): peak = 2443.902 ; gain = 782.992
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:28 ; elapsed = 00:01:41 . Memory (MB): peak = 2440.320 ; gain = 782.207
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:12 ; elapsed = 00:01:26 . Memory (MB): peak = 2443.902 ; gain = 782.992
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
@@ -1778,6 +1787,9 @@ INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'hls_
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both__parameterized1'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hls_passthrough_regslice_both__parameterized3'
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-802] inferred FSM for state register 'gpregsm1.curr_fwft_state_reg' in module 'rd_fwft'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_protocol_converter_v2_1_37_b2s_wr_cmd_fsm'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_protocol_converter_v2_1_37_b2s_rd_cmd_fsm'
@@ -2013,7 +2025,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axi_protocol_converter_v2_1_37_b2s_rd_cmd_fsm'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:35 ; elapsed = 00:01:49 . Memory (MB): peak = 2440.320 ; gain = 782.207
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 2443.902 ; gain = 782.992
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -2050,26 +2062,92 @@ INFO: [Synth 8-3332] Sequential element (FSM_sequential_state_reg[1]) is unused 
 INFO: [Synth 8-3332] Sequential element (FSM_sequential_state_reg[0]) is unused and will be removed from module design_1_v_frmbuf_wr_0_0_regslice_both__parameterized0.
 INFO: [Synth 8-3332] Sequential element (U0/control_s_axi_U/FSM_onehot_wstate_reg[0]) is unused and will be removed from module design_1_hls_passthrough_0_0.
 INFO: [Synth 8-3332] Sequential element (U0/control_s_axi_U/FSM_onehot_rstate_reg[0]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[47]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[46]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[45]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[44]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[43]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[42]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[41]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[40]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[39]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[38]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[37]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[36]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[35]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[34]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[33]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[32]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[31]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[30]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[29]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[28]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[27]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[26]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[25]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[24]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[23]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[22]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[21]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[20]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[19]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[18]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[17]) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[47]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[46]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[45]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[44]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[43]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[42]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[41]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[40]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[39]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[38]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[37]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[36]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[35]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[34]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[33]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[32]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[31]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[30]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[29]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[28]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[27]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[26]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[25]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[24]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[23]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[22]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[21]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[20]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[19]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[18]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
+INFO: [Synth 8-3332] Sequential element (U0/mul_ln9_reg_138_reg[17]__0) is unused and will be removed from module design_1_hls_passthrough_0_0.
 WARNING: [Synth 8-3332] Sequential element (FDRE_inst) is unused and will be removed from module proc_sys_reset.
 WARNING: [Synth 8-3332] Sequential element (BSR_OUT_DFF[0].FDRE_BSR) is unused and will be removed from module proc_sys_reset.
 WARNING: [Synth 8-3332] Sequential element (ACTIVE_LOW_BSR_OUT_DFF[0].FDRE_BSR_N) is unused and will be removed from module proc_sys_reset.
 WARNING: [Synth 8-3332] Sequential element (PR_OUT_DFF[0].FDRE_PER) is unused and will be removed from module proc_sys_reset.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:14 ; elapsed = 00:02:29 . Memory (MB): peak = 2440.320 ; gain = 782.207
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:12 ; elapsed = 00:02:28 . Memory (MB): peak = 2443.902 ; gain = 782.992
 ---------------------------------------------------------------------------------
+ Sort Area is  U0/mul_32ns_31ns_62_1_1_U12/tmp_product_3 : 0 0 : 3119 5838 : Used 1 time 0
+ Sort Area is  U0/mul_32ns_31ns_62_1_1_U12/tmp_product_3 : 0 1 : 2719 5838 : Used 1 time 0
+ Sort Area is  U0/mul_32ns_31ns_62_1_1_U12/tmp_product_6 : 0 0 : 2759 5350 : Used 1 time 0
+ Sort Area is  U0/mul_32ns_31ns_62_1_1_U12/tmp_product_6 : 0 1 : 2591 5350 : Used 1 time 0
  Sort Area is  MultiPixStream2Bytes_U0/mul_11ns_13ns_23_1_1_U62/tmp_product_2 : 0 0 : 584 584 : Used 1 time 0
  Sort Area is  mul_11ns_13ns_23_1_1_U25/tmp_product_0 : 0 0 : 584 584 : Used 1 time 0
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:35 ; elapsed = 00:02:57 . Memory (MB): peak = 3859.996 ; gain = 2201.883
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:34 ; elapsed = 00:02:58 . Memory (MB): peak = 3859.727 ; gain = 2198.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:38 ; elapsed = 00:03:00 . Memory (MB): peak = 3924.195 ; gain = 2266.082
+Finished Timing Optimization : Time (s): cpu = 00:02:38 ; elapsed = 00:03:03 . Memory (MB): peak = 3925.254 ; gain = 2264.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
@@ -2077,7 +2155,7 @@ Start Technology Mapping
 INFO: [Synth 8-7052] The timing for the instance design_1_i/VFB_READ/inst/grp_FrmbufRdHlsDataFlow_fu_166/bytePlanes_U/U_design_1_v_frmbuf_rd_0_0_fifo_w64_d481_B_ram/mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance design_1_i/VFB_READ/inst/mm_video_m_axi_U/load_unit_0/buff_rdata/U_fifo_mem/mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:45 ; elapsed = 00:03:07 . Memory (MB): peak = 3946.777 ; gain = 2288.664
+Finished Technology Mapping : Time (s): cpu = 00:02:47 ; elapsed = 00:03:13 . Memory (MB): peak = 3946.590 ; gain = 2285.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -2196,49 +2274,53 @@ WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/
 WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [d:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.gen/sources_1/bd/design_1/ipshared/21f8/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:1911]
 INFO: [Common 17-14] Message 'Synth 8-5396' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:52 ; elapsed = 00:03:15 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished IO Insertion : Time (s): cpu = 00:02:56 ; elapsed = 00:03:22 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:52 ; elapsed = 00:03:15 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:56 ; elapsed = 00:03:22 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:54 ; elapsed = 00:03:16 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:58 ; elapsed = 00:03:25 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:54 ; elapsed = 00:03:16 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:58 ; elapsed = 00:03:25 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:54 ; elapsed = 00:03:17 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:59 ; elapsed = 00:03:25 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:54 ; elapsed = 00:03:17 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:59 ; elapsed = 00:03:26 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 DSP Final Report (the ' indicates corresponding REG is set)
-+----------------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name                                   | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+----------------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|design_1_v_frmbuf_rd_0_0_mul_11ns_13ns_23_1_1 | A*B         | 11     | 12     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|design_1_v_frmbuf_wr_0_0_mul_11ns_13ns_23_1_1 | A*B         | 11     | 12     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+----------------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++----------------------------------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                                   | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++----------------------------------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|design_1_v_frmbuf_rd_0_0_mul_11ns_13ns_23_1_1 | A*B              | 11     | 12     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|design_1_v_frmbuf_wr_0_0_mul_11ns_13ns_23_1_1 | A*B              | 11     | 12     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|design_1_hls_passthrough_0_0                  | (PCIN>>17+A'*B)' | 15     | 14     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
+|design_1_hls_passthrough_0_0                  | (PCIN>>17+A'*B)' | 17     | 14     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
+|design_1_hls_passthrough_0_0                  | A*B'             | 17     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|design_1_hls_passthrough_0_0                  | A'*B             | 17     | 17     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
++----------------------------------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
 Report BlackBoxes: 
@@ -2252,62 +2334,63 @@ Report Cell Usage:
 |      |Cell            |Count |
 +------+----------------+------+
 |1     |BUFG_PS         |     1|
-|2     |CARRY8          |    81|
-|3     |DSP_ALU         |     2|
-|4     |DSP_A_B_DATA    |     2|
-|5     |DSP_C_DATA      |     2|
-|6     |DSP_MULTIPLIER  |     2|
-|7     |DSP_M_DATA      |     2|
-|8     |DSP_OUTPUT      |     2|
-|9     |DSP_PREADD      |     2|
-|10    |DSP_PREADD_DATA |     2|
-|11    |LUT1            |   478|
-|12    |LUT2            |   539|
-|13    |LUT3            |  1179|
-|14    |LUT4            |   958|
-|15    |LUT5            |  1029|
-|16    |LUT6            |  1503|
-|17    |MUXF7           |   264|
-|18    |MUXF8           |   122|
-|19    |PS8             |     1|
-|20    |RAM32M16        |     5|
-|21    |RAM32X1D        |     2|
-|22    |RAMB18E2        |     1|
-|23    |RAMB36E2        |     3|
-|25    |SRL16           |     1|
-|26    |SRL16E          |    53|
-|27    |SRLC32E         |   595|
-|28    |FDCE            |    69|
-|29    |FDPE            |    33|
-|30    |FDRE            |  6000|
-|31    |FDSE            |   103|
+|2     |CARRY8          |   102|
+|3     |DSP_ALU         |     6|
+|4     |DSP_A_B_DATA    |     6|
+|7     |DSP_C_DATA      |     6|
+|8     |DSP_MULTIPLIER  |     6|
+|9     |DSP_M_DATA      |     6|
+|10    |DSP_OUTPUT      |     6|
+|12    |DSP_PREADD      |     6|
+|13    |DSP_PREADD_DATA |     6|
+|14    |LUT1            |   479|
+|15    |LUT2            |   644|
+|16    |LUT3            |  1248|
+|17    |LUT4            |   929|
+|18    |LUT5            |  1032|
+|19    |LUT6            |  1619|
+|20    |MUXF7           |   264|
+|21    |MUXF8           |   122|
+|22    |PS8             |     1|
+|23    |RAM32M16        |     5|
+|24    |RAM32X1D        |     2|
+|25    |RAMB18E2        |     1|
+|26    |RAMB36E2        |     3|
+|28    |SRL16           |     1|
+|29    |SRL16E          |    53|
+|30    |SRLC32E         |   595|
+|31    |FDCE            |    69|
+|32    |FDPE            |    33|
+|33    |FDRE            |  6225|
+|34    |FDSE            |   104|
 +------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:55 ; elapsed = 00:03:17 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:59 ; elapsed = 00:03:26 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 3575 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:39 ; elapsed = 00:02:37 . Memory (MB): peak = 4146.492 ; gain = 2403.891
-Synthesis Optimization Complete : Time (s): cpu = 00:02:55 ; elapsed = 00:03:18 . Memory (MB): peak = 4146.492 ; gain = 2488.379
+Synthesis finished with 0 errors, 0 critical warnings and 3543 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:58 ; elapsed = 00:02:58 . Memory (MB): peak = 4147.742 ; gain = 2399.914
+Synthesis Optimization Complete : Time (s): cpu = 00:03:00 ; elapsed = 00:03:27 . Memory (MB): peak = 4147.742 ; gain = 2486.832
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.439 . Memory (MB): peak = 4146.492 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 477 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.454 . Memory (MB): peak = 4147.742 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 502 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 4146.492 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 4147.742 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 10 instances were transformed.
-  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 2 instances
+  A total of 14 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
   RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 5 instances
   RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
   SRL16 => SRL16E: 1 instance 
 
-Synth Design complete | Checksum: 3687be79
+Synth Design complete | Checksum: def877f6
 INFO: [Common 17-83] Releasing license: Synthesis
-466 Infos, 378 Warnings, 0 Critical Warnings and 0 Errors encountered.
+538 Infos, 378 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:13 ; elapsed = 00:03:50 . Memory (MB): peak = 4146.492 ; gain = 3546.758
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.311 . Memory (MB): peak = 4146.492 ; gain = 0.000
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.statsThreshold
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.301 . Memory (MB): peak = 4147.742 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'D:/Repos/_DP/DP/Vivado/KriaTester/KriaTester.runs/synth_1/design_1_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jun 30 12:07:54 2026...
+INFO: [Common 17-206] Exiting Vivado at Thu Jul  2 10:42:42 2026...
