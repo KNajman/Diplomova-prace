@@ -6,7 +6,7 @@
       "gen_directory": "../../../../KriaTester.gen/sources_1/bd/design_1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
-      "synth_flow_mode": "None",
+      "synth_flow_mode": "Hierarchical",
       "tool_version": "2025.2",
       "validated": "true"
     },
@@ -1159,7 +1159,7 @@
             "value": "100.000000"
           },
           "PSU__MAXIGP0__DATA_WIDTH": {
-            "value": "128"
+            "value": "64"
           },
           "PSU__OVERRIDE__BASIC_CLOCK": {
             "value": "0"
@@ -1578,7 +1578,7 @@
       },
       "hls_passthrough_0": {
         "vlnv": "xilinx.com:hls:hls_passthrough:1.0",
-        "ip_revision": "2114676054",
+        "ip_revision": "2114678997",
         "xci_name": "design_1_hls_passthrough_0_0",
         "xci_path": "ip\\design_1_hls_passthrough_0_0\\design_1_hls_passthrough_0_0.xci",
         "inst_hier_path": "hls_passthrough_0",
@@ -1592,6 +1592,9 @@
         "inst_hier_path": "VFB_READ",
         "has_run_ip_tcl": "true",
         "parameters": {
+          "AXIMM_ADDR_WIDTH": {
+            "value": "64"
+          },
           "AXIMM_DATA_WIDTH": {
             "value": "64"
           },
@@ -1601,10 +1604,19 @@
           "HAS_ALPHA": {
             "value": "0"
           },
+          "HAS_BGR8": {
+            "value": "1"
+          },
+          "HAS_BGRX8": {
+            "value": "1"
+          },
           "HAS_INTERLACED": {
             "value": "0"
           },
           "HAS_RGB8": {
+            "value": "1"
+          },
+          "HAS_RGBX8": {
             "value": "1"
           },
           "MAX_COLS": {
@@ -1633,16 +1645,16 @@
             "address_space_ref": "Data_m_axi_mm_video",
             "base_address": {
               "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFF",
-              "width": "32"
+              "maximum": "0xFFFFFFFFFFFFFFFF",
+              "width": "64"
             }
           }
         },
         "addressing": {
           "address_spaces": {
             "Data_m_axi_mm_video": {
-              "range": "4G",
-              "width": "32"
+              "range": "16E",
+              "width": "64"
             }
           }
         }
@@ -1655,6 +1667,9 @@
         "inst_hier_path": "VFB_WRITE",
         "has_run_ip_tcl": "true",
         "parameters": {
+          "AXIMM_ADDR_WIDTH": {
+            "value": "64"
+          },
           "AXIMM_DATA_WIDTH": {
             "value": "64"
           },
@@ -1664,7 +1679,16 @@
           "HAS_ALPHA": {
             "value": "0"
           },
+          "HAS_BGR8": {
+            "value": "1"
+          },
+          "HAS_BGRX8": {
+            "value": "1"
+          },
           "HAS_RGB8": {
+            "value": "1"
+          },
+          "HAS_RGBX8": {
             "value": "1"
           },
           "MAX_COLS": {
@@ -1693,16 +1717,16 @@
             "address_space_ref": "Data_m_axi_mm_video",
             "base_address": {
               "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFF",
-              "width": "32"
+              "maximum": "0xFFFFFFFFFFFFFFFF",
+              "width": "64"
             }
           }
         },
         "addressing": {
           "address_spaces": {
             "Data_m_axi_mm_video": {
-              "range": "4G",
-              "width": "32"
+              "range": "16E",
+              "width": "64"
             }
           }
         }
@@ -2036,7 +2060,7 @@
                     "value": "32"
                   },
                   "SI_DATA_WIDTH": {
-                    "value": "128"
+                    "value": "64"
                   }
                 },
                 "interface_ports": {
@@ -2591,24 +2615,24 @@
             "segments": {
               "SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH",
-                "offset": "0x00000000",
+                "offset": "0x0000000000000000",
                 "range": "1",
                 "is_excluded": "TRUE"
               },
               "SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW",
-                "offset": "0x00000000",
+                "offset": "0x0000000000000000",
                 "range": "2G"
               },
               "SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM",
-                "offset": "0xFF000000",
+                "offset": "0x00000000FF000000",
                 "range": "16M",
                 "is_excluded": "TRUE"
               },
               "SEG_zynq_ultra_ps_e_0_HP0_QSPI": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI",
-                "offset": "0xC0000000",
+                "offset": "0x00000000C0000000",
                 "range": "512M"
               }
             }
@@ -2621,24 +2645,24 @@
             "segments": {
               "SEG_zynq_ultra_ps_e_0_HP1_DDR_HIGH": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP3/HP1_DDR_HIGH",
-                "offset": "0x00000000",
+                "offset": "0x0000000000000000",
                 "range": "1",
                 "is_excluded": "TRUE"
               },
               "SEG_zynq_ultra_ps_e_0_HP1_DDR_LOW": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP3/HP1_DDR_LOW",
-                "offset": "0x00000000",
+                "offset": "0x0000000000000000",
                 "range": "2G"
               },
               "SEG_zynq_ultra_ps_e_0_HP1_LPS_OCM": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP3/HP1_LPS_OCM",
-                "offset": "0xFF000000",
+                "offset": "0x00000000FF000000",
                 "range": "16M",
                 "is_excluded": "TRUE"
               },
               "SEG_zynq_ultra_ps_e_0_HP1_QSPI": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP3/HP1_QSPI",
-                "offset": "0xC0000000",
+                "offset": "0x00000000C0000000",
                 "range": "512M"
               }
             }

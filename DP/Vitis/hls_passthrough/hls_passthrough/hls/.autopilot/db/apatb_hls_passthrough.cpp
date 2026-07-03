@@ -61,6 +61,10 @@ using namespace std;
 #define WRAPC_STREAM_EGRESS_STATUS_out_stream_V_user_V "../tv/stream_size/stream_egress_status_out_stream_V_user_V.dat"
 #define WRAPC_STREAM_SIZE_OUT_out_stream_V_last_V "../tv/stream_size/stream_size_out_out_stream_V_last_V.dat"
 #define WRAPC_STREAM_EGRESS_STATUS_out_stream_V_last_V "../tv/stream_size/stream_egress_status_out_stream_V_last_V.dat"
+#define AUTOTB_TVIN_height "../tv/cdatafile/c.hls_passthrough.autotvin_height.dat"
+#define AUTOTB_TVOUT_height "../tv/cdatafile/c.hls_passthrough.autotvout_height.dat"
+#define AUTOTB_TVIN_width "../tv/cdatafile/c.hls_passthrough.autotvin_width.dat"
+#define AUTOTB_TVOUT_width "../tv/cdatafile/c.hls_passthrough.autotvout_width.dat"
 
 
 // tvout file define:
@@ -1298,13 +1302,13 @@ namespace hls::sim
 
 
 extern "C"
-void hls_passthrough_hw_stub_wrapper(void*, void*, void*, void*, void*, void*, void*, void*, void*, void*);
+void hls_passthrough_hw_stub_wrapper(void*, void*, void*, void*, void*, void*, void*, void*, void*, void*, hls::sim::Byte<4>, hls::sim::Byte<4>);
 
 extern "C"
-void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* __xlx_apatb_param_in_stream_V_keep_V, void* __xlx_apatb_param_in_stream_V_strb_V, void* __xlx_apatb_param_in_stream_V_user_V, void* __xlx_apatb_param_in_stream_V_last_V, void* __xlx_apatb_param_out_stream_V_data_V, void* __xlx_apatb_param_out_stream_V_keep_V, void* __xlx_apatb_param_out_stream_V_strb_V, void* __xlx_apatb_param_out_stream_V_user_V, void* __xlx_apatb_param_out_stream_V_last_V)
+void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* __xlx_apatb_param_in_stream_V_keep_V, void* __xlx_apatb_param_in_stream_V_strb_V, void* __xlx_apatb_param_in_stream_V_user_V, void* __xlx_apatb_param_in_stream_V_last_V, void* __xlx_apatb_param_out_stream_V_data_V, void* __xlx_apatb_param_out_stream_V_keep_V, void* __xlx_apatb_param_out_stream_V_strb_V, void* __xlx_apatb_param_out_stream_V_user_V, void* __xlx_apatb_param_out_stream_V_last_V, hls::sim::Byte<4> __xlx_apatb_param_height, hls::sim::Byte<4> __xlx_apatb_param_width)
 {
   static hls::sim::Stream<hls::sim::Byte<4>> port0 {
-    .width = 24,
+    .width = 32,
     .name = "in_stream_V_data_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(WRAPC_STREAM_SIZE_IN_in_stream_V_data_V),
@@ -1318,7 +1322,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port0.hasWrite = false;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port1 {
-    .width = 3,
+    .width = 4,
     .name = "in_stream_V_keep_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(WRAPC_STREAM_SIZE_IN_in_stream_V_keep_V),
@@ -1332,7 +1336,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port1.hasWrite = false;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port2 {
-    .width = 3,
+    .width = 4,
     .name = "in_stream_V_strb_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(WRAPC_STREAM_SIZE_IN_in_stream_V_strb_V),
@@ -1374,7 +1378,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port4.hasWrite = false;
 
   static hls::sim::Stream<hls::sim::Byte<4>> port5 {
-    .width = 24,
+    .width = 32,
     .name = "out_stream_V_data_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_out_stream_V_data_V),
@@ -1388,7 +1392,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port5.hasWrite = true;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port6 {
-    .width = 3,
+    .width = 4,
     .name = "out_stream_V_keep_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_out_stream_V_keep_V),
@@ -1402,7 +1406,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port6.hasWrite = true;
 
   static hls::sim::Stream<hls::sim::Byte<1>> port7 {
-    .width = 3,
+    .width = 4,
     .name = "out_stream_V_strb_V",
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_out_stream_V_strb_V),
@@ -1443,6 +1447,28 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
   port9.param = (hls::stream<hls::sim::Byte<1>>*)__xlx_apatb_param_out_stream_V_last_V;
   port9.hasWrite = true;
 
+  static hls::sim::Register port10 {
+    .name = "height",
+    .width = 32,
+#ifdef POST_CHECK
+#else
+    .owriter = nullptr,
+    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_height),
+#endif
+  };
+  port10.param = &__xlx_apatb_param_height;
+
+  static hls::sim::Register port11 {
+    .name = "width",
+    .width = 32,
+#ifdef POST_CHECK
+#else
+    .owriter = nullptr,
+    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_width),
+#endif
+  };
+  port11.param = &__xlx_apatb_param_width;
+
   try {
 #ifdef POST_CHECK
     CodeState = ENTER_WRAPC_PC;
@@ -1460,6 +1486,10 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
     static hls::sim::RefTCL tcl("../tv/cdatafile/ref.tcl");
     tcl.containsVLA = 0;
     CodeState = DUMP_INPUTS;
+    dump(port10, port10.iwriter, tcl.AESL_transaction);
+    dump(port11, port11.iwriter, tcl.AESL_transaction);
+    port10.doTCL(tcl);
+    port11.doTCL(tcl);
     port0.markSize();
     port1.markSize();
     port2.markSize();
@@ -1476,7 +1506,7 @@ void apatb_hls_passthrough_hw(void* __xlx_apatb_param_in_stream_V_data_V, void* 
     port8.markSize();
     port9.markSize();
     CodeState = CALL_C_DUT;
-    hls_passthrough_hw_stub_wrapper(__xlx_apatb_param_in_stream_V_data_V, __xlx_apatb_param_in_stream_V_keep_V, __xlx_apatb_param_in_stream_V_strb_V, __xlx_apatb_param_in_stream_V_user_V, __xlx_apatb_param_in_stream_V_last_V, __xlx_apatb_param_out_stream_V_data_V, __xlx_apatb_param_out_stream_V_keep_V, __xlx_apatb_param_out_stream_V_strb_V, __xlx_apatb_param_out_stream_V_user_V, __xlx_apatb_param_out_stream_V_last_V);
+    hls_passthrough_hw_stub_wrapper(__xlx_apatb_param_in_stream_V_data_V, __xlx_apatb_param_in_stream_V_keep_V, __xlx_apatb_param_in_stream_V_strb_V, __xlx_apatb_param_in_stream_V_user_V, __xlx_apatb_param_in_stream_V_last_V, __xlx_apatb_param_out_stream_V_data_V, __xlx_apatb_param_out_stream_V_keep_V, __xlx_apatb_param_out_stream_V_strb_V, __xlx_apatb_param_out_stream_V_user_V, __xlx_apatb_param_out_stream_V_last_V, __xlx_apatb_param_height, __xlx_apatb_param_width);
     port5.buffer();
     port6.buffer();
     port7.buffer();

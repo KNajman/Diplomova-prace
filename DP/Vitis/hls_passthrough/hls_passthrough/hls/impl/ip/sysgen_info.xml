@@ -79,6 +79,6 @@
   <modelParameters>
     <combinational>0</combinational>
     <latency>undef</latency>
-    <II>0</II>
+    <II>undef</II>
   </modelParameters>
 </AdditionalInfo>

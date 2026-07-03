@@ -6,15 +6,14 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="hls_passthrough_hls_passthrough,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=0.554000,HLS_SYN_LAT=-1,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=40,HLS_SYN_LUT=84,HLS_VERSION=2025_2}" *)
+(* CORE_GENERATION_INFO="hls_passthrough_hls_passthrough,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.430000,HLS_SYN_LAT=-1,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=287,HLS_SYN_LUT=538,HLS_VERSION=2025_2}" *)
 
 (* DowngradeIPIdentifiedWarnings="yes" *)
 module hls_passthrough (
         ap_clk,
         ap_rst_n,
-        in_stream_TVALID,
-        out_stream_TREADY,
         in_stream_TDATA,
+        in_stream_TVALID,
         in_stream_TREADY,
         in_stream_TKEEP,
         in_stream_TSTRB,
@@ -22,6 +21,7 @@ module hls_passthrough (
         in_stream_TLAST,
         out_stream_TDATA,
         out_stream_TVALID,
+        out_stream_TREADY,
         out_stream_TKEEP,
         out_stream_TSTRB,
         out_stream_TUSER,
@@ -46,9 +46,12 @@ module hls_passthrough (
         interrupt
 );
 
-parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
+parameter    ap_ST_fsm_state1 = 4'd1;
+parameter    ap_ST_fsm_state2 = 4'd2;
+parameter    ap_ST_fsm_state3 = 4'd4;
+parameter    ap_ST_fsm_state4 = 4'd8;
 parameter    C_S_AXI_CONTROL_DATA_WIDTH = 32;
-parameter    C_S_AXI_CONTROL_ADDR_WIDTH = 4;
+parameter    C_S_AXI_CONTROL_ADDR_WIDTH = 5;
 parameter    C_S_AXI_DATA_WIDTH = 32;
 
 parameter C_S_AXI_CONTROL_WSTRB_WIDTH = (32 / 8);
@@ -56,18 +59,18 @@ parameter C_S_AXI_WSTRB_WIDTH = (32 / 8);
 
 input   ap_clk;
 input   ap_rst_n;
+input  [31:0] in_stream_TDATA;
 input   in_stream_TVALID;
-input   out_stream_TREADY;
-input  [23:0] in_stream_TDATA;
 output   in_stream_TREADY;
-input  [2:0] in_stream_TKEEP;
-input  [2:0] in_stream_TSTRB;
+input  [3:0] in_stream_TKEEP;
+input  [3:0] in_stream_TSTRB;
 input  [0:0] in_stream_TUSER;
 input  [0:0] in_stream_TLAST;
-output  [23:0] out_stream_TDATA;
+output  [31:0] out_stream_TDATA;
 output   out_stream_TVALID;
-output  [2:0] out_stream_TKEEP;
-output  [2:0] out_stream_TSTRB;
+input   out_stream_TREADY;
+output  [3:0] out_stream_TKEEP;
+output  [3:0] out_stream_TSTRB;
 output  [0:0] out_stream_TUSER;
 output  [0:0] out_stream_TLAST;
 input   s_axi_control_AWVALID;
@@ -91,48 +94,58 @@ output   interrupt;
 
  reg    ap_rst_n_inv;
 wire    ap_start;
-wire    ap_done;
+reg    ap_done;
 reg    ap_idle;
-(* fsm_encoding = "none" *) reg   [0:0] ap_CS_fsm;
-wire    ap_CS_fsm_pp0_stage0;
-wire    ap_enable_reg_pp0_iter0;
-reg    ap_enable_reg_pp0_iter1;
-reg    ap_idle_pp0;
-wire    ap_ready;
-reg    ap_block_state1_pp0_stage0_iter0;
+(* fsm_encoding = "none" *) reg   [3:0] ap_CS_fsm;
+wire    ap_CS_fsm_state1;
+reg    ap_ready;
+wire   [31:0] height;
+wire   [31:0] width;
+wire   [61:0] mul_ln6_fu_105_p2;
+reg   [61:0] mul_ln6_reg_138;
+wire    ap_CS_fsm_state2;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_done;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_idle;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_ready;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TREADY;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_in_stream_TREADY;
+wire   [31:0] grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TDATA;
+wire    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID;
+wire   [3:0] grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TKEEP;
+wire   [3:0] grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TSTRB;
+wire   [0:0] grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TUSER;
+wire   [0:0] grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TLAST;
+reg    grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg;
+wire    ap_CS_fsm_state3;
+reg   [31:0] out_stream_TDATA_reg;
+reg   [3:0] out_stream_TKEEP_reg;
+reg   [3:0] out_stream_TSTRB_reg;
+reg   [0:0] out_stream_TUSER_reg;
+reg   [0:0] out_stream_TLAST_reg;
+wire   [31:0] mul_ln6_fu_105_p0;
+wire   [30:0] mul_ln6_fu_105_p1;
+wire   [0:0] empty_fu_114_p2;
+wire   [30:0] trunc_ln6_fu_110_p1;
+wire   [30:0] smax_fu_120_p3;
+wire    ap_CS_fsm_state4;
 wire    regslice_both_out_stream_V_data_V_U_apdone_blk;
-reg    ap_block_state2_pp0_stage0_iter1;
-wire    ap_loop_exit_ready;
-reg    ap_loop_exit_ready_pp0_iter1_reg;
-reg    ap_block_pp0_stage0_subdone;
-wire   [0:0] eol_fu_115_p1;
-reg    ap_condition_exit_pp0_iter0_stage0;
-reg    ap_ready_int;
-reg    in_stream_TDATA_blk_n;
-wire    ap_block_pp0_stage0;
-reg    out_stream_TDATA_blk_n;
-reg    ap_block_pp0_stage0_11001;
-reg    ap_block_pp0_stage0_01001;
-reg    ap_done_reg;
-wire    ap_continue_int;
-reg    ap_done_int;
-reg   [0:0] ap_NS_fsm;
-wire    ap_enable_pp0;
-wire    ap_start_int;
-wire    ap_ready_sig;
-wire    ap_done_sig;
-wire    ap_loop_init;
+reg   [3:0] ap_NS_fsm;
+reg    ap_ST_fsm_state1_blk;
+wire    ap_ST_fsm_state2_blk;
+reg    ap_ST_fsm_state3_blk;
+reg    ap_ST_fsm_state4_blk;
 wire    regslice_both_in_stream_V_data_V_U_apdone_blk;
-wire   [23:0] in_stream_TDATA_int_regslice;
+wire   [31:0] in_stream_TDATA_int_regslice;
 wire    in_stream_TVALID_int_regslice;
 reg    in_stream_TREADY_int_regslice;
 wire    regslice_both_in_stream_V_data_V_U_ack_in;
 wire    regslice_both_in_stream_V_keep_V_U_apdone_blk;
-wire   [2:0] in_stream_TKEEP_int_regslice;
+wire   [3:0] in_stream_TKEEP_int_regslice;
 wire    regslice_both_in_stream_V_keep_V_U_vld_out;
 wire    regslice_both_in_stream_V_keep_V_U_ack_in;
 wire    regslice_both_in_stream_V_strb_V_U_apdone_blk;
-wire   [2:0] in_stream_TSTRB_int_regslice;
+wire   [3:0] in_stream_TSTRB_int_regslice;
 wire    regslice_both_in_stream_V_strb_V_U_vld_out;
 wire    regslice_both_in_stream_V_strb_V_U_ack_in;
 wire    regslice_both_in_stream_V_user_V_U_apdone_blk;
@@ -143,29 +156,59 @@ wire    regslice_both_in_stream_V_last_V_U_apdone_blk;
 wire   [0:0] in_stream_TLAST_int_regslice;
 wire    regslice_both_in_stream_V_last_V_U_vld_out;
 wire    regslice_both_in_stream_V_last_V_U_ack_in;
-reg    out_stream_TVALID_int_regslice;
+reg   [31:0] out_stream_TDATA_int_regslice;
+wire    out_stream_TVALID_int_regslice;
 wire    out_stream_TREADY_int_regslice;
 wire    regslice_both_out_stream_V_data_V_U_vld_out;
 wire    regslice_both_out_stream_V_keep_V_U_apdone_blk;
+reg   [3:0] out_stream_TKEEP_int_regslice;
 wire    regslice_both_out_stream_V_keep_V_U_ack_in_dummy;
 wire    regslice_both_out_stream_V_keep_V_U_vld_out;
 wire    regslice_both_out_stream_V_strb_V_U_apdone_blk;
+reg   [3:0] out_stream_TSTRB_int_regslice;
 wire    regslice_both_out_stream_V_strb_V_U_ack_in_dummy;
 wire    regslice_both_out_stream_V_strb_V_U_vld_out;
 wire    regslice_both_out_stream_V_user_V_U_apdone_blk;
+reg   [0:0] out_stream_TUSER_int_regslice;
 wire    regslice_both_out_stream_V_user_V_U_ack_in_dummy;
 wire    regslice_both_out_stream_V_user_V_U_vld_out;
 wire    regslice_both_out_stream_V_last_V_U_apdone_blk;
+reg   [0:0] out_stream_TLAST_int_regslice;
 wire    regslice_both_out_stream_V_last_V_U_ack_in_dummy;
 wire    regslice_both_out_stream_V_last_V_U_vld_out;
+wire   [61:0] mul_ln6_fu_105_p00;
+wire   [61:0] mul_ln6_fu_105_p10;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 1'd1;
-#0 ap_enable_reg_pp0_iter1 = 1'b0;
-#0 ap_done_reg = 1'b0;
+#0 ap_CS_fsm = 4'd1;
+#0 grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg = 1'b0;
 end
+
+hls_passthrough_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst_n_inv),
+    .ap_start(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start),
+    .ap_done(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_done),
+    .ap_idle(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_idle),
+    .ap_ready(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_ready),
+    .in_stream_TVALID(in_stream_TVALID_int_regslice),
+    .out_stream_TREADY(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TREADY),
+    .mul_ln6(mul_ln6_reg_138),
+    .in_stream_TDATA(in_stream_TDATA_int_regslice),
+    .in_stream_TREADY(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_in_stream_TREADY),
+    .in_stream_TKEEP(in_stream_TKEEP_int_regslice),
+    .in_stream_TSTRB(in_stream_TSTRB_int_regslice),
+    .in_stream_TUSER(in_stream_TUSER_int_regslice),
+    .in_stream_TLAST(in_stream_TLAST_int_regslice),
+    .out_stream_TDATA(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TDATA),
+    .out_stream_TVALID(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID),
+    .out_stream_TKEEP(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TKEEP),
+    .out_stream_TSTRB(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TSTRB),
+    .out_stream_TUSER(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TUSER),
+    .out_stream_TLAST(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TLAST)
+);
 
 hls_passthrough_control_s_axi #(
     .C_S_AXI_ADDR_WIDTH( C_S_AXI_CONTROL_ADDR_WIDTH ),
@@ -191,6 +234,8 @@ control_s_axi_U(
     .ACLK(ap_clk),
     .ARESET(ap_rst_n_inv),
     .ACLK_EN(1'b1),
+    .height(height),
+    .width(width),
     .ap_start(ap_start),
     .interrupt(interrupt),
     .ap_ready(ap_ready),
@@ -198,24 +243,20 @@ control_s_axi_U(
     .ap_idle(ap_idle)
 );
 
-hls_passthrough_flow_control_loop_pipe flow_control_loop_pipe_U(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(ap_start),
-    .ap_ready(ap_ready_sig),
-    .ap_done(ap_done_sig),
-    .ap_start_int(ap_start_int),
-    .ap_loop_init(ap_loop_init),
-    .ap_ready_int(ap_ready_int),
-    .ap_loop_exit_ready(ap_condition_exit_pp0_iter0_stage0),
-    .ap_loop_exit_done(ap_done_int),
-    .ap_continue_int(ap_continue_int),
-    .ap_done_int(ap_done_int),
-    .ap_continue(1'b1)
+hls_passthrough_mul_32ns_31ns_62_1_1 #(
+    .ID( 1 ),
+    .NUM_STAGE( 1 ),
+    .din0_WIDTH( 32 ),
+    .din1_WIDTH( 31 ),
+    .dout_WIDTH( 62 ))
+mul_32ns_31ns_62_1_1_U12(
+    .din0(mul_ln6_fu_105_p0),
+    .din1(mul_ln6_fu_105_p1),
+    .dout(mul_ln6_fu_105_p2)
 );
 
 hls_passthrough_regslice_both #(
-    .DataWidth( 24 ))
+    .DataWidth( 32 ))
 regslice_both_in_stream_V_data_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
@@ -229,7 +270,7 @@ regslice_both_in_stream_V_data_V_U(
 );
 
 hls_passthrough_regslice_both #(
-    .DataWidth( 3 ))
+    .DataWidth( 4 ))
 regslice_both_in_stream_V_keep_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
@@ -243,7 +284,7 @@ regslice_both_in_stream_V_keep_V_U(
 );
 
 hls_passthrough_regslice_both #(
-    .DataWidth( 3 ))
+    .DataWidth( 4 ))
 regslice_both_in_stream_V_strb_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
@@ -285,12 +326,12 @@ regslice_both_in_stream_V_last_V_U(
 );
 
 hls_passthrough_regslice_both #(
-    .DataWidth( 24 ))
+    .DataWidth( 32 ))
 regslice_both_out_stream_V_data_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(in_stream_TDATA_int_regslice),
-    .vld_in(out_stream_TVALID_int_regslice),
+    .data_in(out_stream_TDATA_int_regslice),
+    .vld_in(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID),
     .ack_in(out_stream_TREADY_int_regslice),
     .data_out(out_stream_TDATA),
     .vld_out(regslice_both_out_stream_V_data_V_U_vld_out),
@@ -299,12 +340,12 @@ regslice_both_out_stream_V_data_V_U(
 );
 
 hls_passthrough_regslice_both #(
-    .DataWidth( 3 ))
+    .DataWidth( 4 ))
 regslice_both_out_stream_V_keep_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(in_stream_TKEEP_int_regslice),
-    .vld_in(out_stream_TVALID_int_regslice),
+    .data_in(out_stream_TKEEP_int_regslice),
+    .vld_in(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID),
     .ack_in(regslice_both_out_stream_V_keep_V_U_ack_in_dummy),
     .data_out(out_stream_TKEEP),
     .vld_out(regslice_both_out_stream_V_keep_V_U_vld_out),
@@ -313,12 +354,12 @@ regslice_both_out_stream_V_keep_V_U(
 );
 
 hls_passthrough_regslice_both #(
-    .DataWidth( 3 ))
+    .DataWidth( 4 ))
 regslice_both_out_stream_V_strb_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(in_stream_TSTRB_int_regslice),
-    .vld_in(out_stream_TVALID_int_regslice),
+    .data_in(out_stream_TSTRB_int_regslice),
+    .vld_in(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID),
     .ack_in(regslice_both_out_stream_V_strb_V_U_ack_in_dummy),
     .data_out(out_stream_TSTRB),
     .vld_out(regslice_both_out_stream_V_strb_V_U_vld_out),
@@ -331,8 +372,8 @@ hls_passthrough_regslice_both #(
 regslice_both_out_stream_V_user_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(in_stream_TUSER_int_regslice),
-    .vld_in(out_stream_TVALID_int_regslice),
+    .data_in(out_stream_TUSER_int_regslice),
+    .vld_in(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID),
     .ack_in(regslice_both_out_stream_V_user_V_U_ack_in_dummy),
     .data_out(out_stream_TUSER),
     .vld_out(regslice_both_out_stream_V_user_V_U_vld_out),
@@ -345,8 +386,8 @@ hls_passthrough_regslice_both #(
 regslice_both_out_stream_V_last_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(in_stream_TLAST_int_regslice),
-    .vld_in(out_stream_TVALID_int_regslice),
+    .data_in(out_stream_TLAST_int_regslice),
+    .vld_in(grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID),
     .ack_in(regslice_both_out_stream_V_last_V_U_ack_in_dummy),
     .data_out(out_stream_TLAST),
     .vld_out(regslice_both_out_stream_V_last_V_U_vld_out),
@@ -356,7 +397,7 @@ regslice_both_out_stream_V_last_V_U(
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_CS_fsm <= ap_ST_fsm_pp0_stage0;
+        ap_CS_fsm <= ap_ST_fsm_state1;
     end else begin
         ap_CS_fsm <= ap_NS_fsm;
     end
@@ -364,54 +405,68 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_done_reg <= 1'b0;
+        grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg <= 1'b0;
     end else begin
-        if ((ap_continue_int == 1'b1)) begin
-            ap_done_reg <= 1'b0;
-        end else if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-            ap_done_reg <= 1'b1;
+        if ((1'b1 == ap_CS_fsm_state2)) begin
+            grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg <= 1'b1;
+        end else if ((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_ready == 1'b1)) begin
+            grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_enable_reg_pp0_iter1 <= 1'b0;
-    end else begin
-        if (((1'b0 == ap_block_pp0_stage0_subdone) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-            ap_enable_reg_pp0_iter1 <= ap_start_int;
-        end
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        mul_ln6_reg_138 <= mul_ln6_fu_105_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_pp0_stage0)) begin
-        if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_loop_exit_ready == 1'b0))) begin
-            ap_loop_exit_ready_pp0_iter1_reg <= 1'b0;
-        end else if ((1'b0 == ap_block_pp0_stage0_11001)) begin
-            ap_loop_exit_ready_pp0_iter1_reg <= ap_loop_exit_ready;
-        end
+    if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        out_stream_TDATA_reg <= grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TDATA;
+        out_stream_TKEEP_reg <= grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TKEEP;
+        out_stream_TLAST_reg <= grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TLAST;
+        out_stream_TSTRB_reg <= grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TSTRB;
+        out_stream_TUSER_reg <= grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TUSER;
     end
 end
 
 always @ (*) begin
-    if (((eol_fu_115_p1 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        ap_condition_exit_pp0_iter0_stage0 = 1'b1;
+    if ((ap_start == 1'b0)) begin
+        ap_ST_fsm_state1_blk = 1'b1;
     end else begin
-        ap_condition_exit_pp0_iter0_stage0 = 1'b0;
+        ap_ST_fsm_state1_blk = 1'b0;
     end
 end
 
+assign ap_ST_fsm_state2_blk = 1'b0;
+
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        ap_done_int = 1'b1;
+    if ((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_done == 1'b0)) begin
+        ap_ST_fsm_state3_blk = 1'b1;
     end else begin
-        ap_done_int = ap_done_reg;
+        ap_ST_fsm_state3_blk = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((ap_idle_pp0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_start_int == 1'b0))) begin
+    if ((regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b1)) begin
+        ap_ST_fsm_state4_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state4_blk = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state4) & (regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b0))) begin
+        ap_done = 1'b1;
+    end else begin
+        ap_done = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0))) begin
         ap_idle = 1'b1;
     end else begin
         ap_idle = 1'b0;
@@ -419,57 +474,86 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((ap_enable_reg_pp0_iter1 == 1'b0) & (ap_enable_reg_pp0_iter0 == 1'b0))) begin
-        ap_idle_pp0 = 1'b1;
+    if (((1'b1 == ap_CS_fsm_state4) & (regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b0))) begin
+        ap_ready = 1'b1;
     end else begin
-        ap_idle_pp0 = 1'b0;
+        ap_ready = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_subdone) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        ap_ready_int = 1'b1;
-    end else begin
-        ap_ready_int = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        in_stream_TDATA_blk_n = in_stream_TVALID_int_regslice;
-    end else begin
-        in_stream_TDATA_blk_n = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        in_stream_TREADY_int_regslice = 1'b1;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        in_stream_TREADY_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_in_stream_TREADY;
     end else begin
         in_stream_TREADY_int_regslice = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((((1'b0 == ap_block_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0)) | ((1'b0 == ap_block_pp0_stage0) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0)))) begin
-        out_stream_TDATA_blk_n = out_stream_TREADY_int_regslice;
+    if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        out_stream_TDATA_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TDATA;
     end else begin
-        out_stream_TDATA_blk_n = 1'b1;
+        out_stream_TDATA_int_regslice = out_stream_TDATA_reg;
     end
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_start_int == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        out_stream_TVALID_int_regslice = 1'b1;
+    if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        out_stream_TKEEP_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TKEEP;
     end else begin
-        out_stream_TVALID_int_regslice = 1'b0;
+        out_stream_TKEEP_int_regslice = out_stream_TKEEP_reg;
+    end
+end
+
+always @ (*) begin
+    if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        out_stream_TLAST_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TLAST;
+    end else begin
+        out_stream_TLAST_int_regslice = out_stream_TLAST_reg;
+    end
+end
+
+always @ (*) begin
+    if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        out_stream_TSTRB_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TSTRB;
+    end else begin
+        out_stream_TSTRB_int_regslice = out_stream_TSTRB_reg;
+    end
+end
+
+always @ (*) begin
+    if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        out_stream_TUSER_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TUSER;
+    end else begin
+        out_stream_TUSER_int_regslice = out_stream_TUSER_reg;
     end
 end
 
 always @ (*) begin
     case (ap_CS_fsm)
-        ap_ST_fsm_pp0_stage0 : begin
-            ap_NS_fsm = ap_ST_fsm_pp0_stage0;
+        ap_ST_fsm_state1 : begin
+            if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end
+        end
+        ap_ST_fsm_state2 : begin
+            ap_NS_fsm = ap_ST_fsm_state3;
+        end
+        ap_ST_fsm_state3 : begin
+            if (((grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state3;
+            end
+        end
+        ap_ST_fsm_state4 : begin
+            if (((1'b1 == ap_CS_fsm_state4) & (regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b0))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end
         end
         default : begin
             ap_NS_fsm = 'bx;
@@ -477,49 +561,41 @@ always @ (*) begin
     endcase
 end
 
-assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
+assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
-assign ap_block_pp0_stage0 = ~(1'b1 == 1'b1);
+assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
 
-always @ (*) begin
-    ap_block_pp0_stage0_01001 = (((ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b1)) | ((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_block_state2_pp0_stage0_iter1)) | ((ap_start_int == 1'b1) & (1'b1 == ap_block_state1_pp0_stage0_iter0)));
-end
+assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
 
-always @ (*) begin
-    ap_block_pp0_stage0_11001 = (((ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b1)) | ((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_block_state2_pp0_stage0_iter1)) | ((ap_start_int == 1'b1) & (1'b1 == ap_block_state1_pp0_stage0_iter0)));
-end
-
-always @ (*) begin
-    ap_block_pp0_stage0_subdone = (((ap_loop_exit_ready_pp0_iter1_reg == 1'b1) & (regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b1)) | ((ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_block_state2_pp0_stage0_iter1)) | ((ap_start_int == 1'b1) & (1'b1 == ap_block_state1_pp0_stage0_iter0)));
-end
-
-always @ (*) begin
-    ap_block_state1_pp0_stage0_iter0 = ((out_stream_TREADY_int_regslice == 1'b0) | (in_stream_TVALID_int_regslice == 1'b0));
-end
-
-always @ (*) begin
-    ap_block_state2_pp0_stage0_iter1 = ((regslice_both_out_stream_V_data_V_U_apdone_blk == 1'b1) | (out_stream_TREADY_int_regslice == 1'b0));
-end
-
-assign ap_done = ap_done_sig;
-
-assign ap_enable_pp0 = (ap_idle_pp0 ^ 1'b1);
-
-assign ap_enable_reg_pp0_iter0 = ap_start_int;
-
-assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
-
-assign ap_ready = ap_ready_sig;
+assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
 always @ (*) begin
     ap_rst_n_inv = ~ap_rst_n;
 end
 
-assign eol_fu_115_p1 = in_stream_TLAST_int_regslice;
+assign empty_fu_114_p2 = (($signed(width) > $signed(32'd0)) ? 1'b1 : 1'b0);
+
+assign grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_ap_start_reg;
+
+assign grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TREADY = (out_stream_TREADY_int_regslice & ap_CS_fsm_state3);
 
 assign in_stream_TREADY = regslice_both_in_stream_V_data_V_U_ack_in;
 
+assign mul_ln6_fu_105_p0 = mul_ln6_fu_105_p00;
+
+assign mul_ln6_fu_105_p00 = height;
+
+assign mul_ln6_fu_105_p1 = mul_ln6_fu_105_p10;
+
+assign mul_ln6_fu_105_p10 = smax_fu_120_p3;
+
 assign out_stream_TVALID = regslice_both_out_stream_V_data_V_U_vld_out;
+
+assign out_stream_TVALID_int_regslice = grp_hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP_fu_80_out_stream_TVALID;
+
+assign smax_fu_120_p3 = ((empty_fu_114_p2[0:0] == 1'b1) ? trunc_ln6_fu_110_p1 : 31'd0);
+
+assign trunc_ln6_fu_110_p1 = width[30:0];
 
 
 reg find_kernel_block = 0;

@@ -4,7 +4,7 @@
     "xci_name": "design_1_hls_passthrough_0_0",
     "cell_name": "hls_passthrough_0",
     "component_reference": "xilinx.com:hls:hls_passthrough:1.0",
-    "ip_revision": "2114676054",
+    "ip_revision": "2114678997",
     "gen_directory": "../../../../../../KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0",
     "parameters": {
       "component_parameters": {
@@ -13,10 +13,10 @@
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
         "latency": [ { "value": "undef", "enabled": false, "usage": "all" } ],
-        "II": [ { "value": "0", "enabled": false, "usage": "all" } ]
+        "II": [ { "value": "undef", "enabled": false, "usage": "all" } ]
       },
       "model_parameters": {
-        "C_S_AXI_CONTROL_ADDR_WIDTH": [ { "value": "4", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_S_AXI_CONTROL_ADDR_WIDTH": [ { "value": "5", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_S_AXI_CONTROL_DATA_WIDTH": [ { "value": "32", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
@@ -34,21 +34,21 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114676054" } ],
+        "IPREVISION": [ { "value": "2114678997" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../KriaTester.gen/sources_1/bd/design_1/ip/design_1_hls_passthrough_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2025.2" } ],
-        "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
+        "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },
     "boundary": {
       "ports": {
-        "s_axi_control_ARADDR": [ { "direction": "in", "size_left": "3", "size_right": "0" } ],
+        "s_axi_control_ARADDR": [ { "direction": "in", "size_left": "4", "size_right": "0" } ],
         "s_axi_control_ARREADY": [ { "direction": "out" } ],
         "s_axi_control_ARVALID": [ { "direction": "in" } ],
-        "s_axi_control_AWADDR": [ { "direction": "in", "size_left": "3", "size_right": "0" } ],
+        "s_axi_control_AWADDR": [ { "direction": "in", "size_left": "4", "size_right": "0" } ],
         "s_axi_control_AWREADY": [ { "direction": "out" } ],
         "s_axi_control_AWVALID": [ { "direction": "in" } ],
         "s_axi_control_BREADY": [ { "direction": "in" } ],
@@ -65,18 +65,18 @@
         "ap_clk": [ { "direction": "in" } ],
         "ap_rst_n": [ { "direction": "in" } ],
         "interrupt": [ { "direction": "out" } ],
-        "in_stream_TDATA": [ { "direction": "in", "size_left": "23", "size_right": "0" } ],
-        "in_stream_TKEEP": [ { "direction": "in", "size_left": "2", "size_right": "0", "driver_value": "7" } ],
+        "in_stream_TDATA": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "in_stream_TKEEP": [ { "direction": "in", "size_left": "3", "size_right": "0", "driver_value": "15" } ],
         "in_stream_TLAST": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0" } ],
         "in_stream_TREADY": [ { "direction": "out" } ],
-        "in_stream_TSTRB": [ { "direction": "in", "size_left": "2", "size_right": "0", "driver_value": "7" } ],
+        "in_stream_TSTRB": [ { "direction": "in", "size_left": "3", "size_right": "0", "driver_value": "15" } ],
         "in_stream_TUSER": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0" } ],
         "in_stream_TVALID": [ { "direction": "in" } ],
-        "out_stream_TDATA": [ { "direction": "out", "size_left": "23", "size_right": "0" } ],
-        "out_stream_TKEEP": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
+        "out_stream_TDATA": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "out_stream_TKEEP": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
         "out_stream_TLAST": [ { "direction": "out", "size_left": "0", "size_right": "0" } ],
         "out_stream_TREADY": [ { "direction": "in" } ],
-        "out_stream_TSTRB": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
+        "out_stream_TSTRB": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
         "out_stream_TUSER": [ { "direction": "out", "size_left": "0", "size_right": "0" } ],
         "out_stream_TVALID": [ { "direction": "out" } ]
       },
@@ -87,7 +87,7 @@
           "mode": "slave",
           "memory_map_ref": "s_axi_control",
           "parameters": {
-            "ADDR_WIDTH": [ { "value": "4", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
+            "ADDR_WIDTH": [ { "value": "5", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
             "DATA_WIDTH": [ { "value": "32", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
             "PROTOCOL": [ { "value": "AXI4LITE", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
             "READ_WRITE_MODE": [ { "value": "READ_WRITE", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
@@ -187,7 +187,7 @@
           "mode": "slave",
           "parameters": {
             "TUSER_WIDTH": [ { "value": "1", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
-            "TDATA_NUM_BYTES": [ { "value": "3", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
+            "TDATA_NUM_BYTES": [ { "value": "4", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "HAS_TREADY": [ { "value": "1", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
@@ -216,7 +216,7 @@
           "mode": "master",
           "parameters": {
             "TUSER_WIDTH": [ { "value": "1", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
-            "TDATA_NUM_BYTES": [ { "value": "3", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
+            "TDATA_NUM_BYTES": [ { "value": "4", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "HAS_TREADY": [ { "value": "1", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
@@ -394,6 +394,38 @@
                       "access": "read-only"
                     }
                   }
+                },
+                "height": {
+                  "address_offset": "16",
+                  "size": 32,
+                  "display_name": "height",
+                  "description": "Data signal of height",
+                  "access": "write-only",
+                  "reset_value": "0",
+                  "fields": {
+                    "height": {
+                      "bit_offset": 0,
+                      "bit_width": 32,
+                      "description": "Bit 31 to 0 of height",
+                      "access": "write-only"
+                    }
+                  }
+                },
+                "width": {
+                  "address_offset": "24",
+                  "size": 32,
+                  "display_name": "width",
+                  "description": "Data signal of width",
+                  "access": "write-only",
+                  "reset_value": "0",
+                  "fields": {
+                    "width": {
+                      "bit_offset": 0,
+                      "bit_width": 32,
+                      "description": "Bit 31 to 0 of width",
+                      "access": "write-only"
+                    }
+                  }
                 }
               }
             }
@@ -402,5 +434,5 @@
       }
     }
   },
-  "checksum": "5cd45469"
+  "checksum": "9c16ab8e"
 }

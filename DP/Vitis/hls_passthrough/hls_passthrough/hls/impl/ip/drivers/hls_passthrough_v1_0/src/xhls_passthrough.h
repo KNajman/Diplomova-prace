@@ -99,6 +99,10 @@ u32 XHls_passthrough_IsReady(XHls_passthrough *InstancePtr);
 void XHls_passthrough_EnableAutoRestart(XHls_passthrough *InstancePtr);
 void XHls_passthrough_DisableAutoRestart(XHls_passthrough *InstancePtr);
 
+void XHls_passthrough_Set_height(XHls_passthrough *InstancePtr, u32 Data);
+u32 XHls_passthrough_Get_height(XHls_passthrough *InstancePtr);
+void XHls_passthrough_Set_width(XHls_passthrough *InstancePtr, u32 Data);
+u32 XHls_passthrough_Get_width(XHls_passthrough *InstancePtr);
 
 void XHls_passthrough_InterruptGlobalEnable(XHls_passthrough *InstancePtr);
 void XHls_passthrough_InterruptGlobalDisable(XHls_passthrough *InstancePtr);

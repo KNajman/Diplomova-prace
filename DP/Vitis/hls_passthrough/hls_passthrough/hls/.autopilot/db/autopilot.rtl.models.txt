@@ -1,3 +1,5 @@
+hls_passthrough_flow_control_loop_pipe_sequential_init
+hls_passthrough_mul_32ns_31ns_62_1_1
 hls_passthrough_control_s_axi
 hls_passthrough_regslice_both
 hls_passthrough_regslice_both
@@ -9,5 +11,5 @@ hls_passthrough_regslice_both
 hls_passthrough_regslice_both
 hls_passthrough_regslice_both
 hls_passthrough_regslice_both
-hls_passthrough_flow_control_loop_pipe
+hls_passthrough_Pipeline_HLS_HEIGHT_LOOP_HLS_WIDTH_LOOP
 hls_passthrough

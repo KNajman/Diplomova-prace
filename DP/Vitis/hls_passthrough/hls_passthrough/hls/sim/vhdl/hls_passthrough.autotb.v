@@ -27,16 +27,22 @@
 `define AESL_DEPTH_out_stream_V_strb_V 1
 `define AESL_DEPTH_out_stream_V_user_V 1
 `define AESL_DEPTH_out_stream_V_last_V 1
+`define AESL_DEPTH_height 1
+`define AESL_DEPTH_width 1
 `define AUTOTB_TVIN_in_stream_V_data_V  "../tv/cdatafile/c.hls_passthrough.autotvin_in_stream_V_data_V.dat"
 `define AUTOTB_TVIN_in_stream_V_keep_V  "../tv/cdatafile/c.hls_passthrough.autotvin_in_stream_V_keep_V.dat"
 `define AUTOTB_TVIN_in_stream_V_strb_V  "../tv/cdatafile/c.hls_passthrough.autotvin_in_stream_V_strb_V.dat"
 `define AUTOTB_TVIN_in_stream_V_user_V  "../tv/cdatafile/c.hls_passthrough.autotvin_in_stream_V_user_V.dat"
 `define AUTOTB_TVIN_in_stream_V_last_V  "../tv/cdatafile/c.hls_passthrough.autotvin_in_stream_V_last_V.dat"
+`define AUTOTB_TVIN_height  "../tv/cdatafile/c.hls_passthrough.autotvin_height.dat"
+`define AUTOTB_TVIN_width  "../tv/cdatafile/c.hls_passthrough.autotvin_width.dat"
 `define AUTOTB_TVIN_in_stream_V_data_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_in_stream_V_data_V.dat"
 `define AUTOTB_TVIN_in_stream_V_keep_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_in_stream_V_keep_V.dat"
 `define AUTOTB_TVIN_in_stream_V_strb_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_in_stream_V_strb_V.dat"
 `define AUTOTB_TVIN_in_stream_V_user_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_in_stream_V_user_V.dat"
 `define AUTOTB_TVIN_in_stream_V_last_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_in_stream_V_last_V.dat"
+`define AUTOTB_TVIN_height_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_height.dat"
+`define AUTOTB_TVIN_width_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvin_width.dat"
 `define AUTOTB_TVOUT_out_stream_V_data_V  "../tv/cdatafile/c.hls_passthrough.autotvout_out_stream_V_data_V.dat"
 `define AUTOTB_TVOUT_out_stream_V_keep_V  "../tv/cdatafile/c.hls_passthrough.autotvout_out_stream_V_keep_V.dat"
 `define AUTOTB_TVOUT_out_stream_V_strb_V  "../tv/cdatafile/c.hls_passthrough.autotvout_out_stream_V_strb_V.dat"
@@ -49,19 +55,21 @@
 `define AUTOTB_TVOUT_out_stream_V_last_V_out_wrapc  "../tv/rtldatafile/rtl.hls_passthrough.autotvout_out_stream_V_last_V.dat"
 module `AUTOTB_TOP;
 
-parameter AUTOTB_TRANSACTION_NUM = 36;
+parameter AUTOTB_TRANSACTION_NUM = 1;
 parameter PROGRESS_TIMEOUT = 10000000;
 parameter LATENCY_ESTIMATION = -1;
-parameter LENGTH_in_stream_V_data_V = 64;
-parameter LENGTH_in_stream_V_keep_V = 64;
-parameter LENGTH_in_stream_V_last_V = 64;
-parameter LENGTH_in_stream_V_strb_V = 64;
-parameter LENGTH_in_stream_V_user_V = 64;
-parameter LENGTH_out_stream_V_data_V = 64;
-parameter LENGTH_out_stream_V_keep_V = 64;
-parameter LENGTH_out_stream_V_last_V = 64;
-parameter LENGTH_out_stream_V_strb_V = 64;
-parameter LENGTH_out_stream_V_user_V = 64;
+parameter LENGTH_height = 1;
+parameter LENGTH_in_stream_V_data_V = 4096;
+parameter LENGTH_in_stream_V_keep_V = 4096;
+parameter LENGTH_in_stream_V_last_V = 4096;
+parameter LENGTH_in_stream_V_strb_V = 4096;
+parameter LENGTH_in_stream_V_user_V = 4096;
+parameter LENGTH_out_stream_V_data_V = 4096;
+parameter LENGTH_out_stream_V_keep_V = 4096;
+parameter LENGTH_out_stream_V_last_V = 4096;
+parameter LENGTH_out_stream_V_strb_V = 4096;
+parameter LENGTH_out_stream_V_user_V = 4096;
+parameter LENGTH_width = 1;
 
 reg AESL_clock;
 reg rst;
@@ -81,14 +89,14 @@ reg AESL_done_delay2 = 0;
 reg AESL_ready_delay = 0;
 wire ready;
 wire ready_wire;
-wire [3 : 0] control_AWADDR;
+wire [4 : 0] control_AWADDR;
 wire  control_AWVALID;
 wire  control_AWREADY;
 wire  control_WVALID;
 wire  control_WREADY;
 wire [31 : 0] control_WDATA;
 wire [3 : 0] control_WSTRB;
-wire [3 : 0] control_ARADDR;
+wire [4 : 0] control_ARADDR;
 wire  control_ARVALID;
 wire  control_ARREADY;
 wire  control_RVALID;
@@ -99,18 +107,18 @@ wire  control_BVALID;
 wire  control_BREADY;
 wire [1 : 0] control_BRESP;
 wire  control_INTERRUPT;
+wire [31 : 0] in_stream_TDATA;
 wire  in_stream_TVALID;
-wire  out_stream_TREADY;
-wire [23 : 0] in_stream_TDATA;
 wire  in_stream_TREADY;
-wire [2 : 0] in_stream_TKEEP;
-wire [2 : 0] in_stream_TSTRB;
+wire [3 : 0] in_stream_TKEEP;
+wire [3 : 0] in_stream_TSTRB;
 wire [0 : 0] in_stream_TUSER;
 wire [0 : 0] in_stream_TLAST;
-wire [23 : 0] out_stream_TDATA;
+wire [31 : 0] out_stream_TDATA;
 wire  out_stream_TVALID;
-wire [2 : 0] out_stream_TKEEP;
-wire [2 : 0] out_stream_TSTRB;
+wire  out_stream_TREADY;
+wire [3 : 0] out_stream_TKEEP;
+wire [3 : 0] out_stream_TSTRB;
 wire [0 : 0] out_stream_TUSER;
 wire [0 : 0] out_stream_TLAST;
 integer done_cnt = 0;
@@ -122,6 +130,7 @@ reg ready_last_n;
 reg ready_delay_last_n;
 reg done_delay_last_n;
 reg interface_done = 0;
+wire control_write_data_finish;
 wire AESL_slave_start;
 reg AESL_slave_start_lock = 0;
 wire AESL_slave_write_start_in;
@@ -162,9 +171,8 @@ wire ap_rst_n_n;
     .interrupt(control_INTERRUPT),
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),
-    .in_stream_TVALID(in_stream_TVALID),
-    .out_stream_TREADY(out_stream_TREADY),
     .in_stream_TDATA(in_stream_TDATA),
+    .in_stream_TVALID(in_stream_TVALID),
     .in_stream_TREADY(in_stream_TREADY),
     .in_stream_TKEEP(in_stream_TKEEP),
     .in_stream_TSTRB(in_stream_TSTRB),
@@ -172,6 +180,7 @@ wire ap_rst_n_n;
     .in_stream_TLAST(in_stream_TLAST),
     .out_stream_TDATA(out_stream_TDATA),
     .out_stream_TVALID(out_stream_TVALID),
+    .out_stream_TREADY(out_stream_TREADY),
     .out_stream_TKEEP(out_stream_TKEEP),
     .out_stream_TSTRB(out_stream_TSTRB),
     .out_stream_TUSER(out_stream_TUSER),

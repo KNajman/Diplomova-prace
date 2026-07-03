@@ -2,10 +2,9 @@
 #include <iomanip>
 #include <iostream>
 
-
 int main() {
   const int WIDTH = 64;
-  const int HEIGHT = 12;
+  const int HEIGHT = 64;
   const int TOTAL_PIXELS = WIDTH * HEIGHT;
 
   // Vytvoření instancí hls::stream pro simulaci hardwarových rozhraní
@@ -18,26 +17,33 @@ int main() {
   std::cout << "=================================================="
             << std::endl;
 
-  // ------------------------------------------------------------------------
-  // 1. GENEROVÁNÍ VSTUPNÍCH DAT (Simulace kamery / DMA)
-  // ------------------------------------------------------------------------
+  /*
+  GENEROVÁNÍ VSTUPNÍCH DAT
+  ve formátu XVIDC_CSF_MEM_RGBX8 = 10,   // [31:0] x:B:G:R 8:8:8:8
+  */
   std::cout << "-> Generuji vstupní obraz a plním in_stream..." << std::endl;
 
   for (int r = 0; r < HEIGHT; r++) {
     for (int c = 0; c < WIDTH; c++) {
       axis_video packet;
 
-      // Vytvoříme testovací RGB pixel s unikátními hodnotami pro každou pozici
+      // Testovací RGB pixel s unikátními hodnotami pro každou pozici, maskování
+      // do rozsahu 0-255
       rgb_pixel pixel;
-      pixel.channel[0] = (r * 10) + c + 5;  // R složka
-      pixel.channel[1] = (r * 20) + c + 10; // G složka
-      pixel.channel[2] = (r * 30) + c + 15; // B složka
+      pixel.channel[0] = ((r * 10) + c + 5) & 0xFF;  // R složka
+      pixel.channel[1] = ((r * 20) + c + 10) & 0xFF; // G složka
+      pixel.channel[2] = ((r * 30) + c + 15) & 0xFF; // B složka
+      // pixel.channel[3] = 0;  X channel (nepoužívá se)
 
       // Využití přetypování operátoru z tvé struktury color_pixel pro zabalení
       // do ap_uint<32>
-      packet.data = pixel;
+      packet.data =
+          (static_cast<ap_uint<32>>(0x00) << 24) | // X bajt (vycpávka)
+          (static_cast<ap_uint<32>>(pixel.channel[2]) << 16) | // R
+          (static_cast<ap_uint<32>>(pixel.channel[1]) << 8) |  // G
+          (static_cast<ap_uint<32>>(pixel.channel[0]));
 
-      // Nastavení platnosti bajtů (32 bitů = 4 bajty)
+      // Nastavení platnosti bajtů 24 platných z 32 (3 bajty = 0b111 = 0x7)
       packet.keep = 0xF;
       packet.strb = 0xF;
 
@@ -53,15 +59,12 @@ int main() {
   }
 
   // ------------------------------------------------------------------------
-  // 2. SPUŠTĚNÍ HLS DESIGNU (UUT - Unit Under Test)
+  // DUT
   // ------------------------------------------------------------------------
-  std::cout << "-> Spouštím HLS modul pro " << HEIGHT << " řádků a "<< TOTAL_PIXELS << "pixelů." << std::endl;
+  std::cout << "-> Spouštím HLS modul pro " << HEIGHT << " řádků a "
+            << TOTAL_PIXELS << "pixelů." << std::endl;
 
-    //zpracování snímku po řádcích
-  for (int r = 0; r < HEIGHT; r++) {
-        hls_passthrough(in_stream, out_stream);
-    }
-
+  hls_passthrough(in_stream, out_stream, HEIGHT, WIDTH);
 
   int error_count = 0;
 
@@ -83,9 +86,9 @@ int main() {
 
       // Výpočet očekávaných hodnot (jelikož je to passthrough, shodují se se
       // vstupem)
-      uint8_t exp_r = (r * 10) + c + 5;
-      uint8_t exp_g = (r * 20) + c + 10;
-      uint8_t exp_b = (r * 30) + c + 15;
+      uint8_t exp_r = ((r * 10) + c + 5) & 0xFF;
+      uint8_t exp_g = ((r * 20) + c + 10) & 0xFF;
+      uint8_t exp_b = ((r * 30) + c + 15) & 0xFF;
       ap_uint<1> exp_user = (r == 0 && c == 0) ? 1 : 0;
       ap_uint<1> exp_last = (c == WIDTH - 1) ? 1 : 0;
 
@@ -117,9 +120,10 @@ int main() {
     error_count++;
   }
 
-  // ------------------------------------------------------------------------
-  // 4. VYHODNOCENÍ TESTU
-  // ------------------------------------------------------------------------
+  /*
+  VYHODNOCENÍ
+  */
+
   std::cout << "=================================================="
             << std::endl;
   if (error_count == 0) {
