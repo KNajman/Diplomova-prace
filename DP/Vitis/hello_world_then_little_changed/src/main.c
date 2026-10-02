@@ -24,8 +24,8 @@ Definice pro video stream
 #define TEST_WIDTH 64
 #define TEST_HEIGHT 64
 #define BYTES_PER_PIXEL 4
-#define STRIDE_IN_BYTES (TEST_WIDTH * BYTES_PER_PIXEL)
-#define FRAME_SIZE_MAX (STRIDE_IN_BYTES * TEST_HEIGHT)
+#define STRIDE_IN_BYTES (TEST_WIDTH * BYTES_PER_PIXEL) // 64 * 4 = 256 bajtů
+#define FRAME_SIZE_MAX (STRIDE_IN_BYTES * TEST_HEIGHT) // 64 * 64 * 4 = 16384 bajtů
 
 // Zarovnání bufferů na 64 bajtů kvůli Cache pamětí na Zynq UltraScale+
 u8 SrcFrame[FRAME_SIZE_MAX] __attribute__((aligned(64)));
@@ -37,12 +37,17 @@ XAxiVdma VdmaInstance;
 int main() {
   init_platform();
 
-  xil_printf("\r\n==================================================\r\n");
+  xil_printf("\r\n==== ====\r\n");
   xil_printf(" START: Zynq UltraScale+ Video Pipeline Test\r\n");
   xil_printf(" Konfigurace s 32-bit Stream a 1. Frame Bufferem\r\n");
-  xil_printf("==================================================\r\n");
+  xil_printf("==== ====\r\n");
 
   xil_printf("[INFO] Inicializuji pamet a generuji testovaci obraz...\r\n");
+
+  // xil_printf("[DEBUG] Fyzicka adresa SrcFrame: 0x%08X%08X\r\n",
+  // (u32)((UINTPTR)SrcFrame >> 32), (u32)(UINTPTR)SrcFrame);
+  // xil_printf("[DEBUG] Fyzicka adresa DstFrame: 0x%08X%08X\r\n",
+  // (u32)((UINTPTR)DstFrame >> 32), (u32)(UINTPTR)DstFrame);
 
   // Vyčistíme cílové paměťi
   for (int i = 0; i < FRAME_SIZE_MAX; i++) {
@@ -69,6 +74,7 @@ int main() {
 
   // Init VDMA
   xil_printf("[INFO] Inicializace VDMA architektury...\r\n");
+
   XAxiVdma_Config *VdmaConfig = XAxiVdma_LookupConfig(VDMA_BASE_ADDR);
   if (!VdmaConfig) {
     xil_printf("ERROR: VDMA config not found in xparameters.h!\r\n");
@@ -91,32 +97,69 @@ int main() {
   Xil_Out32(HLS_CTRL_BASE_ADDR + 0x00,
             0x81); // Bit 0 = Start, Bit 7 = Auto-Restart
 
-  // Confing VDMA (Struktura XAxiVdma_DmaSetup)
-  XAxiVdma_DmaSetup VdmaCfg;
-  VdmaCfg.VertSizeInput = TEST_HEIGHT;
-  VdmaCfg.HoriSizeInput = STRIDE_IN_BYTES; // POZOR na Šířku řádků, ta musí být
-                                           // v BAJTECH (64 * 4 = 256)
-  VdmaCfg.Stride = STRIDE_IN_BYTES; // Krok na další řádek v BAJTECH
-  VdmaCfg.FrameDelay = 0;
-  VdmaCfg.EnableCircularBuf = 1; // Povoleno pro plynulý nepřetržitý běh
-  VdmaCfg.EnableSync =
-      0; // V režimu 1 bufferu vypnuto (u 3 bufferů se zapíná Genlock)
-  VdmaCfg.PointNum = 0;
-  VdmaCfg.EnableFrameCounter =
-      0; // 0 = Běží trvale bez zastavení (ideální pro test)
-  //VdmaCfg.FrameStoreCnt = 1; // Odpovídá nastavení 1 ve Vivadu
 
-  // Konfigurace zápisového kanálu (S2MM - z HLS do DDR)
-  status = XAxiVdma_DmaConfig(&VdmaInstance, XAXIVDMA_WRITE, &VdmaCfg);
-  // Konfigurace čtecího kanálu (MM2S - z DDR do HLS)
-  status |= XAxiVdma_DmaConfig(&VdmaInstance, XAXIVDMA_READ, &VdmaCfg);
+  // =========================================================================
+  // KONFIGURACE VDMA
+  // =========================================================================
+
+  // konfigurace ZÁPISU, v tomto případě je to S2MM (Stream to Memory)
+  XAxiVdma_DmaSetup WriteCfg = {0}; // S2MM (Zápis do DDR)
+  WriteCfg.VertSizeInput = TEST_HEIGHT; // Počet řádků (vertikální rozlišení)
+  WriteCfg.HoriSizeInput = STRIDE_IN_BYTES; // Počet bajtů na řádek (horizontální rozlišení v bajtech), v mém případě 64 pixelů * 4 bajty/pixel = 256 bajtů
+  WriteCfg.Stride = STRIDE_IN_BYTES; // Počet bajtů mezi začátky dvou po sobě jdoucích řádků v paměti (v mém případě 256 bajtů)
+  WriteCfg.FrameDelay = 0; // Počet snímků, které VDMA přeskočí před zahájením přenosu (0 = žádný)
+  WriteCfg.EnableCircularBuf = 0; // Povoleno pro plynulý nepřetržitý běh
+  // V režimu 1 bufferu vypnuto (u 3 bufferů se zapíná Genlock)
+  WriteCfg.EnableSync = 0; // Povoleno pro synchronizaci s externím signálem (např. VSync), nepoužívám
+  WriteCfg.PointNum = 0; //
+  WriteCfg.EnableFrameCounter = 1;
+
+  //konfigurace ČTENÍ, v tomto případě je to MM2S (Memory to Stream), a je stejná jako zápis, jen se mění směr toku dat 
+  XAxiVdma_DmaSetup ReadCfg = {0};  // MM2S (Čtení z DDR)
+  ReadCfg.VertSizeInput = TEST_HEIGHT;
+  ReadCfg.HoriSizeInput = STRIDE_IN_BYTES;
+  ReadCfg.Stride = STRIDE_IN_BYTES;
+  ReadCfg.FrameDelay = 0;
+  ReadCfg.EnableCircularBuf = 0;
+  ReadCfg.EnableSync = 0;
+  ReadCfg.PointNum = 0;
+  ReadCfg.EnableFrameCounter = 1;
+
+  xil_printf("[HW] Nastaveni VDMA zapisu (S2MM)...\r\n");
+  status = XAxiVdma_DmaConfig(&VdmaInstance, XAXIVDMA_WRITE, &WriteCfg);
   if (status != XST_SUCCESS) {
-    xil_printf("!!! CHYBA: Nastaveni parametru VDMA selhalo !!!\r\n");
+    xil_printf("!!! CHYBA: Nastaveni VDMA zapisu selhalo !!!\r\n");
     cleanup_platform();
     return -1;
   }
 
-  // 7. KROK: Práce s adresami (Pole ukazatelů na buffery)
+  xil_printf("[HW] Nastaveni VDMA cteni (MM2S)...\r\n");
+  status = XAxiVdma_DmaConfig(&VdmaInstance, XAXIVDMA_READ, &ReadCfg);
+  if (status != XST_SUCCESS) {
+    xil_printf("!!! CHYBA: Nastaveni VDMA cteni selhalo !!!\r\n");
+    cleanup_platform();
+    return -1;
+  }
+
+
+  //==========================================================================
+  // KONFIGURACE POČÍTADLA SNÍMKŮ
+  //==========================================================================
+
+  XAxiVdma_FrameCounter FrameCountCfg;
+  FrameCountCfg.ReadFrameCount = 1; // Čtecí kanál se zastaví po 1 snímku
+  FrameCountCfg.WriteFrameCount = 1; // Zápisový kanál se zastaví po 1 snímku
+  FrameCountCfg.ReadDelayTimerCount = 0; // Nepoužívám, protože EnableFrameCounter = 1
+  FrameCountCfg.WriteDelayTimerCount = 0; // Nepoužívám, protože EnableFrameCounter = 1
+
+  status = XAxiVdma_SetFrameCounter(&VdmaInstance, &FrameCountCfg);
+  if (status != XST_SUCCESS) {
+    xil_printf("!!! CHYBA: Nastavení počítadla snímků selhalo !!!\r\n");
+    cleanup_platform();
+    return -1;
+  }
+
+  // PRÁCE S ADRESAMI (Přiřazení paměťových bufferů)
   UINTPTR ReadAddrList[1] = {(UINTPTR)SrcFrame};
   UINTPTR WriteAddrList[1] = {(UINTPTR)DstFrame};
 
@@ -130,25 +173,59 @@ int main() {
     return -1;
   }
 
-  // 8. KROK: Korektní spuštění (Vždy nejdříve zapnout KONZUMENTA, až pak
-  // PRODUCENTA)
+  // SPUŠTĚNÍ PŘENOSŮ
   xil_printf("[HW] Spoustim VDMA prenosy...\r\n");
   status = XAxiVdma_DmaStart(&VdmaInstance,
                              XAXIVDMA_WRITE); // S2MM nejdřív (čeká na stream)
   status |= XAxiVdma_DmaStart(&VdmaInstance,
                               XAXIVDMA_READ); // MM2S potom (začne tlačit data)
   if (status != XST_SUCCESS) {
-    xil_printf("!!! CHYBA: VDMA se nerozběhlo !!!\r\n");
+    xil_printf("!!! CHYBA: Start VDMA selhal!\r\n");
     cleanup_platform();
     return -1;
   }
 
-  // 9. KROK: Časová prodleva na přenesení snímků
-  // Jelikož běžíme v continuous módu, VDMA ihned po zapnutí začne cyklit.
-  // Snímek 64x64 proletí pipeline za zlomky milisekundy. Počkáme 10ms pro
-  // absolutní jistotu.
-  xil_printf("[WAIT] Pipeline bezi. Cekam na usazeni streamu dat...\r\n");
-  usleep(10000);
+  usleep(10000); // 10ms je na 64x64 absolutně dostatečný luxus
+
+  // =========================================================================
+  // AKTIVNÍ ČEKÁNÍ (POLLING SYSTÉM)
+  // =========================================================================
+  // Protože je EnableFrameCounter = 1, VDMA po odpracování jednoho snímku
+  // automaticky shodí interní status "Busy".
+  xil_printf("[WAIT] Cekam na dokonceni jednoho snimku...\r\n");
+
+  // A TEĎ MÁ KONEČNĚ POLLING SMYSL
+  // VDMA po přijetí Stop příkazu dokončí aktuálně kreslený snímek, zahlásí HALT
+  // a IsBusy bude 0.
+  xil_printf("[WAIT] Cekam na potvrzeni HALT stavu...\r\n");
+  int timeout = 1000000;
+  while (timeout > 0) {
+    if (XAxiVdma_IsBusy(&VdmaInstance, XAXIVDMA_WRITE) == 0 &&
+        XAxiVdma_IsBusy(&VdmaInstance, XAXIVDMA_READ) == 0) {
+      break;
+    }
+    timeout--;
+  }
+  if (timeout <= 0) {
+    // Pokud to skončí chybou nyní, znamená to, že se potrubí někde ucpalo,
+    // např. HLS zničilo TLAST na AXI Streamu.
+    xil_printf("\r\n!!! CHYBA: PIPELINE JE UCPANA (TIMEOUT) !!!\r\n");
+    xil_printf("--- DIAGNOSTIKA VDMA STAVU ---\r\n");
+    xil_printf("HLS CTRL_REG (0x00): 0x%08X\r\n",
+               Xil_In32(HLS_CTRL_BASE_ADDR + 0x00));
+    // Oprava: MM2S je TX (Transmit), S2MM je RX (Receive) dle specifikace
+    // Xilinx
+    xil_printf("VDMA MM2S SR (Status) : 0x%08X\r\n",
+               XAxiVdma_ReadReg(VdmaConfig->BaseAddress,
+                                XAXIVDMA_TX_OFFSET + XAXIVDMA_SR_OFFSET));
+    xil_printf("VDMA S2MM SR (Status) : 0x%08X\r\n",
+               XAxiVdma_ReadReg(VdmaConfig->BaseAddress,
+                                XAXIVDMA_RX_OFFSET + XAXIVDMA_SR_OFFSET));
+    cleanup_platform();
+    return -1;
+  }
+
+  xil_printf("[OK] Hardware dokoncil prenos obrazu.\r\n");
 
   // 10. KROK: Invalidace cache paměti
   // Přinutíme procesor zapomenout starý obsah cache (kde bylo 0xAA) a načíst

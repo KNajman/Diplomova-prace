@@ -1,0 +1,13 @@
+{
+  "name": "filter_2d_median",
+  "type": "HLS",
+  "configuration": {
+    "componentType": "HLS",
+    "configFiles": [
+      "hls_config.cfg"
+    ],
+    "work_dir": "filter_2d_median"
+  },
+  "useSysrootToolchain": false,
+  "templateFlow": "VITIS"
+}

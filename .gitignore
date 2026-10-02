@@ -1,195 +1,140 @@
-# Created by https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado,visualstudiocode,c++,c
-# Edit at https://www.toptal.com/developers/gitignore?templates=xilinxvivado,vivado,visualstudiocode,c++,c
+# =============================================================================
+#  .gitignore – Diplomová práce (Vivado 2025.2, Vitis/Vitis HLS 2025.2, LaTeX)
+#  Princip: BLACKLIST – ignoruje se jen to, co je generované nebo cizí.
+#  Všechno ostatní (zdroje s libovolnou příponou) se verzuje automaticky.
+# =============================================================================
 
-### C ###
-# Prerequisites
-*.d
+# ----------------------------------------------------------------------------
+# Vivado – generované adresáře projektu (vše se dá znovu vytvořit z .xpr/.tcl)
+# ----------------------------------------------------------------------------
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.tmp/
+.Xil/
+xsim.dir/
+NA/
 
-# Object files
+# Vivado – logy, žurnály, databáze simulace
+*.jou
+*.log
+*.str
+*.backup.*
+*.wdb
+*.wdf
+webtalk*
+vivado_pid*
+usage_statistics_webtalk.*
+
+# Vivado – výstupy implementace (patří do release/přílohy, ne do historie)
+*.bit
+*.bin
+*.ltx
+*.xsa
+*.pdi
+*.dcp
+# psu_init* se generuje z .xsa
+psu_init*
+
+# ----------------------------------------------------------------------------
+# Vitis HLS (unified IDE 2025.2) – výstup komponenty je ve složce hls/
+# (DP/Vitis/<komponenta>/<komponenta>/hls/...), staré solution*/ z classic HLS
+# ----------------------------------------------------------------------------
+hls/
+solution*/
+.autopilot/
+*.wcfg.bak
+
+# ----------------------------------------------------------------------------
+# Vitis – workspace, platforma a bare-metal aplikace
+# ----------------------------------------------------------------------------
+_ide/
+.rigel_lopper/
+.vitis/
+.vitisWorkspace.json
+logs/
+build/
+export/
+# Platforma se generuje z .xsa (BSP, FSBL, PMUFW) – zdroj pravdy je .xsa + skript
+DP/Vitis/platform_*/
+compile_commands.json
+
+# Objektové soubory a binárky
 *.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
+*.d
 *.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
 *.so
-*.so.*
-*.dylib
-
-# Executables
+*.elf
 *.exe
 *.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+*.lock
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# ----------------------------------------------------------------------------
+# LaTeX – pomocné soubory překladu (XeLaTeX + biber + latexmk)
+# ----------------------------------------------------------------------------
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.run.xml
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.lof
+*.lot
+*.xdv
+*.idx
+*.ilg
+*.ind
+*.nav
+*.snm
+*.vrb
+_minted*/
+Diplomová_práce/build/
+# výsledné PDF práce (generované) – zdrojové PDF (zadání, loga) zůstávají
+/Diplomová_práce.pdf
+/Diplomová_práce/DP.pdf
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# ----------------------------------------------------------------------------
+# Archivy, cizí dokumentace a velké experimenty mimo rozsah DP
+# ----------------------------------------------------------------------------
+*.zip
+*.7z
+*.tar.gz
+# datasheety a manuály AMD/ITU – stáhnutelné, chráněné autorským právem
+/pdf/*.pdf
+# schéma nosné desky (stáhnutelné z AMD); .xdc soubory zůstávají
+/Kria_KV260/xtp682-kria-k26-carrier-card-schematic/
+# experimenty a cvičení mimo diplomovou práci (lokálně zůstávají)
+/DP/Vivado/fractal/
+/DP/Vivado/DisplayPortTest/
+/DP/Vivado/dp_test/
+/DP/Vivado/extracted/
+/DP/Vitis/test_proj/
+/DP/Vitis/test_passthought/
+/DP/lab05_axi_stream/
 
-### C++ ###
-# Prerequisites
-
-# Compiled Object files
-*.slo
-
-# Precompiled Headers
-
-# Compiled Dynamic libraries
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-
-# Executables
-
-### VisualStudioCode ###
+# ----------------------------------------------------------------------------
+# IDE a nástroje
+# ----------------------------------------------------------------------------
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
 .history/
+# Sigasi / Eclipse – osobní nastavení
+.settings/
+.project
+.library_mapping.xml
 
-# Built Visual Studio Code Extensions
-*.vsix
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
-
-### Vivado ###
-#########################################################################################################
-##	This is an example .gitignore file for Vivado, please treat it as an example as
-##	it might not be complete. In addition, XAPP 1165 should be followed.
-#########
-#Exclude all
-*
-!*/
-!.gitignore
-###########################################################################
-##	VIVADO
-#Source files:
-#Do NOT ignore VHDL, Verilog, block diagrams or EDIF files.
-!*.vhd
-!*.v
-!*.sv
-!*.bd
-!*.edif
-#IP files
-#.xci: synthesis and implemented not possible - you need to return back to the previous version to generate output products
-#.xci + .dcp: implementation possible but not re-synthesis
-#*.xci(www.spiritconsortium.org)
-!*.xci
-#.xcix: Core container file
-#.xcix: https://www.xilinx.com/support/documentation/sw_manuals/xilinx2016_2/ug896-vivado-ip.pdf (Page 41)
-!*.xcix
-#*.dcp(checkpoint files)
-!*.dcp
-!*.vds
-!*.pb
-#All bd comments and layout coordinates are stored within .ui
-!*.ui
-!*.ooc
-#System Generator
-!*.mdl
-!*.slx
-!*.bxml
-#Simulation logic analyzer
-!*.wcfg
-!*.coe
-#MIG
-!*.prj
-!*.mem
-#Project files
-#XPR  +  *.XML ? XPR (Files are merged into a single XPR file for 2014.1 version)
-#Do NOT ignore *.xpr files
-!*.xpr
-#Include *.xml files for 2013.4 or earlier version
-!*.xml
-#Constraint files
-#Do NOT ignore *.xdc files
-!*.xdc
-#TCL - files
-!*.tcl
-#Journal - files
-!*.jou
-#Reports
-!*.rpt
-!*.txt
-!*.vdi
-#C-files
-!*.c
-!*.h
-!*.elf
-!*.bmm
-!*.xmp
-#MATLAB
-!*.m
-!*.mlx
-#Markdown
-!*.md
-
-### XilinxVivado ###
-#.xci: IP-core property file with core container disabled
-#*.dcp (checkpoint files: better be ignored!)
-#!*.dcp
-
-# Ignore build output directory
-/build
-/export
-
-# Ignore object files and dependent files
-.o
-.d
-
-#Ignore logs folder and log files
-/logs
-.log
-
-#Ignore lock files
-.lock
-
-.bin
-.pdi
-.vitisWorkspace.json
-
-_ide/logs
-_ide/.wsdata
-
-# End of https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado,visualstudiocode,c++,c
+# Systém
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,1 +1,0 @@
-xsim {hls_threshold_gray} -testplusarg UVM_VERBOSITY=UVM_NONE -testplusarg UVM_TESTNAME=hls_threshold_gray_test_lib -testplusarg UVM_TIMEOUT=20000000000000 -autoloadwcfg -tclbatch {hls_threshold_gray.tcl}

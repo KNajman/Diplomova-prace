@@ -1,0 +1,157 @@
+<ENTRY>
+{
+ "thisFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_histogram\\hls_histogram.hlsrun_package_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "06/25/26 12:30:08",
+ "timestampMillis": "1782383408890",
+ "buildStep": {
+  "cmdId": "777a15e5-7eff-4df5-b3a4-31bfba8c0c28",
+  "name": "vitis-run",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_histogram\\logs\\hls_histogram.steps.log",
+  "commandLine": "D:/AMDDesignTools/2025.2/Vitis/bin/unwrapped/win64.o/vitis-run.exe  --mode hls --package --config D:\\Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_config.cfg --work_dir hls_histogram ",
+  "args": [
+   "--mode",
+   "hls",
+   "--package",
+   "--config",
+   "D:\\Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_config.cfg",
+   "--work_dir",
+   "hls_histogram"
+  ],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\hls_histogram"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 12:30:08",
+ "timestampMillis": "1782383408890",
+ "status": {
+  "cmdId": "777a15e5-7eff-4df5-b3a4-31bfba8c0c28",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "06/25/26 12:30:21",
+ "timestampMillis": "1782383421815",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_IP",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hls_histogram_gray",
+     "file": "D:/Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_histogram\\hls_histogram_gray.zip",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "D:/Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_histogram.cpp",
+     "D:/Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_histogram.hpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "06/25/26 12:30:21",
+ "timestampMillis": "1782383421819",
+ "buildStep": {
+  "cmdId": "729e2121-c774-4230-bd6e-eb6d844546ff",
+  "name": "",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_histogram\\hls_histogram\\hls\\hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\hls_histogram"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 12:30:21",
+ "timestampMillis": "1782383421819",
+ "status": {
+  "cmdId": "729e2121-c774-4230-bd6e-eb6d844546ff",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 12:31:23",
+ "timestampMillis": "1782383483223",
+ "status": {
+  "cmdId": "729e2121-c774-4230-bd6e-eb6d844546ff",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 12:31:23",
+ "timestampMillis": "1782383483354",
+ "status": {
+  "cmdId": "777a15e5-7eff-4df5-b3a4-31bfba8c0c28",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 12:31:23",
+ "timestampMillis": "1782383483355",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 12:31:23",
+ "timestampMillis": "1782383483355",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

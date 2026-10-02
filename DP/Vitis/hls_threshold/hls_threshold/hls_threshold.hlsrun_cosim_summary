@@ -1,0 +1,227 @@
+<ENTRY>
+{
+ "thisFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls_threshold.hlsrun_cosim_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "06/25/26 10:38:53",
+ "timestampMillis": "1782376733635",
+ "buildStep": {
+  "cmdId": "d6d5a6bc-80f9-447b-b7f4-2e19f5245e6b",
+  "name": "vitis-run",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\logs\\hls_threshold.steps.log",
+  "commandLine": "D:/AMDDesignTools/2025.2/Vitis/bin/unwrapped/win64.o/vitis-run.exe  --mode hls --cosim --config D:\\Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_config.cfg --work_dir hls_threshold ",
+  "args": [
+   "--mode",
+   "hls",
+   "--cosim",
+   "--config",
+   "D:\\Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_config.cfg",
+   "--work_dir",
+   "hls_threshold"
+  ],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\hls_threshold"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 10:38:53",
+ "timestampMillis": "1782376733635",
+ "status": {
+  "cmdId": "d6d5a6bc-80f9-447b-b7f4-2e19f5245e6b",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752199",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_RTL_COSIM",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hls_threshold_gray",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold.cpp",
+     "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold.hpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752201",
+ "buildStep": {
+  "cmdId": "15b5f8fa-88f6-4c08-b567-0257b2c95115",
+  "name": "",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls\\hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\hls_threshold"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752202",
+ "status": {
+  "cmdId": "15b5f8fa-88f6-4c08-b567-0257b2c95115",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752203",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls\\sim\\report\\hls_threshold_gray_cosim.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "HLS_COSIMULATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752204",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_DATAFLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752204",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_FUNCTION_CALL_GRAPH_COSIM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752205",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_TIMELINE_TRACE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:39:12",
+ "timestampMillis": "1782376752206",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\hls_threshold\\hls_threshold\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_WAVE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 10:43:56",
+ "timestampMillis": "1782377036080",
+ "status": {
+  "cmdId": "15b5f8fa-88f6-4c08-b567-0257b2c95115",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 10:43:56",
+ "timestampMillis": "1782377036307",
+ "status": {
+  "cmdId": "d6d5a6bc-80f9-447b-b7f4-2e19f5245e6b",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:43:56",
+ "timestampMillis": "1782377036308",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 10:43:56",
+ "timestampMillis": "1782377036308",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
