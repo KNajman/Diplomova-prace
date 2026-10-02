@@ -1,0 +1,13 @@
+{
+  "name": "hls_rgb_2_hsv",
+  "type": "HLS",
+  "configuration": {
+    "componentType": "HLS",
+    "configFiles": [
+      "hls_config.cfg"
+    ],
+    "work_dir": "hls_rgb_2_hsv"
+  },
+  "useSysrootToolchain": false,
+  "templateFlow": "VITIS"
+}

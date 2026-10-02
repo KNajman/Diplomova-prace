@@ -7,19 +7,17 @@ void hls_passthrough(hls::stream<axis_video> &in_stream,
                      hls::stream<axis_video> &out_stream, int height,
                      int width) {
 
-#pragma HLS INTERFACE axis port = in_stream
-#pragma HLS INTERFACE axis port = out_stream
-// Block-Level: Definition of AXI4-Lite interface for control
-#pragma HLS INTERFACE s_axilite port = height bundle = control
-#pragma HLS INTERFACE s_axilite port = width bundle = control
-#pragma HLS INTERFACE s_axilite port = return bundle = control
+  #pragma HLS INTERFACE axis port = in_stream
+  #pragma HLS INTERFACE axis port = out_stream
+  // Block-Level: Definition of AXI4-Lite interface for control
+  #pragma HLS INTERFACE s_axilite port = height bundle = control
+  #pragma HLS INTERFACE s_axilite port = width bundle = control
+  #pragma HLS INTERFACE s_axilite port = return bundle = control
 
-HLS_HEIGHT_LOOP:
   for (int i = 0; i < height; i++) {
-#pragma HLS LOOP_FLATTEN
-  HLS_WIDTH_LOOP:
+    #pragma HLS LOOP_FLATTEN
     for (int j = 0; j < width; j++) {
-#pragma HLS PIPELINE II = 1
+    #pragma HLS PIPELINE II = 1
       axis_video packet = in_stream.read();
       out_stream.write(packet);
     }

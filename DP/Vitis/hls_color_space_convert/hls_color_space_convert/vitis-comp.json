@@ -1,0 +1,9 @@
+{
+  "name": "hls_color_space_convert",
+  "type": "HLS",
+  "configuration": {
+    "componentType": "HLS",
+    "configFiles": ["..\/hls_config.cfg"],
+    "work_dir": "."
+  }
+}

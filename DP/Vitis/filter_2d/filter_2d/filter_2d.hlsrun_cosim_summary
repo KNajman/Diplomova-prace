@@ -1,0 +1,227 @@
+<ENTRY>
+{
+ "thisFile": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\filter_2d.hlsrun_cosim_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "06/25/26 11:20:40",
+ "timestampMillis": "1782379240452",
+ "buildStep": {
+  "cmdId": "1d60ca0d-0138-4bb0-9e9e-57b4195f0e37",
+  "name": "vitis-run",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\logs\\filter_2d.steps.log",
+  "commandLine": "D:/AMDDesignTools/2025.2/Vitis/bin/unwrapped/win64.o/vitis-run.exe  --mode hls --cosim --config D:\\Repos\\_DP\\DP\\Vitis\\filter_2d\\hls_config.cfg --work_dir filter_2d ",
+  "args": [
+   "--mode",
+   "hls",
+   "--cosim",
+   "--config",
+   "D:\\Repos\\_DP\\DP\\Vitis\\filter_2d\\hls_config.cfg",
+   "--work_dir",
+   "filter_2d"
+  ],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\filter_2d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:20:40",
+ "timestampMillis": "1782379240452",
+ "status": {
+  "cmdId": "1d60ca0d-0138-4bb0-9e9e-57b4195f0e37",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249464",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_RTL_COSIM",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hls_filter_2d",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\hls_filter_2d.cpp",
+     "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\hls_filter_2d.hpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249466",
+ "buildStep": {
+  "cmdId": "a8060293-e896-438b-8353-5c2e4a6a3c93",
+  "name": "",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\hls\\hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\filter_2d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249467",
+ "status": {
+  "cmdId": "a8060293-e896-438b-8353-5c2e4a6a3c93",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249468",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\hls\\sim\\report\\hls_filter_2d_cosim.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "HLS_COSIMULATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249468",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_DATAFLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249469",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_FUNCTION_CALL_GRAPH_COSIM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249470",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_TIMELINE_TRACE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:20:49",
+ "timestampMillis": "1782379249470",
+ "report": {
+  "path": "D:/Repos\\_DP\\DP\\Vitis\\filter_2d\\filter_2d\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_WAVE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:26:52",
+ "timestampMillis": "1782379612987",
+ "status": {
+  "cmdId": "a8060293-e896-438b-8353-5c2e4a6a3c93",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:26:53",
+ "timestampMillis": "1782379613328",
+ "status": {
+  "cmdId": "1d60ca0d-0138-4bb0-9e9e-57b4195f0e37",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:26:53",
+ "timestampMillis": "1782379613329",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:26:53",
+ "timestampMillis": "1782379613329",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

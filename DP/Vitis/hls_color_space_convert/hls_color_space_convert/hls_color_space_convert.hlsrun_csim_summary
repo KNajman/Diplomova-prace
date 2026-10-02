@@ -1,0 +1,157 @@
+<ENTRY>
+{
+ "thisFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_color_space_convert\\hls_color_space_convert.hlsrun_csim_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "06/25/26 11:33:53",
+ "timestampMillis": "1782380033540",
+ "buildStep": {
+  "cmdId": "ec69c9f6-8cac-4a27-a1d0-387db78fe2ec",
+  "name": "vitis-run",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_color_space_convert\\logs\\hls_color_space_convert.steps.log",
+  "commandLine": "D:/AMDDesignTools/2025.2/Vitis/bin/unwrapped/win64.o/vitis-run.exe  --mode hls --csim --config D:\\Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_config.cfg --work_dir hls_color_space_convert ",
+  "args": [
+   "--mode",
+   "hls",
+   "--csim",
+   "--config",
+   "D:\\Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_config.cfg",
+   "--work_dir",
+   "hls_color_space_convert"
+  ],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\hls_color_space_convert"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:33:53",
+ "timestampMillis": "1782380033540",
+ "status": {
+  "cmdId": "ec69c9f6-8cac-4a27-a1d0-387db78fe2ec",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "06/25/26 11:34:06",
+ "timestampMillis": "1782380046382",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_C_SIM",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hls_color_space_convert_top",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "D:/Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_color_space_convert.hpp",
+     "D:/Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_color_space_convert.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "06/25/26 11:34:06",
+ "timestampMillis": "1782380046383",
+ "buildStep": {
+  "cmdId": "87723302-ad3d-4b38-b397-07b7d881f0c2",
+  "name": "",
+  "logFile": "D:/Repos\\_DP\\DP\\Vitis\\hls_color_space_convert\\hls_color_space_convert\\hls\\hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "D:\\Repos\\_DP\\DP\\Vitis\\hls_color_space_convert"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:34:06",
+ "timestampMillis": "1782380046384",
+ "status": {
+  "cmdId": "87723302-ad3d-4b38-b397-07b7d881f0c2",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:34:19",
+ "timestampMillis": "1782380059294",
+ "status": {
+  "cmdId": "87723302-ad3d-4b38-b397-07b7d881f0c2",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "06/25/26 11:34:19",
+ "timestampMillis": "1782380059522",
+ "status": {
+  "cmdId": "ec69c9f6-8cac-4a27-a1d0-387db78fe2ec",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:34:19",
+ "timestampMillis": "1782380059523",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "06/25/26 11:34:19",
+ "timestampMillis": "1782380059524",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
