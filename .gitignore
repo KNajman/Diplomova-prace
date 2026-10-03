@@ -43,7 +43,9 @@ psu_init*
 # Vitis HLS (unified IDE 2025.2) – výstup komponenty je ve složce hls/
 # (DP/Vitis/<komponenta>/<komponenta>/hls/...), staré solution*/ z classic HLS
 # ----------------------------------------------------------------------------
-hls/
+# POZOR: jen výstupní adresáře HLS komponent ve Vitis workspace (<komp>/<komp>/hls/),
+# NE zdrojový strom DP/hls/ (obecný vzor 'hls/' by ignoroval i ten)
+/DP/Vitis/**/hls/
 solution*/
 .autopilot/
 *.wcfg.bak
@@ -58,6 +60,9 @@ _ide/
 logs/
 build/
 export/
+# Výstupy skriptovaného HLS flow (DP/hls/build, DP/hls/ip_repo)
+/DP/hls/build/
+/DP/hls/ip_repo/
 # Platforma se generuje z .xsa (BSP, FSBL, PMUFW) – zdroj pravdy je .xsa + skript
 DP/Vitis/platform_*/
 compile_commands.json
