@@ -5,19 +5,29 @@ DP/hls/
   common/hls_video.hpp    typy AXI4-Stream Video (UG934, ap_axiu), pack/unpack, saturace, round_shift
   common/tb_video.hpp     testbench: testovací vzor, push_frame/check_frame proti golden modelu
   csc/                    převod barev - REFERENČNÍ JÁDRO (vzor pro ostatní)
-  scripts/run_hls.sh      jedna komponenta: csim | syn | cosim | all
+  scripts/run_hls.sh/.bat jedna komponenta: csim | syn | cosim | all (Linux / Windows)
   scripts/build_all.sh    všechny komponenty, souhrn PASS/FAIL
   build/, ip_repo/        generované (gitem ignorované)
 ```
 
-## Spuštění (Ababel)
+## Spuštění
 
+**Windows (tvůj PC):** otevři *Vitis 2025.2 Command Prompt* a v `DP\hls\scripts` spusť
+```
+run_hls.bat ..\csc\hls_config_rgb.cfg all
+```
+
+**Linux / Ababel bez práva spouštět skripty:** skript není nutné spouštět jako program, stačí ho předat bashi
+(funguje i na adresáři připojeném s `noexec`):
 ```
 source /tools/Xilinx/2025.2/Vitis/settings64.sh
 cd DP/hls/scripts
-./run_hls.sh ../csc/hls_config_rgb.cfg all      # C-sim, syntéza + IP, cosim
-./build_all.sh syn                              # všechna jádra
+bash run_hls.sh ../csc/hls_config_rgb.cfg all
+bash build_all.sh syn
 ```
+Kdyby nešlo ani to, příkazy ze skriptu se dají zadat ručně (z adresáře s `.cfg`):
+`vitis-run --mode hls --csim --config hls_config_rgb.cfg --work_dir ../build/csc_rgb`,
+`v++ -c --mode hls --config hls_config_rgb.cfg --work_dir ../build/csc_rgb`.
 
 > Klíče v `hls_config.cfg` a přepínače `vitis-run` / `v++ -c --mode hls` odpovídají unified flow 2025.x.
 > Při prvním spuštění zkontroluj log. Kdyby některý klíč verze 2025.2 nepřijala, oprav ho jednou
@@ -26,7 +36,7 @@ cd DP/hls/scripts
 ## Pravidla pro všechna jádra
 
 1. **Stream jen přes `hlsv::axis_t<CH>`** (= `ap_axiu`). Vlastní struktura s `AGGREGATE` zabalí TUSER/TLAST do TDATA.
-2. **Bodová jádra:** `ap_ctrl_none` + `PIPELINE II=1`, jedno volání = jeden pixel, TUSER/TLAST se kopírují ze vstupu (`hlsv::make_packet`). Žádná šířka, výška ani čítače.
+2. **Bodová jádra:** jedno volání = jeden řádek (`do { … } while (!last)` s `PIPELINE II=1`), řízení `ap_ctrl_hs` (`s_axilite port=return`) a v HW auto-restart (ARM zapíše `0x81` na offset `0x00`). TUSER/TLAST se kopírují ze vstupu (`hlsv::make_packet`). Žádná šířka, výška ani čítače. `ap_ctrl_none` **ne**: Vitis 2025.2 jádro se skalárními registry neumí co-simulovat (cosim visí na 0 transakcích).
 3. **Parametry = skalární registry `s_axilite`** (ne pole). Stejná mapa registrů pak poslouží VHDL verzi.
 4. **Aritmetika = golden model** (`DP/model/lib_imgproc`). Konstanty (tabulky HSV, matice) brát z `DP/model/generated/imgproc_coeffs.h`, nikdy je neopisovat ručně.
 5. **Testbench:** `tbv::fill_pattern` → golden model → jádro → `tbv::check_frame`. `main()` vrací 0 jen při bitové shodě dat i TUSER/TLAST. Testují se dva snímky za sebou.
