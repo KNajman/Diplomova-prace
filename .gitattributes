@@ -1,0 +1,4 @@
+# Skripty pro Linux/Ababel musí mít LF konce řádků (bash s CRLF hlásí "\r: command not found")
+*.sh   text eol=lf
+*.tcl  text eol=lf
+*.cfg  text eol=lf
