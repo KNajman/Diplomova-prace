@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/DP/model",
+    "cmake.buildDirectory": "${workspaceFolder}/DP/model/build",
+    "cmake.generator": "Ninja",
+    "clangd.arguments": ["--compile-commands-dir=${workspaceFolder}/DP/model/build"]
+
+}
