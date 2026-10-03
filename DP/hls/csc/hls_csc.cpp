@@ -6,9 +6,13 @@
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
  *
  * Poznámky k návrhu:
- *  - Řízení ap_ctrl_none: jádro běží samo, bez ap_start. Jedno volání top funkce = jeden pixel,
- *    PIPELINE II=1 = jeden pixel za takt. Nepotřebuje šířku ani výšku snímku - TUSER/TLAST jen
- *    putují s daty, takže resynchronizace je automatická (stejně jako ve VHDL verzi).
+ *  - Jedno volání top funkce = jeden ŘÁDEK (smyčka do TLAST), PIPELINE II=1 = pixel za takt.
+ *    Jádro nepotřebuje šířku ani výšku snímku a nemá čítače - TUSER/TLAST jen putují s daty,
+ *    takže resynchronizace je automatická (stejně jako ve VHDL verzi).
+ *  - Řízení ap_ctrl_hs + auto-restart (ARM jednou zapíše 0x81 do registru 0x00). Původně
+ *    zvolené ap_ctrl_none (1 volání = 1 pixel) Vitis 2025.2 nedokázal co-simulovat: skalární
+ *    registry nejsou "self-synchronizing" a cosim čekal na první transakci donekonečna.
+ *    Mezi řádky se pipeline vyprázdní (hloubka ~5 taktů), tj. režie ~0,3 % na řádek 1920 px.
  *  - Koeficienty jsou skalární registry AXI4-Lite (ne pole). Pole na s_axilite by se
  *    implementovalo jako RAM se dvěma porty a 9 čtení za takt by nešlo; skaláry jsou registry
  *    a mapa registrů je čitelná i pro VHDL verzi (stejné offsety, jeden C driver).
@@ -51,7 +55,7 @@ hlsv::Pixel<CH_OUT> csc_pixel(const hlsv::Pixel<CH_IN>& in, const CscParams& p)
 }
 
 /**
- * @brief Přečte pixel, převede ho a zapíše (tělo všech top funkcí).
+ * @brief Zpracuje jeden řádek: čte, převádí a zapisuje pixely až do TLAST (tělo všech top funkcí).
  * @param in_stream     Vstupní stream
  * @param out_stream    Výstupní stream
  * @param p             Koeficienty a offsety
@@ -60,9 +64,15 @@ template <int CH_IN, int CH_OUT>
 void csc_stream(hlsv::stream_t<CH_IN>& in_stream, hlsv::stream_t<CH_OUT>& out_stream, const CscParams& p)
 {
 #pragma HLS INLINE
-    const hlsv::axis_t<CH_IN> in = in_stream.read();
-    const hlsv::Pixel<CH_OUT> px = csc_pixel<CH_IN, CH_OUT>(hlsv::unpack<CH_IN>(in.data), p);
-    out_stream.write(hlsv::make_packet<CH_OUT, CH_IN>(hlsv::pack<CH_OUT>(px), in));
+    bool last = false;
+    do
+    {
+#pragma HLS PIPELINE II=1
+        const hlsv::axis_t<CH_IN> in = in_stream.read();
+        const hlsv::Pixel<CH_OUT> px = csc_pixel<CH_IN, CH_OUT>(hlsv::unpack<CH_IN>(in.data), p);
+        out_stream.write(hlsv::make_packet<CH_OUT, CH_IN>(hlsv::pack<CH_OUT>(px), in));
+        last = (in.last == 1);
+    } while (!last);
 }
 
 } // namespace
@@ -87,8 +97,7 @@ void hls_csc_rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_vi
 #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
 #pragma HLS INTERFACE mode=s_axilite port=o1 bundle=control
 #pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
-#pragma HLS INTERFACE mode=ap_ctrl_none port=return
-#pragma HLS PIPELINE II=1
+#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, c01, c02 }, { c10, c11, c12 }, { c20, c21, c22 } }, { o0, o1, o2 } };
     csc_stream<hlsv::RGB_CHANNELS, hlsv::RGB_CHANNELS>(s_axis_video, m_axis_video, p);
 }
@@ -102,8 +111,7 @@ void hls_csc_rgb_to_gray(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_gray_t& 
 #pragma HLS INTERFACE mode=s_axilite port=c01 bundle=control
 #pragma HLS INTERFACE mode=s_axilite port=c02 bundle=control
 #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
-#pragma HLS INTERFACE mode=ap_ctrl_none port=return
-#pragma HLS PIPELINE II=1
+#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, c01, c02 }, { 0, 0, 0 }, { 0, 0, 0 } }, { o0, 0, 0 } };
     csc_stream<hlsv::RGB_CHANNELS, 1>(s_axis_video, m_axis_video, p);
 }
@@ -120,8 +128,7 @@ void hls_csc_gray_to_rgb(hlsv::stream_gray_t& s_axis_video, hlsv::stream_rgb_t& 
 #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
 #pragma HLS INTERFACE mode=s_axilite port=o1 bundle=control
 #pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
-#pragma HLS INTERFACE mode=ap_ctrl_none port=return
-#pragma HLS PIPELINE II=1
+#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, 0, 0 }, { c10, 0, 0 }, { c20, 0, 0 } }, { o0, o1, o2 } };
     csc_stream<1, hlsv::RGB_CHANNELS>(s_axis_video, m_axis_video, p);
 }

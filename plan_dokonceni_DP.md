@@ -5,6 +5,9 @@ Stav k 30. 9. 2026 · výsledek grill-me session (Claude jako druhý vedoucí/ko
 ## Cíl
 Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání: jednotné HLS × VHDL × SW implementace vybraných algoritmů na KV260, férově změřené a porovnané v jednom testovacím řetězci.
 
+## Průběh
+- 2. 10. 2026: úklid repa (blacklist .gitignore) hotový. Golden C model `DP/model/lib_imgproc` hotový (Jablotron C standard, poznámky k návrhovým rozhodnutím v komentářích), generátor konstant (`generated/imgproc_coeffs.h`, `imgproc_coeffs_pkg.vhd`) a `imgproc_cli` (PPM/PGM → HEX pro testbenche). Ověřeno proti OpenCV 4.13: RGB→šedá, RGB→HSV (2^24), prahování, medián (replikace) a filter2D bitově shodné; RGB→YCbCr ±1; HSV→RGB ±2. Nástroje pro PC se přeloží na Linuxu i Windows (`pc_file_open`: fopen_s / fopen).
+
 ## Výchozí stav (audit)
 - Text: 34 stran PDF, reálně ~10–12 stran vlastního textu. Hotové jsou Nástroje a Barevné prostory (předimenzované). Chybí úvod, abstrakty, rešerše HW realizace, histogram/medián/prahování, implementace, výsledky, závěr. Literatura: 3 položky (chybí klíč `cie15_2018`, necituješ Šonku ani Harrise).
 - HLS: 8 jader s TB (passthrough, threshold, histogram, rgb2hsv, hsv2rgb, color_space_convert, filter_2d, median).
@@ -50,7 +53,7 @@ Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání:
 ### Aritmetika a reference
 - Golden model = vlastní celočíselný C model (sémantika OpenCV s explicitními konvencemi). HW se s ním musí shodovat bitově. Odchylka vůči OpenCV/float se jen reportuje (max. chyba, MAE, PSNR).
 - Koeficienty se generují z definic (Kr, Kb) do `.h` a VHDL package. Nikdy se neopisují ručně.
-- Převod barev: Q3.14 (18 b, port B DSP48E2), half-up, saturace. Offset se přičítá v akumulátoru před posunem. Konfigurace: RGB→šedá (601), YCbCr 601 full, YCbCr 709 full, studio range, šedá→RGB (1→3).
+- Převod barev: **Q2.15** (18 b, port B DSP48E2; změna z Q3.14 2. 10. – s Q2.15 je RGB→šedá bitově shodná s OpenCV na všech 2^24 barvách, rozsah ±4 stačí), koeficienty se dorovnávají metodou největšího zbytku, half-up, saturace. Offset se přičítá v akumulátoru před posunem. Konfigurace: RGB→šedá (601), YCbCr 601 full, YCbCr 709 full, studio range, šedá→RGB (1→3).
 - RGB→HSV: celočíselný algoritmus OpenCV (shift 12, tabulky sdiv/hdiv180), H 0–179 → bitová shoda s `cv::cvtColor`. HSV→RGB: vlastní celočíselný algoritmus.
 - Úplný test všech 2^24 barev (C model + na desce) pro převody barev a HSV.
 - Konvoluce: 8b celočíselné jádro, přesná akumulace, `scale` Q.14 + half-up, `delta`, saturace, nulový padding, jen SAME. Na desce 3×3, OOC 3×3/5×5/7×7.
@@ -71,7 +74,7 @@ Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání:
 1. Úvod (1–2): motivace včetně učebního charakteru práce (proč ne VVL)
 2. Platforma a nástroje (6): bod 1
 3. Rešerše operací + analýza HW realizace + Vitis Vision Library jako související práce (11): bod 2. Barvy zkrátit, CIE ½ strany.
-4. Návrh a metodika (6)
+4. Návrh a metodika (6): včetně výkladu aritmetiky s pevnou řádovou čárkou a formátů Qx.y (Q2.15 pro CSC, Q.14 pro scale filtru, shift 12 pro HSV), zaokrouhlení half-up a saturace
 5. Implementace (11): bod 3
 6. Výsledky a srovnání (7): bod 4
 7. Závěr (1–2)

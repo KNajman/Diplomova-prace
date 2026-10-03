@@ -89,7 +89,7 @@ inline ap_uint<CH * PIXEL_BITS> pack(const Pixel<CH>& px)
  * @brief Sestaví výstupní paket a převezme postranní signály ze vstupu.
  *
  * Bodová jádra nemají čítače: TUSER a TLAST jen putují s daty, takže resynchronizace
- * i libovolné rozlišení jsou automatické.
+ * i libovolné rozlišení jsou automatické (jedno volání jádra = jeden řádek do TLAST).
  *
  * @param data  TDATA výstupu
  * @param in    Vstupní paket (zdroj TUSER/TLAST)
