@@ -60,3 +60,31 @@ registrová banka `axil_regbank` 146 LUT / 293 FF.
 
 Bitová shoda: xsim 6 předvoleb × náhodné mezery/backpressure + 6 × konfigurace přes AXI4-Lite, vše PASS.
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (řádky `*_v1`, `*_v2`, bez přípony = v3), commity `2f19eee`, `c3ae141`, `f8042a6`.
+
+---
+
+## 3. VHDL RGB ↔ HSV (15. 10. 2026)
+
+Celočíselný algoritmus OpenCV (RGB→HSV bitově = `cv::cvtColor`), HSV→RGB podle golden modelu (OpenCV počítá přes float).
+Ověřeno: xsim testovací obraz + rampa 256×256 (náhodné mezery 60/60), obálky přes AXI4-Lite a **úplný test všech 2^24
+kombinací v obou směrech** (4 části 2048×2048) – vše PASS, 0 chyb, 1 px/takt.
+
+| jádro | takty pipeline | LUT | FF | DSP | BRAM | perioda | limit |
+|---|---|---|---|---|---|---|---|
+| `rgb2hsv_core` | 8 | 237 | 204 | 2 | 0 | 3,26 ns | šířka pulzu DSP |
+| `hsv_axil` RGB→HSV (s AXI4-Lite) | 8 | 275 | 255 | 2 | 0 | 3,26 ns | šířka pulzu DSP |
+| `hsv2rgb_core` | 13 | 564 | 371 | 1 | 0 | 3,33 ns | logika (násobení v LUT) |
+| `hsv_axil` HSV→RGB (s AXI4-Lite) | 13 | 603 | 422 | 1 | 0 | 3,54 ns | logika |
+
+**Poznatky**
+- RGB→HSV: dělení nahrazují 2 tabulky převrácených hodnot (256 položek, sdiv 20 b, hdiv180 17 b) – Vivado je realizoval
+  v LUT (ROM), BRAM 0 – a 2 násobení v DSP. Kritická cesta = rozvod globálního povolení na CE vstupy DSP (0 úrovní logiky).
+- HSV→RGB: 5 násobení 8×8/8×9 b syntéza (výchozí `use_dsp = auto`) umístila do LUT (jen 1 DSP) → 564 LUT a kritická cesta
+  `S * (255 − f)` přes 3× CARRY8. **Možná optimalizace:** vynutit DSP (`use_dsp = "yes"`) → očekávané −300 až −400 LUT, +4 DSP,
+  perioda na limitu DSP 3,26 ns. Výměna LUT za DSP – rozhodnout podle srovnání s HLS.
+- Řídicí rozhraní bez parametrů (jen ap_ctrl/GIE/IER/ISR): 38 LUT / 51 FF – u bodových jader bez registrů je režie AXI4-Lite malá.
+- Úplný test 2^24 v xsim: ~30–45 s na 4,2 M pixelů na Ababelu → celý prostor barev za ~6 min.
+- Golden vektory HSV→RGB byly do 15. 10. špatně (chyba čtení PPM v `imgproc_cli`), **odhalil to VHDL testbench** – argument
+  pro nezávislé ověření nástrojů, ne jen jader.
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (řádky `rgb2hsv_core`, `hsv2rgb_core`, `hsv_axil_*`), log `~/logs/vhdl_hsv.log` na Ababelu.
