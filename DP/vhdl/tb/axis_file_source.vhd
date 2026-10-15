@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
--- Projekt:   DP - Implementace vybraných algoritmů zpracování obrazu v hradlovém poli
+-- Projekt:   DP - Implementace vybraných algoritmů zpracování obrazu pixel_data hradlovém poli
 -- Autor:     Bc. Karel Najman (TUL), vedoucí Ing. Martin Rozkovec, Ph.D.
 -- Soubor:    axis_file_source.vhd   (jen simulace)
 -- Popis:     Zdroj AXI4-Stream Video ze souboru HEX (imgproc_cli: 1 pixel na řádek)
 --
 --  * Generuje TUSER na prvním pixelu snímku a TLAST na konci řádku (z G_WIDTH).
---  * Náhodné mezery: v každém taktu je TVALID = 1 s pravděpodobností G_VALID_PCT %.
+--  * Náhodné mezery: pixel_data každém taktu je TVALID = 1 s pravděpodobností G_VALID_PCT %.
 --    Jednou nastavené TVALID se drží až do přijetí (pravidlo AXI4-Stream).
 --  * Soubor se pro každý snímek čte znovu od začátku (G_FRAMES stejných snímků).
 --  * Porucha pro test resynchronizace: G_GARBAGE pixelů bez TUSER před prvním snímkem.
@@ -42,21 +42,21 @@ end entity;
 architecture sim of axis_file_source is
 begin
     process
-        file f_in     : text;
-        variable ln   : line;
-        variable v    : std_logic_vector(G_DATA_W - 1 downto 0);
-        variable s1   : positive := G_SEED;
-        variable s2   : positive := G_SEED + 7919;
-        variable rnd  : real;
-        variable user : std_logic;
-        variable last : std_logic;
+        file stimulus_file     : text;
+        variable text_line    : line;
+        variable pixel_data   : std_logic_vector(G_DATA_W - 1 downto 0);
+        variable seed1        : positive := G_SEED;
+        variable seed2        : positive := G_SEED + 7919;
+        variable random_value : real;
+        variable is_sof       : std_logic;
+        variable is_eol       : std_logic;
 
         -- Jeden přenos s náhodnou mezerou před ním
         procedure send(data : std_logic_vector; p_user, p_last : std_logic) is
         begin
             loop
-                uniform(s1, s2, rnd);
-                exit when rnd * 100.0 < real(G_VALID_PCT);
+                uniform(seed1, seed2, random_value);
+                exit when random_value * 100.0 < real(G_VALID_PCT);
                 m_tvalid <= '0';
                 wait until rising_edge(aclk);
             end loop;
@@ -78,19 +78,19 @@ begin
             send(std_logic_vector(to_unsigned(16#A5#, G_DATA_W)), '0', '0');
         end loop;
 
-        for f in 1 to G_FRAMES loop
-            file_open(f_in, G_FILE, read_mode);
+        for frame in 1 to G_FRAMES loop
+            file_open(stimulus_file, G_FILE, read_mode);
             for y in 0 to G_HEIGHT - 1 loop
                 for x in 0 to G_WIDTH - 1 loop
-                    assert not endfile(f_in) report "axis_file_source: soubor je kratsi nez snimek" severity failure;
-                    readline(f_in, ln);
-                    hread(ln, v);
-                    user := '1' when (x = 0 and y = 0) else '0';
-                    last := '1' when (x = G_WIDTH - 1) else '0';
-                    send(v, user, last);
+                    assert not endfile(stimulus_file) report "axis_file_source: soubor je kratsi nez snimek" severity failure;
+                    readline(stimulus_file, text_line);
+                    hread(text_line, pixel_data);
+                    is_sof := '1' when (x = 0 and y = 0) else '0';
+                    is_eol := '1' when (x = G_WIDTH - 1) else '0';
+                    send(pixel_data, is_sof, is_eol);
                 end loop;
             end loop;
-            file_close(f_in);
+            file_close(stimulus_file);
         end loop;
 
         m_tvalid <= '0';

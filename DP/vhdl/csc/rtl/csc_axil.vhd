@@ -61,50 +61,50 @@ end entity;
 
 architecture rtl of csc_axil is
     -- Počet registrů podle varianty (jako HLS top funkce)
-    function num_regs(ci, co : positive) return positive is
+    function num_regs(ch_in, ch_out : positive) return positive is
     begin
-        if co = 1 then return 4; end if;    -- c00 c01 c02 o0
-        if ci = 1 then return 6; end if;    -- c00 c10 c20 o0 o1 o2
+        if ch_out = 1 then return 4; end if;    -- c00 c01 c02 o0
+        if ch_in = 1 then return 6; end if;     -- c00 c10 c20 o0 o1 o2
         return 12;
     end function;
-    constant C_N : positive := num_regs(G_CH_IN, G_CH_OUT);
+    constant C_NUM_REGS : positive := num_regs(G_CH_IN, G_CH_OUT);
 
     -- Platné šířky registrů: koeficienty C_CSC_COEFF_W, offsety C_CSC_OFFSET_W (pořadí jako mapa HLS)
-    function reg_widths(n : positive) return t_width_array is
-        variable w : t_width_array(0 to n - 1);
+    function reg_widths(num_regs : positive) return t_width_array is
+        variable widths : t_width_array(0 to num_regs - 1);
     begin
-        for k in 0 to n - 1 loop
-            w(k) := C_CSC_COEFF_W;
+        for reg in 0 to num_regs - 1 loop
+            widths(reg) := C_CSC_COEFF_W;
         end loop;
-        if n = 12 then
-            for k in 9 to 11 loop w(k) := C_CSC_OFFSET_W; end loop;
-        elsif n = 4 then
-            w(3) := C_CSC_OFFSET_W;
+        if num_regs = 12 then
+            for reg in 9 to 11 loop widths(reg) := C_CSC_OFFSET_W; end loop;
+        elsif num_regs = 4 then
+            widths(3) := C_CSC_OFFSET_W;
         else
-            for k in 3 to 5 loop w(k) := C_CSC_OFFSET_W; end loop;
+            for reg in 3 to 5 loop widths(reg) := C_CSC_OFFSET_W; end loop;
         end if;
-        return w;
+        return widths;
     end function;
 
-    signal regs   : t_reg_array(0 to C_N - 1);
-    signal ro_in  : t_reg_array(0 to C_N - 1) := (others => (others => '0'));
-    signal run    : std_logic;
-    signal coeff  : t_csc_coeff_array;
-    signal offset : t_csc_offset_array;
-    signal core_tvalid, core_tready : std_logic;
+    signal regs                         : t_reg_array(0 to C_NUM_REGS - 1);
+    signal ro_in                        : t_reg_array(0 to C_NUM_REGS - 1) := (others => (others => '0'));
+    signal run                          : std_logic;
+    signal coeff                        : t_csc_coeff_array;
+    signal offset                       : t_csc_offset_array;
+    signal core_s_tvalid, core_s_tready : std_logic;
 
-    function cf(r : std_logic_vector) return signed is
+    function reg_to_coeff(reg : std_logic_vector) return signed is
     begin
-        return signed(r(C_CSC_COEFF_W - 1 downto 0));
+        return signed(reg(C_CSC_COEFF_W - 1 downto 0));
     end function;
-    function of10(r : std_logic_vector) return signed is
+    function reg_to_offset(reg : std_logic_vector) return signed is
     begin
-        return signed(r(C_CSC_OFFSET_W - 1 downto 0));
+        return signed(reg(C_CSC_OFFSET_W - 1 downto 0));
     end function;
 begin
 
     regbank : entity work.axil_regbank
-        generic map (G_NUM_REGS => C_N, G_REG_W => reg_widths(C_N), G_RO_MASK => (0 to C_N - 1 => '0'), G_ADDR_W => 8)
+        generic map (G_NUM_REGS => C_NUM_REGS, G_REG_W => reg_widths(C_NUM_REGS), G_RO_MASK => (0 to C_NUM_REGS - 1 => '0'), G_ADDR_W => 8)
         port map (aclk => aclk, aresetn => aresetn,
                   s_axi_awaddr => s_axi_control_awaddr, s_axi_awvalid => s_axi_control_awvalid,
                   s_axi_awready => s_axi_control_awready, s_axi_wdata => s_axi_control_wdata,
@@ -122,35 +122,35 @@ begin
     begin
         coeff  <= (others => (others => (others => '0')));
         offset <= (others => (others => '0'));
-        if C_N = 12 then
-            for o in 0 to 2 loop
-                for i in 0 to 2 loop
-                    coeff(o, i) <= cf(regs(3 * o + i));
+        if C_NUM_REGS = 12 then
+            for out_ch in 0 to 2 loop
+                for in_ch in 0 to 2 loop
+                    coeff(out_ch, in_ch) <= reg_to_coeff(regs(3 * out_ch + in_ch));
                 end loop;
-                offset(o) <= of10(regs(9 + o));
+                offset(out_ch) <= reg_to_offset(regs(9 + out_ch));
             end loop;
-        elsif C_N = 4 then
-            for i in 0 to 2 loop
-                coeff(0, i) <= cf(regs(i));
+        elsif C_NUM_REGS = 4 then
+            for in_ch in 0 to 2 loop
+                coeff(0, in_ch) <= reg_to_coeff(regs(in_ch));
             end loop;
-            offset(0) <= of10(regs(3));
+            offset(0) <= reg_to_offset(regs(3));
         else
-            for o in 0 to 2 loop
-                coeff(o, 0) <= cf(regs(o));
-                offset(o)   <= of10(regs(3 + o));
+            for out_ch in 0 to 2 loop
+                coeff(out_ch, 0) <= reg_to_coeff(regs(out_ch));
+                offset(out_ch)   <= reg_to_offset(regs(3 + out_ch));
             end loop;
         end if;
     end process;
 
     -- Bez spuštění jádro nepřijímá
-    core_tvalid         <= s_axis_video_tvalid and run;
-    s_axis_video_tready <= core_tready and run;
+    core_s_tvalid         <= s_axis_video_tvalid and run;
+    s_axis_video_tready <= core_s_tready and run;
 
     core : entity work.csc_core
         generic map (G_CH_IN => G_CH_IN, G_CH_OUT => G_CH_OUT)
         port map (aclk => aclk, aresetn => aresetn, coeff => coeff, offset => offset,
                   s_axis_tdata => s_axis_video_tdata, s_axis_tuser => s_axis_video_tuser(0),
-                  s_axis_tlast => s_axis_video_tlast, s_axis_tvalid => core_tvalid, s_axis_tready => core_tready,
+                  s_axis_tlast => s_axis_video_tlast, s_axis_tvalid => core_s_tvalid, s_axis_tready => core_s_tready,
                   m_axis_tdata => m_axis_video_tdata, m_axis_tuser => m_axis_video_tuser(0),
                   m_axis_tlast => m_axis_video_tlast, m_axis_tvalid => m_axis_video_tvalid,
                   m_axis_tready => m_axis_video_tready);

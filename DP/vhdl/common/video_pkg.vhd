@@ -21,10 +21,10 @@ use ieee.numeric_std.all;
 
 package video_pkg is
 
-    constant C_PIX_W      : natural := 8;               -- bity na složku
-    constant C_RGB_W      : natural := 3 * C_PIX_W;     -- 24 b pixel (RGB/YCbCr/HSV)
-    constant C_MAX_WIDTH  : natural := 3840;            -- max. šířka snímku (4K UHD)
-    constant C_DIM_W      : natural := 12;              -- šířka registrů width/height (max 4095)
+    constant C_PIX_W     : natural := 8;               -- bity na složku
+    constant C_RGB_W     : natural := 3 * C_PIX_W;     -- 24 b pixel (RGB/YCbCr/HSV)
+    constant C_MAX_WIDTH : natural := 3840;            -- max. šířka snímku (4K UHD)
+    constant C_DIM_W     : natural := 12;              -- šířka registrů width/height (max 4095)
 
     -- Indexy složek v TDATA podle UG934 (shodné s IMGPROC_RGB_IDX_* v golden modelu)
     constant C_IDX_G : natural := 0;
