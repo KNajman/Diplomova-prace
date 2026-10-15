@@ -26,7 +26,7 @@
       ControlPath ~/.ssh/cm-%r@%h-%p
       ControlPersist 30m
   ```
-- **POZOR – firewall Ababelu omezuje počet nových SSH spojení.** 15. 10. smyčka `ssh` každých 10 s (~20 spojení za pár minut) vedla k zablokování portu 22 (nejdřív "Connection refused", pak "timed out", ping dál funguje). Proto: ControlMaster (jedno sdílené spojení) a čekání na konec běhu **uvnitř jednoho ssh** na serveru, nikdy smyčka ssh na straně VM.
+- **POZOR – mnoho nových SSH spojení = VPN TUL Karla odpojí kvůli "podezřelé komunikaci"** (15. 10.: smyčka `ssh` každých 10 s, ~20 spojení za pár minut → Connection refused, pak timed out, Karel odpojen z VPN). Proto: ControlMaster (jedno sdílené spojení) a čekání na konec běhu **uvnitř jednoho ssh** na serveru, nikdy smyčka ssh na straně VM.
 - **Když klíč v nové session chybí** (VM home se nemusí zachovat): `ssh-keygen -q -t ed25519 -N "" -C claude-cowork@karel -f ~/.ssh/id_ed25519_ababel`, znovu vytvořit config, Karel přidá nový `.pub` do `authorized_keys` (starý řádek `claude-cowork@karel` smazat). Test: `ssh ababel hostname`.
 - Odvolání přístupu Claude: smazat řádek `claude-cowork@karel` z `~/.ssh/authorized_keys`.
 

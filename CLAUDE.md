@@ -19,6 +19,8 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Text DP: LaTeX `tulthesis`, lokální TeX Live, `Diplomová_práce/DP.tex`.
 
 ## Jak pracujeme
+- **Běhy na Ababelu: spustit na pozadí a nechat běžet, NEdotazovat se průběžně.** Karel se může připojit a dá vědět, až výsledek doběhne (případně Claude zkontroluje jednou po odhadnuté době). Šetří to SSH spojení (firewall) i tokeny.
+- **Během delší práce průběžné reporty** (SendUserMessage): co je hotovo, co se pokazilo, co se chystá. Ne až na konci.
 - Kód píše Claude (Sonnet pro rutinu), Karel spouští a kontroluje. Každé jádro: csim → syn → cosim → impl, výsledky do `DP/hls/results/hls_results.csv`.
 - **Ababel** (výpočetní server ITE): Claude se připojuje sám přes SSH z device_bash, viz `.claude/memory/ababel.md` a skill `.claude/skills/ababel-hls`.
 - **Git:** zdroj pravdy = lokální repo na notebooku (`D:\Repos\_DP`, větev `main`). Claude commituje lokálně (autor `Karel_Najman <karel.najman@tul.cz>` přes `git -c`) a na Ababel synchronizuje přes SSH fast-forward (viz ababel.md).
