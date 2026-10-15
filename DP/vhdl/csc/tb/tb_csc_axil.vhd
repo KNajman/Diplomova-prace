@@ -15,7 +15,7 @@ use work.video_pkg.all;
 use work.imgproc_coeffs_pkg.all;
 
 entity tb_csc_axil is
-    generic (
+    generic(
         G_PRESET    : natural  := 1;
         G_WIDTH     : positive := 64;
         G_HEIGHT    : positive := 48;
@@ -28,11 +28,25 @@ end entity;
 architecture sim of tb_csc_axil is
     constant C_PERIOD : time := 5 ns;
 
-    function ch_in(p : natural) return positive is begin if p = 5 then return 1; end if; return 3; end function;
-    function ch_out(p : natural) return positive is begin if p = 0 then return 1; end if; return 3; end function;
+    function ch_in(p : natural) return positive is
+    begin
+        if p = 5 then
+            return 1;
+        end if;
+        return 3;
+    end function;
+    function ch_out(p : natural) return positive is
+    begin
+        if p = 0 then
+            return 1;
+        end if;
+        return 3;
+    end function;
     function in_file(p : natural) return string is
     begin
-        if p = 5 then return "data/in_gray.hex"; end if;
+        if p = 5 then
+            return "data/in_gray.hex";
+        end if;
         return "data/in_rgb.hex";
     end function;
     function exp_file(p : natural) return string is
@@ -68,18 +82,24 @@ architecture sim of tb_csc_axil is
             when others => return C_CSC_GRAY_TO_RGB_OFFSET;
         end case;
     end function;
-    function pass_fail(n : natural) return string is begin if n = 0 then return "PASS"; end if; return "FAIL"; end function;
+    function pass_fail(n : natural) return string is
+    begin
+        if n = 0 then
+            return "PASS";
+        end if;
+        return "FAIL";
+    end function;
 
-    constant C_CI : positive := ch_in(G_PRESET);
-    constant C_CO : positive := ch_out(G_PRESET);
+    constant C_CI : positive     := ch_in(G_PRESET);
+    constant C_CO : positive     := ch_out(G_PRESET);
     constant C_M  : t_csc_coeff  := sel_coeff(G_PRESET);
     constant C_O  : t_csc_offset := sel_offset(G_PRESET);
 
     signal aclk    : std_logic := '0';
     signal aresetn : std_logic := '0';
 
-    signal awaddr, araddr                                : std_logic_vector(7 downto 0) := (others => '0');
-    signal awvalid, wvalid, bready, arvalid, rready      : std_logic := '0';
+    signal awaddr, araddr                                : std_logic_vector(7 downto 0)  := (others => '0');
+    signal awvalid, wvalid, bready, arvalid, rready      : std_logic                     := '0';
     signal awready, wready, bvalid, arready, rvalid, irq : std_logic;
     signal wdata, rdata                                  : std_logic_vector(31 downto 0) := (others => '0');
     signal bresp, rresp                                  : std_logic_vector(1 downto 0);
@@ -94,7 +114,7 @@ architecture sim of tb_csc_axil is
     signal cfg_err                            : natural := 0;
     signal early                              : natural := 0;
 begin
-    aclk <= not aclk after C_PERIOD / 2;
+    aclk    <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;
 
     -- AXI4-Lite master (ovladač)
@@ -102,60 +122,84 @@ begin
         variable n_err : natural := 0;
         procedure wr(addr : natural; data : integer) is
         begin
-            awaddr <= std_logic_vector(to_unsigned(addr, 8));
-            wdata  <= std_logic_vector(to_signed(data, 32));
-            awvalid <= '1'; wvalid <= '1'; bready <= '1';
+            awaddr  <= std_logic_vector(to_unsigned(addr, 8));
+            wdata   <= std_logic_vector(to_signed(data, 32));
+            awvalid <= '1';
+            wvalid  <= '1';
+            bready  <= '1';
             wait until rising_edge(aclk) and awready = '1';
             awvalid <= '0';
-            if wready = '0' then wait until rising_edge(aclk) and wready = '1'; end if;
-            wvalid <= '0';
+            if wready = '0' then
+                wait until rising_edge(aclk) and wready = '1';
+            end if;
+            wvalid  <= '0';
             wait until rising_edge(aclk) and bvalid = '1';
-            bready <= '0';
+            bready  <= '0';
         end procedure;
         procedure rd(addr : natural; result : out std_logic_vector(31 downto 0)) is
         begin
-            araddr <= std_logic_vector(to_unsigned(addr, 8));
-            arvalid <= '1'; rready <= '1';
+            araddr  <= std_logic_vector(to_unsigned(addr, 8));
+            arvalid <= '1';
+            rready  <= '1';
             wait until rising_edge(aclk) and arready = '1';
             arvalid <= '0';
             wait until rising_edge(aclk) and rvalid = '1';
-            result := rdata;
-            rready <= '0';
+            result  := rdata;
+            rready  <= '0';
         end procedure;
-        variable r : std_logic_vector(31 downto 0);
-        variable a : natural;
+        variable r     : std_logic_vector(31 downto 0);
+        variable a     : natural;
     begin
         wait until rising_edge(aclk) and aresetn = '1';
-        for k in 1 to 200 loop                  -- jádro stojí, zdroj už nabízí data
+        for k in 1 to 200 loop          -- jádro stojí, zdroj už nabízí data
             wait until rising_edge(aclk);
         end loop;
-        a := 16#10#;
+        a       := 16#10#;
         if (C_CI = 3) and (C_CO = 3) then
-            for o in 0 to 2 loop for i in 0 to 2 loop wr(a, C_M(o, i)); a := a + 8; end loop; end loop;
-            for o in 0 to 2 loop wr(a, C_O(o)); a := a + 8; end loop;
+            for o in 0 to 2 loop
+                for i in 0 to 2 loop
+                    wr(a, C_M(o, i));
+                    a := a + 8;
+                end loop;
+            end loop;
+            for o in 0 to 2 loop
+                wr(a, C_O(o));
+                a := a + 8;
+            end loop;
         elsif C_CO = 1 then
-            for i in 0 to 2 loop wr(a, C_M(0, i)); a := a + 8; end loop;
+            for i in 0 to 2 loop
+                wr(a, C_M(0, i));
+                a := a + 8;
+            end loop;
             wr(a, C_O(0));
         else
-            for o in 0 to 2 loop wr(a, C_M(o, 0)); a := a + 8; end loop;
-            for o in 0 to 2 loop wr(a, C_O(o)); a := a + 8; end loop;
+            for o in 0 to 2 loop
+                wr(a, C_M(o, 0));
+                a := a + 8;
+            end loop;
+            for o in 0 to 2 loop
+                wr(a, C_O(o));
+                a := a + 8;
+            end loop;
         end if;
         rd(16#10#, r);
         if signed(r(17 downto 0)) /= C_M(0, 0) then
-            report "AXI-Lite: zpetne cteni c00 nesouhlasi" severity error; n_err := n_err + 1;
+            report "AXI-Lite: zpetne cteni c00 nesouhlasi" severity error;
+            n_err := n_err + 1;
         end if;
         rd(16#00#, r);
         if r(2) /= '1' then
-            report "AXI-Lite: pred startem neni ap_idle" severity error; n_err := n_err + 1;
+            report "AXI-Lite: pred startem neni ap_idle" severity error;
+            n_err := n_err + 1;
         end if;
         cfg_err <= n_err;
-        started <= true;                        -- od zápisu 0x81 smí jádro přijímat
-        wr(16#00#, 16#81#);                     -- ap_start + auto_restart
+        started <= true;                -- od zápisu 0x81 smí jádro přijímat
+        wr(16#00#, 16#81#);             -- ap_start + auto_restart
         wait;
     end process;
 
     -- Před startem nesmí projít žádný pixel
-    early_mon : process (aclk)
+    early_mon : process(aclk)
     begin
         if rising_edge(aclk) then
             if (not started) and (s_valid = '1') and (s_ready = '1') then
@@ -165,31 +209,31 @@ begin
     end process;
 
     src : entity work.axis_file_source
-        generic map (G_FILE => in_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
-                     G_DATA_W => C_CI * C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 5 + G_PRESET)
-        port map (aclk => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user(0), m_tlast => s_last,
-                  m_tvalid => s_valid, m_tready => s_ready, done => src_done);
+        generic map(G_FILE      => in_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
+                    G_DATA_W    => C_CI * C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 5 + G_PRESET)
+        port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user(0), m_tlast => s_last,
+                 m_tvalid => s_valid, m_tready => s_ready, done => src_done);
 
     dut : entity work.csc_axil
-        generic map (G_CH_IN => C_CI, G_CH_OUT => C_CO)
-        port map (aclk => aclk, aresetn => aresetn,
-                  s_axi_control_awaddr => awaddr, s_axi_control_awvalid => awvalid, s_axi_control_awready => awready,
-                  s_axi_control_wdata => wdata, s_axi_control_wstrb => "1111", s_axi_control_wvalid => wvalid,
-                  s_axi_control_wready => wready, s_axi_control_bresp => bresp, s_axi_control_bvalid => bvalid,
-                  s_axi_control_bready => bready, s_axi_control_araddr => araddr, s_axi_control_arvalid => arvalid,
-                  s_axi_control_arready => arready, s_axi_control_rdata => rdata, s_axi_control_rresp => rresp,
-                  s_axi_control_rvalid => rvalid, s_axi_control_rready => rready, interrupt => irq,
-                  s_axis_video_tdata => s_data, s_axis_video_tuser => s_user, s_axis_video_tlast => s_last,
-                  s_axis_video_tvalid => s_valid, s_axis_video_tready => s_ready,
-                  m_axis_video_tdata => m_data, m_axis_video_tuser => m_user, m_axis_video_tlast => m_last,
-                  m_axis_video_tvalid => m_valid, m_axis_video_tready => m_ready);
+        generic map(G_CH_IN => C_CI, G_CH_OUT => C_CO)
+        port map(aclk                  => aclk, aresetn => aresetn,
+                 s_axi_control_awaddr  => awaddr, s_axi_control_awvalid => awvalid, s_axi_control_awready => awready,
+                 s_axi_control_wdata   => wdata, s_axi_control_wstrb => "1111", s_axi_control_wvalid => wvalid,
+                 s_axi_control_wready  => wready, s_axi_control_bresp => bresp, s_axi_control_bvalid => bvalid,
+                 s_axi_control_bready  => bready, s_axi_control_araddr => araddr, s_axi_control_arvalid => arvalid,
+                 s_axi_control_arready => arready, s_axi_control_rdata => rdata, s_axi_control_rresp => rresp,
+                 s_axi_control_rvalid  => rvalid, s_axi_control_rready => rready, interrupt => irq,
+                 s_axis_video_tdata    => s_data, s_axis_video_tuser => s_user, s_axis_video_tlast => s_last,
+                 s_axis_video_tvalid   => s_valid, s_axis_video_tready => s_ready,
+                 m_axis_video_tdata    => m_data, m_axis_video_tuser => m_user, m_axis_video_tlast => m_last,
+                 m_axis_video_tvalid   => m_valid, m_axis_video_tready => m_ready);
 
     snk : entity work.axis_file_sink
-        generic map (G_FILE => exp_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
-                     G_DATA_W => C_CO * C_PIX_W, G_READY_PCT => G_READY_PCT, G_SEED => 29 + G_PRESET,
-                     G_NAME => "csc_axil")
-        port map (aclk => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user(0), s_tlast => m_last,
-                  s_tvalid => m_valid, s_tready => m_ready, errors => errors, cycles => cycles, done => snk_done);
+        generic map(G_FILE      => exp_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
+                    G_DATA_W    => C_CO * C_PIX_W, G_READY_PCT => G_READY_PCT, G_SEED => 29 + G_PRESET,
+                    G_NAME      => "csc_axil")
+        port map(aclk     => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user(0), s_tlast => m_last,
+                 s_tvalid => m_valid, s_tready => m_ready, errors => errors, cycles => cycles, done => snk_done);
 
     check : process
         variable total : natural;
@@ -200,9 +244,7 @@ begin
             report "Jadro prijalo " & integer'image(early) & " px pred ap_start" severity error;
         end if;
         total := errors + cfg_err + early;
-        report "VYSLEDEK csc_axil preset " & integer'image(G_PRESET) & ": " & pass_fail(total) & " ("
-            & integer'image(errors) & " chyb dat, " & integer'image(cfg_err) & " chyb AXI-Lite, "
-            & integer'image(early) & " px pred startem)";
+        report "VYSLEDEK csc_axil preset " & integer'image(G_PRESET) & ": " & pass_fail(total) & " (" & integer'image(errors) & " chyb dat, " & integer'image(cfg_err) & " chyb AXI-Lite, " & integer'image(early) & " px pred startem)";
         assert total = 0 severity failure;
         std.env.stop;
         wait;
