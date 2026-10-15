@@ -12,6 +12,7 @@ HERE="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="$HERE/build/ghdl"
 mkdir -p "$WORK"
 SRC=( "$HERE"/../model/generated/imgproc_coeffs_pkg.vhd "$HERE"/common/*.vhd "$HERE"/*/rtl/*.vhd "$HERE"/tb/*.vhd "$HERE"/*/tb/*.vhd )
-ghdl -a --std=08 --workdir="$WORK" "${SRC[@]}"
-ghdl -e --std=08 --workdir="$WORK" "$TB"
+# -i + -m: GHDL si pořadí překladu (závislosti entit) zjistí sám
+ghdl -i --std=08 --workdir="$WORK" "${SRC[@]}"
+ghdl -m --std=08 --workdir="$WORK" "$TB" > /dev/null
 ghdl -r --std=08 --workdir="$WORK" "$TB" "$@" --assert-level=failure 2>&1 | grep -E "VYSLEDEK|error|failure|TIMEOUT|Propustnost" || true
