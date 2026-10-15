@@ -30,7 +30,13 @@
 - **Když klíč v nové session chybí** (VM home se nemusí zachovat): `ssh-keygen -q -t ed25519 -N "" -C claude-cowork@karel -f ~/.ssh/id_ed25519_ababel`, znovu vytvořit config, Karel přidá nový `.pub` do `authorized_keys` (starý řádek `claude-cowork@karel` smazat). Test: `ssh ababel hostname`.
 - Odvolání přístupu Claude: smazat řádek `claude-cowork@karel` z `~/.ssh/authorized_keys`.
 
-## Synchronizace repa notebook → Ababel (bez GitHubu)
+## Šablony (POUŽÍVAT PŘEDNOSTNĚ)
+- `.claude/scripts/ababel.sh sync|start|status|stop|fetch|watch` (z kořene repa ve VM) – sync s kontrolou HEAD,
+  odložení netrackovaných konfliktních souborů do `~/logs/*.bak`, spuštění fronty odpojeně, zastavení podle PID.
+- `DP/scripts/ababel/run_queue.sh` (běží na serveru) + fronty `DP/scripts/queues/*.queue`
+  (`vhdl_csc`, `vhdl_hsv`, `hls_all`, `template`). Souhrn `~/logs/<fronta>.log`, detail `~/logs/<fronta>_steps/NN.log`.
+
+## Synchronizace repa notebook → Ababel (bez GitHubu) – ruční postup
 ```
 cd ~/mnt/_DP
 git push -q ababel:Diplomova-prace main:refs/heads/laptop

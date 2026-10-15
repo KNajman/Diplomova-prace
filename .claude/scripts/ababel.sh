@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# =============================================================================
+#  Ovládání Ababelu z device_bash VM (Claude) – šablony místo ručně skládaných příkazů.
+#  Použití (z kořene repa ~/mnt/_DP):
+#    bash .claude/scripts/ababel.sh sync              notebook -> Ababel (git fast-forward), ověří shodu HEAD
+#    bash .claude/scripts/ababel.sh start <fronta>    sync + spustí DP/scripts/queues/<fronta>.queue na pozadí
+#    bash .claude/scripts/ababel.sh status <fronta>   souhrn fronty (1 spojení)
+#    bash .claude/scripts/ababel.sh stop <fronta>     zastaví frontu podle PID (nikdy pkill -f!)
+#    bash .claude/scripts/ababel.sh fetch <cesta>     stáhne soubor z repa na Ababelu do stejné cesty v notebooku
+#    bash .claude/scripts/ababel.sh watch <fronta>    vypíše příkaz pro Karla (tail -f)
+#  Pravidla: jedno ssh spojení na příkaz (ControlMaster), žádné smyčky ssh (VPN odpojení),
+#  CSV/výsledky vytvořené na Ababelu se před merge odkládají do ~/logs/.
+# =============================================================================
+set -euo pipefail
+CMD="${1:-}"
+ARG="${2:-}"
+REPO_REMOTE="Diplomova-prace"
+
+sync_repo() {
+    local local_head remote_head
+    local_head=$(git log --format=%h -1)
+    git push -q ababel:"$REPO_REMOTE" main:refs/heads/laptop
+    # netrackované soubory, které by merge přepsal (typicky results/*.csv z Ababelu) -> ~/logs/
+    ssh ababel "cd ~/$REPO_REMOTE && for f in \$(git diff --name-only HEAD laptop); do [ -e \"\$f\" ] && ! git ls-files --error-unmatch \"\$f\" >/dev/null 2>&1 && mv \"\$f\" ~/logs/\$(echo \$f | tr / _).bak; done; git merge -q --ff-only laptop && git branch -q -D laptop"
+    remote_head=$(ssh ababel "cd ~/$REPO_REMOTE && git log --format=%h -1")
+    if [ "$local_head" != "$remote_head" ]; then
+        echo "CHYBA: Ababel je na $remote_head, notebook na $local_head" >&2
+        exit 1
+    fi
+    echo "sync OK: $local_head"
+}
+
+case "$CMD" in
+    sync)
+        sync_repo ;;
+    start)
+        [ -f "DP/scripts/queues/$ARG.queue" ] || { echo "Fronta DP/scripts/queues/$ARG.queue neexistuje" >&2; exit 1; }
+        sync_repo
+        ssh ababel "setsid nohup bash ~/$REPO_REMOTE/DP/scripts/ababel/run_queue.sh ~/$REPO_REMOTE/DP/scripts/queues/$ARG.queue > /dev/null 2>&1 < /dev/null &"
+        sleep 3
+        ssh ababel "head -2 ~/logs/$ARG.log"
+        echo "Sledování (Karel, PuTTY):  tail -f ~/logs/$ARG.log" ;;
+    status)
+        ssh ababel "cat ~/logs/$ARG.log; [ -f ~/logs/$ARG.pid ] && echo '(běží)' || echo '(neběží)'" ;;
+    stop)
+        ssh ababel "[ -f ~/logs/$ARG.pid ] && P=\$(cat ~/logs/$ARG.pid) && pkill -TERM -P \$P; kill \$P 2>/dev/null; rm -f ~/logs/$ARG.pid; echo zastaveno" ;;
+    fetch)
+        rsync -rq --no-perms ababel:"$REPO_REMOTE/$ARG" "$ARG" && echo "staženo: $ARG" ;;
+    watch)
+        echo "tail -f ~/logs/$ARG.log" ;;
+    *)
+        sed -n '3,12p' "$0"; exit 1 ;;
+esac

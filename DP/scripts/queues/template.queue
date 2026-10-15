@@ -1,0 +1,7 @@
+# Šablona fronty: jeden příkaz na řádek, relativně ke kořeni repa (~/Diplomova-prace)
+# Prostředí Vitis/Vivado 2025.2 je načtené. Krok selže = nenulový návratový kód (fronta pokračuje).
+# Spuštění z VM:  bash .claude/scripts/ababel.sh start <jméno souboru bez .queue>
+# Sledování:      tail -f ~/logs/<jméno>.log
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg all
+cd DP/vhdl/scripts && bash run_xsim.sh tb_csc G_PRESET=1
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs csc_axil G_CH_IN=3 G_CH_OUT=3

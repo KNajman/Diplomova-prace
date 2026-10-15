@@ -5,6 +5,16 @@ description: Spuštění HLS kroku (csim/syn/cosim/impl/all) jádra DP na server
 
 # HLS běh na Ababelu
 
+**Použij šablony, neskládej příkazy ručně:**
+```
+bash .claude/scripts/ababel.sh start <fronta>    # sync + spuštění DP/scripts/queues/<fronta>.queue
+bash .claude/scripts/ababel.sh status <fronta>   # souhrn (jedno spojení)
+bash .claude/scripts/ababel.sh stop <fronta>     # zastavení podle PID
+bash .claude/scripts/ababel.sh fetch <cesta>     # stažení souboru (např. CSV) z Ababelu
+```
+Nová fronta = nový soubor `DP/scripts/queues/<jméno>.queue` (vzor `template.queue`). Karlovi vždy na konec:
+`tail -f ~/logs/<fronta>.log`. Níže je ruční postup pro případ, že by skripty selhaly.
+
 Podrobnosti připojení a řešení problémů: `.claude/memory/ababel.md`.
 
 ## 1. Spojení

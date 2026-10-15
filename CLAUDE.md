@@ -21,6 +21,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Text DP: LaTeX `tulthesis`, lokální TeX Live, `Diplomová_práce/DP.tex`.
 
 ## Jak pracujeme
+- **Opakované příkazy ukládat jako šablony/skripty** (`.claude/scripts/`, `DP/scripts/queues/`), negenerovat je pokaždé znovu.
 - **Běhy na Ababelu: spustit na pozadí a nechat běžet, NEdotazovat se průběžně.** Karel se může připojit a dá vědět, až výsledek doběhne (případně Claude zkontroluje jednou po odhadnuté době). Šetří to SSH spojení (firewall) i tokeny.
 - **Po spuštění jobu na Ababelu vždy na konec odpovědi bash příkaz pro sledování** (např. `tail -f ~/logs/vqueue.log`, Ctrl+C ukončí jen výpis).
 - **Během delší práce průběžné reporty** (SendUserMessage): co je hotovo, co se pokazilo, co se chystá. Ne až na konci.
@@ -45,6 +46,8 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 | `Diplomová_práce/` | text DP (LaTeX), `citace.bib` |
 | `.claude/memory/` | `ababel.md` (připojení a běhy), `lessons.md` (poučení a záludnosti), `decisions.md` (rychlý výtah rozhodnutí) |
 | `.claude/skills/` | projektové skilly (`ababel-hls`) |
+| `.claude/scripts/ababel.sh` | **šablony příkazů pro Ababel** (sync, start/status/stop fronty, fetch) |
+| `DP/scripts/queues/*.queue` | fronty běhů na Ababelu (spouští `DP/scripts/ababel/run_queue.sh`) |
 
 ## Skilly
 - Projektové: `ababel-hls` – spuštění HLS kroku na Ababelu, sběr výsledků, sync repa.

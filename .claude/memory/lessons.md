@@ -21,6 +21,8 @@
 - Pořadí složek UG934: TDATA[7:0] = **G**, [15:8] = B, [23:16] = R. Používat `IMGPROC_RGB_IDX_*`.
 
 ## Repo / nástroje
+- **device_commit_files: pro každý přenos nová (unikátní) složka v /mnt/user-data/outputs/** (např. `stage_HHMMSS/`).
+  Při opakovaném použití stejné cesty se 2× odeslal starý obsah (regbank v3, TB HSV 15. 10.). Po zápisu vždy `grep` ověřit obsah na disku.
 - **Karel má soubory otevřené ve VS Code (Sigasi formátuje).** Před úpravou souboru vždy vzít aktuální verzi z disku (ne starou kopii v cloudu), po zápisu ověřit obsah (`grep`), commitovat jen své soubory. Zápis souboru a příkaz, který ho používá, nikdy nespouštět paralelně.
 - Ababel: firewall omezuje počet nových SSH spojení (zablokování portu 22 po smyčce ssh co 10 s). ControlMaster + čekání v jednom spojení (viz ababel.md).
 - `.gitignore` vzor `hls/` omylem ignoroval `DP/hls/` → správně `/DP/Vitis/**/hls/`. Vzory kotvit lomítkem.

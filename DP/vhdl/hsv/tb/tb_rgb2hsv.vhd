@@ -6,7 +6,7 @@
 --
 --  G_TEST: 0 = testovací obraz 64x48 (hraniční hodnoty, gradient, šum)
 --          1 = rampa 256x256 (R = x, G = y, B = (x + y) / 2, každý 4. řádek B = G -> shody kanálů)
---          2 = všech 2^24 barev (4096x4096, vektory z gen_vectors.sh --full, jen Ababel)
+--          2 = všech 2^24 barev ve 4 částech 2048x2048 (G_PART 0..3, gen_vectors.sh --full, jen Ababel)
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -16,6 +16,7 @@ use work.video_pkg.all;
 entity tb_rgb2hsv is
     generic (
         G_TEST      : natural := 0;
+        G_PART      : natural := 0;    -- úplný test (G_TEST = 2): část 0..3, každá 2048x2048
         G_FRAMES    : positive := 2;
         G_VALID_PCT : natural := 100;
         G_READY_PCT : natural := 100
@@ -30,7 +31,7 @@ architecture sim of tb_rgb2hsv is
         case test is
             when 0      => return 64;
             when 1      => return 256;
-            when others => return 4096;
+            when others => return 2048;
         end case;
     end function;
     function test_height(test : natural) return positive is
@@ -38,7 +39,7 @@ architecture sim of tb_rgb2hsv is
         case test is
             when 0      => return 48;
             when 1      => return 256;
-            when others => return 4096;
+            when others => return 2048;
         end case;
     end function;
     function input_file(test : natural) return string is
@@ -46,7 +47,7 @@ architecture sim of tb_rgb2hsv is
         case test is
             when 0      => return "data/in_rgb.hex";
             when 1      => return "data/in_ramp.hex";
-            when others => return "data/in_all_colors.hex";
+            when others => return "data/in_all_colors_" & integer'image(G_PART) & ".hex";
         end case;
     end function;
     function golden_file(test : natural) return string is
@@ -54,7 +55,7 @@ architecture sim of tb_rgb2hsv is
         case test is
             when 0      => return "data/hsv_test.hex";
             when 1      => return "data/hsv_ramp.hex";
-            when others => return "data/hsv_all_colors.hex";
+            when others => return "data/hsv_all_colors_" & integer'image(G_PART) & ".hex";
         end case;
     end function;
     function pass_fail(error_count : natural) return string is
@@ -67,7 +68,7 @@ architecture sim of tb_rgb2hsv is
 
     constant C_WIDTH  : positive := test_width(G_TEST);
     constant C_HEIGHT : positive := test_height(G_TEST);
-    -- úplný test jen jeden snímek (16,7 M pixelů)
+    -- úplný test jen jeden snímek na část (4,2 M pixelů)
     function test_frames(test : natural) return positive is
     begin
         if test >= 2 then
@@ -117,7 +118,7 @@ begin
                 report "Propustnost: " & integer'image(cycle_count + 1) & " taktu na " & integer'image(C_PIXELS) & " px"
                 severity error;
         end if;
-        report "VYSLEDEK rgb2hsv test " & integer'image(G_TEST) & " " & integer'image(G_VALID_PCT) & "/"
+        report "VYSLEDEK rgb2hsv test " & integer'image(G_TEST) & "." & integer'image(G_PART) & " " & integer'image(G_VALID_PCT) & "/"
             & integer'image(G_READY_PCT) & ": " & pass_fail(error_count) & " (" & integer'image(error_count)
             & " chyb, " & integer'image(C_PIXELS) & " px, " & integer'image(cycle_count + 1) & " taktu)";
         assert error_count = 0 severity failure;
