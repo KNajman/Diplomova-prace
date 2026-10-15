@@ -41,6 +41,8 @@ ssh ababel 'cd ~/Diplomova-prace && git merge --ff-only laptop && git branch -D 
 - Výsledky zpět: `rsync ababel:Diplomova-prace/DP/hls/results/hls_results.csv DP/hls/results/`.
 
 ## Dlouhé běhy (syn/cosim/impl trvají minuty)
+- **Zastavení vlastní fronty:** NIKDY `pkill -f <název skriptu>` přes ssh – vzor se shoduje i s textem vlastního ssh příkazu a zabije ho (15. 10.). Použít `pgrep -f`, vypsat PID a zabít konkrétní PID, nebo `kill $(cat ~/logs/<fronta>.pid)`. Nezabíjet obecně `xsim`/`vivado` – Karel může mít na Ababelu vlastní běhy (např. cosim v GUI).
+- **Před spuštěním fronty ověřit, že merge prošel** (`git log --oneline -1` na Ababelu = commit z notebooku). Netrackované soubory, které jsou v novém commitu, merge zablokují (např. `results/*.csv` vytvořené na Ababelu) → přesunout do `~/logs/`.
 - device_bash má limit ~120–180 s → běh pustit na pozadí a odpojit se:
   ```
   ssh -f ababel 'cd ~/Diplomova-prace/DP/hls/scripts && setsid nohup bash -c "source /tools/Xilinx/2025.2/Vitis/settings64.sh && bash run_hls.sh ../csc/hls_config_rgb.cfg impl" > ~/logs/impl_csc_rgb.log 2>&1 < /dev/null &'
