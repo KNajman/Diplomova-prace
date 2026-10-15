@@ -37,7 +37,7 @@ git push -q ababel:Diplomova-prace main:refs/heads/laptop
 ssh ababel 'cd ~/Diplomova-prace && git merge --ff-only laptop && git branch -D laptop'
 ```
 - Jen fast-forward. Když merge odmítne (necommitované změny / untracked soubory na Ababelu, které jsou v commitu), nejdřív je na Ababelu prověřit, nemazat naslepo.
-- Rychlé zkoušení jednoho souboru bez commitu: `rsync soubor ababel:Diplomova-prace/cesta/` (pak před merge vrátit `git checkout -- soubor`).
+- Rychlé zkoušení bez commitu: `rsync -rq --no-perms` (NE `-a`: přenese z Windows spustitelný bit a git pak hlásí změněné soubory) `soubor ababel:Diplomova-prace/cesta/` (pak před merge vrátit `git checkout -- soubor`).
 - Výsledky zpět: `rsync ababel:Diplomova-prace/DP/hls/results/hls_results.csv DP/hls/results/`.
 
 ## Dlouhé běhy (syn/cosim/impl trvají minuty)
