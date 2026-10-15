@@ -10,3 +10,7 @@ csc_axil_CH_IN3_CH_OUT3_v1,325,558,12,0,2,1.303,1.738,3.697,270.5,logic,yes,0.00
 csc_axil_CH_IN3_CH_OUT3_v2,257,346,9,0,2,1.255,1.738,3.745,267.0,logic,yes,0.006
 csc_core_CH_IN3_CH_OUT3,64,96,9,0,2,2.955,1.738,3.262,306.6,pulse_width,yes,0.006
 csc_core_CH_IN3_CH_OUT3_v1,64,87,12,0,2,3.029,1.738,3.262,306.6,pulse_width,yes,0.009
+hsv2rgb_core,564,371,1,0,38,1.670,1.738,3.330,300.3,logic,yes,0.012
+hsv_axil_RGB_TO_HSVfalse,603,422,1,0,38,1.465,1.738,3.535,282.9,logic,yes,0.014
+hsv_axil_RGB_TO_HSVtrue,275,255,2,0,10,2.474,1.738,3.262,306.6,pulse_width,yes,0.008
+rgb2hsv_core,237,204,2,0,10,2.487,1.738,3.262,306.6,pulse_width,yes,0.007

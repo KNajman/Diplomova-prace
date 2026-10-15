@@ -56,5 +56,5 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 ## Aktuální stav (aktualizuj)
 - HLS hotovo (csim/cosim/impl PASS): CSC, histogram, medián 3x3 (+ šablona `hls_window.hpp` pro konvoluci). Výsledky v `DP/hls/results/hls_results.csv`.
 - HLS zbývá: threshold, rgb2hsv, hsv2rgb (Karel podle README), filter2d (Claude, nad `hls_window.hpp`).
-- VHDL (`DP/vhdl`): `video_pkg`, `axis_skid_buffer`, generický TB, `csc_core` (GHDL PASS). Zbývá: ověření v xsim + OOC impl na Ababelu, AXI4-Lite registrová banka, HSV, konvoluce, medián, (histogram P1, prahování P2).
+- VHDL (`DP/vhdl`): společné bloky (`video_pkg`, skid buffer, `axil_regbank`, generický TB), CSC v3 a RGB↔HSV hotové a ověřené (xsim, OOC, 2^24). Zbývá: konvoluce, medián, (histogram P1, prahování P2); volitelně HSV→RGB s DSP.
 - Další: testovací BD, SW měření, text.
