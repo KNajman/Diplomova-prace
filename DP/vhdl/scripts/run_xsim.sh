@@ -13,7 +13,11 @@ WORK="$HERE/build/xsim"
 mkdir -p "$WORK" && cd "$WORK"
 ln -sfn "$HERE/tb/data" data
 shopt -s nullglob
-SRC=( "$HERE"/../model/generated/imgproc_coeffs_pkg.vhd "$HERE"/common/*.vhd "$HERE"/*/rtl/*.vhd "$HERE"/tb/*.vhd "$HERE"/*/tb/*.vhd )
+# Pořadí překladu: balíčky, společné bloky, jádra, top-level obálky (*_axil), testbenche
+RTL=( "$HERE"/*/rtl/*.vhd )
+CORE=(); TOP=()
+for f in "${RTL[@]}"; do case "$f" in *_axil.vhd) TOP+=( "$f" );; *) CORE+=( "$f" );; esac; done
+SRC=( "$HERE"/../model/generated/imgproc_coeffs_pkg.vhd "$HERE"/common/video_pkg.vhd "$HERE"/common/axis_skid_buffer.vhd "$HERE"/common/axil_regbank.vhd "${CORE[@]}" "${TOP[@]}" "$HERE"/tb/*.vhd "$HERE"/*/tb/*.vhd )
 GEN=()
 for g in "$@"; do GEN+=( -generic_top "$g" ); done
 SNAP="${TB}_$(echo "$*" | tr ' =' '__')"

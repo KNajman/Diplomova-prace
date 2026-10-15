@@ -7,7 +7,10 @@
 set top  [lindex $argv 0]
 set gens [lrange $argv 1 end]
 set root [file normalize [file join [file dirname [info script]] ..]]
-set out  [file join $root build ooc $top]
+# Název výstupu = top + generika (csc_axil_CH_IN3_CH_OUT1), aby se varianty nepřepisovaly
+set label $top
+foreach g $gens { append label "_" [string map {G_ "" = ""} $g] }
+set out  [file join $root build ooc $label]
 file mkdir $out
 
 set src [list [file join $root .. model generated imgproc_coeffs_pkg.vhd]]

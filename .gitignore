@@ -58,10 +58,10 @@ _ide/
 .vitis/
 .vitisWorkspace.json
 logs/
+# build/ = všechny generované buildy: DP/hls/build, DP/vhdl/build (xsim, ghdl, OOC), DP/model/build (CMake)
 build/
 export/
-# Výstupy skriptovaného HLS flow (DP/hls/build, DP/hls/ip_repo)
-/DP/hls/build/
+# Zabalené HLS IP (vznikají skriptem run_hls.sh, znovu vytvořitelné)
 /DP/hls/ip_repo/
 # Platforma se generuje z .xsa (BSP, FSBL, PMUFW) – zdroj pravdy je .xsa + skript
 DP/Vitis/platform_*/
@@ -74,7 +74,6 @@ compile_commands.json
 *.so
 *.elf
 *.exe
-*.out
 *.lock
 
 # ----------------------------------------------------------------------------
@@ -112,6 +111,11 @@ Diplomová_práce/build/
 *.zip
 *.7z
 *.tar.gz
+*.tgz
+# stažené kopie reportů z Ababelu (zdroj pravdy = build/ na Ababelu + results/*.csv)
+/csc_reports/
+# zálohy
+*.old
 # datasheety a manuály AMD/ITU – stáhnutelné, chráněné autorským právem
 /pdf/*.pdf
 # schéma nosné desky (stáhnutelné z AMD); .xdc soubory zůstávají
@@ -147,6 +151,5 @@ desktop.ini
 # Claude – lokální nastavení (paměť a skilly v .claude/ se verzují)
 .claude/settings.local.json
 
-# VHDL - generované (simulace, testovací vektory z gen_vectors.sh)
-/DP/vhdl/build/
+# VHDL – testovací vektory (generuje DP/vhdl/tb/gen_vectors.sh z golden modelu)
 /DP/vhdl/tb/data/
