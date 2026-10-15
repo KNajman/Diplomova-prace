@@ -41,7 +41,7 @@ case "$CMD" in
         ssh ababel "head -2 ~/logs/$ARG.log"
         echo "Sledování (Karel, PuTTY):  tail -f ~/logs/$ARG.log" ;;
     status)
-        ssh ababel "cat ~/logs/$ARG.log; [ -f ~/logs/$ARG.pid ] && echo '(běží)' || echo '(neběží)'" ;;
+        ssh ababel "cat ~/logs/$ARG.log; if [ -f ~/logs/$ARG.pid ] && ps -p \$(cat ~/logs/$ARG.pid) > /dev/null; then echo '(běží)'; elif [ -f ~/logs/$ARG.pid ]; then echo '(SPADLO - proces neexistuje, PID soubor zůstal)'; else echo '(neběží)'; fi" ;;
     stop)
         ssh ababel "[ -f ~/logs/$ARG.pid ] && P=\$(cat ~/logs/$ARG.pid) && pkill -TERM -P \$P; kill \$P 2>/dev/null; rm -f ~/logs/$ARG.pid; echo zastaveno" ;;
     fetch)

@@ -20,8 +20,11 @@ mkdir -p "$HOME/logs" "$STEPS"
 rm -f "$STEPS"/*.log
 echo $$ > "$HOME/logs/$NAME.pid"
 : > "$LOG"
+# settings64.sh od Xilinxu používá nedefinované proměnné (PYTHONPATH) -> načíst bez 'set -u'
+set +u
 source /tools/Xilinx/2025.2/Vitis/settings64.sh > /dev/null 2>&1
 source /tools/Xilinx/2025.2/Vivado/settings64.sh > /dev/null 2>&1
+set -u
 
 step=0
 failures=0
