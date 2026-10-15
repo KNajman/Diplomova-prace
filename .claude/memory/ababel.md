@@ -42,6 +42,7 @@ ssh ababel 'cd ~/Diplomova-prace && git merge --ff-only laptop && git branch -D 
 
 ## Dlouhé běhy (syn/cosim/impl trvají minuty)
 - **Zastavení vlastní fronty:** NIKDY `pkill -f <název skriptu>` přes ssh – vzor se shoduje i s textem vlastního ssh příkazu a zabije ho (15. 10.). Použít `pgrep -f`, vypsat PID a zabít konkrétní PID, nebo `kill $(cat ~/logs/<fronta>.pid)`. Nezabíjet obecně `xsim`/`vivado` – Karel může mít na Ababelu vlastní běhy (např. cosim v GUI).
+- **CSV vytvořené na Ababelu nejdřív zkopírovat do `~/logs/`, teprve pak `git checkout`/merge** (15. 10. checkout přepsal čerstvé výsledky v2 verzí v1 – obnoveno z build/ooc).
 - **Před spuštěním fronty ověřit, že merge prošel** (`git log --oneline -1` na Ababelu = commit z notebooku). Netrackované soubory, které jsou v novém commitu, merge zablokují (např. `results/*.csv` vytvořené na Ababelu) → přesunout do `~/logs/`.
 - device_bash má limit ~120–180 s → běh pustit na pozadí a odpojit se:
   ```

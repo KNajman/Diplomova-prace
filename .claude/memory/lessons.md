@@ -21,6 +21,7 @@
 - Pořadí složek UG934: TDATA[7:0] = **G**, [15:8] = B, [23:16] = R. Používat `IMGPROC_RGB_IDX_*`.
 
 ## Repo / nástroje
+- **Karel má soubory otevřené ve VS Code (Sigasi formátuje).** Před úpravou souboru vždy vzít aktuální verzi z disku (ne starou kopii v cloudu), po zápisu ověřit obsah (`grep`), commitovat jen své soubory. Zápis souboru a příkaz, který ho používá, nikdy nespouštět paralelně.
 - Ababel: firewall omezuje počet nových SSH spojení (zablokování portu 22 po smyčce ssh co 10 s). ControlMaster + čekání v jednom spojení (viz ababel.md).
 - `.gitignore` vzor `hls/` omylem ignoroval `DP/hls/` → správně `/DP/Vitis/**/hls/`. Vzory kotvit lomítkem.
 - Whitelist `.gitignore` sledoval 1,2 GB a vynechal text DP → blacklist.
