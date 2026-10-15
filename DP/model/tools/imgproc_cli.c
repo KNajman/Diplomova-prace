@@ -90,6 +90,35 @@ static void read_pnm(const char* path, imgproc_image_t* img)
 }
 
 /**
+ * @brief Vrátí 3kanálový obraz načtený z PPM do surového pořadí složek (bajt 0 = první složka v PPM).
+ *
+ * load_pnm() předpokládá RGB a přeskládá R,G,B -> G,B,R (UG934). Data, která nejsou RGB (HSV),
+ * ale write_outputs() zapisuje do PPM v surovém pořadí (H,S,V jako R,G,B). Bez zpětného
+ * přeskládání by hsv2rgb dostal složky prohozené (S,V,H) a golden vektory by byly špatně.
+ *
+ * @param img Obraz načtený přes load_pnm() (3 kanály), upraví se na místě
+ */
+static void pnm_to_raw_order(const imgproc_image_t* img)
+{
+    uint32_t x = 0u;
+    uint32_t y = 0u;
+
+    for (y = 0u; y < img->height; y++)
+    {
+        for (x = 0u; x < img->width; x++)
+        {
+            uint8_t* p = imgproc_image_pixel(img, x, y);
+            const uint8_t first = p[IMGPROC_RGB_IDX_R];     /* PPM složka 1 */
+            const uint8_t second = p[IMGPROC_RGB_IDX_G];    /* PPM složka 2 */
+            const uint8_t third = p[IMGPROC_RGB_IDX_B];     /* PPM složka 3 */
+            p[0] = first;
+            p[1] = second;
+            p[2] = third;
+        }
+    }
+}
+
+/**
  * @brief Uloží obraz jako PGM/PPM a jako HEX soubor pro testbenche.
  * @param img       Obraz
  * @param prefix    Výstupní prefix
@@ -254,6 +283,7 @@ static bool run_point_op(int argc, char** argv, const imgproc_image_t* src, imgp
     }
     else if (strcmp(op, "hsv2rgb") == 0)
     {
+        pnm_to_raw_order(src);      /* vstup je HSV v surovém pořadí, ne RGB */
         imgproc_image_init(dst, g_dst_buf, src->width, src->height, (uint8_t)IMGPROC_CH_MAX);
         imgproc_hsv_to_rgb(src, dst);
         is_rgb = true;
