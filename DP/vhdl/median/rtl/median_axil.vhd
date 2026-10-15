@@ -17,12 +17,12 @@ use work.video_pkg.all;
 use work.axil_regbank_pkg.all;
 
 entity median_axil is
-    generic (
+    generic(
         G_MAX_WIDTH : positive := C_MAX_WIDTH
     );
-    port (
-        aclk          : in  std_logic;
-        aresetn       : in  std_logic;
+    port(
+        aclk                  : in  std_logic;
+        aresetn               : in  std_logic;
         -- AXI4-Lite (bundle control)
         s_axi_control_awaddr  : in  std_logic_vector(7 downto 0);
         s_axi_control_awvalid : in  std_logic;
@@ -43,33 +43,33 @@ entity median_axil is
         s_axi_control_rready  : in  std_logic;
         interrupt             : out std_logic;
         -- AXI4-Stream Video (8 b)
-        s_axis_video_tdata  : in  std_logic_vector(C_PIX_W - 1 downto 0);
-        s_axis_video_tuser  : in  std_logic_vector(0 downto 0);
-        s_axis_video_tlast  : in  std_logic;
-        s_axis_video_tvalid : in  std_logic;
-        s_axis_video_tready : out std_logic;
-        m_axis_video_tdata  : out std_logic_vector(C_PIX_W - 1 downto 0);
-        m_axis_video_tuser  : out std_logic_vector(0 downto 0);
-        m_axis_video_tlast  : out std_logic;
-        m_axis_video_tvalid : out std_logic;
-        m_axis_video_tready : in  std_logic
+        s_axis_video_tdata    : in  std_logic_vector(C_PIX_W - 1 downto 0);
+        s_axis_video_tuser    : in  std_logic_vector(0 downto 0);
+        s_axis_video_tlast    : in  std_logic;
+        s_axis_video_tvalid   : in  std_logic;
+        s_axis_video_tready   : out std_logic;
+        m_axis_video_tdata    : out std_logic_vector(C_PIX_W - 1 downto 0);
+        m_axis_video_tuser    : out std_logic_vector(0 downto 0);
+        m_axis_video_tlast    : out std_logic;
+        m_axis_video_tvalid   : out std_logic;
+        m_axis_video_tready   : in  std_logic
     );
 end entity;
 
 architecture rtl of median_axil is
-    constant C_REG_WIDTH  : natural := 0;
-    constant C_REG_HEIGHT : natural := 1;
-    constant C_REG_BORDER : natural := 2;
-    constant C_REG_STATUS : natural := 3;
-    constant C_NUM_REGS   : natural := 4;
-    constant C_REG_W      : t_width_array(0 to C_NUM_REGS - 1) := (C_DIM_W, C_DIM_W, 1, 4);
+    constant C_REG_WIDTH  : natural                               := 0;
+    constant C_REG_HEIGHT : natural                               := 1;
+    constant C_REG_BORDER : natural                               := 2;
+    constant C_REG_STATUS : natural                               := 3;
+    constant C_NUM_REGS   : natural                               := 4;
+    constant C_REG_W      : t_width_array(0 to C_NUM_REGS - 1)    := (C_DIM_W, C_DIM_W, 1, 4);
     constant C_RO_MASK    : std_logic_vector(0 to C_NUM_REGS - 1) := "0001";
 
-    signal regs       : t_reg_array(0 to C_NUM_REGS - 1);
-    signal ro_in      : t_reg_array(0 to C_NUM_REGS - 1) := (others => (others => '0'));
-    signal run        : std_logic;
-    signal status     : std_logic_vector(3 downto 0);
-    signal frame_done : std_logic;
+    signal regs                         : t_reg_array(0 to C_NUM_REGS - 1);
+    signal ro_in                        : t_reg_array(0 to C_NUM_REGS - 1) := (others => (others => '0'));
+    signal run                          : std_logic;
+    signal status                       : std_logic_vector(3 downto 0);
+    signal frame_done                   : std_logic;
     signal core_s_tvalid, core_s_tready : std_logic;
 begin
 
@@ -81,30 +81,30 @@ begin
     ro_in(C_REG_STATUS)(3 downto 0) <= status;
 
     regbank : entity work.axil_regbank
-        generic map (G_NUM_REGS => C_NUM_REGS, G_REG_W => C_REG_W, G_RO_MASK => C_RO_MASK, G_ADDR_W => 8)
-        port map (aclk => aclk, aresetn => aresetn,
-                  s_axi_awaddr => s_axi_control_awaddr, s_axi_awvalid => s_axi_control_awvalid,
-                  s_axi_awready => s_axi_control_awready, s_axi_wdata => s_axi_control_wdata,
-                  s_axi_wstrb => s_axi_control_wstrb, s_axi_wvalid => s_axi_control_wvalid,
-                  s_axi_wready => s_axi_control_wready, s_axi_bresp => s_axi_control_bresp,
-                  s_axi_bvalid => s_axi_control_bvalid, s_axi_bready => s_axi_control_bready,
-                  s_axi_araddr => s_axi_control_araddr, s_axi_arvalid => s_axi_control_arvalid,
-                  s_axi_arready => s_axi_control_arready, s_axi_rdata => s_axi_control_rdata,
-                  s_axi_rresp => s_axi_control_rresp, s_axi_rvalid => s_axi_control_rvalid,
-                  s_axi_rready => s_axi_control_rready,
-                  regs => regs, ro_in => ro_in, run => run, done_in => frame_done, interrupt => interrupt);
+        generic map(G_NUM_REGS => C_NUM_REGS, G_REG_W => C_REG_W, G_RO_MASK => C_RO_MASK, G_ADDR_W => 8)
+        port map(aclk          => aclk, aresetn => aresetn,
+                 s_axi_awaddr  => s_axi_control_awaddr, s_axi_awvalid => s_axi_control_awvalid,
+                 s_axi_awready => s_axi_control_awready, s_axi_wdata => s_axi_control_wdata,
+                 s_axi_wstrb   => s_axi_control_wstrb, s_axi_wvalid => s_axi_control_wvalid,
+                 s_axi_wready  => s_axi_control_wready, s_axi_bresp => s_axi_control_bresp,
+                 s_axi_bvalid  => s_axi_control_bvalid, s_axi_bready => s_axi_control_bready,
+                 s_axi_araddr  => s_axi_control_araddr, s_axi_arvalid => s_axi_control_arvalid,
+                 s_axi_arready => s_axi_control_arready, s_axi_rdata => s_axi_control_rdata,
+                 s_axi_rresp   => s_axi_control_rresp, s_axi_rvalid => s_axi_control_rvalid,
+                 s_axi_rready  => s_axi_control_rready,
+                 regs          => regs, ro_in => ro_in, run => run, done_in => frame_done, interrupt => interrupt);
 
     core : entity work.median_core
-        generic map (G_MAX_WIDTH => G_MAX_WIDTH)
-        port map (aclk => aclk, aresetn => aresetn, run => run,
-                  width => unsigned(regs(C_REG_WIDTH)(C_DIM_W - 1 downto 0)),
-                  height => unsigned(regs(C_REG_HEIGHT)(C_DIM_W - 1 downto 0)),
-                  border_replicate => regs(C_REG_BORDER)(0), status => status, frame_done => frame_done,
-                  s_axis_tdata => s_axis_video_tdata, s_axis_tuser => s_axis_video_tuser(0),
-                  s_axis_tlast => s_axis_video_tlast, s_axis_tvalid => core_s_tvalid,
-                  s_axis_tready => core_s_tready,
-                  m_axis_tdata => m_axis_video_tdata, m_axis_tuser => m_axis_video_tuser(0),
-                  m_axis_tlast => m_axis_video_tlast, m_axis_tvalid => m_axis_video_tvalid,
-                  m_axis_tready => m_axis_video_tready);
+        generic map(G_MAX_WIDTH => G_MAX_WIDTH)
+        port map(aclk             => aclk, aresetn => aresetn, run => run,
+                 width            => unsigned(regs(C_REG_WIDTH)(C_DIM_W - 1 downto 0)),
+                 height           => unsigned(regs(C_REG_HEIGHT)(C_DIM_W - 1 downto 0)),
+                 border_replicate => regs(C_REG_BORDER)(0), status => status, frame_done => frame_done,
+                 s_axis_tdata     => s_axis_video_tdata, s_axis_tuser => s_axis_video_tuser(0),
+                 s_axis_tlast     => s_axis_video_tlast, s_axis_tvalid => core_s_tvalid,
+                 s_axis_tready    => core_s_tready,
+                 m_axis_tdata     => m_axis_video_tdata, m_axis_tuser => m_axis_video_tuser(0),
+                 m_axis_tlast     => m_axis_video_tlast, m_axis_tvalid => m_axis_video_tvalid,
+                 m_axis_tready    => m_axis_video_tready);
 
 end architecture;
