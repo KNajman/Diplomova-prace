@@ -143,3 +143,6 @@ Diplomová_práce/build/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Claude – lokální nastavení (paměť a skilly v .claude/ se verzují)
+.claude/settings.local.json
