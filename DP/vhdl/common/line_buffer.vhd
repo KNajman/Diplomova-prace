@@ -17,12 +17,12 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity line_buffer is
-    generic (
+    generic(
         G_DEPTH  : positive := 3840;
         G_DATA_W : positive := 8;
         G_ADDR_W : positive := 12
     );
-    port (
+    port(
         aclk         : in  std_logic;
         read_enable  : in  std_logic;
         read_addr    : in  unsigned(G_ADDR_W - 1 downto 0);
@@ -34,16 +34,16 @@ entity line_buffer is
 end entity;
 
 architecture rtl of line_buffer is
-    type t_memory is array (0 to G_DEPTH - 1) of std_logic_vector(G_DATA_W - 1 downto 0);
-    signal memory   : t_memory := (others => (others => '0'));
+    type   t_memory is array (0 to G_DEPTH - 1) of std_logic_vector(G_DATA_W - 1 downto 0);
+    signal memory   : t_memory                                := (others => (others => '0'));
     signal data_reg : std_logic_vector(G_DATA_W - 1 downto 0) := (others => '0');
 
-    attribute ram_style : string;
+    attribute ram_style           : string;
     attribute ram_style of memory : signal is "block";
 begin
     read_data <= data_reg;
 
-    process (aclk)
+    process(aclk)
     begin
         if rising_edge(aclk) then
             if write_enable = '1' then

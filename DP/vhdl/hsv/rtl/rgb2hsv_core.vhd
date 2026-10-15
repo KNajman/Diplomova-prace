@@ -35,7 +35,7 @@ use work.video_pkg.all;
 use work.imgproc_coeffs_pkg.all;
 
 entity rgb2hsv_core is
-    port (
+    port(
         aclk          : in  std_logic;
         aresetn       : in  std_logic;
         -- AXI4-Stream Video vstup RGB (UG934: [7:0] G, [15:8] B, [23:16] R)
@@ -66,53 +66,53 @@ architecture rtl of rgb2hsv_core is
         return clog2(max_value + 1);
     end function;
 
-    constant C_HUE_RANGE       : natural := 180;
-    constant C_HUE_SECTOR_G    : natural := 2;                                  -- offset sektoru (x diff), max v G
-    constant C_HUE_SECTOR_B    : natural := 4;                                  -- offset sektoru (x diff), max v B
-    constant C_SDIV_W          : natural := table_width(C_HSV_SDIV);            -- 20 b
-    constant C_HDIV_W          : natural := table_width(C_HSV_HDIV180);         -- 17 b
-    constant C_DIFF_SIGNED_W   : natural := C_PIX_W + 1;                        -- rozdíl dvou složek se znaménkem
-    constant C_SECTOR_TERM_W   : natural := C_PIX_W + clog2(C_HUE_SECTOR_B) + 1; -- 4 * diff se znaménkem
-    constant C_HUE_NUMER_W     : natural := sum_w(maximum(C_DIFF_SIGNED_W, C_SECTOR_TERM_W), 2);
-    constant C_SAT_PRODUCT_W   : natural := C_PIX_W + C_SDIV_W;                 -- diff * sdiv (bez znaménka)
-    constant C_HUE_PRODUCT_W   : natural := C_HUE_NUMER_W + C_HDIV_W + 1;       -- se znaménkem * bez znaménka
-    constant C_PIPE_DEPTH      : natural := 8;
+    constant C_HUE_RANGE     : natural := 180;
+    constant C_HUE_SECTOR_G  : natural := 2; -- offset sektoru (x diff), max v G
+    constant C_HUE_SECTOR_B  : natural := 4; -- offset sektoru (x diff), max v B
+    constant C_SDIV_W        : natural := table_width(C_HSV_SDIV); -- 20 b
+    constant C_HDIV_W        : natural := table_width(C_HSV_HDIV180); -- 17 b
+    constant C_DIFF_SIGNED_W : natural := C_PIX_W + 1; -- rozdíl dvou složek se znaménkem
+    constant C_SECTOR_TERM_W : natural := C_PIX_W + clog2(C_HUE_SECTOR_B) + 1; -- 4 * diff se znaménkem
+    constant C_HUE_NUMER_W   : natural := sum_w(maximum(C_DIFF_SIGNED_W, C_SECTOR_TERM_W), 2);
+    constant C_SAT_PRODUCT_W : natural := C_PIX_W + C_SDIV_W; -- diff * sdiv (bez znaménka)
+    constant C_HUE_PRODUCT_W : natural := C_HUE_NUMER_W + C_HDIV_W + 1; -- se znaménkem * bez znaménka
+    constant C_PIPE_DEPTH    : natural := 8;
 
     type t_max_channel is (MAX_IS_RED, MAX_IS_GREEN, MAX_IS_BLUE);
 
     signal pipe_enable : std_logic;
 
     -- takt 1
-    signal in_red, in_green, in_blue : t_pix := (others => '0');
+    signal in_red, in_green, in_blue                         : t_pix                                  := (others => '0');
     -- takt 2
-    signal red_ge_green, red_ge_blue, green_ge_blue : boolean := false;
-    signal green_minus_blue, blue_minus_red, red_minus_green : signed(C_DIFF_SIGNED_W - 1 downto 0) := (others => '0');
-    signal red_dly2, green_dly2, blue_dly2 : t_pix := (others => '0');
+    signal red_ge_green, red_ge_blue, green_ge_blue          : boolean                                := false;
+    signal green_minus_blue, blue_minus_red, red_minus_green : signed(C_DIFF_SIGNED_W - 1 downto 0)   := (others => '0');
+    signal red_dly2, green_dly2, blue_dly2                   : t_pix                                  := (others => '0');
     -- takt 3
-    signal value_max, value_min : t_pix := (others => '0');
-    signal max_channel          : t_max_channel := MAX_IS_RED;
-    signal hue_diff_term        : signed(C_DIFF_SIGNED_W - 1 downto 0) := (others => '0');
+    signal value_max, value_min                              : t_pix                                  := (others => '0');
+    signal max_channel                                       : t_max_channel                          := MAX_IS_RED;
+    signal hue_diff_term                                     : signed(C_DIFF_SIGNED_W - 1 downto 0)   := (others => '0');
     -- takt 4
-    signal diff                 : t_pix := (others => '0');
-    signal value_max_dly4       : t_pix := (others => '0');
-    signal max_channel_dly4     : t_max_channel := MAX_IS_RED;
-    signal hue_diff_term_dly4   : signed(C_DIFF_SIGNED_W - 1 downto 0) := (others => '0');
+    signal diff                                              : t_pix                                  := (others => '0');
+    signal value_max_dly4                                    : t_pix                                  := (others => '0');
+    signal max_channel_dly4                                  : t_max_channel                          := MAX_IS_RED;
+    signal hue_diff_term_dly4                                : signed(C_DIFF_SIGNED_W - 1 downto 0)   := (others => '0');
     -- takt 5
-    signal hue_numerator        : signed(C_HUE_NUMER_W - 1 downto 0) := (others => '0');
-    signal sdiv_value           : unsigned(C_SDIV_W - 1 downto 0) := (others => '0');
-    signal hdiv_value           : unsigned(C_HDIV_W - 1 downto 0) := (others => '0');
-    signal diff_dly5            : t_pix := (others => '0');
-    signal value_max_dly5       : t_pix := (others => '0');
+    signal hue_numerator                                     : signed(C_HUE_NUMER_W - 1 downto 0)     := (others => '0');
+    signal sdiv_value                                        : unsigned(C_SDIV_W - 1 downto 0)        := (others => '0');
+    signal hdiv_value                                        : unsigned(C_HDIV_W - 1 downto 0)        := (others => '0');
+    signal diff_dly5                                         : t_pix                                  := (others => '0');
+    signal value_max_dly5                                    : t_pix                                  := (others => '0');
     -- takt 6
-    signal sat_product          : unsigned(C_SAT_PRODUCT_W - 1 downto 0) := (others => '0');
-    signal hue_product          : signed(C_HUE_PRODUCT_W - 1 downto 0) := (others => '0');
-    signal value_max_dly6       : t_pix := (others => '0');
+    signal sat_product                                       : unsigned(C_SAT_PRODUCT_W - 1 downto 0) := (others => '0');
+    signal hue_product                                       : signed(C_HUE_PRODUCT_W - 1 downto 0)   := (others => '0');
+    signal value_max_dly6                                    : t_pix                                  := (others => '0');
     -- takt 7
-    signal saturation_rounded   : unsigned(C_SAT_PRODUCT_W - 1 downto 0) := (others => '0');
-    signal hue_rounded          : signed(C_HUE_PRODUCT_W - 1 downto 0) := (others => '0');
-    signal value_max_dly7       : t_pix := (others => '0');
+    signal saturation_rounded                                : unsigned(C_SAT_PRODUCT_W - 1 downto 0) := (others => '0');
+    signal hue_rounded                                       : signed(C_HUE_PRODUCT_W - 1 downto 0)   := (others => '0');
+    signal value_max_dly7                                    : t_pix                                  := (others => '0');
     -- takt 8
-    signal out_hue, out_saturation, out_value : t_pix := (others => '0');
+    signal out_hue, out_saturation, out_value                : t_pix                                  := (others => '0');
 
     -- Postranní signály zpožděné o hloubku pipeline
     signal valid_pipe : std_logic_vector(1 to C_PIPE_DEPTH) := (others => '0');
@@ -127,7 +127,7 @@ begin
 
     s_axis_tready <= pipe_enable;
 
-    process (aclk)
+    process(aclk)
         variable hue_wrapped : signed(C_HUE_PRODUCT_W - C_HSV_SHIFT downto 0);
     begin
         if rising_edge(aclk) then
@@ -144,9 +144,9 @@ begin
                 green_minus_blue <= signed('0' & in_green) - signed('0' & in_blue);
                 blue_minus_red   <= signed('0' & in_blue) - signed('0' & in_red);
                 red_minus_green  <= signed('0' & in_red) - signed('0' & in_green);
-                red_dly2   <= in_red;
-                green_dly2 <= in_green;
-                blue_dly2  <= in_blue;
+                red_dly2         <= in_red;
+                green_dly2       <= in_green;
+                blue_dly2        <= in_blue;
 
                 -- takt 3: maximum, minimum a kanál s maximem (přednost R, pak G)
                 if red_ge_green and red_ge_blue then
@@ -182,11 +182,9 @@ begin
                     when MAX_IS_RED =>
                         hue_numerator <= resize(hue_diff_term_dly4, C_HUE_NUMER_W);
                     when MAX_IS_GREEN =>
-                        hue_numerator <= resize(hue_diff_term_dly4, C_HUE_NUMER_W)
-                                         + signed(resize(diff, C_HUE_NUMER_W) sll clog2(C_HUE_SECTOR_G));
+                        hue_numerator <= resize(hue_diff_term_dly4, C_HUE_NUMER_W) + signed(resize(diff, C_HUE_NUMER_W) sll clog2(C_HUE_SECTOR_G));
                     when MAX_IS_BLUE =>
-                        hue_numerator <= resize(hue_diff_term_dly4, C_HUE_NUMER_W)
-                                         + signed(resize(diff, C_HUE_NUMER_W) sll clog2(C_HUE_SECTOR_B));
+                        hue_numerator <= resize(hue_diff_term_dly4, C_HUE_NUMER_W) + signed(resize(diff, C_HUE_NUMER_W) sll clog2(C_HUE_SECTOR_B));
                 end case;
                 sdiv_value     <= to_unsigned(C_HSV_SDIV(to_integer(value_max_dly4)), C_SDIV_W);
                 hdiv_value     <= to_unsigned(C_HSV_HDIV180(to_integer(diff)), C_HDIV_W);
@@ -204,7 +202,7 @@ begin
                 value_max_dly7     <= value_max_dly6;
 
                 -- takt 8: H < 0 -> + 180, saturace, výstup
-                hue_wrapped := resize(hue_rounded, hue_wrapped'length);
+                hue_wrapped    := resize(hue_rounded, hue_wrapped'length);
                 if hue_wrapped < 0 then
                     hue_wrapped := hue_wrapped + C_HUE_RANGE;
                 end if;
@@ -227,9 +225,9 @@ begin
     skid_in_data <= eol_pipe(C_PIPE_DEPTH) & sof_pipe(C_PIPE_DEPTH) & pack3(out_hue, out_saturation, out_value);
 
     skid : entity work.axis_skid_buffer
-        generic map (G_DATA_W => C_RGB_W + 2)
-        port map (aclk => aclk, aresetn => aresetn, s_data => skid_in_data, s_valid => valid_pipe(C_PIPE_DEPTH),
-                  s_ready => pipe_enable, m_data => skid_out_data, m_valid => m_axis_tvalid, m_ready => m_axis_tready);
+        generic map(G_DATA_W => C_RGB_W + 2)
+        port map(aclk    => aclk, aresetn => aresetn, s_data => skid_in_data, s_valid => valid_pipe(C_PIPE_DEPTH),
+                 s_ready => pipe_enable, m_data => skid_out_data, m_valid => m_axis_tvalid, m_ready => m_axis_tready);
 
     m_axis_tdata <= skid_out_data(C_RGB_W - 1 downto 0);
     m_axis_tuser <= skid_out_data(C_RGB_W);

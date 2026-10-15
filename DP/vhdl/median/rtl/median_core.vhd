@@ -25,10 +25,10 @@ use ieee.numeric_std.all;
 use work.video_pkg.all;
 
 entity median_core is
-    generic (
+    generic(
         G_MAX_WIDTH : positive := C_MAX_WIDTH
     );
-    port (
+    port(
         aclk             : in  std_logic;
         aresetn          : in  std_logic;
         run              : in  std_logic;
@@ -53,8 +53,8 @@ entity median_core is
 end entity;
 
 architecture rtl of median_core is
-    constant C_WINDOW : natural := 3;
-    constant C_OP_DEPTH : natural := 3;         -- takty E1..E3
+    constant C_WINDOW   : natural := 3;
+    constant C_OP_DEPTH : natural := 3; -- takty E1..E3
 
     type t_sorted3 is record
         low    : t_pix;
@@ -68,9 +68,23 @@ architecture rtl of median_core is
         variable low_ab, high_ab : t_pix;
         variable result          : t_sorted3;
     begin
-        if a < b then low_ab := a; high_ab := b; else low_ab := b; high_ab := a; end if;
-        if low_ab < c then result.low := low_ab; else result.low := c; end if;
-        if high_ab > c then result.high := high_ab; else result.high := c; end if;
+        if a < b then
+            low_ab  := a;
+            high_ab := b;
+        else
+            low_ab  := b;
+            high_ab := a;
+        end if;
+        if low_ab < c then
+            result.low := low_ab;
+        else
+            result.low := c;
+        end if;
+        if high_ab > c then
+            result.high := high_ab;
+        else
+            result.high := c;
+        end if;
         if high_ab < c then
             result.middle := high_ab;
         elsif low_ab > c then
@@ -85,42 +99,42 @@ architecture rtl of median_core is
 
     -- vstupní skid buffer
     signal in_skid_s_data, in_skid_m_data : std_logic_vector(C_PIX_W + 1 downto 0);
-    signal in_valid, in_ready : std_logic;
+    signal in_valid, in_ready             : std_logic;
 
     -- okno
-    signal window          : t_window(0 to C_WINDOW - 1, 0 to C_WINDOW - 1);
-    signal window_valid    : std_logic;
-    signal window_sof      : std_logic;
-    signal window_eol      : std_logic;
+    signal window           : t_window(0 to C_WINDOW - 1, 0 to C_WINDOW - 1);
+    signal window_valid     : std_logic;
+    signal window_sof       : std_logic;
+    signal window_eol       : std_logic;
     signal window_frame_end : std_logic;
 
     -- síť mediánu
-    signal rows_sorted   : t_sorted3_array;                                     -- E1
-    signal lows_sorted, middles_sorted, highs_sorted : t_sorted3;               -- E2
-    signal median_value  : t_pix := (others => '0');                            -- E3
+    signal rows_sorted                                    : t_sorted3_array; -- E1
+    signal lows_sorted, middles_sorted, highs_sorted      : t_sorted3; -- E2
+    signal median_value                                   : t_pix                             := (others => '0'); -- E3
     signal valid_pipe, sof_pipe, eol_pipe, frame_end_pipe : std_logic_vector(1 to C_OP_DEPTH) := (others => '0');
 
     signal out_skid_s_data, out_skid_m_data : std_logic_vector(C_PIX_W + 1 downto 0);
-    signal out_valid : std_logic;
+    signal out_valid                        : std_logic;
 begin
 
     -- vstupní skid buffer: registrovaný TREADY směrem k předchozímu jádru
     in_skid_s_data <= s_axis_tlast & s_axis_tuser & s_axis_tdata;
     input_skid : entity work.axis_skid_buffer
-        generic map (G_DATA_W => C_PIX_W + 2)
-        port map (aclk => aclk, aresetn => aresetn, s_data => in_skid_s_data, s_valid => s_axis_tvalid,
-                  s_ready => s_axis_tready, m_data => in_skid_m_data, m_valid => in_valid, m_ready => in_ready);
+        generic map(G_DATA_W => C_PIX_W + 2)
+        port map(aclk    => aclk, aresetn => aresetn, s_data => in_skid_s_data, s_valid => s_axis_tvalid,
+                 s_ready => s_axis_tready, m_data => in_skid_m_data, m_valid => in_valid, m_ready => in_ready);
 
     window_generator : entity work.window_gen
-        generic map (G_K => C_WINDOW, G_MAX_WIDTH => G_MAX_WIDTH)
-        port map (aclk => aclk, aresetn => aresetn, pipe_enable => pipe_enable, run => run,
-                  width => width, height => height, border_replicate => border_replicate,
-                  in_data => unsigned(in_skid_m_data(C_PIX_W - 1 downto 0)), in_user => in_skid_m_data(C_PIX_W),
-                  in_last => in_skid_m_data(C_PIX_W + 1), in_valid => in_valid, in_ready => in_ready,
-                  win => window, win_valid => window_valid, win_sof => window_sof, win_eol => window_eol,
-                  win_frame_end => window_frame_end, status => status);
+        generic map(G_K => C_WINDOW, G_MAX_WIDTH => G_MAX_WIDTH)
+        port map(aclk             => aclk, aresetn => aresetn, pipe_enable => pipe_enable, run => run,
+                 width            => width, height => height, border_replicate => border_replicate,
+                 in_data          => unsigned(in_skid_m_data(C_PIX_W - 1 downto 0)), in_user => in_skid_m_data(C_PIX_W),
+                 in_last          => in_skid_m_data(C_PIX_W + 1), in_valid => in_valid, in_ready => in_ready,
+                 win              => window, win_valid => window_valid, win_sof => window_sof, win_eol => window_eol,
+                 win_frame_end    => window_frame_end, status => status);
 
-    process (aclk)
+    process(aclk)
     begin
         if rising_edge(aclk) then
             if pipe_enable = '1' then
@@ -133,7 +147,7 @@ begin
                 middles_sorted <= sort3(rows_sorted(0).middle, rows_sorted(1).middle, rows_sorted(2).middle);
                 highs_sorted   <= sort3(rows_sorted(0).high, rows_sorted(1).high, rows_sorted(2).high);
                 -- E3: medián
-                median_value <= sort3(lows_sorted.high, middles_sorted.middle, highs_sorted.low).middle;
+                median_value   <= sort3(lows_sorted.high, middles_sorted.middle, highs_sorted.low).middle;
 
                 sof_pipe       <= window_sof & sof_pipe(1 to C_OP_DEPTH - 1);
                 eol_pipe       <= window_eol & eol_pipe(1 to C_OP_DEPTH - 1);
@@ -152,10 +166,10 @@ begin
 
     out_skid_s_data <= eol_pipe(C_OP_DEPTH) & sof_pipe(C_OP_DEPTH) & std_logic_vector(median_value);
     output_skid : entity work.axis_skid_buffer
-        generic map (G_DATA_W => C_PIX_W + 2)
-        port map (aclk => aclk, aresetn => aresetn, s_data => out_skid_s_data, s_valid => out_valid,
-                  s_ready => pipe_enable, m_data => out_skid_m_data, m_valid => m_axis_tvalid,
-                  m_ready => m_axis_tready);
+        generic map(G_DATA_W => C_PIX_W + 2)
+        port map(aclk    => aclk, aresetn => aresetn, s_data => out_skid_s_data, s_valid => out_valid,
+                 s_ready => pipe_enable, m_data => out_skid_m_data, m_valid => m_axis_tvalid,
+                 m_ready => m_axis_tready);
 
     m_axis_tdata <= out_skid_m_data(C_PIX_W - 1 downto 0);
     m_axis_tuser <= out_skid_m_data(C_PIX_W);

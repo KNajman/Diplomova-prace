@@ -34,7 +34,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 package axil_regbank_pkg is
-    type t_reg_array is array (natural range <>) of std_logic_vector(31 downto 0);
+    type t_reg_array   is array (natural range <>) of std_logic_vector(31 downto 0);
     type t_width_array is array (natural range <>) of natural range 1 to 32;
 end package;
 
@@ -44,39 +44,39 @@ use ieee.numeric_std.all;
 use work.axil_regbank_pkg.all;
 
 entity axil_regbank is
-    generic (
-        G_NUM_REGS : positive := 12;
-        G_REG_W    : t_width_array;               -- platná šířka každého registru (bity nad ní = 0)
-        G_RO_MASK  : std_logic_vector := "0";     -- bit = 1 -> registr je výstup jádra (jen čtení)
-        G_ADDR_W   : positive := 8
+    generic(
+        G_NUM_REGS : positive         := 12;
+        G_REG_W    : t_width_array;     -- platná šířka každého registru (bity nad ní = 0)
+        G_RO_MASK  : std_logic_vector := "0"; -- bit = 1 -> registr je výstup jádra (jen čtení)
+        G_ADDR_W   : positive         := 8
     );
-    port (
-        aclk            : in  std_logic;
-        aresetn         : in  std_logic;
+    port(
+        aclk          : in  std_logic;
+        aresetn       : in  std_logic;
         -- AXI4-Lite slave
-        s_axi_awaddr    : in  std_logic_vector(G_ADDR_W - 1 downto 0);
-        s_axi_awvalid   : in  std_logic;
-        s_axi_awready   : out std_logic;
-        s_axi_wdata     : in  std_logic_vector(31 downto 0);
-        s_axi_wstrb     : in  std_logic_vector(3 downto 0);
-        s_axi_wvalid    : in  std_logic;
-        s_axi_wready    : out std_logic;
-        s_axi_bresp     : out std_logic_vector(1 downto 0);
-        s_axi_bvalid    : out std_logic;
-        s_axi_bready    : in  std_logic;
-        s_axi_araddr    : in  std_logic_vector(G_ADDR_W - 1 downto 0);
-        s_axi_arvalid   : in  std_logic;
-        s_axi_arready   : out std_logic;
-        s_axi_rdata     : out std_logic_vector(31 downto 0);
-        s_axi_rresp     : out std_logic_vector(1 downto 0);
-        s_axi_rvalid    : out std_logic;
-        s_axi_rready    : in  std_logic;
+        s_axi_awaddr  : in  std_logic_vector(G_ADDR_W - 1 downto 0);
+        s_axi_awvalid : in  std_logic;
+        s_axi_awready : out std_logic;
+        s_axi_wdata   : in  std_logic_vector(31 downto 0);
+        s_axi_wstrb   : in  std_logic_vector(3 downto 0);
+        s_axi_wvalid  : in  std_logic;
+        s_axi_wready  : out std_logic;
+        s_axi_bresp   : out std_logic_vector(1 downto 0);
+        s_axi_bvalid  : out std_logic;
+        s_axi_bready  : in  std_logic;
+        s_axi_araddr  : in  std_logic_vector(G_ADDR_W - 1 downto 0);
+        s_axi_arvalid : in  std_logic;
+        s_axi_arready : out std_logic;
+        s_axi_rdata   : out std_logic_vector(31 downto 0);
+        s_axi_rresp   : out std_logic_vector(1 downto 0);
+        s_axi_rvalid  : out std_logic;
+        s_axi_rready  : in  std_logic;
         -- Jádro
-        regs            : out t_reg_array(0 to G_NUM_REGS - 1);     -- RW parametry
-        ro_in           : in  t_reg_array(0 to G_NUM_REGS - 1);     -- RO výstupy jádra (ostatní ignorováno)
-        run             : out std_logic;
-        done_in         : in  std_logic;                            -- 1takt pulz: transakce (snímek) dokončena
-        interrupt       : out std_logic
+        regs          : out t_reg_array(0 to G_NUM_REGS - 1); -- RW parametry
+        ro_in         : in  t_reg_array(0 to G_NUM_REGS - 1); -- RO výstupy jádra (ostatní ignorováno)
+        run           : out std_logic;
+        done_in       : in  std_logic;  -- 1takt pulz: transakce (snímek) dokončena
+        interrupt     : out std_logic
     );
 end entity;
 
@@ -128,35 +128,35 @@ architecture rtl of axil_regbank is
         return sel;
     end function;
 
-    constant C_SELECT_NONE : t_addr_select := (ap_ctrl => '0', gie => '0', ier => '0', isr => '0',
+    constant C_SELECT_NONE : t_addr_select := (ap_ctrl  => '0', gie => '0', ier => '0', isr => '0',
                                                reg_data => (others => '0'), reg_vld => (others => '0'));
 
     signal reg_value        : t_reg_array(0 to G_NUM_REGS - 1) := (others => (others => '0'));
-    signal ap_start_reg     : std_logic := '0';
-    signal auto_restart_reg : std_logic := '0';
-    signal ap_done_reg      : std_logic := '0';
-    signal global_irq_en    : std_logic := '0';
-    signal irq_enable       : std_logic_vector(1 downto 0) := "00";
-    signal irq_status       : std_logic_vector(1 downto 0) := "00";
-    signal ro_valid_reg     : std_logic := '0';
+    signal ap_start_reg     : std_logic                        := '0';
+    signal auto_restart_reg : std_logic                        := '0';
+    signal ap_done_reg      : std_logic                        := '0';
+    signal global_irq_en    : std_logic                        := '0';
+    signal irq_enable       : std_logic_vector(1 downto 0)     := "00";
+    signal irq_status       : std_logic_vector(1 downto 0)     := "00";
+    signal ro_valid_reg     : std_logic                        := '0';
 
     -- Zápisová cesta
-    signal aw_captured   : std_logic := '0';
-    signal w_captured    : std_logic := '0';
+    signal aw_captured   : std_logic                               := '0';
+    signal w_captured    : std_logic                               := '0';
     signal aw_addr_reg   : std_logic_vector(G_ADDR_W - 1 downto 0) := (others => '0');
-    signal w_data_reg    : std_logic_vector(31 downto 0) := (others => '0');
-    signal w_strb_reg    : std_logic_vector(3 downto 0) := (others => '0');
-    signal write_decoded : std_logic := '0';
-    signal write_select  : t_addr_select := C_SELECT_NONE;
-    signal bvalid_reg    : std_logic := '0';
+    signal w_data_reg    : std_logic_vector(31 downto 0)           := (others => '0');
+    signal w_strb_reg    : std_logic_vector(3 downto 0)            := (others => '0');
+    signal write_decoded : std_logic                               := '0';
+    signal write_select  : t_addr_select                           := C_SELECT_NONE;
+    signal bvalid_reg    : std_logic                               := '0';
 
     -- Čtecí cesta
-    signal ar_captured  : std_logic := '0';
+    signal ar_captured  : std_logic                               := '0';
     signal ar_addr_reg  : std_logic_vector(G_ADDR_W - 1 downto 0) := (others => '0');
-    signal read_decoded : std_logic := '0';
-    signal read_select  : t_addr_select := C_SELECT_NONE;
-    signal rvalid_reg   : std_logic := '0';
-    signal rdata_reg    : std_logic_vector(31 downto 0) := (others => '0');
+    signal read_decoded : std_logic                               := '0';
+    signal read_select  : t_addr_select                           := C_SELECT_NONE;
+    signal rvalid_reg   : std_logic                               := '0';
+    signal rdata_reg    : std_logic_vector(31 downto 0)           := (others => '0');
 begin
 
     regs      <= reg_value;
@@ -172,7 +172,7 @@ begin
     s_axi_rdata   <= rdata_reg;
     s_axi_rresp   <= "00";
 
-    process (aclk)
+    process(aclk)
         variable read_word          : std_logic_vector(31 downto 0);
         variable clear_done_on_read : boolean;
         variable clear_vld_on_read  : boolean;
@@ -181,10 +181,20 @@ begin
             clear_done_on_read := false;
             clear_vld_on_read  := false;
             if aresetn = '0' then
-                aw_captured <= '0'; w_captured <= '0'; write_decoded <= '0'; bvalid_reg <= '0';
-                ar_captured <= '0'; read_decoded <= '0'; rvalid_reg <= '0';
-                ap_start_reg <= '0'; auto_restart_reg <= '0'; ap_done_reg <= '0';
-                global_irq_en <= '0'; irq_enable <= "00"; irq_status <= "00"; ro_valid_reg <= '0';
+                aw_captured      <= '0';
+                w_captured       <= '0';
+                write_decoded    <= '0';
+                bvalid_reg       <= '0';
+                ar_captured      <= '0';
+                read_decoded     <= '0';
+                rvalid_reg       <= '0';
+                ap_start_reg     <= '0';
+                auto_restart_reg <= '0';
+                ap_done_reg      <= '0';
+                global_irq_en    <= '0';
+                irq_enable       <= "00";
+                irq_status       <= "00";
+                ro_valid_reg     <= '0';
             else
                 ---------------------------------------------------------------- zápis
                 -- takt 1: AW a W nezávisle
@@ -217,7 +227,7 @@ begin
                         irq_enable <= w_data_reg(1 downto 0);
                     end if;
                     if write_select.isr = '1' then
-                        irq_status <= irq_status xor w_data_reg(1 downto 0);      -- TOW
+                        irq_status <= irq_status xor w_data_reg(1 downto 0); -- TOW
                     end if;
                     for reg_idx in 0 to G_NUM_REGS - 1 loop
                         if (write_select.reg_data(reg_idx) = '1') and (C_IS_READ_ONLY(reg_idx) = '0') then
@@ -252,12 +262,12 @@ begin
                 if read_decoded = '1' then
                     read_word := (others => '0');
                     if read_select.ap_ctrl = '1' then
-                        read_word(0) := ap_start_reg;
-                        read_word(1) := ap_done_reg;
-                        read_word(2) := not (ap_start_reg or auto_restart_reg);    -- ap_idle
-                        read_word(3) := ap_start_reg or auto_restart_reg;          -- ap_ready (přijímá data)
-                        read_word(7) := auto_restart_reg;
-                        read_word(9) := global_irq_en and (irq_status(0) or irq_status(1));
+                        read_word(0)       := ap_start_reg;
+                        read_word(1)       := ap_done_reg;
+                        read_word(2)       := not (ap_start_reg or auto_restart_reg); -- ap_idle
+                        read_word(3)       := ap_start_reg or auto_restart_reg; -- ap_ready (přijímá data)
+                        read_word(7)       := auto_restart_reg;
+                        read_word(9)       := global_irq_en and (irq_status(0) or irq_status(1));
                         clear_done_on_read := true;
                     end if;
                     if read_select.gie = '1' then
@@ -282,8 +292,8 @@ begin
                             end if;
                         end if;
                         if (read_select.reg_vld(reg_idx) = '1') and (C_IS_READ_ONLY(reg_idx) = '1') then
-                            read_word(0) := ro_valid_reg;                           -- ap_vld
-                            clear_vld_on_read := true;                              -- COR jako HLS
+                            read_word(0)      := ro_valid_reg; -- ap_vld
+                            clear_vld_on_read := true; -- COR jako HLS
                         end if;
                     end loop;
                     rdata_reg    <= read_word;

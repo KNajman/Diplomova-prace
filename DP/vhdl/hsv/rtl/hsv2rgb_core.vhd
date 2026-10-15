@@ -28,7 +28,7 @@ use ieee.numeric_std.all;
 use work.video_pkg.all;
 
 entity hsv2rgb_core is
-    port (
+    port(
         aclk          : in  std_logic;
         aresetn       : in  std_logic;
         -- AXI4-Stream Video vstup HSV ([7:0] H, [15:8] S, [23:16] V)
@@ -47,19 +47,19 @@ entity hsv2rgb_core is
 end entity;
 
 architecture rtl of hsv2rgb_core is
-    constant C_HUE_RANGE         : natural := 180;
-    constant C_PIXEL_MAX         : natural := 2 ** C_PIX_W - 1;                 -- 255
-    constant C_SECTOR_WIDTH      : natural := 30;                               -- 60 stupňů / 2
-    constant C_SECTOR_RECIP      : natural := 2185;                             -- round(2^16 / 30)
+    constant C_HUE_RANGE          : natural := 180;
+    constant C_PIXEL_MAX          : natural := 2 ** C_PIX_W - 1; -- 255
+    constant C_SECTOR_WIDTH       : natural := 30; -- 60 stupňů / 2
+    constant C_SECTOR_RECIP       : natural := 2185; -- round(2^16 / 30)
     constant C_SECTOR_RECIP_SHIFT : natural := 16;
-    constant C_LAST_SECTOR       : natural := 5;
+    constant C_LAST_SECTOR        : natural := 5;
 
-    constant C_REGION_PRODUCT_W  : natural := C_PIX_W + clog2(C_SECTOR_RECIP + 1);
-    constant C_REGION_W          : natural := clog2(C_LAST_SECTOR + 1);
-    constant C_REMAINDER_W       : natural := clog2(C_SECTOR_WIDTH);
-    constant C_FRACTION_W        : natural := sum_w(C_REMAINDER_W + 3, 2);      -- 8 * rem + rem / 2
-    constant C_PRODUCT_W         : natural := C_PIX_W + C_FRACTION_W;           -- 8b * f (největší součin)
-    constant C_PIPE_DEPTH        : natural := 13;
+    constant C_REGION_PRODUCT_W : natural := C_PIX_W + clog2(C_SECTOR_RECIP + 1);
+    constant C_REGION_W         : natural := clog2(C_LAST_SECTOR + 1);
+    constant C_REMAINDER_W      : natural := clog2(C_SECTOR_WIDTH);
+    constant C_FRACTION_W       : natural := sum_w(C_REMAINDER_W + 3, 2); -- 8 * rem + rem / 2
+    constant C_PRODUCT_W        : natural := C_PIX_W + C_FRACTION_W; -- 8b * f (největší součin)
+    constant C_PIPE_DEPTH       : natural := 13;
 
     -- x / 255 přibližně: (x + 1 + (x >> 8)) >> 8 (výsledek 0..255 pro x <= 255 * 255)
     function div255(x : unsigned) return t_pix is
@@ -73,44 +73,44 @@ architecture rtl of hsv2rgb_core is
     signal pipe_enable : std_logic;
 
     -- Postranní signály a S, V zpožďované spolu s výpočtem (index = takt)
-    type t_pix_pipe is array (1 to C_PIPE_DEPTH) of t_pix;
-    signal saturation_pipe : t_pix_pipe := (others => (others => '0'));
-    signal value_pipe      : t_pix_pipe := (others => (others => '0'));
+    type   t_pix_pipe      is array (1 to C_PIPE_DEPTH) of t_pix;
+    signal saturation_pipe : t_pix_pipe                          := (others => (others => '0'));
+    signal value_pipe      : t_pix_pipe                          := (others => (others => '0'));
     signal valid_pipe      : std_logic_vector(1 to C_PIPE_DEPTH) := (others => '0');
     signal sof_pipe        : std_logic_vector(1 to C_PIPE_DEPTH) := (others => '0');
     signal eol_pipe        : std_logic_vector(1 to C_PIPE_DEPTH) := (others => '0');
 
     -- takty 1..13
-    signal in_hue              : t_pix := (others => '0');                                    -- 1
-    signal hue_clamped         : t_pix := (others => '0');                                    -- 2
-    signal inv_saturation      : t_pix := (others => '0');                                    -- 2
-    signal region_product      : unsigned(C_REGION_PRODUCT_W - 1 downto 0) := (others => '0'); -- 3
-    signal p_product           : unsigned(2 * C_PIX_W - 1 downto 0) := (others => '0');        -- 3
-    signal hue_dly3            : t_pix := (others => '0');
-    signal region              : unsigned(C_REGION_W - 1 downto 0) := (others => '0');         -- 4
-    signal p_value             : t_pix := (others => '0');                                    -- 4
-    signal hue_dly4            : t_pix := (others => '0');
-    signal remainder           : unsigned(C_REMAINDER_W - 1 downto 0) := (others => '0');      -- 5
-    signal fraction            : unsigned(C_FRACTION_W - 1 downto 0) := (others => '0');       -- 6
-    signal inv_fraction        : unsigned(C_FRACTION_W - 1 downto 0) := (others => '0');       -- 7
-    signal fraction_dly7       : unsigned(C_FRACTION_W - 1 downto 0) := (others => '0');
-    signal sat_f_product       : unsigned(C_PRODUCT_W - 1 downto 0) := (others => '0');        -- 8
-    signal sat_inv_f_product   : unsigned(C_PRODUCT_W - 1 downto 0) := (others => '0');        -- 8
-    signal sat_f               : t_pix := (others => '0');                                    -- 9
-    signal sat_inv_f           : t_pix := (others => '0');                                    -- 9
-    signal q_factor            : t_pix := (others => '0');                                    -- 10
-    signal t_factor            : t_pix := (others => '0');                                    -- 10
-    signal q_product           : unsigned(2 * C_PIX_W - 1 downto 0) := (others => '0');        -- 11
-    signal t_product           : unsigned(2 * C_PIX_W - 1 downto 0) := (others => '0');        -- 11
-    signal q_value             : t_pix := (others => '0');                                    -- 12
-    signal t_value             : t_pix := (others => '0');                                    -- 12
-    signal out_red, out_green, out_blue : t_pix := (others => '0');                           -- 13
+    signal in_hue                       : t_pix                                     := (others => '0'); -- 1
+    signal hue_clamped                  : t_pix                                     := (others => '0'); -- 2
+    signal inv_saturation               : t_pix                                     := (others => '0'); -- 2
+    signal region_product               : unsigned(C_REGION_PRODUCT_W - 1 downto 0) := (others => '0'); -- 3
+    signal p_product                    : unsigned(2 * C_PIX_W - 1 downto 0)        := (others => '0'); -- 3
+    signal hue_dly3                     : t_pix                                     := (others => '0');
+    signal region                       : unsigned(C_REGION_W - 1 downto 0)         := (others => '0'); -- 4
+    signal p_value                      : t_pix                                     := (others => '0'); -- 4
+    signal hue_dly4                     : t_pix                                     := (others => '0');
+    signal remainder                    : unsigned(C_REMAINDER_W - 1 downto 0)      := (others => '0'); -- 5
+    signal fraction                     : unsigned(C_FRACTION_W - 1 downto 0)       := (others => '0'); -- 6
+    signal inv_fraction                 : unsigned(C_FRACTION_W - 1 downto 0)       := (others => '0'); -- 7
+    signal fraction_dly7                : unsigned(C_FRACTION_W - 1 downto 0)       := (others => '0');
+    signal sat_f_product                : unsigned(C_PRODUCT_W - 1 downto 0)        := (others => '0'); -- 8
+    signal sat_inv_f_product            : unsigned(C_PRODUCT_W - 1 downto 0)        := (others => '0'); -- 8
+    signal sat_f                        : t_pix                                     := (others => '0'); -- 9
+    signal sat_inv_f                    : t_pix                                     := (others => '0'); -- 9
+    signal q_factor                     : t_pix                                     := (others => '0'); -- 10
+    signal t_factor                     : t_pix                                     := (others => '0'); -- 10
+    signal q_product                    : unsigned(2 * C_PIX_W - 1 downto 0)        := (others => '0'); -- 11
+    signal t_product                    : unsigned(2 * C_PIX_W - 1 downto 0)        := (others => '0'); -- 11
+    signal q_value                      : t_pix                                     := (others => '0'); -- 12
+    signal t_value                      : t_pix                                     := (others => '0'); -- 12
+    signal out_red, out_green, out_blue : t_pix                                     := (others => '0'); -- 13
 
     -- region a p se počítají v taktu 4, používají v taktu 13
-    type t_region_pipe is array (5 to C_PIPE_DEPTH - 1) of unsigned(C_REGION_W - 1 downto 0);
-    type t_p_pipe      is array (5 to C_PIPE_DEPTH - 1) of t_pix;
-    signal region_pipe : t_region_pipe := (others => (others => '0'));
-    signal p_pipe      : t_p_pipe := (others => (others => '0'));
+    type   t_region_pipe is array (5 to C_PIPE_DEPTH - 1) of unsigned(C_REGION_W - 1 downto 0);
+    type   t_p_pipe      is array (5 to C_PIPE_DEPTH - 1) of t_pix;
+    signal region_pipe   : t_region_pipe := (others => (others => '0'));
+    signal p_pipe        : t_p_pipe      := (others => (others => '0'));
 
     signal skid_in_data  : std_logic_vector(C_RGB_W + 1 downto 0);
     signal skid_out_data : std_logic_vector(C_RGB_W + 1 downto 0);
@@ -118,11 +118,11 @@ begin
 
     s_axis_tready <= pipe_enable;
 
-    process (aclk)
-        variable region_raw      : unsigned(C_REGION_PRODUCT_W - C_SECTOR_RECIP_SHIFT - 1 downto 0);
-        variable sector          : natural range 0 to C_LAST_SECTOR;
-        variable value_final     : t_pix;
-        variable p_final         : t_pix;
+    process(aclk)
+        variable region_raw  : unsigned(C_REGION_PRODUCT_W - C_SECTOR_RECIP_SHIFT - 1 downto 0);
+        variable sector      : natural range 0 to C_LAST_SECTOR;
+        variable value_final : t_pix;
+        variable p_final     : t_pix;
     begin
         if rising_edge(aclk) then
             if pipe_enable = '1' then
@@ -151,47 +151,61 @@ begin
                 else
                     region <= resize(region_raw, C_REGION_W);
                 end if;
-                p_value  <= div255(p_product);
-                hue_dly4 <= hue_dly3;
+                p_value    <= div255(p_product);
+                hue_dly4   <= hue_dly3;
 
                 -- takt 5: zbytek v sektoru
-                remainder <= resize(hue_dly4 - resize(region * to_unsigned(C_SECTOR_WIDTH, C_PIX_W - C_REGION_W),
-                                                      C_PIX_W), C_REMAINDER_W);
+                remainder         <= resize(hue_dly4 - resize(region * to_unsigned(C_SECTOR_WIDTH, C_PIX_W - C_REGION_W),
+                                                              C_PIX_W), C_REMAINDER_W);
                 -- takt 6: f = 8 * zbytek + zbytek / 2
-                fraction <= shift_left(resize(remainder, C_FRACTION_W), 3) + resize(shift_right(remainder, 1), C_FRACTION_W);
+                fraction          <= shift_left(resize(remainder, C_FRACTION_W), 3) + resize(shift_right(remainder, 1), C_FRACTION_W);
                 -- takt 7: 255 - f
-                inv_fraction  <= C_PIXEL_MAX - fraction;
-                fraction_dly7 <= fraction;
+                inv_fraction      <= C_PIXEL_MAX - fraction;
+                fraction_dly7     <= fraction;
                 -- takt 8: S * f, S * (255 - f)
                 sat_f_product     <= saturation_pipe(7) * fraction_dly7;
                 sat_inv_f_product <= saturation_pipe(7) * inv_fraction;
                 -- takt 9: div255
-                sat_f     <= div255(sat_f_product);
-                sat_inv_f <= div255(sat_inv_f_product);
+                sat_f             <= div255(sat_f_product);
+                sat_inv_f         <= div255(sat_inv_f_product);
                 -- takt 10: doplňky do 255
-                q_factor <= C_PIXEL_MAX - sat_f;
-                t_factor <= C_PIXEL_MAX - sat_inv_f;
+                q_factor          <= C_PIXEL_MAX - sat_f;
+                t_factor          <= C_PIXEL_MAX - sat_inv_f;
                 -- takt 11: V * ...
-                q_product <= value_pipe(10) * q_factor;
-                t_product <= value_pipe(10) * t_factor;
+                q_product         <= value_pipe(10) * q_factor;
+                t_product         <= value_pipe(10) * t_factor;
                 -- takt 12: div255
-                q_value <= div255(q_product);
-                t_value <= div255(t_product);
+                q_value           <= div255(q_product);
+                t_value           <= div255(t_product);
 
                 -- takt 13: výběr podle sektoru
                 sector      := to_integer(region_pipe(C_PIPE_DEPTH - 1));
                 value_final := value_pipe(12);
                 p_final     := p_pipe(C_PIPE_DEPTH - 1);
                 if saturation_pipe(12) = 0 then
-                    out_red <= value_final; out_green <= value_final; out_blue <= value_final;
+                    out_red   <= value_final;
+                    out_green <= value_final;
+                    out_blue  <= value_final;
                 else
                     case sector is
-                        when 0      => out_red <= value_final; out_green <= t_value;     out_blue <= p_final;
-                        when 1      => out_red <= q_value;     out_green <= value_final; out_blue <= p_final;
-                        when 2      => out_red <= p_final;     out_green <= value_final; out_blue <= t_value;
-                        when 3      => out_red <= p_final;     out_green <= q_value;     out_blue <= value_final;
-                        when 4      => out_red <= t_value;     out_green <= p_final;     out_blue <= value_final;
-                        when others => out_red <= value_final; out_green <= p_final;     out_blue <= q_value;
+                        when 0 => out_red   <= value_final;
+                            out_green <= t_value;
+                            out_blue  <= p_final;
+                        when 1 => out_red   <= q_value;
+                            out_green <= value_final;
+                            out_blue  <= p_final;
+                        when 2 => out_red   <= p_final;
+                            out_green <= value_final;
+                            out_blue  <= t_value;
+                        when 3 => out_red   <= p_final;
+                            out_green <= q_value;
+                            out_blue  <= value_final;
+                        when 4 => out_red   <= t_value;
+                            out_green <= p_final;
+                            out_blue  <= value_final;
+                        when others => out_red   <= value_final;
+                            out_green <= p_final;
+                            out_blue  <= q_value;
                     end case;
                 end if;
 
@@ -206,8 +220,8 @@ begin
                     saturation_pipe(stage) <= saturation_pipe(stage - 1);
                     value_pipe(stage)      <= value_pipe(stage - 1);
                 end loop;
-                sof_pipe <= s_axis_tuser & sof_pipe(1 to C_PIPE_DEPTH - 1);
-                eol_pipe <= s_axis_tlast & eol_pipe(1 to C_PIPE_DEPTH - 1);
+                sof_pipe       <= s_axis_tuser & sof_pipe(1 to C_PIPE_DEPTH - 1);
+                eol_pipe       <= s_axis_tlast & eol_pipe(1 to C_PIPE_DEPTH - 1);
             end if;
 
             if aresetn = '0' then
@@ -218,13 +232,12 @@ begin
         end if;
     end process;
 
-    skid_in_data <= eol_pipe(C_PIPE_DEPTH) & sof_pipe(C_PIPE_DEPTH)
-                    & pack3(out_green, out_blue, out_red);      -- UG934: [7:0] G, [15:8] B, [23:16] R
+    skid_in_data <= eol_pipe(C_PIPE_DEPTH) & sof_pipe(C_PIPE_DEPTH) & pack3(out_green, out_blue, out_red); -- UG934: [7:0] G, [15:8] B, [23:16] R
 
     skid : entity work.axis_skid_buffer
-        generic map (G_DATA_W => C_RGB_W + 2)
-        port map (aclk => aclk, aresetn => aresetn, s_data => skid_in_data, s_valid => valid_pipe(C_PIPE_DEPTH),
-                  s_ready => pipe_enable, m_data => skid_out_data, m_valid => m_axis_tvalid, m_ready => m_axis_tready);
+        generic map(G_DATA_W => C_RGB_W + 2)
+        port map(aclk    => aclk, aresetn => aresetn, s_data => skid_in_data, s_valid => valid_pipe(C_PIPE_DEPTH),
+                 s_ready => pipe_enable, m_data => skid_out_data, m_valid => m_axis_tvalid, m_ready => m_axis_tready);
 
     m_axis_tdata <= skid_out_data(C_RGB_W - 1 downto 0);
     m_axis_tuser <= skid_out_data(C_RGB_W);

@@ -34,15 +34,15 @@ use ieee.numeric_std.all;
 use work.video_pkg.all;
 
 entity window_gen is
-    generic (
-        G_K         : positive := 3;            -- velikost okna (liché, >= 3)
+    generic(
+        G_K         : positive := 3;    -- velikost okna (liché, >= 3)
         G_MAX_WIDTH : positive := C_MAX_WIDTH
     );
-    port (
+    port(
         aclk             : in  std_logic;
         aresetn          : in  std_logic;
-        pipe_enable      : in  std_logic;       -- posun celé pipeline (ready výstupu)
-        run              : in  std_logic;       -- povolení začít nový snímek
+        pipe_enable      : in  std_logic; -- posun celé pipeline (ready výstupu)
+        run              : in  std_logic; -- povolení začít nový snímek
         width            : in  unsigned(C_DIM_W - 1 downto 0);
         height           : in  unsigned(C_DIM_W - 1 downto 0);
         border_replicate : in  std_logic;
@@ -54,10 +54,10 @@ entity window_gen is
         in_ready         : out std_logic;
         -- okno (takt D)
         win              : out t_window(0 to G_K - 1, 0 to G_K - 1);
-        win_valid        : out std_logic;       -- okno patří výstupnímu pixelu
-        win_sof          : out std_logic;       -- výstupní pixel (0, 0)
-        win_eol          : out std_logic;       -- poslední pixel řádku
-        win_frame_end    : out std_logic;       -- poslední pixel snímku
+        win_valid        : out std_logic; -- okno patří výstupnímu pixelu
+        win_sof          : out std_logic; -- výstupní pixel (0, 0)
+        win_eol          : out std_logic; -- poslední pixel řádku
+        win_frame_end    : out std_logic; -- poslední pixel snímku
         status           : out std_logic_vector(3 downto 0)
     );
 end entity;
@@ -66,66 +66,66 @@ architecture rtl of window_gen is
     constant C_RADIUS : natural := G_K / 2;
     constant C_ADDR_W : natural := clog2(G_MAX_WIDTH);
 
-    type t_state is (STATE_WAIT_SOF, STATE_RUN);
+    type t_state           is (STATE_WAIT_SOF, STATE_RUN);
     type t_row_index_array is array (0 to G_K - 1) of natural range 0 to G_K - 1;
-    type t_buffer_data is array (0 to G_K - 2) of std_logic_vector(C_PIX_W - 1 downto 0);
+    type t_buffer_data     is array (0 to G_K - 2) of std_logic_vector(C_PIX_W - 1 downto 0);
 
     -- Metadata pozice, která putuje pipeline spolu se sloupcem
     type t_position is record
-        valid        : std_logic;   -- pozice provedena (0 = bublina)
-        has_column   : std_logic;   -- x < W: sloupec existuje (vodorovně uvnitř obrazu); řádky mimo obraz řeší row_zero/row_source
-        first_column : std_logic;   -- x = 0
-        last_column  : std_logic;   -- x = W - 1: sloupec se uloží pro pravý okraj
-        has_output   : std_logic;   -- x >= R a y >= R
+        valid        : std_logic;       -- pozice provedena (0 = bublina)
+        has_column   : std_logic;       -- x < W: sloupec existuje (vodorovně uvnitř obrazu); řádky mimo obraz řeší row_zero/row_source
+        first_column : std_logic;       -- x = 0
+        last_column  : std_logic;       -- x = W - 1: sloupec se uloží pro pravý okraj
+        has_output   : std_logic;       -- x >= R a y >= R
         sof          : std_logic;
         eol          : std_logic;
         frame_end    : std_logic;
-        row_source   : t_row_index_array;               -- svislý okraj: zdrojový řádek sloupce
-        row_zero     : std_logic_vector(0 to G_K - 1);  -- svislý okraj: řádek mimo obraz -> 0
+        row_source   : t_row_index_array; -- svislý okraj: zdrojový řádek sloupce
+        row_zero     : std_logic_vector(0 to G_K - 1); -- svislý okraj: řádek mimo obraz -> 0
     end record;
-    constant C_BUBBLE : t_position := (valid => '0', has_column => '0', first_column => '0', last_column => '0',
-                                       has_output => '0', sof => '0', eol => '0', frame_end => '0',
-                                       row_source => (others => 0), row_zero => (others => '0'));
+    constant C_BUBBLE : t_position := (valid        => '0', has_column => '0', first_column => '0', last_column => '0',
+                                       has_output   => '0', sof => '0', eol => '0', frame_end => '0',
+                                       row_source   => (others => 0), row_zero => (others => '0'));
 
-    signal state         : t_state := STATE_WAIT_SOF;
-    signal pos_x, pos_y  : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
-    signal frame_width   : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
-    signal frame_height  : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
-    signal frame_replicate : std_logic := '0';
-    signal x_end, y_end  : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
+    signal state           : t_state                        := STATE_WAIT_SOF;
+    signal pos_x, pos_y    : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
+    signal frame_width     : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
+    signal frame_height    : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
+    signal frame_replicate : std_logic                      := '0';
+    signal x_end, y_end    : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
 
-    signal need_input    : boolean;
-    signal accept_input  : std_logic;
-    signal start_frame   : boolean;
-    signal fire          : boolean;
+    signal need_input   : boolean;
+    signal accept_input : std_logic;
+    signal start_frame  : boolean;
+    signal fire         : boolean;
 
     -- stavové příznaky rozpracovaného snímku
-    signal skipped_pending, early_sof_flag, early_eol_flag, late_eol_flag : std_logic := '0';
-    signal status_reg    : std_logic_vector(3 downto 0) := (others => '0');
+    signal skipped_pending, early_sof_flag, early_eol_flag, late_eol_flag : std_logic                    := '0';
+    signal status_reg                                                     : std_logic_vector(3 downto 0) := (others => '0');
 
     -- takt A
-    signal stage_a       : t_position := C_BUBBLE;
-    signal pixel_a       : t_pix := (others => '0');
-    signal addr_a        : unsigned(C_ADDR_W - 1 downto 0) := (others => '0');
-    signal buffer_read   : t_buffer_data;
+    signal stage_a      : t_position                           := C_BUBBLE;
+    signal pixel_a      : t_pix                                := (others => '0');
+    signal addr_a       : unsigned(C_ADDR_W - 1 downto 0)      := (others => '0');
+    signal buffer_read  : t_buffer_data;
     -- takt B
-    signal stage_b       : t_position := C_BUBBLE;
-    signal raw_column    : t_pix_array(0 to G_K - 1) := (others => (others => '0'));
+    signal stage_b      : t_position                           := C_BUBBLE;
+    signal raw_column   : t_pix_array(0 to G_K - 1)            := (others => (others => '0'));
     -- takt C
-    signal stage_c       : t_position := C_BUBBLE;
-    signal column        : t_pix_array(0 to G_K - 1) := (others => (others => '0'));
+    signal stage_c      : t_position                           := C_BUBBLE;
+    signal column       : t_pix_array(0 to G_K - 1)            := (others => (others => '0'));
     -- takt D
-    signal stage_d       : t_position := C_BUBBLE;
-    signal window_reg    : t_window(0 to G_K - 1, 0 to G_K - 1) := (others => (others => (others => '0')));
-    signal saved_column  : t_pix_array(0 to G_K - 1) := (others => (others => '0'));
+    signal stage_d      : t_position                           := C_BUBBLE;
+    signal window_reg   : t_window(0 to G_K - 1, 0 to G_K - 1) := (others => (others => (others => '0')));
+    signal saved_column : t_pix_array(0 to G_K - 1)            := (others => (others => '0'));
 
     signal buffer_write_enable : std_logic;
 
     -- Metadata pozice (x, y) pro rozměry snímku (width, height)
     function make_position(x, y, frame_w, frame_h, last_x, last_y : unsigned; replicate : std_logic)
-        return t_position is
+    return t_position is
         variable result    : t_position;
-        variable row_first : integer;               -- index řádku raw_column(0) = y - (K - 1)
+        variable row_first : integer;   -- index řádku raw_column(0) = y - (K - 1)
         variable row       : integer;
     begin
         result.valid        := '1';
@@ -138,14 +138,14 @@ architecture rtl of window_gen is
         result.sof          := to_sl(x = C_RADIUS and y = C_RADIUS);
         result.eol          := to_sl(x = last_x);
         result.frame_end    := to_sl(x = last_x and y = last_y);
-        row_first := to_integer(y) - (G_K - 1);
+        row_first           := to_integer(y) - (G_K - 1);
         for k in 0 to G_K - 1 loop
             row := row_first + k;
             if row < 0 then
-                result.row_source(k) := -row_first;                                    -- řádek 0
+                result.row_source(k) := -row_first; -- řádek 0
                 result.row_zero(k)   := not replicate;
             elsif row >= to_integer(frame_h) then
-                result.row_source(k) := to_integer(frame_h) - 1 - row_first;           -- řádek H - 1
+                result.row_source(k) := to_integer(frame_h) - 1 - row_first; -- řádek H - 1
                 result.row_zero(k)   := not replicate;
             else
                 result.row_source(k) := k;
@@ -160,8 +160,7 @@ begin
     in_ready     <= accept_input;
     accept_input <= pipe_enable and ((to_sl(state = STATE_WAIT_SOF) and run) or to_sl(state = STATE_RUN and need_input));
     start_frame  <= (state = STATE_WAIT_SOF) and (accept_input = '1') and (in_valid = '1') and (in_user = '1');
-    fire         <= start_frame or
-                    ((state = STATE_RUN) and (pipe_enable = '1') and ((not need_input) or (in_valid = '1')));
+    fire         <= start_frame or ((state = STATE_RUN) and (pipe_enable = '1') and ((not need_input) or (in_valid = '1')));
 
     -- takt A: čtení řádkových bufferů (adresa = x prováděné pozice), zápis o takt později (takt B)
     buffer_write_enable <= pipe_enable and stage_a.valid and stage_a.has_column;
@@ -177,16 +176,16 @@ begin
         end generate;
 
         line : entity work.line_buffer
-            -- hloubka 2^ADDR_W: i adresa flush pozice x = W - 1 + R (u max. šířky) leží uvnitř paměti
-            generic map (G_DEPTH => 2 ** C_ADDR_W, G_DATA_W => C_PIX_W, G_ADDR_W => C_ADDR_W)
-            port map (aclk => aclk, read_enable => pipe_enable, read_addr => resize(pos_x, C_ADDR_W),
-                      read_data => buffer_read(k), write_enable => buffer_write_enable, write_addr => addr_a,
-                      write_data => write_data);
+                -- hloubka 2^ADDR_W: i adresa flush pozice x = W - 1 + R (u max. šířky) leží uvnitř paměti
+            generic map(G_DEPTH => 2 ** C_ADDR_W, G_DATA_W => C_PIX_W, G_ADDR_W => C_ADDR_W)
+            port map(aclk         => aclk, read_enable => pipe_enable, read_addr => resize(pos_x, C_ADDR_W),
+                     read_data    => buffer_read(k), write_enable => buffer_write_enable, write_addr => addr_a,
+                     write_data   => write_data);
     end generate;
 
-    process (aclk)
+    process(aclk)
         variable dims_w, dims_h, last_x, last_y : unsigned(C_DIM_W - 1 downto 0);
-        variable new_column : t_pix_array(0 to G_K - 1);
+        variable new_column                     : t_pix_array(0 to G_K - 1);
     begin
         if rising_edge(aclk) then
             if aresetn = '0' then
@@ -228,7 +227,7 @@ begin
                     early_eol_flag  <= '0';
                     late_eol_flag   <= '0';
                 elsif (state = STATE_WAIT_SOF) and (accept_input = '1') and (in_valid = '1') then
-                    skipped_pending <= '1';                 -- pixel před TUSER zahozen
+                    skipped_pending <= '1'; -- pixel před TUSER zahozen
                 end if;
 
                 if fire then
@@ -257,13 +256,13 @@ begin
                     if pos_x = last_x then
                         pos_x <= (others => '0');
                         if pos_y = last_y then
-                            pos_y <= (others => '0');
-                            state <= STATE_WAIT_SOF;
+                            pos_y                      <= (others => '0');
+                            state                      <= STATE_WAIT_SOF;
                             status_reg(C_ST_SKIPPED)   <= skipped_pending;
                             status_reg(C_ST_EARLY_SOF) <= early_sof_flag;
                             status_reg(C_ST_EARLY_EOL) <= early_eol_flag;
                             status_reg(C_ST_LATE_EOL)  <= late_eol_flag;
-                            skipped_pending <= '0';
+                            skipped_pending            <= '0';
                         else
                             pos_y <= pos_y + 1;
                         end if;
@@ -275,7 +274,7 @@ begin
                 end if;
 
                 ---------------------------------------------------------- takt B: surový sloupec
-                stage_b <= stage_a;
+                stage_b             <= stage_a;
                 for k in 0 to G_K - 2 loop
                     raw_column(k) <= unsigned(buffer_read(k));
                 end loop;
