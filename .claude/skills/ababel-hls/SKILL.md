@@ -45,5 +45,5 @@ Výsledek commitnout lokálně, Karlovi stručně tabulka: II, est vs. impl peri
 
 ## 6. Úklid a zápis
 - Nové poznatky → `.claude/memory/lessons.md`, milník → sekce Průběh v `plan_dokonceni_DP.md`.
-- Na GitHub pushuje Karel (`git push` z Windows) – připomenout.
+- GitHub se průběžně neudržuje (push jen při velkých milnících, dělá ho Karel) – po běžném běhu push nepřipomínat.
 - Nic nemazat na Ababelu mimo `DP/hls/build/` bez souhlasu.

@@ -3,7 +3,7 @@
 ## Server
 - `ababeel.ite.tul.cz` (147.230.73.33), port 22, uživatel `karel`. Pozor: v adrese jsou **dvě e** ("ababeel"), mluví se o něm jako "Ababel".
 - 32 jader, 251 GB RAM, Linux. Xilinx: `/tools/Xilinx/2025.2/` (Vitis, Vivado), env: `source /tools/Xilinx/2025.2/Vitis/settings64.sh`.
-- Klon repa: `~/Diplomova-prace` (origin = GitHub HTTPS, **bez credentials** → z Ababelu se nepushuje).
+- Klon repa: `~/Diplomova-prace` (origin = GitHub HTTPS, **bez credentials** → z Ababelu se nepushuje). Aktualizuje se jen z notebooku přes SSH, **ne `git pull` z GitHubu** (GitHub je jen občasná záloha při milnících).
 - Karel nemá právo spouštět skripty jako programy (`./x.sh`) → vždy `bash x.sh`.
 - Logy dlouhých běhů: `~/logs/`.
 - Z notebooku je potřeba VPN TUL (port 22 z VM ven funguje).
