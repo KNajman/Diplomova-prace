@@ -9,7 +9,7 @@
 --   3 -> 3: 0x10 c00, c01, c02, c10, c11, c12, c20, c21, c22, o0, o1, o2   (12 registrů po 8 B)
 --   3 -> 1: 0x10 c00, c01, c02, o0                                       (4 registry)
 --   1 -> 3: 0x10 c00, c10, c20, o0, o1, o2                               (6 registrů)
--- Koeficienty jsou bity 17:0 (Q2.15 se znaménkem), offsety bity 9:0.
+-- Koeficienty jsou bity 17:0 (Q2.15 se znaménkem), offsety bity 9:0; jen ty se ukládají (G_REG_W).
 -- Jádro přijímá data jen při run = ap_start | auto_restart (ovladač zapíše 0x81 na 0x00).
 --------------------------------------------------------------------------------
 library ieee;
@@ -69,6 +69,23 @@ architecture rtl of csc_axil is
     end function;
     constant C_N : positive := num_regs(G_CH_IN, G_CH_OUT);
 
+    -- Platné šířky registrů: koeficienty C_CSC_COEFF_W, offsety C_CSC_OFFSET_W (pořadí jako mapa HLS)
+    function reg_widths(n : positive) return t_width_array is
+        variable w : t_width_array(0 to n - 1);
+    begin
+        for k in 0 to n - 1 loop
+            w(k) := C_CSC_COEFF_W;
+        end loop;
+        if n = 12 then
+            for k in 9 to 11 loop w(k) := C_CSC_OFFSET_W; end loop;
+        elsif n = 4 then
+            w(3) := C_CSC_OFFSET_W;
+        else
+            for k in 3 to 5 loop w(k) := C_CSC_OFFSET_W; end loop;
+        end if;
+        return w;
+    end function;
+
     signal regs   : t_reg_array(0 to C_N - 1);
     signal ro_in  : t_reg_array(0 to C_N - 1) := (others => (others => '0'));
     signal run    : std_logic;
@@ -87,7 +104,7 @@ architecture rtl of csc_axil is
 begin
 
     regbank : entity work.axil_regbank
-        generic map (G_NUM_REGS => C_N, G_RO_MASK => (0 to C_N - 1 => '0'), G_ADDR_W => 8)
+        generic map (G_NUM_REGS => C_N, G_REG_W => reg_widths(C_N), G_RO_MASK => (0 to C_N - 1 => '0'), G_ADDR_W => 8)
         port map (aclk => aclk, aresetn => aresetn,
                   s_axi_awaddr => s_axi_control_awaddr, s_axi_awvalid => s_axi_control_awvalid,
                   s_axi_awready => s_axi_control_awready, s_axi_wdata => s_axi_control_wdata,

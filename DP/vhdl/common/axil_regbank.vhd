@@ -17,6 +17,9 @@
 --  * Bodová VHDL jádra nemají snímek ani řádek jako transakci, běží nepřetržitě. Pro shodné
 --    chování s ovladačem: run = ap_start or auto_restart; jádro s run = 0 drží TREADY = 0.
 --    done_in (konec snímku u okénkových jader, u bodových nepoužito) nastaví ap_done/ISR.
+--  * G_REG_W = platná šířka každého registru. Ukládají se jen platné bity, horní bity jsou
+--    konstantní 0 a syntéza jejich FF odstraní (jako HLS: nepoužité bity = reserved, čtou se 0).
+--    U 12 registrů CSC to ušetří 192 FF a zmenší čtecí multiplexor.
 --  * Zápisové kanály AW a W se přijímají nezávisle (AXI4-Lite to dovoluje), odpověď B až
 --    po obou. Čtení má latenci 1 takt. Neplatné adresy: zápis se ignoruje, čtení vrací 0.
 --------------------------------------------------------------------------------
@@ -26,6 +29,7 @@ use ieee.numeric_std.all;
 
 package axil_regbank_pkg is
     type t_reg_array is array (natural range <>) of std_logic_vector(31 downto 0);
+    type t_width_array is array (natural range <>) of natural range 1 to 32;
 end package;
 
 library ieee;
@@ -36,6 +40,7 @@ use work.axil_regbank_pkg.all;
 entity axil_regbank is
     generic (
         G_NUM_REGS : positive := 12;
+        G_REG_W    : t_width_array;               -- platná šířka registru i (bity nad ní = 0)
         G_RO_MASK  : std_logic_vector := "0";     -- bit i = 1 -> registr i je výstup jádra (jen čtení)
         G_ADDR_W   : positive := 8
     );
@@ -148,9 +153,9 @@ begin
                     elsif n = 16#0C# then
                         isr <= isr xor w_data(1 downto 0);      -- TOW
                     elsif (i >= 0) and (((n - 16) mod 8) = 0) and (C_RO(i) = '0') then
-                        for b in 0 to 3 loop
-                            if w_strb(b) = '1' then
-                                reg_r(i)(8 * b + 7 downto 8 * b) <= w_data(8 * b + 7 downto 8 * b);
+                        for bit in 0 to 31 loop
+                            if (w_strb(bit / 8) = '1') and (bit < G_REG_W(G_REG_W'low + i)) then
+                                reg_r(i)(bit) <= w_data(bit);
                             end if;
                         end loop;
                     end if;
@@ -181,7 +186,13 @@ begin
                         rd(1 downto 0) := isr;
                     elsif i >= 0 then
                         if ((n - 16) mod 8) = 0 then
-                            if C_RO(i) = '1' then rd := ro_in(i); else rd := reg_r(i); end if;
+                            if C_RO(i) = '1' then
+                                for bit in 0 to 31 loop
+                                    if bit < G_REG_W(G_REG_W'low + i) then rd(bit) := ro_in(i)(bit); end if;
+                                end loop;
+                            else
+                                rd := reg_r(i);
+                            end if;
                         elsif C_RO(i) = '1' then
                             rd(0) := ro_valid;                  -- ap_vld
                         end if;

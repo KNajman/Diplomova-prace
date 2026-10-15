@@ -57,6 +57,11 @@ package video_pkg is
     type t_csc_coeff_array  is array (0 to 2, 0 to 2) of signed(C_CSC_COEFF_W - 1 downto 0);
     type t_csc_offset_array is array (0 to 2) of signed(C_CSC_OFFSET_W - 1 downto 0);
 
+    -- Šířky aritmetiky se VŽDY odvozují vzorcem (žádné ručně spočítané konstanty), aby jádro
+    -- zůstalo správné při změně generik: součin = Wa + Wb, součet N členů = max(W) + clog2(N)
+    function clog2(n : positive) return natural;
+    function sum_w(w : natural; n_terms : positive) return natural;
+
     -- Složka c (0 = TDATA[7:0]) jako číslo bez znaménka
     function get_ch(data : std_logic_vector; c : natural) return t_pix;
     -- Sloučí 3 složky do 24bitového TDATA
@@ -67,6 +72,22 @@ package video_pkg is
 end package;
 
 package body video_pkg is
+
+    -- Nejmenší k, pro které 2^k >= n (clog2(1) = 0)
+    function clog2(n : positive) return natural is
+        variable k : natural := 0;
+    begin
+        while (2 ** k) < n loop
+            k := k + 1;
+        end loop;
+        return k;
+    end function;
+
+    -- Šířka součtu n_terms čísel šířky w (se znaménkem): přenos max. clog2(n_terms) bitů
+    function sum_w(w : natural; n_terms : positive) return natural is
+    begin
+        return w + clog2(n_terms);
+    end function;
 
     function get_ch(data : std_logic_vector; c : natural) return t_pix is
     begin

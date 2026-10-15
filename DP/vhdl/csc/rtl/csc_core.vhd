@@ -10,18 +10,26 @@
 --
 -- Poznámky k návrhu:
 --  * Bodové jádro bez čítačů: TUSER/TLAST putují s daty, resynchronizace je automatická.
---  * Pipeline 5 stupňů s globálním povolením en. en = s_ready výstupního skid bufferu
---    (registrovaný), takže s_axis_tready = en je výstup registru a celé jádro při
---    backpressure jen "zamrzne". Skid buffer přijme poslední přenos i v taktu, kdy
---    ready teprve padá - nic se neztratí.
---  * Stupně odpovídají registrům DSP48E2 (A/B -> M -> P), aby syntéza namapovala každý
---    součin na jeden DSP: 1) registr vstupů, 2) součiny 18 x 9 b, 3) p0 + p1 a
---    p2 + offset + zaokrouhlovací konstanta, 4) akumulátor, 5) posun, saturace.
---    Zaokrouhlovací konstanta 2^14 je přičtená v akumulátoru (half-up "zadarmo").
---  * Datové registry nemají reset (DSP registry s resetem by se hůř balily), reset
---    nuluje jen platnost (valid).
---  * G_CH_IN / G_CH_OUT = 1 nebo 3. Pro šedý vstup se použije jen sloupec 0 matice,
---    pro šedý výstup jen řádek 0. Koeficienty jsou porty (z registrové banky AXI4-Lite).
+--  * Maximální pipeline, nic na nic nečeká: každá operace má vlastní registr. Pro každý
+--    výstupní kanál je skalární součin zapojený jako systolická kaskáda 3 DSP48E2:
+--      takt 1  x0, x1, x2 do registrů                      (registr A/B)
+--      takt 2  m0 = c0 * x0                                (M)
+--      takt 3  p0 = m0 + K       | m1 = c1 * x1(z^-1)      (P | M)
+--      takt 4  p1 = p0 + m1      | m2 = c2 * x2(z^-2)      (P přes PCIN | M)
+--      takt 5  p2 = p1 + m2                                (P přes PCIN)
+--      takt 6  posun >> 15 (floor) a saturace 0..255
+--    K = offset * 2^15 + 2^14 (zaokrouhlení half-up) se předpočítá z registru, je tedy
+--    "zadarmo" na portu C prvního DSP. Vstupy x1, x2 se zpožďují, aby každý součin dorazil
+--    k mezisoučtu svého pixelu. Sčítačky jsou uvnitř DSP (PCIN -> P), ne v LUT.
+--  * Proti v1 (3 součiny v jednom taktu + strom sčítaček): 9 místo 12 DSP a plně
+--    pipelinovaný DSP (A/B, M, P registry) má vyšší Fmax.
+--  * Šířky se odvozují vzorcem: součin = koeficient + pixel jako 9b se znaménkem,
+--    akumulátor = sum_w(max(součin, K), 4 členy).
+--  * Globální povolení en = s_ready výstupního skid bufferu (registrované), s_axis_tready = en:
+--    při backpressure celá pipeline jen zamrzne, skid přijme poslední přenos.
+--  * Datové registry bez resetu (lépe se balí do DSP), reset nuluje jen platnost.
+--  * G_CH_IN / G_CH_OUT = 1 nebo 3. Šedý vstup: x1 = x2 = 0 (násobení nulou syntéza odstraní),
+--    šedý výstup: použije se jen kanál 0.
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -55,24 +63,28 @@ entity csc_core is
 end entity;
 
 architecture rtl of csc_core is
-    constant C_ACC_W  : natural := 30;      -- 18b x 9b = 27 b, součet 3 členů + offset << 15 (25 b) -> 30 b
-    constant C_PROD_W : natural := C_CSC_COEFF_W + C_PIX_W + 1;
-    constant C_DEPTH  : natural := 5;
-    constant C_ROUND  : signed(C_ACC_W - 1 downto 0) := to_signed(2 ** (C_CSC_FRAC_W - 1), C_ACC_W);
+    constant C_X_W     : natural := C_PIX_W + 1;                            -- pixel jako číslo se znaménkem
+    constant C_PROD_W  : natural := C_CSC_COEFF_W + C_X_W;                  -- součin
+    constant C_K_W     : natural := C_CSC_OFFSET_W + C_CSC_FRAC_W;          -- offset * 2^15 (+ 2^14 se vejde)
+    constant C_ACC_W   : natural := sum_w(maximum(C_PROD_W, C_K_W), 4);     -- 3 součiny + K
+    constant C_DEPTH   : natural := 6;
+    constant C_ROUND   : signed(C_ACC_W - 1 downto 0) := shift_left(to_signed(1, C_ACC_W), C_CSC_FRAC_W - 1);
 
-    type t_in_array   is array (0 to 2) of signed(C_PIX_W downto 0);       -- pixel jako 9b se znaménkem
-    type t_prod_array is array (0 to 2, 0 to 2) of signed(C_PROD_W - 1 downto 0);
+    type t_x_array    is array (0 to 2) of signed(C_X_W - 1 downto 0);
+    type t_prod_array is array (0 to 2) of signed(C_PROD_W - 1 downto 0);
     type t_acc_array  is array (0 to 2) of signed(C_ACC_W - 1 downto 0);
 
     signal en      : std_logic;
-    signal x1      : t_in_array := (others => (others => '0'));
-    signal prod2   : t_prod_array := (others => (others => (others => '0')));
-    signal sum3a   : t_acc_array := (others => (others => '0'));
-    signal sum3b   : t_acc_array := (others => (others => '0'));
-    signal acc4    : t_acc_array := (others => (others => '0'));
-    signal out5    : t_pix_array(0 to 2) := (others => (others => '0'));
+    signal x_r     : t_x_array := (others => (others => '0'));          -- takt 1
+    signal x1_d1   : signed(C_X_W - 1 downto 0) := (others => '0');     -- takt 2
+    signal x2_d1   : signed(C_X_W - 1 downto 0) := (others => '0');     -- takt 2
+    signal x2_d2   : signed(C_X_W - 1 downto 0) := (others => '0');     -- takt 3
+    signal k_r     : t_acc_array := (others => (others => '0'));        -- konstanta K (z registru)
+    signal m0, m1, m2 : t_prod_array := (others => (others => '0'));    -- takty 2, 3, 4
+    signal p0, p1, p2 : t_acc_array := (others => (others => '0'));     -- takty 3, 4, 5
+    signal out6    : t_pix_array(0 to 2) := (others => (others => '0'));
 
-    -- Postranní signály zpožděné o hloubku pipeline (index 1..C_DEPTH = výstup stupně)
+    -- Postranní signály zpožděné o hloubku pipeline (index 1..C_DEPTH = výstup taktu)
     signal valid_d : std_logic_vector(1 to C_DEPTH) := (others => '0');
     signal user_d  : std_logic_vector(1 to C_DEPTH) := (others => '0');
     signal last_d  : std_logic_vector(1 to C_DEPTH) := (others => '0');
@@ -83,43 +95,39 @@ begin
     s_axis_tready <= en;
 
     process (aclk)
-        variable s : signed(C_ACC_W - 1 downto 0);
     begin
         if rising_edge(aclk) then
+            -- K se mění jen zápisem registru, počítá se mimo pipeline
+            for o in 0 to 2 loop
+                k_r(o) <= shift_left(resize(offset(o), C_ACC_W), C_CSC_FRAC_W) + C_ROUND;
+            end loop;
+
             if en = '1' then
-                -- 1) vstupy (chybějící složky = 0)
+                -- takt 1: vstupy (chybějící složky = 0)
                 for i in 0 to 2 loop
                     if i < G_CH_IN then
-                        x1(i) <= signed('0' & get_ch(s_axis_tdata, i));
+                        x_r(i) <= signed('0' & get_ch(s_axis_tdata, i));
                     else
-                        x1(i) <= (others => '0');
+                        x_r(i) <= (others => '0');
                     end if;
                 end loop;
-                -- 2) součiny
+                -- takt 2..4: zpoždění vstupů pro kaskádu
+                x1_d1 <= x_r(1);
+                x2_d1 <= x_r(2);
+                x2_d2 <= x2_d1;
                 for o in 0 to 2 loop
-                    for i in 0 to 2 loop
-                        prod2(o, i) <= coeff(o, i) * x1(i);
-                    end loop;
+                    m0(o) <= coeff(o, 0) * x_r(0);                          -- takt 2
+                    p0(o) <= resize(m0(o), C_ACC_W) + k_r(o);               -- takt 3
+                    m1(o) <= coeff(o, 1) * x1_d1;                           -- takt 3
+                    p1(o) <= p0(o) + resize(m1(o), C_ACC_W);                -- takt 4
+                    m2(o) <= coeff(o, 2) * x2_d2;                           -- takt 4
+                    p2(o) <= p1(o) + resize(m2(o), C_ACC_W);                -- takt 5
+                    out6(o) <= sat_u8(shift_right(p2(o), C_CSC_FRAC_W));    -- takt 6
                 end loop;
-                -- 3) dvojice součtů (offset << 15 + zaokrouhlení jako konstanta akumulátoru)
-                for o in 0 to 2 loop
-                    sum3a(o) <= resize(prod2(o, 0), C_ACC_W) + resize(prod2(o, 1), C_ACC_W);
-                    sum3b(o) <= resize(prod2(o, 2), C_ACC_W) + shift_left(resize(offset(o), C_ACC_W), C_CSC_FRAC_W)
-                                + C_ROUND;
-                end loop;
-                -- 4) akumulátor
-                for o in 0 to 2 loop
-                    acc4(o) <= sum3a(o) + sum3b(o);
-                end loop;
-                -- 5) posun (floor) a saturace
-                for o in 0 to 2 loop
-                    s := shift_right(acc4(o), C_CSC_FRAC_W);
-                    out5(o) <= sat_u8(s);
-                end loop;
-                -- postranní signály
                 user_d <= s_axis_tuser & user_d(1 to C_DEPTH - 1);
                 last_d <= s_axis_tlast & last_d(1 to C_DEPTH - 1);
             end if;
+
             if aresetn = '0' then
                 valid_d <= (others => '0');
             elsif en = '1' then
@@ -130,7 +138,7 @@ begin
 
     -- Výstupní skid buffer (registrovaný ready -> en)
     gen_out : for o in 0 to G_CH_OUT - 1 generate
-        skid_in((o + 1) * C_PIX_W - 1 downto o * C_PIX_W) <= std_logic_vector(out5(o));
+        skid_in((o + 1) * C_PIX_W - 1 downto o * C_PIX_W) <= std_logic_vector(out6(o));
     end generate;
     skid_in(G_CH_OUT * C_PIX_W)     <= user_d(C_DEPTH);
     skid_in(G_CH_OUT * C_PIX_W + 1) <= last_d(C_DEPTH);
