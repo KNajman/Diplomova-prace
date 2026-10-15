@@ -6,6 +6,7 @@ Stav k 30. 9. 2026 · výsledek grill-me session (Claude jako druhý vedoucí/ko
 Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání: jednotné HLS × VHDL × SW implementace vybraných algoritmů na KV260, férově změřené a porovnané v jednom testovacím řetězci.
 
 ## Průběh
+- 15. 10. 2026 (večer): VHDL CSC kompletní – `axil_regbank` (mapa jako HLS, jeden driver), `csc_axil` top. xsim PASS (6 předvoleb × náhodné mezery, 6 × AXI-Lite konfigurace). OOC 3→3: VHDL 325 LUT / 558 FF / 12 DSP / 3,70 ns vs. HLS 407 LUT / 385 FF / 9 DSP / 3,85 ns. K doladění: regbank ukládá celých 32 b (FF), sčítání mimo DSP kaskádu (12 vs. 9 DSP), sjednotit metodiku Fmax (HLS jen WNS, VHDL i WPWS).
 - 15. 10. 2026 (odpoledne): HLS histogram (bypass, 1 volání = 1 snímek, forwarding v BRAM) a medián 3x3 (společná šablona okénkových jader `hls_window.hpp`: řádkové buffery, okraj nuly/replikace, flush, resync) – csim + cosim PASS, impl: histogram 302 LUT / 2 BRAM / 2,73 ns, medián 768 LUT / 4 BRAM / 4,06 ns. Poučení: technika UG1399 pro histogram prošla csim, ale ne cosim. VHDL základ `DP/vhdl`: `video_pkg`, `axis_skid_buffer`, generický testbench řízený HEX z golden modelu (náhodné mezery a backpressure), `csc_core` bitově shodný ve všech 6 předvolbách (GHDL), plná propustnost 1 px/takt.
 - 15. 10. 2026: CSC jádro kompletně na Ababelu (csim/syn/cosim/impl PASS). Po implementaci 407 LUT, 385 FF, 9 DSP, 3,847 ns (260 MHz, timing splněn) proti odhadu HLS 791 LUT / 3,098 ns → do DP jen čísla po implementaci. `collect_reports.py` čte formát 2025.2, první `DP/hls/results/hls_results.csv`. Claude se připojuje na Ababel sám (SSH z device_bash), repo se synchronizuje notebook → Ababel přes SSH. Založena paměť `CLAUDE.md` + `.claude/` (připojení, poučení, rozhodnutí, skill `ababel-hls`).
 - 3. 10. 2026: HLS infrastruktura `DP/hls` (UG934 typy přes ap_axiu, TB proti golden modelu, skripty .sh/.bat). CSC jádro na Ababelu: C-sim PASS, syntéza II=1, hloubka 5, odhad Fmax 323 MHz při cíli 5 ns, 9 násobiček (DSP).
@@ -129,6 +130,7 @@ Pravidlo: každé dokončené jádro dostane svůj odstavec v kap. 5 ten samý t
 - Vedoucí přes svátky nestihne číst → ověřit na úvodní konzultaci, případně přesunout kompletní draft dřív.
 
 ## Otevřené body
+- **Metodika srovnání Fmax:** HLS `export_impl` počítá periodu z WNS, VHDL `collect_vhdl.py` bere i minimální šířku pulzu (WPWS, u DSP ~3,26 ns). Návrh: prohnat HLS RTL stejným `ooc_impl.tcl`. Probrat s dr. Rozkovcem.
 - **Norma u Sobela:** L1 / L∞ / α-max-β-min (C1: α=1, β=1/2, ≈12 %; C2: 15/16, 15/32, ≈6 %) / přesná L2. Rozhodne student po nastudování teorie, případně s dr. Rozkovcem, nejpozději před začátkem VHDL konvoluce. Výchozí volba C1.
 - Frekvence PS (A53) podle `psu_init`: ověřit a uvést.
 - Měření příkonu: podle vybavení ústavu.
