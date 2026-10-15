@@ -29,6 +29,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - **Git:** zdroj pravdy = lokální repo na notebooku (`D:\Repos\_DP`, větev `main`). Claude commituje lokálně (autor `Karel_Najman <karel.najman@tul.cz>` přes `git -c`) a na Ababel synchronizuje přes SSH fast-forward (viz ababel.md).
 - **GitHub (`KNajman/Diplomova-prace`) se NEudržuje průběžně** – pushuje se jen při velkých milnících (rozhodnutí Karla 15. 10.). Claude push nepřipomíná po každém commitu; při milníku (hotová skupina jader, M1, M2, draft) se Karla zeptá, jestli pushnout. Push dělá Karel z Windows (VM ani Ababel nemají credentials). Na Ababelu nikdy `git pull` z GitHubu – stav by byl starší než notebook.
 - Nikdy necommitovat klíče, hesla, velké binárky (`.bit`, `.xsa`, `runs/`, zip). `.gitignore` je blacklist.
+- **Každé srovnání / tabulka výsledků → `DP/results/vysledky.md`** (tabulka + konfigurace + poznatky + zdroj dat), surová čísla zůstávají v CSV.
 - Po každé větší práci: zápis do sekce **Průběh** v `plan_dokonceni_DP.md`, nové poučení do `.claude/memory/lessons.md`.
 
 ## Kde co je
@@ -39,6 +40,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 | `DP/model/generated/` | `imgproc_coeffs.h` + `imgproc_coeffs_pkg.vhd` – konstanty NIKDY neopisovat ručně |
 | `DP/hls/` | nová HLS jádra (README = pravidla + postup převodu), `scripts/` run_hls.sh/.bat, build_all.sh, collect_reports.py |
 | `DP/hls/results/hls_results.csv` | výsledky (verzováno), do tabulek DP jen `impl_*` |
+| `DP/results/vysledky.md` | **deník výsledků** – tabulky s interpretací pro kap. 6 |
 | `DP/Vitis/`, `DP/Vivado/` | původní HLS/VHDL projekty (postupně nahrazovat) |
 | `Diplomová_práce/` | text DP (LaTeX), `citace.bib` |
 | `.claude/memory/` | `ababel.md` (připojení a běhy), `lessons.md` (poučení a záludnosti), `decisions.md` (rychlý výtah rozhodnutí) |
