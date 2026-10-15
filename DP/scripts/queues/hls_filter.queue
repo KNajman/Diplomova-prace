@@ -1,0 +1,9 @@
+# HLS 2D konvoluce: csim (testbench ověří všechny tři top funkce), syn + cosim + impl pro 3x3, 5x5, 7x7, CSV
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_3x3.cfg csim
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_3x3.cfg syn && bash run_hls.sh ../filter/hls_config_3x3.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_3x3.cfg impl
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_5x5.cfg syn && bash run_hls.sh ../filter/hls_config_5x5.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_5x5.cfg impl
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_7x7.cfg syn && bash run_hls.sh ../filter/hls_config_7x7.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_7x7.cfg impl
+cd DP/hls && python3 scripts/collect_reports.py
