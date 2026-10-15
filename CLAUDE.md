@@ -46,6 +46,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Účtové (claude.ai): `jablotron-c-standard` (C/C++), `grill-me` (/grill-me – výslech plánu).
 
 ## Aktuální stav (aktualizuj)
-- Hotovo: úklid repa, golden C model (bitově = OpenCV kde má být), HLS infrastruktura, CSC jádro (csim/syn/cosim/impl PASS: 407 LUT, 9 DSP, 3,847 ns).
-- Teď: Karel převádí bodová jádra threshold, rgb2hsv, hsv2rgb podle `DP/hls/README.md`. Pak Claude: histogram (bypass), okénková jádra (filter2d, median).
-- Další: VHDL jádra, testovací BD, SW měření, text.
+- HLS hotovo (csim/cosim/impl PASS): CSC, histogram, medián 3x3 (+ šablona `hls_window.hpp` pro konvoluci). Výsledky v `DP/hls/results/hls_results.csv`.
+- HLS zbývá: threshold, rgb2hsv, hsv2rgb (Karel podle README), filter2d (Claude, nad `hls_window.hpp`).
+- VHDL (`DP/vhdl`): `video_pkg`, `axis_skid_buffer`, generický TB, `csc_core` (GHDL PASS). Zbývá: ověření v xsim + OOC impl na Ababelu, AXI4-Lite registrová banka, HSV, konvoluce, medián, (histogram P1, prahování P2).
+- Další: testovací BD, SW měření, text.
