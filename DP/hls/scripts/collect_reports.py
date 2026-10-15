@@ -90,12 +90,16 @@ def parse_impl(text):
         match = re.search(r"^\s*%s:\s*(\d+)" % key, section, re.MULTILINE)
         if match:
             res[col] = match.group(1)
-    cp = re.search(r"CP achieved post-implementation:\s*([\d.]+)", text)
+    # Vitis 2025.2: tabulka "| Post-Route | 3.847 |" v sekci "Place & Route Timing Summary"
+    # (starší verze psaly "CP achieved post-implementation: 3.847")
+    cp = (re.search(r"\|\s*Post-Route\s*\|\s*([\d.]+)", text)
+          or re.search(r"CP achieved post-implementation:\s*([\d.]+)", text))
     if cp:
         res["impl_cp_ns"] = cp.group(1)
         res["impl_fmax_mhz"] = fmax(cp.group(1))
     if text:
-        res["impl_timing_met"] = "yes" if re.search(r"Timing (constraints are )?met", text, re.I) else "no"
+        met = re.search(r"Timing (was |constraints are )?met", text, re.I)
+        res["impl_timing_met"] = "yes" if met and not re.search(r"Timing was NOT met", text) else "no"
     return res
 
 
