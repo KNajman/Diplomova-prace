@@ -88,3 +88,33 @@ kombinací v obou směrech** (4 části 2048×2048) – vše PASS, 0 chyb, 1 px/
   pro nezávislé ověření nástrojů, ne jen jader.
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (řádky `rgb2hsv_core`, `hsv2rgb_core`, `hsv_axil_*`), log `~/logs/vhdl_hsv.log` na Ababelu.
+
+---
+
+## 4. Medián 3×3 – HLS × VHDL, první okénkové jádro (15. 10. 2026)
+
+Společný generátor okna (`window_gen` ve VHDL, `hls_window.hpp` v HLS): řádkové buffery v BRAM, okraj nuly/replikace,
+flush pravého a dolního okraje, resynchronizace na TUSER, stavový registr. Síť 7× sort3 v obou verzích.
+Ověřeno (xsim): 6 rozměrů (64×48, 8×1, 8×2, 9×3, 17×5, 33×4) × oba okraje × náhodné mezery 70/70, poruchy (pixely před
+TUSER, TLAST o 3 px dřív, obojí + mezery 40/60) se správným statusem, obálka přes AXI4-Lite (přerušení, ISR, ap_vld COR).
+
+| verze | LUT | FF | DSP | BRAM | perioda | Fmax |
+|---|---|---|---|---|---|---|
+| HLS `hls_median` | 768 | 472 | 0 | 4× BRAM18 | 4,06 ns | 246 MHz |
+| VHDL `median_axil` | **631** | 538 | 0 | 2× BRAM36 (= 4× BRAM18) | **3,80 ns** | 263 MHz |
+| VHDL jen `median_core` (bez AXI4-Lite) | 600 | 439 | 0 | 2× BRAM36 | 3,82 ns | 262 MHz |
+
+Rozpad VHDL: `window_gen` 446 LUT / 285 FF / 2 BRAM, síť mediánu + skid buffery ~120 LUT, `axil_regbank` 66 LUT / 99 FF.
+
+**Poznatky**
+- Paměť stejná (2 řádkové buffery 4096 × 8 b = 2× BRAM36 = 4× BRAM18; pozor na jednotky – Vivado počítá dlaždice 36 Kb,
+  HLS BRAM_18K).
+- **Režii okénkového jádra tvoří řízení, ne výpočet:** generátor okna (pozice, okraje, flush) = 70 % LUT, síť mediánu ~20 %.
+- Kritická cesta VHDL: `frame_height` → porovnání `need_input` → `fire` → čítač `pos_y` (7 úrovní, 1× CARRY8).
+  **Možná optimalizace (v2):** předpočítat příznaky pozice (need_input, okraje řádku) o takt dopředu z čítačů s registry
+  místo porovnávání v taktu provedení – stejný princip jako dekódování adres v CSC v3. Přínos i pro konvoluci (sdílený `window_gen`).
+- Režie flush: (W + R)(H + R) − W·H = 113 taktů na 64×48 (1,8 %), u 1080p 0,15 %.
+- Chyba nalezená testy: první verze neposouvala okno v řádku dolního okraje (sloučené příznaky „sloupec ve snímku“
+  a „pixel ze vstupu“) – odhalil ji hned první test 64×48 (poslední řádek konstantní).
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (`median_core`, `median_axil`), `DP/hls/results/hls_results.csv` (`median`), log `~/logs/vhdl_median.log`.
