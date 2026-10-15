@@ -9,6 +9,11 @@
 - Odhad HLS vs. impl se výrazně liší (CSC: est 3,10 ns / 791 LUT, impl 3,85 ns / 407 LUT) → do DP jen `impl_*`.
 - Cesty v `hls_config.cfg` relativní k adresáři .cfg, skripty dělají `pushd`.
 
+## VHDL (GHDL 4.1 / xsim)
+- Řetězce v `report` jen ASCII/Latin-1 (diakritika v UTF-8 = chyba v GHDL i xsim). Komentáře s diakritikou nevadí.
+- Podmíněný výraz `'1' when c else '0'` jako parametr procedury nebo uvnitř výrazu je až VHDL-2019 → přes proměnnou nebo funkci.
+- VHDL se vyvíjí v cloudu (GHDL, `DP/vhdl/scripts/run_ghdl.sh`), vektory generuje `tb/gen_vectors.sh` z golden modelu na Karlově PC, finální ověření xsim na Ababelu.
+
 ## Golden model / aritmetika
 - RGB→šedá: Q3.14 dávala ±1 vůči OpenCV u 0,26 % barev → **Q2.15** + dorovnání řádku metodou největšího zbytku = bitová shoda na 2^24.
 - `-DNDEBUG` vypnul `assert` → unused-param s `-Werror`. `IMGPROC_ASSERT` je proto vždy aktivní (`abort()`).
