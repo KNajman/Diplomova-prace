@@ -32,4 +32,5 @@ python3 collect_vhdl.py
 5. Aritmetika = golden model, konstanty z `DP/model/generated/imgproc_coeffs_pkg.vhd`.
 6. Testbench: golden HEX, aspoň 100/100 (propustnost 1 px/takt) + náhodné mezery/backpressure, víc snímků.
 7. Fmax = max(5 - WNS, 5 - WPWS) – u DSP jader omezuje minimální šířka pulzu, ne logika.
-8. Řetězce v `report` bez diakritiky (Latin-1).
+8. **Samopopisné názvy** (`product0`, `sum01`, `in_pixel2_dly2`, `pipe_enable`), žádné zkratky `m0`/`p1`/`rd`. Formátování řeší Sigasi.
+9. Řetězce v `report` bez diakritiky (Latin-1).

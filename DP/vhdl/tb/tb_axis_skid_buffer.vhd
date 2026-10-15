@@ -37,11 +37,11 @@ architecture sim of tb_axis_skid_buffer is
     signal aclk    : std_logic := '0';
     signal aresetn : std_logic := '0';
 
-    signal src_data  : std_logic_vector(C_DW - 1 downto 0);
+    signal src_data                                           : std_logic_vector(C_DW - 1 downto 0);
     signal src_user, src_last, src_valid, src_ready, src_done : std_logic;
-    signal dut_in, dut_out : std_logic_vector(C_DW + 1 downto 0);
-    signal snk_valid, snk_ready, snk_done : std_logic;
-    signal errors, cycles : natural;
+    signal dut_in, dut_out                                    : std_logic_vector(C_DW + 1 downto 0);
+    signal snk_valid, snk_ready, snk_done                     : std_logic;
+    signal errors, cycles                                     : natural;
 begin
     aclk <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;

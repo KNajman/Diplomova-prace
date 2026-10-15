@@ -48,7 +48,8 @@ a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`
 3. **Parametry = skalární registry `s_axilite`** (ne pole). Stejná mapa registrů pak poslouží VHDL verzi.
 4. **Aritmetika = golden model** (`DP/model/lib_imgproc`). Konstanty (tabulky HSV, matice) brát z `DP/model/generated/imgproc_coeffs.h`, nikdy je neopisovat ručně.
 5. **Testbench:** `tbv::fill_pattern` → golden model → jádro → `tbv::check_frame`. `main()` vrací 0 jen při bitové shodě dat i TUSER/TLAST. Testují se dva snímky za sebou.
-6. `clock=5ns` ve všech `.cfg` (společný cíl srovnání HLS × VHDL).
+6. **Samopopisné názvy** proměnných a funkcí (stejná zásada jako ve VHDL), žádné jednopísmenné zkratky kromě souřadnic `x`, `y`.
+7. `clock=5ns` ve všech `.cfg` (společný cíl srovnání HLS × VHDL).
 
 ## Postup převodu dalšího bodového jádra (prahování, RGB→HSV, HSV→RGB)
 

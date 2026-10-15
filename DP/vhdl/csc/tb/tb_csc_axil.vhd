@@ -78,21 +78,21 @@ architecture sim of tb_csc_axil is
     signal aclk    : std_logic := '0';
     signal aresetn : std_logic := '0';
 
-    signal awaddr, araddr : std_logic_vector(7 downto 0) := (others => '0');
-    signal awvalid, wvalid, bready, arvalid, rready : std_logic := '0';
+    signal awaddr, araddr                                : std_logic_vector(7 downto 0) := (others => '0');
+    signal awvalid, wvalid, bready, arvalid, rready      : std_logic := '0';
     signal awready, wready, bvalid, arready, rvalid, irq : std_logic;
-    signal wdata, rdata : std_logic_vector(31 downto 0) := (others => '0');
-    signal bresp, rresp : std_logic_vector(1 downto 0);
+    signal wdata, rdata                                  : std_logic_vector(31 downto 0) := (others => '0');
+    signal bresp, rresp                                  : std_logic_vector(1 downto 0);
 
-    signal s_data : std_logic_vector(C_CI * C_PIX_W - 1 downto 0);
-    signal m_data : std_logic_vector(C_CO * C_PIX_W - 1 downto 0);
-    signal s_user, m_user : std_logic_vector(0 downto 0);
+    signal s_data                             : std_logic_vector(C_CI * C_PIX_W - 1 downto 0);
+    signal m_data                             : std_logic_vector(C_CO * C_PIX_W - 1 downto 0);
+    signal s_user, m_user                     : std_logic_vector(0 downto 0);
     signal s_last, s_valid, s_ready, src_done : std_logic;
     signal m_last, m_valid, m_ready, snk_done : std_logic;
-    signal errors, cycles : natural;
-    signal started  : boolean := false;
-    signal cfg_err  : natural := 0;
-    signal early    : natural := 0;
+    signal errors, cycles                     : natural;
+    signal started                            : boolean := false;
+    signal cfg_err                            : natural := 0;
+    signal early                              : natural := 0;
 begin
     aclk <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;

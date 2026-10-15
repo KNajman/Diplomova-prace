@@ -91,11 +91,11 @@ architecture sim of tb_csc is
     signal coeff   : t_csc_coeff_array;
     signal offset  : t_csc_offset_array;
 
-    signal s_data : std_logic_vector(C_CI * C_PIX_W - 1 downto 0);
-    signal m_data : std_logic_vector(C_CO * C_PIX_W - 1 downto 0);
+    signal s_data                                     : std_logic_vector(C_CI * C_PIX_W - 1 downto 0);
+    signal m_data                                     : std_logic_vector(C_CO * C_PIX_W - 1 downto 0);
     signal s_user, s_last, s_valid, s_ready, src_done : std_logic;
     signal m_user, m_last, m_valid, m_ready, snk_done : std_logic;
-    signal errors, cycles : natural;
+    signal errors, cycles                             : natural;
 begin
     aclk <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;

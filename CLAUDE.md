@@ -14,6 +14,8 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Kapacita: ~2 dny v týdnu + večery. Odhady v MD, ne v hodinách.
 - **Jednoduché kroky dělá sám** ve svém prostředí (rychlejší, šetří tokeny). Claude připravuje infrastrukturu, referenční implementace, opravy a review.
 - V kódu má rád **komentáře vysvětlující návrhová rozhodnutí** ("Poznámka k volbě …").
+- **Samopopisný kód:** názvy signálů, proměnných a konstant říkají, co obsahují (`product0`, `sum01`, `in_pixel1_dly1`, `pipe_enable`, `golden_data`), žádné zkratky typu `m0`, `p1`, `rd`, `n`, `x_r`. Konvenční indexy smyček jen tam, kde je význam zřejmý (`x`, `y` = souřadnice); jinak `out_ch`, `in_ch`, `reg_idx`.
+- **VHDL:** šířky vždy vzorcem (Wa+Wb, max(W)+clog2(N)), maximální pipeline (každá operace za registrem). Formátování/zarovnání řeší Sigasi ve VS Code – neztrácet čas zarovnáváním.
 - C/C++ podle **Jablotron C standardu** (skill `jablotron-c-standard`), odchylky jen zdůvodněné v komentáři.
 - Notebook: Windows, 12 GB RAM (velké Vivado běhy → Ababel), VS Code, clang/MinGW/MSVC, Vitis/Vivado 2025.2, Git for Windows (má uložené GitHub credentials), WinSCP + PuTTY + Pageant, VPN TUL.
 - Text DP: LaTeX `tulthesis`, lokální TeX Live, `Diplomová_práce/DP.tex`.
