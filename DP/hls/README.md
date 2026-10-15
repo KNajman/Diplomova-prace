@@ -4,8 +4,9 @@
 DP/hls/
   common/hls_video.hpp    typy AXI4-Stream Video (UG934, ap_axiu), pack/unpack, saturace, round_shift
   common/tb_video.hpp     testbench: testovací vzor, push_frame/check_frame proti golden modelu
-  csc/                    převod barev - REFERENČNÍ JÁDRO (vzor pro ostatní)
-  scripts/run_hls.sh/.bat jedna komponenta: csim | syn | cosim | all (Linux / Windows)
+  csc/                    převod barev - REFERENČNÍ JÁDRO (vzor pro bodová jádra)
+  histogram/              histogram jasu, bypass - vzor pro jádra s voláním po snímcích
+  scripts/run_hls.sh/.bat jedna komponenta: csim | syn | cosim | impl | all (Linux / Windows)
   scripts/build_all.sh    všechny komponenty, souhrn PASS/FAIL
   scripts/collect_reports.py  reporty všech jader -> results/hls_results.csv (tabulky DP)
   build/, ip_repo/        generované (gitem ignorované)
@@ -59,3 +60,17 @@ a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`
 3. V testbenchi zavolej odpovídající funkci golden modelu místo `imgproc_csc()`.
 4. `./run_hls.sh ../<jádro>/hls_config.cfg csim`. Teprve když projde, spusť `syn` a `cosim`.
 5. Pozor na pořadí složek: index 0 = TDATA[7:0] = **G** u RGB (UG934). V `Pixel` používej konstanty `IMGPROC_RGB_IDX_*`.
+
+## Histogram (volání po snímcích)
+
+Na rozdíl od bodových jader musí jádro poznat konec snímku, aby předalo výsledek:
+
+- **Jedno volání = jeden snímek.** Registr `height`, šířku ohraničuje TLAST. `ap_done` = histogram je platný
+  (přerušení pro ARM), auto-restart jako u bodových jader.
+- **Video prochází beze změny** (bypass), histogram se počítá do interní BRAM a po snímku se zkopíruje do pole
+  `hist[256]` v AXI4-Lite. ARM ho čte během dalšího snímku (dvojí buffer zadarmo). Režie 2 × 256 taktů na snímek.
+- **Read-modify-write do BRAM s II=1 vyžaduje forwarding** posledních zápisů (`HIST_FWD_DEPTH = 3`)
+  a `DEPENDENCE inter false`. Technika „přičítej v registru do změny hodnoty“ z UG1399 prošla C-sim, ale v cosim
+  ztrácela pixely. **U jader s RMW do paměti je cosim povinná** a TB musí obsahovat vzory s opakováním po 1–4 px.
+- **`status`:** bit0 = před TUSER přišly pixely (resynchronizace, nepočítají se), bit1 = TUSER uprostřed snímku
+  (histogram neplatný). Nejpozději druhý snímek po poruše je opět správný.

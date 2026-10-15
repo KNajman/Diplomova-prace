@@ -1,6 +1,7 @@
 # Poučení a záludnosti (aktualizovat, nejnovější nahoru)
 
 ## Vitis HLS 2025.2
+- **C-sim neověří časování pipeline.** Histogram s technikou UG1399 (přičítání v registru, závislost přes BRAM nechaná na HLS) prošel csim, ale cosim ztrácela pixely u vzorů a,b,a. Řešení: explicitní forwarding posledních 3 zápisů + `DEPENDENCE inter false`; TB musí mít vzory s opakováním po 1–4 px. U všech jader s RMW do paměti spouštět cosim, ne jen csim.
 - **Stream musí být `ap_axiu`** (`hlsv::axis_t`). Vlastní struct + `AGGREGATE` zabalí TUSER/TLAST do TDATA → nefunguje s VDMA/VFB.
 - **`ap_ctrl_none` + skalární `s_axilite` registry → cosim visí** ("0/24576", "non-self-synchronizing top I/O"). Řešení: `ap_ctrl_hs`, jedno volání = jeden řádek, v HW auto-restart (0x81 na 0x00). Režie ~10 taktů/řádek (~0,5 % při 1080p).
 - `v++ -c --mode hls` IP nezabalí → navíc `vitis-run --mode hls --package`.
@@ -14,6 +15,7 @@
 - Pořadí složek UG934: TDATA[7:0] = **G**, [15:8] = B, [23:16] = R. Používat `IMGPROC_RGB_IDX_*`.
 
 ## Repo / nástroje
+- Ababel: firewall omezuje počet nových SSH spojení (zablokování portu 22 po smyčce ssh co 10 s). ControlMaster + čekání v jednom spojení (viz ababel.md).
 - `.gitignore` vzor `hls/` omylem ignoroval `DP/hls/` → správně `/DP/Vitis/**/hls/`. Vzory kotvit lomítkem.
 - Whitelist `.gitignore` sledoval 1,2 GB a vynechal text DP → blacklist.
 - `.gitattributes`: `*.sh/*.tcl/*.cfg` LF (jinak bash na Ababelu padá na `\r`), `*.bat` CRLF.

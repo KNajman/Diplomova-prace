@@ -30,9 +30,9 @@ ssh -f ababel "cd ~/Diplomova-prace/DP/hls/scripts && setsid nohup bash -c 'sour
 - Kroky: `csim` → (PASS) → `syn` → `cosim` → `impl`. `all` = csim+syn+cosim (impl zvlášť).
 
 ## 4. Čekání a kontrola
+**Nikdy smyčku `ssh` na straně VM** – firewall Ababelu po ~20 nových spojeních zablokuje port 22. Smyčka běží na serveru v jednom spojení, config má ControlMaster.
 ```
-for i in $(seq 1 16); do ssh ababel 'pgrep -f run_hls.sh >/dev/null' || break; sleep 10; done
-ssh ababel "tail -5 ~/logs/$LOG.log; pgrep -f run_hls.sh >/dev/null && echo RUNNING || echo DONE"
+ssh ababel "for i in \$(seq 1 16); do pgrep -f run_hls.sh >/dev/null || break; sleep 10; done; tail -5 ~/logs/$LOG.log; pgrep -f run_hls.sh >/dev/null && echo RUNNING || echo DONE"
 ```
 Opakuj, dokud není DONE. Při chybě hledej v logu `ERROR`, `FAIL`, `mismatch`; csim/cosim logy jsou v `DP/hls/build/<jádro>/hls/`.
 

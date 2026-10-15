@@ -22,7 +22,11 @@
       IdentityFile ~/.ssh/id_ed25519_ababel
       BatchMode yes
       ServerAliveInterval 30
+      ControlMaster auto
+      ControlPath ~/.ssh/cm-%r@%h-%p
+      ControlPersist 30m
   ```
+- **POZOR – firewall Ababelu omezuje počet nových SSH spojení.** 15. 10. smyčka `ssh` každých 10 s (~20 spojení za pár minut) vedla k zablokování portu 22 (nejdřív "Connection refused", pak "timed out", ping dál funguje). Proto: ControlMaster (jedno sdílené spojení) a čekání na konec běhu **uvnitř jednoho ssh** na serveru, nikdy smyčka ssh na straně VM.
 - **Když klíč v nové session chybí** (VM home se nemusí zachovat): `ssh-keygen -q -t ed25519 -N "" -C claude-cowork@karel -f ~/.ssh/id_ed25519_ababel`, znovu vytvořit config, Karel přidá nový `.pub` do `authorized_keys` (starý řádek `claude-cowork@karel` smazat). Test: `ssh ababel hostname`.
 - Odvolání přístupu Claude: smazat řádek `claude-cowork@karel` z `~/.ssh/authorized_keys`.
 
@@ -42,5 +46,6 @@ ssh ababel 'cd ~/Diplomova-prace && git merge --ff-only laptop && git branch -D 
   ssh -f ababel 'cd ~/Diplomova-prace/DP/hls/scripts && setsid nohup bash -c "source /tools/Xilinx/2025.2/Vitis/settings64.sh && bash run_hls.sh ../csc/hls_config_rgb.cfg impl" > ~/logs/impl_csc_rgb.log 2>&1 < /dev/null &'
   ```
   (Bez `-f`/`setsid` ssh čeká na proces a příkaz vyprší – běh ale pokračuje.)
-- Stav: `ssh ababel 'pgrep -f run_hls.sh && tail -3 ~/logs/<log>'`, čekat po 10 s smyčkou v rámci jednoho volání.
+- Čekání: jedno spojení, smyčka běží na serveru (max ~160 s kvůli limitu device_bash, pak znovu):
+  `ssh ababel 'for i in $(seq 1 16); do pgrep -f run_hls.sh >/dev/null || break; sleep 10; done; tail -5 ~/logs/<log>; pgrep -f run_hls.sh >/dev/null && echo RUNNING || echo DONE'`
 - Orientační doby (CSC): impl ~3,5 min, cosim ~1–2 min.
