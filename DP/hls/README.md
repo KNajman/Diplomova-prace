@@ -7,6 +7,7 @@ DP/hls/
   csc/                    převod barev - REFERENČNÍ JÁDRO (vzor pro ostatní)
   scripts/run_hls.sh/.bat jedna komponenta: csim | syn | cosim | all (Linux / Windows)
   scripts/build_all.sh    všechny komponenty, souhrn PASS/FAIL
+  scripts/collect_reports.py  reporty všech jader -> results/hls_results.csv (tabulky DP)
   build/, ip_repo/        generované (gitem ignorované)
 ```
 
@@ -32,6 +33,12 @@ Kdyby nešlo ani to, příkazy ze skriptu se dají zadat ručně (z adresáře s
 > Klíče v `hls_config.cfg` a přepínače `vitis-run` / `v++ -c --mode hls` odpovídají unified flow 2025.x.
 > Při prvním spuštění zkontroluj log. Kdyby některý klíč verze 2025.2 nepřijala, oprav ho jednou
 > ve všech `.cfg` (jsou stejně postavené).
+
+## Výsledky do CSV
+
+Po `syn`, `cosim` a `impl` spusť `python3 scripts/collect_reports.py`. Projde `build/*/hls/` a do
+`results/hls_results.csv` zapíše odhad HLS (`est_*`), cosim (latence a interval v taktech)
+a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`.** CSV se verzuje.
 
 ## Pravidla pro všechna jádra
 
