@@ -307,6 +307,91 @@ static bool run_point_op(int argc, char** argv, const imgproc_image_t* src, imgp
  * @param src   Vstupní obraz (1 kanál)
  * @param dst   Výstupní obraz (popis se vyplní)
  */
+/**
+ * @brief Zapíše jádro do textového souboru <prefix>_kernel.txt (čte ho VHDL testbench i operace filterk).
+ *
+ * Formát: první řádek "K scale_q14 delta", pak K řádků po K koeficientech (int8, řádky jádra).
+ * Testbench tak nastaví stejné koeficienty jako golden model a nikde se neopisují ručně.
+ *
+ * @param kernel    Jádro
+ * @param prefix    Výstupní prefix
+ */
+static void write_kernel(const imgproc_kernel_t* kernel, const char* prefix)
+{
+    char path[CLI_PATH_MAX] = { 0 };
+    FILE* f = NULL;
+    uint8_t row = 0u;
+    uint8_t col = 0u;
+
+    (void)snprintf(path, sizeof(path), "%s_kernel.txt", prefix);
+    f = pc_file_open(path, "w");
+    if (f == NULL)
+    {
+        fail("nelze vytvořit soubor jádra");
+    }
+    fprintf(f, "%u %ld %d\n", kernel->size, (long)kernel->scale_q14, kernel->delta);
+    for (row = 0u; row < kernel->size; row++)
+    {
+        for (col = 0u; col < kernel->size; col++)
+        {
+            fprintf(f, "%s%d", (col == 0u) ? "" : " ", kernel->coeff[row][col]);
+        }
+        fprintf(f, "\n");
+    }
+    (void)fclose(f);
+}
+
+/**
+ * @brief Načte jádro ze souboru ve formátu write_kernel() (čísla oddělená mezerami / konci řádků).
+ *
+ * Poznámka: čte se přes fgets + strtol místo fscanf (MSVC hlásí fscanf jako nebezpečný a s /WX by
+ * překlad selhal; fscanf_s zase není na Linuxu).
+ *
+ * @param path      Cesta k souboru
+ * @param kernel    Výstupní jádro
+ */
+static void read_kernel(const char* path, imgproc_kernel_t* kernel)
+{
+    char line[CLI_PATH_MAX] = { 0 };
+    long values[3u + (IMGPROC_KERNEL_SIZE_MAX * IMGPROC_KERNEL_SIZE_MAX)] = { 0 };
+    const uint32_t capacity = (uint32_t)(sizeof(values) / sizeof(values[0]));
+    uint32_t count = 0u;
+    uint32_t i = 0u;
+    FILE* f = pc_file_open(path, "r");
+
+    if (f == NULL)
+    {
+        fail("nelze otevřít soubor jádra");
+    }
+    while ((count < capacity) && (fgets(line, (int)sizeof(line), f) != NULL))
+    {
+        char* cursor = line;
+        char* end = NULL;
+        long value = strtol(cursor, &end, 10);
+        while ((end != cursor) && (count < capacity))
+        {
+            values[count] = value;
+            count++;
+            cursor = end;
+            value = strtol(cursor, &end, 10);
+        }
+    }
+    (void)fclose(f);
+    if ((count < 3u) || (values[0] < 1) || (values[0] > (long)IMGPROC_KERNEL_SIZE_MAX) || ((values[0] % 2) == 0)
+        || (count < (3u + (uint32_t)(values[0] * values[0]))))
+    {
+        fail("neplatný soubor jádra (K liché 1..7, scale, delta, K x K koeficientů)");
+    }
+    memset(kernel, 0, sizeof(*kernel));
+    kernel->size = (uint8_t)values[0];
+    kernel->scale_q14 = (int32_t)values[1];
+    kernel->delta = (int16_t)values[2];
+    for (i = 0u; i < (uint32_t)(kernel->size * kernel->size); i++)
+    {
+        kernel->coeff[i / kernel->size][i % kernel->size] = (int8_t)values[3u + i];
+    }
+}
+
 static void run_window_op(int argc, char** argv, const imgproc_image_t* src, imgproc_image_t* dst)
 {
     const char* op = argv[CLI_ARG_OP];
@@ -320,6 +405,14 @@ static void run_window_op(int argc, char** argv, const imgproc_image_t* src, img
         const uint32_t preset = find_name(argv[CLI_ARG_P1], (uint32_t)IMGPROC_KERNEL_PRESET_COUNT, kernel_name_at);
         imgproc_kernel_make((imgproc_kernel_preset_t)preset, &kx);
         imgproc_filter2d(src, dst, &kx, parse_border(argc, argv, CLI_ARG_P2));
+        write_kernel(&kx, argv[CLI_ARG_OUT]);
+    }
+    else if (strcmp(op, "filterk") == 0)
+    {
+        require_params(argc, 1);
+        read_kernel(argv[CLI_ARG_P1], &kx);
+        imgproc_filter2d(src, dst, &kx, parse_border(argc, argv, CLI_ARG_P2));
+        write_kernel(&kx, argv[CLI_ARG_OUT]);
     }
     else if (strcmp(op, "gradient") == 0)
     {
@@ -376,6 +469,7 @@ static void print_usage(const char* name)
            "  rgb2hsv | hsv2rgb\n"
            "  thresh <typ 0-4> <práh> <maxval>      BINARY, BINARY_INV, TRUNC, TOZERO, TOZERO_INV\n"
            "  filter <jádro> [constant|replicate]   identity, mean, sharpen, sobel_x, sobel_y, prewitt_x, prewitt_y\n"
+           "  filterk <jádro.txt> [constant|replicate]  jádro K x K ze souboru (K scale delta / K řádků koeficientů)\n"
            "  gradient <sobel|prewitt> <l1|linf|ambm1|ambm2|l2> [constant|replicate]\n"
            "  median [constant|replicate]\n"
            "  hist                                  histogram -> <prefix>_hist.hex + Otsuův práh\n", name);
@@ -394,7 +488,7 @@ int main(int argc, char** argv)
     const char* op = (argc > CLI_ARG_OP) ? argv[CLI_ARG_OP] : "";
     const bool point = (strcmp(op, "csc") == 0) || (strcmp(op, "rgb2hsv") == 0) || (strcmp(op, "hsv2rgb") == 0)
                        || (strcmp(op, "thresh") == 0);
-    const bool window = (strcmp(op, "filter") == 0) || (strcmp(op, "gradient") == 0) || (strcmp(op, "median") == 0);
+    const bool window = (strcmp(op, "filter") == 0) || (strcmp(op, "filterk") == 0) || (strcmp(op, "gradient") == 0) || (strcmp(op, "median") == 0);
 
     if ((argc < CLI_MIN_ARGS) || ((!point) && (!window) && (strcmp(op, "tohex") != 0) && (strcmp(op, "hist") != 0)))
     {

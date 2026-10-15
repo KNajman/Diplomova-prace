@@ -1,0 +1,12 @@
+# VHDL 2D konvoluce (window_gen v2): vektory, xsim 3x3 předvoleb, 5x5 a 7x7 (i obraz nižší než jádro), obálky, OOC, CSV
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for kern in identity mean sharpen sobel_x sobel_y; do for rep in true false; do bash run_xsim.sh tb_filter2d G_KERNEL=$kern G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done
+cd DP/vhdl/scripts && for k in 5 7; do for size in "64 48" "9 3" "8 1"; do set -- $size; for rep in true false; do bash run_xsim.sh tb_filter2d G_K=$k G_KERNEL=k$k G_WIDTH=$1 G_HEIGHT=$2 G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done; done
+cd DP/vhdl/scripts && bash run_xsim.sh tb_filter2d_axil G_KERNEL=sobel_x && bash run_xsim.sh tb_filter2d_axil G_K=5 G_KERNEL=k5 && bash run_xsim.sh tb_filter2d_axil G_K=7 G_KERNEL=k7 G_REPLICATE=false
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median G_SIZE=4 G_GARBAGE=3 G_BAD_EOL_ROW=2 G_VALID_PCT=40 G_READY_PCT=60
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_core G_K=3
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_core G_K=3 G_USE_DSP=true
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_core G_K=5
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_core G_K=7
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_axil G_K=3
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv

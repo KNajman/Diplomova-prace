@@ -21,10 +21,10 @@ use ieee.numeric_std.all;
 
 package video_pkg is
 
-    constant C_PIX_W     : natural := 8; -- bity na složku
-    constant C_RGB_W     : natural := 3 * C_PIX_W; -- 24 b pixel (RGB/YCbCr/HSV)
-    constant C_MAX_WIDTH : natural := 3840; -- max. šířka snímku (4K UHD)
-    constant C_DIM_W     : natural := 12; -- šířka registrů width/height (max 4095)
+    constant C_PIX_W     : natural := 8;               -- bity na složku
+    constant C_RGB_W     : natural := 3 * C_PIX_W;     -- 24 b pixel (RGB/YCbCr/HSV)
+    constant C_MAX_WIDTH : natural := 3840;            -- max. šířka snímku (4K UHD)
+    constant C_DIM_W     : natural := 12;              -- šířka registrů width/height (max 4095)
 
     -- Indexy složek v TDATA podle UG934 (shodné s IMGPROC_RGB_IDX_* v golden modelu)
     constant C_IDX_G : natural := 0;
@@ -32,15 +32,15 @@ package video_pkg is
     constant C_IDX_R : natural := 2;
 
     -- Stavové bity (shodné s HLS hlsv::WIN_STATUS_*)
-    constant C_ST_SKIPPED   : natural := 0; -- před TUSER přišly pixely (resynchronizace)
-    constant C_ST_EARLY_SOF : natural := 1; -- TUSER uprostřed snímku
-    constant C_ST_EARLY_EOL : natural := 2; -- TLAST před koncem řádku
-    constant C_ST_LATE_EOL  : natural := 3; -- chybí TLAST na konci řádku
+    constant C_ST_SKIPPED   : natural := 0;     -- před TUSER přišly pixely (resynchronizace)
+    constant C_ST_EARLY_SOF : natural := 1;     -- TUSER uprostřed snímku
+    constant C_ST_EARLY_EOL : natural := 2;     -- TLAST před koncem řádku
+    constant C_ST_LATE_EOL  : natural := 3;     -- chybí TLAST na konci řádku
 
-    subtype t_pix       is unsigned(C_PIX_W - 1 downto 0);
-    type    t_pix_array is array (natural range <>) of t_pix;
+    subtype t_pix is unsigned(C_PIX_W - 1 downto 0);
+    type t_pix_array is array (natural range <>) of t_pix;
     -- Okno K x K okénkových jader: (řádek, sloupec), střed = (K/2, K/2)
-    type    t_window    is array (natural range <>, natural range <>) of t_pix;
+    type t_window is array (natural range <>, natural range <>) of t_pix;
 
     -- Jeden přenos AXI4-Stream Video (bez TREADY, ten jde opačným směrem)
     type t_axis is record
@@ -53,17 +53,29 @@ package video_pkg is
     constant C_AXIS_IDLE : t_axis := (tdata => (others => '0'), tuser => '0', tlast => '0', tvalid => '0');
 
     -- Převod barev: koeficienty Q2.15 (18 b = port B DSP48E2), offset celé číslo se znaménkem
-    constant C_CSC_COEFF_W      : natural := 18;
-    constant C_CSC_FRAC_W       : natural := 15;
-    constant C_CSC_OFFSET_W     : natural := 10;
-    type     t_csc_coeff_array  is array (0 to 2, 0 to 2) of signed(C_CSC_COEFF_W - 1 downto 0);
-    type     t_csc_offset_array is array (0 to 2) of signed(C_CSC_OFFSET_W - 1 downto 0);
+    constant C_CSC_COEFF_W  : natural := 18;
+    constant C_CSC_FRAC_W   : natural := 15;
+    constant C_CSC_OFFSET_W : natural := 10;
+    type t_csc_coeff_array  is array (0 to 2, 0 to 2) of signed(C_CSC_COEFF_W - 1 downto 0);
+    type t_csc_offset_array is array (0 to 2) of signed(C_CSC_OFFSET_W - 1 downto 0);
 
     -- Šířky aritmetiky se VŽDY odvozují vzorcem (žádné ručně spočítané konstanty), aby jádro
     -- zůstalo správné při změně generik: součin = Wa + Wb, součet N členů = max(W) + clog2(N)
     function clog2(n : positive) return natural;
     function to_sl(condition : boolean) return std_logic;
     function sum_w(w : natural; n_terms : positive) return natural;
+
+    -- 2D konvoluce: koeficienty int8, normalizace Q.14 (18 b se znaménkem), delta int16 (shodně s golden modelem)
+    constant C_FILTER_COEFF_W : natural := 8;
+    constant C_FILTER_SCALE_W : natural := 18;
+    constant C_FILTER_FRAC_W  : natural := 14;
+    constant C_FILTER_DELTA_W : natural := 16;
+    type t_filter_coeff_array is array (natural range <>) of signed(C_FILTER_COEFF_W - 1 downto 0);  -- řádky za sebou
+
+    -- Šířka adresy AXI4-Lite pro banku s num_regs datovými registry (mapa HLS: 0x10 + 8 * i, +4 = ap_vld)
+    function axil_addr_w(num_regs : natural) return natural;
+    -- Počet registrů IP 2D konvoluce K x K (width, height, border, scale, delta, K*K koeficientů, status)
+    function filter_num_regs(kernel_size : positive) return natural;
 
     -- Složka c (0 = TDATA[7:0]) jako číslo bez znaménka
     function get_ch(data : std_logic_vector; c : natural) return t_pix;
@@ -92,6 +104,16 @@ package body video_pkg is
             k := k + 1;
         end loop;
         return k;
+    end function;
+
+    function axil_addr_w(num_regs : natural) return natural is
+    begin
+        return maximum(8, clog2(16#10# + 8 * num_regs));
+    end function;
+
+    function filter_num_regs(kernel_size : positive) return natural is
+    begin
+        return 5 + kernel_size * kernel_size + 1;
     end function;
 
     -- Šířka součtu n_terms čísel šířky w (se znaménkem): přenos max. clog2(n_terms) bitů

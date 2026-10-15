@@ -88,6 +88,30 @@ for size in 8x1 8x2 9x3 17x5 33x4 64x48; do
     done
 done
 
+# 2D konvoluce: předvolby 3x3 (golden zapíše i <prefix>_kernel.txt pro testbench) + vlastní jádra 5x5 a 7x7
+for kernel in identity mean sharpen sobel_x sobel_y; do
+    for border in constant replicate; do
+        "$CLI" filter gray_64x48.pgm "filter_${kernel}_64x48_$border" "$kernel" "$border"
+    done
+done
+python3 - <<'PY'
+import random
+random.seed(7)
+for k in (5, 7):
+    coeff = [[random.randint(-8, 8) for _ in range(k)] for _ in range(k)]
+    with open("kernel_k%d.txt" % k, "w") as f:
+        f.write("%d %d %d\n" % (k, 1500 + 700 * k, 40 - 10 * k))
+        for row in coeff:
+            f.write(" ".join(str(v) for v in row) + "\n")
+PY
+for k in 5 7; do
+    for size in 64x48 9x3 8x1; do
+        for border in constant replicate; do
+            "$CLI" filterk "gray_$size.pgm" "filter_k${k}_${size}_$border" "kernel_k$k.txt" "$border"
+        done
+    done
+done
+
 # Úplný test: všech 2^24 barev ve 4 částech 2048x2048 (golden model má max. 3840x2160).
 # Část k: pixel i -> R = 64k + (i >> 16), G = (i >> 8) & 255, B = i & 255. Tytéž bajty čtené jako H, S, V
 # dávají všechny kombinace H 0..255 x S x V pro HSV -> RGB.
