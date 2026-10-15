@@ -1,0 +1,48 @@
+# CLAUDE.md – Diplomová práce Karla Najmana
+
+Pracovní paměť pro Claude (Cowork i Claude Code). Načti na začátku každé session.
+Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` (jediný zdroj pravdy pro plán).
+
+## Projekt
+- **Téma:** Implementace vybraných algoritmů zpracování obrazu v hradlovém poli (TUL, FM/ITE).
+- **Odevzdání: 15. 1. 2027.** Milníky: M1 15. 11., M2 13. 12., částečný draft kap. 1–5 Rozkovcovi do 18. 12., plný draft přes svátky.
+- **Vedoucí:** Ing. Martin Rozkovec, Ph.D. (e-mail + osobní konzultace). Claude = druhý vedoucí / konzultant.
+- **Cíl:** HLS × VHDL × SW (C na Cortex-A53) implementace stejných algoritmů na AMD KV260, bitově shodné s golden C modelem, férově změřené (OOC 5 ns) a porovnané.
+
+## Karel
+- Bc. Karel Najman, student TUL (karel.najman@tul.cz), pracuje v Jablotronu (karel.najman@jablotron.cz). Komunikace česky.
+- Kapacita: ~2 dny v týdnu + večery. Odhady v MD, ne v hodinách.
+- **Jednoduché kroky dělá sám** ve svém prostředí (rychlejší, šetří tokeny). Claude připravuje infrastrukturu, referenční implementace, opravy a review.
+- V kódu má rád **komentáře vysvětlující návrhová rozhodnutí** ("Poznámka k volbě …").
+- C/C++ podle **Jablotron C standardu** (skill `jablotron-c-standard`), odchylky jen zdůvodněné v komentáři.
+- Notebook: Windows, 12 GB RAM (velké Vivado běhy → Ababel), VS Code, clang/MinGW/MSVC, Vitis/Vivado 2025.2, Git for Windows (má uložené GitHub credentials), WinSCP + PuTTY + Pageant, VPN TUL.
+- Text DP: LaTeX `tulthesis`, lokální TeX Live, `Diplomová_práce/DP.tex`.
+
+## Jak pracujeme
+- Kód píše Claude (Sonnet pro rutinu), Karel spouští a kontroluje. Každé jádro: csim → syn → cosim → impl, výsledky do `DP/hls/results/hls_results.csv`.
+- **Ababel** (výpočetní server ITE): Claude se připojuje sám přes SSH z device_bash, viz `.claude/memory/ababel.md` a skill `.claude/skills/ababel-hls`.
+- **Git:** repo `KNajman/Diplomova-prace` (GitHub, větev `main`). Claude commituje lokálně (autor `Karel_Najman <karel.najman@tul.cz>` přes `git -c`), **na GitHub pushuje Karel** z Windows (VM ani Ababel nemají GitHub credentials). Notebook → Ababel se synchronizuje přes SSH fast-forward (viz ababel.md).
+- Nikdy necommitovat klíče, hesla, velké binárky (`.bit`, `.xsa`, `runs/`, zip). `.gitignore` je blacklist.
+- Po každé větší práci: zápis do sekce **Průběh** v `plan_dokonceni_DP.md`, nové poučení do `.claude/memory/lessons.md`.
+
+## Kde co je
+| Cesta | Obsah |
+|---|---|
+| `plan_dokonceni_DP.md` | plán, rozhodnutí, priority, harmonogram, konzultace, průběh |
+| `DP/model/` | golden C model `lib_imgproc` (CMake + Makefile), generátor konstant, CLI, test proti OpenCV |
+| `DP/model/generated/` | `imgproc_coeffs.h` + `imgproc_coeffs_pkg.vhd` – konstanty NIKDY neopisovat ručně |
+| `DP/hls/` | nová HLS jádra (README = pravidla + postup převodu), `scripts/` run_hls.sh/.bat, build_all.sh, collect_reports.py |
+| `DP/hls/results/hls_results.csv` | výsledky (verzováno), do tabulek DP jen `impl_*` |
+| `DP/Vitis/`, `DP/Vivado/` | původní HLS/VHDL projekty (postupně nahrazovat) |
+| `Diplomová_práce/` | text DP (LaTeX), `citace.bib` |
+| `.claude/memory/` | `ababel.md` (připojení a běhy), `lessons.md` (poučení a záludnosti), `decisions.md` (rychlý výtah rozhodnutí) |
+| `.claude/skills/` | projektové skilly (`ababel-hls`) |
+
+## Skilly
+- Projektové: `ababel-hls` – spuštění HLS kroku na Ababelu, sběr výsledků, sync repa.
+- Účtové (claude.ai): `jablotron-c-standard` (C/C++), `grill-me` (/grill-me – výslech plánu).
+
+## Aktuální stav (aktualizuj)
+- Hotovo: úklid repa, golden C model (bitově = OpenCV kde má být), HLS infrastruktura, CSC jádro (csim/syn/cosim/impl PASS: 407 LUT, 9 DSP, 3,847 ns).
+- Teď: Karel převádí bodová jádra threshold, rgb2hsv, hsv2rgb podle `DP/hls/README.md`. Pak Claude: histogram (bypass), okénková jádra (filter2d, median).
+- Další: VHDL jádra, testovací BD, SW měření, text.

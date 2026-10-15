@@ -6,6 +6,8 @@ Stav k 30. 9. 2026 · výsledek grill-me session (Claude jako druhý vedoucí/ko
 Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání: jednotné HLS × VHDL × SW implementace vybraných algoritmů na KV260, férově změřené a porovnané v jednom testovacím řetězci.
 
 ## Průběh
+- 15. 10. 2026: CSC jádro kompletně na Ababelu (csim/syn/cosim/impl PASS). Po implementaci 407 LUT, 385 FF, 9 DSP, 3,847 ns (260 MHz, timing splněn) proti odhadu HLS 791 LUT / 3,098 ns → do DP jen čísla po implementaci. `collect_reports.py` čte formát 2025.2, první `DP/hls/results/hls_results.csv`. Claude se připojuje na Ababel sám (SSH z device_bash), repo se synchronizuje notebook → Ababel přes SSH. Založena paměť `CLAUDE.md` + `.claude/` (připojení, poučení, rozhodnutí, skill `ababel-hls`).
+- 3. 10. 2026: HLS infrastruktura `DP/hls` (UG934 typy přes ap_axiu, TB proti golden modelu, skripty .sh/.bat). CSC jádro na Ababelu: C-sim PASS, syntéza II=1, hloubka 5, odhad Fmax 323 MHz při cíli 5 ns, 9 násobiček (DSP).
 - 2. 10. 2026: úklid repa (blacklist .gitignore) hotový. Golden C model `DP/model/lib_imgproc` hotový (Jablotron C standard, poznámky k návrhovým rozhodnutím v komentářích), generátor konstant (`generated/imgproc_coeffs.h`, `imgproc_coeffs_pkg.vhd`) a `imgproc_cli` (PPM/PGM → HEX pro testbenche). Ověřeno proti OpenCV 4.13: RGB→šedá, RGB→HSV (2^24), prahování, medián (replikace) a filter2D bitově shodné; RGB→YCbCr ±1; HSV→RGB ±2. Nástroje pro PC se přeloží na Linuxu i Windows (`pc_file_open`: fopen_s / fopen).
 
 ## Výchozí stav (audit)
@@ -47,7 +49,7 @@ Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání:
 - VHDL-2008 a jen ověřené konstrukty (AXIS v recordech). Žádné VHDL-2019 interfaces (xsim je nepodporuje).
 - Konfigurace: VHDL jádra = `axil_regbank` + jádro, zabalená jako IP. Mapa registrů stejná jako u HLS, jeden C driver.
 - Stavový registr ve všech jádrech (sticky EARLY_EOL, LATE_EOL, EARLY_SOF + čítač snímků).
-- Bodová jádra: čistá pipeline, TUSER/TLAST putují s daty, bez čítačů. V HLS `ap_ctrl_none`.
+- Bodová jádra: čistá pipeline, TUSER/TLAST putují s daty, bez čítačů. V HLS jedno volání = jeden řádek (smyčka do TLAST), `ap_ctrl_hs` + auto-restart (změna 3. 10.: `ap_ctrl_none` se skalárními registry nejde ve Vitis 2025.2 co-simulovat).
 - Okénková jádra: geometrie z čítačů (width/height), TLAST jen kontrolovaný, snímek se vždy dokončí (W×H), flush po W×H s `s_axis_tready = 0`, globální enable + 2místný skid buffer, BRAM line buffery (šablona UG901), pipelinovaný sčítací strom, jedna konstanta latence pro valid/user/last.
 
 ### Aritmetika a reference
