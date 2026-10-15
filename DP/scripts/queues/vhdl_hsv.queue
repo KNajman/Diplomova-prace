@@ -1,0 +1,22 @@
+# VHDL RGB <-> HSV: vektory vč. úplného testu 2^24, xsim jader a obálek, OOC, CSV
+cd DP/vhdl/tb && bash gen_vectors.sh --full
+cd DP/vhdl/scripts && bash run_xsim.sh tb_rgb2hsv G_TEST=0 G_VALID_PCT=60 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_rgb2hsv G_TEST=1 G_VALID_PCT=60 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=0 G_VALID_PCT=60 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=1 G_VALID_PCT=60 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv_axil G_RGB_TO_HSV=true G_TEST=1
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv_axil G_RGB_TO_HSV=false G_TEST=1
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs rgb2hsv_core
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs hsv2rgb_core
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs hsv_axil G_RGB_TO_HSV=true
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs hsv_axil G_RGB_TO_HSV=false
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
+# úplný test všech 2^24 kombinací (4 části 2048x2048, nejdelší - na konec)
+cd DP/vhdl/scripts && bash run_xsim.sh tb_rgb2hsv G_TEST=2 G_PART=0
+cd DP/vhdl/scripts && bash run_xsim.sh tb_rgb2hsv G_TEST=2 G_PART=1
+cd DP/vhdl/scripts && bash run_xsim.sh tb_rgb2hsv G_TEST=2 G_PART=2
+cd DP/vhdl/scripts && bash run_xsim.sh tb_rgb2hsv G_TEST=2 G_PART=3
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=2 G_PART=0
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=2 G_PART=1
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=2 G_PART=2
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=2 G_PART=3

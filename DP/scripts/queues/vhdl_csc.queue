@@ -1,0 +1,9 @@
+# VHDL CSC: vektory, xsim (6 předvoleb s náhodnými mezerami + 6x AXI-Lite), OOC 4 varianty, CSV
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for p in 0 1 2 3 4 5; do bash run_xsim.sh tb_csc G_PRESET=$p G_VALID_PCT=60 G_READY_PCT=60 || exit 1; done
+cd DP/vhdl/scripts && for p in 0 1 2 3 4 5; do bash run_xsim.sh tb_csc_axil G_PRESET=$p || exit 1; done
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs csc_core G_CH_IN=3 G_CH_OUT=3
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs csc_axil G_CH_IN=3 G_CH_OUT=3
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs csc_axil G_CH_IN=3 G_CH_OUT=1
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs csc_axil G_CH_IN=1 G_CH_OUT=3
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
