@@ -31,6 +31,7 @@ opt_design
 place_design
 route_design
 report_utilization -file [file join $out utilization.rpt]
+report_utilization -hierarchical -hierarchical_depth 3 -file [file join $out utilization_hier.rpt]
 report_timing_summary -max_paths 5 -file [file join $out timing.rpt]
 report_power -file [file join $out power.rpt]
 puts "OOC HOTOVO: $top -> $out"
