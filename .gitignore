@@ -146,3 +146,7 @@ desktop.ini
 
 # Claude – lokální nastavení (paměť a skilly v .claude/ se verzují)
 .claude/settings.local.json
+
+# VHDL - generované (simulace, testovací vektory z gen_vectors.sh)
+/DP/vhdl/build/
+/DP/vhdl/tb/data/
