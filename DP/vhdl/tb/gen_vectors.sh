@@ -3,7 +3,7 @@
 #  Vygeneruje testovací vektory pro VHDL testbenche do tb/data/ (gitem ignorováno).
 #  Reference = golden model (DP/model, nástroj imgproc_cli). Spouštět z DP/vhdl/tb:
 #      bash gen_vectors.sh          (malé testy, sekundy)
-#      bash gen_vectors.sh --full   (+ všech 2^24 barev pro HSV, ~240 MB, jen Ababel)
+#      bash gen_vectors.sh --full   (+ všech 2^24 barev pro HSV ve 4 částech, ~470 MB, jen Ababel)
 # =============================================================================
 set -euo pipefail
 FULL="${1:-}"
@@ -69,23 +69,23 @@ with open("hsvin_256x256.ppm", "wb") as f, open("in_hsv_ramp.hex", "w") as h:
 PY
 "$CLI" hsv2rgb hsvin_256x256.ppm rgb_from_hsv_ramp
 
-# Úplný test: všech 2^24 barev v obraze 4096x4096 (pixel i: R = i >> 16, G = (i >> 8) & 255, B = i & 255)
+# Úplný test: všech 2^24 barev ve 4 částech 2048x2048 (golden model má max. 3840x2160).
+# Část k: pixel i -> R = 64k + (i >> 16), G = (i >> 8) & 255, B = i & 255. Tytéž bajty čtené jako H, S, V
+# dávají všechny kombinace H 0..255 x S x V pro HSV -> RGB.
 if [ "$FULL" = "--full" ]; then
-    python3 - <<'PY'
-with open("all_colors_4096.ppm", "wb") as f:
-    f.write(b"P6\n4096 4096\n255\n")
-    for r in range(256):
-        f.write(bytes(v for g in range(256) for b in range(256) for v in (r, g, b)))
+    for part in 0 1 2 3; do
+        PART=$part python3 - <<'PY'
+import os
+part = int(os.environ["PART"])
+with open("all_colors_%d.ppm" % part, "wb") as f, open("in_all_hsv_%d.hex" % part, "w") as h:
+    f.write(b"P6\n2048 2048\n255\n")
+    for r in range(64 * part, 64 * part + 64):
+        row = bytes(v for g in range(256) for b in range(256) for v in (r, g, b))
+        f.write(row)
+        h.write("".join("%02X%02X%02X\n" % (b, g, r) for g in range(256) for b in range(256)))
 PY
-    "$CLI" tohex all_colors_4096.ppm in_all_colors
-    "$CLI" rgb2hsv all_colors_4096.ppm hsv_all_colors
-    # všechny kombinace H 0..255 x S x V (stejný soubor, bajty čteny jako H, S, V)
-    python3 - <<'PY'
-with open("all_colors_4096.ppm", "rb") as f, open("in_all_hsv.hex", "w") as h:
-    f.readline(); f.readline(); f.readline()
-    data = f.read()
-    for i in range(0, len(data), 3):
-        h.write("%02X%02X%02X\n" % (data[i + 2], data[i + 1], data[i]))
-PY
-    "$CLI" hsv2rgb all_colors_4096.ppm rgb_from_all_hsv
+        "$CLI" tohex "all_colors_$part.ppm" "in_all_colors_$part"
+        "$CLI" rgb2hsv "all_colors_$part.ppm" "hsv_all_colors_$part"
+        "$CLI" hsv2rgb "all_colors_$part.ppm" "rgb_from_all_hsv_$part"
+    done
 fi
