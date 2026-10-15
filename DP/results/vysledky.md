@@ -118,3 +118,29 @@ Rozpad VHDL: `window_gen` 446 LUT / 285 FF / 2 BRAM, síť mediánu + skid buffe
   a „pixel ze vstupu“) – odhalil ji hned první test 64×48 (poslední řádek konstantní).
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (`median_core`, `median_axil`), `DP/hls/results/hls_results.csv` (`median`), log `~/logs/vhdl_median.log`.
+
+---
+
+## 5. Optimalizace: `window_gen` v2 a HSV→RGB v DSP (15. 10. 2026)
+
+| jádro | LUT | FF | DSP | BRAM | perioda | kritická cesta |
+|---|---|---|---|---|---|---|
+| `hsv2rgb_core` (násobení v LUT, `use_dsp` auto) | 564 | 371 | 1 | 0 | 3,33 ns | S·(255−f) přes 3× CARRY8 |
+| `hsv2rgb_core` `G_USE_DSP = true` | **158** | **184** | 11 | 0 | **3,26 ns** | limit šířky pulzu DSP |
+| `median_core` v1 | 600 | 439 | 0 | 2 | 3,82 ns | frame_height → need_input → fire → pos_y (7 úrovní) |
+| `median_core` v2 (předpočet příznaků pozice) | 590 | 433 | 0 | 2 | **3,50 ns** | pos_y → výpočet row_source (předpočet, 7 úrovní) |
+| `median_axil` v1 | 631 | 538 | 0 | 2 | 3,80 ns | řízení window_gen |
+| `median_axil` v2 | 692 | 532 | 0 | 2 | 4,07 ns | síť mediánu (sort3: 2 porovnání za sebou, 6 úrovní) |
+
+**Poznatky**
+- **HSV→RGB:** vynucení DSP ušetří 72 % LUT a 50 % FF (registry pipeline se schovají do registrů A/B/M/P v DSP) za 10 DSP navíc
+  (z 1 248 na KV260 je to 0,9 %). U malých násobení 8×8 b je výchozí volba syntézy (LUT) horší ve všech parametrech kromě DSP.
+  Kandidát na výchozí nastavení; rozhodnout po srovnání s HLS hsv2rgb.
+- **window_gen v2:** v samotném jádře −0,32 ns (+9 %), řízení už není úzké hrdlo. S obálkou výsledek kolísá (4,07 vs 3,80 ns)
+  – kritická cesta je teď v síti mediánu a o pořadí rozhoduje rozmístění (P&R). Všechny varianty splňují 200 MHz s rezervou
+  ≥ 0,9 ns, další optimalizace (rozdělit sort3 na stupně compare-exchange, inkrementální příznaky řádků) by přinesla
+  desetiny ns za cenu FF → **zastaveno, není potřeba pro cíl 200 MHz**. Zmínit v textu jako možnost.
+- Obecný vzorec postupu optimalizace (CSC, medián): odstranit kritickou cestu → přesune se jinam; končí se, když je
+  splněný cíl, nebo když limituje hardware (šířka pulzu DSP 3,26 ns).
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (`*_v1` = před optimalizací), log `~/logs/vhdl_opt.log`.
