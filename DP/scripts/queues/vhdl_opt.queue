@@ -1,0 +1,11 @@
+# Optimalizace: window_gen v2 (předpočet příznaků pozice) na mediánu + HSV->RGB s DSP; staré výsledky -> *_v1
+cd DP/vhdl/build/ooc && for d in median_core median_axil; do [ -d "$d" ] && mv -n "$d" "${d}_v1"; done; true
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for size in 0 1 2 3 4 5; do for rep in true false; do bash run_xsim.sh tb_median G_SIZE=$size G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median G_SIZE=4 G_GARBAGE=3 G_BAD_EOL_ROW=2 G_VALID_PCT=40 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median_axil G_REPLICATE=true && bash run_xsim.sh tb_median_axil G_REPLICATE=false
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv2rgb G_TEST=1 G_VALID_PCT=60 G_READY_PCT=60
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs median_core
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs median_axil
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs hsv2rgb_core G_USE_DSP=true
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
