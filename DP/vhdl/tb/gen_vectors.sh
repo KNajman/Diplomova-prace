@@ -69,6 +69,25 @@ with open("hsvin_256x256.ppm", "wb") as f, open("in_hsv_ramp.hex", "w") as h:
 PY
 "$CLI" hsv2rgb hsvin_256x256.ppm rgb_from_hsv_ramp
 
+# Medián 3x3 (okénková jádra): obraz 64x48 (šedá z CSC) + malé a liché rozměry, oba okraje
+python3 - <<'PY'
+import random
+random.seed(3)
+for w, h in ((8, 1), (8, 2), (9, 3), (17, 5), (33, 4), (64, 48)):
+    if (w, h) == (64, 48):
+        continue
+    with open("gray_%dx%d.pgm" % (w, h), "wb") as f:
+        f.write(b"P5\n%d %d\n255\n" % (w, h))
+        f.write(bytes(random.getrandbits(8) if (x + y) % 3 else (x * 37 + y * 11) & 255 for y in range(h) for x in range(w)))
+PY
+cp csc_rgb_to_gray_bt601.pgm gray_64x48.pgm
+for size in 8x1 8x2 9x3 17x5 33x4 64x48; do
+    "$CLI" tohex "gray_$size.pgm" "in_gray_$size"
+    for border in constant replicate; do
+        "$CLI" median "gray_$size.pgm" "median_${size}_$border" "$border"
+    done
+done
+
 # Úplný test: všech 2^24 barev ve 4 částech 2048x2048 (golden model má max. 3840x2160).
 # Část k: pixel i -> R = 64k + (i >> 16), G = (i >> 8) & 255, B = i & 255. Tytéž bajty čtené jako H, S, V
 # dávají všechny kombinace H 0..255 x S x V pro HSV -> RGB.

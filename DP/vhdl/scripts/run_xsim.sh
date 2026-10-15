@@ -17,7 +17,14 @@ shopt -s nullglob
 RTL=( "$HERE"/*/rtl/*.vhd )
 CORE=(); TOP=()
 for f in "${RTL[@]}"; do case "$f" in *_axil.vhd) TOP+=( "$f" );; *) CORE+=( "$f" );; esac; done
-SRC=( "$HERE"/../model/generated/imgproc_coeffs_pkg.vhd "$HERE"/common/video_pkg.vhd "$HERE"/common/axis_skid_buffer.vhd "$HERE"/common/axil_regbank.vhd "${CORE[@]}" "${TOP[@]}" "$HERE"/tb/*.vhd "$HERE"/*/tb/*.vhd )
+# společné bloky: nejdřív balíček a bloky bez závislostí, pak ostatní (window_gen používá line_buffer)
+COMMON_FIRST=( video_pkg axis_skid_buffer axil_regbank line_buffer )
+COMMON=()
+for name in "${COMMON_FIRST[@]}"; do COMMON+=( "$HERE/common/$name.vhd" ); done
+for f in "$HERE"/common/*.vhd; do
+    case " ${COMMON_FIRST[*]} " in *" $(basename "$f" .vhd) "*) ;; *) COMMON+=( "$f" );; esac
+done
+SRC=( "$HERE"/../model/generated/imgproc_coeffs_pkg.vhd "${COMMON[@]}" "${CORE[@]}" "${TOP[@]}" "$HERE"/tb/*.vhd "$HERE"/*/tb/*.vhd )
 GEN=()
 for g in "$@"; do GEN+=( -generic_top "$g" ); done
 SNAP="${TB}_$(echo "$*" | tr ' =' '__')"
