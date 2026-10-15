@@ -15,7 +15,7 @@ use work.video_pkg.all;
 use work.imgproc_coeffs_pkg.all;
 
 entity tb_csc is
-    generic (
+    generic(
         G_PRESET    : natural  := 1;
         G_WIDTH     : positive := 64;
         G_HEIGHT    : positive := 48;
@@ -31,17 +31,23 @@ architecture sim of tb_csc is
 
     function ch_in(p : natural) return positive is
     begin
-        if p = 5 then return 1; end if;
+        if p = 5 then
+            return 1;
+        end if;
         return 3;
     end function;
     function ch_out(p : natural) return positive is
     begin
-        if p = 0 then return 1; end if;
+        if p = 0 then
+            return 1;
+        end if;
         return 3;
     end function;
     function in_file(p : natural) return string is
     begin
-        if p = 5 then return G_DATA_DIR & "in_gray.hex"; end if;
+        if p = 5 then
+            return G_DATA_DIR & "in_gray.hex";
+        end if;
         return G_DATA_DIR & "in_rgb.hex";
     end function;
     function exp_file(p : natural) return string is
@@ -79,7 +85,9 @@ architecture sim of tb_csc is
     end function;
     function pass_fail(n : natural) return string is
     begin
-        if n = 0 then return "PASS"; end if;
+        if n = 0 then
+            return "PASS";
+        end if;
         return "FAIL";
     end function;
 
@@ -97,7 +105,7 @@ architecture sim of tb_csc is
     signal m_user, m_last, m_valid, m_ready, snk_done : std_logic;
     signal errors, cycles                             : natural;
 begin
-    aclk <= not aclk after C_PERIOD / 2;
+    aclk    <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;
 
     gen_coeff : for o in 0 to 2 generate
@@ -108,24 +116,24 @@ begin
     end generate;
 
     src : entity work.axis_file_source
-        generic map (G_FILE => in_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
-                     G_DATA_W => C_CI * C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 3 + G_PRESET)
-        port map (aclk => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
-                  m_tvalid => s_valid, m_tready => s_ready, done => src_done);
+        generic map(G_FILE      => in_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
+                    G_DATA_W    => C_CI * C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 3 + G_PRESET)
+        port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
+                 m_tvalid => s_valid, m_tready => s_ready, done => src_done);
 
     dut : entity work.csc_core
-        generic map (G_CH_IN => C_CI, G_CH_OUT => C_CO)
-        port map (aclk => aclk, aresetn => aresetn, coeff => coeff, offset => offset,
-                  s_axis_tdata => s_data, s_axis_tuser => s_user, s_axis_tlast => s_last, s_axis_tvalid => s_valid,
-                  s_axis_tready => s_ready, m_axis_tdata => m_data, m_axis_tuser => m_user, m_axis_tlast => m_last,
-                  m_axis_tvalid => m_valid, m_axis_tready => m_ready);
+        generic map(G_CH_IN => C_CI, G_CH_OUT => C_CO)
+        port map(aclk          => aclk, aresetn => aresetn, coeff => coeff, offset => offset,
+                 s_axis_tdata  => s_data, s_axis_tuser => s_user, s_axis_tlast => s_last, s_axis_tvalid => s_valid,
+                 s_axis_tready => s_ready, m_axis_tdata => m_data, m_axis_tuser => m_user, m_axis_tlast => m_last,
+                 m_axis_tvalid => m_valid, m_axis_tready => m_ready);
 
     snk : entity work.axis_file_sink
-        generic map (G_FILE => exp_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
-                     G_DATA_W => C_CO * C_PIX_W, G_READY_PCT => G_READY_PCT, G_SEED => 17 + G_PRESET,
-                     G_NAME => "csc")
-        port map (aclk => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user, s_tlast => m_last,
-                  s_tvalid => m_valid, s_tready => m_ready, errors => errors, cycles => cycles, done => snk_done);
+        generic map(G_FILE      => exp_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
+                    G_DATA_W    => C_CO * C_PIX_W, G_READY_PCT => G_READY_PCT, G_SEED => 17 + G_PRESET,
+                    G_NAME      => "csc")
+        port map(aclk     => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user, s_tlast => m_last,
+                 s_tvalid => m_valid, s_tready => m_ready, errors => errors, cycles => cycles, done => snk_done);
 
     check : process
         constant C_PIXELS : natural := G_WIDTH * G_HEIGHT * G_FRAMES;
@@ -134,12 +142,10 @@ begin
         assert snk_done = '1' report "TIMEOUT: prijemce nedostal vsechny pixely" severity failure;
         if (G_VALID_PCT = 100) and (G_READY_PCT = 100) then
             assert cycles = C_PIXELS - 1
-                report "Propustnost: " & integer'image(cycles + 1) & " taktu na " & integer'image(C_PIXELS) & " px"
-                severity error;
+            report "Propustnost: " & integer'image(cycles + 1) & " taktu na " & integer'image(C_PIXELS) & " px"
+            severity error;
         end if;
-        report "VYSLEDEK csc preset " & integer'image(G_PRESET) & " " & integer'image(G_VALID_PCT) & "/"
-            & integer'image(G_READY_PCT) & ": " & pass_fail(errors) & " (" & integer'image(errors) & " chyb, "
-            & integer'image(C_PIXELS) & " px, " & integer'image(cycles + 1) & " taktu)";
+        report "VYSLEDEK csc preset " & integer'image(G_PRESET) & " " & integer'image(G_VALID_PCT) & "/" & integer'image(G_READY_PCT) & ": " & pass_fail(errors) & " (" & integer'image(errors) & " chyb, " & integer'image(C_PIXELS) & " px, " & integer'image(cycles + 1) & " taktu)";
         assert errors = 0 severity failure;
         std.env.stop;
         wait;
