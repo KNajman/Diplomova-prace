@@ -28,6 +28,7 @@ NA/
 webtalk*
 vivado_pid*
 usage_statistics_webtalk.*
+clockInfo.txt
 
 # Vivado – výstupy implementace (patří do release/přílohy, ne do historie)
 *.bit
