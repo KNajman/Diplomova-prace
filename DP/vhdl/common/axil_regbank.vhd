@@ -11,7 +11,7 @@
 --                 bit7 auto_restart (RW), bit9 interrupt (R)
 --   0x04 GIE (bit0), 0x08 IER (bit0 done, bit1 ready), 0x0C ISR (bit0 done, bit1 ready, zápis 1 = přepnutí)
 --   0x10 + 8*i  registr i (32 b; RW parametr, nebo RO výstup jádra podle G_RO_MASK)
---   0x14 + 8*i  u RO registru "ap_vld" (bit0 = 1, výstup je platný od prvního done)
+--   0x14 + 8*i  u RO registru "ap_vld" (bit0 = 1 po done, nuluje se čtením - COR jako HLS)
 --
 -- Poznámky k návrhu:
 --  * Bodová VHDL jádra nemají snímek ani řádek jako transakci, běží nepřetržitě. Pro shodné
@@ -175,9 +175,11 @@ begin
     process (aclk)
         variable read_word          : std_logic_vector(31 downto 0);
         variable clear_done_on_read : boolean;
+        variable clear_vld_on_read  : boolean;
     begin
         if rising_edge(aclk) then
             clear_done_on_read := false;
+            clear_vld_on_read  := false;
             if aresetn = '0' then
                 aw_captured <= '0'; w_captured <= '0'; write_decoded <= '0'; bvalid_reg <= '0';
                 ar_captured <= '0'; read_decoded <= '0'; rvalid_reg <= '0';
@@ -281,6 +283,7 @@ begin
                         end if;
                         if (read_select.reg_vld(reg_idx) = '1') and (C_IS_READ_ONLY(reg_idx) = '1') then
                             read_word(0) := ro_valid_reg;                           -- ap_vld
+                            clear_vld_on_read := true;                              -- COR jako HLS
                         end if;
                     end loop;
                     rdata_reg    <= read_word;
@@ -302,8 +305,13 @@ begin
                     if irq_enable(0) = '1' then
                         irq_status(0) <= '1';
                     end if;
-                elsif clear_done_on_read then
-                    ap_done_reg <= '0';
+                else
+                    if clear_done_on_read then
+                        ap_done_reg <= '0';
+                    end if;
+                    if clear_vld_on_read then
+                        ro_valid_reg <= '0';
+                    end if;
                 end if;
             end if;
         end if;

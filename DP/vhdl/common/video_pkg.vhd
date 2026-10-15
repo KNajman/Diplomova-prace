@@ -39,6 +39,8 @@ package video_pkg is
 
     subtype t_pix is unsigned(C_PIX_W - 1 downto 0);
     type t_pix_array is array (natural range <>) of t_pix;
+    -- Okno K x K okénkových jader: (řádek, sloupec), střed = (K/2, K/2)
+    type t_window is array (natural range <>, natural range <>) of t_pix;
 
     -- Jeden přenos AXI4-Stream Video (bez TREADY, ten jde opačným směrem)
     type t_axis is record
@@ -60,6 +62,7 @@ package video_pkg is
     -- Šířky aritmetiky se VŽDY odvozují vzorcem (žádné ručně spočítané konstanty), aby jádro
     -- zůstalo správné při změně generik: součin = Wa + Wb, součet N členů = max(W) + clog2(N)
     function clog2(n : positive) return natural;
+    function to_sl(condition : boolean) return std_logic;
     function sum_w(w : natural; n_terms : positive) return natural;
 
     -- Složka c (0 = TDATA[7:0]) jako číslo bez znaménka
@@ -72,6 +75,14 @@ package video_pkg is
 end package;
 
 package body video_pkg is
+
+    function to_sl(condition : boolean) return std_logic is
+    begin
+        if condition then
+            return '1';
+        end if;
+        return '0';
+    end function;
 
     -- Nejmenší k, pro které 2^k >= n (clog2(1) = 0)
     function clog2(n : positive) return natural is

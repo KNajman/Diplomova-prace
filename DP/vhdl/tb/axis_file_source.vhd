@@ -9,6 +9,7 @@
 --    Jednou nastavené TVALID se drží až do přijetí (pravidlo AXI4-Stream).
 --  * Soubor se pro každý snímek čte znovu od začátku (G_FRAMES stejných snímků).
 --  * Porucha pro test resynchronizace: G_GARBAGE pixelů bez TUSER před prvním snímkem.
+--  * Porucha TLAST: v řádku G_BAD_EOL_ROW (jen první snímek) je TLAST na x = W - 4 místo W - 1.
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -25,6 +26,7 @@ entity axis_file_source is
         G_DATA_W    : positive := 24;
         G_VALID_PCT : natural  := 100;  -- 0..100
         G_GARBAGE   : natural  := 0;
+        G_BAD_EOL_ROW : integer := -1;  -- porucha: v tomto řádku TLAST o 3 pixely dřív (-1 = žádná)
         G_SEED      : positive := 1
     );
     port (
@@ -86,7 +88,11 @@ begin
                     readline(stimulus_file, text_line);
                     hread(text_line, pixel_data);
                     is_sof := '1' when (x = 0 and y = 0) else '0';
-                    is_eol := '1' when (x = G_WIDTH - 1) else '0';
+                    if (frame = 1) and (y = G_BAD_EOL_ROW) and (G_WIDTH >= 4) then
+                        is_eol := '1' when (x = G_WIDTH - 4) else '0';
+                    else
+                        is_eol := '1' when (x = G_WIDTH - 1) else '0';
+                    end if;
                     send(pixel_data, is_sof, is_eol);
                 end loop;
             end loop;
