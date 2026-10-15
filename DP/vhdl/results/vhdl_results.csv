@@ -1,5 +1,9 @@
 component,impl_lut,impl_ff,impl_dsp,impl_bram,impl_lutram,wns_ns,wpws_ns,impl_cp_ns,impl_fmax_mhz,limit,timing_met,power_dyn_w
-csc_axil_CH_IN1_CH_OUT3,356,484,3,0,2,1.583,1.738,3.417,292.7,logic,yes,0.006
-csc_axil_CH_IN3_CH_OUT1,207,254,4,0,2,1.232,1.738,3.768,265.4,logic,yes,0.004
-csc_axil_CH_IN3_CH_OUT3,325,558,12,0,2,1.303,1.738,3.697,270.5,logic,yes,0.009
-csc_core_CH_IN3_CH_OUT3,64,87,12,0,2,3.029,1.738,3.262,306.6,pulse_width,yes,0.009
+csc_axil_CH_IN1_CH_OUT3,302,329,3,0,2,1.471,1.738,3.529,283.4,logic,yes,0.006
+csc_axil_CH_IN1_CH_OUT3_v1,356,484,3,0,2,1.583,1.738,3.417,292.7,logic,yes,0.006
+csc_axil_CH_IN3_CH_OUT1,145,170,3,0,2,1.581,1.738,3.419,292.5,logic,yes,0.002
+csc_axil_CH_IN3_CH_OUT1_v1,207,254,4,0,2,1.232,1.738,3.768,265.4,logic,yes,0.004
+csc_axil_CH_IN3_CH_OUT3,257,346,9,0,2,1.255,1.738,3.745,267.0,logic,yes,0.006
+csc_axil_CH_IN3_CH_OUT3_v1,325,558,12,0,2,1.303,1.738,3.697,270.5,logic,yes,0.009
+csc_core_CH_IN3_CH_OUT3,64,96,9,0,2,2.955,1.738,3.262,306.6,pulse_width,yes,0.006
+csc_core_CH_IN3_CH_OUT3_v1,64,87,12,0,2,3.029,1.738,3.262,306.6,pulse_width,yes,0.009
