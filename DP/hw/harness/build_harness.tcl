@@ -121,7 +121,6 @@ set_property -dict [list CONFIG.c_m_axis_mm2s_tdata_width 24 \
     CONFIG.c_mm2s_max_burst_length 64 CONFIG.c_s2mm_max_burst_length 64 \
     CONFIG.c_num_fstores 3 CONFIG.c_include_mm2s_dre 0 CONFIG.c_include_s2mm_dre 0] $vdma
 
-puts "VDMA: MM2S [get_property CONFIG.c_m_axis_mm2s_tdata_width $vdma] b, S2MM [get_property CONFIG.c_s_axis_s2mm_tdata_width $vdma] b"
 set mem_ic [create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect mem_smc]
 set_property -dict [list CONFIG.NUM_SI 2 CONFIG.NUM_MI 1] $mem_ic
 connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXI_MM2S] [get_bd_intf_pins $mem_ic/S00_AXI]
@@ -168,9 +167,11 @@ set from_gray [add_core $gray_out_converter]
 connect_bd_intf_net [get_bd_intf_pins $to_gray/m_axis_video] [get_bd_intf_pins $gray_in_sw/S00_AXIS]
 connect_bd_intf_net [get_bd_intf_pins $gray_out_sw/M00_AXIS] [get_bd_intf_pins $from_gray/s_axis_video]
 connect_bd_intf_net [get_bd_intf_pins $gray_in_sw/M00_AXIS] [get_bd_intf_pins $gray_out_sw/S00_AXIS]
+set port_map {}
 set port 1
 foreach core $gray_cores {
     set cell [add_core $core]
+    lappend port_map [list [lindex $core 0] $port]
     connect_bd_intf_net [get_bd_intf_pins $gray_in_sw/[port_name M $port]] [get_bd_intf_pins $cell/s_axis_video]
     connect_bd_intf_net [get_bd_intf_pins $cell/m_axis_video] [get_bd_intf_pins $gray_out_sw/[port_name S $port]]
     incr port
@@ -188,10 +189,12 @@ connect_bd_intf_net [get_bd_intf_pins $rgb_in_sw/M00_AXIS] [get_bd_intf_pins $rg
 set port 1
 foreach core $rgb_cores {
     set cell [add_core $core]
+    lappend port_map [list [lindex $core 0] $port]
     connect_bd_intf_net [get_bd_intf_pins $rgb_in_sw/[port_name M $port]] [get_bd_intf_pins $cell/s_axis_video]
     connect_bd_intf_net [get_bd_intf_pins $cell/m_axis_video] [get_bd_intf_pins $rgb_out_sw/[port_name S $port]]
     incr port
 }
+set gray_lane_port $port
 connect_bd_intf_net [get_bd_intf_pins $rgb_in_sw/[port_name M $port]] [get_bd_intf_pins $to_gray/s_axis_video]
 connect_bd_intf_net [get_bd_intf_pins $from_gray/m_axis_video] [get_bd_intf_pins $rgb_out_sw/[port_name S $port]]
 
@@ -242,12 +245,34 @@ foreach sources $irq_lines {
 assign_bd_address
 validate_bd_design
 save_bd_design
-# mapa adres pro SW aplikaci (název instance -> adresa)
-set f [open [file join $out address_map.txt] w]
-foreach seg [get_bd_addr_segs -of_objects [get_bd_addr_spaces $ps/Data]] {
-    puts $f "[get_property NAME $seg] [format 0x%08X [get_property OFFSET $seg]] [format 0x%X [get_property RANGE $seg]]"
+# šířka S2MM se propaguje z přepínače až při validaci - musí být 24 b jako MM2S (3 B/px v paměti)
+set s2mm_width [get_property CONFIG.c_s_axis_s2mm_tdata_width $vdma]
+puts "VDMA: MM2S [get_property CONFIG.c_m_axis_mm2s_tdata_width $vdma] b, S2MM $s2mm_width b"
+if {$s2mm_width != 24} {
+    error "VDMA S2MM ma $s2mm_width b misto 24 b"
 }
+# mapa pro SW aplikaci: adresy řídicích portů a čísla portů přepínačů -> harness_map.h (DP/sw/harness_app)
+set map_file [file join $out harness_map.h]
+set f [open $map_file w]
+puts $f "/* Vygenerováno build_harness.tcl ([clock format [clock seconds] -format {%Y-%m-%d %H:%M}]) - neupravovat ručně */"
+puts $f "#ifndef HARNESS_MAP_H_\n#define HARNESS_MAP_H_\n"
+puts $f "#define HARNESS_CLOCK_MHZ ($freq_mhz)"
+puts $f "#define HARNESS_RGB_NUM_PORTS ($num_rgb)\n#define HARNESS_GRAY_NUM_PORTS ($num_gray)\n#define HARNESS_GRAY_LANE_PORT ($gray_lane_port)\n"
+foreach seg [get_bd_addr_segs -of_objects [get_bd_addr_spaces $ps/Data]] {
+    # název segmentu na straně PS: SEG_<instance>_<segment>
+    set slave [get_bd_addr_segs -of_objects $seg]
+    set inst  [lindex [split [string trimleft $slave /] /] 0]
+    puts $f "#define HARNESS_[string toupper $inst]_BASEADDR ([format 0x%08X [get_property OFFSET $seg]]u)   /* [get_property RANGE $seg] B */"
+}
+puts $f ""
+foreach entry $port_map {
+    lassign $entry inst port
+    puts $f "#define HARNESS_HAS_[string toupper $inst] (1)\n#define HARNESS_[string toupper $inst]_PORT ($port)"
+}
+puts $f "\n#endif /* HARNESS_MAP_H_ */"
 close $f
+puts "Mapa pro SW: $map_file"
+
 puts "BD HOTOVO: [llength $rgb_cores] RGB jader, [llength $gray_cores] sedych jader, $num_lite AXI4-Lite portu"
 if {$bd_only} {
     exit
