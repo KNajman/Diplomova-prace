@@ -51,6 +51,7 @@ platform = client.create_platform_component(name=PLATFORM, hw_design=XSA, os="st
 platform.build()
 xpfm = os.path.join(WORKSPACE, PLATFORM, "export", PLATFORM, f"{PLATFORM}.xpfm")
 
+missing = []
 for level in levels:
     name = f"harness_app_{level}"
     app = client.create_app_component(name=name, platform=xpfm, domain=DOMAIN, template="empty_application")
@@ -60,11 +61,16 @@ for level in levels:
                      files=sorted(os.listdir(os.path.join(staging, "imgproc"))), dest_dir_in_cmp="src/imgproc")
     # <imgproc.h> a <imgproc/...> hledá překladač v src komponenty (absolutní cesta - nezávislé na build adresáři)
     app.set_app_config(key="USER_INCLUDE_DIRECTORIES", values=[os.path.join(WORKSPACE, name, "src")])
-    app.set_app_config(key="USER_COMPILE_DEFINITIONS", values=[f'SW_OPT_LEVEL="{level}"'])
+    app.set_app_config(key="USER_COMPILE_DEFINITIONS", values=[f"SW_OPT_LEVEL={level}"])
     app.set_app_config(key="USER_COMPILE_OPTIMIZATION_LEVEL", values=[f"-{level}"])
     app.set_app_config(key="USER_LINK_LIBRARIES", values=["m"])
     app.build()
     elf = glob.glob(os.path.join(WORKSPACE, name, "build", "*.elf"))
     print(f"APP HOTOVO: {name} -> {elf[0] if elf else 'ELF nenalezen'}")
+    if not elf:
+        missing.append(name)
 
 vitis.dispose()
+# vitis -s vrací 0 i při chybě buildu -> chybu oznámit návratovým kódem sami (fronta ji pak vidí)
+if missing:
+    sys.exit(f"CHYBA: nepodařilo se sestavit {', '.join(missing)}")
