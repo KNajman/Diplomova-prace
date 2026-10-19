@@ -1,0 +1,4 @@
+# Zabalení VHDL obálek jako IP pro testovací řetězec (jedna konfigurace = jedna IP, vhdl_<label>).
+# Spustit po každé změně VHDL, která má jít na desku; pak fronta hw_harness.
+# @stop_on_error
+cd DP/vhdl/scripts && for cfg in "csc_axil G_CH_IN=3 G_CH_OUT=3" "csc_axil G_CH_IN=3 G_CH_OUT=1" "csc_axil G_CH_IN=1 G_CH_OUT=3" "hsv_axil G_RGB_TO_HSV=true" "hsv_axil G_RGB_TO_HSV=false" "threshold_axil" "median_axil" "filter2d_axil G_K=3 G_USE_DSP=true" "histogram_axil G_USE_BRAM=true"; do vivado -mode batch -nojournal -nolog -source package_ip.tcl -tclargs $cfg || exit 1; done
