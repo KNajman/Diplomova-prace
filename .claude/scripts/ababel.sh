@@ -7,6 +7,7 @@
 #    bash .claude/scripts/ababel.sh status <fronta>   souhrn fronty (1 spojení)
 #    bash .claude/scripts/ababel.sh stop <fronta>     zastaví frontu podle PID (nikdy pkill -f!)
 #    bash .claude/scripts/ababel.sh fetch <cesta>     stáhne soubor z repa na Ababelu do stejné cesty v notebooku
+#    bash .claude/scripts/ababel.sh results           stáhne ~/logs/{hls,vhdl}_results.csv do DP/*/results/
 #    bash .claude/scripts/ababel.sh watch <fronta>    vypíše příkaz pro Karla (tail -f)
 #  Pravidla: jedno ssh spojení na příkaz (ControlMaster), žádné smyčky ssh (VPN odpojení),
 #  CSV/výsledky vytvořené na Ababelu se před merge odkládají do ~/logs/.
@@ -20,8 +21,14 @@ sync_repo() {
     local local_head remote_head
     local_head=$(git log --format=%h -1)
     git push -q ababel:"$REPO_REMOTE" main:refs/heads/laptop
-    # netrackované soubory, které by merge přepsal (typicky results/*.csv z Ababelu) -> ~/logs/
-    ssh ababel "cd ~/$REPO_REMOTE && for f in \$(git diff --name-only HEAD laptop); do [ -e \"\$f\" ] && ! git ls-files --error-unmatch \"\$f\" >/dev/null 2>&1 && mv \"\$f\" ~/logs/\$(echo \$f | tr / _).bak; done; git merge -q --ff-only laptop && git branch -q -D laptop"
+    # soubory, které by merge přepsal (typicky results/*.csv vytvořené na Ababelu): záloha do ~/logs/*.bak,
+    # netrackované se přesunou, upravené trackované se vrátí na verzi z gitu
+    ssh ababel "cd ~/$REPO_REMOTE && for f in \$(git diff --name-only HEAD laptop); do
+        [ -e \"\$f\" ] || continue
+        backup=~/logs/\$(echo \$f | tr / _).bak
+        if ! git ls-files --error-unmatch \"\$f\" >/dev/null 2>&1; then mv \"\$f\" \"\$backup\";
+        elif ! git diff --quiet -- \"\$f\"; then cp \"\$f\" \"\$backup\" && git checkout -q -- \"\$f\"; fi
+    done; git merge -q --ff-only laptop && git branch -q -D laptop"
     remote_head=$(ssh ababel "cd ~/$REPO_REMOTE && git log --format=%h -1")
     if [ "$local_head" != "$remote_head" ]; then
         echo "CHYBA: Ababel je na $remote_head, notebook na $local_head" >&2
@@ -46,6 +53,11 @@ case "$CMD" in
         ssh ababel "[ -f ~/logs/$ARG.pid ] && P=\$(cat ~/logs/$ARG.pid) && pkill -TERM -P \$P; kill \$P 2>/dev/null; rm -f ~/logs/$ARG.pid; echo zastaveno" ;;
     fetch)
         rsync -rq --no-perms ababel:"$REPO_REMOTE/$ARG" "$ARG" && echo "staženo: $ARG" ;;
+    results)
+        # souhrnná CSV, která fronty zapisují do ~/logs/ (ne do repa na Ababelu) -> results/ v notebooku
+        rsync -q ababel:logs/hls_results.csv DP/hls/results/hls_results.csv 2>/dev/null && echo "staženo: DP/hls/results/hls_results.csv"
+        rsync -q ababel:logs/vhdl_results.csv DP/vhdl/results/vhdl_results.csv 2>/dev/null && echo "staženo: DP/vhdl/results/vhdl_results.csv"
+        true ;;
     watch)
         echo "tail -f ~/logs/$ARG.log" ;;
     *)

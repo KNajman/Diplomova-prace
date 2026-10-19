@@ -1,4 +1,4 @@
 # HLS: všechna jádra csim + syn + cosim (build_all), pak impl každé konfigurace, CSV
 cd DP/hls/scripts && bash build_all.sh all
 cd DP/hls/scripts && for cfg in ../*/hls_config*.cfg; do bash run_hls.sh "$cfg" impl || exit 1; done
-cd DP/hls && python3 scripts/collect_reports.py
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv

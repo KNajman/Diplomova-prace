@@ -31,10 +31,10 @@
 - Odvolání přístupu Claude: smazat řádek `claude-cowork@karel` z `~/.ssh/authorized_keys`.
 
 ## Šablony (POUŽÍVAT PŘEDNOSTNĚ)
-- `.claude/scripts/ababel.sh sync|start|status|stop|fetch|watch` (z kořene repa ve VM) – sync s kontrolou HEAD,
+- `.claude/scripts/ababel.sh sync|start|status|stop|fetch|results|watch` (z kořene repa ve VM) – sync s kontrolou HEAD,
   odložení netrackovaných konfliktních souborů do `~/logs/*.bak`, spuštění fronty odpojeně, zastavení podle PID.
 - `DP/scripts/ababel/run_queue.sh` (běží na serveru) + fronty `DP/scripts/queues/*.queue`
-  (`vhdl_csc`, `vhdl_hsv`, `hls_all`, `template`). Souhrn `~/logs/<fronta>.log`, detail `~/logs/<fronta>_steps/NN.log`.
+  (`vhdl_*`, `hls_*`, `template`). **Fronty zapisují souhrnná CSV jen do `~/logs/`** (ne do repa na Ababelu – blokovalo by to merge), do notebooku je stáhne `ababel.sh results`. Souhrn `~/logs/<fronta>.log`, detail `~/logs/<fronta>_steps/NN.log`.
 
 ## Synchronizace repa notebook → Ababel (bez GitHubu) – ruční postup
 ```
