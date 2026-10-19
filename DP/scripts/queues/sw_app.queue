@@ -1,0 +1,4 @@
+# Měřicí aplikace (bare-metal A53) nad XSA testovacího řetězce: platforma + aplikace -O0/-O2/-O3.
+# Předpoklad: fronta hw_harness (harness.xsa, harness_map.h). Výstup: DP/sw/build/workspace/harness_app_*/build/*.elf
+# @stop_on_error
+cd DP/sw/harness_app && vitis -s build_app.py O0 O2 O3
