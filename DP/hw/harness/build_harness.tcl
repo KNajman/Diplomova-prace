@@ -95,10 +95,11 @@ set_property -dict [list \
     CONFIG.PSU__FPGA_PL0_ENABLE 1 CONFIG.PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ 100] $ps
 
 set clk [create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz clk_video]
-set_property -dict [list CONFIG.PRIM_IN_FREQ 100 CONFIG.PRIM_SOURCE No_buffer \
+# vstupní frekvence se nezadává - propaguje se z pl_clk0 (skutečná je 99,999 MHz, ne 100)
+connect_bd_net [get_bd_pins $ps/pl_clk0] [get_bd_pins $clk/clk_in1]
+set_property -dict [list CONFIG.PRIM_SOURCE No_buffer \
     CONFIG.CLKOUT1_REQUESTED_OUT_FREQ $freq_mhz CONFIG.USE_LOCKED true CONFIG.USE_RESET true \
     CONFIG.RESET_TYPE ACTIVE_LOW] $clk
-connect_bd_net [get_bd_pins $ps/pl_clk0] [get_bd_pins $clk/clk_in1]
 connect_bd_net [get_bd_pins $ps/pl_resetn0] [get_bd_pins $clk/resetn]
 
 set rst [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset rst_video]
@@ -113,12 +114,14 @@ connect_bd_net $aclk [get_bd_pins $ps/maxihpm0_fpd_aclk] [get_bd_pins $ps/saxihp
 # VDMA (RGB 24 b, 1080p), paměťová cesta do HP0
 # -----------------------------------------------------------------------------
 set vdma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vdma axi_vdma_0]
-set_property -dict [list CONFIG.c_m_axis_mm2s_tdata_width 24 CONFIG.c_s_axis_s2mm_tdata_width 24 \
+# šířka S2MM streamu je u VDMA odvozená (read-only), kontroluje se výpisem níže
+set_property -dict [list CONFIG.c_m_axis_mm2s_tdata_width 24 \
     CONFIG.c_m_axi_mm2s_data_width 128 CONFIG.c_m_axi_s2mm_data_width 128 \
     CONFIG.c_mm2s_linebuffer_depth 4096 CONFIG.c_s2mm_linebuffer_depth 4096 \
     CONFIG.c_mm2s_max_burst_length 64 CONFIG.c_s2mm_max_burst_length 64 \
     CONFIG.c_num_fstores 3 CONFIG.c_include_mm2s_dre 0 CONFIG.c_include_s2mm_dre 0] $vdma
 
+puts "VDMA: MM2S [get_property CONFIG.c_m_axis_mm2s_tdata_width $vdma] b, S2MM [get_property CONFIG.c_s_axis_s2mm_tdata_width $vdma] b"
 set mem_ic [create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect mem_smc]
 set_property -dict [list CONFIG.NUM_SI 2 CONFIG.NUM_MI 1] $mem_ic
 connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXI_MM2S] [get_bd_intf_pins $mem_ic/S00_AXI]

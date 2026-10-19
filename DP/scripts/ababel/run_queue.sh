@@ -7,6 +7,8 @@
 #            ~/logs/<jméno>_steps/   úplný výstup každého kroku (NN.log)
 #            ~/logs/<jméno>.pid      PID fronty (pro zastavení: kill $(cat ...))
 #  Konec:    řádek "== HOTOVO" v souhrnu (případně "== CHYBY: N")
+#  Direktiva '# @stop_on_error' kdekoli ve frontě: po prvním neúspěšném kroku se fronta ukončí
+#            (pro kroky, které na sobě závisí - např. balení IP -> block design -> bitstream).
 # =============================================================================
 set -u
 QUEUE_FILE="$1"
@@ -28,6 +30,8 @@ set -u
 
 step=0
 failures=0
+stop_on_error=0
+grep -qE '^# *@stop_on_error' "$QUEUE_FILE" && stop_on_error=1
 cd "$REPO" || exit 1
 echo "== $(date +%T) fronta $NAME, commit $(git log --oneline -1)" >> "$LOG"
 while IFS= read -r line || [ -n "$line" ]; do
@@ -39,7 +43,13 @@ while IFS= read -r line || [ -n "$line" ]; do
     status=$?
     grep -E "$SUMMARY_PATTERN" "$step_log" | grep -v "^INFO" | head -20 >> "$LOG"
     echo "   -> exit $status $(date +%T)" >> "$LOG"
-    [ $status -ne 0 ] && failures=$((failures + 1))
+    if [ $status -ne 0 ]; then
+        failures=$((failures + 1))
+        if [ $stop_on_error -eq 1 ]; then
+            echo "== STOP: krok $step selhal (@stop_on_error)" >> "$LOG"
+            break
+        fi
+    fi
 done < "$QUEUE_FILE"
 
 if [ $failures -eq 0 ]; then

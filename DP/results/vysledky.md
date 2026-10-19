@@ -161,11 +161,13 @@ int8, scale Q.14 (18 b), delta int16. HLS: celé IP (s_axilite vždy součástí
 | VHDL `filter2d_core` K3 | 1120 | 679 | 1 | 2 | 3,26 ns | 307 MHz | šířka pulzu |
 | VHDL `filter2d_core` K3 `G_USE_DSP` | 350 | 318 | 14 | 2 | 3,55 ns | 282 MHz | logika |
 | HLS `hls_filter2d_5x5` | 959 | 863 | 26 | 5 | 4,17 ns | 240 MHz | logika |
-| VHDL `filter2d_axil` K5 `G_USE_DSP` | **874** | 940 | 38 | 4 | 4,17 ns | 240 MHz | logika |
+| VHDL `filter2d_axil` K5 `G_USE_DSP` v1 (koeficienty jako registry) | 874 | 940 | 38 | 4 | 4,17 ns | 240 MHz | logika |
+| VHDL `filter2d_axil` K5 `G_USE_DSP` v2 (okno coeff jako HLS) | **766** | 951 | 38 | 4 | **3,76 ns** | 266 MHz | logika |
 | VHDL `filter2d_core` K5 | 2789 | 1510 | 1 | 4 | 4,20 ns | 238 MHz | logika |
 | VHDL `filter2d_core` K5 `G_USE_DSP` | **603** | **539** | 38 | 4 | **3,82 ns** | 262 MHz | logika |
-| HLS `hls_filter2d_7x7` | **1306** | **1244** | 50 | 7 | 4,37 ns | 229 MHz | logika |
-| VHDL `filter2d_axil` K7 `G_USE_DSP` | 1679 | 1479 | 72 | 6 | **4,08 ns** | 245 MHz | logika |
+| HLS `hls_filter2d_7x7` | 1306 | **1244** | 50 | 7 | 4,37 ns | 229 MHz | logika |
+| VHDL `filter2d_axil` K7 `G_USE_DSP` v1 (koeficienty jako registry) | 1679 | 1479 | 72 | 6 | 4,08 ns | 245 MHz | logika |
+| VHDL `filter2d_axil` K7 `G_USE_DSP` v2 (okno coeff jako HLS) | **1232** | 1489 | 72 | 6 | **4,00 ns** | 250 MHz | logika |
 | VHDL `filter2d_core` K7 | 5238 | 2702 | 1 | 6 | 4,18 ns | 239 MHz | logika |
 | VHDL `filter2d_core` K7 `G_USE_DSP` | 1213 | 837 | 72 | 6 | 4,24 ns | 236 MHz | logika |
 
@@ -174,13 +176,17 @@ Rozpad VHDL K3 `G_USE_DSP` (jádro): `window_gen` 282 LUT / 255 FF / 2 BRAM36, a
 **Poznatky**
 - **Bez DSP je VHDL výrazně větší než HLS** (K3 2×, K7 4× LUT): součiny 8×9 b syntéza (auto) skládá z LUT. HLS dává
   součiny do DSP sám. Férové srovnání je tedy proti variantě `G_USE_DSP`.
-- **S DSP vychází VHDL menší jen pro malé K:** celé IP K3 −23 % LUT / −10 % FF, K5 −9 % LUT / +9 % FF, K7 **+29 % LUT /
-  +19 % FF** proti HLS. Samotné jádro je menší vždy (K7 1 213 vs 1 306 LUT); rozdíl dělá **registrová banka**: K7 má
-  5 + 49 registrů, obálka − jádro = 466 LUT / 642 FF (dekódování 54 adres + čtecí multiplexor + 392 FF koeficientů). HLS dá pole
-  koeficientů do BRAM adaptéru s_axilite (proto o 1 BRAM36 víc) a do registrů jádra je kopíruje smyčkou `copy_coeff`
-  na začátku snímku. **Možná optimalizace VHDL:** zapisovatelné paměťové okno v `axil_regbank` (koeficienty v LUTRAM/BRAM,
-  jádro si je při startu snímku přečte) – stejný princip jako HLS, odpadne čtecí multiplexor a dekódování 49 adres.
-  Pro práci zajímavé: úspora jádra se u velkých IP „rozpustí“ v řídicím rozhraní.
+- **v1 – s DSP vycházelo VHDL menší jen pro malé K:** celé IP K3 −23 % LUT / −10 % FF, K5 −9 % LUT / +9 % FF, K7 +29 % LUT /
+  +19 % FF proti HLS. Samotné jádro bylo menší vždy (K7 1 213 vs 1 306 LUT); rozdíl dělala **registrová banka**: K7 měla
+  5 + 49 registrů, obálka − jádro = 466 LUT / 642 FF (dekódování 54 adres + čtecí multiplexor 49 registrů).
+- **v2 – mapa jako HLS:** HLS dává pole koeficientů K ≥ 5 do paměťového okna s_axilite (4 × int8 ve slově, 5×5: 0x40–0x5F,
+  status 0x60; 7×7: 0x40–0x7F, status 0x80; ověřeno z `xhls_filter2d_*_hw.h`). VHDL banka dostala zapisovatelné okno
+  (WSTRB) a registry za oknem; koeficienty se zapisují po slovech přímo do registrů obálky, zpětné čtení = multiplexor slov.
+  Výsledek: **K7 −27 % LUT (1 679 → 1 232) a −0,08 ns, K5 −12 % LUT a −0,4 ns**, FF beze změny (koeficienty jádro potřebuje
+  paralelně – stejně jako HLS po `copy_coeff`). Proti HLS teď VHDL **K5 −20 % LUT / +10 % FF, K7 −6 % LUT / +20 % FF**,
+  perioda o 0,4 ns lepší. Navíc jeden driver pro HLS i VHDL i u K ≥ 5.
+- Poučení pro text: velikost IP neurčuje jen datová cesta – u parametrického jádra může řídicí rozhraní (dekódování adres
+  a čtecí multiplexor) přerůst výpočet. Přebytek FF ve VHDL K7 je v `window_gen` (okno 7×7 + replikace okrajů, 732 FF).
 - Cena VHDL: víc DSP (14/38/72 vs 10/26/50). Atribut `use_dsp` je jen na signálu součinů, ale Vivado do DSP vtáhne i strom
   sčítaček (post-adder / kaskáda PCIN) a škálování – aritmetika K3 má jen 16 LUT. HLS strom sčítá v LUT a do DSP dá jen
   součiny + 1 škálování. Na KV260 (1 248 DSP) je 72 DSP 5,8 % – přijatelné; kdyby DSP chyběly, VHDL bez DSP pořád splní 200 MHz.
@@ -193,4 +199,56 @@ Rozpad VHDL K3 `G_USE_DSP` (jádro): `window_gen` 282 LUT / 255 FF / 2 BRAM36, a
 - Co do textu: graf LUT/FF/DSP v závislosti na K pro HLS × VHDL × VHDL+DSP.
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (`filter2d_*`), `DP/hls/results/hls_results.csv` (`filter_*`), logy
-`~/logs/vhdl_filter.log`, `~/logs/vhdl_filter_dsp.log`, `~/logs/vhdl_filter_axil.log`, `~/logs/hls_filter.log`.
+`~/logs/vhdl_filter.log`, `~/logs/vhdl_filter_dsp.log`, `~/logs/vhdl_filter_axil.log` (v1), `~/logs/vhdl_filter_map.log` (v2),
+`~/logs/hls_filter.log`. Mapa HLS: `DP/hls/build/filter_*/hls/.autopilot/db/driver/src/xhls_filter2d_*_hw.h` na Ababelu.
+
+---
+
+## 7. Histogram – HLS × VHDL, dvě architektury (19. 10. 2026)
+
+Konfigurace: OOC, 5 ns, 4K (čítač 23 b), mapa registrů jako HLS (`height` 0x10, `status` 0x18, okno `hist[256]` 0x400–0x7FF,
+ověřeno z `xhls_histogram_hw.h`). VHDL: `G_USE_BRAM` přepíná paměť košů, řízení snímku je společné.
+BRAM v dlaždicích 36 Kb (0,5 = jedna BRAM18).
+
+| varianta | LUT | FF | DSP | BRAM36 | perioda | limit |
+|---|---|---|---|---|---|---|
+| HLS `hls_histogram` (BRAM + forwarding 3 zápisů) | 302 | 422 | 0 | 1 | 2,73 ns | logika (jen WNS) |
+| VHDL `histogram_axil` v1 – 256 čítačů ve FF | 6316 | 6333 | 0 | 0,5 | 3,67 ns | logika (routing 92 %) |
+| VHDL `histogram_axil` v2 `G_USE_BRAM = false` | 6437 | 6370 | 0 | 0,5 | 3,08 ns | šířka pulzu BRAM |
+| VHDL `histogram_axil` v2 `G_USE_BRAM = true` | **183** | **288** | 0 | 1 | 3,08 ns | šířka pulzu BRAM |
+| VHDL `histogram_core` v2 `G_USE_BRAM = true` | 124 | 188 | 0 | 0,5 | 3,08 ns | šířka pulzu BRAM |
+| VHDL `histogram_core` v2 `G_USE_BRAM = false` | 6378 | 6270 | 0 | 0 | 2,80 ns | logika |
+
+**Poznatky**
+- **Architektura rozhoduje víc než jazyk:** čítače ve FF jsou 35× větší než BRAM (6,4 tis. vs 183 LUT). Je to přímá realizace
+  „histogram = 256 čítačů“ z učebnice; BRAM varianta potřebuje read-modify-write a forwarding, ale je zdaleka nejlevnější.
+  Do textu: obě varianty jako ukázka kompromisu logika × paměť.
+- **VHDL BRAM proti HLS −39 % LUT, −32 % FF**, stejná paměť (BRAM18 koše + BRAM18 výsledek). Forwarding ve VHDL ze 2 stupňů
+  (plyne přímo z pipeline A–D, příznaky shody registrované o takt dřív), HLS drží 3 poslední zápisy s porovnáním v cyklu.
+  Výsyp a nulování v jednom průchodu (256 taktů/snímek, HLS 2 × 256); nulování po resetu průchodem paměti.
+- Testbench ověřuje obě cesty forwardingu: mutace (vypnutý forwarding z C nebo z D) → 6 chyb na vzoru a,b,a / 3 na plochém obrazu.
+- v1 → v2 u čítačů (3,67 → 3,08 ns): operace jdou registrovanou pipeline (čítače bez resetu – nuluje je průchod CLEAR),
+  odpadl rozvod stavu na 5 888 FF.
+- Perioda: VHDL i HLS jsou pod limitem šířky pulzu BRAM (3,077 ns); u HLS se limit nepočítá (metodika jen WNS, viz otevřené body).
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (`histogram_*`, `*_v1` = první verze), `DP/hls/results/hls_results.csv` (`histogram`),
+log `~/logs/vhdl_hist.log`.
+
+---
+
+## 8. Prahování – VHDL (19. 10. 2026)
+
+| varianta | LUT | FF | DSP | BRAM | perioda | limit |
+|---|---|---|---|---|---|---|
+| VHDL `threshold_core` | 25 | 60 | 0 | 0 | 2,78 ns | šířka pulzu |
+| VHDL `threshold_axil` | 81 | 141 | 0 | 0 | 2,78 ns | šířka pulzu |
+| HLS `hls_threshold` | – | – | – | – | – | (Karel, zatím chybí) |
+
+**Poznatky**
+- Typ prahování se dekóduje mimo pipeline (registr se mění jen zápisem z ARM): z typu se předpočítá zdroj výsledku nad/pod
+  prahem (nula / maxval / thresh / hodnota). Datová cesta = komparátor + multiplexor 4:1, 3 takty.
+- Úplný test v jednom běhu: 8 typů (5 platných + neplatné → 0) × prahy {0, 1, 127, 254, 255} × maxval {255, 77} na rampě
+  se všemi 256 hodnotami = 80 kombinací, PASS. Obálka s Otsuovým prahem šedého obrazu (108).
+- Mapa registrů 0x10 thresh, 0x18 maxval, 0x20 type – HLS se stejným pořadím argumentů dá stejnou mapu.
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (`threshold_*`), log `~/logs/vhdl_threshold.log`.
