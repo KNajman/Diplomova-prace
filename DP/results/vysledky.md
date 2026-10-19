@@ -252,3 +252,30 @@ log `~/logs/vhdl_hist.log`.
 - Mapa registrů 0x10 thresh, 0x18 maxval, 0x20 type – HLS se stejným pořadím argumentů dá stejnou mapu.
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (`threshold_*`), log `~/logs/vhdl_threshold.log`.
+
+---
+
+## 9. Metodika Fmax: RTL z HLS stejným OOC postupem jako VHDL (19. 10. 2026)
+
+Konfigurace: RTL vygenerované Vitis HLS (`hls/impl/ip/hdl/verilog`) prohnané `DP/hls/scripts/ooc_impl_hls.tcl` – stejné
+příkazy, cíl 5 ns a reporty jako `DP/vhdl/scripts/ooc_impl.tcl`. Perioda = max(5 − WNS, 5 − WPWS) jako u VHDL.
+BRAM v dlaždicích 36 Kb (export HLS hlásí BRAM18 → přepočteno /2).
+
+| jádro | LUT export / OOC | FF export / OOC | BRAM36 | perioda export HLS | perioda OOC | limit OOC |
+|---|---|---|---|---|---|---|
+| `hls_csc_rgb` | 407 / 408 | 385 / 493 | 0 | 3,85 ns | 3,92 ns | logika |
+| `hls_histogram` | 302 / 300 | 422 / 422 | 1 | **2,73 ns** | **3,08 ns** | šířka pulzu BRAM |
+| `hls_median` | 768 / 740 | 472 / 472 | 2 | 4,06 ns | 3,90 ns | logika |
+| `hls_filter2d_3x3` | 655 / 640 | 621 / 621 | 2 | 3,92 ns | 4,05 ns | logika |
+| `hls_filter2d_5x5` | 959 / 950 | 863 / 861 | 5 | 4,17 ns | 4,49 ns | logika |
+| `hls_filter2d_7x7` | 1306 / 1341 | 1244 / 1247 | 7 | 4,37 ns | 4,35 ns | logika |
+
+**Poznatky**
+- **Prostředky sedí** (±3 % LUT, FF shodně) – kromě FF u CSC (+108 FF v OOC; export HLS zřejmě pouští jiné opt_design/
+  phys_opt nastavení, ověřit v `impl/verilog/*.tcl`). Do tabulek DP tedy lze brát kterékoli, ale **jednotně**.
+- **Perioda se liší až o 0,35 ns:** u histogramu export HLS hlásí 2,73 ns (366 MHz), ale BRAM má minimální šířku pulzu
+  hodin 3,077 ns → reálné maximum je 325 MHz, stejně jako u VHDL. U logických cest je rozdíl ±0,3 ns = rozptyl P&R.
+- **Rozhodnutí (návrh pro dr. Rozkovce):** v DP srovnávat HLS × VHDL na číslech z **jednoho OOC skriptu** (sloupec OOC),
+  export HLS uvést jen jako „co hlásí nástroj“. Odstraní to otevřený bod metodiky z plánu.
+
+Zdroj: `DP/hls/results/hls_ooc_results.csv` (OOC), `DP/hls/results/hls_results.csv` (export), log `~/logs/hls_ooc.log`.
