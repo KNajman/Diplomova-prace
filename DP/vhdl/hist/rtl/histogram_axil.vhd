@@ -25,7 +25,8 @@ use work.axil_regbank_pkg.all;
 entity histogram_axil is
     generic (
         G_MAX_WIDTH  : positive := C_MAX_WIDTH;
-        G_MAX_HEIGHT : positive := C_MAX_HEIGHT
+        G_MAX_HEIGHT : positive := C_MAX_HEIGHT;
+        G_USE_BRAM   : boolean  := true     -- koše v BRAM (jako HLS), false = 256 čítačů ve FF
     );
     port (
         aclk          : in  std_logic;
@@ -126,7 +127,7 @@ begin
     end process;
 
     core : entity work.histogram_core
-        generic map (G_MAX_WIDTH => G_MAX_WIDTH, G_MAX_HEIGHT => G_MAX_HEIGHT)
+        generic map (G_MAX_WIDTH => G_MAX_WIDTH, G_MAX_HEIGHT => G_MAX_HEIGHT, G_USE_BRAM => G_USE_BRAM)
         port map (aclk => aclk, aresetn => aresetn, run => run,
                   height => unsigned(regs(C_REG_HEIGHT)(C_DIM_W - 1 downto 0)),
                   status => status, frame_done => frame_done,

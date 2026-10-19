@@ -24,7 +24,8 @@ entity tb_histogram is
         G_FRAMES    : positive := 3;
         G_VALID_PCT : natural  := 80;
         G_READY_PCT : natural  := 80;
-        G_GARBAGE   : natural  := 0
+        G_GARBAGE   : natural  := 0;
+        G_USE_BRAM  : boolean  := true
     );
 end entity;
 
@@ -47,6 +48,11 @@ architecture sim of tb_histogram is
         return result;
     end function;
 
+    function bram_name return string is
+    begin
+        if G_USE_BRAM then return "bram"; end if;
+        return "citace";
+    end function;
     function pass_fail(error_count : natural) return string is
     begin
         if error_count = 0 then return "PASS"; end if;
@@ -87,6 +93,7 @@ begin
                   m_tvalid => s_valid, m_tready => s_ready, done => source_done);
 
     dut : entity work.histogram_core
+        generic map (G_USE_BRAM => G_USE_BRAM)
         port map (aclk => aclk, aresetn => aresetn, run => '1',
                   height => to_unsigned(G_HEIGHT, C_DIM_W), status => status, frame_done => frame_done,
                   result_write_enable => result_write_enable, result_write_addr => result_write_addr,
@@ -189,7 +196,7 @@ begin
                 & integer'image(G_GARBAGE) & ")" severity error;
             total_errors := total_errors + 1;
         end if;
-        report "VYSLEDEK histogram " & G_NAME & " garbage " & integer'image(G_GARBAGE) & ": "
+        report "VYSLEDEK histogram " & bram_name & " " & G_NAME & " garbage " & integer'image(G_GARBAGE) & ": "
             & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb bypass, "
             & integer'image(hist_errors) & " chyb histogramu, " & integer'image(cycle_count) & " taktu)";
         assert total_errors = 0 severity failure;
