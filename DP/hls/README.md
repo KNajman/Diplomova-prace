@@ -51,7 +51,7 @@ a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`
 6. **Samopopisné názvy** proměnných a funkcí (stejná zásada jako ve VHDL), žádné jednopísmenné zkratky kromě souřadnic `x`, `y`.
 7. `clock=5ns` ve všech `.cfg` (společný cíl srovnání HLS × VHDL).
 
-## Postup převodu dalšího bodového jádra (prahování, RGB→HSV, HSV→RGB)
+## Postup převodu dalšího bodového jádra (RGB→HSV, HSV→RGB; prahování hotové v `threshold/` – vzor)
 
 1. Zkopíruj `csc/` jako `threshold/` (resp. `rgb2hsv/`, `hsv2rgb/`) a přejmenuj soubory a `syn.top`.
 2. Tělo pixelu nahraď funkcí podle golden modelu:

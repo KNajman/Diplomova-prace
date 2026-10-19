@@ -56,7 +56,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 
 ## Aktuální stav (aktualizuj)
 - HLS hotovo (csim/cosim/impl PASS): CSC, histogram, medián 3x3, filter2d 3x3/5x5/7x7 (šablona `hls_window.hpp`). Výsledky `DP/hls/results/hls_results.csv`.
-- HLS zbývá (Karel podle README): threshold, rgb2hsv, hsv2rgb. Mapa: threshold argumenty v pořadí thresh, maxval, type (0x10/0x18/0x20) = VHDL.
+- HLS prahování převedeno z `DP/Vitis` do `DP/hls/threshold` (19. 10., mapa = VHDL). HLS zbývá (Karel podle README): rgb2hsv, hsv2rgb. Staré `DP/Vitis/hls_threshold`, `hls_histogram`, `filter_2d*` jsou nahrazené (nic se z nich nepoužívá).
 - VHDL (`DP/vhdl`) vše hotové a ověřené (xsim + OOC): CSC v3, RGB↔HSV, medián, konvoluce K×K (mapa K≥5 jako HLS: okno coeff),
   histogram (`G_USE_BRAM`: BRAM + forwarding / 256 čítačů), prahování. `axil_regbank`: paměťové okno (čtení i zápis s WSTRB),
   registry za oknem. Srovnání v `DP/results/vysledky.md` sekce 1–8.
