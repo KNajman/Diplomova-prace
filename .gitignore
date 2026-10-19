@@ -154,3 +154,10 @@ desktop.ini
 
 # VHDL – testovací vektory (generuje DP/vhdl/tb/gen_vectors.sh z golden modelu)
 /DP/vhdl/tb/data/
+
+# Starý vývoj před přestavbou (do 10/2026) – zůstává jen lokálně, nahrazen DP/hls, DP/vhdl, DP/hw, DP/sw
+# (rozhodnutí Karla 19. 10. 2026; historie je v gitu do commitu před vyřazením)
+/DP/Vitis/
+/DP/Vivado/
+/DP/ip_repo/
+/DP/axi_video_1_0/
