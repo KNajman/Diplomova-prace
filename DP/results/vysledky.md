@@ -38,7 +38,7 @@ Převod RGB→YCbCr (matice 3×3, Q2.15), varianta 3→3, top-level s AXI4-Lite 
 |---|---|---|---|---|---|---|
 | HLS `hls_csc_rgb` | 407 | 385 | 9 | 3,85 ns | 260 MHz | logika |
 | VHDL v1 – 3 součiny v 1 taktu + strom sčítaček, registry 32 b | 325 | 558 | 12 | 3,70 ns | 270 MHz | logika |
-| VHDL v2 – systolická kaskáda DSP, šířky vzorcem, `G_REG_W` | 257 | 346 | 9 | 3,75 ns | 267 MHz | dekódování adresy |
+| VHDL v2 – sekvenční zpracování v pipeline DSP, šířky vzorcem, `G_REG_W` | 257 | 346 | 9 | 3,75 ns | 267 MHz | dekódování adresy |
 | **VHDL v3 – pipelinované dekódování adres (konstanty)** | **210** | **389** | **9** | **3,26 ns** | **307 MHz** | šířka pulzu DSP |
 
 Ostatní varianty (v3): RGB→šedá 102 LUT / 197 FF / 3 DSP / 3,26 ns; šedá→RGB 268 LUT / 360 FF / 3 DSP / 3,26 ns.
@@ -47,8 +47,8 @@ Rozpad v3 (hierarchický report): jádro `csc_core` 64 LUT / 96 FF / 9 DSP (z to
 registrová banka `axil_regbank` 146 LUT / 293 FF.
 
 **Poznatky**
-- **Struktura datové cesty rozhoduje o DSP:** strom sčítaček (v1) → 4 DSP na kanál; systolická kaskáda (součiny po sobě,
-  PCIN → P) → 3 DSP. HLS kaskádu navrhl sám, ve VHDL ji musí návrhář zvolit vědomě.
+- **Struktura datové cesty rozhoduje o DSP:** strom sčítaček (v1) → 4 DSP na kanál; sekvenční zpracování v pipeline (součiny po sobě,
+  PCIN → P) → 3 DSP. HLS takovou pipeline navrhl sám, ve VHDL ji musí návrhář zvolit vědomě.
 - **Šířky registrů:** ukládat jen platné bity (18 b koeficient, 10 b offset) = −192 FF (v1 → v2) a menší čtecí multiplexor.
 - **Kritická cesta se přesunula do řízení:** v2 omezovalo dekódování adresy `(addr − 16) / 8` (9 úrovní logiky, 3× CARRY8).
   Porovnání s konstantami + registr (v3) → logika má rezervu 2,55 ns, strop dává jen min. šířka pulzu DSP (3,26 ns).

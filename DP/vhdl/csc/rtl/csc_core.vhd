@@ -11,7 +11,7 @@
 -- Poznámky k návrhu:
 --  * Bodové jádro bez čítačů: TUSER/TLAST putují s daty, resynchronizace je automatická.
 --  * Maximální pipeline, nic na nic nečeká: každá operace má vlastní registr. Pro každý
---    výstupní kanál je skalární součin zapojený jako systolická kaskáda 3 DSP48E2:
+--    výstupní kanál je skalární součin zapojený jako pipeline 3 DSP48E2 (sekvenční zpracování, mezivýsledek přes PCIN):
 --      takt 1  in_pixel(0..2) do registrů                                    (A/B)
 --      takt 2  product0 = coeff0 * in_pixel(0)                               (M)
 --      takt 3  sum0   = product0 + bias  | product1 = coeff1 * pixel1 (z^-1)  (P | M)

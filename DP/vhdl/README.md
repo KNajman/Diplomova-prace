@@ -28,7 +28,7 @@ python3 collect_vhdl.py
 1. Rozhraní jako HLS: AXI4-Stream Video UG934, `aresetn` synchronní aktivní v 0, plný backpressure.
 2. Každé jádro = pipeline s globálním enable `en` + výstupní `axis_skid_buffer`; `s_axis_tready = en` (registrované).
 3. **Šířky aritmetiky vždy vzorcem** (`video_pkg`: součin = Wa + Wb, součet N členů = `sum_w(max(W), N)` = max(W) + clog2(N)), nikdy ručně spočítaná konstanta.
-4. **Maximální pipeline:** každá operace má vlastní registr, nic nečeká v jednom taktu na jiný výsledek (skalární součin = systolická kaskáda DSP: A/B -> M -> P -> PCIN).
+4. **Maximální pipeline:** každá operace má vlastní registr, nic nečeká v jednom taktu na jiný výsledek (skalární součin = pipeline DSP, sekvenční zpracování: A/B -> M -> P -> PCIN).
 5. Aritmetika = golden model, konstanty z `DP/model/generated/imgproc_coeffs_pkg.vhd`.
 6. Testbench: golden HEX, aspoň 100/100 (propustnost 1 px/takt) + náhodné mezery/backpressure, víc snímků.
 7. Fmax = max(5 - WNS, 5 - WPWS) – u DSP jader omezuje minimální šířka pulzu, ne logika.
