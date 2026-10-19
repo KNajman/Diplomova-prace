@@ -30,8 +30,16 @@
 #include "harness_hw.h"
 #include "harness_map.h"
 
-#ifndef SW_OPT_LEVEL
-#define SW_OPT_LEVEL "?"                    ///< Předává build (-DSW_OPT_LEVEL=\"O2\")
+/*
+ * Úroveň optimalizace předává build jako holý token (-DSW_OPT_LEVEL=O2): uvozovky v definici rozbíjí
+ * UserConfig.cmake ve Vitis 2025.2, proto se na řetězec převádí až tady.
+ */
+#define SW_STRINGIFY_TOKEN(token)   #token
+#define SW_STRINGIFY(token)         SW_STRINGIFY_TOKEN(token)
+#ifdef SW_OPT_LEVEL
+#define SW_OPT_LEVEL_NAME   SW_STRINGIFY(SW_OPT_LEVEL)
+#else
+#define SW_OPT_LEVEL_NAME   "?"
 #endif
 
 #define FRAME_WIDTH         (1920u)
@@ -425,7 +433,7 @@ static void measure_case(const hw_case_t* tc, uint64_t sw_ticks)
     printf("CSV,%s,%s,%llu,%llu.%01llu,%llu,%s,%lu,%lu,0x%lX,%s\r\n", k_op_names[tc->op], tc->impl,
            (unsigned long long)frame_us, (unsigned long long)((frame_us > 0u) ? (1000000u / frame_us) : 0u),
            (unsigned long long)((frame_us > 0u) ? ((10000000u / frame_us) % 10u) : 0u),
-           (unsigned long long)ticks_to_us(sw_ticks), SW_OPT_LEVEL, (unsigned long)mismatches,
+           (unsigned long long)ticks_to_us(sw_ticks), SW_OPT_LEVEL_NAME, (unsigned long)mismatches,
            (unsigned long)hist_mismatches, (unsigned long)status,
            (ok && (mismatches == 0u) && (hist_mismatches == 0u) && (status == 0u)) ? "PASS" : "FAIL");
 }
@@ -444,7 +452,7 @@ int main(void)
     Xil_DCacheEnable();
     Xil_ICacheEnable();
     printf("\r\n== DP testovaci retezec: %lux%lu, %u snimku x %u mereni, SW %s ==\r\n", (unsigned long)FRAME_WIDTH,
-           (unsigned long)FRAME_HEIGHT, MEAS_FRAMES, MEAS_RUNS, SW_OPT_LEVEL);
+           (unsigned long)FRAME_HEIGHT, MEAS_FRAMES, MEAS_RUNS, SW_OPT_LEVEL_NAME);
     make_test_frame();
 
     /* Otsuův práh šedého obrazu (ARM z histogramu - stejně jako by se použil za běhu) */
