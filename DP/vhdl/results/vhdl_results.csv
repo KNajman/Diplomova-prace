@@ -11,10 +11,13 @@ csc_axil_CH_IN3_CH_OUT3_v2,257,346,9,0,2,1.255,1.738,3.745,267.0,logic,yes,0.006
 csc_core_CH_IN3_CH_OUT3,64,96,9,0,2,2.955,1.738,3.262,306.6,pulse_width,yes,0.006
 csc_core_CH_IN3_CH_OUT3_v1,64,87,12,0,2,3.029,1.738,3.262,306.6,pulse_width,yes,0.009
 filter2d_axil_K3,1282,919,1,2,3,0.627,1.738,4.373,228.7,logic,yes,0.023
+filter2d_axil_K3_USE_DSPtrue,506,558,14,2,3,1.195,1.738,3.805,262.8,logic,yes,0.018
 filter2d_core_K3,1120,679,1,2,3,1.837,1.738,3.262,306.6,pulse_width,yes,0.019
 filter2d_core_K3_USE_DSPtrue,350,318,14,2,3,1.450,1.738,3.550,281.7,logic,yes,0.018
 filter2d_core_K5,2789,1510,1,4,3,0.800,1.738,4.200,238.1,logic,yes,0.071
+filter2d_core_K5_USE_DSPtrue,603,539,38,4,3,1.177,1.738,3.823,261.6,logic,yes,0.041
 filter2d_core_K7,5238,2702,1,6,4,0.819,1.738,4.181,239.2,logic,yes,0.096
+filter2d_core_K7_USE_DSPtrue,1213,837,72,6,3,0.759,1.738,4.241,235.8,logic,yes,0.074
 hsv2rgb_core,564,371,1,0,38,1.670,1.738,3.330,300.3,logic,yes,0.012
 hsv2rgb_core_USE_DSPtrue,158,184,11,0,46,2.904,1.738,3.262,306.6,pulse_width,yes,0.012
 hsv_axil_RGB_TO_HSVfalse,603,422,1,0,38,1.465,1.738,3.535,282.9,logic,yes,0.014
