@@ -19,6 +19,7 @@ use work.video_pkg.all;
 
 entity tb_histogram_axil is
     generic (
+        G_USE_BRAM  : boolean  := true;
         G_FRAMES    : positive := 2;
         G_VALID_PCT : natural  := 80;
         G_READY_PCT : natural  := 80
@@ -49,6 +50,11 @@ architecture sim of tb_histogram_axil is
         return result;
     end function;
     constant C_GOLDEN : t_hist := read_golden("data/gray_64x48_hist.hex");
+    function bram_name return string is
+    begin
+        if G_USE_BRAM then return "bram"; end if;
+        return "citace";
+    end function;
     function pass_fail(error_count : natural) return string is
     begin
         if error_count = 0 then return "PASS"; end if;
@@ -174,6 +180,7 @@ begin
                   m_tvalid => s_valid, m_tready => s_ready, done => source_done);
 
     dut : entity work.histogram_axil
+        generic map (G_USE_BRAM => G_USE_BRAM)
         port map (aclk => aclk, aresetn => aresetn,
                   s_axi_control_awaddr => awaddr, s_axi_control_awvalid => awvalid, s_axi_control_awready => awready,
                   s_axi_control_wdata => wdata, s_axi_control_wstrb => "1111", s_axi_control_wvalid => wvalid,
@@ -209,7 +216,7 @@ begin
         if not cpu_done then
             total_errors := total_errors + 1;
         end if;
-        report "VYSLEDEK histogram_axil: " & pass_fail(total_errors) & " ("
+        report "VYSLEDEK histogram_axil " & bram_name & ": " & pass_fail(total_errors) & " ("
             & integer'image(error_count) & " chyb bypass, " & integer'image(control_errors) & " chyb AXI-Lite, "
             & integer'image(early_pixels) & " px pred startem)";
         assert total_errors = 0 severity failure;
