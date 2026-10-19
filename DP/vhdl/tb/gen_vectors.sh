@@ -88,6 +88,22 @@ for size in 8x1 8x2 9x3 17x5 33x4 64x48; do
     done
 done
 
+# Histogram: šedé obrazy výše + extrémy pro čítače: plochý obraz (všech 3072 px v jednom koši,
+# inkrement každý takt) a vzor a,b,a,c (opakování koše ve vzdálenosti 1-4 jako test HLS forwardingu)
+python3 - <<'PY'
+with open("gray_flat_64x48.pgm", "wb") as f:
+    f.write(b"P5\n64 48\n255\n" + bytes([200]) * (64 * 48))
+pattern = (7, 7, 9, 7, 9, 11, 7, 255, 0, 0)
+with open("gray_repeat_64x48.pgm", "wb") as f:
+    f.write(b"P5\n64 48\n255\n" + bytes(pattern[i % len(pattern)] for i in range(64 * 48)))
+PY
+for name in gray_flat_64x48 gray_repeat_64x48; do
+    "$CLI" tohex "$name.pgm" "in_$name"
+done
+for name in gray_64x48 gray_9x3 gray_8x1 gray_flat_64x48 gray_repeat_64x48; do
+    "$CLI" hist "$name.pgm" "$name"
+done
+
 # 2D konvoluce: předvolby 3x3 (golden zapíše i <prefix>_kernel.txt pro testbench) + vlastní jádra 5x5 a 7x7
 for kernel in identity mean sharpen sobel_x sobel_y; do
     for border in constant replicate; do

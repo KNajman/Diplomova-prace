@@ -24,6 +24,7 @@ package video_pkg is
     constant C_PIX_W     : natural := 8;               -- bity na složku
     constant C_RGB_W     : natural := 3 * C_PIX_W;     -- 24 b pixel (RGB/YCbCr/HSV)
     constant C_MAX_WIDTH : natural := 3840;            -- max. šířka snímku (4K UHD)
+    constant C_MAX_HEIGHT : natural := 2160;            -- max. výška snímku (4K UHD)
     constant C_DIM_W     : natural := 12;              -- šířka registrů width/height (max 4095)
 
     -- Indexy složek v TDATA podle UG934 (shodné s IMGPROC_RGB_IDX_* v golden modelu)
@@ -76,6 +77,11 @@ package video_pkg is
     function axil_addr_w(num_regs : natural) return natural;
     -- Počet registrů IP 2D konvoluce K x K (width, height, border, scale, delta, K*K koeficientů, status)
     function filter_num_regs(kernel_size : positive) return natural;
+
+    -- Histogram: 256 košů, pole hist[] v AXI4-Lite od 0x400 (mapa jako HLS hls_histogram)
+    constant C_HIST_BINS        : natural := 2 ** C_PIX_W;
+    constant C_HIST_MEM_BASE    : natural := 16#400#;
+    constant C_HIST_AXIL_ADDR_W : natural; -- clog2(C_HIST_MEM_BASE + 4 * C_HIST_BINS), odložená (clog2 je v těle)
 
     -- Složka c (0 = TDATA[7:0]) jako číslo bez znaménka
     function get_ch(data : std_logic_vector; c : natural) return t_pix;
@@ -142,5 +148,7 @@ package body video_pkg is
             return resize(unsigned(v), C_PIX_W);
         end if;
     end function;
+
+    constant C_HIST_AXIL_ADDR_W : natural := clog2(C_HIST_MEM_BASE + 4 * C_HIST_BINS);
 
 end package body;

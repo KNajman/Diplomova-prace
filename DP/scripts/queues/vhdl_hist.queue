@@ -1,0 +1,12 @@
+# VHDL histogram (256 čítačů + výsyp do BRAM): vektory, xsim jádra (obrazy, extrémy, malé rozměry, garbage),
+# obálka s pamětovým oknem, regrese obálek (registrová banka má nově paměťové okno), OOC, CSV
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for name in gray_64x48 gray_flat_64x48 gray_repeat_64x48; do bash run_xsim.sh tb_histogram G_NAME=$name G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done
+cd DP/vhdl/scripts && bash run_xsim.sh tb_histogram G_NAME=gray_repeat_64x48 G_VALID_PCT=100 G_READY_PCT=100
+cd DP/vhdl/scripts && bash run_xsim.sh tb_histogram G_NAME=gray_9x3 G_WIDTH=9 G_HEIGHT=3 && bash run_xsim.sh tb_histogram G_NAME=gray_8x1 G_WIDTH=8 G_HEIGHT=1
+cd DP/vhdl/scripts && bash run_xsim.sh tb_histogram G_GARBAGE=37 G_VALID_PCT=50 G_READY_PCT=50
+cd DP/vhdl/scripts && bash run_xsim.sh tb_histogram_axil
+cd DP/vhdl/scripts && bash run_xsim.sh tb_csc_axil G_PRESET=1 && bash run_xsim.sh tb_median_axil G_REPLICATE=true && bash run_xsim.sh tb_filter2d_axil
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs histogram_core
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs histogram_axil
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
