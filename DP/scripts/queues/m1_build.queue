@@ -1,0 +1,6 @@
+# Celý build pro desku za sebou (každá dílčí fronta má svůj log ~/logs/<fronta>.log):
+# HLS prahování (+ ověření histogramu a konvoluce) -> block design + bitstream -> měřicí aplikace.
+# @stop_on_error
+bash DP/scripts/ababel/run_queue.sh DP/scripts/queues/hls_threshold.queue && ! grep -q "== CHYBY" ~/logs/hls_threshold.log
+bash DP/scripts/ababel/run_queue.sh DP/scripts/queues/hw_harness.queue && ! grep -q "== CHYBY" ~/logs/hw_harness.log
+bash DP/scripts/ababel/run_queue.sh DP/scripts/queues/sw_app.queue && ! grep -q "== CHYBY" ~/logs/sw_app.log
