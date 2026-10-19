@@ -50,7 +50,9 @@ case "$CMD" in
     status)
         ssh ababel "cat ~/logs/$ARG.log; if [ -f ~/logs/$ARG.pid ] && ps -p \$(cat ~/logs/$ARG.pid) > /dev/null; then echo '(běží)'; elif [ -f ~/logs/$ARG.pid ]; then echo '(SPADLO - proces neexistuje, PID soubor zůstal)'; else echo '(neběží)'; fi" ;;
     stop)
-        ssh ababel "[ -f ~/logs/$ARG.pid ] && P=\$(cat ~/logs/$ARG.pid) && pkill -TERM -P \$P; kill \$P 2>/dev/null; rm -f ~/logs/$ARG.pid; echo zastaveno" ;;
+        # fronta běží přes setsid -> PID = ID session; zabít celou session (i běhy Vivada z launch_runs),
+        # jinak osiřelé synth/impl dál zapisují do projektu a nový běh ho poškodí (19. 10.: rozbitý .xpr)
+        ssh ababel "[ -f ~/logs/$ARG.pid ] && P=\$(cat ~/logs/$ARG.pid) && pkill -TERM -s \$P; kill \$P 2>/dev/null; rm -f ~/logs/$ARG.pid; sleep 2; ps -eo pid,args | grep -E 'Diplomova-prace/DP/.*/build' | grep -v grep | cut -c1-150; echo zastaveno" ;;
     fetch)
         rsync -rq --no-perms ababel:"$REPO_REMOTE/$ARG" "$ARG" && echo "staženo: $ARG" ;;
     results)

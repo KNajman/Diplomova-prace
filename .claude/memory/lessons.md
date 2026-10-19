@@ -32,3 +32,4 @@
 - Git ve VM (device_bash) potřebuje povolené mazání v `D:\Repos\_DP` (lock soubory); identita přes `git -c user.name=Karel_Najman -c user.email=karel.najman@tul.cz`.
 - VS Code CMake si vybral kit z `kria_passthrough` → nastavit kit/`cmake.sourceDirectory` na `DP/model`.
 - Dvě fronty se xsim nesmí běžet souběžně: `build/xsim` (knihovna xsim.dir) a `tb/data` jsou sdílené. Paralelně jen fronty bez xsim/gen_vectors (např. čisté OOC). Úprava: per-TB WORK v run_xsim.sh – měnit jen když žádná fronta neběží (bash čte skript průběžně).
+- `ababel.sh stop` zabíjel jen přímé potomky fronty: běhy Vivada z `launch_runs` (synth_1/impl_1) přežily a zapisovaly do projektu souběžně s novým během → poškozený `harness.xpr` ("XML parser ... Not well formed"). Stop teď zabíjí celou session (`pkill -s`) a vypíše zbylé procesy z `DP/*/build`.
