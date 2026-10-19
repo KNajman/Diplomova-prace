@@ -236,13 +236,13 @@ log `~/logs/vhdl_hist.log`.
 
 ---
 
-## 8. Prahování – VHDL (19. 10. 2026)
+## 8. Prahování – HLS × VHDL (19. 10. 2026)
 
 | varianta | LUT | FF | DSP | BRAM | perioda | limit |
 |---|---|---|---|---|---|---|
 | VHDL `threshold_core` | 25 | 60 | 0 | 0 | 2,78 ns | šířka pulzu |
 | VHDL `threshold_axil` | 81 | 141 | 0 | 0 | 2,78 ns | šířka pulzu |
-| HLS `hls_threshold` | – | – | – | – | – | (Karel, zatím chybí) |
+| HLS `hls_threshold` (OOC stejným skriptem) | 122 | 118 | 0 | 0 | 2,78 ns | šířka pulzu |
 
 **Poznatky**
 - Typ prahování se dekóduje mimo pipeline (registr se mění jen zápisem z ARM): z typu se předpočítá zdroj výsledku nad/pod
@@ -250,6 +250,10 @@ log `~/logs/vhdl_hist.log`.
 - Úplný test v jednom běhu: 8 typů (5 platných + neplatné → 0) × prahy {0, 1, 127, 254, 255} × maxval {255, 77} na rampě
   se všemi 256 hodnotami = 80 kombinací, PASS. Obálka s Otsuovým prahem šedého obrazu (108).
 - Mapa registrů 0x10 thresh, 0x18 maxval, 0x20 type – HLS se stejným pořadím argumentů dá stejnou mapu.
+- **HLS × VHDL (celá IP):** HLS 122 LUT / 118 FF, VHDL 81 LUT / 141 FF (−34 % LUT, +19 % FF – VHDL má pipeline 3 takty
+  + skid buffery, HLS 2 takty). Obojí limituje šířka pulzu (2,78 ns), logika má rezervu přes 2 ns.
+- HLS volání = řádek: cosim 71 taktů na řádek 64 px, tj. ~7 taktů režie na řádek (u 1920 px 0,4 %). VHDL běží bez přestávek.
+- HLS převedeno z `DP/Vitis/hls_threshold` (3 typy, maxval pevně 255, čítač width × height) do `DP/hls/threshold`.
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (`threshold_*`), log `~/logs/vhdl_threshold.log`.
 

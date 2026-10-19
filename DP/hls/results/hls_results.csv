@@ -5,3 +5,4 @@ filter_5x5,hls_filter2d_5x5_Pipeline_copy_coeff,5.00,2.057,486.1,1,2,145,230,0,0
 filter_7x7,hls_filter2d_7x7_Pipeline_copy_coeff,5.00,2.019,495.3,1,2,151,425,0,0,Pass,1242,1487,3499,1306,1244,50,14,4,4.374,228.6,yes
 histogram,hls_histogram_Pipeline_clear_bins,5.00,2.440,409.8,1,1,60,11,0,0,Pass,3903,4375,4376,302,422,0,2,0,2.732,366.0,yes
 median,hls_median_Pipeline_frame_loop,5.00,3.474,287.9,1,5,1701,570,0,4,Pass,770,800,3215,768,472,0,4,4,4.056,246.5,yes
+threshold,hls_threshold,5.00,2.860,349.7,1,2,205,77,0,0,Pass,66,71,80,124,118,0,0,0,2.008,498.0,yes

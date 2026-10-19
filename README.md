@@ -584,7 +584,7 @@ Plné tabulky, konfigurace a poznatky: [`DP/results/vysledky.md`](DP/results/vys
 | konvoluce 3×3 | 640 / 621 / 10 / 2 | 506 / 558 / 14 / 2 | 4,05 / 3,81 ns |
 | konvoluce 7×7 | 1341 / 1247 / 50 / 7 | 1232 / 1489 / 72 / 6 | 4,35 / 4,00 ns |
 | histogram (BRAM) | 300 / 422 / 0 / 1 | 183 / 288 / 0 / 1 | 3,08 / 3,08 ns¹ |
-| prahování | (měří se) | 81 / 141 / 0 / 0 | – / 2,78 ns¹ |
+| prahování | 122 / 118 / 0 / 0 | 81 / 141 / 0 / 0 | 2,78 / 2,78 ns¹ |
 
 ¹ omezeno minimální šířkou pulzu hodin BRAM/DSP, ne logikou. Oba sloupce jsou ze stejného OOC skriptu (RTL z HLS
 prohnané stejným postupem jako VHDL, `vysledky.md` sekce 9); perioda = max(5 − WNS, 5 − WPWS). Měření propustnosti na desce (1080p, HW × SW) dodá `DP/sw/harness_app`.
