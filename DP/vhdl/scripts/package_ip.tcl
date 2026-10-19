@@ -5,9 +5,10 @@
 #            VLNV tul.cz:dp:vhdl_<label>:1.0
 #
 #  Poznámky k návrhu:
-#   * Jedna IP = jedna konfigurace (generika pevně nastavená a skrytá). Šířky portů (adresa AXI4-Lite)
-#     se počítají funkcemi z generik, které IP packager neumí přepočítat při změně parametru v BD -
-#     pevná konfigurace tím chybu vylučuje. Různé varianty (HLS x VHDL, K) jsou různé IP.
+#   * Jedna IP = jedna konfigurace. IP packager neumí šířky portů zadané konstantami a funkcemi z balíčku
+#     (C_RGB_W, filter_axil_addr_w(G_K) -> "XPath expression failed"). Proto se top nejdřív elaboruje
+#     s danými generiky, z elaborovaných portů se vygeneruje obálka vhdl_<label> bez generik s pevnými
+#     šířkami a zabalí se ta. Různé varianty (HLS x VHDL, K) jsou různé IP.
 #   * Rozhraní stejná jako u HLS IP: s_axi_control (AXI4-Lite), s_axis_video / m_axis_video (AXIS),
 #     aclk, aresetn (aktivní v 0), interrupt (úroveň) -> v BD se zapojují stejně.
 # =============================================================================
@@ -28,9 +29,51 @@ set src [concat $src [glob [file join $root common *.vhd]] [glob -nocomplain [fi
 add_files -norecurse $src
 set_property file_type {VHDL 2008} [get_files *.vhd]
 set_property top $top [current_fileset]
-if {[llength $gens] > 0} {
-    set_property generic $gens [current_fileset]
+update_compile_order -fileset sources_1
+
+# elaborace s generiky -> porty (název, směr, rozsah) -> obálka bez generik s pevnými šířkami
+set gen_args {}
+foreach g $gens { lappend gen_args -generic $g }
+synth_design -rtl -top $top -part xck26-sfvc784-2LV-c -name rtl_ports {*}$gen_args
+set port_decls {}
+set port_maps  {}
+set seen_buses {}
+foreach port [lsort [get_ports]] {
+    set bus [get_property BUS_NAME $port]
+    set dir [expr {[get_property DIRECTION $port] eq "IN" ? "in " : "out"}]
+    if {$bus eq ""} {
+        set name [get_property NAME $port]
+        lappend port_decls "        $name : $dir std_logic"
+    } else {
+        if {[lsearch -exact $seen_buses $bus] >= 0} { continue }
+        lappend seen_buses $bus
+        set name $bus
+        lappend port_decls "        $name : $dir std_logic_vector([get_property BUS_START $port] downto [get_property BUS_STOP $port])"
+    }
+    lappend port_maps "$name => $name"
 }
+close_design
+set generic_maps {}
+foreach g $gens {
+    lassign [split $g =] name value
+    lappend generic_maps "$name => $value"
+}
+set wrapper_file [file join $proj_dir $ip_name.vhd]
+set f [open $wrapper_file w]
+puts $f "-- Vygenerováno package_ip.tcl: $top s generiky {$gens}, porty s pevnými šířkami pro IP packager"
+puts $f "library ieee;\nuse ieee.std_logic_1164.all;\n"
+puts $f "entity $ip_name is\n    port (\n[join $port_decls ";\n"]\n    );\nend entity;\n"
+puts $f "architecture wrapper of $ip_name is\nbegin"
+if {[llength $generic_maps] > 0} {
+    puts $f "    core : entity work.$top\n        generic map ([join $generic_maps {, }])\n        port map ([join $port_maps {, }]);"
+} else {
+    puts $f "    core : entity work.$top\n        port map ([join $port_maps {, }]);"
+}
+puts $f "end architecture;"
+close $f
+add_files -norecurse $wrapper_file
+set_property file_type {VHDL 2008} [get_files $wrapper_file]
+set_property top $ip_name [current_fileset]
 update_compile_order -fileset sources_1
 
 ipx::package_project -root_dir $ip_dir -vendor tul.cz -library dp -taxonomy /DP_video -import_files -set_current true -force
@@ -39,20 +82,6 @@ set_property name $ip_name $core
 set_property display_name "DP VHDL $label" $core
 set_property description "Diplomova prace TUL: VHDL jadro $top ($gens), mapa registru jako HLS" $core
 set_property version 1.0 $core
-
-# generika: hodnota konfigurace, v GUI skrytá
-foreach g $gens {
-    lassign [split $g =] name value
-    set param [ipx::get_user_parameters $name -of_objects $core]
-    if {$param ne ""} {
-        set_property value $value $param
-        set_property enablement_value false $param
-    }
-    set hdl_param [ipx::get_hdl_parameters $name -of_objects $core]
-    if {$hdl_param ne ""} {
-        set_property value $value $hdl_param
-    }
-}
 
 # hodiny, reset, přerušení
 foreach busif {s_axi_control s_axis_video m_axis_video} {
