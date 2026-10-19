@@ -144,3 +144,47 @@ Zdroj: `DP/vhdl/results/vhdl_results.csv` (`median_core`, `median_axil`), `DP/hl
   splněný cíl, nebo když limituje hardware (šířka pulzu DSP 3,26 ns).
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (`*_v1` = před optimalizací), log `~/logs/vhdl_opt.log`.
+
+---
+
+## 6. 2D konvoluce K×K – HLS × VHDL (16.–19. 10. 2026)
+
+Konfigurace: OOC syntéza + implementace, 5 ns (200 MHz), KV260. Max. šířka 3840 px, okraj constant/replicate, koeficienty
+int8, scale Q.14 (18 b), delta int16. HLS: celé IP (s_axilite vždy součástí). VHDL: `filter2d_axil` = jádro + `axil_regbank`,
+`filter2d_core` = jen jádro (`window_gen` + aritmetika). BRAM v dlaždicích 36 Kb (HLS hlásí BRAM_18K, přepočteno /2).
+
+| varianta | LUT | FF | DSP | BRAM36 | perioda | Fmax | limit |
+|---|---|---|---|---|---|---|---|
+| HLS `hls_filter2d_3x3` | 655 | 621 | 10 | 2 | 3,92 ns | 255 MHz | logika |
+| VHDL `filter2d_axil` K3 (součiny v LUT) | 1282 | 919 | 1 | 2 | 4,37 ns | 229 MHz | logika |
+| VHDL `filter2d_axil` K3 `G_USE_DSP` | **506** | **558** | 14 | 2 | **3,81 ns** | 263 MHz | logika |
+| VHDL `filter2d_core` K3 | 1120 | 679 | 1 | 2 | 3,26 ns | 307 MHz | šířka pulzu |
+| VHDL `filter2d_core` K3 `G_USE_DSP` | 350 | 318 | 14 | 2 | 3,55 ns | 282 MHz | logika |
+| HLS `hls_filter2d_5x5` | 959 | 863 | 26 | 5 | 4,17 ns | 240 MHz | logika |
+| VHDL `filter2d_core` K5 | 2789 | 1510 | 1 | 4 | 4,20 ns | 238 MHz | logika |
+| VHDL `filter2d_core` K5 `G_USE_DSP` | **603** | **539** | 38 | 4 | **3,82 ns** | 262 MHz | logika |
+| HLS `hls_filter2d_7x7` | 1306 | 1244 | 50 | 7 | 4,37 ns | 229 MHz | logika |
+| VHDL `filter2d_core` K7 | 5238 | 2702 | 1 | 6 | 4,18 ns | 239 MHz | logika |
+| VHDL `filter2d_core` K7 `G_USE_DSP` | 1213 | 837 | 72 | 6 | 4,24 ns | 236 MHz | logika |
+
+Rozpad VHDL K3 `G_USE_DSP` (jádro): `window_gen` 282 LUT / 255 FF / 2 BRAM36, aritmetika jen **16 LUT / 19 FF + 14 DSP**.
+
+**Poznatky**
+- **Bez DSP je VHDL výrazně větší než HLS** (K3 2×, K7 4× LUT): součiny 8×9 b syntéza (auto) skládá z LUT. HLS dává
+  součiny do DSP sám. Férové srovnání je tedy proti variantě `G_USE_DSP`.
+- **S DSP je VHDL menší a rychlejší než HLS:** K3 (celé IP) −23 % LUT, −10 % FF, +0,1 ns rezervy. K5/K7 jsou zatím jen jádra – banka přidá odhadem ~70 LUT
+  a ~100 FF + 8 FF na koeficient (K5 +300 FF, K7 +490 FF); i tak K5 vychází ~30 % LUT pod HLS a FF zhruba stejně.
+  OOC `filter2d_axil` K5/K7 doplnit pro přesné číslo.
+  Cena: víc DSP (14/38/72 vs 10/26/50). Atribut `use_dsp` je jen na signálu součinů, ale Vivado do DSP vtáhne i strom
+  sčítaček (post-adder / kaskáda PCIN) a škálování – aritmetika K3 má jen 16 LUT. HLS strom sčítá v LUT a do DSP dá jen
+  součiny + 1 škálování. Na KV260 (1 248 DSP) je 72 DSP 5,8 % – přijatelné; kdyby DSP chyběly, VHDL bez DSP pořád splní 200 MHz.
+- **Generičnost:** jedno VHDL jádro pro libovolné K (šířky vzorcem `sum_w`, adresa AXI vzorcem `axil_addr_w`), HLS
+  šablona `window_frame<K, Op>` – obojí škáluje bez ručních zásahů. Paměť roste lineárně s K − 1 řádkovými buffery.
+- **BRAM:** VHDL K − 1 bufferů (2/4/6 BRAM36). HLS o jeden BRAM36 víc u K5/K7 – pole koeficientů v s_axilite je v BRAM
+  adaptéru (VHDL má koeficienty v registrech banky).
+- **Perioda** všech variant 3,3–4,4 ns, cíl 200 MHz splněn všude s rezervou ≥ 0,6 ns. U K3 jádra bez DSP limituje
+  šířka pulzu (jediný DSP pro škálování), DSP varianta má o 0,3 ns horší logickou cestu (kaskáda DSP).
+- Co do textu: graf LUT/FF/DSP v závislosti na K pro HLS × VHDL × VHDL+DSP.
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (`filter2d_*`), `DP/hls/results/hls_results.csv` (`filter_*`), logy
+`~/logs/vhdl_filter.log`, `~/logs/vhdl_filter_dsp.log`, `~/logs/hls_filter.log`.

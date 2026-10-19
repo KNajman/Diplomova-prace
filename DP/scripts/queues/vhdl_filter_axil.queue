@@ -1,0 +1,5 @@
+# VHDL konvoluce: celé IP (jádro + registrová banka) K5/K7 s DSP pro přesné srovnání s HLS (HLS hlásí vždy celé IP)
+cd DP/vhdl/scripts && bash run_xsim.sh tb_filter2d_axil G_K=5 G_KERNEL=k5 && bash run_xsim.sh tb_filter2d_axil G_K=7 G_KERNEL=k7
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_axil G_K=5 G_USE_DSP=true
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_axil G_K=7 G_USE_DSP=true
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
