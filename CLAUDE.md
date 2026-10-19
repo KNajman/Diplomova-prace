@@ -20,6 +20,8 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Notebook: Windows, 12 GB RAM (velké Vivado běhy → Ababel), VS Code, clang/MinGW/MSVC, Vitis/Vivado 2025.2, Git for Windows (má uložené GitHub credentials), WinSCP + PuTTY + Pageant, VPN TUL.
 - Text DP: LaTeX `tulthesis`, lokální TeX Live, `Diplomová_práce/DP.tex`.
 
+- **Terminologie:** nikdy „systolická kaskáda“ (v češtině lékařský pojem). Psát „pipeline“ nebo „sekvenční zpracování“; „kaskáda“ jen jako název propojení DSP přes PCIN (termín Xilinx).
+
 ## Jak pracujeme
 - **Opakované příkazy ukládat jako šablony/skripty** (`.claude/scripts/`, `DP/scripts/queues/`), negenerovat je pokaždé znovu.
 - **Na Ababel čeká Karel, ne Claude.** Po spuštění fronty nikdy `sleep`/čekání ani kontrolní dotazy – čas hned využít na další implementaci; Karel dá vědět, až fronta doběhne.

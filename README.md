@@ -71,7 +71,7 @@ doc/                     text práce (LaTeX)
 
 ### Aritmetika s pevnou řádovou čárkou
 
-Formát $Q_{m.n}$ = celé číslo se znaménkem s $n$ zlomkovými bity, hodnota $x = X / 2^n$.
+Formát $Q_{m.n}$ = celé číslo se znaménkem s $n$ zlomkovými bity, hodnota $$x = \frac{X}{2^n}$$.
 
 **Zaokrouhlení half-up** (k $+\infty$) a **saturace** jsou ve všech třech implementacích stejné:
 
@@ -193,7 +193,7 @@ for (int o = 0; o < CH_OUT; o++)
 ```
 </td></tr></table>
 
-**VHDL** (`csc_core.vhd`) – systolická kaskáda: v každém taktu jedno násobení a jedno sčítání, bias a zaokrouhlení
+**VHDL** (`csc_core.vhd`) – sekvenční zpracování v pipeline: v každém taktu jedno násobení a jedno sčítání, bias a zaokrouhlení
 ($b \cdot 2^{15} + 2^{14}$) se předpočítá mimo pipeline, takže celý výraz padne do řetězce DSP48E2 (PCIN):
 
 ```vhdl

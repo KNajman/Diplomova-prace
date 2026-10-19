@@ -10,7 +10,7 @@
 - Cesty v `hls_config.cfg` relativní k adresáři .cfg, skripty dělají `pushd`.
 
 ## VHDL (GHDL 4.1 / xsim)
-- **Karlova pravidla návrhu:** šířky součinů/součtů vždy vzorcem (Wa+Wb, max(W)+clog2(N)), žádné ručně spočítané konstanty; maximální pipeline – každá operace za registrem, skalární součin jako systolická kaskáda DSP (ne 3 součiny v jednom taktu + strom sčítaček: v1 CSC = 12 DSP, systolicky 9).
+- **Karlova pravidla návrhu:** šířky součinů/součtů vždy vzorcem (Wa+Wb, max(W)+clog2(N)), žádné ručně spočítané konstanty; maximální pipeline – každá operace za registrem, skalární součin jako pipeline DSP (sekvenční zpracování) (ne 3 součiny v jednom taktu + strom sčítaček: v1 CSC = 12 DSP, v pipeline 9).
 - Řetězce v `report` jen ASCII/Latin-1 (diakritika v UTF-8 = chyba v GHDL i xsim). Komentáře s diakritikou nevadí.
 - Podmíněný výraz `'1' when c else '0'` jako parametr procedury nebo uvnitř výrazu je až VHDL-2019 → přes proměnnou nebo funkci.
 - VHDL se vyvíjí v cloudu (GHDL, `DP/vhdl/scripts/run_ghdl.sh`), vektory generuje `tb/gen_vectors.sh` z golden modelu na Karlově PC, finální ověření xsim na Ababelu.
