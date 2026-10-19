@@ -28,6 +28,9 @@
 --    cesta už nevede přes odčítání a dělení adresy (v1: 9 úrovní logiky, 3x CARRY8).
 --    Zápis: takt 1 zachycení AW+W, takt 2 dekódování, takt 3 provedení + BVALID.
 --    Čtení:  takt 1 zachycení AR, takt 2 dekódování, takt 3 multiplexor dat + RVALID.
+--  * Volitelné paměťové okno (G_MEM_BASE, G_MEM_WORDS) pro pole, která HLS mapuje do AXI4-Lite
+--    (např. hist[256] na 0x400 - 0x7FF): jádro dodá paměť s registrovaným čtením, banka jí posílá
+--    index slova a v taktu 3 vrátí data. Zápis do okna se ignoruje (u histogramu je jen pro čtení).
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -42,13 +45,16 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.axil_regbank_pkg.all;
+use work.video_pkg.all;               -- clog2, to_sl
 
 entity axil_regbank is
     generic(
         G_NUM_REGS : positive         := 12;
         G_REG_W    : t_width_array;     -- platná šířka každého registru (bity nad ní = 0)
         G_RO_MASK  : std_logic_vector := "0"; -- bit = 1 -> registr je výstup jádra (jen čtení)
-        G_ADDR_W   : positive         := 8
+        G_ADDR_W   : positive         := 8;
+        G_MEM_BASE  : natural         := 0; -- paměťové okno (pole HLS v AXI4-Lite), zarovnané na svou velikost
+        G_MEM_WORDS : natural         := 0  -- počet 32b slov okna (mocnina 2), 0 = bez okna
     );
     port(
         aclk          : in  std_logic;
@@ -76,7 +82,10 @@ entity axil_regbank is
         ro_in         : in  t_reg_array(0 to G_NUM_REGS - 1); -- RO výstupy jádra (ostatní ignorováno)
         run           : out std_logic;
         done_in       : in  std_logic;  -- 1takt pulz: transakce (snímek) dokončena
-        interrupt     : out std_logic
+        interrupt     : out std_logic;
+        -- Paměťové okno: index slova (adresa / 4) a data z paměti jádra s registrovaným čtením (latence 1)
+        mem_read_word : out unsigned(G_ADDR_W - 3 downto 0);
+        mem_read_data : in  std_logic_vector(31 downto 0) := (others => '0')
     );
 end entity;
 
@@ -94,14 +103,6 @@ architecture rtl of axil_regbank is
         return 16#10# + 8 * reg_idx;
     end function;
 
-    function to_sl(condition : boolean) return std_logic is
-    begin
-        if condition then
-            return '1';
-        end if;
-        return '0';
-    end function;
-
     -- Výsledek dekódování adresy: jeden bit na každé možné cílové místo
     type t_addr_select is record
         ap_ctrl  : std_logic;
@@ -110,7 +111,19 @@ architecture rtl of axil_regbank is
         isr      : std_logic;
         reg_data : std_logic_vector(0 to G_NUM_REGS - 1);
         reg_vld  : std_logic_vector(0 to G_NUM_REGS - 1);
+        mem      : std_logic;           -- adresa v paměťovém okně
     end record;
+
+    -- Paměťové okno: horní bity adresy = horní bity G_MEM_BASE (okno je zarovnané na svou velikost)
+    constant C_MEM_ADDR_LSB : natural := clog2(maximum(4 * G_MEM_WORDS, 1));
+    function in_memory_window(addr_value : unsigned) return std_logic is
+    begin
+        if (G_MEM_WORDS = 0) or (C_MEM_ADDR_LSB >= addr_value'length) then
+            return '0';
+        end if;
+        return to_sl(addr_value(addr_value'high downto C_MEM_ADDR_LSB)
+                     = to_unsigned(G_MEM_BASE / (2 ** C_MEM_ADDR_LSB), addr_value'length - C_MEM_ADDR_LSB));
+    end function;
 
     -- Dekódování porovnáním s konstantami (žádné odčítání ani dělení adresy)
     function decode_addr(addr : std_logic_vector) return t_addr_select is
@@ -125,11 +138,12 @@ architecture rtl of axil_regbank is
             sel.reg_data(reg_idx) := to_sl(addr_value = reg_data_addr(reg_idx));
             sel.reg_vld(reg_idx)  := to_sl(addr_value = reg_data_addr(reg_idx) + 4);
         end loop;
+        sel.mem     := in_memory_window(addr_value);
         return sel;
     end function;
 
     constant C_SELECT_NONE : t_addr_select := (ap_ctrl  => '0', gie => '0', ier => '0', isr => '0',
-                                               reg_data => (others => '0'), reg_vld => (others => '0'));
+                                               reg_data => (others => '0'), reg_vld => (others => '0'), mem => '0');
 
     signal reg_value        : t_reg_array(0 to G_NUM_REGS - 1) := (others => (others => '0'));
     signal ap_start_reg     : std_logic                        := '0';
@@ -160,6 +174,8 @@ architecture rtl of axil_regbank is
 begin
 
     regs      <= reg_value;
+    -- index slova v okně: paměť čte v taktu 2 (adresa zachycená v taktu 1), data jsou hotová v taktu 3
+    mem_read_word <= unsigned(ar_addr_reg(G_ADDR_W - 1 downto 2));
     run       <= ap_start_reg or auto_restart_reg;
     interrupt <= global_irq_en and (irq_status(0) or irq_status(1));
 
@@ -296,6 +312,9 @@ begin
                             clear_vld_on_read := true; -- COR jako HLS
                         end if;
                     end loop;
+                    if read_select.mem = '1' then
+                        read_word := mem_read_data;
+                    end if;
                     rdata_reg    <= read_word;
                     rvalid_reg   <= '1';
                     read_decoded <= '0';
