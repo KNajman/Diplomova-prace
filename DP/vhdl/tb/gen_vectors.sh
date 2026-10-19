@@ -104,6 +104,23 @@ for name in gray_64x48 gray_9x3 gray_8x1 gray_flat_64x48 gray_repeat_64x48; do
     "$CLI" hist "$name.pgm" "$name"
 done
 
+# Prahování: rampa 256x4 (každý řádek jiná permutace všech 256 hodnot) x 5 typů x prahy (okraje i střed)
+# x 2 maxval; obálka: šedý obraz s Otsuovým prahem (108) z histogramu výše
+python3 - <<'PY'
+rows = [list(range(256)), list(range(255, -1, -1)), [(x * 7) & 255 for x in range(256)], [(x * 101 + 13) & 255 for x in range(256)]]
+with open("ramp_256x4.pgm", "wb") as f:
+    f.write(b"P5\n256 4\n255\n" + bytes(v for row in rows for v in row))
+PY
+"$CLI" tohex ramp_256x4.pgm in_ramp_256x4
+for type in 0 1 2 3 4; do
+    for thresh in 0 1 127 254 255; do
+        for maxval in 255 77; do
+            "$CLI" thresh ramp_256x4.pgm "thresh_ramp_t${type}_${thresh}_$maxval" "$type" "$thresh" "$maxval"
+        done
+    done
+done
+"$CLI" thresh gray_64x48.pgm thresh_gray_64x48_t0_108_255 0 108 255
+
 # 2D konvoluce: předvolby 3x3 (golden zapíše i <prefix>_kernel.txt pro testbench) + vlastní jádra 5x5 a 7x7
 for kernel in identity mean sharpen sobel_x sobel_y; do
     for border in constant replicate; do
