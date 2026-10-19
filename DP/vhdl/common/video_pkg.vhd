@@ -83,6 +83,15 @@ package video_pkg is
     constant C_HIST_MEM_BASE    : natural := 16#400#;
     constant C_HIST_AXIL_ADDR_W : natural; -- clog2(C_HIST_MEM_BASE + 4 * C_HIST_BINS), odložená (clog2 je v těle)
 
+    -- Prahování: typy jako OpenCV / golden model (imgproc_thresh_type_t)
+    constant C_THRESH_TYPE_W     : natural := 3;
+    constant C_THRESH_BINARY     : natural := 0;
+    constant C_THRESH_BINARY_INV : natural := 1;
+    constant C_THRESH_TRUNC      : natural := 2;
+    constant C_THRESH_TOZERO     : natural := 3;
+    constant C_THRESH_TOZERO_INV : natural := 4;
+    constant C_THRESH_NUM_REGS   : natural := 3; -- thresh, maxval, type (mapa HLS 0x10, 0x18, 0x20)
+
     -- Složka c (0 = TDATA[7:0]) jako číslo bez znaménka
     function get_ch(data : std_logic_vector; c : natural) return t_pix;
     -- Sloučí 3 složky do 24bitového TDATA

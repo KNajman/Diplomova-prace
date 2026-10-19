@@ -31,3 +31,4 @@
 - Makefile a `.vscode/` jsou pro zápis z Cowork chráněné → dodat jako snippet, Karel vloží.
 - Git ve VM (device_bash) potřebuje povolené mazání v `D:\Repos\_DP` (lock soubory); identita přes `git -c user.name=Karel_Najman -c user.email=karel.najman@tul.cz`.
 - VS Code CMake si vybral kit z `kria_passthrough` → nastavit kit/`cmake.sourceDirectory` na `DP/model`.
+- Dvě fronty se xsim nesmí běžet souběžně: `build/xsim` (knihovna xsim.dir) a `tb/data` jsou sdílené. Paralelně jen fronty bez xsim/gen_vectors (např. čisté OOC). Úprava: per-TB WORK v run_xsim.sh – měnit jen když žádná fronta neběží (bash čte skript průběžně).

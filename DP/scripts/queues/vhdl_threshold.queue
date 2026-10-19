@@ -1,0 +1,8 @@
+# VHDL prahování (5 typů OpenCV): vektory, úplný xsim test (80 kombinací typ x práh x maxval v jednom běhu),
+# obálka (Otsuův práh šedého obrazu), OOC jádro + obálka, CSV
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && bash run_xsim.sh tb_threshold && bash run_xsim.sh tb_threshold G_VALID_PCT=100 G_READY_PCT=100
+cd DP/vhdl/scripts && bash run_xsim.sh tb_threshold_axil
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs threshold_core
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs threshold_axil
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
