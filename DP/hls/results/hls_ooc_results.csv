@@ -1,0 +1,7 @@
+component,impl_lut,impl_ff,impl_dsp,impl_bram,impl_lutram,wns_ns,wpws_ns,impl_cp_ns,impl_fmax_mhz,limit,timing_met,power_dyn_w
+hls_csc_rgb,408,493,9,0,3,1.079,1.738,3.921,255.0,logic,yes,0.011
+hls_filter_3x3,640,621,10,2,4,0.946,1.738,4.054,246.7,logic,yes,0.013
+hls_filter_5x5,950,861,26,5,4,0.513,1.738,4.487,222.9,logic,yes,0.027
+hls_filter_7x7,1341,1247,50,7,4,0.652,1.738,4.348,230.0,logic,yes,0.046
+hls_histogram,300,422,0,1,0,2.154,1.923,3.077,325.0,pulse_width,yes,0.006
+hls_median,740,472,0,2,4,1.101,1.738,3.899,256.5,logic,yes,0.012
