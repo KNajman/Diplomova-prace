@@ -1,0 +1,4 @@
+# Metodika Fmax: RTL všech HLS jader stejným OOC postupem jako VHDL (cíl 5 ns, perioda = max(5 - WNS, 5 - WPWS)).
+# Výstup DP/hls/build/ooc/<jádro>, CSV ~/logs/hls_ooc_results.csv (stáhne 'ababel.sh fetch').
+cd DP/hls/scripts && for core in csc_rgb histogram median filter_3x3 filter_5x5 filter_7x7; do vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/$core hls_$core || exit 1; done
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc ~/logs/hls_ooc_results.csv
