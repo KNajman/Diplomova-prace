@@ -1,0 +1,6 @@
+# Testovací řetězec na KV260: zabalení VHDL obálek jako IP (jedna konfigurace = jedna IP), block design
+# (nejdřív jen BD a validace - rychlá chyba), pak syntéza + implementace + bitstream + XSA při 200 MHz.
+# HLS IP se berou z DP/hls/build/*/hls/impl/ip (chybějící HLS jádra BD přeskočí s varováním).
+cd DP/vhdl/scripts && for cfg in "csc_axil G_CH_IN=3 G_CH_OUT=3" "csc_axil G_CH_IN=3 G_CH_OUT=1" "csc_axil G_CH_IN=1 G_CH_OUT=3" "hsv_axil G_RGB_TO_HSV=true" "hsv_axil G_RGB_TO_HSV=false" "threshold_axil" "median_axil" "filter2d_axil G_K=3 G_USE_DSP=true" "histogram_axil G_USE_BRAM=true"; do vivado -mode batch -nojournal -nolog -source package_ip.tcl -tclargs $cfg || exit 1; done
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200 bd_only
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200
