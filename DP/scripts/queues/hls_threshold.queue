@@ -1,0 +1,11 @@
+# HLS prahování (převod z DP/Vitis/hls_threshold do DP/hls/threshold) + znovuověření histogramu a konvoluce
+# po převodu: csim, syn + IP, cosim, impl (HLS export_impl) a OOC stejným postupem jako VHDL, CSV.
+cd DP/hls/scripts && bash run_hls.sh ../threshold/hls_config.cfg csim
+cd DP/hls/scripts && bash run_hls.sh ../threshold/hls_config.cfg syn && bash run_hls.sh ../threshold/hls_config.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../threshold/hls_config.cfg impl
+cd DP/hls/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/threshold hls_threshold
+# ověření: histogram (csim + cosim, vzory s opakováním koše), konvoluce (csim ověří 3x3/5x5/7x7, cosim 3x3)
+cd DP/hls/scripts && bash run_hls.sh ../histogram/hls_config.cfg csim && bash run_hls.sh ../histogram/hls_config.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_3x3.cfg csim && bash run_hls.sh ../filter/hls_config_3x3.cfg cosim
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc ~/logs/hls_ooc_results.csv
