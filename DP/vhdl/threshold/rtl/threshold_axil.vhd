@@ -7,7 +7,7 @@
 -- Mapa registrů (HLS se stejným pořadím argumentů thresh, maxval, type dá stejnou mapu i driver):
 --   0x00 ap_ctrl, 0x04 GIE, 0x08 IER, 0x0C ISR
 --   0x10 thresh [7:0], 0x18 maxval [7:0], 0x20 type [2:0] (0 BINARY .. 4 TOZERO_INV)
--- Šířka adresy vzorcem axil_addr_w(C_THRESH_NUM_REGS) = 6 b (jako HLS).
+-- Šířka adresy vzorcem axil_addr_w(C_THRESH_NUM_REGS).
 -- Jádro přijímá data jen při run = ap_start | auto_restart (ovladač zapíše 0x81 na 0x00).
 -- Práh lze měnit za běhu (např. Otsuův práh z histogramu předchozího snímku, počítá ARM);
 -- změna se projeví do 2 taktů, pro změnu přesně na hranici snímku zastavit jádro (ap_start = 0).

@@ -75,8 +75,15 @@ package video_pkg is
 
     -- Šířka adresy AXI4-Lite pro banku s num_regs datovými registry (mapa HLS: 0x10 + 8 * i, +4 = ap_vld)
     function axil_addr_w(num_regs : natural) return natural;
-    -- Počet registrů IP 2D konvoluce K x K (width, height, border, scale, delta, K*K koeficientů, status)
+    -- Mapa IP 2D konvoluce K x K jako HLS: 3x3 koeficienty jako skalární registry c0..c8, K >= 5 pole coeff
+    -- v paměťovém okně (4 koeficienty int8 ve slově), za ním status. Registry: width, height, border, scale,
+    -- delta, [K*K koeficientů], status.
+    function filter_coeff_in_memory(kernel_size : positive) return boolean;
     function filter_num_regs(kernel_size : positive) return natural;
+    function filter_coeff_mem_words(kernel_size : positive) return natural;   -- mocnina 2
+    function filter_coeff_mem_base(kernel_size : positive) return natural;    -- zarovnaná na velikost okna
+    function filter_status_addr(kernel_size : positive) return natural;
+    function filter_axil_addr_w(kernel_size : positive) return natural;
 
     -- Histogram: 256 košů, pole hist[] v AXI4-Lite od 0x400 (mapa jako HLS hls_histogram)
     constant C_HIST_BINS        : natural := 2 ** C_PIX_W;
@@ -126,9 +133,45 @@ package body video_pkg is
         return maximum(8, clog2(16#10# + 8 * num_regs));
     end function;
 
+    function filter_coeff_in_memory(kernel_size : positive) return boolean is
+    begin
+        return kernel_size > 3;
+    end function;
+
     function filter_num_regs(kernel_size : positive) return natural is
     begin
+        if filter_coeff_in_memory(kernel_size) then
+            return 5 + 1;
+        end if;
         return 5 + kernel_size * kernel_size + 1;
+    end function;
+
+    function filter_coeff_mem_words(kernel_size : positive) return natural is
+    begin
+        return 2 ** clog2((kernel_size * kernel_size + 3) / 4);
+    end function;
+
+    function filter_coeff_mem_base(kernel_size : positive) return natural is
+        constant C_WINDOW_BYTES : natural := 4 * filter_coeff_mem_words(kernel_size);
+        constant C_SCALARS_END  : natural := 16#10# + 8 * 5;                     -- za width .. delta
+    begin
+        return ((C_SCALARS_END + C_WINDOW_BYTES - 1) / C_WINDOW_BYTES) * C_WINDOW_BYTES;
+    end function;
+
+    function filter_status_addr(kernel_size : positive) return natural is
+    begin
+        if filter_coeff_in_memory(kernel_size) then
+            return filter_coeff_mem_base(kernel_size) + 4 * filter_coeff_mem_words(kernel_size);
+        end if;
+        return 16#10# + 8 * (filter_num_regs(kernel_size) - 1);
+    end function;
+
+    function filter_axil_addr_w(kernel_size : positive) return natural is
+    begin
+        if filter_coeff_in_memory(kernel_size) then
+            return clog2(filter_status_addr(kernel_size) + 8);                 -- jako HLS: 5x5 7 b, 7x7 8 b
+        end if;
+        return axil_addr_w(filter_num_regs(kernel_size));
     end function;
 
     -- Šířka součtu n_terms čísel šířky w (se znaménkem): přenos max. clog2(n_terms) bitů

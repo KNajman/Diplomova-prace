@@ -30,7 +30,11 @@
 --    Čtení:  takt 1 zachycení AR, takt 2 dekódování, takt 3 multiplexor dat + RVALID.
 --  * Volitelné paměťové okno (G_MEM_BASE, G_MEM_WORDS) pro pole, která HLS mapuje do AXI4-Lite
 --    (např. hist[256] na 0x400 - 0x7FF): jádro dodá paměť s registrovaným čtením, banka jí posílá
---    index slova a v taktu 3 vrátí data. Zápis do okna se ignoruje (u histogramu je jen pro čtení).
+--    index slova a v taktu 3 vrátí data. Zápis do okna jen s G_MEM_WRITABLE (např. koeficienty
+--    konvoluce K >= 5): v taktu 3 pulz mem_write_enable s indexem slova, daty a WSTRB (HLS pole
+--    8b prvků balí 4 prvky do slova, bajt n = prvek 4 * slovo + n).
+--  * Jako HLS leží skalární argumenty za polem dál za oknem: posledních G_REGS_AFTER_MEM registrů
+--    má adresu G_MEM_BASE + 4 * G_MEM_WORDS + 8 * k (např. status konvoluce 5x5 na 0x60).
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -54,7 +58,9 @@ entity axil_regbank is
         G_RO_MASK  : std_logic_vector := "0"; -- bit = 1 -> registr je výstup jádra (jen čtení)
         G_ADDR_W   : positive         := 8;
         G_MEM_BASE  : natural         := 0; -- paměťové okno (pole HLS v AXI4-Lite), zarovnané na svou velikost
-        G_MEM_WORDS : natural         := 0  -- počet 32b slov okna (mocnina 2), 0 = bez okna
+        G_MEM_WORDS : natural         := 0; -- počet 32b slov okna (mocnina 2), 0 = bez okna
+        G_MEM_WRITABLE   : boolean    := false; -- zápis do okna (jinak se ignoruje)
+        G_REGS_AFTER_MEM : natural    := 0      -- kolik posledních registrů leží za oknem (mapa HLS)
     );
     port(
         aclk          : in  std_logic;
@@ -85,7 +91,12 @@ entity axil_regbank is
         interrupt     : out std_logic;
         -- Paměťové okno: index slova (adresa / 4) a data z paměti jádra s registrovaným čtením (latence 1)
         mem_read_word : out unsigned(G_ADDR_W - 3 downto 0);
-        mem_read_data : in  std_logic_vector(31 downto 0) := (others => '0')
+        mem_read_data : in  std_logic_vector(31 downto 0) := (others => '0');
+        -- Zápis do okna (G_MEM_WRITABLE): 1taktový pulz v taktu 3 zápisu
+        mem_write_enable : out std_logic;
+        mem_write_word   : out unsigned(G_ADDR_W - 3 downto 0);
+        mem_write_data   : out std_logic_vector(31 downto 0);
+        mem_write_strb   : out std_logic_vector(3 downto 0)
     );
 end entity;
 
@@ -97,9 +108,13 @@ architecture rtl of axil_regbank is
     constant C_ADDR_IER     : natural := 16#08#;
     constant C_ADDR_ISR     : natural := 16#0C#;
 
-    -- Adresa datového slova registru (0x10 + 8 * index), +4 = ap_vld u RO registru
+    -- Adresa datového slova registru (0x10 + 8 * index, registry za oknem od konce okna), +4 = ap_vld u RO registru
+    constant C_FIRST_REG_AFTER_MEM : natural := G_NUM_REGS - G_REGS_AFTER_MEM;
     function reg_data_addr(reg_idx : natural) return natural is
     begin
+        if reg_idx >= C_FIRST_REG_AFTER_MEM then
+            return G_MEM_BASE + 4 * G_MEM_WORDS + 8 * (reg_idx - C_FIRST_REG_AFTER_MEM);
+        end if;
         return 16#10# + 8 * reg_idx;
     end function;
 
@@ -163,6 +178,7 @@ architecture rtl of axil_regbank is
     signal write_decoded : std_logic                               := '0';
     signal write_select  : t_addr_select                           := C_SELECT_NONE;
     signal bvalid_reg    : std_logic                               := '0';
+    signal mem_write_reg : std_logic                               := '0';
 
     -- Čtecí cesta
     signal ar_captured  : std_logic                               := '0';
@@ -176,6 +192,11 @@ begin
     regs      <= reg_value;
     -- index slova v okně: paměť čte v taktu 2 (adresa zachycená v taktu 1), data jsou hotová v taktu 3
     mem_read_word <= unsigned(ar_addr_reg(G_ADDR_W - 1 downto 2));
+    -- zápis do okna: adresa a data drží registry kanálů AW/W až do odpovědi B
+    mem_write_enable <= mem_write_reg;
+    mem_write_word   <= unsigned(aw_addr_reg(G_ADDR_W - 1 downto 2));
+    mem_write_data   <= w_data_reg;
+    mem_write_strb   <= w_strb_reg;
     run       <= ap_start_reg or auto_restart_reg;
     interrupt <= global_irq_en and (irq_status(0) or irq_status(1));
 
@@ -196,6 +217,7 @@ begin
         if rising_edge(aclk) then
             clear_done_on_read := false;
             clear_vld_on_read  := false;
+            mem_write_reg      <= '0';
             if aresetn = '0' then
                 aw_captured      <= '0';
                 w_captured       <= '0';
@@ -254,6 +276,9 @@ begin
                             end loop;
                         end if;
                     end loop;
+                    if G_MEM_WRITABLE and (write_select.mem = '1') then
+                        mem_write_reg <= '1';
+                    end if;
                     write_decoded <= '0';
                     bvalid_reg    <= '1';
                 end if;
