@@ -46,11 +46,12 @@ architecture sim of tb_filter2d_axil is
     signal aclk    : std_logic := '0';
     signal aresetn : std_logic := '0';
 
-    constant C_ADDR_W : natural := axil_addr_w(filter_num_regs(G_K));
+    constant C_ADDR_W : natural := filter_axil_addr_w(G_K);
     signal awaddr, araddr                           : std_logic_vector(C_ADDR_W - 1 downto 0) := (others => '0');
     signal awvalid, wvalid, bready, arvalid, rready : std_logic := '0';
     signal awready, wready, bvalid, arready, rvalid, irq : std_logic;
     signal wdata, rdata                             : std_logic_vector(31 downto 0) := (others => '0');
+    signal wstrb                                    : std_logic_vector(3 downto 0) := "1111";
     signal bresp, rresp                             : std_logic_vector(1 downto 0);
 
     signal s_data, m_data         : std_logic_vector(C_PIX_W - 1 downto 0);
@@ -70,10 +71,11 @@ begin
     cpu : process
         variable error_total : natural := 0;
         variable read_value  : std_logic_vector(31 downto 0);
-        procedure axil_write(addr : natural; data : integer) is
+        procedure axil_write(addr : natural; data : integer; strobe : std_logic_vector(3 downto 0) := "1111") is
         begin
             awaddr  <= std_logic_vector(to_unsigned(addr, C_ADDR_W));
             wdata   <= std_logic_vector(to_signed(data, 32));
+            wstrb   <= strobe;
             awvalid <= '1'; wvalid <= '1'; bready <= '1';
             wait until rising_edge(aclk) and awready = '1';
             awvalid <= '0';
@@ -106,7 +108,9 @@ begin
         variable text_line    : line;
         variable kernel_value : integer;
         variable first_coeff  : integer;
-        constant C_STATUS_ADDR : natural := 16#38# + 8 * G_K * G_K;
+        constant C_STATUS_ADDR : natural := filter_status_addr(G_K);
+        variable byte_lane    : natural;
+        variable first_word   : std_logic_vector(31 downto 0) := (others => '0');
     begin
         wait until rising_edge(aclk) and aresetn = '1';
         for k in 1 to 200 loop
@@ -136,13 +140,28 @@ begin
             if tap = 0 then
                 first_coeff := kernel_value;
             end if;
-            axil_write(16#38# + 8 * tap, kernel_value);
+            if filter_coeff_in_memory(G_K) then
+                -- okno coeff: zápis po bajtech (WSTRB = jeden bajt), 4 koeficienty ve slově
+                byte_lane := tap mod 4;
+                if tap < 4 then
+                    first_word(8 * byte_lane + 7 downto 8 * byte_lane) := std_logic_vector(to_signed(kernel_value, 8));
+                end if;
+                axil_write(filter_coeff_mem_base(G_K) + 4 * (tap / 4), kernel_value * (2 ** (8 * byte_lane)),
+                           std_logic_vector(shift_left(to_unsigned(1, 4), byte_lane)));
+            else
+                axil_write(16#38# + 8 * tap, kernel_value);
+            end if;
         end loop;
         file_close(kernel_file);
         axil_read(16#10#, read_value);
         expect(unsigned(read_value) = C_WIDTH, "zpetne cteni width");
-        axil_read(16#38#, read_value);
-        expect(signed(read_value(7 downto 0)) = first_coeff, "zpetne cteni coeff[0]");
+        if filter_coeff_in_memory(G_K) then
+            axil_read(filter_coeff_mem_base(G_K), read_value);
+            expect(read_value = first_word, "zpetne cteni slova 0 okna coeff");
+        else
+            axil_read(16#38#, read_value);
+            expect(signed(read_value(7 downto 0)) = first_coeff, "zpetne cteni coeff[0]");
+        end if;
         axil_read(16#00#, read_value);
         expect(read_value(2) = '1', "pred startem neni ap_idle");
         axil_write(16#04#, 1);                  -- GIE
@@ -187,7 +206,7 @@ begin
         generic map (G_K => G_K)
         port map (aclk => aclk, aresetn => aresetn,
                   s_axi_control_awaddr => awaddr, s_axi_control_awvalid => awvalid, s_axi_control_awready => awready,
-                  s_axi_control_wdata => wdata, s_axi_control_wstrb => "1111", s_axi_control_wvalid => wvalid,
+                  s_axi_control_wdata => wdata, s_axi_control_wstrb => wstrb, s_axi_control_wvalid => wvalid,
                   s_axi_control_wready => wready, s_axi_control_bresp => bresp, s_axi_control_bvalid => bvalid,
                   s_axi_control_bready => bready, s_axi_control_araddr => araddr, s_axi_control_arvalid => arvalid,
                   s_axi_control_arready => arready, s_axi_control_rdata => rdata, s_axi_control_rresp => rresp,

@@ -1,0 +1,8 @@
+# VHDL konvoluce: mapa registrů K5/K7 jako HLS (okno coeff, status za oknem), zapisovatelné okno v axil_regbank.
+# xsim obálek K3/K5/K7 + regrese všech obálek (banka se změnila), OOC celých IP K5/K7 s DSP (staré jako *_v1), CSV
+cd DP/vhdl/scripts && bash run_xsim.sh tb_filter2d_axil G_KERNEL=sobel_x && bash run_xsim.sh tb_filter2d_axil G_K=5 G_KERNEL=k5 && bash run_xsim.sh tb_filter2d_axil G_K=7 G_KERNEL=k7 G_REPLICATE=false
+cd DP/vhdl/scripts && bash run_xsim.sh tb_csc_axil G_PRESET=1 && bash run_xsim.sh tb_median_axil G_REPLICATE=true && bash run_xsim.sh tb_hsv_axil G_RGB_TO_HSV=true G_TEST=0 && bash run_xsim.sh tb_threshold_axil && bash run_xsim.sh tb_histogram_axil
+cd DP/vhdl/build/ooc && for d in filter2d_axil_K5_USE_DSPtrue filter2d_axil_K7_USE_DSPtrue; do if [ -d $d ] && [ ! -d ${d}_v1 ]; then mv $d ${d}_v1; fi; done
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_axil G_K=5 G_USE_DSP=true
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_axil G_K=7 G_USE_DSP=true
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
