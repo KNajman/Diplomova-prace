@@ -63,6 +63,9 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Testovací řetězec: `DP/hw/harness/build_harness.tcl` (VDMA, AXIS přepínače RGB + šedá větev, bypass port 0, 200 MHz, chybějící
   HLS IP přeskočí), VHDL IP balí `DP/vhdl/scripts/package_ip.tcl` (vygenerovaná obálka s pevnými šířkami). Generuje
   `DP/hw/build/harness/harness_map.h` (adresy + porty). Fronty `hw_ip` → `hw_harness` → `sw_app`.
+- Bitstream řetězce hotový 19. 10.: 200 MHz, WNS +0,58 ns, 13,3 tis. LUT (11 %), 17,5 tis. FF, 15 BRAM, 4 RGB + 8 šedých jader
+  (vč. HLS prahování). Git: `DP/Vitis`, `DP/Vivado`, `DP/ip_repo`, `DP/axi_video_1_0` vyřazené z verzování (jen lokálně).
+  Kořenový `README.md` = matematika + kód C/HLS/VHDL ke každému algoritmu (podklad pro text DP) – udržovat při změnách jader.
 - Měřicí aplikace `DP/sw/harness_app` (bare-metal A53, přímé registry, VDMA v režimu počtu snímků, golden lib_imgproc na ARM,
   CSV na UART), build `build_app.py` (Vitis Python API, -O0/-O2/-O3). Na desce zatím nevyzkoušeno.
 - Další: test na desce (Karel), HLS point jádra (Karel), text. Otevřené: metodika Fmax (WPWS u HLS), `axil_addr_w` má min. 8 b (HLS má
