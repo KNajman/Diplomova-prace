@@ -6,4 +6,4 @@ cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_5x5.cfg syn && bash ru
 cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_5x5.cfg impl
 cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_7x7.cfg syn && bash run_hls.sh ../filter/hls_config_7x7.cfg cosim
 cd DP/hls/scripts && bash run_hls.sh ../filter/hls_config_7x7.cfg impl
-cd DP/hls && python3 scripts/collect_reports.py
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv
