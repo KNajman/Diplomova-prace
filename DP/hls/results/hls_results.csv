@@ -1,4 +1,7 @@
 component,top,target_ns,est_ns,est_fmax_mhz,ii,iter_latency,est_lut,est_ff,est_dsp,est_bram,cosim_status,cosim_latency_avg,cosim_interval_avg,cosim_interval_max,impl_lut,impl_ff,impl_dsp,impl_bram,impl_srl,impl_cp_ns,impl_fmax_mhz,impl_timing_met
 csc_rgb,hls_csc_rgb,5.00,3.098,322.8,1,5,791,684,9,0,Pass,69,74,104,407,385,9,0,3,3.847,259.9,yes
+filter_3x3,hls_filter2d_3x3_Pipeline_frame_loop,5.00,3.255,307.2,1,11,1493,1025,6,4,Pass,1097,1155,3218,655,621,10,4,4,3.922,255.0,yes
+filter_5x5,hls_filter2d_5x5_Pipeline_copy_coeff,5.00,2.057,486.1,1,2,145,230,0,0,Pass,1169,1406,3358,959,863,26,10,4,4.167,240.0,yes
+filter_7x7,hls_filter2d_7x7_Pipeline_copy_coeff,5.00,2.019,495.3,1,2,151,425,0,0,Pass,1242,1487,3499,1306,1244,50,14,4,4.374,228.6,yes
 histogram,hls_histogram_Pipeline_clear_bins,5.00,2.440,409.8,1,1,60,11,0,0,Pass,3903,4375,4376,302,422,0,2,0,2.732,366.0,yes
 median,hls_median_Pipeline_frame_loop,5.00,3.474,287.9,1,5,1701,570,0,4,Pass,770,800,3215,768,472,0,4,4,4.056,246.5,yes

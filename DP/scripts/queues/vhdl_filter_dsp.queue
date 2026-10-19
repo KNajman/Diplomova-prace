@@ -1,0 +1,5 @@
+# VHDL konvoluce se součiny v DSP (G_USE_DSP=true) pro férové srovnání s HLS (HLS dává součiny do DSP sám)
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_axil G_K=3 G_USE_DSP=true
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_core G_K=5 G_USE_DSP=true
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs filter2d_core G_K=7 G_USE_DSP=true
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
