@@ -6,6 +6,7 @@ Stav k 30. 9. 2026 · výsledek grill-me session (Claude jako druhý vedoucí/ko
 Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání: jednotné HLS × VHDL × SW implementace vybraných algoritmů na KV260, férově změřené a porovnané v jednom testovacím řetězci.
 
 ## Průběh
+- 19. 10. 2026 (implementační plán dokončen kromě testu na desce): **VHDL histogram** ve dvou architekturách (`G_USE_BRAM`): BRAM + forwarding 2 stupňů 183 LUT / 288 FF / 1 BRAM36 (HLS 302 / 422 / 1, tj. −39 % LUT), 256 čítačů ve FF 6,4 tis. LUT (35×) – ukázka „architektura > jazyk“. **VHDL prahování** (5 typů OpenCV, typ dekódovaný mimo pipeline, 81 LUT, úplný test 80 kombinací). **Konvoluce K5/K7 s mapou jako HLS** (zapisovatelné paměťové okno v `axil_regbank`): K7 1 679 → 1 232 LUT, teď pod HLS (1 306). **Testovací řetězec**: skriptovaný BD (VDMA, AXIS přepínače RGB + šedá větev, 11 jader + bypass, 200 MHz), balení VHDL IP s generovanou obálkou, `harness_map.h`; **měřicí aplikace** (bare-metal, HW HLS/VHDL × SW lib_imgproc, bitová kontrola na desce, CSV). Výsledky `DP/results/vysledky.md` sekce 6–8.
 - 15. 10. 2026 (večer, VHDL medián): `window_gen` (společný generátor okna K×K) + `line_buffer` (BRAM) + `median_core`/`median_axil`. xsim 17 testů PASS (rozměry, okraje, poruchy, AXI4-Lite). OOC: 631 LUT / 538 FF / 2 BRAM36 / 3,80 ns vs. HLS 768 LUT / 472 FF / 4 BRAM18 / 4,06 ns. K optimalizaci: příznaky pozice v `window_gen` předpočítat o takt dřív (kritická cesta v řízení).
 - 15. 10. 2026 (večer, VHDL HSV): `rgb2hsv_core` (8 taktů, 237 LUT / 2 DSP / 3,26 ns), `hsv2rgb_core` (13 taktů, 564 LUT / 1 DSP / 3,33 ns), obálka `hsv_axil`. Úplný test 2^24 v obou směrech PASS. Oprava `imgproc_cli` (HSV vstup PPM). Šablony příkazů pro Ababel (`.claude/scripts/ababel.sh`, `DP/scripts/queues/*.queue`). Deník výsledků `DP/results/vysledky.md`.
 - 15. 10. 2026 (večer, optimalizace CSC): v2 = systolická kaskáda DSP + šířky vzorcem + `G_REG_W` (jen platné bity), v3 = pipelinované dekódování adres v regbank (porovnání s konstantami, bez aritmetiky). Samopopisné názvy v celém VHDL. OOC 3→3: v1 325 LUT/558 FF/12 DSP/3,70 ns → v2 257/346/9/3,75 → **v3 210/389/9/3,26 ns** (limit = šířka pulzu DSP, logika má slack 2,55 ns); HLS 407/385/9/3,85. Pipelining adres: −47 LUT za +43 FF.
@@ -88,7 +89,7 @@ Do 15. 1. 2027 odevzdat DP (~45 stran), která pokryje všechny 4 body zadání:
 
 ## Priority (škrty shora dolů)
 - **Nikdy:** testovací řetězec, C model, HLS všech 7, VHDL převod barev + HSV + konvoluce + **medián**, SW měření, kapitoly 1–7
-- **P1:** VHDL histogram (čítače)
+- **P1:** VHDL histogram (čítače) – hotovo 19. 10. (+ BRAM varianta z bonusu)
 - **P2:** Sobel se dvěma jádry (fallback jeden směr), OOC 5×5/7×7, replikace okrajů, VHDL prahování
 - **Bonus:** Otsu (ARM z histogramu), VFB, OpenCV na Ubuntu, VVL filter2D (jen prostředky, 1 MD), BRAM histogram ve VHDL, -Os
 

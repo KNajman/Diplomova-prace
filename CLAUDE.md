@@ -55,7 +55,15 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Účtové (claude.ai): `jablotron-c-standard` (C/C++), `grill-me` (/grill-me – výslech plánu).
 
 ## Aktuální stav (aktualizuj)
-- HLS hotovo (csim/cosim/impl PASS): CSC, histogram, medián 3x3 (+ šablona `hls_window.hpp` pro konvoluci). Výsledky v `DP/hls/results/hls_results.csv`.
-- HLS zbývá: threshold, rgb2hsv, hsv2rgb (Karel podle README), filter2d (Claude, nad `hls_window.hpp`).
-- VHDL (`DP/vhdl`): společné bloky (`video_pkg`, skid buffer, `axil_regbank`, generický TB), CSC v3, RGB↔HSV a medián 3×3 (`window_gen`) hotové a ověřené (xsim, OOC). Zbývá: konvoluce (nad `window_gen`), (histogram P1, prahování P2); volitelně HSV→RGB s DSP, `window_gen` v2 (předpočet příznaků).
-- Další: testovací BD, SW měření, text.
+- HLS hotovo (csim/cosim/impl PASS): CSC, histogram, medián 3x3, filter2d 3x3/5x5/7x7 (šablona `hls_window.hpp`). Výsledky `DP/hls/results/hls_results.csv`.
+- HLS zbývá (Karel podle README): threshold, rgb2hsv, hsv2rgb. Mapa: threshold argumenty v pořadí thresh, maxval, type (0x10/0x18/0x20) = VHDL.
+- VHDL (`DP/vhdl`) vše hotové a ověřené (xsim + OOC): CSC v3, RGB↔HSV, medián, konvoluce K×K (mapa K≥5 jako HLS: okno coeff),
+  histogram (`G_USE_BRAM`: BRAM + forwarding / 256 čítačů), prahování. `axil_regbank`: paměťové okno (čtení i zápis s WSTRB),
+  registry za oknem. Srovnání v `DP/results/vysledky.md` sekce 1–8.
+- Testovací řetězec: `DP/hw/harness/build_harness.tcl` (VDMA, AXIS přepínače RGB + šedá větev, bypass port 0, 200 MHz, chybějící
+  HLS IP přeskočí), VHDL IP balí `DP/vhdl/scripts/package_ip.tcl` (vygenerovaná obálka s pevnými šířkami). Generuje
+  `DP/hw/build/harness/harness_map.h` (adresy + porty). Fronty `hw_ip` → `hw_harness` → `sw_app`.
+- Měřicí aplikace `DP/sw/harness_app` (bare-metal A53, přímé registry, VDMA v režimu počtu snímků, golden lib_imgproc na ARM,
+  CSV na UART), build `build_app.py` (Vitis Python API, -O0/-O2/-O3). Na desce zatím nevyzkoušeno.
+- Další: test na desce (Karel), HLS point jádra (Karel), text. Otevřené: metodika Fmax (WPWS u HLS), `axil_addr_w` má min. 8 b (HLS má
+  přesnou šířku, např. medián 6 b) – kosmetické, sjednotit při příležitosti.
