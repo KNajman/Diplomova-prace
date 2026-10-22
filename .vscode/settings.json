@@ -2,6 +2,33 @@
     "cmake.sourceDirectory": "${workspaceFolder}/DP/model",
     "cmake.buildDirectory": "${workspaceFolder}/DP/model/build",
     "cmake.generator": "Ninja",
-    "clangd.arguments": ["--compile-commands-dir=${workspaceFolder}/DP/model/build"]
-
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/DP/model/build"
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (XeLaTeX + biber)",
+            "tools": [
+                "latexmk-xelatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk-xelatex",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "first",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.view.pdf.viewer": "tab"
 }
