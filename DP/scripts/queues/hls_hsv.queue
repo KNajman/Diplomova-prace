@@ -1,0 +1,14 @@
+# HLS RGB <-> HSV (převod z DP/Vitis/hls_rgb_2_hsv a hls_hsv_2_rgb do DP/hls/hsv): C-sim s úplným testem 2^24 vstupů
+# v obou směrech, syn + IP, cosim (zkrácený test), impl (HLS export), OOC stejným postupem jako VHDL, CSV.
+# Po úspěchu znovu testovací řetězec (přibudou 2 HLS IP) a měřicí aplikace (nová harness_map.h).
+# @stop_on_error
+cd DP/hls/scripts && TB_HSV_FULL=1 bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg csim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg syn && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg syn && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg impl && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg impl
+cd DP/hls/scripts && for core in rgb2hsv hsv2rgb; do vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/hsv_$core hls_$core || exit 1; done
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc ~/logs/hls_ooc_results.csv
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200 bd_only
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200
+cd DP/sw/harness_app && vitis -s build_app.py O0 O2 O3
