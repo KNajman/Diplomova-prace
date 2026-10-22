@@ -283,3 +283,25 @@ BRAM v dlaždicích 36 Kb (export HLS hlásí BRAM18 → přepočteno /2).
   export HLS uvést jen jako „co hlásí nástroj“. Odstraní to otevřený bod metodiky z plánu.
 
 Zdroj: `DP/hls/results/hls_ooc_results.csv` (OOC), `DP/hls/results/hls_results.csv` (export), log `~/logs/hls_ooc.log`.
+
+## 10. Měřicí aplikace – velikost programu podle úrovně optimalizace (22. 10. 2026)
+
+Konfigurace: bare-metal A53 (`DP/sw/harness_app`, Vitis 2025.2, toolchain `aarch64-none-elf`), build `build_app.py O0 O2 O3`,
+commit 2f2a5fd. Velikosti z `aarch64-none-elf-size` (bajty).
+
+| úroveň | text | data | bss | ELF na disku |
+|---|---|---|---|---|
+| -O0 | 103 296 | 3 164 | 22 831 916 | 403 512 |
+| -O2 |  96 740 | 3 164 | 22 832 020 | 432 504 |
+| -O3 |  98 332 | 3 164 | 22 831 972 | 439 328 |
+
+**Poznatky**
+- `bss` ≈ 22,8 MB tvoří statické snímkové buffery (`g_input`, `g_hw_output`, `g_golden`, `g_gray`, `g_gray_result`) pro
+  maximální rozlišení – leží v DDR, do ELF se neukládají.
+- Kód je malý (97–103 kB); -O3 je o 1,6 kB větší než -O2 (rozbalování smyček). Rozdíl velikosti ELF na disku dělají
+  ladicí informace, ne kód.
+- Varování v logu pocházejí jen ze zdrojů BSP od AMD (`xbasic_types.h` deprecated, `psu_init.c` redefinice) – vlastní kód
+  je bez varování.
+
+Zdroj: `~/logs/sw_app.log`, `~/logs/sw_app_steps/01.log`, ELF v `DP/sw/build/workspace/harness_app_O*/build/`.
+
