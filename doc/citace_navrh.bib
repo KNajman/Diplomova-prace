@@ -1,0 +1,208 @@
+% =====================================================================================
+% citace_navrh.bib – NÁVRH primárních zdrojů pro DP (22. 10. 2026), NE náhrada citace.bib
+%
+% Pravidla (skill dp-citace, SR 7/2026 čl. 2b, 2d):
+%  * Každý záznam před převzetím do citace.bib otevři a ověř v originále (titul, číslo, verze, datum).
+%  * Pole označená "TODO" nejsou ověřená – doplnit z titulní strany / tiráže, jinak záznam nepřebírat.
+%  * "Ověřeno:" = údaj jsem viděl na uvedené stránce 22. 10. 2026; urldate je den ověření.
+%  * Styl iso-numeric zná urldate (vytiskne [online] a [cit. …]); accessed a medium ignoruje.
+% =====================================================================================
+
+% -------------------------------------------------------------------------------------
+% 1) Opravy stávajících záznamů z citace.bib (accessed -> urldate, @misc -> @online)
+% -------------------------------------------------------------------------------------
+
+@online{amd_kv260,
+  author    = {{AMD}},
+  title     = {Kria KV260 Vision AI Starter Kit},
+  year      = {2026},
+  url       = {https://www.amd.com/en/products/system-on-modules/kria/k26/kv260-vision-starter-kit.html},
+  urldate   = {2026-01-20},
+}
+
+@online{amd_vitis,
+  author    = {{AMD}},
+  title     = {AMD Vitis HLS},
+  year      = {2026},
+  url       = {https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vitis/vitis-hls.html},
+  urldate   = {2026-01-20},
+}
+
+@online{amd_vivado,
+  author    = {{AMD}},
+  title     = {AMD Vivado Design Suite},
+  year      = {2026},
+  url       = {https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado.html},
+  urldate   = {2026-01-20},
+}
+
+% -------------------------------------------------------------------------------------
+% 2) Dokumentace AMD – technická tvrzení citovat odsud, ne z produktových stránek
+% -------------------------------------------------------------------------------------
+
+% Ověřeno: číslo a název (docs.amd.com). Aktuální verze webu je 2026.1 (11. 9. 2026), práce používá 2025.2.
+@manual{amd_ug1399,
+  author    = {{AMD}},
+  title     = {Vitis High-Level Synthesis User Guide},
+  number    = {UG1399},
+  version   = {2025.2},
+  date      = {2025},          % TODO přesné datum vydání 2025.2 z revision history
+  location  = {Santa Clara},
+  publisher = {Advanced Micro Devices},
+  url       = {https://docs.amd.com/r/2025.2-English/ug1399-vitis-hls},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: číslo, název, verze 1.0 (docs.amd.com). Rozhraní AXI4-Stream Video, TUSER = SOF, TLAST = EOL, pořadí složek.
+@manual{amd_ug934,
+  author    = {{AMD}},
+  title     = {AXI4-Stream Video IP and System Design Guide},
+  number    = {UG934},
+  version   = {1.0},
+  % date = TODO datum z revision history (nevyplňovat odhadem)
+  location  = {Santa Clara},
+  publisher = {Advanced Micro Devices},
+  url       = {https://docs.amd.com/r/en-US/ug934_axi_videoIP},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: název, číslo, verze IP 6.3, datum 2022-06-08 (docs.amd.com).
+@manual{amd_pg020,
+  author    = {{AMD}},
+  title     = {AXI Video Direct Memory Access v6.3 Product Guide},
+  number    = {PG020},
+  date      = {2022-06-08},
+  location  = {Santa Clara},
+  publisher = {Advanced Micro Devices},
+  url       = {https://docs.amd.com/r/en-US/pg020_axi_vdma},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: číslo a adresa (docs.amd.com). TODO název přesně z titulní strany, verze, datum.
+@manual{amd_ug1089,
+  author    = {{AMD}},
+  title     = {Kria KV260 Vision AI Starter Kit User Guide},
+  number    = {UG1089},
+  % date = TODO z titulní strany (nevyplňovat odhadem)
+  location  = {Santa Clara},
+  publisher = {Advanced Micro Devices},
+  url       = {https://docs.amd.com/r/en-US/ug1089-kv260-starter-kit},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: číslo a adresa (docs.amd.com). TODO název, verze, datum.
+@manual{amd_ds986,
+  author    = {{AMD}},
+  title     = {Kria KV260 Vision AI Starter Kit Data Sheet},
+  number    = {DS986},
+  % date = TODO z titulní strany (nevyplňovat odhadem)
+  location  = {Santa Clara},
+  publisher = {Advanced Micro Devices},
+  url       = {https://docs.amd.com/r/en-US/ds986-kv260-starter-kit},
+  urldate   = {2026-10-22},
+}
+
+% TODO NEOVĚŘENO (kandidáti, dohledat na docs.amd.com): DSP48E2, BRAM, Zynq UltraScale+ TRM.
+% UG579 UltraScale Architecture DSP Slice User Guide        – šířka pulzu DSP, předsčítačka, kaskáda PCIN
+% UG573 UltraScale Architecture Memory Resources User Guide – BRAM, read-first, minimální šířka pulzu
+% UG1085 Zynq UltraScale+ Device Technical Reference Manual – PS, A53, AXI porty
+
+% -------------------------------------------------------------------------------------
+% 3) Normy a doporučení
+% -------------------------------------------------------------------------------------
+
+% Ověřeno: název, schváleno 2011-03-08 (itu.int).
+@manual{itu_bt601,
+  author    = {{ITU-R}},
+  title     = {Recommendation ITU-R BT.601-7: Studio encoding parameters of digital television for standard 4:3 and wide screen 16:9 aspect ratios},
+  date      = {2011-03},
+  location  = {Geneva},
+  publisher = {International Telecommunication Union},
+  url       = {https://www.itu.int/rec/R-REC-BT.601-7-201103-I},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: název, schváleno 2015-06-17 (itu.int).
+@manual{itu_bt709,
+  author    = {{ITU-R}},
+  title     = {Recommendation ITU-R BT.709-6: Parameter values for the HDTV standards for production and international programme exchange},
+  date      = {2015-06},
+  location  = {Geneva},
+  publisher = {International Telecommunication Union},
+  url       = {https://www.itu.int/rec/R-REC-BT.709-6-201506-I},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: název, verze -2 platná, 2015-10 (itu.int).
+@manual{itu_bt2020,
+  author    = {{ITU-R}},
+  title     = {Recommendation ITU-R BT.2020-2: Parameter values for ultra-high definition television systems for production and international programme exchange},
+  date      = {2015-10},
+  location  = {Geneva},
+  publisher = {International Telecommunication Union},
+  url       = {https://www.itu.int/rec/R-REC-BT.2020-2-201510-I},
+  urldate   = {2026-10-22},
+}
+
+% Ověřeno: název, číslo CIE 015:2018, 4. vydání, ISBN, DOI (cie.co.at). Klíč odpovídá \cite{cie15_2018} v DP.tex.
+% TODO místo a vydavatel z tiráže.
+@manual{cie15_2018,
+  author    = {{CIE}},
+  title     = {Colorimetry},
+  edition   = {4},
+  number    = {CIE 015:2018},
+  year      = {2018},
+  % location, publisher = TODO z tiráže
+  isbn      = {978-3-902842-13-8},
+  doi       = {10.25039/TR.015.2018},
+}
+
+% -------------------------------------------------------------------------------------
+% 4) Knihy a články
+% -------------------------------------------------------------------------------------
+
+% Ověřeno: autoři, název, Praha: Grada, 1992, 252 s., ISBN (is.muni.cz). Při citaci ověřit stranu v originále.
+@book{sonka_pocitacove_videni,
+  author    = {Šonka, Milan and Hlaváč, Václav},
+  title     = {Počítačové vidění},
+  location  = {Praha},
+  publisher = {Grada},
+  year      = {1992},
+  pagetotal = {252},
+  isbn      = {80-85424-67-3},
+}
+
+% Ověřeno: autoři, název, 4. vydání, ISBN (cengage.com). TODO místo a rok vydání z tiráže.
+@book{sonka_ipamv4,
+  author    = {Šonka, Milan and Hlaváč, Václav and Boyle, Roger},
+  title     = {Image Processing, Analysis, and Machine Vision},
+  edition   = {4},
+  % location = TODO z tiráže
+  publisher = {Cengage Learning},
+  year      = {2015},          % TODO ověřit v tiráži (copyright)
+  isbn      = {978-1-133-59360-7},
+}
+
+% Ověřeno: dokumentace OpenCV 4.11.0, stránka „Color conversions“ (vzorce RGB <-> HSV, rozsah H 0..179 pro 8 bitů).
+@online{opencv_color_conversions,
+  author    = {{OpenCV}},
+  title     = {Color conversions},
+  version   = {4.11.0},
+  % year = TODO rok vydání verze 4.11.0
+  url       = {https://docs.opencv.org/4.11.0/de/d25/imgproc_color_conversions.html},
+  urldate   = {2026-10-22},
+}
+
+% Původní článek o modelu HSV. Ověřeno jen: autor Smith, název, rok 1978 (history.siggraph.org) a PDF u autora.
+% TODO NEOVĚŘENO: časopis/sborník (Computer Graphics, SIGGRAPH '78), ročník, číslo, strany, DOI – z PDF nebo ACM DL.
+@article{smith_1978_hsv,
+  author       = {Smith, Alvy Ray},
+  title        = {Color gamut transform pairs},
+  journaltitle = {TODO},
+  year         = {1978},
+  url          = {https://www.alvyray.com/Papers/CG/color78.pdf},
+  urldate      = {2026-10-22},
+}
+
+% TODO další kandidáti (dohledat): Gonzalez, Woods: Digital Image Processing (4. vyd.); IEEE 1076-2019 (VHDL);
+% Vitis Vision Library (Vitis Libraries) – související práce v kap. 3.
