@@ -1,7 +1,9 @@
 # Implementace vybraných algoritmů zpracování obrazu v hradlovém poli
 
 Diplomová práce, Technická univerzita v Liberci (FM, ITE)
-Autor: Bc. Karel Najman · Vedoucí práce: Ing. Martin Rozkovec, Ph.D.
+
+Autor: Bc. Karel Najman @KNajman
+Vedoucí práce: Ing. Martin Rozkovec, Ph.D. @czajos
 
 ## Zadání práce
 
@@ -23,7 +25,7 @@ Autor: Bc. Karel Najman · Vedoucí práce: Ing. Martin Rozkovec, Ph.D.
 Každý algoritmus existuje ve **třech implementacích se stejnou aritmetikou**:
 
 | | jazyk | role | umístění |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **C** | C11 (Jablotron C standard) | golden model = reference pro verifikaci + SW řešení na Cortex-A53 | `DP/model/lib_imgproc` |
 | **HLS** | C++ (Vitis HLS 2025.2) | HW z vysokoúrovňové syntézy | `DP/hls/<jádro>` |
 | **VHDL** | VHDL-2008 | ručně psaný HW (RTL) | `DP/vhdl/<jádro>` |
@@ -33,7 +35,7 @@ aplikace přímo na desce). Obě HW verze mají **stejné rozhraní a stejnou ma
 a v testovacím řetězci jsou zaměnitelné.
 
 | algoritmus | C | HLS | VHDL |
-|---|:-:|:-:|:-:|
+| --- | :-: | :-: | :-: |
 | Lineární převod barev (matice 3×3: RGB → YCbCr, šedá, …) | ✔ | ✔ | ✔ |
 | RGB → HSV, HSV → RGB | ✔ | rozpracováno | ✔ |
 | Prahování (5 typů OpenCV) | ✔ | ✔ | ✔ |
@@ -87,6 +89,7 @@ v post-adderu).
 <table><tr><td>
 
 **C**
+
 ```c
 int64_t imgproc_round_shift(int64_t value, uint8_t shift)
 {
@@ -98,9 +101,11 @@ int64_t imgproc_round_shift(int64_t value, uint8_t shift)
          : -((-biased + ((1LL << shift) - 1)) >> shift);
 }
 ```
+
 </td><td>
 
 **HLS**
+
 ```cpp
 template <int SHIFT, int W>
 inline ap_int<W - SHIFT + 1>
@@ -113,15 +118,18 @@ round_shift(const ap_int<W>& value)
     return biased >> SHIFT;
 }
 ```
+
 </td><td>
 
 **VHDL**
+
 ```vhdl
 -- signed: shift_right je aritmetický = floor
 rounded <= shift_right(sum + C_ROUND_HALF,
                        C_FRAC_W);
 out_pixel <= sat_u8(rounded);
 ```
+
 </td></tr></table>
 
 ### Šířky vzorcem
@@ -157,6 +165,7 @@ $2^{24}$ barev. Předvolby: RGB → šedá, YCbCr 601/709 plný rozsah, YCbCr 60
 <table><tr><td>
 
 **C** (`csc.c`)
+
 ```c
 for (o = 0u; o < matrix->ch_out; o++)
 {
@@ -171,9 +180,11 @@ for (o = 0u; o < matrix->ch_out; o++)
         imgproc_round_shift(acc, 15u));
 }
 ```
+
 </td><td>
 
 **HLS** (`hls_csc.cpp`)
+
 ```cpp
 for (int o = 0; o < CH_OUT; o++)
 {
@@ -191,27 +202,27 @@ for (int o = 0; o < CH_OUT; o++)
 }
 // volání = řádek, PIPELINE II=1
 ```
+
 </td></tr></table>
 
-**VHDL** (`csc_core.vhd`) – sekvenční zpracování v pipeline: v každém taktu jedno násobení a jedno sčítání, bias a zaokrouhlení
+**VHDL** (`csc_core.vhd`) – sekvenčí zpracování: v každém taktu jedno násobení a jedno sčítání, bias a zaokrouhlení
 ($b \cdot 2^{15} + 2^{14}$) se předpočítá mimo pipeline, takže celý výraz padne do řetězce DSP48E2 (PCIN):
 
 ```vhdl
-product0(out_ch)  <= coeff(out_ch, 0) * in_pixel(0);                       -- takt 2
-sum0(out_ch)      <= resize(product0(out_ch), C_SUM_W) + bias(out_ch);     -- takt 3
-product1(out_ch)  <= coeff(out_ch, 1) * in_pixel1_dly1;                    -- takt 3
-sum01(out_ch)     <= sum0(out_ch) + resize(product1(out_ch), C_SUM_W);     -- takt 4
-product2(out_ch)  <= coeff(out_ch, 2) * in_pixel2_dly2;                    -- takt 4
-sum012(out_ch)    <= sum01(out_ch) + resize(product2(out_ch), C_SUM_W);    -- takt 5
-out_pixel(out_ch) <= sat_u8(shift_right(sum012(out_ch), C_CSC_FRAC_W));    -- takt 6
+product0(out_ch)  <= coeff(out_ch, 0) * in_pixel(0);                       -- krok 2
+sum0(out_ch)      <= resize(product0(out_ch), C_SUM_W) + bias(out_ch);     -- krok 3
+product1(out_ch)  <= coeff(out_ch, 1) * in_pixel1_dly1;                    -- krok 3
+sum01(out_ch)     <= sum0(out_ch) + resize(product1(out_ch), C_SUM_W);     -- krok 4
+product2(out_ch)  <= coeff(out_ch, 2) * in_pixel2_dly2;                    -- krok 4
+sum012(out_ch)    <= sum01(out_ch) + resize(product2(out_ch), C_SUM_W);    -- krok 5
+out_pixel(out_ch) <= sat_u8(shift_right(sum012(out_ch), C_CSC_FRAC_W));    -- krok 6
 ```
 
 ---
 
 ## 2. RGB → HSV a HSV → RGB
 
-**RGB → HSV** podle celočíselného algoritmu OpenCV (H v rozsahu 0–179, aby se vešel do bajtu). Dělení nahrazují dvě
-tabulky převrácených hodnot o 256 položkách (`shift` = 12):
+Převod **RGB → HSV** podle celočíselný algoritmus v OpenCV (kde je H v rozsahu 0–179, aby se vešel do bajtu). Dělení nahrazují 2 tabulky převrácených hodnot o 256 položkách (`shift` = 12):
 
 $$
 V = \max(R,G,B),\quad \Delta = V - \min(R,G,B),\quad
@@ -239,7 +250,7 @@ $$
 $(R,G,B)$ podle sektoru 0–5: $(V,t,p), (q,V,p), (p,V,t), (p,q,V), (t,p,V), (V,p,q)$; pro $S = 0$ šedá $(V,V,V)$.
 
 <table><tr><td>
-
+s
 **C** (`hsv.c`, RGB → HSV, zkráceno)
 ```c
 const int32_t v_max = max3(r, g, b);
@@ -254,6 +265,7 @@ if (h < 0) h += 180;
 </td><td>
 
 **VHDL** (`rgb2hsv_core.vhd`, 8 taktů)
+
 ```vhdl
 -- takt 5: čitatel H a tabulky (ROM z generátoru)
 case max_channel_dly4 is
@@ -270,6 +282,7 @@ sat_product <= diff_dly5 * sdiv_value;
 hue_product <= hue_numerator * signed('0' & hdiv_value);
 -- takt 7: + 2^11 a >> 12 (registr P)
 ```
+
 </td></tr></table>
 
 HLS verze (`DP/hls/rgb2hsv`, `DP/hls/hsv2rgb`) se převádí podle postupu v `DP/hls/README.md` – tělo pixelu je volání
@@ -278,6 +291,8 @@ stejné funkce jako v C (`imgproc_rgb_to_hsv_pixel` / `imgproc_hsv_to_rgb_pixel`
 ---
 
 ## 3. Prahování
+
+V OpenCV je 5 typů prahování, modelované jako
 
 $$
 \mathrm{above} = (x > T),\qquad
@@ -299,6 +314,7 @@ výsledek nad a pod prahem. Datová cesta je pak jen komparátor a multiplexor 4
 <table><tr><td>
 
 **C** (`threshold.c`, zkráceno)
+
 ```c
 const bool above = (value > thresh);
 switch (type)
@@ -315,9 +331,11 @@ case IMGPROC_THRESH_TOZERO_INV:
     result = above ? 0u : value;      break;
 }
 ```
+
 </td><td>
 
 **HLS** (`hls_threshold.cpp`)
+
 ```cpp
 const ThresholdSources sources = decode_type(type);
 bool last = false;
@@ -334,6 +352,7 @@ do
     last = (in.last == 1);
 } while (!last);        // volání = řádek
 ```
+
 </td></tr></table>
 
 **VHDL** (`threshold_core.vhd`, 3 takty)
@@ -345,10 +364,10 @@ case to_integer(thresh_type) is                       -- mimo pipeline (registr)
     -- ... další typy, neplatný typ -> nula
 end case;
 if pipe_enable = '1' then
-    in_value      <= unsigned(s_axis_tdata);                      -- takt 1
-    is_above      <= to_sl(in_value > thresh);                    -- takt 2
+    in_value      <= unsigned(s_axis_tdata);                      -- krok 1
+    is_above      <= to_sl(in_value > thresh);                    -- krok 2
     compare_value <= in_value;
-    if is_above = '1' then                                        -- takt 3
+    if is_above = '1' then                                        -- krok 3
         out_value <= select_source(source_above, compare_value, thresh, maxval);
     else
         out_value <= select_source(source_below, compare_value, thresh, maxval);
@@ -371,7 +390,7 @@ Koeficienty $c_{ij}$ int8, normalizace $s$ v **Q.14** (18 b), $\delta$ int16. Pi
 nejbližší pixel na okraji (*replicate*). Šířky: součin $8 + 9 = 17$ b, součet $17 + \lceil\log_2 K^2\rceil$ b.
 
 | jádro | $c$ | $s$ |
-|---|---|---|
+| --- | --- | --- |
 | průměr 3×3 | samé 1 | $\mathrm{round}(2^{14}/9) = 1820$ |
 | Sobel $x$ | $\begin{pmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{pmatrix}$ | $2^{14}$ |
 | zostření | $\begin{pmatrix}0&-1&0\\-1&5&-1\\0&-1&0\end{pmatrix}$ | $2^{14}$ |
@@ -379,6 +398,7 @@ nejbližší pixel na okraji (*replicate*). Šířky: součin $8 + 9 = 17$ b, so
 <table><tr><td>
 
 **C** (`filter.c`)
+
 ```c
 for (r = 0u; r < kernel->size; r++)
 {
@@ -393,9 +413,11 @@ value = imgproc_round_shift(acc * kernel->scale_q14, 14u)
       + kernel->delta;
 *dst_pixel = imgproc_saturate_u8(value);
 ```
+
 </td><td>
 
 **HLS** (`hls_filter2d.cpp`, funktor pro `window_frame<K>`)
+
 ```cpp
 ap_int<SUM_BITS> sum = 0;
 for (int row = 0; row < K; row++)
@@ -411,6 +433,7 @@ for (int row = 0; row < K; row++)
 const ap_int<SCALED_BITS> scaled = sum * scale;
 return saturate_u8(round_shift<14>(scaled) + delta);
 ```
+
 </td></tr></table>
 
 **VHDL** (`filter2d_core.vhd`) – explicitní pipeline: součiny → sčítací strom po dvojicích s registrem v každé úrovni
@@ -439,19 +462,19 @@ vydá přesně $W \times H$ pixelů. Režie flush: $(W + r)(H + r) - WH$ taktů 
 
 ---
 
-## 5. Mediánový filtr 3×3
+## 5. Mediánový filtr 3×3 pomocí třídicí sítě (sorting network)
 
 $$
 O(x, y) = \mathrm{med}\bigl\{ I(x + j, y + i) : i, j \in \{-1, 0, 1\} \bigr\}
 $$
 
-Místo řazení devíti hodnot se použije **třídicí síť 7 × sort3** (21 compare-exchange): seřadit řádky, pak sloupce
-minim, mediánů a maxim, medián je medián z (max. minim, medián mediánů, min. maxim). Struktura je pravidelná a každá
-vrstva je jeden stupeň pipeline. S okrajem *replicate* bitově shodné s `cv::medianBlur`.
+Místo řazení devíti hodnot lze použit **třídicí síť 7 × sort3** (21 komparací): seřadit řádky, pak sloupce minim, mediánů a maxim, medián pak bude jedna hodnota z (maximum minim, mediánu mediánů, minimum maxim). Struktura je pravidelná a každá
+vrstva je jeden stupeň pipeline. S okraji které se replikují *replicate* bitově shodné s `cv::medianBlur`.
 
 <table><tr><td>
 
 **C** (`median.c`)
+
 ```c
 const sorted3_t row0 = sort3(w[0], w[1], w[2]);
 const sorted3_t row1 = sort3(w[3], w[4], w[5]);
@@ -461,9 +484,11 @@ const sorted3_t mids  = sort3(row0.mid, row1.mid, row2.mid);
 const sorted3_t highs = sort3(row0.hi,  row1.hi,  row2.hi);
 return sort3(lows.hi, mids.mid, highs.lo).mid;
 ```
+
 </td><td>
 
 **HLS** (`hls_median.cpp`)
+
 ```cpp
 pixel_t operator()(const pixel_t win[3][3]) const
 {
@@ -477,6 +502,7 @@ pixel_t operator()(const pixel_t win[3][3]) const
     return sort3(lows.hi, mids.mid, highs.lo).mid;
 }
 ```
+
 </td></tr></table>
 
 **VHDL** (`median_core.vhd`, každá vrstva sítě = 1 takt)
@@ -512,6 +538,7 @@ téhož koše několik taktů pipeline, takže dva blízké pixely stejné hodno
 <table><tr><td>
 
 **C** (`histogram.c`)
+
 ```c
 for (i = 0u; i < 256u; i++)
 {
@@ -525,9 +552,11 @@ for (y = 0u; y < src->height; y++)
     }
 }
 ```
+
 </td><td>
 
 **HLS** (`hls_histogram.cpp`, koše v BRAM, forwarding 3 zápisů)
+
 ```cpp
 #pragma HLS DEPENDENCE variable=bins type=inter dependent=false
 // ...
@@ -541,6 +570,7 @@ cnt++;
 bins[val] = cnt;
 // posun historie zápisů: fwd[k] = fwd[k-1], fwd[0] = (val, cnt)
 ```
+
 </td></tr></table>
 
 **VHDL** (`histogram_core.vhd`, `G_USE_BRAM = true`) – forwarding plyne přímo z pipeline A → B → C → D: hodnotu,
@@ -578,7 +608,7 @@ ale 35× víc logiky – názorná ukázka, že volba architektury rozhoduje ví
 Plné tabulky, konfigurace a poznatky: [`DP/results/vysledky.md`](DP/results/vysledky.md). Výběr (celá IP včetně AXI4-Lite):
 
 | jádro | HLS LUT / FF / DSP / BRAM36 | VHDL LUT / FF / DSP / BRAM36 | perioda HLS / VHDL |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | převod barev 3→3 | 408 / 493 / 9 / 0 | 210 / 389 / 9 / 0 | 3,92 / 3,26 ns¹ |
 | medián 3×3 | 740 / 472 / 0 / 2 | 692 / 532 / 0 / 2 | 3,90 / 4,07 ns |
 | konvoluce 3×3 | 640 / 621 / 10 / 2 | 506 / 558 / 14 / 2 | 4,05 / 3,81 ns |
