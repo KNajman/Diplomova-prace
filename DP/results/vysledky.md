@@ -314,12 +314,13 @@ Ověření HLS: C-sim **úplný test 2^24 vstupů v obou směrech** (0 chyb, ~4,
 | varianta | stupně pipeline | LUT | FF | DSP | BRAM36 | LUTRAM | perioda | limit |
 |---|---|---|---|---|---|---|---|---|
 | HLS `hls_rgb2hsv` | 7 | 249 | 200 | 2 | 1 | 11 | 4,16 ns | logika |
-| VHDL `hsv_axil` RGB→HSV | 8 | 275 | 255 | 2 | 0 | – | 3,26 ns | šířka pulzu DSP |
+| VHDL `hsv_axil` RGB→HSV | 8 | 275 | 255 | 2 | 0 | 10 | 3,26 ns | šířka pulzu DSP |
 | HLS `hls_hsv2rgb` | 6 | 567 | 266 | 1 | 0 | 14 | 4,00 ns | logika |
-| VHDL `hsv_axil` HSV→RGB | 13 | 603 | 422 | 1 | 0 | – | 3,54 ns | logika |
-| VHDL `hsv2rgb_core` `G_USE_DSP = true` (bez AXI4-Lite) | 13 | 158 | 184 | 11 | 0 | – | 3,26 ns | šířka pulzu DSP |
+| VHDL `hsv_axil` HSV→RGB | 13 | 603 | 422 | 1 | 0 | 38 | 3,54 ns | logika |
+| VHDL `hsv2rgb_core` `G_USE_DSP = true` (bez AXI4-Lite) | 13 | 158 | 184 | 11 | 0 | 46 | 3,26 ns | šířka pulzu DSP |
 
-Stupně pipeline: HLS = `iter_latency` z reportu syntézy, VHDL = návrh. Prostředky VHDL ze sekcí 3 a 5.
+Stupně pipeline: HLS = `iter_latency` z reportu syntézy, VHDL = návrh. Prostředky VHDL z `DP/vhdl/results/vhdl_results.csv`
+(sekce 3 a 5). LUTRAM = posuvné registry a skid buffery (SRL), tabulky ROM v LUT jsou ve sloupci LUT.
 
 **Poznatky**
 - **HLS je o něco menší, VHDL je rychlejší.** RGB→HSV: HLS −9 % LUT, −22 % FF, ale perioda 4,16 ns proti 3,26 ns
