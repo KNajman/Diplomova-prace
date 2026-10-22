@@ -305,3 +305,52 @@ commit 2f2a5fd. Velikosti z `aarch64-none-elf-size` (bajty).
 
 Zdroj: `~/logs/sw_app.log`, `~/logs/sw_app_steps/01.log`, ELF v `DP/sw/build/workspace/harness_app_O*/build/`.
 
+## 11. RGB ↔ HSV – HLS × VHDL (22. 10. 2026)
+
+Konfigurace: xck26-sfvc784-2LV-c, cíl 5 ns, **stejný OOC skript** pro RTL z HLS i VHDL (perioda = max(5 − WNS, 5 − WPWS),
+viz sekce 9). HLS jádra `DP/hls/hsv` (commit 9be3bee), obě s AXI4-Lite řízením (jen ap_ctrl) → srovnávat s `hsv_axil`.
+Ověření HLS: C-sim **úplný test 2^24 vstupů v obou směrech** (0 chyb, ~4,5 min), cosim vzor + rozmítání 6 × 256 × 256 PASS.
+
+| varianta | stupně pipeline | LUT | FF | DSP | BRAM36 | LUTRAM | perioda | limit |
+|---|---|---|---|---|---|---|---|---|
+| HLS `hls_rgb2hsv` | 7 | 249 | 200 | 2 | 1 | 11 | 4,16 ns | logika |
+| VHDL `hsv_axil` RGB→HSV | 8 | 275 | 255 | 2 | 0 | – | 3,26 ns | šířka pulzu DSP |
+| HLS `hls_hsv2rgb` | 6 | 567 | 266 | 1 | 0 | 14 | 4,00 ns | logika |
+| VHDL `hsv_axil` HSV→RGB | 13 | 603 | 422 | 1 | 0 | – | 3,54 ns | logika |
+| VHDL `hsv2rgb_core` `G_USE_DSP = true` (bez AXI4-Lite) | 13 | 158 | 184 | 11 | 0 | – | 3,26 ns | šířka pulzu DSP |
+
+Stupně pipeline: HLS = `iter_latency` z reportu syntézy, VHDL = návrh. Prostředky VHDL ze sekcí 3 a 5.
+
+**Poznatky**
+- **HLS je o něco menší, VHDL je rychlejší.** RGB→HSV: HLS −9 % LUT, −22 % FF, ale perioda 4,16 ns proti 3,26 ns
+  (240 proti 307 MHz). HSV→RGB: HLS −6 % LUT, −37 % FF, perioda 4,00 proti 3,54 ns. Příčina je stejná: HLS vkládá
+  registry jen tolik, aby splnil zadaných 5 ns (6–7 stupňů), VHDL má registr za každou operací (8 a 13 stupňů).
+  Méně registrů = méně FF, ale delší logika mezi nimi.
+- **Tabulky převrácených hodnot:** HLS dal jednu z tabulek do BRAM (1 blok), druhou a VHDL obě do LUT. Pro DP: příklad, že
+  HLS volí paměť sám podle velikosti pole (256 × 32 b deklarovaný typ `int32_t`), VHDL má šířku tabulky ze vzorce (20 a 17 b).
+  Úspora by šla v HLS vynutit typem s menší šířkou nebo pragmou `BIND_STORAGE`.
+- **HSV→RGB a `G_USE_DSP`:** HLS (bez vynucení) i výchozí VHDL dávají malá násobení 8 × 8 b do LUT (~570–600 LUT, 1 DSP).
+  Vynucení DSP ve VHDL dá 158 LUT za 11 DSP. Rozhodnutí o výchozím `G_USE_DSP` je na Karlovi (zatím `false` kvůli
+  srovnatelnosti s HLS).
+- Odhad syntézy HLS (`est_*`) se od OOC liší výrazně: hsv2rgb odhad 882 LUT proti 567 po implementaci, rgb2hsv 505 proti 249.
+  Do tabulek DP jen čísla po implementaci.
+
+Zdroj: `DP/hls/results/hls_ooc_results.csv`, `DP/hls/results/hls_results.csv`, log `~/logs/hls_hsv.log`.
+
+## 12. Testovací řetězec – všechna jádra (22. 10. 2026)
+
+Konfigurace: `DP/hw/harness/build_harness.tcl 200`, KV260, 200 MHz, commit 3639f04. Oproti 19. 10. přibyla HLS jádra
+RGB→HSV a HSV→RGB (všech 14 jader řetězce je teď v bitstreamu).
+
+| stav | WNS | WHS | LUT | FF | BRAM36 | DSP |
+|---|---|---|---|---|---|---|
+| 19. 10. (bez HLS HSV) | +0,58 ns | – | 13,3 tis. | 17,5 tis. | 15 | – |
+| 22. 10. (kompletní) | **+0,104 ns** | +0,010 ns | 14 024 (12,0 %) | 18 062 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) |
+
+**Poznatky**
+- Časování při 200 MHz je splněné, ale rezerva klesla na 0,1 ns. Kritickou cestu zjistit z `timing.rpt` (pravděpodobně
+  AXI propojení nebo přepínače, ne jádra – ta mají v OOC rezervu ≥ 0,8 ns). Pro měření stačí, při dalším přidání logiky hlídat.
+- Měřicí aplikace se s novou `harness_map.h` přeložila (-O0/-O2/-O3).
+
+Zdroj: `DP/hw/build/harness/{timing,utilization}.rpt` na Ababelu, log `~/logs/hls_hsv.log` kroky 8–10.
+
