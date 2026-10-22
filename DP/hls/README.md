@@ -6,6 +6,7 @@ DP/hls/
   common/tb_video.hpp     testbench: testovací vzor, push_frame/check_frame proti golden modelu
   csc/                    převod barev - REFERENČNÍ JÁDRO (vzor pro bodová jádra)
   histogram/              histogram jasu, bypass - vzor pro jádra s voláním po snímcích
+  hsv/                    RGB -> HSV a HSV -> RGB (dvě top funkce, dva .cfg), úplný test 2^24 v C-sim (TB_HSV_FULL=1)
   scripts/run_hls.sh/.bat jedna komponenta: csim | syn | cosim | impl | all (Linux / Windows)
   scripts/build_all.sh    všechny komponenty, souhrn PASS/FAIL
   scripts/collect_reports.py  reporty všech jader -> results/hls_results.csv (tabulky DP)
@@ -51,7 +52,7 @@ a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`
 6. **Samopopisné názvy** proměnných a funkcí (stejná zásada jako ve VHDL), žádné jednopísmenné zkratky kromě souřadnic `x`, `y`.
 7. `clock=5ns` ve všech `.cfg` (společný cíl srovnání HLS × VHDL).
 
-## Postup převodu dalšího bodového jádra (RGB→HSV, HSV→RGB; prahování hotové v `threshold/` – vzor)
+## Postup převodu dalšího bodového jádra (hotové: prahování v `threshold/`, RGB↔HSV v `hsv/` – vzory)
 
 1. Zkopíruj `csc/` jako `threshold/` (resp. `rgb2hsv/`, `hsv2rgb/`) a přejmenuj soubory a `syn.top`.
 2. Tělo pixelu nahraď funkcí podle golden modelu:
