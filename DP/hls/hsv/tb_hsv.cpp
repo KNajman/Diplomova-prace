@@ -11,7 +11,8 @@
  * Testy (každý dva snímky za sebou - jádro nesmí držet stav):
  *  1. testovací vzor 64 x 48 (tbv::fill_pattern: hraniční hodnoty, gradient, šum),
  *  2. rozmítání 256 x 256: složka 0 = x, složka 1 = y, složka 2 = hodnota snímku.
- *     Výchozí (i pro cosim): složka 2 z {0, 1, 127, 128, 254, 255}.
+ *     Výchozí (i pro cosim): složka 2 z {0, 255} - cosim má jen potvrdit, že RTL počítá totéž co C
+ *     (časování, šířky, TUSER/TLAST); 6 hodnot trvalo v cosim ~18 min na jádro, 2 hodnoty ~6 min.
  *     TB_HSV_FULL=1 v prostředí: všech 256 hodnot = úplný test 2^24 vstupů v obou směrech (jen C-sim,
  *     v cosim by trval hodiny). U HSV -> RGB to zahrnuje i neplatné H 180..255.
  *
@@ -33,7 +34,7 @@ constexpr uint32_t TB_WIDTH = 64u;
 constexpr uint32_t TB_HEIGHT = 48u;
 constexpr uint32_t TB_FRAMES = 2u;
 constexpr uint32_t TB_SWEEP_SIZE = 256u;    ///< rozmítání: 256 x 256 = všechny kombinace složek 0 a 1
-const uint8_t TB_SWEEP_REDUCED[] = { 0u, 1u, 127u, 128u, 254u, 255u };
+const uint8_t TB_SWEEP_REDUCED[] = { 0u, 255u };     ///< cosim: jen ověření RTL = C (pokrytí dělá úplný test v C-sim)
 
 /// Směr převodu
 enum Direction
