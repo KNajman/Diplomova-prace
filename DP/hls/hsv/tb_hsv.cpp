@@ -124,12 +124,7 @@ uint32_t test_direction(Direction direction, bool full)
         const uint8_t third_value = full ? static_cast<uint8_t>(sweep_idx) : TB_SWEEP_REDUCED[sweep_idx];
         fill_sweep(sweep, third_value);
         std::snprintf(name, sizeof(name), "%s rozmitani slozka2 = %u", direction_name, third_value);
-        const uint32_t sweep_errors = run_and_check(direction, sweep, name);
-        if ((sweep_errors != 0u) || (!full))
-        {
-            std::printf("%-5s %s\n", (sweep_errors == 0u) ? "OK" : "FAIL", name);
-        }
-        errors += sweep_errors;
+        errors += run_and_check(direction, sweep, name);     // check_frame vypíše PASS/FAIL
     }
     std::printf("%s: %s, %u chyb\n", direction_name, full ? "uplny test 2^24" : "zkraceny test", errors);
     return errors;
