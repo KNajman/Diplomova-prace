@@ -24,6 +24,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 
 ## Jak pracujeme
 - **Opakované příkazy ukládat jako šablony/skripty** (`.claude/scripts/`, `DP/scripts/queues/`), negenerovat je pokaždé znovu.
+- **Selže-li jakákoli operace na Ababelu (ssh, sync, start, krok fronty) → okamžitě stop a hned informovat Karla**, žádný další pokus ani ověřovací ssh, dokud Karel neřekne (pravidlo 22. 10., viz ababel.md).
 - **Na Ababel čeká Karel, ne Claude.** Po spuštění fronty nikdy `sleep`/čekání ani kontrolní dotazy – čas hned využít na další implementaci; Karel dá vědět, až fronta doběhne.
 - **Běhy na Ababelu: spustit na pozadí a nechat běžet, NEdotazovat se průběžně.** Karel se může připojit a dá vědět, až výsledek doběhne (případně Claude zkontroluje jednou po odhadnuté době). Šetří to SSH spojení (firewall) i tokeny.
 - **Po spuštění jobu na Ababelu vždy na konec odpovědi bash příkaz pro sledování** (např. `tail -f ~/logs/vqueue.log`, Ctrl+C ukončí jen výpis).

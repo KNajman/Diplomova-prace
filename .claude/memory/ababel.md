@@ -1,5 +1,12 @@
 # Ababel – připojení a vzdálené běhy
 
+## PRAVIDLO: selhání na Ababelu = okamžitě stop (Karel, 22. 10. 2026)
+- **Jakákoli operace na Ababelu selže** (ssh Connection refused / timed out, sync, start fronty, chyba kroku) →
+  **okamžitě přestat a hned informovat Karla** (SendUserMessage): co selhalo, přesná hláška, co je hotové lokálně.
+- **Žádný druhý pokus**, žádné ověřovací `ssh ababel hostname`, žádné obcházení – ani po chvíli. Další spojení až na
+  Karlův pokyn (typicky po kontrole VPN). Důvod: opakovaná spojení mohou VPN TUL odpojit úplně (15. 10.).
+- Platí i pro subagenty: v zadání jim to výslovně uvést.
+
 ## Server
 - `ababeel.ite.tul.cz` (147.230.73.33), port 22, uživatel `karel`. Pozor: v adrese jsou **dvě e** ("ababeel"), mluví se o něm jako "Ababel".
 - 32 jader, 251 GB RAM, Linux. Xilinx: `/tools/Xilinx/2025.2/` (Vitis, Vivado), env: `source /tools/Xilinx/2025.2/Vitis/settings64.sh`.
