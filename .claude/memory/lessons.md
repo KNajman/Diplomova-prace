@@ -1,5 +1,10 @@
 # Poučení a záludnosti (aktualizovat, nejnovější nahoru)
 
+## Vitis 2025.2 bare-metal (SDT)
+- **`xtime_l.h` v exportu platformy není** (jen v `bsp/libsrc/standalone/...`, mimo include cesty aplikace). `XTime`, `XTime_GetTime()` a `COUNTS_PER_SECOND` jsou v `<xiltimer.h>` (`COUNTS_PER_SECOND` = `XPAR_CPU_TIMESTAMP_CLK_FREQ` přes `xtimer_config.h`). Včas se to ukáže až při překladu aplikace (fronta `sw_app`, 19. 10. spadla na všech 3 úrovních).
+- **Rychlá předkontrola zdrojů bez spuštění Vitisu:** na Ababelu `aarch64-none-elf-gcc -fsyntax-only -DSDT -DSW_OPT_LEVEL=O2 -I<src_staging> -isystem <platforma>/export/harness_platform/sw/standalone_a53/include main.c` (staging zůstane po předchozím běhu v `DP/sw/build/src_staging`). Jedno ssh, vteřiny místo minut.
+- `vitis -s` vrací 0 i při chybě překladu aplikace; `build_app.py` proto končí `sys.exit()` při chybějícím ELF (fronta pak vidí chybu).
+
 ## Vitis HLS 2025.2
 - **C-sim neověří časování pipeline.** Histogram s technikou UG1399 (přičítání v registru, závislost přes BRAM nechaná na HLS) prošel csim, ale cosim ztrácela pixely u vzorů a,b,a. Řešení: explicitní forwarding posledních 3 zápisů + `DEPENDENCE inter false`; TB musí mít vzory s opakováním po 1–4 px. U všech jader s RMW do paměti spouštět cosim, ne jen csim.
 - **Stream musí být `ap_axiu`** (`hlsv::axis_t`). Vlastní struct + `AGGREGATE` zabalí TUSER/TLAST do TDATA → nefunguje s VDMA/VFB.

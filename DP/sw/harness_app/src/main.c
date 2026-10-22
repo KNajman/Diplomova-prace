@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <xil_cache.h>
-#include <xtime_l.h>
+#include <xiltimer.h>   // 2025.2 (SDT): XTime, XTime_GetTime a COUNTS_PER_SECOND jsou zde, xtime_l.h se neexportuje
 
 #include <imgproc.h>
 

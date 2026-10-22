@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <xil_cache.h>
 #include <xil_io.h>
-#include <xtime_l.h>
+#include <xiltimer.h>   // 2025.2 (SDT): XTime, XTime_GetTime a COUNTS_PER_SECOND jsou zde, xtime_l.h se neexportuje
 
 /* AXIS Switch (PG085), ROUTING_MODE = 1: řízení registry */
 #define SWITCH_REG_CTRL         (0x00u)     ///< bit1 REG_UPDATE: převezme nové nastavení MI_MUX
