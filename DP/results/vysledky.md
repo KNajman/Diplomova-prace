@@ -348,8 +348,13 @@ RGB→HSV a HSV→RGB (všech 14 jader řetězce je teď v bitstreamu).
 | 22. 10. (kompletní) | **+0,104 ns** | +0,010 ns | 14 024 (12,0 %) | 18 062 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) |
 
 **Poznatky**
-- Časování při 200 MHz je splněné, ale rezerva klesla na 0,1 ns. Kritickou cestu zjistit z `timing.rpt` (pravděpodobně
-  AXI propojení nebo přepínače, ne jádra – ta mají v OOC rezervu ≥ 0,8 ns). Pro měření stačí, při dalším přidání logiky hlídat.
+- Časování při 200 MHz je splněné, ale rezerva klesla na 0,1 ns. **Kritická cesta je uvnitř HLS `hls_hsv2rgb`**:
+  `fraction_reg` → násobička `mul_8ns_8ns_16` (S · f, resp. S · (255 − f)), kterou Vivado sbalil do DSP včetně
+  předsčítačky (`_psdsp`) bez vnitřních registrů – 12 úrovní (z toho 9 uvnitř DSP), 4,79 ns, logika 73 %. Tři nejhorší cesty
+  jsou všechny tato násobička. V OOC měla stejná cesta 4,00 ns; v plném návrhu přibylo směrování a rozmístění.
+- Pro DP: názorný příklad, že HLS při cíli 5 ns dá mezi registry tolik logiky, kolik se do periody vejde, a v hustém návrhu
+  pak rezerva mizí; VHDL verze (registr za každou operací) v řetězci kritickou cestu netvoří. Náprava v HLS (jen pokud by bylo
+  potřeba): `BIND_OP ... op=mul impl=dsp latency=2` nebo přísnější cíl hodin – obojí mění srovnání při 5 ns, proto zatím ne.
 - Měřicí aplikace se s novou `harness_map.h` přeložila (-O0/-O2/-O3).
 
 Zdroj: `DP/hw/build/harness/{timing,utilization}.rpt` na Ababelu, log `~/logs/hls_hsv.log` kroky 8–10.
