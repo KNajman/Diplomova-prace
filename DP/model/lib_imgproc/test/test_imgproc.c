@@ -97,6 +97,51 @@ static void test_csc(void)
 }
 
 /**
+ * @brief Zpětný převod YCbCr -> RGB: černá a bílá se vrátí přesně, návrat RGB -> YCbCr -> RGB
+ *        se jinak liší nejvýš o 2 (kvantizace na 8 bitů v obou směrech + celočíselný offset; např.
+ *        šedá 128 ve studio rozsahu BT.601 se vrátí jako 129, protože offset 135,57 se zaokrouhlí na 136).
+ */
+static void test_csc_inverse(void)
+{
+    static const imgproc_csc_preset_t PAIRS[][2] =
+    {
+        { IMGPROC_CSC_RGB_TO_YCBCR_BT601_FULL, IMGPROC_CSC_YCBCR_TO_RGB_BT601_FULL },
+        { IMGPROC_CSC_RGB_TO_YCBCR_BT601_STUDIO, IMGPROC_CSC_YCBCR_TO_RGB_BT601_STUDIO },
+        { IMGPROC_CSC_RGB_TO_YCBCR_BT709_STUDIO, IMGPROC_CSC_YCBCR_TO_RGB_BT709_STUDIO },
+    };
+    static const uint8_t COLORS[][IMGPROC_CH_MAX] =
+    {
+        { 0u, 0u, 0u }, { 255u, 255u, 255u }, { 128u, 128u, 128u }, { 255u, 0u, 0u },
+        { 0u, 255u, 0u }, { 0u, 0u, 255u }, { 17u, 200u, 93u }, { 250u, 3u, 128u },
+    };
+    imgproc_csc_matrix_t forward = { 0 };
+    imgproc_csc_matrix_t inverse = { 0 };
+    uint8_t ycbcr[IMGPROC_CH_MAX] = { 0u };
+    uint8_t rgb[IMGPROC_CH_MAX] = { 0u };
+    uint32_t p = 0u;
+    uint32_t c = 0u;
+    uint32_t ch = 0u;
+
+    for (p = 0u; p < (sizeof(PAIRS) / sizeof(PAIRS[0])); p++)
+    {
+        imgproc_csc_make(PAIRS[p][0], &forward);
+        imgproc_csc_make(PAIRS[p][1], &inverse);
+        TEST_CHECK((inverse.ch_in == 3u) && (inverse.ch_out == 3u));
+        for (c = 0u; c < (sizeof(COLORS) / sizeof(COLORS[0])); c++)
+        {
+            const bool exact = (c < 2u);    /* černá a bílá */
+            imgproc_csc_pixel(&forward, COLORS[c], ycbcr);
+            imgproc_csc_pixel(&inverse, ycbcr, rgb);
+            for (ch = 0u; ch < IMGPROC_CH_MAX; ch++)
+            {
+                const int32_t diff = (int32_t)rgb[ch] - (int32_t)COLORS[c][ch];
+                TEST_CHECK(exact ? (diff == 0) : ((diff >= -2) && (diff <= 2)));
+            }
+        }
+    }
+}
+
+/**
  * @brief Test RGB -> HSV na základních barvách a rozsahu H přes všech 2^24 barev.
  */
 static void test_hsv(void)
@@ -237,6 +282,7 @@ int main(void)
 {
     test_arithmetic();
     test_csc();
+    test_csc_inverse();
     test_hsv();
     test_median();
     test_filters();

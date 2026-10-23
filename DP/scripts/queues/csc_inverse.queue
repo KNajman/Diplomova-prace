@@ -1,0 +1,9 @@
+# Zpětný převod YCbCr -> RGB (předvolby 6-8: BT.601 full, BT.601 studio, BT.709 studio) na stávajících jádrech CSC.
+# HW beze změny (celočíselný offset, rozhodnutí 23. 10.), mění se jen model, vygenerované konstanty a testy.
+# Vektory znovu, xsim všech 9 předvoleb (jádro i obálka AXI4-Lite), HLS C-sim (všechny předvolby a top funkce) + cosim.
+# @stop_on_error
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for p in 0 1 2 3 4 5 6 7 8; do bash run_xsim.sh tb_csc G_PRESET=$p G_VALID_PCT=60 G_READY_PCT=60 || exit 1; done
+cd DP/vhdl/scripts && for p in 0 1 2 3 4 5 6 7 8; do bash run_xsim.sh tb_csc_axil G_PRESET=$p || exit 1; done
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg csim
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg cosim

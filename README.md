@@ -36,7 +36,7 @@ a v testovacím řetězci jsou zaměnitelné.
 
 | algoritmus | C | HLS | VHDL |
 | --- | :-: | :-: | :-: |
-| Lineární převod barev (matice 3×3: RGB → YCbCr, šedá, …) | ✔ | ✔ | ✔ |
+| Lineární převod barev (matice 3×3: RGB ↔ YCbCr, RGB ↔ šedá) | ✔ | ✔ | ✔ |
 | RGB → HSV, HSV → RGB | ✔ | ✔ | ✔ |
 | Prahování (5 typů OpenCV) | ✔ | ✔ | ✔ |
 | 2D konvoluce K×K (průměr, Sobel, zostření, vlastní jádro; K = 3, 5, 7) | ✔ | ✔ | ✔ |
@@ -161,6 +161,22 @@ $$
 s $K_r = 0{,}299$, $K_b = 0{,}114$ (BT.709: $0{,}2126$; $0{,}0722$). Zaokrouhlení koeficientů na Q2.15 metodou největšího
 zbytku zachová součet řádku (šedá zůstane šedá). RGB → šedá (BT.601) je s Q2.15 bitově shodná s `cv::cvtColor` pro všech
 $2^{24}$ barev. Předvolby: RGB → šedá, YCbCr 601/709 plný rozsah, YCbCr 601/709 studio rozsah, šedá → RGB.
+
+**Zpětný převod YCbCr → RGB** (předvolby BT.601 plný rozsah, BT.601 a BT.709 studio rozsah) běží na stejných jádrech,
+jen s jinou maticí. Je to inverze dopředné matice $\mathbf{M}$ téhož standardu:
+
+$$
+\begin{pmatrix} R \\ G \\ B \end{pmatrix}
+= \mathbf{M}^{-1} \left( \begin{pmatrix} Y \\ C_b \\ C_r \end{pmatrix} - \begin{pmatrix} y_0 \\ 128 \\ 128 \end{pmatrix} \right)
+= \mathbf{M}^{-1} \begin{pmatrix} Y \\ C_b \\ C_r \end{pmatrix} + \mathbf{b} ,
+\qquad y_0 = 0 \text{ (plný rozsah)},\ 16 \text{ (studio)}
+$$
+
+Koeficienty inverze jsou až 2,11 (BT.709 studio, $C_b \to B$), do Q2.15 se vejdou. Konstantní člen $\mathbf{b}$ ale není
+celé číslo (u R v BT.601 je −179,4) a jádra mají jen celočíselný offset (10 b), proto se zaokrouhlí. Výsledek se od
+`cv::cvtColor(COLOR_YCrCb2RGB)` liší nejvýš o 1 (zhruba čtvrtina složek na všech $2^{24}$ vstupech), návrat
+RGB → YCbCr → RGB nejvýš o 2. Bitovou shodu s OpenCV by umožnil offset s 15 zlomkovými bity (registr 26 b místo 10 b);
+zvolil jsem zachovat jádro beze změny.
 
 <table><tr><td>
 
@@ -611,8 +627,10 @@ ale 35× víc logiky – názorná ukázka, že volba architektury rozhoduje ví
    obě HW verze, proto se nejdřív ověřuje sám:
    - bitově shodné s OpenCV: RGB → šedá a RGB → HSV na všech 2^24 barvách, prahování (5 typů × 6 prahů),
      medián 3×3 s opakováním krajního pixelu, konvoluce identity, zostření a Sobel;
-   - jen informativně (OpenCV počítá v plovoucí řádové čárce, bitová shoda není možná): HSV → RGB, RGB → YCbCr
-     a konvoluce průměrem (zaokrouhlení 1/9);
+   - s odchylkou nejvýš 1–2 (OpenCV počítá v plovoucí řádové čárce nebo s jinak zaokrouhlenými koeficienty): HSV → RGB,
+     RGB → YCbCr a zpětný převod YCbCr → RGB;
+   - konvoluce průměrem vychází na testovacím obraze shodně, bitová shoda ale zaručená není (1/9 nejde v pevné řádové
+     čárce vyjádřit přesně);
    - unit testy `test_imgproc.c` (aritmetika, převod barev, HSV, medián, filtry) bez OpenCV, běží i na ARM.
 2. **HW jádra proti referenčnímu modelu.** Vstupní a očekávané vektory generuje `imgproc_cli` z modelu (soubory HEX),
    nic se neopisuje ručně.
@@ -656,7 +674,7 @@ z předchozího snímku).
 
 | jádro | VHDL (xsim, GHDL) | HLS (C-simulace + kosimulace) |
 | --- | --- | --- |
-| převod barev | `tb_csc`: 6 předvoleb (šedá BT.601, YCbCr BT.601/709 v plném i omezeném rozsahu, šedá → RGB), náhodné mezery a brzdění; `tb_csc_axil`: zápis koeficientů podle mapy registrů, zpětné čtení | `tb_csc`: všechny předvolby, všechny tři top funkce (3 → 3, 3 → 1, 1 → 3) |
+| převod barev | `tb_csc`: 9 předvoleb (šedá BT.601, YCbCr BT.601/709 v plném i omezeném rozsahu, šedá → RGB, zpětný převod YCbCr → RGB BT.601 plný, BT.601 a BT.709 studio), náhodné mezery a brzdění; `tb_csc_axil`: zápis koeficientů podle mapy registrů, zpětné čtení | `tb_csc`: všechny předvolby, všechny tři top funkce (3 → 3, 3 → 1, 1 → 3) |
 | RGB ↔ HSV | `tb_rgb2hsv`, `tb_hsv2rgb`: obraz 64×48 (hraniční hodnoty, gradient, šum), rampa 256×256 se shodami kanálů, **úplný test všech 2^24 vstupů** ve 4 částech; `tb_hsv_axil`: oba směry, `G_USE_DSP` | `tb_hsv`: vzor 64×48 a rozmítání 256×256; C-simulace **úplný test 2^24** v obou směrech (`TB_HSV_FULL=1`), kosimulace zkrácený test |
 | prahování | `tb_threshold`: rampa 256×4 pro 5 typů × prahy {0, 1, 127, 254, 255} × maxval {255, 77}, neplatné typy 5–7 (výstup 0), parametry měněné mezi snímky; `tb_threshold_axil`: Otsuův práh 108, registr `type` má 3 platné bity | `tb_threshold`: stejné kombinace (80) včetně neplatných typů |
 | konvoluce K×K | `tb_filter2d`: identity, průměr, zostření, Sobel x/y (3×3), jádra 5×5 a 7×7, rozměry 64×48, 9×3 a 8×1 (výška menší než jádro); `tb_filter2d_axil`: koeficienty z modelu přes AXI4-Lite (u K ≥ 5 paměťové okno), přerušení, status; `tb_filter2d_reset`: reset uprostřed snímku a změna rozměrů | `tb_filter2d`: 3×3 předvolby a pseudonáhodná jádra 5×5 a 7×7, oba okraje, tři rozměry |

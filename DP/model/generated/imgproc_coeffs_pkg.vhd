@@ -53,6 +53,27 @@ package imgproc_coeffs_pkg is
         (  32768,       0,       0));
     constant C_CSC_GRAY_TO_RGB_OFFSET : t_csc_offset := (0, 0, 0);
 
+    -- ycbcr_to_rgb_bt601_full
+    constant C_CSC_YCBCR_TO_RGB_BT601_FULL_COEFF : t_csc_coeff := (
+        (  32768,  -11277,  -23401),
+        (  32768,   58065,       0),
+        (  32768,       0,   45941));
+    constant C_CSC_YCBCR_TO_RGB_BT601_FULL_OFFSET : t_csc_offset := (135, -227, -179);
+
+    -- ycbcr_to_rgb_bt601_studio
+    constant C_CSC_YCBCR_TO_RGB_BT601_STUDIO_COEFF : t_csc_coeff := (
+        (  38155,  -12837,  -26639),
+        (  38155,   66101,       0),
+        (  38155,       0,   52299));
+    constant C_CSC_YCBCR_TO_RGB_BT601_STUDIO_OFFSET : t_csc_offset := (136, -277, -223);
+
+    -- ycbcr_to_rgb_bt709_studio
+    constant C_CSC_YCBCR_TO_RGB_BT709_STUDIO_COEFF : t_csc_coeff := (
+        (  38155,   -6988,  -17462),
+        (  38155,   69219,       0),
+        (  38155,       0,   58745));
+    constant C_CSC_YCBCR_TO_RGB_BT709_STUDIO_OFFSET : t_csc_offset := (77, -289, -248);
+
     -- sdiv[i] = round((255 << 12) / i)
     constant C_HSV_SDIV : t_int_table := (
               0, 1044480,  522240,  348160,  261120,  208896,  174080,  149211,

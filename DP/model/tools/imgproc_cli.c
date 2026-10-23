@@ -465,7 +465,8 @@ static void print_usage(const char* name)
 {
     printf("Použití: %s <operace> <vstup.ppm|pgm> <výstupní_prefix> [parametry]\n"
            "  tohex                                 vstup -> HEX (stimulus pro testbench)\n"
-           "  csc <předvolba>                       rgb_to_gray_bt601, rgb_to_ycbcr_bt601_full, ..., gray_to_rgb\n"
+           "  csc <předvolba>                       rgb_to_gray_bt601, rgb_to_ycbcr_bt601_full, ..., gray_to_rgb,\n"
+           "                                        ycbcr_to_rgb_bt601_full, ycbcr_to_rgb_bt601_studio, ycbcr_to_rgb_bt709_studio\n"
            "  rgb2hsv | hsv2rgb\n"
            "  thresh <typ 0-4> <práh> <maxval>      BINARY, BINARY_INV, TRUNC, TOZERO, TOZERO_INV\n"
            "  filter <jádro> [constant|replicate]   identity, mean, sharpen, sobel_x, sobel_y, prewitt_x, prewitt_y\n"

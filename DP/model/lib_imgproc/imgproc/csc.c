@@ -54,6 +54,9 @@ static const char* const CSC_NAMES[IMGPROC_CSC_PRESET_COUNT] =
     "rgb_to_ycbcr_bt601_studio",
     "rgb_to_ycbcr_bt709_studio",
     "gray_to_rgb",
+    "ycbcr_to_rgb_bt601_full",
+    "ycbcr_to_rgb_bt601_studio",
+    "ycbcr_to_rgb_bt709_studio",
 };
 
 /* Převod logického indexu (R, G, B) na index v paměti (UG934: G, B, R) */
@@ -183,6 +186,83 @@ static void make_from_standard(const csc_standard_t* std, uint8_t ch_out, imgpro
 }
 
 /**
+ * @brief Inverze matice 3x3 (adjungovaná matice / determinant).
+ * @param fm    Vstupní matice (regulární), použijí se jen koeficienty
+ * @param dst   Výstupní inverzní matice
+ */
+static void invert_3x3(const csc_float_matrix_t* fm, double dst[IMGPROC_CH_MAX][IMGPROC_CH_MAX])
+{
+    const double (*src)[IMGPROC_CH_MAX] = fm->coeff;
+    const double det = (src[0][0] * ((src[1][1] * src[2][2]) - (src[1][2] * src[2][1])))
+                       - (src[0][1] * ((src[1][0] * src[2][2]) - (src[1][2] * src[2][0])))
+                       + (src[0][2] * ((src[1][0] * src[2][1]) - (src[1][1] * src[2][0])));
+    uint8_t row = 0u;
+    uint8_t col = 0u;
+
+    IMGPROC_ASSERT(fabs(det) > 1e-9);
+    for (row = 0u; row < IMGPROC_CH_MAX; row++)
+    {
+        for (col = 0u; col < IMGPROC_CH_MAX; col++)
+        {
+            /* Kofaktor prvku [col][row] (transpozice = adjungovaná matice) */
+            const uint8_t r0 = (uint8_t)((col + 1u) % IMGPROC_CH_MAX);
+            const uint8_t r1 = (uint8_t)((col + 2u) % IMGPROC_CH_MAX);
+            const uint8_t c0 = (uint8_t)((row + 1u) % IMGPROC_CH_MAX);
+            const uint8_t c1 = (uint8_t)((row + 2u) % IMGPROC_CH_MAX);
+            dst[row][col] = ((src[r0][c0] * src[r1][c1]) - (src[r0][c1] * src[r1][c0])) / det;
+        }
+    }
+}
+
+/**
+ * @brief Vyplní matici zpětného převodu YCbCr -> RGB (inverze matice RGB -> YCbCr téhož standardu).
+ *
+ * Oba směry tak vycházejí ze stejných Kr, Kb. Vstup se nejdřív zbaví offsetů dopředného převodu
+ * (Y 16 ve studio rozsahu, Cb/Cr 128):
+ *   RGB = M^-1 * (YCbCr - offset) = M^-1 * YCbCr - M^-1 * offset
+ *
+ * Poznámka k volbě: jádra HLS i VHDL mají jen celočíselný offset výstupu (10 b), konstantní člen
+ * -M^-1 * offset (např. -179,4 u R v BT.601) se proto zaokrouhlí na celé číslo. Chyba konstanty je
+ * nejvýš 0,5 LSB, výsledek se od přesného výpočtu i od cv::cvtColor(COLOR_YCrCb2RGB) liší nejvýš o 1
+ * (rozhodnutí Karla 23. 10. 2026: bez rozšíření offsetu v HW). Konstanta se počítá z už kvantovaných
+ * koeficientů, takže odpovídá tomu, co jádro skutečně sečte.
+ * Koeficienty se kvantují každý zvlášť, bez dorovnání součtu řádku: u inverze součet řádku nemá
+ * význam bílé (sloupce jsou Y, Cb, Cr, ne R, G, B).
+ *
+ * @param std       Definice standardu
+ * @param matrix    Výstupní matice (řádky v pořadí paměti G, B, R; sloupce Y, Cb, Cr)
+ */
+static void make_inverse_from_standard(const csc_standard_t* std, imgproc_csc_matrix_t* matrix)
+{
+    csc_float_matrix_t fm = { 0 };
+    double inverse[IMGPROC_CH_MAX][IMGPROC_CH_MAX] = { { 0.0 } };
+    uint8_t log_out = 0u;
+    uint8_t in = 0u;
+
+    build_ycbcr(std, &fm);
+    invert_3x3(&fm, inverse);
+    matrix->ch_in = (uint8_t)IMGPROC_CH_MAX;
+    matrix->ch_out = (uint8_t)IMGPROC_CH_MAX;
+    for (log_out = 0u; log_out < IMGPROC_CH_MAX; log_out++)
+    {
+        const uint8_t mem_out = CSC_LOG_TO_MEM[log_out];
+        double constant_q15 = 0.0;
+        int32_t offset = 0;
+
+        for (in = 0u; in < IMGPROC_CH_MAX; in++)
+        {
+            const int32_t q = (int32_t)lround(inverse[log_out][in] * (double)CSC_ONE);
+            IMGPROC_ASSERT((q >= IMGPROC_CSC_COEFF_MIN) && (q <= IMGPROC_CSC_COEFF_MAX));
+            matrix->coeff[mem_out][in] = q;
+            constant_q15 -= (double)q * (double)fm.offset[in];
+        }
+        offset = (int32_t)lround(constant_q15 / (double)CSC_ONE);
+        IMGPROC_ASSERT((offset >= IMGPROC_CSC_OFFSET_MIN) && (offset <= IMGPROC_CSC_OFFSET_MAX));
+        matrix->offset[mem_out] = (int16_t)offset;
+    }
+}
+
+/**
  * @brief Vypočítá matici předvolby z definičních konstant standardu a kvantuje ji do Q2.15.
  *
  * Koeficienty se nikde neopisují ručně - jediným zdrojem pravdy jsou Kr a Kb z norem
@@ -218,6 +298,15 @@ void imgproc_csc_make(imgproc_csc_preset_t preset, imgproc_csc_matrix_t* matrix)
             break;
         case IMGPROC_CSC_RGB_TO_YCBCR_BT709_STUDIO:
             make_from_standard(&BT709_STUDIO, (uint8_t)IMGPROC_CH_MAX, matrix);
+            break;
+        case IMGPROC_CSC_YCBCR_TO_RGB_BT601_FULL:
+            make_inverse_from_standard(&BT601_FULL, matrix);
+            break;
+        case IMGPROC_CSC_YCBCR_TO_RGB_BT601_STUDIO:
+            make_inverse_from_standard(&BT601_STUDIO, matrix);
+            break;
+        case IMGPROC_CSC_YCBCR_TO_RGB_BT709_STUDIO:
+            make_inverse_from_standard(&BT709_STUDIO, matrix);
             break;
         case IMGPROC_CSC_GRAY_TO_RGB:
             matrix->ch_in = 1u;

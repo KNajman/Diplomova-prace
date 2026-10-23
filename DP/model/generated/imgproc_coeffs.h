@@ -63,6 +63,33 @@ static const int32_t IMGPROC_CSC_GRAY_TO_RGB_COEFF[3][3] =
 };
 static const int16_t IMGPROC_CSC_GRAY_TO_RGB_OFFSET[3] = { 0, 0, 0 };
 
+/* ycbcr_to_rgb_bt601_full: 3 -> 3 kanálů */
+static const int32_t IMGPROC_CSC_YCBCR_TO_RGB_BT601_FULL_COEFF[3][3] =
+{
+    {   32768,  -11277,  -23401 },
+    {   32768,   58065,       0 },
+    {   32768,       0,   45941 },
+};
+static const int16_t IMGPROC_CSC_YCBCR_TO_RGB_BT601_FULL_OFFSET[3] = { 135, -227, -179 };
+
+/* ycbcr_to_rgb_bt601_studio: 3 -> 3 kanálů */
+static const int32_t IMGPROC_CSC_YCBCR_TO_RGB_BT601_STUDIO_COEFF[3][3] =
+{
+    {   38155,  -12837,  -26639 },
+    {   38155,   66101,       0 },
+    {   38155,       0,   52299 },
+};
+static const int16_t IMGPROC_CSC_YCBCR_TO_RGB_BT601_STUDIO_OFFSET[3] = { 136, -277, -223 };
+
+/* ycbcr_to_rgb_bt709_studio: 3 -> 3 kanálů */
+static const int32_t IMGPROC_CSC_YCBCR_TO_RGB_BT709_STUDIO_COEFF[3][3] =
+{
+    {   38155,   -6988,  -17462 },
+    {   38155,   69219,       0 },
+    {   38155,       0,   58745 },
+};
+static const int16_t IMGPROC_CSC_YCBCR_TO_RGB_BT709_STUDIO_OFFSET[3] = { 77, -289, -248 };
+
 /* Jádra 3x3: koeficienty + scale v Q.14 */
 static const int8_t IMGPROC_KERNEL_IDENTITY[3][3] = { {  0,  0,  0 }, {  0,  1,  0 }, {  0,  0,  0 } };
 #define IMGPROC_KERNEL_IDENTITY_SCALE (16384)
