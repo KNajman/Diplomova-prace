@@ -48,7 +48,10 @@ constexpr int HSV_PRODUCT_BITS = 2 * hlsv::PIXEL_BITS;  ///< součin dvou 8bitov
 /**
  * Volba implementace násobení HSV -> RGB (obdoba generiku G_USE_DSP ve VHDL hsv2rgb_core):
  *   0 (výchozí) - rozhodne HLS / syntéza (malá násobení 8 x 8 b skončí v LUT),
- *   1           - BIND_OP impl=dsp vynutí všech pět násobení do DSP (hls_config_hsv2rgb_dsp.cfg).
+ *   1           - BIND_OP impl=dsp vynutí všech pět násobení do DSP (hls_config_hsv2rgb_dsp.cfg),
+ *   2           - navíc latency=3: HLS smí použít vnitřní registry DSP48E2 (A/B, M, P), jako je využije
+ *                 VHDL s ruční pipeline (hls_config_hsv2rgb_dsp_lat.cfg). Bez latence HLS nechá DSP
+ *                 kombinační a perioda se zhorší (vysledky.md sekce 13).
  * Volba přes makro, ne argument funkce: implementace je vlastnost hardwaru, ne registr za běhu.
  */
 #ifndef HSV_MUL_IMPL_DSP
@@ -153,18 +156,25 @@ hsv_pixel_t hsv_to_rgb_pixel(const hsv_pixel_t& hsv)
     const product_t p_product = value * inv_saturation;
     const product_t sat_fraction_product = saturation * fraction;
     const product_t sat_inv_fraction_product = saturation * inv_fraction;
-#if HSV_MUL_IMPL_DSP
+#if HSV_MUL_IMPL_DSP == 1
 #pragma HLS BIND_OP variable=p_product op=mul impl=dsp
 #pragma HLS BIND_OP variable=sat_fraction_product op=mul impl=dsp
 #pragma HLS BIND_OP variable=sat_inv_fraction_product op=mul impl=dsp
+#elif HSV_MUL_IMPL_DSP == 2
+#pragma HLS BIND_OP variable=p_product op=mul impl=dsp latency=3
+#pragma HLS BIND_OP variable=sat_fraction_product op=mul impl=dsp latency=3
+#pragma HLS BIND_OP variable=sat_inv_fraction_product op=mul impl=dsp latency=3
 #endif
     const hlsv::pixel_t q_factor = hlsv::pixel_t(255) - div255(sat_fraction_product);
     const hlsv::pixel_t t_factor = hlsv::pixel_t(255) - div255(sat_inv_fraction_product);
     const product_t q_product = value * q_factor;
     const product_t t_product = value * t_factor;
-#if HSV_MUL_IMPL_DSP
+#if HSV_MUL_IMPL_DSP == 1
 #pragma HLS BIND_OP variable=q_product op=mul impl=dsp
 #pragma HLS BIND_OP variable=t_product op=mul impl=dsp
+#elif HSV_MUL_IMPL_DSP == 2
+#pragma HLS BIND_OP variable=q_product op=mul impl=dsp latency=3
+#pragma HLS BIND_OP variable=t_product op=mul impl=dsp latency=3
 #endif
     const hlsv::pixel_t p_level = div255(p_product);
     const hlsv::pixel_t q_level = div255(q_product);

@@ -1,0 +1,29 @@
+# Všechny konfigurace VHDL v tabulkách DP (vysledky.md); řádek = argumenty ooc_impl.tcl
+csc_axil G_CH_IN=1 G_CH_OUT=3
+csc_axil G_CH_IN=3 G_CH_OUT=1
+csc_axil G_CH_IN=3 G_CH_OUT=3
+csc_core G_CH_IN=3 G_CH_OUT=3
+filter2d_axil G_K=3
+filter2d_axil G_K=3 G_USE_DSP=true
+filter2d_axil G_K=5 G_USE_DSP=true
+filter2d_axil G_K=7 G_USE_DSP=true
+filter2d_core G_K=3
+filter2d_core G_K=3 G_USE_DSP=true
+filter2d_core G_K=5
+filter2d_core G_K=5 G_USE_DSP=true
+filter2d_core G_K=7
+filter2d_core G_K=7 G_USE_DSP=true
+histogram_axil G_USE_BRAM=false
+histogram_axil G_USE_BRAM=true
+histogram_core G_USE_BRAM=false
+histogram_core G_USE_BRAM=true
+hsv2rgb_core
+hsv2rgb_core G_USE_DSP=true
+hsv_axil G_RGB_TO_HSV=false
+hsv_axil G_RGB_TO_HSV=false G_USE_DSP=true
+hsv_axil G_RGB_TO_HSV=true
+median_axil
+median_core
+rgb2hsv_core
+threshold_axil
+threshold_core

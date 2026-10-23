@@ -1,0 +1,14 @@
+# Po úklidu lintu Sigasi (d596cef): OOC všech VHDL konfigurací znovu (RTL se měnil v axil_regbank, skid bufferu,
+# window_gen, csc_axil, histogram_core, hsv_axil, threshold_axil) + HLS HSV->RGB s DSP a latencí 3.
+# Regrese 15 TB v xsim prošla lokálně (Karel); OOC běží 4 paralelně (bez xsim, oddělené adresáře build/ooc/<label>).
+# Původní CSV se před přepsáním uloží do ~/logs/vhdl_results_pre_lint.csv (srovnání před/po).
+# @stop_on_error
+cp ~/logs/vhdl_results.csv ~/logs/vhdl_results_pre_lint.csv
+cd DP/vhdl/scripts && grep -v '^#' ooc_all.txt | xargs -P 4 -L 1 sh -c 'vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs "$@" > ../build/ooc_$(echo "$@" | tr " =" "__").log 2>&1 || { echo "OOC SELHAL: $@"; exit 255; }' ooc
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg csim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg syn && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg impl
+cd DP/hls/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/hsv_hsv2rgb_dsp_lat hls_hsv2rgb_dsp_lat hls_hsv2rgb
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc ~/logs/hls_ooc_results.csv
