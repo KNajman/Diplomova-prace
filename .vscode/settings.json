@@ -1,4 +1,19 @@
 {
+    "[vhdl]": {
+        "editor.formatOnSave": true
+    },
+    "files.watcherExclude": {
+        "**/DP/Vivado/**": true,
+        "**/DP/Vitis/**": true,
+        "**/DP/vhdl/build/**": true,
+        "**/runs/**": true
+    },
+    "search.exclude": {
+        "**/DP/Vivado": true,
+        "**/DP/Vitis": true,
+        "**/DP/vhdl/build": true,
+        "**/runs": true
+    },
     "cmake.sourceDirectory": "${workspaceFolder}/DP/model",
     "cmake.buildDirectory": "${workspaceFolder}/DP/model/build",
     "cmake.generator": "Ninja",
