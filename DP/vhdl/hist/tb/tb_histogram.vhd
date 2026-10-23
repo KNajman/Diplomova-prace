@@ -17,7 +17,7 @@ use std.textio.all;
 use work.video_pkg.all;
 
 entity tb_histogram is
-    generic (
+    generic(
         G_NAME      : string   := "gray_64x48";
         G_WIDTH     : positive := 64;
         G_HEIGHT    : positive := 48;
@@ -30,14 +30,14 @@ entity tb_histogram is
 end entity;
 
 architecture sim of tb_histogram is
-    constant C_PERIOD : time := 5 ns;
+    constant C_PERIOD : time    := 5 ns;
     constant C_BINS   : natural := 2 ** C_PIX_W;
-    type t_hist is array (0 to C_BINS - 1) of std_logic_vector(31 downto 0);
+    type     t_hist   is array (0 to C_BINS - 1) of std_logic_vector(31 downto 0);
 
     impure function read_golden(file_name : string) return t_hist is
-        file golden_file : text;
-        variable text_line : line;
-        variable result    : t_hist;
+        file     golden_file : text;
+        variable text_line   : line;
+        variable result      : t_hist;
     begin
         file_open(golden_file, file_name, read_mode);
         for bin in 0 to C_BINS - 1 loop
@@ -50,12 +50,16 @@ architecture sim of tb_histogram is
 
     function bram_name return string is
     begin
-        if G_USE_BRAM then return "bram"; end if;
+        if G_USE_BRAM then
+            return "bram";
+        end if;
         return "citace";
     end function;
     function pass_fail(error_count : natural) return string is
     begin
-        if error_count = 0 then return "PASS"; end if;
+        if error_count = 0 then
+            return "PASS";
+        end if;
         return "FAIL";
     end function;
 
@@ -64,49 +68,49 @@ architecture sim of tb_histogram is
     signal aclk    : std_logic := '0';
     signal aresetn : std_logic := '0';
 
-    signal s_data, m_data : std_logic_vector(C_PIX_W - 1 downto 0);
-    signal s_user, s_last, s_valid, s_ready, source_done : std_logic;
-    signal m_user, m_last, m_valid, m_ready : std_logic;
+    signal s_data, m_data                    : std_logic_vector(C_PIX_W - 1 downto 0);
+    signal s_user, s_last, s_valid, s_ready  : std_logic;
+    signal m_user, m_last, m_valid, m_ready  : std_logic;
     signal sink_valid, sink_ready, sink_done : std_logic;
-    signal error_count, cycle_count : natural;
+    signal error_count, cycle_count          : natural;
 
-    signal status        : std_logic_vector(1 downto 0);
-    signal frame_done    : std_logic;
+    signal status              : std_logic_vector(1 downto 0);
+    signal frame_done          : std_logic;
     signal result_write_enable : std_logic;
     signal result_write_addr   : unsigned(C_PIX_W - 1 downto 0);
     signal result_write_data   : std_logic_vector(31 downto 0);
 
-    signal seen_sof        : boolean := false;
-    signal dropped_pixels  : natural := 0;
-    signal hist_errors     : natural := 0;
-    signal frames_checked  : natural := 0;
-    signal status_errors   : natural := 0;
+    signal seen_sof       : boolean := false;
+    signal dropped_pixels : natural := 0;
+    signal hist_errors    : natural := 0;
+    signal frames_checked : natural := 0;
+    signal status_errors  : natural := 0;
 begin
     aclk    <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;
 
     source : entity work.axis_file_source
-        generic map (G_FILE => "data/in_" & G_NAME & ".hex", G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT,
-                     G_FRAMES => G_FRAMES, G_DATA_W => C_PIX_W, G_VALID_PCT => G_VALID_PCT,
-                     G_GARBAGE => G_GARBAGE, G_SEED => 61)
-        port map (aclk => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
-                  m_tvalid => s_valid, m_tready => s_ready, done => source_done);
+        generic map(G_FILE      => "data/in_" & G_NAME & ".hex", G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT,
+                    G_FRAMES    => G_FRAMES, G_DATA_W => C_PIX_W, G_VALID_PCT => G_VALID_PCT,
+                    G_GARBAGE   => G_GARBAGE, G_SEED => 61)
+        port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
+                 m_tvalid => s_valid, m_tready => s_ready, done => open);
 
     dut : entity work.histogram_core
-        generic map (G_USE_BRAM => G_USE_BRAM)
-        port map (aclk => aclk, aresetn => aresetn, run => '1',
-                  height => to_unsigned(G_HEIGHT, C_DIM_W), status => status, frame_done => frame_done,
-                  result_write_enable => result_write_enable, result_write_addr => result_write_addr,
-                  result_write_data => result_write_data,
-                  s_axis_tdata => s_data, s_axis_tuser => s_user, s_axis_tlast => s_last,
-                  s_axis_tvalid => s_valid, s_axis_tready => s_ready,
-                  m_axis_tdata => m_data, m_axis_tuser => m_user, m_axis_tlast => m_last,
-                  m_axis_tvalid => m_valid, m_axis_tready => m_ready);
+        generic map(G_USE_BRAM => G_USE_BRAM)
+        port map(aclk                => aclk, aresetn => aresetn, run => '1',
+                 height              => to_unsigned(G_HEIGHT, C_DIM_W), status => status, frame_done => frame_done,
+                 result_write_enable => result_write_enable, result_write_addr => result_write_addr,
+                 result_write_data   => result_write_data,
+                 s_axis_tdata        => s_data, s_axis_tuser => s_user, s_axis_tlast => s_last,
+                 s_axis_tvalid       => s_valid, s_axis_tready => s_ready,
+                 m_axis_tdata        => m_data, m_axis_tuser => m_user, m_axis_tlast => m_last,
+                 m_axis_tvalid       => m_valid, m_axis_tready => m_ready);
 
     -- pixely před prvním TUSER (garbage) projdou jádrem; přijímač je zahodí a spočítá
     sink_valid <= m_valid when (seen_sof or m_user = '1') else '0';
     m_ready    <= sink_ready when (seen_sof or m_user = '1') else '1';
-    garbage_drop : process (aclk)
+    garbage_drop : process(aclk)
     begin
         if rising_edge(aclk) then
             if m_valid = '1' and m_ready = '1' then
@@ -120,17 +124,17 @@ begin
     end process;
 
     sink : entity work.axis_file_sink
-        generic map (G_FILE => "data/in_" & G_NAME & ".hex", G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT,
-                     G_FRAMES => G_FRAMES, G_DATA_W => C_PIX_W, G_READY_PCT => G_READY_PCT, G_SEED => 63,
-                     G_NAME => "histogram bypass")
-        port map (aclk => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user, s_tlast => m_last,
-                  s_tvalid => sink_valid, s_tready => sink_ready, errors => error_count, cycles => cycle_count,
-                  done => sink_done);
+        generic map(G_FILE      => "data/in_" & G_NAME & ".hex", G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT,
+                    G_FRAMES    => G_FRAMES, G_DATA_W => C_PIX_W, G_READY_PCT => G_READY_PCT, G_SEED => 63,
+                    G_NAME      => "histogram bypass")
+        port map(aclk     => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user, s_tlast => m_last,
+                 s_tvalid => sink_valid, s_tready => sink_ready, errors => error_count, cycles => cycle_count,
+                 done     => sink_done);
 
     -- výsledková paměť zachycená ze zápisového portu, kontrola po každém frame_done
-    hist_check : process (aclk)
-        variable result     : t_hist := (others => (others => 'U'));
-        variable errors     : natural := 0;
+    hist_check : process(aclk)
+        variable result : t_hist  := (others => (others => 'U'));
+        variable errors : natural := 0;
     begin
         if rising_edge(aclk) then
             if result_write_enable = '1' then
@@ -140,14 +144,12 @@ begin
                 for bin in 0 to C_BINS - 1 loop
                     if result(bin) /= C_GOLDEN(bin) then
                         if errors < 10 then
-                            report "histogram: snimek " & integer'image(frames_checked) & " kos "
-                                & integer'image(bin) & " = " & to_hstring(result(bin)) & " (golden "
-                                & to_hstring(C_GOLDEN(bin)) & ")" severity error;
+                            report "histogram: snimek " & integer'image(frames_checked) & " kos " & integer'image(bin) & " = " & to_hstring(result(bin)) & " (golden " & to_hstring(C_GOLDEN(bin)) & ")" severity error;
                         end if;
                         errors := errors + 1;
                     end if;
                 end loop;
-                result := (others => (others => 'U'));
+                result         := (others => (others => 'U'));
                 frames_checked <= frames_checked + 1;
             end if;
             hist_errors <= errors;
@@ -167,11 +169,10 @@ begin
                 expected_status(C_ST_SKIPPED) := '1';
             end if;
             if status /= expected_status then
-                report "histogram: snimek " & integer'image(frame) & " status " & to_string(status)
-                    & " (ocekavano " & to_string(expected_status) & ")" severity error;
+                report "histogram: snimek " & integer'image(frame) & " status " & to_string(status) & " (ocekavano " & to_string(expected_status) & ")" severity error;
                 errors := errors + 1;
             end if;
-            status_errors <= errors;
+            status_errors   <= errors;
         end loop;
         wait;
     end process;
@@ -192,13 +193,10 @@ begin
             total_errors := total_errors + 1;
         end if;
         if dropped_pixels /= G_GARBAGE then
-            report "histogram: pred SOF proslo " & integer'image(dropped_pixels) & " px (ocekavano "
-                & integer'image(G_GARBAGE) & ")" severity error;
+            report "histogram: pred SOF proslo " & integer'image(dropped_pixels) & " px (ocekavano " & integer'image(G_GARBAGE) & ")" severity error;
             total_errors := total_errors + 1;
         end if;
-        report "VYSLEDEK histogram " & bram_name & " " & G_NAME & " garbage " & integer'image(G_GARBAGE) & ": "
-            & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb bypass, "
-            & integer'image(hist_errors) & " chyb histogramu, " & integer'image(cycle_count) & " taktu)";
+        report "VYSLEDEK histogram " & bram_name & " " & G_NAME & " garbage " & integer'image(G_GARBAGE) & ": " & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb bypass, " & integer'image(hist_errors) & " chyb histogramu, " & integer'image(cycle_count) & " taktu)";
         assert total_errors = 0 severity failure;
         std.env.stop;
         wait;

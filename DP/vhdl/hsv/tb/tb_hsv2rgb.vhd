@@ -81,10 +81,10 @@ architecture sim of tb_hsv2rgb is
     signal aclk    : std_logic := '0';
     signal aresetn : std_logic := '0';
 
-    signal s_data, m_data                                : std_logic_vector(C_RGB_W - 1 downto 0);
-    signal s_user, s_last, s_valid, s_ready, source_done : std_logic;
-    signal m_user, m_last, m_valid, m_ready, sink_done   : std_logic;
-    signal error_count, cycle_count                      : natural;
+    signal s_data, m_data                              : std_logic_vector(C_RGB_W - 1 downto 0);
+    signal s_user, s_last, s_valid, s_ready            : std_logic;
+    signal m_user, m_last, m_valid, m_ready, sink_done : std_logic;
+    signal error_count, cycle_count                    : natural;
 begin
     aclk    <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;
@@ -93,7 +93,7 @@ begin
         generic map(G_FILE      => input_file(G_TEST), G_WIDTH => C_WIDTH, G_HEIGHT => C_HEIGHT, G_FRAMES => C_FRAMES,
                     G_DATA_W    => C_RGB_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 7)
         port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
-                 m_tvalid => s_valid, m_tready => s_ready, done => source_done);
+                 m_tvalid => s_valid, m_tready => s_ready, done => open);
 
     dut : entity work.hsv2rgb_core
         port map(aclk          => aclk, aresetn => aresetn,

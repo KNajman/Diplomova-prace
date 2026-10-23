@@ -11,6 +11,10 @@
 --  * Princip: výstupní registr + jedno záložní místo (skid). Když výstup stojí a vstup
 --    ještě v tomtéž taktu pošle data (ready bylo registrované = 1), uloží se do skid.
 --    s_tready = 0 právě tehdy, když je skid obsazený.
+--  * Poznámka k volbě: resetují se jen řídicí registry (out_valid, skid_valid). Datové registry
+--    out_data a skid_data se neresetují - jejich platnost určují příznaky valid, takže po resetu
+--    nemá hodnota dat význam a bez resetu je menší fanout resetu i lepší časování (Sigasi to
+--    hlásí jako kód 238, záměr).
 --  * Data jsou obecný vektor (G_DATA_W), jádra do něj balí TDATA + TUSER + TLAST.
 --------------------------------------------------------------------------------
 library ieee;

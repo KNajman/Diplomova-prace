@@ -168,6 +168,8 @@ begin
                         end if;
                     end if;
                 when STATE_COUNT =>
+                    -- Poznámka: přechod do STATE_READOUT je za case přes proměnnou frame_end (společný pro
+                    -- WAIT_SOF i COUNT), Sigasi proto hlásí "dead state" (kód 71) - falešné varování.
                     if accept = '1' then
                         counting := true;
                         if in_user = '1' then
@@ -264,8 +266,6 @@ begin
         signal c_write       : std_logic := '0';
         -- takt D (zapsáno, BRAM to při současném čtení ještě nevrací)
         signal d_count_value : t_count := (others => '0');
-        signal d_bin         : t_pix := (others => '0');
-        signal d_write       : std_logic := '0';
     begin
         process (aclk)
             variable base_count : t_count;
@@ -304,13 +304,10 @@ begin
                     bin_memory(to_integer(c_bin)) <= c_count_value;
                 end if;
                 d_count_value <= c_count_value;
-                d_bin         <= c_bin;
-                d_write       <= c_write;
 
                 if aresetn = '0' then
                     b_write <= '0';
                     c_write <= '0';
-                    d_write <= '0';
                     b_count <= '0';
                     b_readout <= '0';
                     result_enable_reg <= '0';

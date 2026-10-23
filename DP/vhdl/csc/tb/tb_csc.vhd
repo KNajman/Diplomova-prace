@@ -101,7 +101,7 @@ architecture sim of tb_csc is
 
     signal s_data                                     : std_logic_vector(C_CI * C_PIX_W - 1 downto 0);
     signal m_data                                     : std_logic_vector(C_CO * C_PIX_W - 1 downto 0);
-    signal s_user, s_last, s_valid, s_ready, src_done : std_logic;
+    signal s_user, s_last, s_valid, s_ready           : std_logic;
     signal m_user, m_last, m_valid, m_ready, snk_done : std_logic;
     signal errors, cycles                             : natural;
 begin
@@ -119,7 +119,7 @@ begin
         generic map(G_FILE      => in_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
                     G_DATA_W    => C_CI * C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 3 + G_PRESET)
         port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
-                 m_tvalid => s_valid, m_tready => s_ready, done => src_done);
+                 m_tvalid => s_valid, m_tready => s_ready, done => open);
 
     dut : entity work.csc_core
         generic map(G_CH_IN => C_CI, G_CH_OUT => C_CO)

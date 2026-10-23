@@ -64,7 +64,6 @@ architecture rtl of threshold_axil is
     constant C_RO_MASK    : std_logic_vector(0 to C_NUM_REGS - 1) := (others => '0');
 
     signal regs : t_reg_array(0 to C_NUM_REGS - 1);
-    signal ro_in : t_reg_array(0 to C_NUM_REGS - 1) := (others => (others => '0'));
     signal run  : std_logic;
     signal core_s_tvalid, core_s_tready : std_logic;
 begin
@@ -85,7 +84,7 @@ begin
                   s_axi_arready => s_axi_control_arready, s_axi_rdata => s_axi_control_rdata,
                   s_axi_rresp => s_axi_control_rresp, s_axi_rvalid => s_axi_control_rvalid,
                   s_axi_rready => s_axi_control_rready,
-                  regs => regs, ro_in => ro_in, run => run, done_in => '0', interrupt => interrupt);
+                  regs => regs, ro_in => (others => (others => '0')), run => run, done_in => '0', interrupt => interrupt);
 
     core : entity work.threshold_core
         port map (aclk => aclk, aresetn => aresetn,

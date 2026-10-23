@@ -107,7 +107,7 @@ architecture sim of tb_csc_axil is
     signal s_data                             : std_logic_vector(C_CI * C_PIX_W - 1 downto 0);
     signal m_data                             : std_logic_vector(C_CO * C_PIX_W - 1 downto 0);
     signal s_user, m_user                     : std_logic_vector(0 downto 0);
-    signal s_last, s_valid, s_ready, src_done : std_logic;
+    signal s_last, s_valid, s_ready           : std_logic;
     signal m_last, m_valid, m_ready, snk_done : std_logic;
     signal errors, cycles                     : natural;
     signal started                            : boolean := false;
@@ -134,6 +134,10 @@ begin
             end if;
             wvalid  <= '0';
             wait until rising_edge(aclk) and bvalid = '1';
+            if bresp /= "00" then
+                report "AXI-Lite: BRESP /= OKAY" severity error;
+                n_err := n_err + 1;
+            end if;
             bready  <= '0';
         end procedure;
         procedure rd(addr : natural; result : out std_logic_vector(31 downto 0)) is
@@ -144,6 +148,10 @@ begin
             wait until rising_edge(aclk) and arready = '1';
             arvalid <= '0';
             wait until rising_edge(aclk) and rvalid = '1';
+            if rresp /= "00" then
+                report "AXI-Lite: RRESP /= OKAY" severity error;
+                n_err := n_err + 1;
+            end if;
             result  := rdata;
             rready  <= '0';
         end procedure;
@@ -212,7 +220,7 @@ begin
         generic map(G_FILE      => in_file(G_PRESET), G_WIDTH => G_WIDTH, G_HEIGHT => G_HEIGHT, G_FRAMES => G_FRAMES,
                     G_DATA_W    => C_CI * C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 5 + G_PRESET)
         port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user(0), m_tlast => s_last,
-                 m_tvalid => s_valid, m_tready => s_ready, done => src_done);
+                 m_tvalid => s_valid, m_tready => s_ready, done => open);
 
     dut : entity work.csc_axil
         generic map(G_CH_IN => C_CI, G_CH_OUT => C_CO)
@@ -244,6 +252,11 @@ begin
             report "Jadro prijalo " & integer'image(early) & " px pred ap_start" severity error;
         end if;
         total := errors + cfg_err + early;
+        if irq = '1' then
+            report "Preruseni bez zdroje (done_in = 0)" severity error;
+            total := total + 1;
+        end if;
+        report "Propustnost: " & integer'image(cycles + 1) & " taktu";
         report "VYSLEDEK csc_axil preset " & integer'image(G_PRESET) & ": " & pass_fail(total) & " (" & integer'image(errors) & " chyb dat, " & integer'image(cfg_err) & " chyb AXI-Lite, " & integer'image(early) & " px pred startem)";
         assert total = 0 severity failure;
         std.env.stop;
