@@ -10,6 +10,8 @@
 --    jeden nevyužitý registr šířky 1 b na 0x10 (HLS tam vrací 0, VHDL také - bit se nikam nepoužije
 --    a syntéza ho odstraní).
 --  * G_RGB_TO_HSV = true -> RGB -> HSV, false -> HSV -> RGB (jedno IP, dvě konfigurace).
+--  * G_USE_DSP se předává hsv2rgb_core (násobení HSV -> RGB vždy v DSP); u RGB -> HSV nemá vliv,
+--    obě násobení tabulkou (17 a 20 b) dává syntéza do DSP sama. Srovnání false / true viz vysledky.md.
 --  * Jádro přijímá data jen při run = ap_start | auto_restart (ovladač zapíše 0x81 na 0x00).
 --------------------------------------------------------------------------------
 library ieee;
@@ -20,7 +22,8 @@ use work.axil_regbank_pkg.all;
 
 entity hsv_axil is
     generic(
-        G_RGB_TO_HSV : boolean := true
+        G_RGB_TO_HSV : boolean := true;
+        G_USE_DSP    : boolean := false    -- jen HSV -> RGB: true = násobení v DSP (use_dsp = "yes")
     );
     port(
         aclk                  : in  std_logic;
@@ -98,6 +101,7 @@ begin
 
     gen_hsv_to_rgb : if not G_RGB_TO_HSV generate
         core : entity work.hsv2rgb_core
+            generic map(G_USE_DSP => G_USE_DSP)
             port map(aclk          => aclk, aresetn => aresetn,
                      s_axis_tdata  => s_axis_video_tdata, s_axis_tuser => s_axis_video_tuser(0),
                      s_axis_tlast  => s_axis_video_tlast, s_axis_tvalid => core_s_tvalid, s_axis_tready => core_s_tready,
