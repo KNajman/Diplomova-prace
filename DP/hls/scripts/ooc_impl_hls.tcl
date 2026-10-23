@@ -1,6 +1,6 @@
 # =============================================================================
 #  OOC implementace RTL vygenerovaného Vitis HLS stejným postupem jako VHDL (ooc_impl.tcl) - férové Fmax.
-#  Použití:  vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs <build_dir_jadra> [label]
+#  Použití:  vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs <build_dir_jadra> [label] [top]
 #            např. ../build/median  ->  RTL z ../build/median/hls/impl/ip/hdl/verilog
 #  Výstup:   DP/hls/build/ooc/<label>/{utilization,timing,power}.rpt  (sběr: vhdl/scripts/collect_vhdl.py)
 #
@@ -19,9 +19,18 @@ set sources [glob -nocomplain [file join $rtl_dir *.v]]
 if {[llength $sources] == 0} {
     error "Chybi RTL v $rtl_dir (spust HLS impl/package)"
 }
-# top = modul se stejným jménem jako IP (component.xml), např. hls_median
+# top: 3. argument, jinak spirit:modelName z component.xml (= syn.top), jinak jméno IP.
+# Poznámka: jméno IP (package.ip.name) se může od top funkce lišit - varianta hls_hsv2rgb_dsp má top hls_hsv2rgb
+# (22. 10. skript bral jméno IP a syntéza skončila "module 'hls_hsv2rgb_dsp' not found").
 set component [read [open [file join $core_dir hls impl ip component.xml]]]
-regexp {<spirit:name>([^<]+)</spirit:name>} $component -> top
+if {[llength $argv] > 2} {
+    set top [lindex $argv 2]
+} elseif {![regexp {<spirit:modelName>([^<]+)</spirit:modelName>} $component -> top]} {
+    regexp {<spirit:name>([^<]+)</spirit:name>} $component -> top
+}
+if {![file exists [file join $rtl_dir $top.v]]} {
+    error "Top modul $top nema soubor $top.v v $rtl_dir - zadej top 3. argumentem"
+}
 # $readmemh v RTL od HLS používá relativní cesty k .dat -> překládat z adresáře RTL
 cd $rtl_dir
 read_verilog $sources
