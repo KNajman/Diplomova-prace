@@ -52,16 +52,15 @@ architecture sim of tb_median_axil is
     signal wdata, rdata                                  : std_logic_vector(31 downto 0) := (others => '0');
     signal bresp, rresp                                  : std_logic_vector(1 downto 0);
 
-    signal s_data, m_data                        : std_logic_vector(C_PIX_W - 1 downto 0);
-    signal s_user, m_user                        : std_logic_vector(0 downto 0);
-    signal s_last, s_valid, s_ready, source_done : std_logic;
-    signal m_last, m_valid, m_ready, sink_done   : std_logic;
-    signal error_count, cycle_count              : natural;
-    signal started                               : boolean := false;
-    signal control_errors                        : natural := 0;
-    signal early_pixels                          : natural := 0;
-    signal irq_seen                              : boolean := false;
-    signal cpu_done                              : boolean := false;
+    signal s_data, m_data                      : std_logic_vector(C_PIX_W - 1 downto 0);
+    signal s_user, m_user                      : std_logic_vector(0 downto 0);
+    signal s_last, s_valid, s_ready            : std_logic;
+    signal m_last, m_valid, m_ready, sink_done : std_logic;
+    signal error_count, cycle_count            : natural;
+    signal started                             : boolean := false;
+    signal control_errors                      : natural := 0;
+    signal early_pixels                        : natural := 0;
+    signal cpu_done                            : boolean := false;
 begin
     aclk    <= not aclk after C_PERIOD / 2;
     aresetn <= '1' after 4 * C_PERIOD;
@@ -83,6 +82,10 @@ begin
             end if;
             wvalid  <= '0';
             wait until rising_edge(aclk) and bvalid = '1';
+            if bresp /= "00" then
+                report "AXI-Lite: BRESP /= OKAY" severity error;
+                error_total := error_total + 1;
+            end if;
             bready  <= '0';
         end procedure;
         procedure axil_read(addr : natural; result : out std_logic_vector(31 downto 0)) is
@@ -93,6 +96,10 @@ begin
             wait until rising_edge(aclk) and arready = '1';
             arvalid <= '0';
             wait until rising_edge(aclk) and rvalid = '1';
+            if rresp /= "00" then
+                report "AXI-Lite: RRESP /= OKAY" severity error;
+                error_total := error_total + 1;
+            end if;
             result  := rdata;
             rready  <= '0';
         end procedure;
@@ -156,7 +163,7 @@ begin
         generic map(G_FILE      => "data/in_gray_64x48.hex", G_WIDTH => C_WIDTH, G_HEIGHT => C_HEIGHT,
                     G_FRAMES    => G_FRAMES, G_DATA_W => C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 51)
         port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user(0), m_tlast => s_last,
-                 m_tvalid => s_valid, m_tready => s_ready, done => source_done);
+                 m_tvalid => s_valid, m_tready => s_ready, done => open);
 
     dut : entity work.median_axil
         port map(aclk                  => aclk, aresetn => aresetn,
@@ -194,6 +201,7 @@ begin
         if not cpu_done then
             total_errors := total_errors + 1;
         end if;
+        report "Propustnost: " & integer'image(cycle_count + 1) & " taktu";
         report "VYSLEDEK median_axil " & border_name & ": " & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb dat, " & integer'image(control_errors) & " chyb AXI-Lite, " & integer'image(early_pixels) & " px pred startem)";
         assert total_errors = 0 severity failure;
         std.env.stop;

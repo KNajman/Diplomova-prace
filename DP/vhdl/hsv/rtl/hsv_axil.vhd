@@ -64,8 +64,7 @@ end entity;
 architecture rtl of hsv_axil is
     constant C_UNUSED_REG_W : t_width_array(0 to 0) := (0 => 1);
 
-    signal regs          : t_reg_array(0 to 0);
-    signal run           : std_logic;
+    signal run          : std_logic;
     signal core_s_tvalid : std_logic;
     signal core_s_tready : std_logic;
 begin
@@ -82,7 +81,7 @@ begin
                  s_axi_arready => s_axi_control_arready, s_axi_rdata => s_axi_control_rdata,
                  s_axi_rresp   => s_axi_control_rresp, s_axi_rvalid => s_axi_control_rvalid,
                  s_axi_rready  => s_axi_control_rready,
-                 regs          => regs, ro_in => (others => (others => '0')), run => run, done_in => '0',
+                 regs          => open, ro_in => (others => (others => '0')), run => run, done_in => '0',
                  interrupt     => interrupt);
 
     -- Bez spuštění jádro nepřijímá

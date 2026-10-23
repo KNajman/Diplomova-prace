@@ -201,6 +201,12 @@ begin
         variable new_column : t_pix_array(0 to G_K - 1);
     begin
         if rising_edge(aclk) then
+            -- Poznámka k volbě: resetují se jen řídicí registry (stav, pozice, příznaky, status). Rozměry
+            -- snímku, x_end/y_end, position_flags a datové registry se neresetují: ve stavu WAIT_SOF se
+            -- přebírají v každém taktu, a první start_frame po resetu nastane až po prázdném vstupním
+            -- skid bufferu (out_valid = 0 po resetu), takže se nikdy nepoužije stará hodnota.
+            -- Ověřuje tb_filter2d_reset (reset uprostřed snímku, změněné rozměry, run = 1). Sigasi to
+            -- hlásí jako kód 238, záměr.
             if aresetn = '0' then
                 state           <= STATE_WAIT_SOF;
                 pos_x           <= (others => '0');

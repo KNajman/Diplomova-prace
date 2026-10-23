@@ -142,8 +142,8 @@ architecture rtl of axil_regbank is
 
     -- Dekódování porovnáním s konstantami (žádné odčítání ani dělení adresy)
     function decode_addr(addr : std_logic_vector) return t_addr_select is
-        variable addr_value : unsigned(addr'length - 1 downto 0) := unsigned(addr);
-        variable sel        : t_addr_select;
+        constant addr_value : unsigned(addr'length - 1 downto 0) := unsigned(addr);
+        variable sel       : t_addr_select;
     begin
         sel.ap_ctrl := to_sl(addr_value = C_ADDR_AP_CTRL);
         sel.gie     := to_sl(addr_value = C_ADDR_GIE);
