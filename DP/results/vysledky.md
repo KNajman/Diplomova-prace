@@ -421,3 +421,27 @@ mrtvé registry `d_bin`/`d_write` v `histogram_core`, nepoužitý `regs` v `hsv_
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv` (po), `~/logs/vhdl_results_pre_lint.csv` (před), log `~/logs/vhdl_ooc_lint_hls_lat.log`.
 
+## 15. Zpětný převod YCbCr → RGB na jádrech CSC (23. 10. 2026)
+
+Konfigurace: nové předvolby 6–8 (`ycbcr_to_rgb_bt601_full`, `_bt601_studio`, `_bt709_studio`), matice = inverze dopředné
+matice téhož standardu (Kr, Kb), **HW beze změny** – celočíselný offset 10 b (rozhodnutí Karla). Commit c13eb9b.
+
+| ověření | výsledek |
+|---|---|
+| model proti `cv::cvtColor(COLOR_YCrCb2RGB)`, BT.601 full, všech 2^24 vstupů | max. odchylka 1, liší se 25,5 % složek (12 829 468 z 50 331 648) |
+| návrat RGB → YCbCr → RGB, 2^24 barev (BT.601 full / 601 studio / 709 studio) | max. odchylka 2 u všech tří |
+| unit testy `test_imgproc` | 124/124 (černá a bílá přesně, šedá 128 ve studio BT.601 → 129) |
+| VHDL xsim `tb_csc` + `tb_csc_axil`, předvolby 0–8 | 18/18 PASS |
+| HLS C-sim (všechny předvolby a top funkce) + cosim `hls_csc_rgb` | PASS |
+
+**Poznatky**
+- Koeficienty inverze až 2,11 (BT.709 studio, Cb → B), offsety −289 až 136 – vejdou se do Q2.15 a 10 b, jádra ani mapa
+  registrů se nemění. Zpětný převod je jen jiná sada koeficientů pro stejné IP.
+- Příčina odchylky: konstantní člen inverze (např. −179,4 u R v BT.601) se zaokrouhlí na celé číslo; OpenCV navíc počítá
+  se zaokrouhlenými koeficienty 1,403 / 1,773. Odchylka je stejného řádu jako kvantizace na 8 bitů (1 úroveň z 256).
+  Bitovou shodu by dal offset s 15 zlomkovými bity (registr 26 b) – kompromis přesnost × velikost HW zvolen ve prospěch
+  jednotného jádra.
+- Pro DP: formulovat jako „HW aproximace s odchylkou nejvýš 1 úrovně“, ne jako shodu s OpenCV.
+
+Zdroj: `make verify` (DP/model, lokálně), log `~/logs/csc_inverse.log`.
+
