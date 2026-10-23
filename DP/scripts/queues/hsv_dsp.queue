@@ -1,0 +1,15 @@
+# Srovnání „jeden parametr“: násobení HSV -> RGB v LUT (výchozí) proti vynucení do DSP,
+# VHDL generikem G_USE_DSP (hsv_axil -> hsv2rgb_core) a HLS makrem HSV_MUL_IMPL_DSP (BIND_OP impl=dsp).
+# HLS výchozí varianta znovu po pojmenování součinů (kontrola, že se výsledek nezměnil).
+# @stop_on_error
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv_axil G_RGB_TO_HSV=false G_USE_DSP=true G_TEST=1
+cd DP/vhdl/scripts && bash run_xsim.sh tb_hsv_axil G_RGB_TO_HSV=false G_TEST=1
+cd DP/vhdl/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs hsv_axil G_RGB_TO_HSV=false G_USE_DSP=true
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc ~/logs/vhdl_results.csv
+cd DP/hls/scripts && TB_HSV_FULL=1 bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp.cfg csim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg syn && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp.cfg syn && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg impl && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp.cfg impl
+cd DP/hls/scripts && for core in hsv2rgb hsv2rgb_dsp; do vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/hsv_$core hls_$core || exit 1; done
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc ~/logs/hls_ooc_results.csv

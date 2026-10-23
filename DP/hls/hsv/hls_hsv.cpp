@@ -45,6 +45,16 @@ constexpr int HSV_SECTOR_RECIP_SHIFT = 16;      ///< zlomkové bity HSV_SECTOR_R
 constexpr int HSV_FRACT_INT_SHIFT = 3;          ///< f = zbytek * 8,5 = (zbytek << 3) + (zbytek >> 1)
 constexpr int HSV_PRODUCT_BITS = 2 * hlsv::PIXEL_BITS;  ///< součin dvou 8bitových složek (max 65 025)
 
+/**
+ * Volba implementace násobení HSV -> RGB (obdoba generiku G_USE_DSP ve VHDL hsv2rgb_core):
+ *   0 (výchozí) - rozhodne HLS / syntéza (malá násobení 8 x 8 b skončí v LUT),
+ *   1           - BIND_OP impl=dsp vynutí všech pět násobení do DSP (hls_config_hsv2rgb_dsp.cfg).
+ * Volba přes makro, ne argument funkce: implementace je vlastnost hardwaru, ne registr za běhu.
+ */
+#ifndef HSV_MUL_IMPL_DSP
+#define HSV_MUL_IMPL_DSP 0
+#endif
+
 using hsv_pixel_t = hlsv::Pixel<hlsv::RGB_CHANNELS>;
 using sdiv_t = ap_uint<HSV_SDIV_BITS>;
 using hdiv_t = ap_int<HSV_HDIV_BITS + 1>;       ///< kladná hodnota, znaménkový typ kvůli násobení
@@ -137,10 +147,28 @@ hsv_pixel_t hsv_to_rgb_pixel(const hsv_pixel_t& hsv)
     const hlsv::pixel_t remainder = hue - (sector * HSV_SECTOR_WIDTH);                // 0..29
     const hlsv::pixel_t fraction = (remainder << HSV_FRACT_INT_SHIFT) + (remainder >> 1);  // 0..246
 
+    // Pět násobení 8 x 8 b; pojmenované součiny kvůli BIND_OP (volba HSV_MUL_IMPL_DSP)
     const hlsv::pixel_t inv_saturation = hlsv::pixel_t(255) - saturation;
-    const hlsv::pixel_t p_level = div255(value * inv_saturation);
-    const hlsv::pixel_t q_level = div255(value * (hlsv::pixel_t(255) - div255(saturation * fraction)));
-    const hlsv::pixel_t t_level = div255(value * (hlsv::pixel_t(255) - div255(saturation * (hlsv::pixel_t(255) - fraction))));
+    const hlsv::pixel_t inv_fraction = hlsv::pixel_t(255) - fraction;
+    const product_t p_product = value * inv_saturation;
+    const product_t sat_fraction_product = saturation * fraction;
+    const product_t sat_inv_fraction_product = saturation * inv_fraction;
+#if HSV_MUL_IMPL_DSP
+#pragma HLS BIND_OP variable=p_product op=mul impl=dsp
+#pragma HLS BIND_OP variable=sat_fraction_product op=mul impl=dsp
+#pragma HLS BIND_OP variable=sat_inv_fraction_product op=mul impl=dsp
+#endif
+    const hlsv::pixel_t q_factor = hlsv::pixel_t(255) - div255(sat_fraction_product);
+    const hlsv::pixel_t t_factor = hlsv::pixel_t(255) - div255(sat_inv_fraction_product);
+    const product_t q_product = value * q_factor;
+    const product_t t_product = value * t_factor;
+#if HSV_MUL_IMPL_DSP
+#pragma HLS BIND_OP variable=q_product op=mul impl=dsp
+#pragma HLS BIND_OP variable=t_product op=mul impl=dsp
+#endif
+    const hlsv::pixel_t p_level = div255(p_product);
+    const hlsv::pixel_t q_level = div255(q_product);
+    const hlsv::pixel_t t_level = div255(t_product);
 
     hlsv::pixel_t red = value;
     hlsv::pixel_t green = value;

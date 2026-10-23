@@ -16,6 +16,7 @@ use work.video_pkg.all;
 entity tb_hsv_axil is
     generic(
         G_RGB_TO_HSV : boolean  := true;
+        G_USE_DSP    : boolean  := false;  -- předává se DUT (ověří, že konfigurace s DSP se elaboruje a počítá stejně)
         G_TEST       : natural  := 1;   -- 0 = 64x48, 1 = rampa 256x256
         G_FRAMES     : positive := 2;
         G_VALID_PCT  : natural  := 80;
@@ -172,7 +173,7 @@ begin
                  m_tvalid => s_valid, m_tready => s_ready, done => source_done);
 
     dut : entity work.hsv_axil
-        generic map(G_RGB_TO_HSV => G_RGB_TO_HSV)
+        generic map(G_RGB_TO_HSV => G_RGB_TO_HSV, G_USE_DSP => G_USE_DSP)
         port map(aclk                  => aclk, aresetn => aresetn,
                  s_axi_control_awaddr  => awaddr, s_axi_control_awvalid => awvalid, s_axi_control_awready => awready,
                  s_axi_control_wdata   => wdata, s_axi_control_wstrb => "1111", s_axi_control_wvalid => wvalid,
