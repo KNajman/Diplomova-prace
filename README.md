@@ -37,7 +37,7 @@ a v testovacím řetězci jsou zaměnitelné.
 | algoritmus | C | HLS | VHDL |
 | --- | :-: | :-: | :-: |
 | Lineární převod barev (matice 3×3: RGB → YCbCr, šedá, …) | ✔ | ✔ | ✔ |
-| RGB → HSV, HSV → RGB | ✔ | rozpracováno | ✔ |
+| RGB → HSV, HSV → RGB | ✔ | ✔ | ✔ |
 | Prahování (5 typů OpenCV) | ✔ | ✔ | ✔ |
 | 2D konvoluce K×K (průměr, Sobel, zostření, vlastní jádro; K = 3, 5, 7) | ✔ | ✔ | ✔ |
 | Mediánový filtr 3×3 | ✔ | ✔ | ✔ |
@@ -602,6 +602,70 @@ Druhá VHDL architektura (`G_USE_BRAM = false`) je přímá realizace „256 č�
 ale 35× víc logiky – názorná ukázka, že volba architektury rozhoduje víc než jazyk.
 
 ---
+
+## Ověření a měření
+
+### Tři úrovně ověření
+
+1. **Referenční model proti OpenCV** (`DP/model/lib_imgproc/test/verify_opencv.py`). Golden model v C je měřítkem pro
+   obě HW verze, proto se nejdřív ověřuje sám:
+   - bitově shodné s OpenCV: RGB → šedá a RGB → HSV na všech 2^24 barvách, prahování (5 typů × 6 prahů),
+     medián 3×3 s opakováním krajního pixelu, konvoluce identity, zostření a Sobel;
+   - jen informativně (OpenCV počítá v plovoucí řádové čárce, bitová shoda není možná): HSV → RGB, RGB → YCbCr
+     a konvoluce průměrem (zaokrouhlení 1/9);
+   - unit testy `test_imgproc.c` (aritmetika, převod barev, HSV, medián, filtry) bez OpenCV, běží i na ARM.
+2. **HW jádra proti referenčnímu modelu.** Vstupní a očekávané vektory generuje `imgproc_cli` z modelu (soubory HEX),
+   nic se neopisuje ručně.
+   - **HLS:** C-simulace ověří C++ kód jádra, kosimulace (C/RTL co-simulation) pustí stejný testbench nad RTL, které
+     z kódu vygeneroval Vitis HLS. Testbench vrací 0 jen při bitové shodě dat i `TUSER`/`TLAST`.
+   - **VHDL:** simulace v xsim (Vivado) a GHDL přes generický testbench `DP/vhdl/tb` (zdroj ze souboru → jádro →
+     příjemce s porovnáním). Zdroj vkládá náhodné mezery (`TVALID`), příjemce náhodně brzdí (`TREADY`, zpětné řízení
+     toku), aby se ověřilo, že se žádný pixel neztratí ani nezdvojí.
+   - **Obálky s AXI4-Lite** (`*_axil`) se testují stejně, jako je bude ovládat ovladač v C: před `ap_start` nesmí jádro
+     přijmout pixel, zápis a zpětné čtení registrů, spuštění `0x81` (start + auto-restart), přerušení a `ISR`, odpovědi
+     `BRESP`/`RRESP` = OKAY.
+3. **Deska KV260** (`DP/sw/harness_app`): měřicí aplikace pošle snímek přes VDMA každým jádrem a výsledek porovná
+   s referenčním modelem přeloženým pro ARM. Aplikace je přeložená, na desce zatím neproběhla.
+
+### Syntéza mimo kontext (OOC)
+
+**Co to je:** syntéza, rozmístění a propojení **jednoho jádra samostatně**, bez zbytku návrhu (VDMA, propojení AXI,
+procesor). Porty jádra se nepřipojují na piny a jediným omezením jsou hodiny s periodou 5 ns (200 MHz). Výsledkem
+jsou prostředky (LUT, FF, DSP, BRAM) a časování jen tohoto jádra.
+
+**Proč:** čísla z celého testovacího řetězce závisí na tom, co leží vedle. Například `hls_hsv2rgb` mělo samostatně
+časovou rezervu 1,0 ns, v plném řetězci se 14 jádry jen 0,10 ns a tvořilo jeho kritickou cestu (`vysledky.md` sekce 11
+a 12). Jádro se nezměnilo, změnilo se jen rozmístění a propojení. Pro srovnání HLS a VHDL jsou proto potřeba podmínky,
+které na okolí nezávisí:
+
+- **stejný postup pro obě verze:** RTL vygenerované z HLS prochází stejným Tcl skriptem jako VHDL
+  (`DP/hls/scripts/ooc_impl_hls.tcl`, `DP/vhdl/scripts/ooc_impl.tcl`), se stejným obvodem (xck26-sfvc784-2LV-c)
+  a stejným cílem 5 ns;
+- **perioda = max(5 − WNS, 5 − WPWS):** WNS je časová rezerva nejhorší logické cesty, WPWS rezerva minimální šířky
+  pulzu hodin. Bloky BRAM a DSP mají minimální periodu danou výrobcem (3,077 ns a 3,262 ns), kterou žádná úprava logiky
+  nezkrátí. Vlastní export Vitis HLS počítá jen s WNS, a proto u jader s BRAM nebo DSP hlásí kratší periodu, než obvod
+  skutečně zvládne (podrobně `vysledky.md` sekce 9).
+
+Všechny konfigurace VHDL z tabulek jsou v `DP/vhdl/scripts/ooc_all.txt`, výsledky sbírá `collect_vhdl.py`
+do `DP/vhdl/results/vhdl_results.csv` a `DP/hls/results/hls_ooc_results.csv`.
+
+### Testy jednotlivých jader
+
+Všechny testy kontrolují data i `TUSER`/`TLAST` a běží aspoň na dvou snímcích za sebou (jádro nesmí držet stav
+z předchozího snímku).
+
+| jádro | VHDL (xsim, GHDL) | HLS (C-simulace + kosimulace) |
+| --- | --- | --- |
+| převod barev | `tb_csc`: 6 předvoleb (šedá BT.601, YCbCr BT.601/709 v plném i omezeném rozsahu, šedá → RGB), náhodné mezery a brzdění; `tb_csc_axil`: zápis koeficientů podle mapy registrů, zpětné čtení | `tb_csc`: všechny předvolby, všechny tři top funkce (3 → 3, 3 → 1, 1 → 3) |
+| RGB ↔ HSV | `tb_rgb2hsv`, `tb_hsv2rgb`: obraz 64×48 (hraniční hodnoty, gradient, šum), rampa 256×256 se shodami kanálů, **úplný test všech 2^24 vstupů** ve 4 částech; `tb_hsv_axil`: oba směry, `G_USE_DSP` | `tb_hsv`: vzor 64×48 a rozmítání 256×256; C-simulace **úplný test 2^24** v obou směrech (`TB_HSV_FULL=1`), kosimulace zkrácený test |
+| prahování | `tb_threshold`: rampa 256×4 pro 5 typů × prahy {0, 1, 127, 254, 255} × maxval {255, 77}, neplatné typy 5–7 (výstup 0), parametry měněné mezi snímky; `tb_threshold_axil`: Otsuův práh 108, registr `type` má 3 platné bity | `tb_threshold`: stejné kombinace (80) včetně neplatných typů |
+| konvoluce K×K | `tb_filter2d`: identity, průměr, zostření, Sobel x/y (3×3), jádra 5×5 a 7×7, rozměry 64×48, 9×3 a 8×1 (výška menší než jádro); `tb_filter2d_axil`: koeficienty z modelu přes AXI4-Lite (u K ≥ 5 paměťové okno), přerušení, status; `tb_filter2d_reset`: reset uprostřed snímku a změna rozměrů | `tb_filter2d`: 3×3 předvolby a pseudonáhodná jádra 5×5 a 7×7, oba okraje, tři rozměry |
+| medián 3×3 | `tb_median`: 6 rozměrů včetně výšky 1 a 2, oba okraje, pixely před `TUSER` (status SKIPPED), předčasný `TLAST` (EARLY/LATE_EOL); `tb_median_axil` | `tb_median`: stejné scénáře (ověří i šablonu okénkových jader `hls_window.hpp`) |
+| histogram | `tb_histogram`: obě architektury (`G_USE_BRAM`), vzory s opakováním hodnoty (forwarding), rozměry 9×3 a 8×1, pixely před `TUSER`, video musí projít beze změny; `tb_histogram_axil`: čtení okna `hist` (0x400–0x7FF), zápis do okna se ignoruje | `tb_histogram`: opakování koše po 1–4 pixelech (forwarding), porucha a resynchronizace (status EARLY_SOF, SKIPPED) |
+| společné bloky | `tb_axis_skid_buffer`: propustnost 1 pixel za takt bez brzdění, náhodné mezery 50/50 a 90/30 | – |
+
+U jader, která čtou a zapisují stejnou paměť v každém taktu (histogram), je kosimulace povinná: C-simulace chybu
+v předávání mezivýsledku neodhalí, protože C kód žádnou pipeline nemá (`DP/hls/README.md`).
 
 ## Výsledky (OOC, KV260, cíl 5 ns = 200 MHz)
 
