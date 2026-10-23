@@ -373,6 +373,7 @@ Ověření: VHDL xsim obálky s oběma hodnotami PASS; HLS varianta s DSP C-sim 
 | VHDL `hsv_axil` HSV→RGB | `G_USE_DSP = true` | **203** | **235** | 11 | **3,26 ns** | šířka pulzu DSP |
 | HLS `hls_hsv2rgb` | výchozí | 567 | 266 | 1 | 3,97 ns | logika |
 | HLS `hls_hsv2rgb_dsp` | `HSV_MUL_IMPL_DSP = 1` | **237** | **211** | 11 | 4,35 ns | logika |
+| HLS `hls_hsv2rgb_dsp_lat` | `HSV_MUL_IMPL_DSP = 2` (+ `latency=3`) | 265 | 224 | 6 | **3,26 ns** | šířka pulzu DSP |
 
 **Poznatky**
 - **VHDL: jeden parametr zlepší všechno kromě počtu DSP** – LUT −66 %, FF −44 %, perioda 3,54 → 3,26 ns (strop daný
@@ -380,8 +381,13 @@ Ověření: VHDL xsim obálky s oběma hodnotami PASS; HLS varianta s DSP C-sim 
   registrů A/B/M/P uvnitř DSP.
 - **HLS: plocha klesne podobně (LUT −58 %, FF −21 %), ale perioda se zhorší** z 3,97 na 4,35 ns. HLS ponechal počet
   stupňů pipeline (6) a DSP použil jako kombinační násobičku – vnitřní registry DSP nevyužil. VHDL má registr za každou
-  operací, takže syntéza je do DSP sbalit může. Kandidát na další krok: `BIND_OP ... latency=2..3` (HLS pak smí
-  registry DSP použít) – v HLS jsou pro stejný efekt potřeba dva parametry.
+  operací, takže syntéza je do DSP sbalit může.
+- **HLS s latencí násobení (`BIND_OP ... impl=dsp latency=3`, 23. 10.) dosáhne stejné periody jako VHDL:** 3,26 ns
+  (strop DSP), 265 LUT, 224 FF, jen 6 DSP (HLS spojil část násobení do jednoho bloku). Cena: pipeline se prodloužila
+  z 6 na 10 stupňů (latence pixelu, propustnost 1 px/takt zůstává). C-sim i cosim PASS.
+  **Závěr pro DP:** ve VHDL stačí jeden parametr (`G_USE_DSP`), protože pipeline je navržená ručně; v HLS jsou potřeba
+  dva (implementace a latence násobení) a vývojář musí vědět, že druhý existuje. Výsledek je pak srovnatelný
+  (VHDL 203 LUT / 11 DSP, HLS 265 LUT / 6 DSP, obojí 3,26 ns).
 - HLS výchozí varianta po pojmenování součinů v kódu: 567 LUT, 266 FF jako dřív, perioda 3,97 proti 4,00 ns
   (rozptyl rozmístění) – úprava kódu výsledek nezměnila.
 - Export HLS (`impl_*` v `hls_results.csv`) hlásí u varianty s DSP jen 6 DSP a 295 LUT; OOC stejného RTL dal 11 DSP.
@@ -391,4 +397,27 @@ Ověření: VHDL xsim obálky s oběma hodnotami PASS; HLS varianta s DSP C-sim 
 
 Zdroj: `DP/vhdl/results/vhdl_results.csv`, `DP/hls/results/hls_ooc_results.csv`, `DP/hls/results/hls_results.csv`,
 logy `~/logs/hsv_dsp.log`, `~/logs/hsv_dsp_finish.log`.
+
+## 14. VHDL po úklidu varování Sigasi – srovnání před a po (23. 10. 2026)
+
+Konfigurace: OOC všech 28 konfigurací z `DP/vhdl/scripts/ooc_all.txt` (4 paralelně), commit 83e0b93 (úklid d596cef:
+mrtvé registry `d_bin`/`d_write` v `histogram_core`, nepoužitý `regs` v `hsv_axil`, `ro_in` v `csc_axil`/`threshold_axil`,
+`addr_value` jako constant v `axil_regbank`). Xsim regrese 15 TB PASS lokálně (Karel). Před = `~/logs/vhdl_results_pre_lint.csv`.
+
+- **25 z 28 konfigurací beze změny** (LUT, FF, DSP, BRAM i perioda totožné) – odstraněné registry a signály syntéza
+  odstraňovala už dřív.
+- Změnily se jen obálky s AXI4-Lite, které obsahují `axil_regbank`:
+
+| konfigurace | LUT před → po | perioda před → po |
+|---|---|---|
+| `filter2d_axil` K = 3 | 1 282 → 1 283 | 4,37 → **3,40 ns** |
+| `filter2d_axil` K = 3, `G_USE_DSP` | 506 → 508 | 3,81 → 3,57 ns |
+| `median_axil` | 692 → 692 | 4,07 → 3,86 ns |
+
+- Prostředky se prakticky nezměnily, perioda se zlepšila. Logická změna v registrové bance je jen `variable` → `constant`
+  (stejný obvod), takže rozdíl připisuji jinému rozmístění a propojení po změně síťového seznamu (rozptyl P&R),
+  ne lepšímu obvodu. Pro DP: nové hodnoty jsou platné (stejný skript), ale rozdíl ±0,2–1 ns u obálek s registrovou bankou
+  ukazuje, jak velký je rozptyl implementace. `filter2d_axil` K = 3 bez DSP: kritickou cestu ověřit v `timing.rpt`.
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv` (po), `~/logs/vhdl_results_pre_lint.csv` (před), log `~/logs/vhdl_ooc_lint_hls_lat.log`.
 
