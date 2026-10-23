@@ -31,6 +31,7 @@ histogram_core_v1,6257,6246,0,0,0,0.696,2.225,4.304,232.3,logic,yes,0.055
 hsv2rgb_core,564,371,1,0,38,1.670,1.738,3.330,300.3,logic,yes,0.012
 hsv2rgb_core_USE_DSPtrue,158,184,11,0,46,2.904,1.738,3.262,306.6,pulse_width,yes,0.012
 hsv_axil_RGB_TO_HSVfalse,603,422,1,0,38,1.465,1.738,3.535,282.9,logic,yes,0.014
+hsv_axil_RGB_TO_HSVfalse_USE_DSPtrue,203,235,11,0,46,3.029,1.738,3.262,306.6,pulse_width,yes,0.013
 hsv_axil_RGB_TO_HSVtrue,275,255,2,0,10,2.474,1.738,3.262,306.6,pulse_width,yes,0.008
 median_axil,692,532,0,2,3,0.933,1.738,4.067,245.9,logic,yes,0.014
 median_axil_v1,631,538,0,2,3,1.199,1.738,3.801,263.1,logic,yes,0.013

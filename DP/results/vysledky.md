@@ -360,3 +360,35 @@ RGB→HSV a HSV→RGB (všech 14 jader řetězce je teď v bitstreamu).
 
 Zdroj: `DP/hw/build/harness/{timing,utilization}.rpt` na Ababelu, log `~/logs/hls_hsv.log` kroky 8–10.
 
+## 13. HSV → RGB: jeden parametr – násobení v LUT nebo v DSP, VHDL × HLS (23. 10. 2026)
+
+Konfigurace: stejný OOC skript, cíl 5 ns, obě varianty s AXI4-Lite řízením. Parametr:
+VHDL generikum `G_USE_DSP` (`hsv_axil` → `hsv2rgb_core`, atribut `use_dsp = "yes"`),
+HLS makro `HSV_MUL_IMPL_DSP` (`BIND_OP op=mul impl=dsp` na pět násobení 8 × 8 b, `hls_config_hsv2rgb_dsp.cfg`).
+Ověření: VHDL xsim obálky s oběma hodnotami PASS; HLS varianta s DSP C-sim úplný test 2^24 PASS, cosim PASS (commit d0ebd60).
+
+| varianta | parametr | LUT | FF | DSP | perioda | limit |
+|---|---|---|---|---|---|---|
+| VHDL `hsv_axil` HSV→RGB | `G_USE_DSP = false` | 603 | 422 | 1 | 3,54 ns | logika |
+| VHDL `hsv_axil` HSV→RGB | `G_USE_DSP = true` | **203** | **235** | 11 | **3,26 ns** | šířka pulzu DSP |
+| HLS `hls_hsv2rgb` | výchozí | 567 | 266 | 1 | 3,97 ns | logika |
+| HLS `hls_hsv2rgb_dsp` | `HSV_MUL_IMPL_DSP = 1` | **237** | **211** | 11 | 4,35 ns | logika |
+
+**Poznatky**
+- **VHDL: jeden parametr zlepší všechno kromě počtu DSP** – LUT −66 %, FF −44 %, perioda 3,54 → 3,26 ns (strop daný
+  šířkou pulzu DSP48E2), za 10 DSP navíc (0,8 % z 1 248 na KV260). Pipeline je v návrhu, registry se přesunou do
+  registrů A/B/M/P uvnitř DSP.
+- **HLS: plocha klesne podobně (LUT −58 %, FF −21 %), ale perioda se zhorší** z 3,97 na 4,35 ns. HLS ponechal počet
+  stupňů pipeline (6) a DSP použil jako kombinační násobičku – vnitřní registry DSP nevyužil. VHDL má registr za každou
+  operací, takže syntéza je do DSP sbalit může. Kandidát na další krok: `BIND_OP ... latency=2..3` (HLS pak smí
+  registry DSP použít) – v HLS jsou pro stejný efekt potřeba dva parametry.
+- HLS výchozí varianta po pojmenování součinů v kódu: 567 LUT, 266 FF jako dřív, perioda 3,97 proti 4,00 ns
+  (rozptyl rozmístění) – úprava kódu výsledek nezměnila.
+- Export HLS (`impl_*` v `hls_results.csv`) hlásí u varianty s DSP jen 6 DSP a 295 LUT; OOC stejného RTL dal 11 DSP.
+  Do DP čísla z jednoho OOC skriptu (sekce 9).
+- Pro DP: přímá ukázka, že stejný algoritmus se dá jedním parametrem přesunout mezi prostředky (LUT ↔ DSP) a že ve
+  VHDL se tím zlepší i frekvence, protože pipeline je navržená ručně.
+
+Zdroj: `DP/vhdl/results/vhdl_results.csv`, `DP/hls/results/hls_ooc_results.csv`, `DP/hls/results/hls_results.csv`,
+logy `~/logs/hsv_dsp.log`, `~/logs/hsv_dsp_finish.log`.
+
