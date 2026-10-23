@@ -95,6 +95,36 @@ for rgb in all_colors_chunks():
     mx = max(mx, np.abs(dst_arr.astype(int) - ref.astype(int)).max())
 print(f"INFO  {'RGB->YCbCr BT.601 full vs cv2 (2^24)':42s} max|diff|={mx:3d}")
 
+# --- 4b) YCbCr -> RGB, zpětný převod (23. 10. 2026) ---------------------------
+# BT.601 plný rozsah proti cv2.COLOR_YCrCb2RGB na všech 2^24 vstupech. Odchylka max. 1 je očekávaná:
+# jádra mají jen celočíselný offset výstupu (csc.c, make_inverse_from_standard) a OpenCV navíc počítá
+# se zaokrouhlenými koeficienty 1,403 / 0,714 / 0,344 / 1,773 (BT.601: 1,402 / 0,714 / 0,344 / 1,772).
+m = CscMatrix(); lib.imgproc_csc_make(6, C.byref(m))
+mx = 0; mism = 0; total = 0
+for ycc in all_colors_chunks():                     # libovolné trojice = vstup Y, Cb, Cr (pořadí paměti)
+    src, _ = img(ycc); dst_arr = np.zeros_like(ycc); dst, _ = img(dst_arr)
+    lib.imgproc_csc(C.byref(src), C.byref(dst), C.byref(m))
+    ref = cv2.cvtColor(np.ascontiguousarray(ycc[..., [0, 2, 1]]), cv2.COLOR_YCrCb2RGB)   # Y,Cb,Cr -> Y,Cr,Cb
+    d = np.abs(mem_to_rgb(dst_arr).astype(int) - ref.astype(int))
+    mx = max(mx, d.max()); mism += np.count_nonzero(d); total += d.size
+print(f"{'PASS' if mx <= 1 else 'FAIL'}  {'YCbCr->RGB BT.601 full vs cv2 (2^24, max 1)':42s} max|diff|={mx:3d}  mismatch={mism}/{total}")
+results.append(mx <= 1)
+
+# Tam, kde OpenCV zpětný převod nemá (studio rozsah, BT.709), se ověřuje návrat RGB -> YCbCr -> RGB.
+for fwd, inv, name in ((1, 6, "BT.601 full"), (3, 7, "BT.601 studio"), (4, 8, "BT.709 studio")):
+    mf = CscMatrix(); lib.imgproc_csc_make(fwd, C.byref(mf))
+    mi = CscMatrix(); lib.imgproc_csc_make(inv, C.byref(mi))
+    mx = 0; mism = 0; total = 0
+    for rgb in all_colors_chunks():
+        mem = rgb_to_mem(rgb)
+        src, _ = img(mem); mid_arr = np.zeros_like(mem); mid, _ = img(mid_arr)
+        lib.imgproc_csc(C.byref(src), C.byref(mid), C.byref(mf))
+        out_arr = np.zeros_like(mem); out, _ = img(out_arr)
+        lib.imgproc_csc(C.byref(mid), C.byref(out), C.byref(mi))
+        d = np.abs(out_arr.astype(int) - mem.astype(int))
+        mx = max(mx, d.max()); mism += np.count_nonzero(d); total += d.size
+    print(f"INFO  {'RGB->YCbCr->RGB ' + name + ' (2^24)':42s} max|diff|={mx:3d}  mismatch={mism}/{total}")
+
 # --- 5) Prahování -----------------------------------------------------------
 rng = np.random.default_rng(1)
 gray = rng.integers(0, 256, (480, 640), dtype=np.uint8)

@@ -50,6 +50,11 @@ for p in rgb_to_gray_bt601 rgb_to_ycbcr_bt601_full rgb_to_ycbcr_bt709_full rgb_t
 done
 "$CLI" tohex csc_rgb_to_gray_bt601.pgm in_gray
 "$CLI" csc csc_rgb_to_gray_bt601.pgm csc_gray_to_rgb gray_to_rgb
+# Zpětný převod YCbCr -> RGB: vstupem je přímo testovací obraz jako trojice Y, Cb, Cr (hraniční hodnoty a šum
+# pokryjí i kombinace mimo gamut RGB -> ověří se saturace), stimulus je tedy stejný in_rgb.hex.
+for p in ycbcr_to_rgb_bt601_full ycbcr_to_rgb_bt601_studio ycbcr_to_rgb_bt709_studio; do
+    "$CLI" csc test_64x48.ppm "csc_$p" "$p"
+done
 
 # RGB <-> HSV
 "$CLI" tohex ramp_256x256.ppm in_ramp

@@ -57,6 +57,9 @@ architecture sim of tb_csc_axil is
             when 2      => return "data/csc_rgb_to_ycbcr_bt709_full.hex";
             when 3      => return "data/csc_rgb_to_ycbcr_bt601_studio.hex";
             when 4      => return "data/csc_rgb_to_ycbcr_bt709_studio.hex";
+            when 6      => return "data/csc_ycbcr_to_rgb_bt601_full.hex";
+            when 7      => return "data/csc_ycbcr_to_rgb_bt601_studio.hex";
+            when 8      => return "data/csc_ycbcr_to_rgb_bt709_studio.hex";
             when others => return "data/csc_gray_to_rgb.hex";
         end case;
     end function;
@@ -68,6 +71,9 @@ architecture sim of tb_csc_axil is
             when 2      => return C_CSC_RGB_TO_YCBCR_BT709_FULL_COEFF;
             when 3      => return C_CSC_RGB_TO_YCBCR_BT601_STUDIO_COEFF;
             when 4      => return C_CSC_RGB_TO_YCBCR_BT709_STUDIO_COEFF;
+            when 6      => return C_CSC_YCBCR_TO_RGB_BT601_FULL_COEFF;
+            when 7      => return C_CSC_YCBCR_TO_RGB_BT601_STUDIO_COEFF;
+            when 8      => return C_CSC_YCBCR_TO_RGB_BT709_STUDIO_COEFF;
             when others => return C_CSC_GRAY_TO_RGB_COEFF;
         end case;
     end function;
@@ -79,6 +85,9 @@ architecture sim of tb_csc_axil is
             when 2      => return C_CSC_RGB_TO_YCBCR_BT709_FULL_OFFSET;
             when 3      => return C_CSC_RGB_TO_YCBCR_BT601_STUDIO_OFFSET;
             when 4      => return C_CSC_RGB_TO_YCBCR_BT709_STUDIO_OFFSET;
+            when 6      => return C_CSC_YCBCR_TO_RGB_BT601_FULL_OFFSET;
+            when 7      => return C_CSC_YCBCR_TO_RGB_BT601_STUDIO_OFFSET;
+            when 8      => return C_CSC_YCBCR_TO_RGB_BT709_STUDIO_OFFSET;
             when others => return C_CSC_GRAY_TO_RGB_OFFSET;
         end case;
     end function;

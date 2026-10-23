@@ -5,7 +5,8 @@
 -- Popis:     Testbench csc_core proti golden modelu (HEX z imgproc_cli, koeficienty z imgproc_coeffs_pkg)
 --
 --  G_PRESET: 0 RGB->šedá 601, 1 YCbCr 601 full, 2 YCbCr 709 full, 3 YCbCr 601 studio,
---            4 YCbCr 709 studio, 5 šedá->RGB. Spouští scripts/run_ghdl.sh s různými
+--            4 YCbCr 709 studio, 5 šedá->RGB, 6 YCbCr 601 full->RGB, 7 YCbCr 601 studio->RGB,
+--            8 YCbCr 709 studio->RGB. Spouští scripts/run_ghdl.sh s různými
 --            G_VALID_PCT / G_READY_PCT (náhodné mezery a backpressure).
 --------------------------------------------------------------------------------
 library ieee;
@@ -58,6 +59,9 @@ architecture sim of tb_csc is
             when 2      => return G_DATA_DIR & "csc_rgb_to_ycbcr_bt709_full.hex";
             when 3      => return G_DATA_DIR & "csc_rgb_to_ycbcr_bt601_studio.hex";
             when 4      => return G_DATA_DIR & "csc_rgb_to_ycbcr_bt709_studio.hex";
+            when 6      => return G_DATA_DIR & "csc_ycbcr_to_rgb_bt601_full.hex";
+            when 7      => return G_DATA_DIR & "csc_ycbcr_to_rgb_bt601_studio.hex";
+            when 8      => return G_DATA_DIR & "csc_ycbcr_to_rgb_bt709_studio.hex";
             when others => return G_DATA_DIR & "csc_gray_to_rgb.hex";
         end case;
     end function;
@@ -69,6 +73,9 @@ architecture sim of tb_csc is
             when 2      => return C_CSC_RGB_TO_YCBCR_BT709_FULL_COEFF;
             when 3      => return C_CSC_RGB_TO_YCBCR_BT601_STUDIO_COEFF;
             when 4      => return C_CSC_RGB_TO_YCBCR_BT709_STUDIO_COEFF;
+            when 6      => return C_CSC_YCBCR_TO_RGB_BT601_FULL_COEFF;
+            when 7      => return C_CSC_YCBCR_TO_RGB_BT601_STUDIO_COEFF;
+            when 8      => return C_CSC_YCBCR_TO_RGB_BT709_STUDIO_COEFF;
             when others => return C_CSC_GRAY_TO_RGB_COEFF;
         end case;
     end function;
@@ -80,6 +87,9 @@ architecture sim of tb_csc is
             when 2      => return C_CSC_RGB_TO_YCBCR_BT709_FULL_OFFSET;
             when 3      => return C_CSC_RGB_TO_YCBCR_BT601_STUDIO_OFFSET;
             when 4      => return C_CSC_RGB_TO_YCBCR_BT709_STUDIO_OFFSET;
+            when 6      => return C_CSC_YCBCR_TO_RGB_BT601_FULL_OFFSET;
+            when 7      => return C_CSC_YCBCR_TO_RGB_BT601_STUDIO_OFFSET;
+            when 8      => return C_CSC_YCBCR_TO_RGB_BT709_STUDIO_OFFSET;
             when others => return C_CSC_GRAY_TO_RGB_OFFSET;
         end case;
     end function;

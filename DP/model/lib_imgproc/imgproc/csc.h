@@ -14,7 +14,8 @@
  * Poznámka k volbě formátu Q2.15 (2 celé bity včetně znaménka, 15 zlomkových, celkem 18 bitů):
  *  - 18 bitů je šířka portu B násobičky DSP48E2 (27 x 18), takže jeden koeficient = jeden DSP
  *    bez ohledu na to, kolik zlomkových bitů použijeme. Přesnost navíc je v HW zadarmo.
- *  - Rozsah +-4 stačí: všechny koeficienty převodů RGB <-> YCbCr mají absolutní hodnotu < 1.
+ *  - Rozsah +-4 stačí: koeficienty převodu RGB -> YCbCr mají absolutní hodnotu < 1, zpětného převodu
+ *    YCbCr -> RGB nejvýš 2,11 (BT.709 studio, Cb -> B).
  *  - OpenCV 4.x počítá RGB -> šedá také s 15 zlomkovými bity (9798, 19235, 3735), takže
  *    převod na šedou je s cv::cvtColor bitově shodný (ověřeno na všech 2^24 barvách).
  *  - Původní Q3.14 dávala vůči OpenCV odchylku +-1 u 0,26 % barev.
@@ -34,6 +35,8 @@ extern "C" {
 #define IMGPROC_CSC_FRAC_BITS   (15u)       ///< Počet zlomkových bitů koeficientů (Q2.15)
 #define IMGPROC_CSC_COEFF_MIN   (-131072)   ///< Minimální koeficient (18 b se znaménkem, -4.0 v Q2.15)
 #define IMGPROC_CSC_COEFF_MAX   (131071)    ///< Maximální koeficient (18 b se znaménkem, +3.99997 v Q2.15)
+#define IMGPROC_CSC_OFFSET_MIN  (-512)      ///< Minimální offset výstupu (10 b se znaménkem, shodně s HLS a VHDL)
+#define IMGPROC_CSC_OFFSET_MAX  (511)       ///< Maximální offset výstupu (10 b se znaménkem)
 
 /// Předdefinované konfigurace převodu
 typedef enum
@@ -44,6 +47,9 @@ typedef enum
     IMGPROC_CSC_RGB_TO_YCBCR_BT601_STUDIO,  ///< RGB -> YCbCr BT.601, studio rozsah (Y 16..235, C 16..240)
     IMGPROC_CSC_RGB_TO_YCBCR_BT709_STUDIO,  ///< RGB -> YCbCr BT.709, studio rozsah (Y 16..235, C 16..240)
     IMGPROC_CSC_GRAY_TO_RGB,                ///< Y -> RGB (R = G = B = Y), 1 -> 3 kanály
+    IMGPROC_CSC_YCBCR_TO_RGB_BT601_FULL,    ///< YCbCr BT.601 plný rozsah -> RGB (inverze, odchylka od cv::COLOR_YCrCb2RGB max. 1)
+    IMGPROC_CSC_YCBCR_TO_RGB_BT601_STUDIO,  ///< YCbCr BT.601 studio rozsah -> RGB (inverze)
+    IMGPROC_CSC_YCBCR_TO_RGB_BT709_STUDIO,  ///< YCbCr BT.709 studio rozsah -> RGB (inverze)
     IMGPROC_CSC_PRESET_COUNT                ///< Počet předvoleb (není platná předvolba)
 } imgproc_csc_preset_t;
 
@@ -53,7 +59,7 @@ typedef struct
     uint8_t ch_in;                                          ///< Počet vstupních kanálů (1 nebo 3)
     uint8_t ch_out;                                         ///< Počet výstupních kanálů (1 nebo 3)
     int32_t coeff[IMGPROC_CH_MAX][IMGPROC_CH_MAX];          ///< Koeficienty [výstup][vstup], Q2.15
-    int16_t offset[IMGPROC_CH_MAX];                         ///< Celočíselný offset výstupu (0..255)
+    int16_t offset[IMGPROC_CH_MAX];                         ///< Celočíselný offset výstupu (-512..511)
 } imgproc_csc_matrix_t;
 
 /// Vypočítá matici předvolby z definičních konstant standardu (Kr, Kb) a kvantuje ji do Q2.15
