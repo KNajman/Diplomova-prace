@@ -20,6 +20,7 @@ Podrobnosti jsou v `.claude/memory/`, plán a průběh v `plan_dokonceni_DP.md` 
 - Notebook: Windows, 12 GB RAM (velké Vivado běhy → Ababel), VS Code, clang/MinGW/MSVC, Vitis/Vivado 2025.2, Git for Windows (má uložené GitHub credentials), WinSCP + PuTTY + Pageant, VPN TUL.
 - Text DP: LaTeX `tulthesis`, lokální TeX Live, `Diplomová_práce/DP.tex`.
 
+- **Literatura:** Karel vede zdroje v Citace PRO (citace.com) a odtud exportuje ČSN ISO 690 do `doc/citace.bib` – záznamy do `.bib` ručně nepsat ani neopravovat, dodávat podklady k vložení (skill dp-citace).
 - **Terminologie:** nikdy „systolická kaskáda“ (v češtině lékařský pojem). Psát „pipeline“ nebo „sekvenční zpracování“; „kaskáda“ jen jako název propojení DSP přes PCIN (termín Xilinx).
 
 ## Jak pracujeme
