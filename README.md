@@ -674,8 +674,8 @@ Plné tabulky, konfigurace a poznatky: [`DP/results/vysledky.md`](DP/results/vys
 | jádro | HLS LUT / FF / DSP / BRAM36 | VHDL LUT / FF / DSP / BRAM36 | perioda HLS / VHDL |
 | --- | --- | --- | --- |
 | převod barev 3→3 | 408 / 493 / 9 / 0 | 210 / 389 / 9 / 0 | 3,92 / 3,26 ns¹ |
-| medián 3×3 | 740 / 472 / 0 / 2 | 692 / 532 / 0 / 2 | 3,90 / 4,07 ns |
-| konvoluce 3×3 | 640 / 621 / 10 / 2 | 506 / 558 / 14 / 2 | 4,05 / 3,81 ns |
+| medián 3×3 | 740 / 472 / 0 / 2 | 692 / 532 / 0 / 2 | 3,90 / 3,86 ns |
+| konvoluce 3×3 | 640 / 621 / 10 / 2 | 508 / 558 / 14 / 2 | 4,05 / 3,57 ns |
 | konvoluce 7×7 | 1341 / 1247 / 50 / 7 | 1232 / 1489 / 72 / 6 | 4,35 / 4,00 ns |
 | histogram (BRAM) | 300 / 422 / 0 / 1 | 183 / 288 / 0 / 1 | 3,08 / 3,08 ns¹ |
 | prahování | 122 / 118 / 0 / 0 | 81 / 141 / 0 / 0 | 2,78 / 2,78 ns¹ |
