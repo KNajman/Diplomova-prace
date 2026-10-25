@@ -163,8 +163,7 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
         }
         else if (((status & VDMA_DMASR_ERR_MASK) != 0u) || ((now - start) > VDMA_TIMEOUT_TICKS))
         {
-            printf("VDMA chyba/timeout: dokonceno %lu z %lu snimku, S2MM DMASR 0x%08lX, MM2S DMASR 0x%08lX, PARKPTR 0x%08lX
-",
+            printf("VDMA chyba/timeout: dokonceno %lu z %lu snimku, S2MM DMASR 0x%08lX, MM2S DMASR 0x%08lX, PARKPTR 0x%08lX\r\n",
                    (unsigned long)frames_done, (unsigned long)frames, (unsigned long)status,
                    (unsigned long)hw_read(vdma_base, VDMA_MM2S_DMASR), (unsigned long)hw_read(vdma_base, 0x28u));
             done = true;
