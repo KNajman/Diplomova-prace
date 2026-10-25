@@ -513,3 +513,31 @@ vysyntetizovaná s `syn.compile.enable_auto_rewind=0`; měření: MM2S se čte p
 - U ostatních jader se auto-rewind nenastavovalo (prahování, medián, filtr, histogram procházejí).
 
 Zdroj: `DP/results/deska/` (běh 25. 10. 22:0x, SW -O2), xsim testbench `tb_row_core_tail.sv`.
+
+## 18. Test na desce KV260 – SW na A53 při -O0, -O2, -O3 × HW (25. 10. 2026)
+
+Konfigurace: stejný bitstream a aplikace jako v sekci 17 (200 MHz, 1080p RGB 24 b, 50 snímků × 5 měření HW, SW medián z 10 běhů),
+přeloženo -O0 / -O2 / -O3. Všech 16 měření na všech třech úrovních PASS (0 chybných bajtů, status 0). HW čas je na všech
+úrovních stejný (10 401 µs, HLS HSV 10 441 µs = jeden krok měření), mění se jen SW.
+
+| algoritmus | SW -O0 [ms] | SW -O2 [ms] | SW -O3 [ms] | HW [ms] | zrychlení HW/SW -O0 | -O2 | -O3 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| převod barev RGB→YCbCr | 1 147,7 | 278,0 | 228,7 | 10,40 | 110× | 27× | 22× |
+| RGB→HSV | 544,5 | 182,1 | 182,1 | 10,40 | 52× | 18× | 18× |
+| HSV→RGB | 521,6 | 115,9 | 115,9 | 10,40 | 50× | 11× | 11× |
+| prahování (Otsu) | 206,9 | 57,9 | 43,4 | 10,40 | 20× | 5,6× | 4,2× |
+| medián 3×3 | 2 734,5 | 549,9 | 561,0 | 10,40 | 263× | 53× | 54× |
+| Sobel X 3×3 | 2 334,1 | 567,4 | 538,5 | 10,40 | 224× | 55× | 52× |
+| histogram | 91,1 | 35,2 | 35,1 | 10,40 | 8,8× | 3,4× | 3,4× |
+
+**Poznatky**
+- HW čas nezávisí na algoritmu ani na implementaci (HLS × VHDL): všechna jádra běží na stropu řetězce 1 px/takt při
+  200 MHz (1920 × 1080 / 200 MHz = 10,368 ms). Propustnost řetězce tedy nerozlišuje HLS a VHDL; rozdíl je v prostředcích a Fmax.
+- Optimalizace překladače pomáhá SW hodně z -O0 na -O2 (2× až 5×), z -O2 na -O3 už jen u převodu barev (−18 %) a prahování
+  (−25 %); u mediánu je -O3 mírně horší (+2 %). Do DP uvádět HW/SW poměr vůči -O2 jako rozumnou výchozí volbu a -O3 jako nejlepší SW.
+- Nejmenší zrychlení má histogram (3,4×): SW je jeden průchod s přičtením do koše, HW je omezený propustností 1 px/takt.
+  Největší má medián (53×) a Sobel (55×), kde SW počítá na každý pixel okénko 3×3.
+- Čísla SW mají na A53 bare-metal (cache zapnutá, bez OS) řádově stejnou nejistotu jako medián z 10 běhů (rozdíly mezi
+  úrovněmi přes 1 % jsou reálné, pod 1 % ne).
+
+Zdroj: `DP/results/deska/deska_2026-10-25_2204_O2.csv`, `…_2212_O0.csv`, `…_2216_O3.csv`.
