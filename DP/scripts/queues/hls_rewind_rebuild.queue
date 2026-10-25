@@ -1,0 +1,9 @@
+# Přestavba řádkových HLS jader bez auto-rewind: cosim CSC (funkce beze změny), export IP (impl) CSC, RGB->HSV, HSV->RGB,
+# potom testovací řetězec (bitstream) a měřicí aplikace. Navazuje na hls_rewind_syn (xsim testbench PASS).
+# Po doběhnutí: stáhnout bitstream a ELF (ababel.sh board), board_test.bat -Levels O2.
+# @stop_on_error
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg impl && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg impl && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg impl
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200 bd_only
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200
+cd DP/sw/harness_app && vitis -s build_app.py O0 O2 O3
