@@ -110,7 +110,7 @@ function Read-Ports($opened) {
         if ($chunk.Length -gt 0) {
             [void]$entry.Text.Append($chunk)
             # průběžný výpis přijatých dat (bez něj by byl pětiminutový běh bez jakékoli odezvy)
-            foreach ($line in ($chunk -split "`r?`n")) { if ($line -ne '') { Write-Host "  [$($entry.Name)] $line" -ForegroundColor DarkGray } }
+            foreach ($line in ($chunk -split "[`r`n]+")) { if ($line -ne '') { Write-Host "  [$($entry.Name)] $line" -ForegroundColor DarkGray } }
         }
     }
 }
@@ -174,7 +174,7 @@ function Invoke-BoardRun([string]$level, [string]$xsdbPath, [string[]]$portNames
         Set-Content -Path $uartFile -Value $text -Encoding UTF8
         if (-not $text.Contains($appDone)) { Stop-Test "časový limit $TimeoutMin min vypršel bez '$appDone' (výpis: $uartFile)" }
 
-        $csvLines = $text -split "`r?`n" | Where-Object { $_ -match '^CSV,' } | ForEach-Object { $_.Substring(4) }
+        $csvLines = $text -split "`r?`n" | Where-Object { $_ -match '^CSV,' } | ForEach-Object { $_.Substring(4).TrimEnd() }
         $csvFile = Join-Path $resultsDir "deska_${stamp}_$level.csv"
         Set-Content -Path $csvFile -Value $csvLines -Encoding UTF8
         $rows = $csvLines | ConvertFrom-Csv
