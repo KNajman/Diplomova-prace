@@ -1,0 +1,17 @@
+﻿algoritmus,implementace,hw_us_snimek,hw_fps,sw_us,sw_opt,chybne_bajty,chybne_kose,status,vysledek
+bypass_rgb,-,10368,96.4,2706,O2,0,0,0x0,PASS
+csc_ycbcr601,HLS,0,0.0,273689,O2,0,0,0x0,FAIL
+csc_ycbcr601,VHDL,10368,96.4,273689,O2,0,0,0x0,PASS
+rgb2hsv,HLS,0,0.0,182113,O2,0,0,0x0,FAIL
+rgb2hsv,VHDL,10368,96.4,182113,O2,0,0,0x0,PASS
+hsv2rgb,HLS,0,0.0,115842,O2,0,0,0x0,FAIL
+hsv2rgb,VHDL,10368,96.4,115842,O2,0,0,0x0,PASS
+bypass_gray,-,10368,96.4,889,O2,0,0,0x0,PASS
+threshold_otsu,HLS,10368,96.4,57865,O2,0,0,0x0,PASS
+threshold_otsu,VHDL,10368,96.4,57865,O2,0,0,0x0,PASS
+median3x3,HLS,10383,96.3,550250,O2,0,0,0x0,PASS
+median3x3,VHDL,10383,96.3,550250,O2,0,0,0x0,PASS
+filter3x3_sobel_x,HLS,10383,96.3,567395,O2,0,0,0x0,PASS
+filter3x3_sobel_x,VHDL,10383,96.3,567395,O2,0,0,0x0,PASS
+histogram,HLS,10370,96.4,35215,O2,0,0,0x0,PASS
+histogram,VHDL,10369,96.4,35215,O2,0,0,0x0,PASS

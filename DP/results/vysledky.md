@@ -445,3 +445,32 @@ matice téhož standardu (Kr, Kb), **HW beze změny** – celočíselný offset 
 
 Zdroj: `make verify` (DP/model, lokálně), log `~/logs/csc_inverse.log`.
 
+
+## 16. Test na desce KV260 – první úspěšné měření, SW -O2 (25. 10. 2026)
+
+Konfigurace: bitstream testovacího řetězce z 22. 10. (200 MHz), 1080p RGB 24 b, 10 snímků × 5 měření (medián), SW golden
+`lib_imgproc` na Cortex-A53, -O2. Výstup aplikace přes JTAG (DCC), UART v platformě není povolený.
+
+| jádro | HW HLS [µs/snímek] | HW VHDL [µs/snímek] | fps | SW A53 -O2 [µs] | zrychlení HW/SW | shoda s golden |
+| --- | --- | --- | --- | --- | --- | --- |
+| bypass RGB (strop řetězce) | – | 10 368 | 96,4 | 2 706 | – | PASS |
+| bypass šedá | – | 10 368 | 96,4 | 889 | – | PASS |
+| CSC RGB→YCbCr | **FAIL** | 10 368 | 96,4 | 273 689 | 26× | VHDL PASS |
+| RGB→HSV | **FAIL** | 10 368 | 96,4 | 182 113 | 18× | VHDL PASS |
+| HSV→RGB | **FAIL** | 10 368 | 96,4 | 115 842 | 11× | VHDL PASS |
+| prahování (Otsu) | 10 368 | 10 368 | 96,4 | 57 865 | 5,6× | PASS |
+| medián 3×3 | 10 383 | 10 383 | 96,3 | 550 250 | 53× | PASS |
+| Sobel X 3×3 | 10 383 | 10 383 | 96,3 | 567 395 | 55× | PASS |
+| histogram | 10 370 | 10 369 | 96,4 | 35 215 | 3,4× | PASS |
+
+**Poznatky**
+- Všechna jádra, která prošla, jsou bitově shodná s golden modelem (0 chybných bajtů) a běží na stropu řetězce: 1 pixel
+  za takt při 200 MHz je 1920 × 1080 / 200 MHz = 10,368 ms. Okénková jádra přidávají jen latenci řádků (+15 µs).
+  HLS a VHDL se v propustnosti neliší, rozdíl je v prostředcích a Fmax (kapitola Výsledky v README).
+- Tři HLS jádra s řádkovým voláním (CSC, RGB→HSV, HSV→RGB) selhala: S2MM hlásí `DMAIntErr` + `EOLLateErr`
+  (DMASR 0x14810), tedy TLAST přichází později, než odpovídá šířce řádku. Samotná data protékají. Příčina zatím neznámá.
+  VHDL varianty stejných algoritmů procházejí, stejně jako HLS jádra volaná na celý snímek.
+- Postup ladění a poučení: S2MM hlásí dokončení snímku až s SOF dalšího, doba snímku se proto bere z odstupu příznaků
+  (`harness_hw.c`); `FrameCntEn` na S2MM nepoužívat. UART v hardwaru povolit (`PSU__UART1`), do té doby DCC přes xsdb.
+
+Zdroj: `DP/results/deska/deska_2026-10-25_1924_O2.csv`, `uart_2026-10-25_1924_O2.txt`.
