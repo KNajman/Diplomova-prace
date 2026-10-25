@@ -474,3 +474,42 @@ Konfigurace: bitstream testovacího řetězce z 22. 10. (200 MHz), 1080p RGB 24 
   (`harness_hw.c`); `FrameCntEn` na S2MM nepoužívat. UART v hardwaru povolit (`PSU__UART1`), do té doby DCC přes xsdb.
 
 Zdroj: `DP/results/deska/deska_2026-10-25_1924_O2.csv`, `uart_2026-10-25_1924_O2.txt`.
+
+## 17. Řádková HLS jádra bez auto-rewind – všech 16 měření na desce PASS (25. 10. 2026)
+
+Konfigurace: stejný řetězec jako v sekci 16 (200 MHz, 1080p RGB 24 b, SW -O2), HLS jádra CSC, RGB→HSV a HSV→RGB znovu
+vysyntetizovaná s `syn.compile.enable_auto_rewind=0`; měření: MM2S se čte po 2 ms, doba snímku = start až zastavení MM2S,
+50 snímků na měření.
+
+| jádro | HW HLS [µs/snímek] | HW VHDL [µs/snímek] | shoda s golden |
+| --- | --- | --- | --- |
+| bypass RGB / šedá | – | 10 401 | PASS |
+| CSC RGB→YCbCr | 10 401 | 10 401 | PASS (HLS i VHDL) |
+| RGB→HSV | 10 441 | 10 401 | PASS |
+| HSV→RGB | 10 441 | 10 401 | PASS |
+| prahování, medián 3×3, Sobel X, histogram | 10 401 | 10 401 | PASS |
+
+**Příčina selhání (sekce 16)**
+- Řádková HLS jádra (jedno volání = jeden řádek až do TLAST, II=1, auto-restart) přeložil Vitis HLS jako „loop auto-rewind stp“.
+  U smyček s latencí iterace větší než 2 (CSC 5, RGB→HSV 7, HSV→RGB 6 taktů) po přečtení beatu s TLAST hned začne čekat
+  další iterace na vstup a pipeline se zastaví. **Posledních 3 až 4 pixely řádku včetně TLAST zůstanou v jádře, dokud nepřijde
+  první pixel dalšího řádku.** Mezera mezi snímky (blanking, kterou dělá MM2S) se tak v jádře ztratí, S2MM dostane TLAST
+  posledního řádku těsně před SOF dalšího snímku a hlásí SOFLateErr + DMAIntErr (DMASR 0x15810). Prahování má také auto-rewind,
+  ale s latencí 2 a čte i zapisuje ve stejné fázi, proto neselhávalo.
+- Ocas posledního snímku v běhu zůstal v jádře napořád (hw_core_stop ho nevyprázdní) a přenášel se do dalšího běhu.
+- Důkaz v simulaci: xsim testbench řádkového jádra (bubliny, zpětný tlak, čtení AP_CTRL, mezera 300 taktů před snímkem) na RTL
+  z 22. 10. držel ocas 305 taktů a po posledním snímku zůstaly v jádře 3 beaty; po vypnutí rewind je ocas 4 až 8 taktů a
+  po posledním snímku nic nezůstane (PASS). Cosim CSC prošel, funkce jádra beze změny.
+- Proč chybu odhalovalo čtení registrů z procesoru: jádro, VDMA ani přepínač nejsou chybné; s mezerou mezi TLAST a SOF
+  kratší než zpracování konce snímku v S2MM jde o závod, jehož výsledek závisí na časování. Procesor zastavený po startu
+  přenosu chybu neukázal, čtení kteréhokoli registru AXI-Lite (VDMA, přepínač, jádro) ve smyčce ano, a to jen u HLS
+  řádkových jader (bypass a VHDL ne). **Přesný mechanismus, jak čtení registrů časování ovlivní, není ověřený.**
+
+**Poznatky**
+- Cena opravy: ~5 taktů mezi řádky (≈ 27 µs na snímek, 0,26 %). Naměřený rozdíl 10 441 proti 10 401 µs u HSV je o jeden krok
+  měření (2 ms / 50 snímků = 40 µs), nelze ho přisoudit jádru; ostatní HLS i VHDL jsou na stropu řetězce 1 px/takt.
+- Poučení: u řádkových HLS jader kontrolovat v csynth reportu typ smyčky; „auto-rewind stp“ s latencí > 2 držet pryč;
+  testovat s mezerou mezi snímky a se zpětným tlakem, ne jen s plynulým proudem (cosim to neodhalí).
+- U ostatních jader se auto-rewind nenastavovalo (prahování, medián, filtr, histogram procházejí).
+
+Zdroj: `DP/results/deska/` (běh 25. 10. 22:0x, SW -O2), xsim testbench `tb_row_core_tail.sv`.
