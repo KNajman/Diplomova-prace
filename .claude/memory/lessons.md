@@ -8,8 +8,7 @@
 - **Měření propustnosti:** doba = start až zastavení MM2S, 50 snímků (krok čtení 2 ms = chyba pod 0,5 %). Čtení registrů ve smyčce rozbilo řádková HLS jádra (viz níže), proto se během přenosu čte jen MM2S jednou za 2 ms.
 - **Windows:** `ssh` z Git Bash nepodporuje ControlMaster (`mux_client_request_session`) → v `~/.ssh/config` bez něj. Klíč `~/.ssh/id_ababel` (`claude-code@karel`), alias `ababel`, `rsync` v Git Bash chybí → `ababel.sh` má `scp` fallback, `ababel.sh board` stahuje celou složku export (padá na zamčených souborech, stahovat jednotlivě `harness.bit`, `psu_init.tcl`, `harness_app_O*.elf` do `workspace/.../build/`).
 - **Terminál panelu:** xsdb se smyčkou čtení DCC drží JTAG, před dalším během tab zavřít (`stop_terminal_tab close`). Procesy na Ababelu zabíjet podle PID, ne podle názvu.
-- **Zápis řetězců z nástrojů:** `
-` v parametrech Edit/Python heredocu se změnil na skutečný CR LF a rozbil `printf` ("missing terminating"). U souborů se zápisem escape sekvencí do C používat bajty (`bytes([92])`) a po zápisu kontrolovat `repr()` řádku.
+- **Zápis řetězců z nástrojů:** sekvence zpětné lomítko + r + zpětné lomítko + n (konec řádku v C řetězci) v parametrech Edit/Python heredocu se změnil na skutečný CR LF a rozbil `printf` ("missing terminating"). U souborů se zápisem escape sekvencí do C používat bajty (`bytes([92])`) a po zápisu kontrolovat `repr()` řádku.
 
 ## Vitis 2025.2 bare-metal (SDT)
 - **`xtime_l.h` v exportu platformy není** (jen v `bsp/libsrc/standalone/...`, mimo include cesty aplikace). `XTime`, `XTime_GetTime()` a `COUNTS_PER_SECOND` jsou v `<xiltimer.h>` (`COUNTS_PER_SECOND` = `XPAR_CPU_TIMESTAMP_CLK_FREQ` přes `xtimer_config.h`). Včas se to ukáže až při překladu aplikace (fronta `sw_app`, 19. 10. spadla na všech 3 úrovních).
