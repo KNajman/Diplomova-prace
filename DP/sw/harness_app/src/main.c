@@ -411,6 +411,19 @@ static void measure_case(const hw_case_t* tc, uint64_t sw_ticks)
         ok = hw_vdma_run(HARNESS_AXI_VDMA_0_BASEADDR, g_input, g_hw_output, FRAME_WIDTH, FRAME_HEIGHT, MEAS_FRAMES,
                          &runs[run]);
     }
+    if (!ok)
+    {
+        /* Diagnostika selhání: stav jádra, směrování přepínačů a konfigurace VDMA v okamžiku chyby */
+        const uintptr_t vdma = HARNESS_AXI_VDMA_0_BASEADDR;
+        printf("DIAG: ap_ctrl 0x%08lX, rgb_in MI0..3 0x%08lX 0x%08lX 0x%08lX 0x%08lX, rgb_out MI0 0x%08lX\r\n",
+               (unsigned long)((tc->base != 0u) ? hw_read(tc->base, HW_REG_AP_CTRL) : 0u),
+               (unsigned long)hw_read(HARNESS_RGB_SWITCH_IN_BASEADDR, 0x40u), (unsigned long)hw_read(HARNESS_RGB_SWITCH_IN_BASEADDR, 0x44u),
+               (unsigned long)hw_read(HARNESS_RGB_SWITCH_IN_BASEADDR, 0x48u), (unsigned long)hw_read(HARNESS_RGB_SWITCH_IN_BASEADDR, 0x4Cu),
+               (unsigned long)hw_read(HARNESS_RGB_SWITCH_OUT_BASEADDR, 0x40u));
+        printf("DIAG: S2MM DMACR 0x%08lX VSIZE %lu HSIZE %lu, MM2S DMACR 0x%08lX VSIZE %lu HSIZE %lu\r\n",
+               (unsigned long)hw_read(vdma, 0x30u), (unsigned long)hw_read(vdma, 0xA0u), (unsigned long)hw_read(vdma, 0xA4u),
+               (unsigned long)hw_read(vdma, 0x00u), (unsigned long)hw_read(vdma, 0x50u), (unsigned long)hw_read(vdma, 0x54u));
+    }
     if (ok)
     {
         frame_us = ticks_to_us(median_u64(runs, MEAS_RUNS)) / MEAS_FRAMES;
