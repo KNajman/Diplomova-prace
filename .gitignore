@@ -164,9 +164,15 @@ desktop.ini
 Claude outputs/slovnicek.md
 
 
-.claude
-.vscode
-Claude outputs
+.claude/*
+Claude outputs/*
 Kria_KV260
 CLAUDE.md
 plan_dokonceni.md
+
+# Pracovní soubory Claude a podklady mimo verzování (odebráno z gitu, na disku zůstávají)
+/.claude/
+/Claude outputs/
+/Kria_KV260/
+/CLAUDE.md
+/plan_dokonceni_DP.md
