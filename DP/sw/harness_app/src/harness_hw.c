@@ -43,6 +43,24 @@
 #define VDMA_BYTES_PER_PIXEL    (3u)
 #define VDMA_TIMEOUT_TICKS      ((uint64_t)COUNTS_PER_SECOND * 5u)
 
+/* Ladicí pauzy [us], měnitelné z xsdb za běhu (nm harness_app_O2.elf | grep g_dbg). Výchozí 0 = bez pauzy. */
+volatile uint32_t g_dbg_delay_after_reset_us = 0u;     ///< po resetu VDMA
+volatile uint32_t g_dbg_delay_before_mm2s_us = 0u;     ///< mezi nastavením S2MM a startem MM2S
+volatile uint32_t g_dbg_delay_poll_us = 0u;            ///< mezi čteními stavu S2MM
+
+static void spin_us(uint32_t microseconds)
+{
+    XTime begin = 0u;
+    XTime now = 0u;
+    const XTime wait_ticks = ((XTime)COUNTS_PER_SECOND * microseconds) / 1000000u;
+
+    XTime_GetTime(&begin);
+    do
+    {
+        XTime_GetTime(&now);
+    } while ((now - begin) < wait_ticks);
+}
+
 void hw_write(uintptr_t base, uint32_t offset, uint32_t value)
 {
     Xil_Out32(base + offset, value);
@@ -130,6 +148,7 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     Xil_DCacheFlushRange((UINTPTR)input, frame_bytes);
     Xil_DCacheInvalidateRange((UINTPTR)output, frame_bytes);
     vdma_reset(vdma_base);
+    spin_us(g_dbg_delay_after_reset_us);
 
     /* Poznámka k volbě režimu: MM2S se po frames snímcích zastaví sám (FrameCntEn). U S2MM s FrameCntEn
        měřením na KV260 (25. 10.) VDMA data přenesla celá, ale nikdy nenastavila FrmCntIrq ani se nezastavila,
@@ -142,6 +161,7 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     vdma_setup_channel(vdma_base, VDMA_S2MM_DMACR, VDMA_S2MM_START(0u), VDMA_S2MM_HSIZE, VDMA_S2MM_STRIDE,
                        (uintptr_t)output, width, 0u);
     hw_write(vdma_base, VDMA_S2MM_VSIZE, height);
+    spin_us(g_dbg_delay_before_mm2s_us);
     vdma_setup_channel(vdma_base, VDMA_MM2S_DMACR, VDMA_MM2S_START(0u), VDMA_MM2S_HSIZE, VDMA_MM2S_STRIDE,
                        (uintptr_t)input, width, VDMA_DMACR_FRMCNT_EN | (frames << VDMA_DMACR_FRMCNT_SHIFT));
     XTime_GetTime(&start);
@@ -149,6 +169,7 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
 
     while (!done)
     {
+        spin_us(g_dbg_delay_poll_us);
         status = hw_read(vdma_base, VDMA_S2MM_DMASR);
         XTime_GetTime(&now);
         if ((status & VDMA_DMASR_FRMCNT_IRQ) != 0u)
