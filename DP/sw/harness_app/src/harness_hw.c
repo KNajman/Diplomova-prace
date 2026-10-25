@@ -94,14 +94,14 @@ static void vdma_reset(uintptr_t vdma_base)
 
 /**
  * @brief Nastaví kanál VDMA (adresy rámců, řádek) - spustí ho až zápis VSIZE.
+ * @param dmacr_frame_count Bity DMACR pro počítání snímků (FrameCntEn + IRQFrameCount), nebo 0 pro volný běh
  */
 static void vdma_setup_channel(uintptr_t vdma_base, uint32_t dmacr, uint32_t start_reg0, uint32_t hsize_reg,
-                               uint32_t stride_reg, uintptr_t buffer, uint32_t width, uint32_t frames)
+                               uint32_t stride_reg, uintptr_t buffer, uint32_t width, uint32_t dmacr_frame_count)
 {
     uint32_t n = 0u;
 
-    hw_write(vdma_base, dmacr, VDMA_DMACR_RS | VDMA_DMACR_CIRCULAR | VDMA_DMACR_FRMCNT_EN
-                                   | (frames << VDMA_DMACR_FRMCNT_SHIFT));
+    hw_write(vdma_base, dmacr, VDMA_DMACR_RS | VDMA_DMACR_CIRCULAR | dmacr_frame_count);
     for (n = 0u; n < VDMA_NUM_FSTORES; n++)
     {
         hw_write(vdma_base, start_reg0 + (4u * n), (uint32_t)buffer);   /* všechny rámce do stejného bufferu */
@@ -117,6 +117,7 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     XTime start = 0u;
     XTime now = 0u;
     uint32_t status = 0u;
+    uint32_t frames_done = 0u;
     bool done = false;
     bool ok = true;
 
@@ -124,12 +125,15 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     Xil_DCacheInvalidateRange((UINTPTR)output, frame_bytes);
     vdma_reset(vdma_base);
 
+    /* Poznámka k volbě režimu: MM2S se po frames snímcích zastaví sám (FrameCntEn). U S2MM s FrameCntEn
+       měřením na KV260 (25. 10.) VDMA data přenesla celá, ale nikdy nenastavila FrmCntIrq ani se nezastavila,
+       proto S2MM běží volně (IRQFrameCount = 1) a snímky se počítají podle příznaku FrmCntIrq po každém snímku. */
     /* S2MM nejdřív (příjemce musí být připravený), pak MM2S; VSIZE kanál spouští */
     vdma_setup_channel(vdma_base, VDMA_S2MM_DMACR, VDMA_S2MM_START(0u), VDMA_S2MM_HSIZE, VDMA_S2MM_STRIDE,
-                       (uintptr_t)output, width, frames);
+                       (uintptr_t)output, width, 0u);
     hw_write(vdma_base, VDMA_S2MM_VSIZE, height);
     vdma_setup_channel(vdma_base, VDMA_MM2S_DMACR, VDMA_MM2S_START(0u), VDMA_MM2S_HSIZE, VDMA_MM2S_STRIDE,
-                       (uintptr_t)input, width, frames);
+                       (uintptr_t)input, width, VDMA_DMACR_FRMCNT_EN | (frames << VDMA_DMACR_FRMCNT_SHIFT));
     XTime_GetTime(&start);
     hw_write(vdma_base, VDMA_MM2S_VSIZE, height);
 
@@ -137,9 +141,11 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     {
         status = hw_read(vdma_base, VDMA_S2MM_DMASR);
         XTime_GetTime(&now);
-        if ((status & (VDMA_DMASR_HALTED | VDMA_DMASR_FRMCNT_IRQ)) != 0u)
+        if ((status & VDMA_DMASR_FRMCNT_IRQ) != 0u)
         {
-            done = true;
+            hw_write(vdma_base, VDMA_S2MM_DMASR, VDMA_DMASR_FRMCNT_IRQ);   /* zápis 1 příznak smaže */
+            frames_done++;
+            done = (frames_done >= frames);
         }
         else if (((status & VDMA_DMASR_ERR_MASK) != 0u) || ((now - start) > VDMA_TIMEOUT_TICKS))
         {
