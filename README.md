@@ -762,6 +762,104 @@ měření), `xsdb_<datum>_<úroveň>.txt` (log nahrávání).
 - `board_test` nenajde port nebo ho nemůže otevřít: deska je vypnutá, nebo port drží jiný terminál (PuTTY).
 - Řádek s FAIL: v `uart_*.txt` jsou vypsané první rozdílné pixely (pozice, kanál, hodnota HW a referenčního modelu).
 
+## Automatizované testování na desce
+
+Kapitola popisuje celý postup od sestavení po výsledek měření a skripty, kterými se připojujeme ke KV260. Výsledek
+jedním příkazem: nahrání bitstreamu, spuštění aplikace, zachycení UART, uložení CSV a verdikt PASS/FAIL.
+
+### Postup
+
+```
+Ababel (VPN TUL)                         notebook (Windows, Vitis 2025.2)                   deska KV260
+fronty hw_ip -> hw_harness -> sw_app --> bash .claude/scripts/ababel.sh fetch ... --> board_test.bat --JTAG/UART--> měření
+ (bitstream, ELF -O0/-O2/-O3)             DP/sw/build/workspace/                              DP/results/deska/
+```
+
+1. **Sestavení na Ababelu** (jen po změně jader nebo aplikace): `bash .claude/scripts/ababel.sh start hw_harness`,
+   po doběhnutí `start sw_app`. Fronty vytvoří bitstream a tři ELF (-O0, -O2, -O3).
+2. **Stažení artefaktů do notebooku** (po připojení VPN TUL), každý příkaz stáhne jednu cestu z repa na Ababelu:
+
+   ```
+   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_platform/export/
+   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_app_O0/build/
+   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_app_O2/build/
+   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_app_O3/build/
+   ```
+
+3. **Test na desce** (deska připojená micro-USB a zapnutá, terminály na jejích COM portech zavřené), z *Vitis 2025.2
+   Command Prompt*:
+
+   ```
+   cd D:\Repos\_DP\DP\sw\harness_app
+   board_test.bat
+   ```
+
+### Skripty pro připojení ke KV260
+
+| skript | role |
+| --- | --- |
+| `.claude/scripts/ababel.sh` | přenos artefaktů ze serveru (`sync`, `start`, `status`, `fetch`, `results`) |
+| `DP/sw/harness_app/board_test.bat` | vstupní bod, spustí `board_test.ps1` bez změny ExecutionPolicy a předá mu parametry |
+| `DP/sw/harness_app/board_test.ps1` | řídí test: najde `xsdb` a porty FTDI, pro každou úroveň spustí `run_board.tcl`, čte UART, ukládá výsledky |
+| `DP/sw/harness_app/run_board.tcl` | spojení s deskou přes JTAG (xsdb), viz níže |
+
+**Průběh `board_test.ps1`** pro každou úroveň (výchozí O2, O0, O3):
+
+1. otevře všechny sériové porty FTDI (převodník FT4232H má čtyři rozhraní, JTAG a UART procesoru se liší podle
+   zařízení, proto se port s UART pozná podle hlavičky `== DP testovaci retezec`),
+2. spustí `xsdb run_board.tcl <úroveň>` a sleduje jeho návratový kód,
+3. čte UART do řádku `== HOTOVO ==` nebo do časového limitu (`-TimeoutMin`, výchozí 20 min; SW v -O0 je nejpomalejší),
+4. uloží výpis a CSV, vypíše tabulku a počet FAIL,
+5. při první chybě skončí a nic nezkouší znovu (návratový kód 1 = chyba spojení či limit, 2 = alespoň jedno FAIL).
+
+**`run_board.tcl`** – celé připojení k desce (xsdb):
+
+```tcl
+connect
+targets -set -nocase -filter {name =~ "*PSU*"}
+mwr 0xff5e0200 0x0100                  ;# CRL_APB.BOOT_MODE_USER: boot přes JTAG (jinak drží PS firmware z QSPI)
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*PSU*"}
+fpga -file $bit                        ;# bitstream testovacího řetězce
+source $psu_init
+psu_init                               ;# hodiny, DDR a MIO procesorového systému
+after 1000
+psu_ps_pl_isolation_removal            ;# zpřístupní PL z procesoru
+after 1000
+psu_ps_pl_reset_config
+catch {psu_protection}
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow $elf                               ;# nahraje měřicí aplikaci do A53 #0
+con                                    ;# spustí; výstup jde na UART (115200 Bd, 8N1)
+```
+
+Cesty `$bit`, `$psu_init` a `$elf` skript najde sám v `DP/sw/build/workspace/` (bitstream a `psu_init.tcl` v exportu
+platformy `harness_platform`, ELF v `harness_app_<úroveň>/build`).
+
+### Parametry a výstupy
+
+```
+board_test.bat                              # O2, O0, O3
+board_test.bat -Levels O2                   # jen jedna úroveň
+board_test.bat -Levels O2 -Port COM7        # pevný port (vynechá automatickou detekci)
+board_test.bat -TimeoutMin 40               # delší limit
+board_test.bat -Xsdb <cesta>\xsdb.bat                 # xsdb mimo PATH
+```
+
+Výsledky v `DP/results/deska/` (razítko `<datum>_<čas>`): `uart_<razítko>_<úroveň>.txt` (celý výpis, u FAIL první
+rozdílné pixely), `deska_<razítko>_<úroveň>.csv` (tabulka měření, sloupce viz kapitola výše) a
+`xsdb_<razítko>_<úroveň>.txt` (log nahrávání). Hodnoty se po kontrole přepisují do `DP/results/vysledky.md`.
+
+### Kritéria úspěchu a typické poruchy
+
+- **PASS** = `chybne_bajty = 0`, `chybne_kose = 0` a `status = 0` u všech 14 jader (bitová shoda s `lib_imgproc` na ARM).
+- `fetch` selže nebo Ababel neodpovídá: zkontrolovat VPN TUL, dále nezkoušet.
+- `run_board.tcl` hlásí `Nenalezeno: ELF/bitstream`: nestažené artefakty (krok 2).
+- xsdb nevidí desku, port nejde otevřít nebo aplikace nic nevypíše: viz *Řešení problémů* v předchozí kapitole.
+- Aplikace vypíše `status != 0` u okénkového jádra: porucha synchronizace řádků/sloupců v jádře, ne chyba spojení.
+
 ## Výsledky (OOC, KV260, cíl 5 ns = 200 MHz)
 
 Plné tabulky, konfigurace a poznatky: [`DP/results/vysledky.md`](DP/results/vysledky.md). Výběr (celá IP včetně AXI4-Lite):
