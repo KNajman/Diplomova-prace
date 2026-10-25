@@ -1,0 +1,6 @@
+# Povolení PS UART1 (MIO 36..37, 115200 Bd) v testovacím řetězci + měřicí aplikace s rychlejším čtením MM2S (100 us) a 20 snímky.
+# Po doběhnutí: stáhnout bitstream, psu_init.tcl a ELF, board_test.bat -Uart (výstup přes UART místo JTAG DCC).
+# @stop_on_error
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200 bd_only
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200
+cd DP/sw/harness_app && vitis -s build_app.py O0 O2 O3

@@ -93,6 +93,12 @@ set_property -dict [list \
     CONFIG.PSU__USE__S_AXI_GP2 1 CONFIG.PSU__SAXIGP2__DATA_WIDTH 128 \
     CONFIG.PSU__USE__IRQ0 1 CONFIG.PSU__USE__IRQ1 1 \
     CONFIG.PSU__FPGA_PL0_ENABLE 1 CONFIG.PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ 100] $ps
+# Poznámka k UART: preset KV260 SOM PS UART nepovoluje (25. 10. 2026 na desce: UART0/1 v resetu, stdout BSP = DCC).
+# Převodník FTDI na desce je na PS UART1 (MIO 36..37), 115200 Bd; bez toho jde výstup aplikace jen přes JTAG (DCC).
+set_property -dict [list \
+    CONFIG.PSU__UART1__PERIPHERAL__ENABLE 1 \
+    CONFIG.PSU__UART1__PERIPHERAL__IO {MIO 36 .. 37} \
+    CONFIG.PSU__UART1__BAUD_RATE 115200] $ps
 
 set clk [create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz clk_video]
 # vstupní frekvence se nezadává - propaguje se z pl_clk0 (skutečná je 99,999 MHz, ne 100)

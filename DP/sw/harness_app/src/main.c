@@ -46,7 +46,7 @@
 #define FRAME_HEIGHT        (1080u)
 #define FRAME_PIXELS        (FRAME_WIDTH * FRAME_HEIGHT)
 #define RGB_BYTES           (3u)
-#define MEAS_FRAMES         (50u)           ///< Snímků v jednom měření (VDMA se po nich zastaví); krok čtení 2 ms dává chybu pod 0,5 %
+#define MEAS_FRAMES         (20u)           ///< Snímků v jednom měření (VDMA se po nich zastaví); krok čtení 100 us dává chybu pod 0,1 %
 #define MEAS_RUNS           (5u)            ///< Opakování měření HW (medián)
 #define SW_RUNS             (10u)           ///< Opakování měření SW (medián)
 #define MAX_RUNS            (10u)
