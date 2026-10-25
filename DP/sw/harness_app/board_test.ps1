@@ -90,7 +90,7 @@ function Open-Ports([string[]]$names) {
             $sp.ReadTimeout = 100
             $sp.Open()
             $sp.DiscardInBuffer()
-            $opened[$name] = @{ Port = $sp; Text = (New-Object System.Text.StringBuilder) }
+            $opened[$name] = @{ Name = $name; Port = $sp; Text = (New-Object System.Text.StringBuilder) }
         } catch {
             Write-Host "  $name nejde otevřít (obsazený terminálem, nebo rozhraní JTAG) - přeskočen"
         }
@@ -102,7 +102,11 @@ function Open-Ports([string[]]$names) {
 function Read-Ports($opened) {
     foreach ($entry in $opened.Values) {
         $chunk = $entry.Port.ReadExisting()
-        if ($chunk.Length -gt 0) { [void]$entry.Text.Append($chunk) }
+        if ($chunk.Length -gt 0) {
+            [void]$entry.Text.Append($chunk)
+            # průběžný výpis přijatých dat (bez něj by byl pětiminutový běh bez jakékoli odezvy)
+            foreach ($line in ($chunk -split "`r?`n")) { if ($line -ne '') { Write-Host "  [$($entry.Name)] $line" -ForegroundColor DarkGray } }
+        }
     }
 }
 
@@ -121,7 +125,15 @@ function Invoke-BoardRun([string]$level, [string]$xsdbPath, [string[]]$portNames
         $proc = Start-Process -FilePath $xsdbPath -ArgumentList @('run_board.tcl', $level) -WorkingDirectory $scriptDir `
                               -RedirectStandardOutput $xsdbLog -RedirectStandardError "$xsdbLog.err" -NoNewWindow -PassThru
         $null = $proc.Handle    # bez uložení handle by ExitCode po skončení procesu bylo prázdné (známé chování .NET)
-        while (-not $proc.HasExited) { Read-Ports $opened; Start-Sleep -Milliseconds 200 }
+        $logShown = 0
+        while (-not $proc.HasExited) {
+            Read-Ports $opened
+            # průběžně ukáže nové řádky logu xsdb
+            $logLines = @(Get-Content $xsdbLog -ErrorAction SilentlyContinue | Where-Object { $_.Trim() -ne '' })
+            for ($i = $logShown; $i -lt $logLines.Count; $i++) { Write-Host "  xsdb: $($logLines[$i])" }
+            $logShown = $logLines.Count
+            Start-Sleep -Milliseconds 200
+        }
         Read-Ports $opened
         if ($proc.ExitCode -ne 0) {
             Get-Content $xsdbLog, "$xsdbLog.err" -ErrorAction SilentlyContinue | Select-Object -Last 15 | ForEach-Object { Write-Host "    $_" }
@@ -130,8 +142,15 @@ function Invoke-BoardRun([string]$level, [string]$xsdbPath, [string[]]$portNames
 
         $deadline = (Get-Date).AddMinutes($TimeoutMin)
         $active = $null
+        $nextBeat = Get-Date
+        Write-Host "  xsdb skončil, čekám na výstup aplikace (limit $TimeoutMin min)"
         while ((Get-Date) -lt $deadline) {
             Read-Ports $opened
+            if ((Get-Date) -ge $nextBeat) {
+                $bytes = ($opened.Values | ForEach-Object { "$($_.Name)=$($_.Text.Length) B" }) -join ', '
+                Write-Host ("  [{0:mm\:ss} do konce limitu] přijato: {1}" -f ($deadline - (Get-Date)), $bytes)
+                $nextBeat = (Get-Date).AddSeconds(30)
+            }
             if (-not $active) {
                 foreach ($name in $opened.Keys) {
                     if ($opened[$name].Text.ToString().Contains($appHeader)) {
