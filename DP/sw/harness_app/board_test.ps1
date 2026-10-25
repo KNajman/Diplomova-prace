@@ -20,8 +20,8 @@
 .PARAMETER Port     Pevně zvolený COM port (např. COM7). Prázdné = automatická detekce mezi porty FTDI.
 .PARAMETER TimeoutMin  Časový limit na jeden běh aplikace v minutách (SW -O0 je nejpomalejší).
 .PARAMETER Xsdb     Cesta k xsdb.bat. Prázdné = PATH (Vitis Command Prompt), jinak hledání v obvyklých složkách.
-.PARAMETER Uart     Výstup aplikace číst z UART (COM porty). Výchozí je DCC přes JTAG: platforma zatím nemá povolený
-                    PS UART (stdout BSP = DCC), xsdb proto čte výstup aplikace sám ("run_board.tcl <úroveň> dcc <s>").
+.PARAMETER Dcc      Výstup aplikace číst přes JTAG (DCC) místo z UART. Výchozí je UART (PS UART1, FTDI, COM porty desky);
+                    DCC je nouzová volba pro bitstream bez povoleného PS UART (xsdb čte výstup sám: "run_board.tcl <úroveň> dcc <s>").
 .PARAMETER DccSeconds  Jak dlouho nejvýš xsdb čte DCC (s). Po "== HOTOVO ==" skript xsdb ukončí dřív.
 
 .EXAMPLE
@@ -34,7 +34,7 @@ param(
     [int]$Baud = 115200,
     [int]$TimeoutMin = 20,
     [string]$Xsdb = '',
-    [switch]$Uart,
+    [switch]$Dcc,
     [int]$DccSeconds = 1200
 )
 
@@ -250,14 +250,14 @@ $xsdbPath  = Find-Xsdb
 Write-Host "xsdb:   $xsdbPath"
 Write-Host "úrovně: $($Levels -join ', ')"
 $totalFail = 0
-if ($Uart) {
+if (-not $Dcc) {
     $portNames = Get-CandidatePorts
     Write-Host "výstup: UART, porty $($portNames -join ', ')"
     foreach ($level in $Levels) {
         $totalFail += Invoke-BoardRun $level $xsdbPath $portNames
     }
 } else {
-    Write-Host "výstup: DCC přes JTAG (UART v platformě zatím není povolený; pro UART parametr -Uart)"
+    Write-Host "výstup: DCC přes JTAG (volba -Dcc, nouzový režim pro bitstream bez PS UART)"
     foreach ($level in $Levels) {
         $totalFail += Invoke-BoardRunDcc $level $xsdbPath
     }
