@@ -42,7 +42,7 @@
 #define VDMA_NUM_FSTORES        (3u)            ///< Shodně s c_num_fstores v build_harness.tcl
 #define VDMA_BYTES_PER_PIXEL    (3u)
 #define VDMA_TIMEOUT_TICKS      ((uint64_t)COUNTS_PER_SECOND * 5u)
-#define VDMA_POLL_US            (2000u)         ///< Krok čtení stavu MM2S (časté čtení rozbilo HLS řádková jádra)
+#define VDMA_POLL_US            (100u)          ///< Krok čtení stavu MM2S [us]; čtení rozbíjelo HLS řádková jádra s auto-rewind (opraveno)
 #define VDMA_DMASR_S2MM_ERR_MASK (0x00008B70u)  ///< Int/Slv/Dec chyba + SOFEarly, EOLEarly, SOFLate, EOLLate (PG020)
 
 static void spin_us(uint32_t microseconds)
@@ -143,13 +143,11 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     /* Poznámka k volbě režimu: MM2S se po frames snímcích zastaví sám (FrameCntEn). U S2MM s FrameCntEn
        měřením na KV260 (25. 10.) VDMA data přenesla celá, ale nikdy nenastavila FrmCntIrq ani se nezastavila,
        proto S2MM běží volně (IRQFrameCount = 1) a doběhne se na něj až po zastavení MM2S. */
-    /* Poznámka k měření: HLS jádra volaná po řádcích (CSC, RGB-HSV, HSV-RGB) selhala (SOFLateErr na S2MM),
-       když A53 četl registry VDMA ve smyčce během přenosu; s procesorem zastaveným po startu nebo s čtením
-       jednou za 20 ms prošla. Příčina není potvrzená (podezření: zatížení cesty PS-PL a zpětný tlak na výstupu
-       jádra). Proto se během přenosu čte jen stav MM2S jednou za VDMA_POLL_US a S2MM se zkontroluje až po
-       doběhnutí. Doba snímku = (start až zastavení MM2S) / frames; rozlišení polling kroku se ředí počtem
+    /* Poznámka k měření: doba snímku = (start až zastavení MM2S) / frames; rozlišení polling kroku se ředí počtem
        snímků v měření. Zastavení MM2S nastane, až jádro přijme poslední beat posledního snímku, takže zahrnuje
-       zpětný tlak celého řetězce. */
+       zpětný tlak celého řetězce. Během přenosu se čte jen stav MM2S, S2MM se zkontroluje až po doběhnutí.
+       Historie: řádková HLS jádra s auto-rewind (CSC, RGB-HSV, HSV-RGB) držela ocas řádku a selhávala (SOFLateErr
+       na S2MM), když A53 četl registry během přenosu; po vypnutí auto-rewind v HLS cfg (25. 10.) čtení nevadí. */
     /* S2MM nejdřív (příjemce musí být připravený), pak MM2S; VSIZE kanál spouští */
     vdma_setup_channel(vdma_base, VDMA_S2MM_DMACR, VDMA_S2MM_START(0u), VDMA_S2MM_HSIZE, VDMA_S2MM_STRIDE,
                        (uintptr_t)output, width, 0u);
