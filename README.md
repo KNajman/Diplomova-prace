@@ -777,14 +777,16 @@ fronty hw_ip -> hw_harness -> sw_app --> bash .claude/scripts/ababel.sh fetch ..
 
 1. **Sestavení na Ababelu** (jen po změně jader nebo aplikace): `bash .claude/scripts/ababel.sh start hw_harness`,
    po doběhnutí `start sw_app`. Fronty vytvoří bitstream a tři ELF (-O0, -O2, -O3).
-2. **Stažení artefaktů do notebooku** (po připojení VPN TUL), každý příkaz stáhne jednu cestu z repa na Ababelu:
+2. **Stažení artefaktů do notebooku** (po připojení VPN TUL; v Git Bash alias `ababel` z `~/.ssh/config`, `rsync` tam není,
+   stahuje se `scp`). Stačí pět souborů, celá složka `export` se při opakování nepřepíše (zamčené soubory):
 
    ```
-   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_platform/export/
-   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_app_O0/build/
-   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_app_O2/build/
-   bash .claude/scripts/ababel.sh fetch DP/sw/build/workspace/harness_app_O3/build/
+   D=DP/sw/build/workspace/harness_platform/export/harness_platform/hw/sdt
+   scp ababel:Diplomova-prace/$D/harness.bit ababel:Diplomova-prace/$D/psu_init.tcl $D/
+   scp ababel:Diplomova-prace/DP/sw/build/workspace/harness_app_O2/build/harness_app_O2.elf DP/sw/build/workspace/harness_app_O2/build/
    ```
+
+   (stejně pro `harness_app_O0` a `harness_app_O3`). Alternativa: `bash .claude/scripts/ababel.sh board`.
 
 3. **Test na desce** (deska připojená micro-USB a zapnutá, terminály na jejích COM portech zavřené), z *Vitis 2025.2
    Command Prompt*:
@@ -846,7 +848,12 @@ board_test.bat -Levels O2                   # jen jedna úroveň
 board_test.bat -Levels O2 -Port COM7        # pevný port (vynechá automatickou detekci)
 board_test.bat -TimeoutMin 40               # delší limit
 board_test.bat -Xsdb <cesta>\xsdb.bat                 # xsdb mimo PATH
+board_test.bat -Dcc                         # nouzově: výstup aplikace přes JTAG (DCC), bitstream bez PS UART
 ```
+
+Výstup aplikace jde výchozně přes **PS UART1** (MIO 36..37, FTDI na desce, 115200 Bd), který zapíná `build_harness.tcl`;
+`-Dcc` je záloha pro starší bitstream. Měření HW: 20 snímků × 5 opakování, `hw_vdma_run` čte během přenosu jen stav MM2S
+po 100 µs a dobu snímku bere od startu do zastavení MM2S (chyba pod 0,1 %).
 
 Výsledky v `DP/results/deska/` (razítko `<datum>_<čas>`): `uart_<razítko>_<úroveň>.txt` (celý výpis, u FAIL první
 rozdílné pixely), `deska_<razítko>_<úroveň>.csv` (tabulka měření, sloupce viz kapitola výše) a

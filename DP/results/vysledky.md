@@ -541,3 +541,27 @@ přeloženo -O0 / -O2 / -O3. Všech 16 měření na všech třech úrovních PAS
   úrovněmi přes 1 % jsou reálné, pod 1 % ne).
 
 Zdroj: `DP/results/deska/deska_2026-10-25_2204_O2.csv`, `…_2212_O0.csv`, `…_2216_O3.csv`.
+
+## 19. Test na desce – UART výstup a zpřesněné měření HW času (25. 10. 2026)
+
+Změny oproti sekci 18: PS UART1 povolený v hardwaru (výstup aplikace přes FTDI/COM místo JTAG DCC), `hw_vdma_run` čte stav MM2S
+po 100 µs místo 2 ms a měří 20 snímků místo 50. SW -O2, bitstream 200 MHz, všech 16 měření PASS (0 chybných bajtů).
+
+| jádro | HW HLS [µs/snímek] | HW VHDL [µs/snímek] | rozdíl HLS − VHDL |
+| --- | --- | --- | --- |
+| bypass RGB / šedá (strop řetězce) | – | 10 371 | – |
+| CSC RGB→YCbCr | 10 401 | 10 371 | +30 µs |
+| RGB→HSV | 10 411 | 10 371 | +40 µs |
+| HSV→RGB | 10 406 | 10 371 | +35 µs |
+| prahování, histogram | 10 371 | 10 371 | 0 |
+| medián 3×3, Sobel X 3×3 | 10 386 | 10 386 | 0 |
+
+**Poznatky**
+- Teoretický strop 1 px/takt při 200 MHz je 10 368 µs; naměřených 10 371 µs je o 0,03 % víc (krok čtení 100 µs / 20 snímků = 5 µs na snímek).
+  Zpřesnění proti sekci 17 (krok 40 µs) je dost, aby bylo vidět, co stojí vypnutí auto-rewind u řádkových HLS jader:
+  CSC +30 µs ≈ 5 taktů × 1080 řádků (27 µs), RGB→HSV a HSV→RGB +35 až +40 µs (delší latence smyčky). VHDL jádra, prahování,
+  medián, Sobel a histogram nemají žádný rozdíl; okénková jádra mají +15 µs oproti bypassu (latence dvou řádků).
+- Čtení stavu MM2S po 100 µs HLS jádra nerozbije (po vypnutí auto-rewind); stejný přístup dříve u HLS CSC selhával.
+- Pro tabulky v DP se používají hodnoty z tohoto běhu (nebo opakovat tři běhy a brát medián), protože jsou nejpřesnější.
+
+Zdroj: `DP/results/deska/deska_2026-10-25_22*_O2.csv` (poslední běh s UART), skript `board_test.bat -Levels O2` (výchozí UART, `-Dcc` záloha).

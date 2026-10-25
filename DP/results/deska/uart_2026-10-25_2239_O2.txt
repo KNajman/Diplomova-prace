@@ -1,0 +1,21 @@
+﻿
+== DP testovaci retezec: 1920x1080, 20 snimku x 5 mereni, SW O2 ==
+Otsuuv prah: 129
+CSV,algoritmus,implementace,hw_us_snimek,hw_fps,sw_us,sw_opt,chybne_bajty,chybne_kose,status,vysledek
+CSV,bypass_rgb,-,10371,96.4,2700,O2,0,0,0x0,PASS
+CSV,csc_ycbcr601,HLS,10401,96.1,278008,O2,0,0,0x0,PASS
+CSV,csc_ycbcr601,VHDL,10371,96.4,278008,O2,0,0,0x0,PASS
+CSV,rgb2hsv,HLS,10411,96.0,182111,O2,0,0,0x0,PASS
+CSV,rgb2hsv,VHDL,10371,96.4,182111,O2,0,0,0x0,PASS
+CSV,hsv2rgb,HLS,10406,96.0,115850,O2,0,0,0x0,PASS
+CSV,hsv2rgb,VHDL,10371,96.4,115850,O2,0,0,0x0,PASS
+CSV,bypass_gray,-,10371,96.4,889,O2,0,0,0x0,PASS
+CSV,threshold_otsu,HLS,10371,96.4,57866,O2,0,0,0x0,PASS
+CSV,threshold_otsu,VHDL,10371,96.4,57866,O2,0,0,0x0,PASS
+CSV,median3x3,HLS,10386,96.2,549964,O2,0,0,0x0,PASS
+CSV,median3x3,VHDL,10386,96.2,549964,O2,0,0,0x0,PASS
+CSV,filter3x3_sobel_x,HLS,10386,96.2,567422,O2,0,0,0x0,PASS
+CSV,filter3x3_sobel_x,VHDL,10386,96.2,567422,O2,0,0,0x0,PASS
+CSV,histogram,HLS,10371,96.4,35110,O2,0,0,0x0,PASS
+CSV,histogram,VHDL,10371,96.4,35110,O2,0,0,0x0,PASS
+== HOTOVO ==
