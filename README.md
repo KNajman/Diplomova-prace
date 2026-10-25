@@ -685,6 +685,83 @@ z předchozího snímku).
 U jader, která čtou a zapisují stejnou paměť v každém taktu (histogram), je kosimulace povinná: C-simulace chybu
 v předávání mezivýsledku neodhalí, protože C kód žádnou pipeline nemá (`DP/hls/README.md`).
 
+## Testovací řetězec a test na desce KV260
+
+### Testovací řetězec
+
+Všechna jádra (HLS i VHDL, celkem 14) jsou v jednom bitstreamu, který sestavuje skript
+`DP/hw/harness/build_harness.tcl` (blokový návrh ve Vivadu bez ručního klikání):
+
+```
+DDR -> VDMA (čtení) -> přepínač RGB -> [průchod | jádra RGB | šedá větev] -> přepínač RGB -> VDMA (zápis) -> DDR
+šedá větev: převod RGB -> šedá -> přepínač šedé -> [průchod | šedotónová jádra] -> přepínač šedé -> převod šedá -> RGB
+```
+
+- **VDMA** přenáší snímek 1080p (24 b na pixel) z paměti do jádra a zpět, procesor jen nastaví registry.
+- **Přepínače AXI4-Stream** volí jádro (port) registrem mezi snímky. Port 0 je průchod bez jádra – měří režii řetězce,
+  tedy strop propustnosti (200 MHz a 1 pixel za takt dávají při 1080p 96 snímků za sekundu).
+- Šedotónová jádra (prahování, medián, konvoluce, histogram) jsou za převodníky RGB → šedá a šedá → RGB, aby celý
+  řetězec pracoval s jedním formátem VDMA.
+- Jedny hodiny 200 MHz pro video, AXI4-Lite i paměťový port (stejný cíl jako syntéza mimo kontext).
+- Skript vygeneruje `harness_map.h` s adresami a čísly portů všech jader, měřicí aplikace se podle něj přeloží.
+
+### Měřicí aplikace
+
+`DP/sw/harness_app` je bare-metal aplikace pro jedno jádro Cortex-A53 (bez operačního systému). Pro každé jádro:
+
+1. nastaví jeho registry (stejný ovladač pro HLS i VHDL díky stejné mapě registrů),
+2. pošle testovací snímek 1080p přes VDMA a změří čas (medián z 5 měření po 10 snímcích),
+3. porovná výstup bajt po bajtu s referenčním modelem `lib_imgproc` spočítaným na ARM,
+4. změří stejný algoritmus v softwaru na A53 (medián z 10 běhů),
+5. vypíše na UART řádek CSV.
+
+| sloupec | význam |
+| --- | --- |
+| `hw_us_snimek`, `hw_fps` | doba jednoho snímku přes jádro (paměť → jádro → paměť) a odpovídající snímková frekvence |
+| `sw_us`, `sw_opt` | doba stejného algoritmu v SW a úroveň optimalizace překladače (-O0, -O2, -O3) |
+| `chybne_bajty`, `chybne_kose` | rozdíl proti referenčnímu modelu – musí být 0 |
+| `status` | stavový registr okénkových jader (0 = bez poruchy synchronizace) |
+| `vysledek` | PASS jen při nulových rozdílech a nulovém statusu |
+
+### Připojení desky a spuštění
+
+Deska se připojuje k počítači s Vitis 2025.2 (Windows) jedním kabelem micro-USB, který nese JTAG (nahrání bitstreamu
+a programu) i UART (výpis aplikace), a napájí se zdrojem 12 V. Bootovací přepínače se nenastavují – skript přepne
+desku na boot přes JTAG sám.
+
+**Potřebné soubory** (sestavují je fronty `hw_harness` a `sw_app` na serveru, do repozitáře se neukládají):
+`DP/sw/build/workspace/harness_platform/export/` (bitstream, `psu_init.tcl`) a
+`DP/sw/build/workspace/harness_app_O0|O2|O3/build/*.elf`.
+
+**Skripty:**
+
+| skript | co dělá |
+| --- | --- |
+| `DP/sw/harness_app/run_board.tcl` | jedno spuštění přes xsdb: připojení k JTAG, přepnutí bootu na JTAG (`BOOT_MODE_USER = 0x0100`) a reset systému (jinak by desku držel firmware z QSPI), nahrání bitstreamu, inicializace procesorového systému (`psu_init`), odstranění izolace PS–PL, nahrání ELF do A53 a spuštění |
+| `DP/sw/harness_app/board_test.ps1` | **automatizovaný test**: pro úrovně O2, O0 a O3 otevře sériové porty desky, spustí `run_board.tcl`, čte UART až do `== HOTOVO ==` a uloží celý výpis i CSV do `DP/results/deska/`; port s výstupem aplikace najde sám; při první chybě skončí a nic neopakuje |
+| `DP/sw/harness_app/board_test.bat` | spuštění `board_test.ps1` bez změny politiky PowerShellu, parametry předá dál |
+
+Automatizovaný test (z *Vitis 2025.2 Command Prompt*, aby byl `xsdb` v cestě; terminál na COM portech desky musí
+být zavřený):
+
+```
+cd D:\Repos\_DP\DP\sw\harness_app
+board_test.bat                         # O2, O0, O3
+board_test.bat -Levels O2 -Port COM7   # jedna úroveň, pevný port
+```
+
+Ruční spuštění jedné úrovně: terminál (115200 Bd, 8N1) na COM portu desky a `xsdb run_board.tcl O2`.
+
+Výstupy v `DP/results/deska/`: `uart_<datum>_<úroveň>.txt` (celý výpis), `deska_<datum>_<úroveň>.csv` (tabulka
+měření), `xsdb_<datum>_<úroveň>.txt` (log nahrávání).
+
+**Řešení problémů:**
+
+- xsdb nevidí desku (`targets` je prázdné): chybí ovladače kabelu – `install_drivers.bat` ze složky
+  `Vivado\data\xicom\cable_drivers\nt64` spustit jako správce.
+- `board_test` nenajde port nebo ho nemůže otevřít: deska je vypnutá, nebo port drží jiný terminál (PuTTY).
+- Řádek s FAIL: v `uart_*.txt` jsou vypsané první rozdílné pixely (pozice, kanál, hodnota HW a referenčního modelu).
+
 ## Výsledky (OOC, KV260, cíl 5 ns = 200 MHz)
 
 Plné tabulky, konfigurace a poznatky: [`DP/results/vysledky.md`](DP/results/vysledky.md). Výběr (celá IP včetně AXI4-Lite):
@@ -707,4 +784,4 @@ prohnané stejným postupem jako VHDL, `vysledky.md` sekce 9); perioda = max(5 �
 - **HLS:** `DP/hls/scripts/run_hls.sh <jádro>/hls_config*.cfg csim|syn|cosim|impl` (Vitis 2025.2), viz `DP/hls/README.md`.
 - **VHDL:** vektory `DP/vhdl/tb/gen_vectors.sh`, simulace `DP/vhdl/scripts/run_ghdl.sh` / `run_xsim.sh <tb> [GENERIC=…]`,
   OOC `vivado -mode batch -source DP/vhdl/scripts/ooc_impl.tcl -tclargs <top> [GENERIC=…]`.
-- **Deska:** fronty `hw_ip` → `hw_harness` → `sw_app` (`DP/scripts/queues`), spuštění `DP/sw/harness_app/README.md`.
+- **Deska:** fronty `hw_ip` → `hw_harness` → `sw_app` (`DP/scripts/queues`), test `DP/sw/harness_app/board_test.bat` (kapitola Testovací řetězec a test na desce).

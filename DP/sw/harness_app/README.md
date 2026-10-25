@@ -21,6 +21,9 @@ bash .claude/scripts/ababel.sh start sw_app          # po hw_harness
 3. `xsdb run_board.tcl O2` z `DP/sw/harness_app` (případně `O0`, `O3` pro SW měření).
 4. Řádky `CSV,...` zkopírovat do `DP/results/` (hlavička je ve výpisu).
 
+**Automaticky:** `board_test.bat` (všechny úrovně, zachycení UART, výsledky do `DP/results/deska/`), podrobnosti
+v kořenovém `README.md`, kapitola Testovací řetězec a test na desce.
+
 ## Co se měří
 
 | sloupec | význam |
