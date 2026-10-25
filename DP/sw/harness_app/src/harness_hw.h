@@ -61,8 +61,8 @@ void hw_route(uintptr_t switch_in_base, uintptr_t switch_out_base, uint32_t num_
  * @param output        Výstupní snímek
  * @param width         Šířka [px]
  * @param height        Výška [px]
- * @param frames        Počet snímků (1..255)
- * @param ticks         Výstup: doba od spuštění MM2S do zastavení S2MM [tiky XTime]
+ * @param frames        Počet snímků (3..255; S2MM hlásí snímek až s SOF dalšího, doba se bere z odstupů)
+ * @param ticks         Výstup: ustálená doba jednoho snímku krát frames [tiky XTime] (bez latence prvního snímku)
  * @return true = proběhlo, false = timeout nebo chyba VDMA (stavové registry vypíše na UART)
  */
 bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uint32_t width, uint32_t height,
