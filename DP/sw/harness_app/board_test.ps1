@@ -20,6 +20,9 @@
 .PARAMETER Port     Pevně zvolený COM port (např. COM7). Prázdné = automatická detekce mezi porty FTDI.
 .PARAMETER TimeoutMin  Časový limit na jeden běh aplikace v minutách (SW -O0 je nejpomalejší).
 .PARAMETER Xsdb     Cesta k xsdb.bat. Prázdné = PATH (Vitis Command Prompt), jinak hledání v obvyklých složkách.
+.PARAMETER Uart     Výstup aplikace číst z UART (COM porty). Výchozí je DCC přes JTAG: platforma zatím nemá povolený
+                    PS UART (stdout BSP = DCC), xsdb proto čte výstup aplikace sám ("run_board.tcl <úroveň> dcc <s>").
+.PARAMETER DccSeconds  Jak dlouho nejvýš xsdb čte DCC (s). Po "== HOTOVO ==" skript xsdb ukončí dřív.
 
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File board_test.ps1
@@ -30,7 +33,9 @@ param(
     [string]$Port = '',
     [int]$Baud = 115200,
     [int]$TimeoutMin = 20,
-    [string]$Xsdb = ''
+    [string]$Xsdb = '',
+    [switch]$Uart,
+    [int]$DccSeconds = 1200
 )
 
 $ErrorActionPreference = 'Stop'
@@ -182,22 +187,85 @@ function Invoke-BoardRun([string]$level, [string]$xsdbPath, [string[]]$portNames
     }
 }
 
+# --- uložení výsledků (společné) ----------------------------------------------------------------------------
+function Save-Results([string]$text, [string]$level) {
+    $outFile = Join-Path $resultsDir "uart_${stamp}_$level.txt"
+    Set-Content -Path $outFile -Value $text -Encoding UTF8
+    # řádky "CSV,..." (v režimu DCC s předponou "xsdb% " z výpisu xsdb)
+    $csvLines = @($text -split "`r?`n" | ForEach-Object { if ($_ -match 'CSV,(.*)$') { $Matches[1].TrimEnd() } })
+    $csvFile = Join-Path $resultsDir "deska_${stamp}_$level.csv"
+    Set-Content -Path $csvFile -Value $csvLines -Encoding UTF8
+    $rows = @($csvLines | ConvertFrom-Csv)
+    $fail = @($rows | Where-Object { $_.vysledek -ne 'PASS' })
+    Write-Host "  hotovo: $($rows.Count) měření, FAIL: $($fail.Count)  -> $csvFile"
+    $rows | Format-Table algoritmus, implementace, hw_us_snimek, hw_fps, sw_us, chybne_bajty, status, vysledek -AutoSize | Out-String | Write-Host
+    return $fail.Count
+}
+
+# --- jeden běh přes DCC (výstup aplikace čte xsdb přes JTAG) -------------------------------------------------
+function Invoke-BoardRunDcc([string]$level, [string]$xsdbPath) {
+    Write-Host ''
+    Write-Host "=== Úroveň $level (výstup přes JTAG/DCC) ===" -ForegroundColor Cyan
+    $xsdbLog = Join-Path $resultsDir "xsdb_${stamp}_$level.txt"
+    Write-Host "  xsdb run_board.tcl $level dcc $DccSeconds  (log: $xsdbLog)"
+    $proc = Start-Process -FilePath $xsdbPath -ArgumentList @('run_board.tcl', $level, 'dcc', "$DccSeconds") -WorkingDirectory $scriptDir `
+                          -RedirectStandardOutput $xsdbLog -RedirectStandardError "$xsdbLog.err" -NoNewWindow -PassThru
+    $null = $proc.Handle    # bez uložení handle by ExitCode po skončení procesu bylo prázdné (známé chování .NET)
+    $deadline = (Get-Date).AddSeconds($DccSeconds + 120)
+    $nextBeat = (Get-Date).AddSeconds(30)
+    $shown = 0
+    $done = $false
+    while (-not $proc.HasExited) {
+        $lines = @(Get-Content $xsdbLog -ErrorAction SilentlyContinue | Where-Object { $_.Trim() -ne '' })
+        for ($i = $shown; $i -lt $lines.Count; $i++) { Write-Host "  $($lines[$i])" }
+        $shown = $lines.Count
+        if (($lines -join "`n").Contains($appDone)) { $done = $true; break }
+        if ((Get-Date) -ge $deadline) { break }
+        if ((Get-Date) -ge $nextBeat) {
+            Write-Host ("  [{0:mm\:ss} do konce limitu]" -f ($deadline - (Get-Date)))
+            $nextBeat = (Get-Date).AddSeconds(30)
+        }
+        Start-Sleep -Milliseconds 500
+    }
+    if (-not $proc.HasExited) {
+        # Poznámka k volbě: run_board.tcl čte DCC pevnou dobu. Po "== HOTOVO ==" už aplikace nic nepošle, proto se xsdb
+        # ukončí i s podřízenými procesy (taskkill /T) - jinak by běžel do konce limitu a držel JTAG.
+        & taskkill.exe /PID $proc.Id /T /F | Out-Null
+        Start-Sleep -Seconds 1
+    }
+    $text = Get-Content $xsdbLog -Raw -ErrorAction SilentlyContinue
+    if ($null -eq $text) { $text = '' }
+    if (-not $done) { $done = $text.Contains($appDone) }
+    if (-not $done) {
+        Get-Content "$xsdbLog.err" -ErrorAction SilentlyContinue | Select-Object -Last 15 | ForEach-Object { Write-Host "    $_" }
+        if (-not $text.Contains($appHeader)) { Stop-Test "aplikace přes DCC nic nevypsala (log: $xsdbLog)" }
+        Stop-Test "výpis aplikace skončil bez '$appDone' (limit $DccSeconds s, log: $xsdbLog)"
+    }
+    return (Save-Results $text $level)
+}
+
 # --- hlavní část ----------------------------------------------------------------------------------------
 New-Item -ItemType Directory -Force -Path $resultsDir | Out-Null
 $xsdbPath  = Find-Xsdb
-$portNames = Get-CandidatePorts
 Write-Host "xsdb:   $xsdbPath"
-Write-Host "porty:  $($portNames -join ', ')"
 Write-Host "úrovně: $($Levels -join ', ')"
-
 $totalFail = 0
-foreach ($level in $Levels) {
-    $totalFail += Invoke-BoardRun $level $xsdbPath $portNames
+if ($Uart) {
+    $portNames = Get-CandidatePorts
+    Write-Host "výstup: UART, porty $($portNames -join ', ')"
+    foreach ($level in $Levels) {
+        $totalFail += Invoke-BoardRun $level $xsdbPath $portNames
+    }
+} else {
+    Write-Host "výstup: DCC přes JTAG (UART v platformě zatím není povolený; pro UART parametr -Uart)"
+    foreach ($level in $Levels) {
+        $totalFail += Invoke-BoardRunDcc $level $xsdbPath
+    }
 }
 Write-Host ''
 if ($totalFail -eq 0) {
     Write-Host "VÝSLEDEK: PASS - všechna jádra bitově shodná s golden modelem (výsledky v $resultsDir)" -ForegroundColor Green
     exit 0
 }
-Write-Host "VÝSLEDEK: FAIL - $totalFail měření s chybou (podrobnosti v uart_*.txt v $resultsDir)" -ForegroundColor Red
+Write-Host "VÝSLEDEK: FAIL - $totalFail měření s chybou (podrobnosti v uart_*.txt a xsdb_*.txt v $resultsDir)" -ForegroundColor Red
 exit 2
