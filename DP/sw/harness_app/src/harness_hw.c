@@ -42,11 +42,8 @@
 #define VDMA_NUM_FSTORES        (3u)            ///< Shodně s c_num_fstores v build_harness.tcl
 #define VDMA_BYTES_PER_PIXEL    (3u)
 #define VDMA_TIMEOUT_TICKS      ((uint64_t)COUNTS_PER_SECOND * 5u)
-
-/* Ladicí pauzy [us], měnitelné z xsdb za běhu (nm harness_app_O2.elf | grep g_dbg). Výchozí 0 = bez pauzy. */
-volatile uint32_t g_dbg_delay_after_reset_us = 0u;     ///< po resetu VDMA
-volatile uint32_t g_dbg_delay_before_mm2s_us = 0u;     ///< mezi nastavením S2MM a startem MM2S
-volatile uint32_t g_dbg_delay_poll_us = 0u;            ///< mezi čteními stavu S2MM
+#define VDMA_POLL_US            (2000u)         ///< Krok čtení stavu MM2S (časté čtení rozbilo HLS řádková jádra)
+#define VDMA_DMASR_S2MM_ERR_MASK (0x00008B70u)  ///< Int/Slv/Dec chyba + SOFEarly, EOLEarly, SOFLate, EOLLate (PG020)
 
 static void spin_us(uint32_t microseconds)
 {
@@ -134,34 +131,29 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
     const uint32_t frame_bytes = width * height * VDMA_BYTES_PER_PIXEL;
     XTime start = 0u;
     XTime now = 0u;
-    XTime first_irq = 0u;
-    uint32_t status = 0u;
-    uint32_t frames_done = 0u;
+    uint32_t mm2s_status = 0u;
+    uint32_t s2mm_status = 0u;
     bool done = false;
     bool ok = true;
-
-    if (frames < 3u)
-    {
-        return false;   /* odstup mezi příznaky potřebuje aspoň dva příznaky */
-    }
 
     Xil_DCacheFlushRange((UINTPTR)input, frame_bytes);
     Xil_DCacheInvalidateRange((UINTPTR)output, frame_bytes);
     vdma_reset(vdma_base);
-    spin_us(g_dbg_delay_after_reset_us);
 
     /* Poznámka k volbě režimu: MM2S se po frames snímcích zastaví sám (FrameCntEn). U S2MM s FrameCntEn
        měřením na KV260 (25. 10.) VDMA data přenesla celá, ale nikdy nenastavila FrmCntIrq ani se nezastavila,
-       proto S2MM běží volně (IRQFrameCount = 1) a snímky se počítají podle příznaku FrmCntIrq. */
-    /* Poznámka k měření: S2MM nastaví FrmCntIrq až příchodem SOF dalšího snímku (jediný snímek dorazí celý do
-       paměti a příznak nepřijde, 10 snímků dá 9 příznaků). Poslední snímek proto žádný příznak nemá. Čeká se
-       na frames - 1 příznaků a doba snímku se bere jako ustálený odstup mezi příznaky (propustnost řetězce,
-       bez latence prvního snímku); poslední snímek se dopíše do paměti během dvou takových odstupů. */
+       proto S2MM běží volně (IRQFrameCount = 1) a doběhne se na něj až po zastavení MM2S. */
+    /* Poznámka k měření: HLS jádra volaná po řádcích (CSC, RGB-HSV, HSV-RGB) selhala (SOFLateErr na S2MM),
+       když A53 četl registry VDMA ve smyčce během přenosu; s procesorem zastaveným po startu nebo s čtením
+       jednou za 20 ms prošla. Příčina není potvrzená (podezření: zatížení cesty PS-PL a zpětný tlak na výstupu
+       jádra). Proto se během přenosu čte jen stav MM2S jednou za VDMA_POLL_US a S2MM se zkontroluje až po
+       doběhnutí. Doba snímku = (start až zastavení MM2S) / frames; rozlišení polling kroku se ředí počtem
+       snímků v měření. Zastavení MM2S nastane, až jádro přijme poslední beat posledního snímku, takže zahrnuje
+       zpětný tlak celého řetězce. */
     /* S2MM nejdřív (příjemce musí být připravený), pak MM2S; VSIZE kanál spouští */
     vdma_setup_channel(vdma_base, VDMA_S2MM_DMACR, VDMA_S2MM_START(0u), VDMA_S2MM_HSIZE, VDMA_S2MM_STRIDE,
                        (uintptr_t)output, width, 0u);
     hw_write(vdma_base, VDMA_S2MM_VSIZE, height);
-    spin_us(g_dbg_delay_before_mm2s_us);
     vdma_setup_channel(vdma_base, VDMA_MM2S_DMACR, VDMA_MM2S_START(0u), VDMA_MM2S_HSIZE, VDMA_MM2S_STRIDE,
                        (uintptr_t)input, width, VDMA_DMACR_FRMCNT_EN | (frames << VDMA_DMACR_FRMCNT_SHIFT));
     XTime_GetTime(&start);
@@ -169,24 +161,15 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
 
     while (!done)
     {
-        spin_us(g_dbg_delay_poll_us);
-        status = hw_read(vdma_base, VDMA_S2MM_DMASR);
+        spin_us(VDMA_POLL_US);
+        mm2s_status = hw_read(vdma_base, VDMA_MM2S_DMASR);
         XTime_GetTime(&now);
-        if ((status & VDMA_DMASR_FRMCNT_IRQ) != 0u)
+        if ((mm2s_status & VDMA_DMASR_HALTED) != 0u)
         {
-            hw_write(vdma_base, VDMA_S2MM_DMASR, VDMA_DMASR_FRMCNT_IRQ);   /* zápis 1 příznak smaže */
-            frames_done++;
-            if (frames_done == 1u)
-            {
-                first_irq = now;
-            }
-            done = (frames_done >= (frames - 1u));
+            done = true;
         }
-        else if (((status & VDMA_DMASR_ERR_MASK) != 0u) || ((now - start) > VDMA_TIMEOUT_TICKS))
+        else if (((mm2s_status & VDMA_DMASR_ERR_MASK) != 0u) || ((now - start) > VDMA_TIMEOUT_TICKS))
         {
-            printf("VDMA chyba/timeout: dokonceno %lu z %lu snimku, S2MM DMASR 0x%08lX, MM2S DMASR 0x%08lX, PARKPTR 0x%08lX\r\n",
-                   (unsigned long)frames_done, (unsigned long)frames, (unsigned long)status,
-                   (unsigned long)hw_read(vdma_base, VDMA_MM2S_DMASR), (unsigned long)hw_read(vdma_base, 0x28u));
             done = true;
             ok = false;
         }
@@ -194,19 +177,30 @@ bool hw_vdma_run(uintptr_t vdma_base, const uint8_t* input, uint8_t* output, uin
 
     if (ok)
     {
-        /* frames >= 3: aspoň dva příznaky, odstup = (poslední - první) / (počet příznaků - 1) */
-        const XTime frame_ticks = (now - first_irq) / (XTime)(frames_done - 1u);
+        /* poslední snímek se dopíše do paměti během dvou dob snímku (S2MM hlásí snímek až se SOF dalšího) */
+        const XTime frame_ticks = (now - start) / (XTime)frames;
         const XTime settle_end = now + (2u * frame_ticks);
+        XTime settle_now = now;
 
-        while (now < settle_end)
+        *ticks = (uint64_t)(now - start);
+        while (settle_now < settle_end)
         {
-            XTime_GetTime(&now);
+            XTime_GetTime(&settle_now);
         }
-        *ticks = (uint64_t)frame_ticks * frames;   /* ekvivalent doby frames snímků; main dělí počtem snímků */
+        s2mm_status = hw_read(vdma_base, VDMA_S2MM_DMASR);
+        ok = ((s2mm_status & (VDMA_DMASR_S2MM_ERR_MASK | VDMA_DMASR_HALTED)) == 0u)
+             && ((s2mm_status & VDMA_DMASR_FRMCNT_IRQ) != 0u);   /* aspoň jeden dokončený snímek */
     }
     else
     {
         *ticks = (uint64_t)(now - start);
+        s2mm_status = hw_read(vdma_base, VDMA_S2MM_DMASR);
+    }
+
+    if (!ok)
+    {
+        printf("VDMA chyba/timeout: S2MM DMASR 0x%08lX, MM2S DMASR 0x%08lX, PARKPTR 0x%08lX\r\n",
+               (unsigned long)s2mm_status, (unsigned long)mm2s_status, (unsigned long)hw_read(vdma_base, 0x28u));
     }
     Xil_DCacheInvalidateRange((UINTPTR)output, frame_bytes);
     vdma_reset(vdma_base);
