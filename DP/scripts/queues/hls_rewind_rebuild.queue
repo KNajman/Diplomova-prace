@@ -1,9 +1,11 @@
-# Přestavba řádkových HLS jader bez auto-rewind: cosim CSC (funkce beze změny), export IP (impl) CSC, RGB->HSV, HSV->RGB,
-# potom testovací řetězec (bitstream) a měřicí aplikace. Navazuje na hls_rewind_syn (xsim testbench PASS).
-# Po doběhnutí: stáhnout bitstream a ELF (ababel.sh board), board_test.bat -Levels O2.
+# Přestavba řádkových HLS jader bez auto-rewind: syntéza + balení IP (run_hls.sh syn = v++ -c + vitis-run --package) pro CSC,
+# RGB->HSV a HSV->RGB, potom testovací řetězec (bitstream) a měřicí aplikace. Cosim CSC prošel (20. 40), xsim testbench PASS.
+# Poznámka: krok "impl" je Vivado OOC implementace (měření timingu), IP nebalí - sem nepatří (první verze fronty ho měla chybně).
+# Po doběhnutí: stáhnout bitstream a ELF, board_test.bat -Levels O2.
 # @stop_on_error
-cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg cosim
-cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg impl && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg impl && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg impl
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg syn
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg syn
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg syn
 cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200 bd_only
 cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200
 cd DP/sw/harness_app && vitis -s build_app.py O0 O2 O3
