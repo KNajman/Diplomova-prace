@@ -8,6 +8,9 @@
 #  držel PS a PL. Postup odpovídá tomu, co generuje "Run" ve Vitis IDE.
 # =============================================================================
 set level [expr {[llength $argv] > 0 ? [lindex $argv 0] : "O2"}]
+# Druhý argument "dcc <sekundy>": výstup aplikace se čte přes JTAG (CoreSight DCC) přímo v xsdb a vypisuje na stdout.
+# Nouzový režim pro platformu bez povoleného PS UART (stdout BSP = DCC), xsdb pak běží, dokud výstup nedoběhne.
+set dcc_seconds [expr {[llength $argv] > 2 && [lindex $argv 1] eq "dcc" ? [lindex $argv 2] : 0}]
 set here  [file dirname [file normalize [info script]]]
 set ws    [file normalize [file join $here .. build workspace]]
 
@@ -46,5 +49,19 @@ catch {psu_protection}
 targets -set -nocase -filter {name =~ "*A53*#0"}
 rst -processor
 dow $elf
+if {$dcc_seconds > 0} {
+    readjtaguart -start    ;# před spuštěním jádra, aby se neztratila hlavička
+}
 con
 puts "Aplikace bezi - vysledky na UART (115200 Bd)."
+if {$dcc_seconds > 0} {
+    puts "Cteni DCC po dobu $dcc_seconds s (konec ukonci xsdb)."
+    flush stdout
+    set deadline [expr {[clock seconds] + $dcc_seconds}]
+    while {[clock seconds] < $deadline} {
+        after 500 {set tick 1}
+        vwait tick
+        flush stdout
+    }
+    readjtaguart -stop
+}
