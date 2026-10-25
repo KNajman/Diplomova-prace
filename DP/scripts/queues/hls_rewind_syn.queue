@@ -1,0 +1,5 @@
+# Ověření vypnutí auto-rewind u řádkových HLS jader (CSC RGB, RGB->HSV): jen syntéza, RTL pak jde do xsim testbenche.
+# Příčina: loop auto-rewind stp s latencí > 2 drží ocas řádku v jádře do příchodu dalšího řádku (viz vysledky.md sekce 17).
+# @stop_on_error
+cd DP/hls/scripts && bash run_hls.sh ../csc/hls_config_rgb.cfg syn
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg syn
