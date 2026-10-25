@@ -1,0 +1,73 @@
+﻿ELF: D:/Repos/_DP/DP/sw/build/workspace/harness_app_O2/build/harness_app_O2.elf
+BIT: D:/Repos/_DP/DP/sw/build/workspace/harness_platform/export/harness_platform/hw/sdt/harness.bit
+PSU: D:/Repos/_DP/DP/sw/build/workspace/harness_platform/export/harness_platform/hw/sdt/psu_init.tcl
+attempting to launch hw_server
+
+****** Xilinx hw_server v2025.2
+  **** Build date : Oct 28 2025 at 10:03:13
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+INFO: hw_server application started
+INFO: Use Ctrl-C to exit hw_server application
+
+
+
+****** Xilinx hw_server v2025.2
+
+  **** Build date : Oct 28 2025 at 10:03:13
+
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+INFO: hw_server application started
+
+INFO: Use Ctrl-C to exit hw_server application
+
+
+
+
+INFO: To connect to this hw_server instance use url: TCP:127.0.0.1:3121
+
+
+
+WARNING: If the reset is being triggered after powering on the device,
+          write bootloop at reset vector address (0xffff0000), or use
+          -clear-registers option, to avoid unpredictable behavior.
+          Further warnings will be suppressed
+Aplikace bezi - vysledky na UART (115200 Bd).
+Cteni DCC po dobu 1200 s (konec ukonci xsdb).
+
+== DP testovaci retezec: 1920x1080, 10 snimku x 5 mereni, SW O2 ==
+xsdb% Otsuuv prah: 129
+xsdb% CSV,algoritmus,implementace,hw_us_snimek,hw_fps,sw_us,sw_opt,chybne_bajty,chybne_kose,status,vysledek
+xsdb% CSV,bypass_rgb,-,10368,96.4,2703,O2,0,0,0x0,PASS
+xsdb% VDMA chyba/timeout: dokonceno 0 z 10 snimku, S2MM DMASR 0x00014810, MM2S DMASR 0x000A0000, PARKPTR 0x00000000
+xsdb% DIAG: ap_ctrl 0x00000081, rgb_in MI0..3 0x80000000 0x00000000 0x80000000 0x80000000, rgb_out MI0 0x00000001
+DIAG: S2MM DMACR 0x00010082 VSIZE 0 HSIZE 0, MM2S DMACR 0x00010082 VSIZE 0 HSIZE 0
+CSV,csc_ycbcr601,HLS,0,0.0,273691,O2,0,0,0x0,FAIL
+xsdb% CSV,csc_ycbcr601,VHDL,10368,96.4,273691,O2,0,0,0x0,PASS
+xsdb% VDMA chyba/timeout: dokonceno 0 z 10 snimku, S2MM DMASR 0x00014810, MM2S DMASR 0x000A0000, PARKPTR 0x00000000
+DIAG: ap_ctrl 0x00000081, rgb_in MI0..3 0x80000000 0x80000000 0x80000000 0x00000000, rgb_out MI0 0x00000003
+DIAG: S2MM DMACR 0x00010082 VSIZE 0 HSIZE 0, MM2S DMACR 0x00010082 VSIZE 0 HSIZE 0
+CSV,rgb2hsv,HLS,0,0.0,182111,O2,0,0,0x0,FAIL
+xsdb% CSV,rgb2hsv,VHDL,10368,96.4,182111,O2,0,0,0x0,PASS
+xsdb% VDMA chyba/timeout: dokonceno 0 z 10 snimku, S2MM DMASR 0x00014810, MM2S DMASR 0x000A0000, PARKPTR 0x00000000
+xsdb% DIAG: ap_ctrl 0x00000081, rgb_in MI0..3 0x80000000 0x80000000 0x80000000 0x80000000, rgb_out MI0 0x00000005
+DIAG: S2MM DMACR 0x00010082 VSIZE 0 HSIZE 0, MM2S DMACR 0x00010082 VSIZE 0 HSIZE 0
+CSV,hsv2rgb,HLS,0,0.0,115850,O2,0,0,0x0,FAIL
+xsdb% CSV,hsv2rgb,VHDL,10368,96.4,115850,O2,0,0,0x0,PASS
+xsdb% CSV,bypass_gray,-,10368,96.4,889,O2,0,0,0x0,PASS
+xsdb% CSV,threshold_otsu,HLS,10368,96.4,57866,O2,0,0,0x0,PASS
+xsdb% CSV,threshold_otsu,VHDL,10368,96.4,57866,O2,0,0,0x0,PASS
+xsdb% CSV,median3x3,HLS,10383,96.3,550263,O2,0,0,0x0,PASS
+xsdb% CSV,median3x3,VHDL,10383,96.3,550263,O2,0,0,0x0,PASS
+xsdb% CSV,filter3x3_sobel_x,HLS,10383,96.3,567398,O2,0,0,0x0,PASS
+xsdb% CSV,filter3x3_sobel_x,VHDL,10383,96.3,567398,O2,0,0,0x0,PASS
+xsdb% CSV,histogram,HLS,10370,96.4,35136,O2,0,0,0x0,PASS
+xsdb% CSV,histogram,VHDL,10369,96.4,35136,O2,0,0,0x0,PASS
+== HOTOVO ==
+xsdb% 

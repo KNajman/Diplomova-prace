@@ -1,0 +1,64 @@
+﻿ELF: D:/Repos/_DP/DP/sw/build/workspace/harness_app_O2/build/harness_app_O2.elf
+BIT: D:/Repos/_DP/DP/sw/build/workspace/harness_platform/export/harness_platform/hw/sdt/harness.bit
+PSU: D:/Repos/_DP/DP/sw/build/workspace/harness_platform/export/harness_platform/hw/sdt/psu_init.tcl
+attempting to launch hw_server
+
+****** Xilinx hw_server v2025.2
+  **** Build date : Oct 28 2025 at 10:03:13
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+INFO: hw_server application started
+INFO: Use Ctrl-C to exit hw_server application
+
+
+
+****** Xilinx hw_server v2025.2
+
+  **** Build date : Oct 28 2025 at 10:03:13
+
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+INFO: hw_server application started
+
+INFO: Use Ctrl-C to exit hw_server application
+
+
+
+
+INFO: To connect to this hw_server instance use url: TCP:127.0.0.1:3121
+
+
+
+WARNING: If the reset is being triggered after powering on the device,
+          write bootloop at reset vector address (0xffff0000), or use
+          -clear-registers option, to avoid unpredictable behavior.
+          Further warnings will be suppressed
+Aplikace bezi - vysledky na UART (115200 Bd).
+Cteni DCC po dobu 1200 s (konec ukonci xsdb).
+
+== DP testovaci retezec: 1920x1080, 50 snimku x 5 mereni, SW O2 ==
+xsdb% Otsuuv prah: 129
+xsdb% CSV,algoritmus,implementace,hw_us_snimek,hw_fps,sw_us,sw_opt,chybne_bajty,chybne_kose,status,vysledek
+xsdb% CSV,bypass_rgb,-,10401,96.1,2702,O2,0,0,0x0,PASS
+xsdb% CSV,csc_ycbcr601,HLS,10401,96.1,278008,O2,0,0,0x0,PASS
+xsdb% CSV,csc_ycbcr601,VHDL,10401,96.1,278008,O2,0,0,0x0,PASS
+xsdb% CSV,rgb2hsv,HLS,10441,95.7,182111,O2,0,0,0x0,PASS
+xsdb% CSV,rgb2hsv,VHDL,10401,96.1,182111,O2,0,0,0x0,PASS
+xsdb% CSV,hsv2rgb,HLS,10441,95.7,115919,O2,0,0,0x0,PASS
+xsdb% CSV,hsv2rgb,VHDL,10401,96.1,115919,O2,0,0,0x0,PASS
+xsdb% CSV,bypass_gray,-,10401,96.1,892,O2,0,0,0x0,PASS
+xsdb% CSV,threshold_otsu,HLS,10401,96.1,57866,O2,0,0,0x0,PASS
+xsdb% CSV,threshold_otsu,VHDL,10401,96.1,57866,O2,0,0,0x0,PASS
+xsdb% CSV,median3x3,HLS,10401,96.1,549897,O2,0,0,0x0,PASS
+xsdb% CSV,median3x3,VHDL,10401,96.1,549897,O2,0,0,0x0,PASS
+xsdb% CSV,filter3x3_sobel_x,HLS,10401,96.1,567396,O2,0,0,0x0,PASS
+xsdb% CSV,filter3x3_sobel_x,VHDL,10401,96.1,567396,O2,0,0,0x0,PASS
+xsdb% CSV,histogram,HLS,10401,96.1,35198,O2,0,0,0x0,PASS
+xsdb% CSV,histogram,VHDL,10401,96.1,35198,O2,0,0,0x0,PASS
+== HOTOVO ==
+xsdb% 
