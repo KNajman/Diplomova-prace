@@ -6,7 +6,7 @@ Každý algoritmus má 3 implementace: v C, v HLS a ve VHDL. Aby jejich porovná
 
 ## Cíle a kritéria srovnání {#sec:kriteria}
 
-Zadání požaduje implementovat vybrané algoritmy v softwaru a hardwaru (ve VHDL a pomocí HLS) a hardwarové verze porovnat se softwarem. Software je obecný celočíselný kód v C (C11), který se přeloží pro PC i pro procesor Cortex-A53, a je zároveň referenčním modelem. Obě hardwarové verze mají stejné rozhraní a stejnou mapu registrů. Jsou proto zaměnitelné a ovládá je jeden ovladač v C.
+Zadání požaduje implementovat vybrané algoritmy v softwaru a hardwaru (ve VHDL a pomocí HLS) a hardwarové verze porovnat se softwarem. Software je obecný celočíselný kód v C (C11) a je zároveň referenčním modelem. Obě hardwarové verze mají stejné rozhraní a stejnou mapu registrů. Jsou proto zaměnitelné a ovládá je jeden ovladač v C.
 
 Na prvním místě je správnost. Implementace, která se s referenčním modelem neshoduje bit po bitu, se dál neposuzuje, protože rychlost ani velikost špatně počítajícího obvodu nic neříká. Správné implementace porovnávám podle kritérií v tabulce @ref(tab:kriteria). Prostředky jsou počty buněk @ac(LUT) a @ac(FF), bloků @ac(DSP) a pamětí @ac(BRAM), které jádro v obvodu zabere. Prostředky a maximální frekvenci měřím na samotném jádře. Propustnost a rychlost proti softwaru měřím na celém řetězci na desce.
 
@@ -20,11 +20,24 @@ Tabulka: Kritéria srovnání HLS, VHDL a softwaru {#tab:kriteria widths=3.3,5.2
 | Propustnost | doba zpracování snímku 1920 × 1080 bodů v ms a počet snímků za sekundu | měření na desce (oddíl @ref(sec:deska)) |
 | Rychlost proti softwaru | poměr doby softwarového a hardwarového zpracování stejného algoritmu | měření na desce, software na procesoru Cortex-A53 (oddíl @ref(sec:sw)) |
 
+## Omezení daná cílovým obvodem {#sec:obvod}
+
+Cílovým obvodem je Zynq UltraScale+ na desce KV260 (označení xck26-sfvc784-2LV-c). Návrh jader vychází z toho, co obvod nabízí: z počtu buněk @ac(LUT) a @ac(FF), bloků @ac(DSP) a pamětí @ac(BRAM). Z toho plynou 4 omezení, kterými se řídí všechny implementace.
+
+<!-- TODO(doplnit): celkový počet LUT, FF, DSP a BRAM obvodu xck26 (z datasheetu K26 nebo ze sloupce Available ve výpisu využití z Vivada, např. DP/hw/build/harness/utilization.rpt na Ababelu). Čísla do textu nedávám, dokud nejsou ze zdroje. -->
+
+- **Frekvence.** Cílem je 200 MHz, tedy perioda 5 ns. Bloky BRAM a DSP mají minimální periodu hodin danou výrobcem, 3,077 ns u BRAM a 3,262 ns u DSP, což odpovídá přibližně 325 MHz a 307 MHz. Cíl 200 MHz leží pod oběma limity, takže jádra s těmito bloky ho splnit mohou.
+- **Propustnost.** Jádro zpracuje 1 pixel za takt, aby udrželo tok dat z paměti. Při 200 MHz je to 200 milionů pixelů za sekundu.
+- **Aritmetika.** Násobička v bloku DSP48E2 má vstupy 27 a 18 bitů. Koeficienty proto mají nejvýš 18 bitů a obrazový bod (8 bitů) se násobí v jednom bloku.
+- **Paměť.** Okénkové operace (konvoluce, medián) potřebují při šířce snímku 1920 bodů paměť na celé řádky. Řádky ukládám do bloků BRAM, malé paměti do distribuované paměti v buňkách LUT. Histogram potřebuje paměť na 256 hodnot.
+
+Všech 14 jader se musí vejít do jednoho obvodu spolu s DMA a propojením, a proto je u každého jádra důležitá velikost, ne jen rychlost.
+
 ## Referenční model v jazyce C {#sec:model}
 
 OpenCV jsem jako referenci přímo nepoužil. Část operací počítá v plovoucí řádové čárce nebo zaokrouhluje jinak než obvod, a hardware potřebuje definici, kterou lze zopakovat bit po bitu. Napsal jsem proto vlastní celočíselnou knihovnu v C (`lib_imgproc`). Kde to jde, drží se chování OpenCV. Zaokrouhlení, saturaci a okraje stanovuje výslovně.
 
-Model má 2 role. Je měřítkem správnosti hardwarových verzí a zároveň je softwarovým řešením, které se na procesoru Cortex-A53 měří proti hardwaru.
+Model má 2 role. Je měřítkem správnosti hardwarových verzí a zároveň je softwarovým řešením, které se spouští na procesoru desky a měří proti hardwaru.
 
 Konstanty neopisuji ručně. Generátor z definic vytvoří koeficienty převodu barev a tabulky pro převod mezi RGB a HSV a zapíše je do hlavičky pro C a HLS a do balíčku pro VHDL. Všechny tři implementace tak používají stejné hodnoty.
 
@@ -106,4 +119,4 @@ Po měření aplikace porovná výstup bajt po bajtu s modelem přeloženým pro
 
 ### Softwarové řešení na procesoru Cortex-A53 {#sec:sw}
 
-Referenční model přeložený pro ARM spouštím na jednom jádru procesoru Cortex-A53 s hodinami 1333 MHz (podle nastavení z Vivada), bez operačního systému a se zapnutými vyrovnávacími pamětmi, takže měření nic neruší. Překládám s optimalizací `-O0`, `-O2` i `-O3` překladačem z Vitis 2025.2, protože výhodnost porovnání s hardwarem závisí na úrovni optimalizace. Kód je stejný jako na PC, bez ručních optimalizací pro procesor (bez intrinsiků NEON a bez asembleru), takže případnou vektorizaci provede jen překladač. Čas měřím čítačem procesoru a beru medián z 10 běhů každého algoritmu na stejném snímku jako u hardwaru.
+Referenční model přeložený pro ARM spouštím na jednom jádru procesoru Cortex-A53 s hodinami 1333 MHz (podle nastavení z Vivada), bez operačního systému a se zapnutými vyrovnávacími pamětmi, takže měření nic neruší. Překládám s optimalizací `-O0`, `-O2` i `-O3` překladačem z Vitis 2025.2, protože výhodnost porovnání s hardwarem závisí na úrovni optimalizace. Software optimalizuji jen volbou překladače, ruční optimalizace pro procesor nedělám. Čas měřím čítačem procesoru a beru medián z 10 běhů každého algoritmu na stejném snímku jako u hardwaru.
