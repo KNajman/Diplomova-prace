@@ -12,7 +12,7 @@ Každý algoritmus má 3 implementace: v~C, v~HLS a~ve VHDL. Aby jejich porovná
 
 Zadání požaduje implementovat vybrané algoritmy v~softwaru a~hardwaru (ve VHDL a~pomocí HLS) a~hardwarové verze porovnat se softwarem. Software je obecný celočíselný kód v~C (C11) a~je zároveň referenčním modelem. Obě hardwarové verze mají stejné rozhraní a~stejnou mapu registrů. Jsou proto zaměnitelné a~ovládá je jeden ovladač v~C.
 
-Na prvním místě je správnost. Implementace, která se s~referenčním modelem neshoduje bit po bitu, se dál neposuzuje, protože rychlost ani velikost špatně počítajícího obvodu nic neříká. Správné implementace porovnávám podle kritérií v~tabulce~\ref{tab:kriteria}. Prostředky jsou počty buněk \ac{LUT} a~\ac{FF}, bloků \ac{DSP} a~pamětí \ac{BRAM}, které jádro v~obvodu zabere. Prostředky a~maximální frekvenci měřím na samotném jádře. Propustnost a~rychlost proti softwaru měřím na celém řetězci na desce.
+Na prvním místě je správnost. Implementace, která se s~referenčním modelem neshoduje bit po bitu, se dál neposuzuje, protože rychlost ani velikost špatně počítajícího obvodu nic neříká. Správné implementace porovnávám podle kritérií v~tabulce~\ref{tab:kriteria}. Prostředky jsou počty buněk \acs{LUT} a~\acs{FF}, bloků \acs{DSP} a~pamětí \acs{BRAM}, které jádro v~obvodu zabere. Prostředky a~maximální frekvenci měřím na samotném jádře. Propustnost a~rychlost proti softwaru měřím na celém řetězci na desce.
 
 \begin{table}[htbp]
     \centering
@@ -34,7 +34,7 @@ Na prvním místě je správnost. Implementace, která se s~referenčním modele
 \section{Omezení daná cílovým obvodem}
 \label{sec:obvod}
 
-Cílovým obvodem je Zynq UltraScale+ na desce KV260 (označení xck26-sfvc784-2LV-c). Návrh jader vychází z~toho, co obvod nabízí: z~počtu buněk \ac{LUT} a~\ac{FF}, bloků \ac{DSP} a~pamětí \ac{BRAM}. Z~toho plynou 4 omezení, kterými se řídí všechny implementace.
+Cílovým obvodem je Zynq UltraScale+ na desce KV260 (označení xck26-sfvc784-2LV-c). Návrh jader vychází z~toho, co obvod nabízí: z~počtu buněk \acs{LUT} a~\acs{FF}, bloků \acs{DSP} a~pamětí \acs{BRAM}. Z~toho plynou 4 omezení, kterými se řídí všechny implementace.
 
 % TODO(doplnit): celkový počet LUT, FF, DSP a BRAM obvodu xck26 (z datasheetu K26 nebo ze sloupce Available ve výpisu využití z Vivada, např. DP/hw/build/harness/utilization.rpt na Ababelu). Čísla do textu nedávám, dokud nejsou ze zdroje.
 
@@ -63,7 +63,7 @@ Protože je model měřítkem pro všechno ostatní, porovnávám ho nejdřív s
 \section{Aritmetika s~pevnou řádovou čárkou}
 \label{sec:aritmetika}
 
-Obrazové body jsou 8bitová celá čísla, ale koeficienty převodu barev nebo měřítko filtru jsou zlomky. V~obvodu \ac{FPGA} by počítání v~plovoucí řádové čárce stálo víc prostředků a~trvalo by déle než celočíselné. Bloky \ac{DSP} mají navíc celočíselnou násobičku se vstupy 27 a~18 bitů. Zlomky proto počítám v~pevné řádové čárce.
+Obrazové body jsou 8bitová celá čísla, ale koeficienty převodu barev nebo měřítko filtru jsou zlomky. V~obvodu \ac{FPGA} by počítání v~plovoucí řádové čárce stálo víc prostředků a~trvalo by déle než celočíselné. Bloky \acs{DSP} mají navíc celočíselnou násobičku se vstupy 27 a~18 bitů. Zlomky proto počítám v~pevné řádové čárce.
 
 Číslo ve formátu $Q_{m.n}$ je celé číslo se znaménkovým bitem, $m$ bity celé části a~$n$ zlomkovými bity. Uložené celé číslo $X$ představuje hodnotu
 

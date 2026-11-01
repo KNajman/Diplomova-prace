@@ -223,7 +223,8 @@ def main():
 
     root = pathlib.Path(__file__).resolve().parent.parent / 'kapitoly'
     sources = sorted(root.glob('*.md')) if args.all else [pathlib.Path(args.input)]
-    sources = [s for s in sources if s.name.lower() != 'readme.md']
+    # kapitoly mají název NN_nazev.md; README, osnovy a poznámky se nepřevádějí
+    sources = [s for s in sources if re.match('[0-9][0-9]_', s.name)] if args.all else sources
     if not sources:
         sys.exit('není co převádět')
     for source in sources:
