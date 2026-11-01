@@ -140,7 +140,8 @@ keywords in English
 
 Motivace, definice problému, cíle práce.
 
-\chapter{Nástroje}
+\chapter{Platforma a použité nástroje}
+% KOSTRA: kap. 2 (~6 s) = původní kapitoly „Nástroje“ a „HW platforma a metodika návrhu“; krátit na vlastní zkušenost, doplnit čísla KV260.
 
 \section{AMD Vitis™ HLS for Intuitive Design and Productivity}
 
@@ -214,7 +215,6 @@ Sekundární - slot pro SDHC kartu\\
 \end{table}
 
 
-\chapter{HW platforma a metodika návrhu}
 \section{Platforma Zynq UltraScale+ a Kria KV26}
 \subsection{LUT}
 (Look-Up Table): Kombinační logika.
@@ -229,7 +229,9 @@ Paměťové bloky (Line Buffery, Histogram).
 
 
 
-\chapter{Reprezentace obrazových dat a barevné prostory}
+\chapter{Operace zpracování obrazu a jejich hardwarová realizace}
+% KOSTRA: kap. 3 (~11 s) = původní kapitola „Reprezentace obrazových dat a barevné prostory“. CIE 1931 a gamuty zkrátit na ½ strany, BT.2020 a podvzorkování a morfologii zkrátit nebo vypustit (viz doc/kostra_prace.md).
+
 \section{Fyzikální podstata obrazu}
 
 Proces zpracování obrazových dat úzce souvisí s fyzikální podstatou světla a způsobem, jakým je vnímáno lidským zrakovým ústrojím a následně technicky reprezentováno v digitálních systémech.
@@ -761,7 +763,6 @@ B &= Y + 2.03211U
 
 
 
-\subsection{}
 
 \section{Histogram}
 
@@ -882,24 +883,30 @@ Aproximace disku ($5 \times 5$)
 \end{equation}
 
 
-\chapter{Hardwarová architektura a implementace algoritmů}
 
-\section{Datový tok}
-AXI video stream
-v textu zmínit, že deska podporuje tzv. \textit{overlay} architekturu, což  umožní měnit hardwarovou konfiguraci FPGA bez nutnosti restartu celého systému, to je testování algoritmů zpracování obrazu velmi výhodné. 
+\section{Prahování}
+% KOSTRA: doplnit: prahování, Otsu z histogramu na ARM; co je pro FPGA obtížné (README.md §3).
 
-\section{Moduly pro barevné transformace}
-\subsection{Univerzální barevný převodník pro lineární barevné palety?}
 
-\subsection{Nelineární barevné převodníky}
-\subsubsection{RGB na HSV}
-\subsection{HSV na RGB}
+\section{Mediánový filtr}
+% KOSTRA: doplnit: medián 3×3, třídicí síť místo třídění (README.md §5).
+
+\chapter{Návrh a metodika srovnání}
+% KOSTRA: kap. 4 (~6 s), osnova v doc/osnova_kap4-6.md.
+
+
+\section{Cíle a kritéria srovnání}
+% KOSTRA: čtyři body zadání a z nich kritéria: bitová shoda, prostředky, Fmax, propustnost, rychlost proti SW.
+
+
+\section{Referenční model v C}
+% KOSTRA: golden model lib_imgproc, generátor konstant, shoda s OpenCV (README.md, vysledky.md sekce 15).
 
 \section{Metodologie designu}
 
 \subsection{Problém s 2023 a 2025}
 
-Zásadní problém při implementaci ve verzi 2023.2 je nekompletních konfiguračních souborech (Board Files) pro modul Kria KV260, kterým chybělo detailní fyzické mapování hodinových domén (tzv. Clock Regions) na samotném křemíku Zynq UltraScale\bigoplus. Kvůli tomu interní směrovací algoritmus nedokázal správně alokovat trasy pro časově kritické signály, což vedlo ke kritickému selhání NTD (New Timing Driven) flow hned v úvodu fáze Place & Route. Upgrade na verzi Vivado 2025.2 tento problém vyřešil architektonicky, jelikož nová verze nativně integruje aktualizované a plně ověřené profily desky přímo z repozitáře AMD. Tyto nové profily již obsahují bezchybně definované mapování pinů i hodinového směrování, díky čemuž nástroj získal přesnou informaci o fyzické topologii čipu a celá implementace, včetně vygenerování bitstreamu, proběhla úspěšně bez nutnosti definovat dodatečná složitá manuální omezení (constraints).
+Zásadní problém při implementaci ve verzi 2023.2 je nekompletních konfiguračních souborech (Board Files) pro modul Kria KV260, kterým chybělo detailní fyzické mapování hodinových domén (tzv. Clock Regions) na samotném křemíku Zynq UltraScale+. Kvůli tomu interní směrovací algoritmus nedokázal správně alokovat trasy pro časově kritické signály, což vedlo ke kritickému selhání NTD (New Timing Driven) flow hned v úvodu fáze Place \& Route. Upgrade na verzi Vivado 2025.2 tento problém vyřešil architektonicky, jelikož nová verze nativně integruje aktualizované a plně ověřené profily desky přímo z repozitáře AMD. Tyto nové profily již obsahují bezchybně definované mapování pinů i hodinového směrování, díky čemuž nástroj získal přesnou informaci o fyzické topologii čipu a celá implementace, včetně vygenerování bitstreamu, proběhla úspěšně bez nutnosti definovat dodatečná složitá manuální omezení (constraints).
 
 Problém ve verzi 2025.2 je změna flow z nějakého souboru s zatím nevím jakou přípomou se přešlo na xml, jenžě to zatím není oddláděné a nefuguje jak má.
 
@@ -922,7 +929,7 @@ Další podrobnosti naleznete v sekci „HLS Programmers Guide“ v uživatelsk�
  
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{HLS:methodology.png}
+    \includegraphics[width=0.5\linewidth]{methodology.png}
     \caption{Enter Caption}
     \label{fig:placeholder}
 \end{figure}
@@ -954,6 +961,22 @@ Příklad převodu
     \label{tab:placeholder}
 \end{table}
 
+
+\section{Úrovně ověření}
+% KOSTRA: C-simulace, kosimulace a xsim, test na desce; proč C-sim nestačí (README.md, lessons.md).
+
+
+\section{Metodika měření}
+% KOSTRA: OOC syntéza 5 ns, Fmax = max(5 − WNS, 5 − WPWS), měření na desce, SW na A53 1333 MHz (vysledky.md sekce 9, 18, 19).
+
+
+\chapter{Implementace algoritmů}
+% KOSTRA: kap. 5 (~11 s) = zbytek původní kapitoly „Hardwarová architektura a implementace algoritmů“. Před kapitolou deklarace AI ke kódu (dp-ai).
+
+\section{Datový tok}
+AXI video stream
+v textu zmínit, že deska podporuje tzv. \textit{overlay} architekturu, což  umožní měnit hardwarovou konfiguraci FPGA bez nutnosti restartu celého systému, to je testování algoritmů zpracování obrazu velmi výhodné. 
+
 \section{Zpracování video streamu}
 
 Neboli AXI stream video
@@ -974,18 +997,6 @@ if(DE){
 }
 }
 \end{lstlisting}
-
-\section{Převody do barevných soustav}
-zminit problém nalezení toho "správného" postupu YCbCr, YUV,  a dalších (
-\begin{itemize}
-    \item \textbf{Y′UV} is the separation used in PAL.
-    \item \href{https://en.wikipedia.org/wiki/YDbDr}{YDbDr} is the format used in \href{https://en.wikipedia.org/wiki/SECAM}{SECAM}, unusually based on non-gamma-corrected (linear) RGB, making the Y component true \href{https://en.wikipedia.org/wiki/Luminance}{luminance}.
-    \item \href{https://en.wikipedia.org/wiki/YIQ}{Y′IQ} is the format used in \href{https://en.wikipedia.org/wiki/NTSC}{NTSC} television.
-    \item \href{https://en.wikipedia.org/wiki/YPbPr}{Y'PbPr} is the separation used in \href{https://en.wikipedia.org/wiki/Component_video}{component video}.
-    \item \href{https://en.wikipedia.org/wiki/YCbCr}{Y′CbCr} is any \href{https://en.wikipedia.org/wiki/Digital_component_video}{digital encoding} of Y'PbPr suited for video and image compression and transmission formats such as \href{https://en.wikipedia.org/wiki/Moving_Picture_Experts_Group}{MPEG} and \href{https://en.wikipedia.org/wiki/JPEG}{JPEG}.\textsuperscript{\href{https://en.wikipedia.org/wiki/Y\%E2\%80\%B2UV\#cite_note-Poynton-2}{[2]}}
-    \item \href{https://en.wikipedia.org/wiki/YCoCg}{Y′CoCg} is a similar separation that offers better performance and lossless round-tripping, used in newer video codecs and \href{https://en.wikipedia.org/wiki/JPEG_XR}{JPEG XR}.
-\end{itemize}
- ) takže jsem vytvořil univerzální, kde stačí pouze upravit koeficienty
 
 \section{Architektura a hardwarová implementace generického IP jádra pro zpracování obrazu}
 
@@ -1029,9 +1040,24 @@ Inovativním prvkem navrženého řešení je definice algoritmu ve formě C\+\+
 \subsection{Závěr návrhu}
 Kombinací paralelizace na úrovni dat (Data-Level Parallelism), efektivního mapování DSP bloků a generické metaprogramovací architektury bylo vytvořeno robustní IP jádro. Modul bez problémů splňuje požadavky na zpracování video toku v reálném čase (Real-time Video Processing) s minimální latencí, deterministickým časováním a optimální spotřebou zdrojů platformy FPGA.
 
-\section{Passthrouht}
-Testovací komponenta, logicky je nejednoduší ale byla důležitá k testování a naučení se ovládání datového streamu, důležitý poznatek je dodržet to co Xillinx uvádí ve své dokumentaci a to je zpracování ve dvou vnořených cyklech, pro výšku a šírku myslím že to je v souboru XAP793 nebo jak se to jmenuje
+\section{Moduly pro barevné transformace}
+\subsection{Univerzální barevný převodník pro lineární barevné palety?}
 
+\subsection{Nelineární barevné převodníky}
+\subsubsection{RGB na HSV}
+\subsection{HSV na RGB}
+
+\section{Převody do barevných soustav}
+zminit problém nalezení toho "správného" postupu YCbCr, YUV,  a dalších (
+\begin{itemize}
+    \item \textbf{Y′UV} is the separation used in PAL.
+    \item \href{https://en.wikipedia.org/wiki/YDbDr}{YDbDr} is the format used in \href{https://en.wikipedia.org/wiki/SECAM}{SECAM}, unusually based on non-gamma-corrected (linear) RGB, making the Y component true \href{https://en.wikipedia.org/wiki/Luminance}{luminance}.
+    \item \href{https://en.wikipedia.org/wiki/YIQ}{Y′IQ} is the format used in \href{https://en.wikipedia.org/wiki/NTSC}{NTSC} television.
+    \item \href{https://en.wikipedia.org/wiki/YPbPr}{Y'PbPr} is the separation used in \href{https://en.wikipedia.org/wiki/Component_video}{component video}.
+    \item \href{https://en.wikipedia.org/wiki/YCbCr}{Y′CbCr} is any \href{https://en.wikipedia.org/wiki/Digital_component_video}{digital encoding} of Y'PbPr suited for video and image compression and transmission formats such as \href{https://en.wikipedia.org/wiki/Moving_Picture_Experts_Group}{MPEG} and \href{https://en.wikipedia.org/wiki/JPEG}{JPEG}.\textsuperscript{\href{https://en.wikipedia.org/wiki/Y\%E2\%80\%B2UV\#cite_note-Poynton-2}{[2]}}
+    \item \href{https://en.wikipedia.org/wiki/YCoCg}{Y′CoCg} is a similar separation that offers better performance and lossless round-tripping, used in newer video codecs and \href{https://en.wikipedia.org/wiki/JPEG_XR}{JPEG XR}.
+\end{itemize}
+ ) takže jsem vytvořil univerzální, kde stačí pouze upravit koeficienty
 
 \section{RGB na HSV}
 \subsection{VHDL}
@@ -1075,6 +1101,10 @@ Testovací komponenta, logicky je nejednoduší ale byla důležitá k testován
 
 \subsection{HLS}
 
+
+\section{Prahování (implementace)}
+% KOSTRA: doplnit podle README.md §3 (HLS i VHDL, ověření).
+
 \section{2D filter}
 
 \href{https://docs.amd.com/r/en-US/am004-versal-dsp-engine/Filter-Designs}{Filter Designs}
@@ -1082,7 +1112,7 @@ Testovací komponenta, logicky je nejednoduší ale byla důležitá k testován
 \subsection{Sčítací strom}
 \href{https://docs.amd.com/r/en-US/am004-versal-dsp-engine/Adder-Tree}{Adder Tree }
 
-\subsection{Multiplay-Accumulate MACC }
+\subsection{Multiply-Accumulate (MACC) }
 \url{https://docs.amd.com/r/en-US/am004-versal-dsp-engine/MACC-Extension}
 Vynásob a sečti
 
@@ -1106,6 +1136,53 @@ Vynásob a sečti
  \subsection{Srovnání}
 
  
+
+\section{Mediánový filtr (implementace)}
+% KOSTRA: doplnit podle README.md §5 (sorting network, HLS i VHDL).
+
+
+\section{Histogram (implementace)}
+% KOSTRA: doplnit: BRAM s forwardingem proti 256 čítačům (README.md §6, vysledky.md sekce 7).
+
+\section{Testovací řetězec: průchod bez zpracování (bypass)}
+Testovací komponenta, logicky je nejednoduší ale byla důležitá k testování a naučení se ovládání datového streamu, důležitý poznatek je dodržet to co Xillinx uvádí ve své dokumentaci a to je zpracování ve dvou vnořených cyklech, pro výšku a šírku myslím že to je v souboru XAP793 nebo jak se to jmenuje
+
+
+\section{Testovací řetězec a měřicí aplikace}
+% KOSTRA: VDMA, AXIS přepínače, bypass jako strop, harness_app na A53, board_test (README.md, vysledky.md sekce 12, 19).
+
+
+\section{Nalezené problémy}
+% KOSTRA: řádková HLS jádra s auto-rewind, chování VDMA S2MM, PS UART (vysledky.md sekce 16 a 17, lessons.md).
+
+
+\chapter{Výsledky a srovnání}
+% KOSTRA: kap. 6 (~7 s). Tabulky z doc/osnova_kap4-6.md; čísla přesně z DP/results/vysledky.md. Tabulku „Srovnání prostředků“ 2D filtru z kap. 5 přesunout sem.
+
+
+\section{Ověření funkce}
+% KOSTRA: bitová shoda 16 jader na třech úrovních SW (vysledky.md sekce 16 až 18).
+
+
+\section{Prostředky a maximální frekvence (OOC)}
+% KOSTRA: HLS × VHDL po jádrech (README.md Výsledky, vysledky.md sekce 2 až 9, 11, 13).
+
+
+\section{Propustnost na desce}
+% KOSTRA: 10,37 ms na snímek, 96 fps; cena vypnutí auto-rewind (vysledky.md sekce 19).
+
+
+\section{Srovnání HW a SW}
+% KOSTRA: zrychlení 3,4× až 55×, vliv -O0/-O2/-O3 (vysledky.md sekce 18).
+
+
+\section{Využití zařízení celým řetězcem}
+% KOSTRA: obnovit z finálního bitstreamu (vysledky.md sekce 12 je z 22. 10.).
+
+
+\section{Diskuse}
+% KOSTRA: kompromisy HLS × VHDL, limity měření, bez superlativů.
+
 \chapter{Závěr}
 
 \printbibliography[title={Použitá literatura},heading=bibintoc]
