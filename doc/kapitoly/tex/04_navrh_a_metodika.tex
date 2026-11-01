@@ -10,7 +10,7 @@ Každý algoritmus má 3 implementace: v~C, v~HLS a~ve VHDL. Aby jejich porovná
 \section{Cíle a~kritéria srovnání}
 \label{sec:kriteria}
 
-Zadání požaduje implementovat vybrané algoritmy v~softwaru a~hardwaru (ve VHDL a~pomocí HLS) a~hardwarové verze porovnat se softwarem. Software je napsaný v~C pro procesor Cortex-A53 a~je zároveň referenčním modelem. Obě hardwarové verze mají stejné rozhraní a~stejnou mapu registrů. Jsou proto zaměnitelné a~ovládá je jeden ovladač v~C.
+Zadání požaduje implementovat vybrané algoritmy v~softwaru a~hardwaru (ve VHDL a~pomocí HLS) a~hardwarové verze porovnat se softwarem. Software je obecný celočíselný kód v~C (C11), který se přeloží pro PC i~pro procesor Cortex-A53, a~je zároveň referenčním modelem. Obě hardwarové verze mají stejné rozhraní a~stejnou mapu registrů. Jsou proto zaměnitelné a~ovládá je jeden ovladač v~C.
 
 Na prvním místě je správnost. Implementace, která se s~referenčním modelem neshoduje bit po bitu, se dál neposuzuje, protože rychlost ani velikost špatně počítajícího obvodu nic neříká. Správné implementace porovnávám podle kritérií v~tabulce~\ref{tab:kriteria}. Prostředky jsou počty buněk \ac{LUT} a~\ac{FF}, bloků \ac{DSP} a~pamětí \ac{BRAM}, které jádro v~obvodu zabere. Prostředky a~maximální frekvenci měřím na samotném jádře. Propustnost a~rychlost proti softwaru měřím na celém řetězci na desce.
 
@@ -147,4 +147,4 @@ Po měření aplikace porovná výstup bajt po bajtu s~modelem přeloženým pro
 \subsection{Softwarové řešení na procesoru Cortex-A53}
 \label{sec:sw}
 
-Referenční model přeložený pro ARM spouštím na jednom jádru procesoru Cortex-A53 s~hodinami 1333\,MHz (podle nastavení z~Vivada), bez operačního systému a~se zapnutými vyrovnávacími pamětmi, takže měření nic neruší. Překládám s~optimalizací \texttt{-O0}, \texttt{-O2} i~\texttt{-O3} překladačem z~Vitis 2025.2, protože výhodnost porovnání s~hardwarem závisí na úrovni optimalizace. Čas měřím čítačem procesoru a~beru medián z~10 běhů každého algoritmu na stejném snímku jako u~hardwaru.
+Referenční model přeložený pro ARM spouštím na jednom jádru procesoru Cortex-A53 s~hodinami 1333\,MHz (podle nastavení z~Vivada), bez operačního systému a~se zapnutými vyrovnávacími pamětmi, takže měření nic neruší. Překládám s~optimalizací \texttt{-O0}, \texttt{-O2} i~\texttt{-O3} překladačem z~Vitis 2025.2, protože výhodnost porovnání s~hardwarem závisí na úrovni optimalizace. Kód je stejný jako na PC, bez ručních optimalizací pro procesor (bez intrinsiků NEON a~bez asembleru), takže případnou vektorizaci provede jen překladač. Čas měřím čítačem procesoru a~beru medián z~10 běhů každého algoritmu na stejném snímku jako u~hardwaru.
