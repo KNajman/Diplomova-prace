@@ -643,7 +643,7 @@ ale 35× víc logiky – názorná ukázka, že volba architektury rozhoduje ví
      přijmout pixel, zápis a zpětné čtení registrů, spuštění `0x81` (start + auto-restart), přerušení a `ISR`, odpovědi
      `BRESP`/`RRESP` = OKAY.
 3. **Deska KV260** (`DP/sw/harness_app`): měřicí aplikace pošle snímek přes VDMA každým jádrem a výsledek porovná
-   s referenčním modelem přeloženým pro ARM. Aplikace je přeložená, na desce zatím neproběhla.
+   s referenčním modelem přeloženým pro ARM. Na desce ověřeno 25. 10. 2026: všech 16 měření (HLS i VHDL) je bitově shodných na úrovních -O0, -O2 i -O3 (`DP/results/vysledky.md` sekce 16 až 19).
 
 ### Syntéza mimo kontext (OOC)
 
