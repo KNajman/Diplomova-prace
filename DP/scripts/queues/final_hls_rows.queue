@@ -1,0 +1,9 @@
+# Čísla pro kapitolu 6: řádková HLS jádra po vypnutí auto-rewind (25. 10.) znovu syntéza + IP, kosimulace HSV
+# (po změně ještě neběžela; CSC prošla 25. 10.) a OOC stejným skriptem jako VHDL, aby tabulky odpovídaly kódu v bitstreamu.
+# Varianty hsv2rgb_dsp a _dsp_lat mají auto-rewind vypnutý taky (cfg), OOC se jen přepočítá.
+# @stop_on_error
+cd DP/hls/scripts && for c in csc/hls_config_rgb hsv/hls_config_rgb2hsv hsv/hls_config_hsv2rgb hsv/hls_config_hsv2rgb_dsp hsv/hls_config_hsv2rgb_dsp_lat; do bash run_hls.sh ../$c.cfg syn || exit 1; done
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg cosim && bash run_hls.sh ../hsv/hls_config_hsv2rgb.cfg cosim
+cd DP/hls/scripts && for core in csc_rgb hsv_rgb2hsv:rgb2hsv hsv_hsv2rgb:hsv2rgb hsv_hsv2rgb_dsp:hsv2rgb_dsp hsv_hsv2rgb_dsp_lat:hsv2rgb_dsp_lat; do dir=${core%%:*}; label=hls_${core##*:}; vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/$dir $label || exit 1; done
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc ~/logs/hls_ooc_results.csv
+cd DP/hls && python3 scripts/collect_reports.py build ~/logs/hls_results.csv
