@@ -1,0 +1,53 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Sun Oct 25 21:34:15 2026
+| Host         : ababeel running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 2 -file /home/karel/Diplomova-prace/DP/hw/build/harness/utilization_hier.rpt
+| Design       : harness_wrapper
+| Device       : xck26-sfvc784-2LV-c
+| Speed File   : -2LV
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-----------------------+-----------------------------+------------+------------+---------+------+-------+--------+--------+------+------------+
+|        Instance       |            Module           | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | URAM | DSP Blocks |
++-----------------------+-----------------------------+------------+------------+---------+------+-------+--------+--------+------+------------+
+| harness_wrapper       |                       (top) |      14006 |      13084 |     584 |  338 | 17969 |     12 |      8 |    2 |         64 |
+|   harness_i           |                     harness |      14006 |      13084 |     584 |  338 | 17969 |     12 |      8 |    2 |         64 |
+|     vhdl_threshold    |    harness_vhdl_threshold_0 |         82 |         82 |       0 |    0 |   141 |      0 |      0 |    0 |          0 |
+|     axi_vdma_0        |        harness_axi_vdma_0_0 |       2973 |       2771 |       8 |  194 |  4636 |      4 |      2 |    2 |          0 |
+|     ctrl_interconnect | harness_ctrl_interconnect_0 |       1962 |       1877 |      40 |   45 |  1882 |      0 |      0 |    0 |          0 |
+|     gray_in           |           harness_gray_in_0 |        104 |        102 |       0 |    2 |   197 |      0 |      0 |    0 |          3 |
+|     gray_out          |          harness_gray_out_0 |        267 |        265 |       0 |    2 |   360 |      0 |      0 |    0 |          3 |
+|     gray_switch_in    |    harness_gray_switch_in_0 |        330 |        330 |       0 |    0 |   706 |      0 |      0 |    0 |          0 |
+|     gray_switch_out   |   harness_gray_switch_out_0 |        138 |        138 |       0 |    0 |   260 |      0 |      0 |    0 |          0 |
+|     hls_csc_rgb       |       harness_hls_csc_rgb_0 |        408 |        408 |       0 |    0 |   361 |      0 |      0 |    0 |          9 |
+|     hls_filter3x3     |     harness_hls_filter3x3_0 |        606 |        602 |       0 |    4 |   609 |      2 |      0 |    0 |         10 |
+|     hls_histogram     |     harness_hls_histogram_0 |        276 |        276 |       0 |    0 |   400 |      0 |      2 |    0 |          0 |
+|     hls_hsv2rgb       |       harness_hls_hsv2rgb_0 |        232 |        232 |       0 |    0 |   264 |      0 |      0 |    0 |         11 |
+|     hls_median        |        harness_hls_median_0 |        745 |        741 |       0 |    4 |   472 |      2 |      0 |    0 |          0 |
+|     hls_rgb2hsv       |       harness_hls_rgb2hsv_0 |        255 |        245 |       0 |   10 |   226 |      0 |      2 |    0 |          2 |
+|     hls_threshold     |     harness_hls_threshold_0 |        125 |        125 |       0 |    0 |   118 |      0 |      0 |    0 |          0 |
+|     mem_smc           |           harness_mem_smc_0 |       2097 |       1541 |     536 |   20 |  3911 |      0 |      0 |    0 |          0 |
+|     rgb_switch_in     |     harness_rgb_switch_in_0 |        831 |        831 |       0 |    0 |   686 |      0 |      0 |    0 |          0 |
+|     rgb_switch_out    |    harness_rgb_switch_out_0 |        137 |        137 |       0 |    0 |   247 |      0 |      0 |    0 |          0 |
+|     vhdl_csc_rgb      |      harness_vhdl_csc_rgb_0 |        208 |        206 |       0 |    2 |   389 |      0 |      0 |    0 |          9 |
+|     vhdl_filter3x3    |    harness_vhdl_filter3x3_0 |        504 |        501 |       0 |    3 |   558 |      2 |      0 |    0 |         14 |
+|     vhdl_histogram    |    harness_vhdl_histogram_0 |        187 |        187 |       0 |    0 |   288 |      0 |      2 |    0 |          0 |
+|     vhdl_hsv2rgb      |      harness_vhdl_hsv2rgb_0 |        605 |        567 |       0 |   38 |   422 |      0 |      0 |    0 |          1 |
+|     vhdl_median       |       harness_vhdl_median_0 |        663 |        660 |       0 |    3 |   532 |      2 |      0 |    0 |          0 |
+|     vhdl_rgb2hsv      |      harness_vhdl_rgb2hsv_0 |        276 |        266 |       0 |   10 |   255 |      0 |      0 |    0 |          2 |
++-----------------------+-----------------------------+------------+------------+---------+------+-------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

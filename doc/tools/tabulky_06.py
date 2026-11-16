@@ -17,6 +17,7 @@ Zdroje:
     DP/hls/results/hls_ooc_results.csv      OOC RTL z HLS (stejný skript jako VHDL, vysledky.md sekce 9)
     DP/vhdl/results/vhdl_results.csv        OOC VHDL
     DP/results/deska/deska_<beh>_O{0,2,3}.csv  měření na KV260 (vysledky.md sekce 18 a 19)
+    DP/results/retezec_2026-10-25/*.rpt     využití a časování finálního bitstreamu (vysledky.md sekce 22)
 
 Jen standardní knihovna Pythonu 3.
 """
@@ -33,6 +34,18 @@ HLS_OOC = 'DP/hls/results/hls_ooc_results.csv'
 VHDL_OOC = 'DP/vhdl/results/vhdl_results.csv'
 DESKA = 'DP/results/deska/deska_{beh}_{opt}.csv'
 BEH_VYCHOZI = '2026-10-25_2243'
+RETEZEC = 'DP/results/retezec_2026-10-25'  # reporty Vivada finálního bitstreamu (utilization, timing)
+
+# Skupiny instancí testovacího řetězce (utilization_hier.rpt): popisek, funkce instance -> patří do skupiny
+SKUPINY_RETEZCE = (
+    ('7 jader HLS', lambda n: n.startswith('hls_')),
+    ('7 jader VHDL', lambda n: n.startswith('vhdl_')),
+    ('převod na šedou a zpět (VHDL)', lambda n: n in ('gray_in', 'gray_out')),
+    ('VDMA', lambda n: n.startswith('axi_vdma')),
+    ('přepínače AXI4-Stream', lambda n: '_switch_' in n),
+    ('propojení AXI4-Lite (řízení)', lambda n: n == 'ctrl_interconnect'),
+    ('propojení do paměti DDR', lambda n: n == 'mem_smc'),
+)
 UROVNE = ('O0', 'O2', 'O3')
 
 # Teoretický strop řetězce: 1 pixel za takt, 1920 × 1080 při 200 MHz.
@@ -345,6 +358,64 @@ def tab_prekladac(deska):
                    ['Algoritmus', 'Zrychlení -O0 → -O2', 'Změna -O2 → -O3'], radky)
 
 
+def nacti_retezec(adresar):
+    """Využití a časování celého řetězce z reportů Vivada (report_utilization, report_timing_summary)."""
+    vyuziti = {}
+    with open(os.path.join(adresar, 'utilization.rpt'), encoding='utf-8') as soubor:
+        for radek in soubor:
+            bunky = [b.strip() for b in radek.split('|')]
+            if len(bunky) > 6 and bunky[1] in ('CLB LUTs', 'CLB Registers', 'Block RAM Tile', 'DSPs', 'URAM') \
+                    and bunky[1] not in vyuziti:
+                vyuziti[bunky[1]] = (bunky[2], bunky[5], bunky[6])  # použito, k dispozici, %
+    with open(os.path.join(adresar, 'timing.rpt'), encoding='utf-8') as soubor:
+        radky = soubor.read().split('\n')
+    i = next(n for n, r in enumerate(radky) if r.strip().startswith('WNS(ns)'))
+    hodnoty = radky[i + 2].split()
+    casovani = {'WNS': hodnoty[0], 'WHS': hodnoty[4], 'WPWS': hodnoty[8]}
+    instance = []
+    with open(os.path.join(adresar, 'utilization_hier.rpt'), encoding='utf-8') as soubor:
+        for radek in soubor:
+            if radek.startswith('|     ') and not radek.startswith('|       '):
+                b = [x.strip() for x in radek.split('|')]
+                # Instance, Module, Total LUTs, Logic LUTs, LUTRAMs, SRLs, FFs, RAMB36, RAMB18, URAM, DSP
+                instance.append({'nazev': b[1], 'lut': int(b[3]), 'ff': int(b[7]),
+                                 'bram': int(b[8]) + int(b[9]) / 2.0, 'uram': int(b[10]), 'dsp': int(b[11])})
+    return vyuziti, casovani, instance
+
+
+def tab_retezec(vyuziti, casovani):
+    def bunka(klic):
+        pouzito, _, procento = vyuziti[klic]
+        return '{} ({} %)'.format(cele(pouzito), desetinne(procento, 1))
+    radek = ['+' + desetinne(casovani['WNS'], 3), '+' + desetinne(casovani['WHS'], 3), bunka('CLB LUTs'),
+             bunka('CLB Registers'), bunka('Block RAM Tile'), bunka('DSPs'), bunka('URAM')]
+    dostupne = ['k dispozici', '', '', cele(vyuziti['CLB LUTs'][1]), cele(vyuziti['CLB Registers'][1]),
+                cele(vyuziti['Block RAM Tile'][1]), cele(vyuziti['DSPs'][1]), cele(vyuziti['URAM'][1])]
+    return tabulka('Využití obvodu xck26 testovacím řetězcem se 14 jádry a časová rezerva při 200 MHz '
+                   '(finální bitstream, Vivado 2025.2)', 'tab:retezec', '2.2,1.6,1.6,2.3,2.3,2.0,1.9,1.6',
+                   ['', 'WNS [ns]', 'WHS [ns]', 'LUT', 'FF', 'BRAM36', 'DSP', 'URAM'],
+                   [['použito'] + radek, dostupne])
+
+
+def tab_retezec_bloky(instance):
+    radky = []
+    soucet_lut = sum(i['lut'] for i in instance)
+    for popisek, patri in SKUPINY_RETEZCE:
+        cleny = [i for i in instance if patri(i['nazev'])]
+        if not cleny:
+            continue
+        lut = sum(i['lut'] for i in cleny)
+        radky.append([popisek, cele(lut), desetinne(100.0 * lut / soucet_lut, 0) + ' %',
+                      cele(sum(i['ff'] for i in cleny)), bram(sum(i['bram'] for i in cleny)),
+                      cele(sum(i['dsp'] for i in cleny))])
+    zbyle = [i['nazev'] for i in instance if not any(p(i['nazev']) for _, p in SKUPINY_RETEZCE)]
+    if zbyle:
+        print('upozornění: instance mimo skupiny: ' + ', '.join(zbyle), file=sys.stderr)
+    return tabulka('Rozdělení prostředků testovacího řetězce po blocích (finální bitstream, URAM jen ve VDMA)',
+                   'tab:retezecbloky', '4.6,1.6,1.6,1.6,1.6,1.6',
+                   ['Blok', 'LUT', 'Podíl LUT', 'FF', 'BRAM36', 'DSP'], radky)
+
+
 # ---------------------------------------------------------------------------------------------------
 # Přepsání bloků v kapitole
 # ---------------------------------------------------------------------------------------------------
@@ -391,6 +462,7 @@ def main():
     hls = nacti_ooc(HLS_OOC)
     vhdl = nacti_ooc(VHDL_OOC)
     deska, chyby = nacti_desku(args.beh)
+    vyuziti, casovani, instance = nacti_retezec(RETEZEC)
     if chyby:
         print('upozornění: měření na desce bez bitové shody:\n  ' + '\n  '.join(chyby), file=sys.stderr)
 
@@ -404,6 +476,8 @@ def main():
         'tab:propustnost': tab_propustnost(deska),
         'tab:hwsw': tab_hw_sw(deska),
         'tab:prekladac': tab_prekladac(deska),
+        'tab:retezec': tab_retezec(vyuziti, casovani),
+        'tab:retezecbloky': tab_retezec_bloky(instance),
     }
 
     with open(args.kapitola, newline='', encoding='utf-8') as soubor:

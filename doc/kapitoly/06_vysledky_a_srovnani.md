@@ -224,19 +224,42 @@ Tabulka: Vliv optimalizace překladače na dobu softwarového zpracování {#tab
 
 ## Využití obvodu celým řetězcem {#sec:vretezec}
 
-Syntéza mimo kontext měří jádro samostatně. V testovacím řetězci je 14 jader spolu s VDMA, přepínači AXI4-Stream a propojením k procesoru v jednom obvodu. Tabulka @ref(tab:retezec) uvádí využití obvodu a časovou rezervu celého řetězce při 200 MHz.
+Syntéza mimo kontext měří jádro samostatně. V testovacím řetězci je 14 jader spolu s VDMA, přepínači AXI4-Stream a propojením k procesoru v jednom obvodu. Tabulka @ref(tab:retezec) uvádí využití obvodu a časovou rezervu finálního bitstreamu, se kterým jsem měřil na desce (oddíl @ref(sec:vdeska)).
 
-<!-- TODO(data): čísla jsou z bitstreamu z 22. 10. (V12). Finální bitstream z 25. 10. (bez auto-rewind, s UART) – doplnit z DP/hw/build/harness/{utilization,timing}.rpt na Ababelu. Tato tabulka se negeneruje. -->
+<!-- TAB tab:retezec -->
 
-Tabulka: Využití obvodu xck26 testovacím řetězcem se 14 jádry (200 MHz, Vivado 2025.2) {#tab:retezec widths=3.0,1.8,1.8,2.2,2.2,1.6,1.6}
+Tabulka: Využití obvodu xck26 testovacím řetězcem se 14 jádry a časová rezerva při 200 MHz (finální bitstream, Vivado 2025.2) {#tab:retezec widths=2.2,1.6,1.6,2.3,2.3,2.0,1.9,1.6}
 
-| Stav | WNS [ns] | WHS [ns] | LUT | FF | BRAM36 | DSP |
-| --- | --- | --- | --- | --- | --- | --- |
-| 22. 10. 2026 | +0,104 | +0,010 | 14 024 (12,0 %) | 18 062 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) |
+|  | WNS [ns] | WHS [ns] | LUT | FF | BRAM36 | DSP | URAM |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| použito | +0,229 | +0,010 | 14 006 (12,0 %) | 17 969 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) | 2 (3,1 %) |
+| k dispozici |  |  | 117 120 | 234 240 | 144 | 1 248 | 64 |
 
-Řetězec zabírá přibližně osminu buněk LUT a bloků BRAM obvodu. Omezením tedy není velikost obvodu, ale časová rezerva, která je jen 0,104 ns. Kritická cesta leží uvnitř jádra HLS pro převod HSV na RGB, v násobení saturace a zlomkové části odstínu. Vivado ho umístil do bloku DSP bez vnitřních registrů a cesta prochází 12 úrovněmi logiky (z toho 9 uvnitř bloku DSP). Samostatně mělo stejné jádro rezervu 1,0 ns, v řetězci přibylo směrování a rozmístění vedle ostatních jader.
+<!-- /TAB -->
 
-Tohle je příklad, jak se chová jádro HLS navržené na hranu zadané periody. Při 5 ns vloží HLS mezi registry tolik logiky, kolik se do periody vejde, a v hustším návrhu pak rezerva mizí. Jádra ve VHDL s registrem za každou operací kritickou cestu řetězce netvořila. Nápravou by byla varianta s latencí násobení 3 takty z tabulky @ref(tab:hsvdsp), ta by ale změnila srovnání obou verzí při stejném nastavení, a proto jsem ji do řetězce nedal.
+Řetězec zabírá 12 % buněk LUT a 11 % bloků BRAM obvodu. Jak se prostředky dělí mezi jednotlivé bloky, ukazuje tabulka @ref(tab:retezecbloky). Všech 14 jader zabírá dohromady 37 % LUT řetězce, zbytek připadá na přenos dat: VDMA, přepínače a propojení k procesoru a do paměti DDR. Omezením tedy není velikost obvodu, ale časová rezerva.
+
+<!-- TAB tab:retezecbloky -->
+
+Tabulka: Rozdělení prostředků testovacího řetězce po blocích (finální bitstream, URAM jen ve VDMA) {#tab:retezecbloky widths=4.6,1.6,1.6,1.6,1.6,1.6}
+
+| Blok | LUT | Podíl LUT | FF | BRAM36 | DSP |
+| --- | --- | --- | --- | --- | --- |
+| 7 jader HLS | 2 647 | 19 % | 2 450 | 6 | 32 |
+| 7 jader VHDL | 2 525 | 18 % | 2 585 | 5 | 26 |
+| převod na šedou a zpět (VHDL) | 371 | 3 % | 557 | 0 | 6 |
+| VDMA | 2 973 | 21 % | 4 636 | 5 | 0 |
+| přepínače AXI4-Stream | 1 436 | 10 % | 1 899 | 0 | 0 |
+| propojení AXI4-Lite (řízení) | 1 962 | 14 % | 1 882 | 0 | 0 |
+| propojení do paměti DDR | 2 097 | 15 % | 3 911 | 0 | 0 |
+
+<!-- /TAB -->
+
+Časová rezerva celého řetězce je při 200 MHz 0,229 ns. Kritická cesta leží uvnitř jádra HLS pro převod HSV na RGB, v násobení saturace a zlomkové části odstínu. Vivado ho umístil do bloku DSP včetně předsčítačky, ale bez vnitřních registrů. Cesta trvá 4,63 ns a prochází 11 úrovněmi logiky, z toho 8 uvnitř bloku DSP. Při syntéze mimo kontext měly obě varianty jádra (s násobením v LUT i v DSP) rezervu 0,77 až 0,95 ns, v řetězci přibylo směrování a rozmístění vedle ostatních jader.
+
+Tohle je příklad, jak se chová jádro HLS navržené na hranu zadané periody. Při 5 ns vloží HLS mezi registry tolik logiky, kolik se do periody vejde, a v hustším návrhu pak rezerva mizí. Jádra ve VHDL s registrem za každou operací kritickou cestu řetězce netvořila. Nápravou by byla varianta s latencí násobení 3 takty z tabulky @ref(tab:hsvdsp).
+
+<!-- TODO(Karel): V řetězci zabírá jádro hls_hsv2rgb 232 LUT, 264 FF a 11 DSP, tedy jako varianta s násobením v DSP (OOC 224 LUT, 241 FF, 11 DSP), ne jako výchozí varianta (OOC 556 LUT, 1 DSP). Možné příčiny: (a) všechny tři varianty HSV→RGB mají stejný název IP xilinx.com:hls:hls_hsv2rgb:1.0 a build_harness.tcl přidává do katalogu všechny tři adresáře, Vivado tedy mohl vzít variantu _dsp; (b) syntéza IP v blokovém návrhu sama mapuje násobení 8 × 8 do DSP (sekce 12 z 22. 10., kdy varianta _dsp ještě neexistovala, už ukazovala kritickou cestu v DSP). Do vyjasnění v textu netvrdím, která varianta v řetězci je. Oprava: dát variantám různé názvy IP (package.ip.name) a bitstream přeložit znovu. -->
 
 ## Diskuse {#sec:diskuse}
 

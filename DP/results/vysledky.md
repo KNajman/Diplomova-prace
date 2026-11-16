@@ -646,3 +646,38 @@ skriptem jako VHDL (sekce 9), cíl 5 ns. V csynth reportu už žádná smyčka n
   jsou z RTL s auto-rewind. V DP se používají jen čísla z OOC. Kapitola 6 a README přepočítané (`doc/tools/tabulky_06.py`).
 
 Zdroj: `DP/hls/results/hls_ooc_results.csv` (z `~/logs/hls_ooc_results.csv`), log `~/logs/final_hls_rows.log`.
+
+## 22. Testovací řetězec – finální bitstream: využití, časování, příkon (16. 11. 2026)
+
+Konfigurace: bitstream z 25. 10. 21:34 (fronta `uart_rebuild`, 200 MHz, HLS řádková jádra bez auto-rewind, PS UART1), se kterým
+proběhla všechna měření v sekcích 19 a 20. Reporty Vivada staženy z Ababelu do `DP/results/retezec_2026-10-25/`
+(`utilization.rpt`, `utilization_hier.rpt`, `timing.rpt`, `power.rpt`, `address_map.txt`).
+
+| | WNS | WHS | WPWS | LUT | FF | BRAM36 | DSP | URAM |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 22. 10. (sekce 12) | +0,104 ns | +0,010 ns | – | 14 024 (12,0 %) | 18 062 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) | – |
+| **25. 10. (finální)** | **+0,229 ns** | +0,010 ns | +1,000 ns | 14 006 (12,0 %) | 17 969 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) | 2 (3,1 %) |
+| k dispozici (xck26) | | | | 117 120 | 234 240 | 144 | 1 248 | 64 |
+
+Rozdělení po blocích (`utilization_hier.rpt`): 7 jader HLS 2 647 LUT (19 %), 7 jader VHDL 2 525 (18 %), převod na šedou
+a zpět 371 (3 %), VDMA 2 973 (21 %), přepínače AXI4-Stream 1 436 (10 %), propojení AXI4-Lite 1 962 (14 %), SmartConnect
+do DDR 2 097 (15 %). Jádra dohromady 37 % LUT řetězce. URAM (2) používá jen VDMA.
+
+Kritická cesta: `hls_hsv2rgb/inst/fraction_reg_786_reg[5]` → DSP `biased_1_fu_361_p2` (ALU_OUT), 4,630 ns
+(logika 74 %), 11 úrovní, z toho 8 uvnitř DSP48E2 (předsčítačka, násobička, ALU) bez vnitřních registrů.
+
+Odhad příkonu Vivado (report_power, výchozí aktivita): celkem 3,087 W, z toho PS8 2,421 W, statický PL 0,303 W;
+PL dynamicky jen asi 0,36 W (signály 0,062 W, BRAM 0,019 W, DSP 0,031 W, MMCM 0,098 W, …). Jde o odhad bez simulované
+aktivity, ne o měření.
+
+**Poznatky**
+- Využití je prakticky stejné jako 22. 10.; rezerva se zlepšila z 0,104 na 0,229 ns (jiné rozmístění po vypnutí auto-rewind
+  a přidání UART). Kritická cesta je stále v násobení jádra `hls_hsv2rgb`.
+- **Otevřené:** `hls_hsv2rgb` v řetězci zabírá 232 LUT / 264 FF / 11 DSP, tedy jako varianta `_dsp` (OOC 224 / 241 / 11),
+  ne výchozí (OOC 556 / 296 / 1). Všechny tři varianty mají stejné VLNV `xilinx.com:hls:hls_hsv2rgb:1.0` a `build_harness.tcl`
+  přidává do katalogu všechny adresáře `hls/build/*/hls/impl/ip`, takže výběr IP není jednoznačný. Druhá možnost: syntéza IP
+  v blokovém návrhu mapuje násobení 8 × 8 do DSP sama (sekce 12 z 22. 10., kdy `_dsp` neexistovala, měla kritickou cestu
+  také v DSP). Oprava v každém případě: odlišit názvy IP variant (`package.ip.name`) a bitstream přeložit znovu.
+- Ostatní jádra v řetězci odpovídají OOC: LUT nejvýš o 8 % méně (histogram HLS 276 proti 300, konvoluce HLS 606 proti 640), FF nejvýš o 5 %, DSP shodně.
+
+Zdroj: `DP/results/retezec_2026-10-25/*.rpt` (Ababel `DP/hw/build/harness`, 25. 10. 21:34).
