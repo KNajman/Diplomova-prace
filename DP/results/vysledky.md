@@ -565,3 +565,84 @@ po 100 µs místo 2 ms a měří 20 snímků místo 50. SW -O2, bitstream 200 MH
 - Pro tabulky v DP se používají hodnoty z tohoto běhu (nebo opakovat tři běhy a brát medián), protože jsou nejpřesnější.
 
 Zdroj: `DP/results/deska/deska_2026-10-25_22*_O2.csv` (poslední běh s UART), skript `board_test.bat -Levels O2` (výchozí UART, `-Dcc` záloha).
+
+## 20. Souhrn pro kapitolu 6 – běh 25. 10. 22:43 (UART), SW -O0 / -O2 / -O3 × HW (13. 11. 2026)
+
+Konfigurace: stejný bitstream a aplikace jako v sekci 19 (200 MHz, 1080p RGB 24 b, HW 20 snímků, čtení stavu MM2S po 100 µs,
+SW medián z 10 běhů na A53 1333 MHz bare-metal), jeden běh `board_test` pro každou úroveň -O0, -O2, -O3. Všech 48 měření PASS
+(0 chybných bajtů / košů). Tabulky generuje `doc/tools/tabulky_06.py` z CSV a vkládá je do `doc/kapitoly/06_vysledky_a_srovnani.md`;
+nahrazují sekci 18 (ta byla z běhu s krokem měření 40 µs).
+
+**Doba snímku na desce (-O2; -O0 a -O3 se liší nejvýš o 1 µs)**
+
+| Algoritmus | HLS [µs] | VHDL [µs] | HLS [snímků/s] | VHDL [snímků/s] | Proti průchodu HLS / VHDL [µs] |
+| --- | --- | --- | --- | --- | --- |
+| průchod RGB | – | 10 371 | – | 96,4 | 0 |
+| průchod šedá | – | 10 371 | – | 96,4 | 0 |
+| převod barev RGB→YCbCr | 10 401 | 10 371 | 96,1 | 96,4 | +30 / 0 |
+| RGB→HSV | 10 412 | 10 371 | 96,0 | 96,4 | +41 / 0 |
+| HSV→RGB | 10 407 | 10 371 | 96,0 | 96,4 | +36 / 0 |
+| prahování (Otsu) | 10 371 | 10 371 | 96,4 | 96,4 | 0 / 0 |
+| medián 3×3 | 10 386 | 10 386 | 96,2 | 96,2 | +15 / +15 |
+| Sobel X 3×3 | 10 386 | 10 386 | 96,2 | 96,2 | +15 / +15 |
+| histogram | 10 371 | 10 371 | 96,4 | 96,4 | 0 / 0 |
+
+**SW × HW (HW = VHDL; HLS pomalejší nejvýš o 0,4 %, poměr se na uvedenou přesnost nemění)**
+
+| Algoritmus | SW -O0 [ms] | SW -O2 [ms] | SW -O3 [ms] | HW [ms] | SW/HW -O0 | -O2 | -O3 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| převod barev RGB→YCbCr | 1 147,7 | 278,0 | 228,7 | 10,37 | 111× | 27× | 22× |
+| RGB→HSV | 544,5 | 182,1 | 182,1 | 10,37 | 52× | 18× | 18× |
+| HSV→RGB | 521,6 | 115,8 | 115,8 | 10,37 | 50× | 11× | 11× |
+| prahování (Otsu) | 206,9 | 57,9 | 43,4 | 10,37 | 20× | 5,6× | 4,2× |
+| medián 3×3 | 2 728,1 | 549,9 | 561,1 | 10,39 | 263× | 53× | 54× |
+| Sobel X 3×3 | 2 334,1 | 567,4 | 538,5 | 10,39 | 225× | 55× | 52× |
+| histogram | 91,1 | 35,2 | 35,1 | 10,37 | 8,8× | 3,4× | 3,4× |
+
+**Vliv optimalizace překladače**
+
+| Algoritmus | Zrychlení -O0 → -O2 | Změna -O2 → -O3 |
+| --- | --- | --- |
+| převod barev RGB→YCbCr | 4,1× | −17,7 % |
+| RGB→HSV | 3,0× | 0,0 % |
+| HSV→RGB | 4,5× | 0,0 % |
+| prahování (Otsu) | 3,6× | −25,0 % |
+| medián 3×3 | 5,0× | +2,0 % |
+| Sobel X 3×3 | 4,1× | −5,1 % |
+| histogram | 2,6× | −0,1 % |
+
+**Poznatky**
+- Oproti sekci 18 se změnil jen HW čas (10,37 místo 10,40 ms, přesnější měření), a tím poměr SW/HW u převodu barev při -O0
+  (111× místo 110×) a u Sobela při -O0 (225× místo 224×). HSV→RGB při -O2 je 115,8 ms (sekce 18: 115,9 ms z jiného běhu).
+- -O2 → -O3 pomáhá převodu barev (−17,7 %), prahování (−25,0 %) a také Sobelovi (−5,1 %, v sekci 18 nezmíněno); medián +2,0 %.
+- -O0 → -O2 zrychlí SW 2,6× (histogram) až 5,0× (medián).
+
+Zdroj: `DP/results/deska/deska_2026-10-25_2243_O{0,2,3}.csv`, `uart_2026-10-25_2243_O*.txt`.
+
+## 21. Řádková HLS jádra bez auto-rewind – OOC a kosimulace (16. 11. 2026)
+
+Konfigurace: fronta `final_hls_rows` (commit ad92eb0, 13:45–14:07), syntéza HLS převodu barev a všech variant RGB↔HSV
+s `syn.compile.enable_auto_rewind=0` (stejné RTL jako v bitstreamu z 25. 10.), kosimulace RGB→HSV a HSV→RGB, OOC stejným
+skriptem jako VHDL (sekce 9), cíl 5 ns. V csynth reportu už žádná smyčka nemá auto-rewind; iterační latence beze změny
+(CSC 5, RGB→HSV 7, HSV→RGB 6, HSV→RGB DSP 6, s latencí násobení 10). Kosimulace obou směrů PASS (zkrácený test, 0 chyb).
+
+| jádro | LUT před → po | FF před → po | LUTRAM před → po | perioda před → po | limit po |
+| --- | --- | --- | --- | --- | --- |
+| `hls_csc_rgb` | 408 → 407 | 493 → **361** | 3 → 0 | 3,92 → 3,88 ns | logika |
+| `hls_rgb2hsv` | 249 → 249 | 200 → 214 | 11 → 10 | 4,16 → **4,44 ns** | logika |
+| `hls_hsv2rgb` | 567 → 556 | 266 → 296 | 14 → 0 | 3,97 → 4,05 ns | logika |
+| `hls_hsv2rgb_dsp` | 237 → 224 | 211 → 241 | 14 → 0 | 4,35 → 4,23 ns | logika |
+| `hls_hsv2rgb_dsp_lat` | 265 → 262 | 224 → 273 | 30 → 21 | 3,26 → 3,26 ns | šířka pulzu DSP |
+
+**Poznatky**
+- Vypnutí auto-rewind nezměnilo počet LUT (±2 %) ani stupně pipeline. U převodů HSV přibylo 14 až 49 FF a ubyly posuvné
+  registry v LUTRAM (SRL): řízení smyčky bez rewind drží stav v registrech. U převodu barev naopak ubylo 132 FF.
+- Perioda se změnila o −0,12 až +0,28 ns. RGB→HSV 4,44 ns je nejhorší z HLS jader; rozdíl proti VHDL (3,26 ns) se zvětšil.
+  Změny do ±0,3 ns jsou v rozptylu rozmístění a propojení (sekce 14), u RGB→HSV je změna na hraně.
+- Závěry sekcí 11 a 13 platí dál: HLS menší v LUT a FF u převodů HSV, VHDL kratší perioda; parametr DSP v HLS bez latence
+  periodu nezlepší (4,05 → 4,23 ns), s latencí 3 dosáhne stropu DSP 3,26 ns jako VHDL.
+- Odhad syntézy HLS u HSV→RGB 893 LUT proti 556 po implementaci (+61 %).
+- `hls_results.csv` (export Vitis HLS) se nepřepisoval: fronta nespouštěla `export_impl`, sloupce impl_* řádkových jader
+  jsou z RTL s auto-rewind. V DP se používají jen čísla z OOC. Kapitola 6 a README přepočítané (`doc/tools/tabulky_06.py`).
+
+Zdroj: `DP/hls/results/hls_ooc_results.csv` (z `~/logs/hls_ooc_results.csv`), log `~/logs/final_hls_rows.log`.

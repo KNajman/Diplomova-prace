@@ -1,0 +1,251 @@
+<!-- Kapitola 6, verze 1 (13. 11. 2026): tabulky generuje doc/tools/tabulky_06.py z CSV (bloky mezi <!-- TAB --> a <!-- /TAB --> needitovat, po novém měření spustit skript znovu). Text je první návrh podle osnovy v doc/osnova_kap4-6.md, čísla z DP/results/vysledky.md (V#) a z CSV běhu na desce 25. 10. 2026 22:43. -->
+
+# Výsledky a srovnání {#kap:vysledky}
+
+Kapitola odpovídá na 4. bod zadání: v čem se liší jádra napsaná v HLS a ve VHDL a o kolik je hardwarové zpracování rychlejší než software. Postupuji od správnosti přes prostředky a maximální frekvenci jednotlivých jader k propustnosti na desce a ke srovnání se softwarem. Metodiku měření popisuje kapitola @ref(kap:metodika).
+
+## Ověření funkce {#sec:vfunkce}
+
+Jádra jsem ověřil na třech úrovních popsaných v oddílu @ref(sec:overeni). Nejdřív jsem porovnal referenční model s knihovnou OpenCV, poté jádra HLS i VHDL v simulaci s referenčním modelem a nakonec obě verze na desce. Výsledky shrnuje tabulka @ref(tab:overeni).
+
+<!-- TAB tab:overeni -->
+
+Tabulka: Ověření funkce: model proti OpenCV, simulace jader proti modelu a měření na desce (počet úrovní -O0, -O2, -O3 s bitovou shodou) {#tab:overeni widths=3.4,3.6,3.2,1.7,1.7}
+
+| Algoritmus | Model proti OpenCV | Simulace HLS i VHDL | Deska HLS | Deska VHDL |
+| --- | --- | --- | --- | --- |
+| převod barev RGB→YCbCr | odchylka nejvýš 1 | PASS | 3/3 | 3/3 |
+| RGB→HSV | bitově shodný (2^24 barev) | PASS, úplný test 2^24 | 3/3 | 3/3 |
+| HSV→RGB | odchylka nejvýš 2 | PASS, úplný test 2^24 | 3/3 | 3/3 |
+| prahování (Otsu) | bitově shodný | PASS | 3/3 | 3/3 |
+| medián 3×3 | bitově shodný | PASS | 3/3 | 3/3 |
+| Sobel X 3×3 | bitově shodný | PASS | 3/3 | 3/3 |
+| histogram | neporovnáno | PASS | 3/3 | 3/3 |
+
+<!-- /TAB -->
+
+Na desce jsem změřil všech 7 algoritmů v obou verzích a 2 průchody řetězcem bez jádra, tedy 16 měření. Každé měření jsem zopakoval s měřicí aplikací přeloženou na úrovních optimalizace -O0, -O2 a -O3. Ve všech 48 případech byl výstup jádra bitově shodný s referenčním modelem přeloženým pro procesor (0 chybných bajtů, u histogramu 0 chybných košů).
+
+Bitová shoda s referenčním modelem neznamená bitovou shodu s OpenCV. U převodu RGB na šedou a na HSV, prahování, mediánu a konvoluce se model s OpenCV shoduje bit po bitu. U převodu RGB na YCbCr a zpět a u převodu HSV na RGB se liší nejvýš o 1 až 2 úrovně z 256. OpenCV zde počítá v plovoucí řádové čárce nebo s jinak zaokrouhlenými koeficienty, zatímco hardware používá pevnou řádovou čárku s omezenou šířkou slova. Hardwarové jádro je tedy aproximací, u které jsem zvolil kompromis mezi přesností, rychlostí a velikostí obvodu. Například zpětný převod YCbCr na RGB se od OpenCV liší nejvýš o 1 úroveň u 25,5 % složek. Bitovou shodu by dal offset s 15 bity za řádovou čárkou, který by ale vyžadoval 26bitový registr místo 10bitového a jiné jádro než pro dopředný převod. Odchylka o 1 úroveň z 256 odpovídá kvantizaci na 8 bitů a okem ji v obraze nerozeznám.
+
+<!-- TODO(Karel): poslední věta je tvoje formulace z 23. 10. („pro lidské oko prakticky nepostřehnutelné“). Chceš ji nechat jako vlastní pozorování, nebo ji podložit (např. rozdílovým obrázkem nebo odkazem na práh rozlišitelnosti)? -->
+
+Zpětný převod YCbCr na RGB jsem ověřil v simulaci (xsim a kosimulace, předvolby 6 až 8), měřicí aplikace ho na desce zatím netestuje.
+
+## Prostředky a maximální frekvence jader {#sec:vooc}
+
+Prostředky a nejkratší periodu jsem měřil syntézou mimo kontext (oddíl @ref(sec:ooc)). Pro jádra z HLS i VHDL jsem použil stejný skript, obvod xck26-sfvc784-2LV-c, cíl 5 ns a Vivado 2025.2. Perioda je větší z hodnot 5 ns − WNS a 5 ns − WPWS, takže zahrnuje i minimální šířku pulzu hodin bloků BRAM (3,077 ns) a DSP (3,262 ns). Tabulka @ref(tab:ooc) porovnává celá jádra včetně řízení přes AXI4-Lite, tedy ve stejné podobě, v jaké jsou v testovacím řetězci.
+
+<!-- TAB tab:ooc -->
+
+Tabulka: Prostředky a nejkratší perioda jader HLS a VHDL (syntéza mimo kontext, xck26-sfvc784-2LV-c, cíl 5 ns, Vivado 2025.2, jádro včetně řízení AXI4-Lite) {#tab:ooc widths=2.6,1.2,1.1,1.1,1.0,1.2,1.4,1.3,2.8}
+
+| Jádro | Impl. | LUT | FF | DSP | BRAM36 | Perioda [ns] | Fmax [MHz] | Omezení |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| převod barev 3→3 | HLS | 407 | 361 | 9 | 0 | 3,88 | 258 | logika |
+|  | VHDL | 210 | 389 | 9 | 0 | 3,26 | 307 | šířka pulzu DSP |
+| RGB→HSV | HLS | 249 | 214 | 2 | 1 | 4,44 | 225 | logika |
+|  | VHDL | 275 | 255 | 2 | 0 | 3,26 | 307 | šířka pulzu DSP |
+| HSV→RGB | HLS | 556 | 296 | 1 | 0 | 4,05 | 247 | logika |
+|  | VHDL | 603 | 422 | 1 | 0 | 3,54 | 283 | logika |
+| prahování | HLS | 122 | 118 | 0 | 0 | 2,77 | 360 | šířka pulzu hodin |
+|  | VHDL | 81 | 141 | 0 | 0 | 2,77 | 360 | šířka pulzu hodin |
+| medián 3×3 | HLS | 740 | 472 | 0 | 2 | 3,90 | 256 | logika |
+|  | VHDL | 692 | 532 | 0 | 2 | 3,86 | 259 | logika |
+| konvoluce 3×3 | HLS | 640 | 621 | 10 | 2 | 4,05 | 247 | logika |
+|  | VHDL | 508 | 558 | 14 | 2 | 3,57 | 280 | logika |
+| konvoluce 5×5 | HLS | 950 | 861 | 26 | 5 | 4,49 | 223 | logika |
+|  | VHDL | 766 | 951 | 38 | 4 | 3,76 | 266 | logika |
+| konvoluce 7×7 | HLS | 1 341 | 1 247 | 50 | 7 | 4,35 | 230 | logika |
+|  | VHDL | 1 232 | 1 489 | 72 | 6 | 4,00 | 250 | logika |
+| histogram | HLS | 300 | 422 | 0 | 1 | 3,08 | 325 | šířka pulzu BRAM |
+|  | VHDL | 183 | 288 | 0 | 1 | 3,08 | 325 | šířka pulzu BRAM |
+
+<!-- /TAB -->
+
+<!-- Data: HLS řádková jádra (převod barev, RGB→HSV, HSV→RGB) jsou bez auto-rewind, tedy stejné RTL jako v bitstreamu (fronta final_hls_rows 16. 11. 2026, vysledky.md sekce 21). -->
+
+Verze ve VHDL má kratší nebo stejnou periodu u všech 9 jader. Největší rozdíl je u převodu RGB na HSV (3,26 ns proti 4,44 ns), konvoluce 5×5 (3,76 ns proti 4,49 ns) a převodu barev (3,26 ns proti 3,88 ns). U převodu RGB na HSV a převodu barev dosáhlo jádro ve VHDL minimální periody bloku DSP, takže ho dál omezuje obvod, ne logika. Prahování a histogram mají v obou verzích stejnou periodu danou minimální šířkou pulzu hodin, u mediánu je rozdíl 0,04 ns v rozptylu rozmístění a propojení. Příčina je ve způsobu, jakým obě verze vkládají registry. HLS přidá stupňů pipeline jen tolik, aby splnil zadaných 5 ns (RGB→HSV 7 stupňů), ve VHDL jsem dal registr za každou operaci (8 stupňů). Méně registrů znamená méně FF, ale delší logiku mezi nimi.
+
+V počtu @acs(LUT) je verze ve VHDL menší u 7 jader ze 9. Výjimkou jsou oba převody mezi RGB a HSV, kde je HLS menší o 9 % a 8 % LUT a o 16 % a 30 % FF. U převodu barev zabírá VHDL 210 LUT proti 407, u histogramu 183 proti 300. Konvoluce ve VHDL zabírá méně LUT, ale víc bloků DSP (u jádra 7×7 je to 72 proti 50), protože jsem každé násobení umístil do vlastního bloku DSP včetně sčítání v jeho kaskádě. HLS část součinů s malými koeficienty počítá v LUT.
+
+### Jeden parametr: násobení v LUT, nebo v DSP
+
+Převod HSV na RGB obsahuje pět násobení 8 × 8 bitů. Obě verze je bez dalšího nastavení počítají v LUT. Jak se jádro změní, když násobení přesunu do bloků DSP, ukazuje tabulka @ref(tab:hsvdsp).
+
+<!-- TAB tab:hsvdsp -->
+
+Tabulka: Převod HSV→RGB: násobení v LUT nebo v blocích DSP (syntéza mimo kontext, cíl 5 ns) {#tab:hsvdsp widths=1.3,4.0,1.4,1.1,1.1,1.0,1.4,2.8}
+
+| Impl. | Parametr | Stupně | LUT | FF | DSP | Perioda [ns] | Omezení |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| VHDL | `G_USE_DSP = false` | 13 | 603 | 422 | 1 | 3,54 | logika |
+| VHDL | `G_USE_DSP = true` | 13 | 203 | 235 | 11 | 3,26 | šířka pulzu DSP |
+| HLS | výchozí | 6 | 556 | 296 | 1 | 4,05 | logika |
+| HLS | `HSV_MUL_IMPL_DSP = 1` | 6 | 224 | 241 | 11 | 4,23 | logika |
+| HLS | `HSV_MUL_IMPL_DSP = 2` (latence 3) | 10 | 262 | 273 | 6 | 3,26 | šířka pulzu DSP |
+
+<!-- /TAB -->
+
+Ve VHDL stačil jeden parametr (`G_USE_DSP`). Počet LUT klesl o 66 %, FF o 44 % a perioda se zkrátila z 3,54 na 3,26 ns, což je minimální perioda bloku DSP. Cenou je 10 bloků DSP navíc. Pipeline je ve VHDL navržená ručně, takže syntéza mohla registry přesunout do vnitřních registrů bloku DSP.
+
+V HLS jsem stejnou změnu udělal pragmatem `BIND_OP` s implementací v DSP. Plocha klesla podobně (LUT o 60 %, FF o 19 %), ale perioda se prodloužila z 4,05 na 4,23 ns. HLS ponechal 6 stupňů pipeline a blok DSP použil jako kombinační násobičku bez vnitřních registrů. Stejné periody jako ve VHDL jsem v HLS dosáhl až druhým parametrem, latencí násobení 3 takty. Pipeline se tím prodloužila na 10 stupňů a HLS spojil část násobení do 6 bloků DSP. Ve VHDL tedy stačí jeden parametr, v HLS jsou potřeba dva a vývojář musí vědět, že druhý existuje.
+
+Stejný parametr má i konvoluce ve VHDL (tabulka @ref(tab:filtrdsp)). U jádra 7×7 s násobením v LUT zabírá 5 238 LUT a 2 702 FF, s násobením v blocích DSP 1 213 LUT, 837 FF a 72 bloků DSP. Perioda se změnila nejvýš o 0,4 ns, u jádra 3×3 a 7×7 se s bloky DSP mírně prodloužila. U konvoluce tedy přesun do DSP šetří hlavně plochu.
+
+<!-- TAB tab:filtrdsp -->
+
+Tabulka: Konvoluce K×K ve VHDL: násobení v LUT nebo v blocích DSP (jádro bez AXI4-Lite, syntéza mimo kontext, cíl 5 ns) {#tab:filtrdsp widths=1.4,1.6,1.3,1.3,1.1,1.3,1.6,2.8}
+
+| K | Násobení | LUT | FF | DSP | BRAM36 | Perioda [ns] | Omezení |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 3×3 | LUT | 1 120 | 679 | 1 | 2 | 3,26 | šířka pulzu DSP |
+|  | DSP | 350 | 318 | 14 | 2 | 3,55 | logika |
+| 5×5 | LUT | 2 789 | 1 510 | 1 | 4 | 4,20 | logika |
+|  | DSP | 603 | 539 | 38 | 4 | 3,82 | logika |
+| 7×7 | LUT | 5 238 | 2 702 | 1 | 6 | 4,18 | logika |
+|  | DSP | 1 213 | 837 | 72 | 6 | 4,24 | logika |
+
+<!-- /TAB -->
+
+### Architektura proti jazyku: histogram
+
+Histogram jsem ve VHDL navrhl ve dvou architekturách (tabulka @ref(tab:histarch)). První ukládá 256 košů do bloku BRAM a sousední pixely se stejnou hodnotou řeší předáváním mezivýsledku (forwarding). Druhá má 256 čítačů v registrech. Obě dávají stejný výsledek, ale čítače zabírají 6 437 LUT místo 183, tedy 35krát víc. Volba architektury tu rozhoduje o velikosti jádra víc než volba jazyka: verze v HLS se stejnou architekturou zabírá 300 LUT.
+
+<!-- TAB tab:histarch -->
+
+Tabulka: Histogram ve dvou architekturách (syntéza mimo kontext, cíl 5 ns, jádro včetně AXI4-Lite) {#tab:histarch widths=1.3,4.4,1.3,1.3,1.4,1.6,2.8}
+
+| Impl. | Architektura | LUT | FF | BRAM36 | Perioda [ns] | Omezení |
+| --- | --- | --- | --- | --- | --- | --- |
+| HLS | BRAM, předávání mezivýsledku | 300 | 422 | 1 | 3,08 | šířka pulzu BRAM |
+| VHDL | BRAM, předávání mezivýsledku | 183 | 288 | 1 | 3,08 | šířka pulzu BRAM |
+| VHDL | 256 čítačů v registrech | 6 437 | 6 370 | 0,5 | 3,08 | šířka pulzu BRAM |
+
+<!-- /TAB -->
+
+Perioda všech tří variant je 3,08 ns a omezuje ji minimální šířka pulzu hodin bloku BRAM. Varianta s čítači blok BRAM v jádře nemá, půl bloku zabírá okno pro čtení histogramu přes AXI4-Lite.
+
+<!-- TODO(ověřit): polovina BRAM36 u varianty s čítači – ověřit v utilization.rpt, že jde o okno hist v axil_regbank. -->
+
+### Co hlásí nástroj a co obvod zvládne
+
+Vitis HLS sám uvádí prostředky a periodu po implementaci. Tabulka @ref(tab:exportooc) je porovnává s výsledkem stejného RTL ze syntézy mimo kontext. Počet LUT se liší nejvýš o 4 % (medián 768 proti 740), počet FF nejvýš o 3.
+
+<!-- Pozn.: převod barev a převody RGB↔HSV v tabulce nejsou – export HLS jsem po vypnutí auto-rewind nespouštěl, starý export je z jiného RTL. --> Perioda se liší až o 0,35 ns. U histogramu export uvádí 2,73 ns, ale blok BRAM vyžaduje periodu aspoň 3,077 ns, takže skutečné maximum je 325 MHz, ne 366 MHz. Export HLS totiž počítá jen s časovou rezervou logických cest a minimální šířku pulzu hodin nezahrnuje. Proto v celé kapitole uvádím jen čísla ze syntézy mimo kontext.
+
+<!-- TAB tab:exportooc -->
+
+Tabulka: Stejné RTL z HLS: výsledek exportu Vitis HLS proti syntéze mimo kontext stejným skriptem jako VHDL {#tab:exportooc widths=3.0,2.4,2.4,1.9,1.9,2.8}
+
+| Jádro | LUT export / OOC | FF export / OOC | Perioda export [ns] | Perioda OOC [ns] | Omezení OOC |
+| --- | --- | --- | --- | --- | --- |
+| histogram | 302 / 300 | 422 / 422 | 2,73 | 3,08 | šířka pulzu BRAM |
+| medián 3×3 | 768 / 740 | 472 / 472 | 4,06 | 3,90 | logika |
+| konvoluce 3×3 | 655 / 640 | 621 / 621 | 3,92 | 4,05 | logika |
+| konvoluce 5×5 | 959 / 950 | 863 / 861 | 4,17 | 4,49 | logika |
+| konvoluce 7×7 | 1 306 / 1 341 | 1 244 / 1 247 | 4,37 | 4,35 | logika |
+
+<!-- /TAB -->
+
+Ještě větší rozdíl je mezi odhadem po syntéze HLS a skutečností po implementaci. U převodu HSV na RGB odhad uváděl 893 LUT, po implementaci jádro zabralo 556 LUT. Odhad syntézy HLS proto pro srovnání nepoužívám.
+
+Rozptyl výsledků samotného rozmístění a propojení jsem viděl po úpravě registrové banky, při které se obvod nezměnil (proměnnou jsem nahradil konstantou). U 25 z 28 konfigurací VHDL zůstala čísla stejná, u tří jader s registrovou bankou se perioda změnila o 0,2 až 1,0 ns (konvoluce 3×3 bez DSP z 4,37 na 3,40 ns). Rozdíly period pod přibližně 0,3 ns proto nepovažuji za rozdíl mezi implementacemi.
+
+## Propustnost na desce {#sec:vdeska}
+
+Propustnost jsem měřil na desce KV260 v testovacím řetězci se všemi 14 jádry při 200 MHz (oddíl @ref(sec:deska)). Snímek 1920 × 1080 bodů v RGB posílá VDMA z paměti DDR přes jádro zpět do paměti. Doba snímku je průměr z 20 snímků, stav přenosu měřicí aplikace čte po 100 µs, rozlišení měření je tedy 5 µs na snímek. Výsledky z měření s aplikací přeloženou na -O2 jsou v tabulce @ref(tab:propustnost), na úrovních -O0 a -O3 se doba snímku lišila nejvýš o 1 µs.
+
+<!-- TAB tab:propustnost -->
+
+Tabulka: Doba zpracování snímku 1920 × 1080 na desce KV260 (200 MHz, 20 snímků na měření, teoretický strop 10 368 µs) {#tab:propustnost widths=3.6,1.8,1.8,1.5,1.5,3.0}
+
+| Algoritmus | HLS [µs] | VHDL [µs] | HLS [snímků/s] | VHDL [snímků/s] | Proti průchodu HLS / VHDL [µs] |
+| --- | --- | --- | --- | --- | --- |
+| průchod RGB | – | 10 371 | – | 96,4 | 0 |
+| průchod šedá | – | 10 371 | – | 96,4 | 0 |
+| převod barev RGB→YCbCr | 10 401 | 10 371 | 96,1 | 96,4 | +30 / 0 |
+| RGB→HSV | 10 412 | 10 371 | 96,0 | 96,4 | +41 / 0 |
+| HSV→RGB | 10 407 | 10 371 | 96,0 | 96,4 | +36 / 0 |
+| prahování (Otsu) | 10 371 | 10 371 | 96,4 | 96,4 | 0 / 0 |
+| medián 3×3 | 10 386 | 10 386 | 96,2 | 96,2 | +15 / +15 |
+| Sobel X 3×3 | 10 386 | 10 386 | 96,2 | 96,2 | +15 / +15 |
+| histogram | 10 371 | 10 371 | 96,4 | 96,4 | 0 / 0 |
+
+<!-- /TAB -->
+
+Při zpracování 1 pixelu za takt trvá snímek 1920 × 1080 / 200 MHz = 10 368 µs. Průchod řetězcem bez jádra trval 10 371 µs, tedy o 0,03 % déle. Všechna jádra pracují na tomto stropu. Okénková jádra (medián a Sobel) přidávají 15 µs, což je latence přibližně dvou řádků, než se naplní okno 3 × 3. Jádra HLS pro převod barev a převod mezi RGB a HSV jsou pomalejší o 30 až 41 µs. To je cena za vypnutí auto-rewind (oddíl @ref(sec:problemy)): mezi řádky přibude přibližně 5 taktů, u převodu barev 5 × 1080 taktů = 27 µs na snímek.
+
+<!-- TODO(odkaz): oddíl Nalezené problémy v kap. 5 má mít návěští sec:problemy (kap. 4 na něj odkazuje jako na 5.14). -->
+
+Propustnost tedy jádra HLS a VHDL nerozlišuje. Obě verze zpracují 1 pixel za takt a rozdíl mezi nimi je nejvýš 0,4 % doby snímku. Rozdíl mezi verzemi je v prostředcích a maximální frekvenci (oddíl @ref(sec:vooc)), ne v propustnosti při 200 MHz.
+
+## Srovnání hardwaru a softwaru {#sec:vhwsw}
+
+Softwarovou verzí je referenční model `lib_imgproc` přeložený pro procesor Cortex-A53 na 1333 MHz bez operačního systému, se zapnutou cache (oddíl @ref(sec:sw)). Doba je medián z 10 běhů na snímku 1920 × 1080. Tabulka @ref(tab:hwsw) uvádí dobu softwarového a hardwarového zpracování a jejich poměr. Hardwarový čas je u jader VHDL, jádra HLS jsou pomalejší nejvýš o 0,4 %, což poměr na uvedenou přesnost nemění.
+
+<!-- TAB tab:hwsw -->
+
+Tabulka: Doba zpracování snímku 1920 × 1080 v softwaru na Cortex-A53 (1333 MHz, bez operačního systému) a v hardwaru (VHDL, 200 MHz) a poměr SW/HW {#tab:hwsw widths=3.4,1.4,1.4,1.4,1.3,1.3,1.3,1.3}
+
+| Algoritmus | SW -O0 [ms] | SW -O2 [ms] | SW -O3 [ms] | HW [ms] | SW/HW -O0 | -O2 | -O3 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| převod barev RGB→YCbCr | 1 147,7 | 278,0 | 228,7 | 10,37 | 111× | 27× | 22× |
+| RGB→HSV | 544,5 | 182,1 | 182,1 | 10,37 | 52× | 18× | 18× |
+| HSV→RGB | 521,6 | 115,8 | 115,8 | 10,37 | 50× | 11× | 11× |
+| prahování (Otsu) | 206,9 | 57,9 | 43,4 | 10,37 | 20× | 5,6× | 4,2× |
+| medián 3×3 | 2 728,1 | 549,9 | 561,1 | 10,39 | 263× | 53× | 54× |
+| Sobel X 3×3 | 2 334,1 | 567,4 | 538,5 | 10,39 | 225× | 55× | 52× |
+| histogram | 91,1 | 35,2 | 35,1 | 10,37 | 8,8× | 3,4× | 3,4× |
+
+<!-- /TAB -->
+
+Při překladu s -O2 je hardware rychlejší 3,4krát (histogram) až 55krát (Sobel). Velikost zrychlení odpovídá tomu, kolik práce připadá v softwaru na jeden pixel. Histogram v softwaru jen přičte jedničku do koše, takže procesor zpracuje snímek za 35,2 ms. Medián a Sobel počítají pro každý pixel okno 3 × 3, medián navíc třídí 9 hodnot, a procesor na snímek potřebuje 550 a 567 ms. Hardware zpracuje všechny algoritmy za stejnou dobu, protože každé jádro zpracuje 1 pixel za takt bez ohledu na to, kolik operací pro něj provede.
+
+Vliv optimalizace překladače ukazuje tabulka @ref(tab:prekladac). Přechod z -O0 na -O2 zrychlil software 2,6krát až 5,0krát. Přechod z -O2 na -O3 pomohl jen převodu barev (o 17,7 %), prahování (o 25,0 %) a Sobelovi (o 5,1 %), medián se zpomalil o 2,0 %. Pro srovnání s hardwarem proto beru jako výchozí -O2 a -O3 uvádím jako nejrychlejší software. Rozdíly pod 1 % mezi úrovněmi nepovažuji za skutečné.
+
+<!-- TAB tab:prekladac -->
+
+Tabulka: Vliv optimalizace překladače na dobu softwarového zpracování {#tab:prekladac widths=4.6,4.4,4.4}
+
+| Algoritmus | Zrychlení -O0 → -O2 | Změna -O2 → -O3 |
+| --- | --- | --- |
+| převod barev RGB→YCbCr | 4,1× | −17,7 % |
+| RGB→HSV | 3,0× | 0,0 % |
+| HSV→RGB | 4,5× | 0,0 % |
+| prahování (Otsu) | 3,6× | −25,0 % |
+| medián 3×3 | 5,0× | +2,0 % |
+| Sobel X 3×3 | 4,1× | −5,1 % |
+| histogram | 2,6× | −0,1 % |
+
+<!-- /TAB -->
+
+<!-- TODO(Karel): SW čas je z jednoho běhu aplikace na úroveň (medián z 10 běhů funkce). Chceš ještě 2 další běhy board_test pro rozptyl? Zabere to asi 15 minut s deskou. -->
+
+## Využití obvodu celým řetězcem {#sec:vretezec}
+
+Syntéza mimo kontext měří jádro samostatně. V testovacím řetězci je 14 jader spolu s VDMA, přepínači AXI4-Stream a propojením k procesoru v jednom obvodu. Tabulka @ref(tab:retezec) uvádí využití obvodu a časovou rezervu celého řetězce při 200 MHz.
+
+<!-- TODO(data): čísla jsou z bitstreamu z 22. 10. (V12). Finální bitstream z 25. 10. (bez auto-rewind, s UART) – doplnit z DP/hw/build/harness/{utilization,timing}.rpt na Ababelu. Tato tabulka se negeneruje. -->
+
+Tabulka: Využití obvodu xck26 testovacím řetězcem se 14 jádry (200 MHz, Vivado 2025.2) {#tab:retezec widths=3.0,1.8,1.8,2.2,2.2,1.6,1.6}
+
+| Stav | WNS [ns] | WHS [ns] | LUT | FF | BRAM36 | DSP |
+| --- | --- | --- | --- | --- | --- | --- |
+| 22. 10. 2026 | +0,104 | +0,010 | 14 024 (12,0 %) | 18 062 (7,7 %) | 16 (11,1 %) | 64 (5,1 %) |
+
+Řetězec zabírá přibližně osminu buněk LUT a bloků BRAM obvodu. Omezením tedy není velikost obvodu, ale časová rezerva, která je jen 0,104 ns. Kritická cesta leží uvnitř jádra HLS pro převod HSV na RGB, v násobení saturace a zlomkové části odstínu. Vivado ho umístil do bloku DSP bez vnitřních registrů a cesta prochází 12 úrovněmi logiky (z toho 9 uvnitř bloku DSP). Samostatně mělo stejné jádro rezervu 1,0 ns, v řetězci přibylo směrování a rozmístění vedle ostatních jader.
+
+Tohle je příklad, jak se chová jádro HLS navržené na hranu zadané periody. Při 5 ns vloží HLS mezi registry tolik logiky, kolik se do periody vejde, a v hustším návrhu pak rezerva mizí. Jádra ve VHDL s registrem za každou operací kritickou cestu řetězce netvořila. Nápravou by byla varianta s latencí násobení 3 takty z tabulky @ref(tab:hsvdsp), ta by ale změnila srovnání obou verzí při stejném nastavení, a proto jsem ji do řetězce nedal.
+
+## Diskuse {#sec:diskuse}
+
+<!-- TODO(text): diskusi napíšu po kontrole čísel a tvém schválení tónu. Body podle osnovy a podkladů: -->
+
+<!-- 1. Propustnost HLS a VHDL nerozlišuje: obě 1 px/takt, rozdíl ≤ 0,4 % (cena vypnutí auto-rewind). -->
+<!-- 2. VHDL: kratší nebo stejná perioda u všech 9 jader, menší LUT u 7 z 9; HLS: méně FF u převodů RGB↔HSV, rychlejší vývoj (doplnit tvou zkušenost – kolik času zabralo jádro v HLS a ve VHDL, pokud to víš). -->
+<!-- 3. Architektura rozhoduje víc než jazyk (histogram 35× LUT). -->
+<!-- 4. Jeden parametr LUT ↔ DSP: ve VHDL stačí jeden, v HLS dva a je potřeba vědět o latenci. -->
+<!-- 5. Číslo z nástroje nestačí: export HLS bez šířky pulzu, odhad syntézy HLS +61 % LUT, rozptyl P&R až 1 ns. -->
+<!-- 6. HW proti SW: 3,4× až 55× při -O2; zrychlení roste s počtem operací na pixel, HW čas je pro všechny stejný. -->
+<!-- 7. Limity měření: jeden běh SW na úroveň, příkon neměřen, na desce jen Sobel X, zpětný převod YCbCr jen v simulaci, finální využití řetězce doplnit. -->

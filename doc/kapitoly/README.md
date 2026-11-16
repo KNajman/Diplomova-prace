@@ -52,3 +52,4 @@ do `doc/citace.bib` z Citace PRO, v textu zůstávají jen klíče nebo `TODO(ci
 | kapitola | soubor | stav |
 | --- | --- | --- |
 | 4 Návrh a metodika srovnání | `04_navrh_a_metodika.md` | napsáno (6 stran), čeká na revizi |
+| 6 Výsledky a srovnání | `06_vysledky_a_srovnani.md` | tabulky z CSV (`doc/tools/tabulky_06.py`), text 6.1–6.5 první návrh, 6.6 v bodech |
