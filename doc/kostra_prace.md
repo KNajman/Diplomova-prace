@@ -22,7 +22,7 @@ Titulní list a zadání ze STAGu (`\ThesisStart`), prohlášení → poděková
 | 6 | **Výsledky a srovnání** | 7 s | bitová shoda, prostředky a Fmax HLS × VHDL, propustnost na desce, HW × SW, využití řetězce, diskuse | nic |
 | 7 | **Závěr** | 1–2 s | zhodnocení bod po bodu proti zadání, srovnání s SW a Vitis Vision, pokračování | prázdná kapitola |
 
-Před kapitolou 5 stojí deklarace AI ke kódu (dp-ai, umístění potvrdit s vedoucím).
+Prohlášení o použití AI je na začátku práce, za zadáním a prohlášením ze STAGu (vedoucí, 17. 11. 2026); viz dp-ai.
 
 ## Mapování stávajícího textu (nic se nemaže)
 

@@ -20,7 +20,7 @@ Zdroje k citování: OpenCV dokumentace (reference pro RGB→šedá, HSV), UG139
 
 ## Kapitola 5: Implementace (≈ 11 stran)
 
-**Před kapitolou deklarace AI ke kódu** (dp-ai, umístění potvrdit s vedoucím).
+**Prohlášení o použití AI je na začátku práce, za zadáním a prohlášením ze STAGu (vedoucí, 17. 11. 2026); viz dp-ai.**
 **Cíl kapitoly:** ukázat, jak byl každý algoritmus implementován třemi způsoby (HLS, VHDL, SW) a proč tak.
 Každý algoritmus má stejnou šablonu: co dělá, matematika, model v C, HLS, VHDL, ověření, odkaz na výsledek v kap. 6.
 
@@ -63,7 +63,7 @@ Každá tabulka má v textu konfiguraci měření (zařízení, 5 ns, verze nás
 
 ## Otevřené otázky pro Karla a vedoucího
 
-- Umístění a znění deklarace AI před kap. 5 (dp-ai).
+- ~~Umístění deklarace AI~~ – rozhodnuto: na začátek práce (vedoucí 17. 11. 2026). Znění připraví Karel podle dp-ai.
 - Poměr rešerše a vlastní práce: s kap. 4 až 6 ≈ 24 stran proti kap. 2 a 3 ≈ 17 stran vychází 1 : 1,4, což vyhovuje Dvacateru (nejvýše 1 : 1).
 - Norma u Sobela (C1 jako výchozí) a rozsah Sobela ve výsledcích.
 - Zda do kap. 6 patří přepočet na příkon, pokud ho nebude možné změřit.

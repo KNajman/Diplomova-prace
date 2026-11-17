@@ -80,9 +80,7 @@ Práci jsem dělal na notebooku s Windows a 12 GB paměti. To stačí na psaní 
 
 Zdrojové kódy, skripty i text práce verzuji v systému Git, repozitář je na GitHubu. Referenční model v C překládám na PC pomocí CMake a ověřuji ho proti knihovně OpenCV skriptem v Pythonu. Výsledky z výpisů nástrojů sbírají skripty v Pythonu do souborů CSV, ze kterých jsou tabulky v kapitole @ref(kap:vysledky). Text práce je v LaTeXu se šablonou tulthesis.
 
-Při psaní kódu a textu jsem používal nástroj umělé inteligence Claude. Rozsah použití a způsob ověření výstupů popisuje prohlášení o použití AI.
-
-<!-- TODO(dp-ai): umístění prohlášení o použití AI podle směrnice TUL 7/2026 potvrdit s vedoucím a sem doplnit odkaz. -->
+Při psaní kódu a textu jsem používal nástroj umělé inteligence Claude. Rozsah použití a způsob ověření výstupů popisuje prohlášení o použití nástrojů umělé inteligence na začátku práce.
 
 ## Testovací řetězec v hrubých rysech {#sec:retezec-prehled}
 
