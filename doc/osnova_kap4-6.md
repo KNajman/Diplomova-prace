@@ -32,6 +32,13 @@ Každý algoritmus má stejnou šablonu: co dělá, matematika, model v C, HLS, 
 | 5.4 Prahování | typ prahu v registru, Otsu se počítá na ARM z histogramu | R §3, V8 | krátký úryvek HLS |
 | 5.5 Konvoluce K×K a Sobel | okno K×K, mapa pro K ≥ 5 (okno `coeff`), měřítko Q.14 + delta; norma u Sobela dle rozhodnutí | R §4, V6, P (Norma u Sobela) | otevřená otázka normy (viz níže) |
 | 5.6 Medián 3×3 | třídicí síť (sorting network) místo třídění, sdílené okno s konvolucí | R §5, V4, V5 | schéma sítě |
+
+**Podklady k 5.6 (Karel, 17. 11. 2026):** síť navrhl Karel sám (7 × sort3: řádky, sloupce minim / mediánů / maxim, medián ze tří),
+až po konzultaci s vedoucím ji porovnal s literaturou. Paeth (Graphics Gems, 1990) používá stejný princip, postupné vyřazování
+hodnot, které mediánem být nemohou (maxima a minima); kód je psaný pro software. Rozdíl k popsání: u Karla je síť rozdělená do
+vrstev, každá vrstva = 1 takt pipeline (3 takty). V kódu 21 porovnání a záměn, syntéza nepoužité výstupy odstraní na 19
+(9 + 2 + 2 + 3 + 3) – ověřit proti počtu u Paetha. TODO(citace): Paeth, kapitola v Graphics Gems (ed. Glassner, Academic Press,
+1990) – Karel má knihu: strany kapitoly, ISBN z tiráže do Citace PRO. Volitelně Smith (Xcell 1996, FPGA) a Knuth TAOCP sv. 3.
 | 5.7 Histogram | BRAM s forwardingem proti 256 čítačům, proč C-simulace nestačí | R §6, V7, L (HLS) | **nejlepší příklad „dvou způsobů“**: obě architektury a jejich cena |
 | 5.8 Testovací řetězec a měřicí aplikace | jeden bitstream s 14 jádry, VDMA + AXIS přepínače, bypass (strop), `harness_app` na A53, `board_test` (UART) | R (Testovací řetězec), V12, V19 | blokové schéma řetězce (R) |
 | 5.9 Nalezené problémy | řádková HLS jádra s auto-rewind držela ocas řádku (SOFLateErr), oprava `enable_auto_rewind=0`; chování VDMA S2MM; PS UART v hardwaru | V16, V17, L (Test na desce) | je to negativní výsledek, který stojí za okomentování (Metodika 2.2.2) |
