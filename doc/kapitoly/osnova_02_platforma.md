@@ -1,4 +1,4 @@
-# Osnova kapitoly 2: Platforma a použité nástroje (návrh ke schválení, 2. 11. 2026)
+# Osnova kapitoly 2: Platforma a použité nástroje (návrh 2. 11. 2026, **schváleno Karlem 17. 11. 2026**)
 
 Rozsah ≈ 6 stran. Cíl kapitoly: splnit 1. bod zadání (seznámení s nástroji AMD Vitis, Vitis HLS, Vivado a s platformou KV260) a ukázat, **co z nich jsem v práci skutečně použil a k čemu**. Čtenář (inženýr mimo FPGA) si z ní odnese, na čem práce běží a jaké prostředky obvod nabízí.
 
@@ -34,3 +34,19 @@ Podle `dp-styl` text nepřepisuji potichu, uvádím návrhy. U kapitoly, která 
 4. **Vitis (software) a xsdb** (2.5): zařadit jako samostatný oddíl, nebo jen věta u testovacího řetězce?
 5. **Výpočetní server Ababel** (Linux, Vivado 2025.2, fronty buildů): zmínit v kapitole 2 jako součást pracovního prostředí (kvůli reprodukovatelnosti), nebo jen v příloze?
 6. **Obrázek metodiky** (`methodology.png`) v oddílu o HLS: je převzatý z dokumentace AMD (pak jde do popisku s citací), nebo jsi ho kreslil sám?
+
+## Odpovědi a rozhodnutí Karla (17. 11. 2026)
+
+Osnova schválena beze změny (2.1 KV260, 2.2 prostředky PL, 2.3 Vivado, 2.4 Vitis HLS, 2.5 Vitis a xsdb, 2.6 VHDL a simulace,
+2.7 pracovní prostředí s Ababelem, 2.8 testovací řetězec v hrubých rysech).
+
+1. **Počet DSP:** 1 248 (výpis využití Vivada finálního bitstreamu, sloupec Available); celkem 117 120 LUT, 234 240 FF,
+   144 BRAM36, 64 URAM. V textu doplněno, citovat datasheet K26 (podklad pro Citace PRO v komentáři).
+2. **Odstavec „Problém s 2023 a 2025“ (board files):** vypustit. Místo něj obecný odstavec o zkušenosti (bod 3).
+3. **Zkušenost s učením:** ano. Problémy mezi verzemi 2023 a 2025, grafické prostředí Vitis často padá, nejspolehlivější
+   je konzolový přístup, na který bylo stejně nutné přejít, protože většina překladů a sestavení běžela na Ababelu.
+   Jako konkrétní příklad přechod na SDT ve Vitis 2025.2 (`xtime_l.h` → `xiltimer.h`), už je v oddílu 2.5.
+4. **Vitis a xsdb:** samostatný oddíl 2.5.
+5. **Ababel:** v kapitole 2 (oddíl Pracovní prostředí a pomůcky), kvůli reprodukovatelnosti.
+6. **Obrázek metodiky (`doc/methodology.png`):** převzatý ze stránky AMD Vitis HLS („Vitis HLS programming model“),
+   citovat `amd_vitis` v popisku.
