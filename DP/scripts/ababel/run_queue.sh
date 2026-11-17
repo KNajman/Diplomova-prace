@@ -3,8 +3,14 @@
 #  Spustí frontu příkazů na Ababelu (sekvenčně, s logem). Běží NA SERVERU.
 #  Použití:  bash DP/scripts/ababel/run_queue.sh DP/scripts/queues/<jméno>.queue
 #  Fronta:   jeden příkaz na řádek, relativně ke kořeni repa, '#' = komentář.
-#  Výstup:   ~/logs/<jméno>.log      souhrn (čas, krok, PASS/FAIL řádky, návratový kód)
-#            ~/logs/<jméno>_steps/   úplný výstup každého kroku (NN.log)
+#  Výstup:   ~/runs/<RRRR-MM-DD_HHMM>_<jméno>/   jeden adresář na každý běh (nic se nepřepisuje):
+#                summary.log  souhrn (čas, krok, PASS/FAIL řádky, návratový kód)
+#                steps/NN.log úplný výstup každého kroku
+#                queue.txt    kopie fronty, commit.txt  commit, ze kterého běh vychází
+#                *.csv, *.log výstupy kroků, které zapisují do "$RUN_DIR" (proměnná je exportovaná)
+#            ~/runs/INDEX.md          tabulka všech běhů (start, konec, fronta, commit, výsledek, adresář)
+#            ~/logs/<jméno>.log       odkaz na summary.log posledního běhu (tail -f funguje jako dřív)
+#            ~/logs/<jméno>_steps     odkaz na steps/ posledního běhu
 #            ~/logs/<jméno>.pid      PID fronty (pro zastavení: kill $(cat ...))
 #  Konec:    řádek "== HOTOVO" v souhrnu (případně "== CHYBY: N")
 #  Direktiva '# @stop_on_error' kdekoli ve frontě: po prvním neúspěšném kroku se fronta ukončí
@@ -14,14 +20,24 @@ set -u
 QUEUE_FILE="$1"
 REPO="$HOME/Diplomova-prace"
 NAME="$(basename "$QUEUE_FILE" .queue)"
-LOG="$HOME/logs/$NAME.log"
-STEPS="$HOME/logs/${NAME}_steps"
+START="$(date +%Y-%m-%d_%H%M)"
+RUN_DIR="$HOME/runs/${START}_$NAME"
+LOG="$RUN_DIR/summary.log"
+STEPS="$RUN_DIR/steps"
+INDEX="$HOME/runs/INDEX.md"
+export RUN_DIR
 SUMMARY_PATTERN='VYSLEDEK|PASS|FAIL|ERROR|Error:|OOC HOTOVO|Zapsano|Zapsáno [0-9]+ jader|^  [a-z]'
 
 mkdir -p "$HOME/logs" "$STEPS"
-rm -f "$STEPS"/*.log
 echo $$ > "$HOME/logs/$NAME.pid"
 : > "$LOG"
+cp "$QUEUE_FILE" "$RUN_DIR/queue.txt"
+# dřívější běhy zapisovaly přímo do ~/logs/<jméno>.log a <jméno>_steps/ -> přejmenovat, ať se dají nahradit odkazem
+[ -e "$HOME/logs/$NAME.log" ] && [ ! -L "$HOME/logs/$NAME.log" ] && mv "$HOME/logs/$NAME.log" "$HOME/logs/$NAME.log.old"
+[ -e "$HOME/logs/${NAME}_steps" ] && [ ! -L "$HOME/logs/${NAME}_steps" ] && mv "$HOME/logs/${NAME}_steps" "$HOME/logs/${NAME}_steps.old"
+ln -sfn "$LOG" "$HOME/logs/$NAME.log"
+ln -sfn "$STEPS" "$HOME/logs/${NAME}_steps"
+[ -f "$INDEX" ] || printf '| start | konec | fronta | commit | kroky | chyby | adresář |\n| --- | --- | --- | --- | --- | --- | --- |\n' > "$INDEX"
 # settings64.sh od Xilinxu používá nedefinované proměnné (PYTHONPATH) -> načíst bez 'set -u'
 set +u
 source /tools/Xilinx/2025.2/Vitis/settings64.sh > /dev/null 2>&1
@@ -33,7 +49,8 @@ failures=0
 stop_on_error=0
 grep -qE '^# *@stop_on_error' "$QUEUE_FILE" && stop_on_error=1
 cd "$REPO" || exit 1
-echo "== $(date +%T) fronta $NAME, commit $(git log --oneline -1)" >> "$LOG"
+git log --oneline -1 > "$RUN_DIR/commit.txt"
+echo "== $(date +%T) fronta $NAME, commit $(git log --oneline -1), adresář $RUN_DIR" >> "$LOG"
 while IFS= read -r line || [ -n "$line" ]; do
     case "$line" in ''|\#*) continue ;; esac
     step=$((step + 1))
@@ -58,4 +75,5 @@ else
     echo "== CHYBY: $failures krok(y) selhalo, detail v $STEPS/ ($(date +%T))" >> "$LOG"
     echo "== HOTOVO $(date +%T)" >> "$LOG"
 fi
+echo "| $START | $(date +%Y-%m-%d_%H%M) | $NAME | $(git log --format=%h -1) | $step | $failures | ${START}_$NAME |" >> "$INDEX"
 rm -f "$HOME/logs/$NAME.pid"

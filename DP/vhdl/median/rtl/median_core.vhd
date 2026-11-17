@@ -16,6 +16,11 @@
 --      takt E1  seřazení řádků (3x sort3)
 --      takt E2  seřazení sloupců: minim, mediánů, maxim (3x sort3)
 --      takt E3  medián z (max minim, medián mediánů, min maxim) (1x sort3)
+--  * G_NETWORK (experiment 17. 11. 2026, výstup je ve všech variantách bitově stejný):
+--      0 = sort3 jako v golden modelu (low, high a middle mají vlastní porovnání, až 5 komparátorů na sort3),
+--      1 = sort3 se sdílenými porovnáními (3 komparátory na sort3: a<b, low_ab<c, c<high_ab),
+--      2 = jako 1, ale v E2 a E3 jen použité výstupy (max3, min3, med3) = 19 porovnání.
+--    Srovnání 1 a 2 ukazuje, zda syntéza nepoužité výstupy sort3 odstraní sama.
 --  * Vstupní i výstupní skid buffer: TREADY na obou stranách je registrovaný.
 --  * frame_done = 1takt pulz při výstupu posledního pixelu snímku (ap_done pro registrovou banku).
 --------------------------------------------------------------------------------
@@ -26,7 +31,8 @@ use work.video_pkg.all;
 
 entity median_core is
     generic(
-        G_MAX_WIDTH : positive := C_MAX_WIDTH
+        G_MAX_WIDTH : positive := C_MAX_WIDTH;
+        G_NETWORK   : natural range 0 to 2 := 0 -- zápis sítě mediánu (viz poznámky k návrhu)
     );
     port(
         aclk             : in  std_logic;
@@ -95,6 +101,85 @@ architecture rtl of median_core is
         return result;
     end function;
 
+    -- sort3 se sdílenými porovnáními: middle používá stejná 2 porovnání s c jako low a high.
+    -- Při rovnosti dává stejnou hodnotu jako sort3 (high_ab = c -> middle = c, low_ab = c -> middle = c).
+    function sort3_shared(a, b, c : t_pix) return t_sorted3 is
+        variable low_ab, high_ab   : t_pix;
+        variable low_lt_c, c_lt_hi : boolean;
+        variable result            : t_sorted3;
+    begin
+        if a < b then
+            low_ab  := a;
+            high_ab := b;
+        else
+            low_ab  := b;
+            high_ab := a;
+        end if;
+        low_lt_c := low_ab < c;
+        c_lt_hi  := c < high_ab;
+        if low_lt_c then
+            result.low := low_ab;
+        else
+            result.low := c;
+        end if;
+        if c_lt_hi then
+            result.high := high_ab;
+        else
+            result.high := c;
+        end if;
+        if not c_lt_hi then
+            result.middle := high_ab;
+        elsif not low_lt_c then
+            result.middle := low_ab;
+        else
+            result.middle := c;
+        end if;
+        return result;
+    end function;
+
+    -- sort3 podle G_NETWORK (0 = jako golden model, jinak se sdílenými porovnáními)
+    function sort3_sel(a, b, c : t_pix) return t_sorted3 is
+    begin
+        if G_NETWORK = 0 then
+            return sort3(a, b, c);
+        end if;
+        return sort3_shared(a, b, c);
+    end function;
+
+    -- jen použité výstupy (G_NETWORK = 2): maximum 2 porovnání, minimum 2, medián 3
+    function max3(a, b, c : t_pix) return t_pix is
+        variable high_ab : t_pix;
+    begin
+        if a < b then
+            high_ab := b;
+        else
+            high_ab := a;
+        end if;
+        if c < high_ab then
+            return high_ab;
+        end if;
+        return c;
+    end function;
+
+    function min3(a, b, c : t_pix) return t_pix is
+        variable low_ab : t_pix;
+    begin
+        if a < b then
+            low_ab := a;
+        else
+            low_ab := b;
+        end if;
+        if low_ab < c then
+            return low_ab;
+        end if;
+        return c;
+    end function;
+
+    function med3(a, b, c : t_pix) return t_pix is
+    begin
+        return sort3_shared(a, b, c).middle;
+    end function;
+
     signal pipe_enable : std_logic;
 
     -- vstupní skid buffer
@@ -110,7 +195,8 @@ architecture rtl of median_core is
 
     -- síť mediánu
     signal rows_sorted                                    : t_sorted3_array; -- E1
-    signal lows_sorted, middles_sorted, highs_sorted      : t_sorted3; -- E2
+    signal lows_sorted, middles_sorted, highs_sorted      : t_sorted3; -- E2 (G_NETWORK 0 a 1)
+    signal lows_max, middles_med, highs_min               : t_pix; -- E2 (G_NETWORK 2)
     signal median_value                                   : t_pix                             := (others => '0'); -- E3
     signal valid_pipe, sof_pipe, eol_pipe, frame_end_pipe : std_logic_vector(1 to C_OP_DEPTH) := (others => '0');
 
@@ -140,14 +226,22 @@ begin
             if pipe_enable = '1' then
                 -- E1: řádky
                 for row in 0 to 2 loop
-                    rows_sorted(row) <= sort3(window(row, 0), window(row, 1), window(row, 2));
+                    rows_sorted(row) <= sort3_sel(window(row, 0), window(row, 1), window(row, 2));
                 end loop;
-                -- E2: sloupce seřazených řádků
-                lows_sorted    <= sort3(rows_sorted(0).low, rows_sorted(1).low, rows_sorted(2).low);
-                middles_sorted <= sort3(rows_sorted(0).middle, rows_sorted(1).middle, rows_sorted(2).middle);
-                highs_sorted   <= sort3(rows_sorted(0).high, rows_sorted(1).high, rows_sorted(2).high);
-                -- E3: medián
-                median_value   <= sort3(lows_sorted.high, middles_sorted.middle, highs_sorted.low).middle;
+                if G_NETWORK = 2 then
+                    -- E2: z minim maximum, ze středních hodnot medián, z maxim minimum; E3: medián
+                    lows_max     <= max3(rows_sorted(0).low, rows_sorted(1).low, rows_sorted(2).low);
+                    middles_med  <= med3(rows_sorted(0).middle, rows_sorted(1).middle, rows_sorted(2).middle);
+                    highs_min    <= min3(rows_sorted(0).high, rows_sorted(1).high, rows_sorted(2).high);
+                    median_value <= med3(lows_max, middles_med, highs_min);
+                else
+                    -- E2: sloupce seřazených řádků
+                    lows_sorted    <= sort3_sel(rows_sorted(0).low, rows_sorted(1).low, rows_sorted(2).low);
+                    middles_sorted <= sort3_sel(rows_sorted(0).middle, rows_sorted(1).middle, rows_sorted(2).middle);
+                    highs_sorted   <= sort3_sel(rows_sorted(0).high, rows_sorted(1).high, rows_sorted(2).high);
+                    -- E3: medián
+                    median_value   <= sort3_sel(lows_sorted.high, middles_sorted.middle, highs_sorted.low).middle;
+                end if;
 
                 sof_pipe       <= window_sof & sof_pipe(1 to C_OP_DEPTH - 1);
                 eol_pipe       <= window_eol & eol_pipe(1 to C_OP_DEPTH - 1);

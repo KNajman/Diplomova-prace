@@ -1,0 +1,9 @@
+# Medián 3x3: zápis třídicí sítě (G_NETWORK 0 = jako golden model, 1 = sort3 se sdílenými porovnáními,
+# 2 = jen použité výstupy, 19 porovnání). Otázka: odstraní syntéza nepoužité výstupy sort3 sama?
+# Kroky: vektory, xsim bitová shoda variant 1 a 2, OOC všech tří, CSV, porovnávače po syntéze.
+# Výstupy v $RUN_DIR: vivado_median_core_N*.log, vhdl_median_sit.csv, komparatory.txt
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for n in 1 2; do for size in 0 4 5; do for rep in true false; do bash run_xsim.sh tb_median G_NETWORK=$n G_SIZE=$size G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done; done
+cd DP/vhdl/scripts && for n in 0 1 2; do vivado -mode batch -nojournal -log "$RUN_DIR/vivado_median_core_N$n.log" -source ooc_impl.tcl -tclargs median_core G_NETWORK=$n || exit 1; done
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc "$RUN_DIR/vhdl_all.csv" > /dev/null && grep -E '^component|^median_core' "$RUN_DIR/vhdl_all.csv" | tee "$RUN_DIR/vhdl_median_sit.csv"
+for n in 0 1 2; do echo "== G_NETWORK=$n"; grep -A6 'Comparators :' "$RUN_DIR/vivado_median_core_N$n.log" | head -8; grep -E '^\| (CLB LUTs|CLB Registers|CARRY8) ' DP/vhdl/build/ooc/median_core_NETWORK$n/utilization_synth.rpt; done | tee "$RUN_DIR/komparatory.txt"
