@@ -37,7 +37,9 @@ Každý algoritmus má stejnou šablonu: co dělá, matematika, model v C, HLS, 
 až po konzultaci s vedoucím ji porovnal s literaturou. Paeth (Graphics Gems, 1990) používá stejný princip, postupné vyřazování
 hodnot, které mediánem být nemohou (maxima a minima); kód je psaný pro software. Rozdíl k popsání: u Karla je síť rozdělená do
 vrstev, každá vrstva = 1 takt pipeline (3 takty). V kódu 21 porovnání a záměn, syntéza nepoužité výstupy odstraní na 19
-(9 + 2 + 2 + 3 + 3) – ověřit proti počtu u Paetha. TODO(citace): Paeth, kapitola v Graphics Gems (ed. Glassner, Academic Press,
+(9 + 2 + 2 + 3 + 3); **Paeth uvádí 20** (Karel ověřil v knize 17. 11.). Počet a správnost (všech 2^9 binárních vstupů podle
+principu 0-1 + náhodné 8bitové) ověřuje `DP/model/lib_imgproc/test/median_network_count.py`. V textu přesně: „zapsaná síť
+má 21 porovnání, po odstranění nepoužitých výstupů 19, Paethova síť 20“; netvrdit, že 19 je dokázané minimum. TODO(citace): Paeth, kapitola v Graphics Gems (ed. Glassner, Academic Press,
 1990) – Karel má knihu: strany kapitoly, ISBN z tiráže do Citace PRO. Volitelně Smith (Xcell 1996, FPGA) a Knuth TAOCP sv. 3.
 | 5.7 Histogram | BRAM s forwardingem proti 256 čítačům, proč C-simulace nestačí | R §6, V7, L (HLS) | **nejlepší příklad „dvou způsobů“**: obě architektury a jejich cena |
 | 5.8 Testovací řetězec a měřicí aplikace | jeden bitstream s 14 jádry, VDMA + AXIS přepínače, bypass (strop), `harness_app` na A53, `board_test` (UART) | R (Testovací řetězec), V12, V19 | blokové schéma řetězce (R) |
