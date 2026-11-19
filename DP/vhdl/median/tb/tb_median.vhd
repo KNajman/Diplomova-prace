@@ -24,8 +24,7 @@ entity tb_median is
         G_VALID_PCT   : natural  := 100;
         G_READY_PCT   : natural  := 100;
         G_GARBAGE     : natural  := 0;
-        G_BAD_EOL_ROW : integer  := -1;
-        G_NETWORK     : natural  := 0 -- zápis sítě mediánu v median_core (0, 1, 2)
+        G_BAD_EOL_ROW : integer  := -1
     );
 end entity;
 
@@ -96,7 +95,6 @@ begin
                  m_tvalid => s_valid, m_tready => s_ready, done => open);
 
     dut : entity work.median_core
-        generic map(G_NETWORK => G_NETWORK)
         port map(aclk             => aclk, aresetn => aresetn, run => '1',
                  width            => to_unsigned(C_WIDTH, C_DIM_W), height => to_unsigned(C_HEIGHT, C_DIM_W),
                  border_replicate => to_sl(G_REPLICATE), status => status, frame_done => frame_done,

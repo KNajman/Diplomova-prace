@@ -6,7 +6,7 @@
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
  *
  * Síť: seřadit řádky -> sloupce -> medián z (max minim, medián mediánů, min maxim),
- * 7x sort3 = 21 compare-exchange. Výsledek je přesný medián 9 hodnot.
+ * 7x sort3 = 21 porovnání (po odstranění nepoužitých výstupů 19). Výsledek je přesný medián 9 hodnot.
  * S IMGPROC_BORDER_REPLICATE je výstup bitově shodný s cv::medianBlur(src, dst, 3).
  */
 

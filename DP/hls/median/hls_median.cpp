@@ -24,17 +24,20 @@ struct Sorted3
 };
 
 /**
- * @brief Seřadí tři hodnoty (3 compare-exchange), shodné se sort3() v median.c.
+ * @brief Seřadí tři hodnoty (3 ostrá porovnání >, sdílená mezi low, mid a high), shodné se sort3() v median.c.
  */
 Sorted3 sort3(hlsv::pixel_t a, hlsv::pixel_t b, hlsv::pixel_t c)
 {
 #pragma HLS INLINE
-    const hlsv::pixel_t lo_ab = (a < b) ? a : b;
-    const hlsv::pixel_t hi_ab = (a < b) ? b : a;
+    const bool a_gt_b = (a > b);
+    const hlsv::pixel_t lo_ab = a_gt_b ? b : a;
+    const hlsv::pixel_t hi_ab = a_gt_b ? a : b;
+    const bool hi_gt_c = (hi_ab > c);
+    const bool c_gt_lo = (c > lo_ab);
     Sorted3 r;
-    r.lo = (lo_ab < c) ? lo_ab : c;
-    r.hi = (hi_ab > c) ? hi_ab : c;
-    r.mid = (hi_ab < c) ? hi_ab : ((lo_ab > c) ? lo_ab : c);
+    r.lo = c_gt_lo ? lo_ab : c;
+    r.hi = hi_gt_c ? hi_ab : c;
+    r.mid = (!hi_gt_c) ? hi_ab : ((!c_gt_lo) ? lo_ab : c);
     return r;
 }
 

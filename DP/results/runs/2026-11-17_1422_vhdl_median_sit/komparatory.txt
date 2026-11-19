@@ -1,0 +1,12 @@
+== G_NETWORK=0
+| CLB Registers              |  433 |     0 |          0 |    234240 |  0.18 |
+| CARRY8                     |   38 |     0 |          0 |     14640 |  0.26 |
+| CARRY8   |   38 |                 CLB |
+== G_NETWORK=1
+| CLB Registers              |  433 |     0 |          0 |    234240 |  0.18 |
+| CARRY8                     |   32 |     0 |          0 |     14640 |  0.22 |
+| CARRY8   |   32 |                 CLB |
+== G_NETWORK=2
+| CLB Registers              |  433 |     0 |          0 |    234240 |  0.18 |
+| CARRY8                     |   32 |     0 |          0 |     14640 |  0.22 |
+| CARRY8   |   32 |                 CLB |

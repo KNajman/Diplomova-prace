@@ -9,6 +9,7 @@
 #include <imgproc/median.h>
 #include <imgproc/image.h>
 
+#include <stdbool.h>
 #include <stdint.h>
 
 /* Seřazená trojice */
@@ -28,22 +29,28 @@ typedef struct
  */
 static median_sorted3_t sort3(uint8_t a, uint8_t b, uint8_t c)
 {
-    const uint8_t lo_ab = (a < b) ? a : b;
-    const uint8_t hi_ab = (a < b) ? b : a;
+    /* Jen 3 porovnání, všechna ostrá (>): low a high i medián je sdílejí. Při rovnosti hodnot
+       je jedno, která se vybere, výsledek je stejný (hardware: 3 komparátory na sort3). */
+    const bool a_gt_b = (a > b);
+    const uint8_t lo_ab = a_gt_b ? b : a;
+    const uint8_t hi_ab = a_gt_b ? a : b;
+    const bool hi_gt_c = (hi_ab > c);
+    const bool c_gt_lo = (c > lo_ab);
     median_sorted3_t result = { 0u, 0u, 0u };
 
-    result.lo = (lo_ab < c) ? lo_ab : c;
-    result.hi = (hi_ab > c) ? hi_ab : c;
-    result.mid = (hi_ab < c) ? hi_ab : ((lo_ab > c) ? lo_ab : c);
+    result.lo = c_gt_lo ? lo_ab : c;
+    result.hi = hi_gt_c ? hi_ab : c;
+    result.mid = (!hi_gt_c) ? hi_ab : ((!c_gt_lo) ? lo_ab : c);
     return result;
 }
 
 /**
  * @brief Medián 9 hodnot okna sítí compare-exchange.
  *
- * Poznámka k volbě sítě: optimální síť pro medián 9 prvků má 19 compare-exchange (Paeth),
- * tato má 21 (7x sort3). Je ale pravidelná (řádky -> sloupce -> diagonála), snadno se
- * pipelinuje po stupních a je totožná s HLS jádrem, takže srovnání HLS x VHDL je férové.
+ * Poznámka k volbě sítě: zapsaná je jako 7x sort3 (21 porovnání), pravidelná (řádky -> sloupce
+ * -> diagonála) a snadno se pipelinuje po stupních. Z posledních čtyř sort3 se používá jen jeden
+ * výstup, syntéza zbytek odstraní a v hardwaru zůstane 19 porovnání (Paethova síť má 20).
+ * Totožná s HLS i VHDL jádrem, takže srovnání HLS x VHDL je férové.
  * @param window Okno 3x3 uložené po řádcích (9 hodnot)
  * @return Medián
  */

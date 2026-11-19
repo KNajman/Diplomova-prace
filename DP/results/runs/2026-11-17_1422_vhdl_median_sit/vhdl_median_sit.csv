@@ -1,0 +1,6 @@
+component,impl_lut,impl_ff,impl_dsp,impl_bram,impl_lutram,wns_ns,wpws_ns,impl_cp_ns,impl_fmax_mhz,limit,timing_met,power_dyn_w
+median_core,590,433,0,2,3,1.496,1.738,3.504,285.4,logic,yes,0.011
+median_core_NETWORK0,590,433,0,2,3,1.496,1.738,3.504,285.4,logic,yes,0.011
+median_core_NETWORK1,557,433,0,2,3,1.392,1.738,3.608,277.2,logic,yes,0.015
+median_core_NETWORK2,557,433,0,2,3,1.392,1.738,3.608,277.2,logic,yes,0.015
+median_core_v1,600,439,0,2,3,1.180,1.738,3.820,261.8,logic,yes,0.014
