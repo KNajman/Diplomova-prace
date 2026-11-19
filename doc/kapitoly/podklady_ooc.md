@@ -38,14 +38,14 @@ Text kapitoly
 
 ## OOC - out of context syntéza
 
-Jedná se o (metodu?) kdy se jádro samostaně syntetizuje, nazávisle na tom jak bude v budoucnu zapojeno, neřeší se tedy žádná řežije čtení nebo zápisu, jen funkcionalita. Jedinná závislost je na časování.
+Jedná se o (metodu?) kdy se jádro samostatně syntetizuje, nazávisle na tom jak bude v budoucnu zapojeno, neřeší se tedy žádná režie čtení nebo zápisu, jen funkcionalita. Jedinná závislost je na časování.
 
 ```script
 ```
 
 ### Důvody k užití
 
-Výsledek je nezavislý na předchozím zpracování, ani na chybách. Slouží k odladění, zachycení chyb, bootlenecků(český ekvivalent?) lokalizaci kritické cesty, časování, upravám. A udájům o odhadovaných prostředcích a spotřebě .**Přenosnost** Testovací jednotka lze také ověřit i pro jiné způsoby architektury, hypotézy, já ji používa pro ověření jak VHDL tak syntézy z HLS.
+Výsledek je nezávislý na předchozím zpracování, ani na chybách. Slouží k odladění, zachycení chyb, bootlenecků(český ekvivalent?) lokalizaci kritické cesty, časování, úpravám. A údajům o odhadovaných prostředcích a spotřebě .**Přenosnost** Testovací jednotka lze také ověřit i pro jiné způsoby architektury, hypotézy, já ji používa pro ověření jak VHDL tak syntézy z HLS.
 
 [obrazek v Tikz]
 
