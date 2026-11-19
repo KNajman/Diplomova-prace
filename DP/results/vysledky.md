@@ -681,3 +681,24 @@ aktivity, ne o měření.
 - Ostatní jádra v řetězci odpovídají OOC: LUT nejvýš o 8 % méně (histogram HLS 276 proti 300, konvoluce HLS 606 proti 640), FF nejvýš o 5 %, DSP shodně.
 
 Zdroj: `DP/results/retezec_2026-10-25/*.rpt` (Ababel `DP/hw/build/harness`, 25. 10. 21:34).
+
+## 23. Medián 3×3 – zápis třídicí sítě a co odstraní syntéza (17.–19. 11. 2026)
+
+Konfigurace: `median_core` (bez AXI4-Lite), OOC stejným skriptem, cíl 5 ns, běh `2026-11-17_1422_vhdl_median_sit` (commit 842002f,
+data v `DP/results/runs/`). Varianty zápisu, výstup ve všech bitově stejný (xsim 12 scénářů PASS):
+
+| zápis sítě | LUT | FF | CARRY8 po syntéze | perioda |
+| --- | --- | --- | --- | --- |
+| 0: `sort3` jako v modelu (každý výstup vlastní porovnání) | 590 | 433 | 38 | 3,50 ns |
+| 1: `sort3` se sdílenými porovnáními (3 na `sort3`) | **557** | 433 | **32** | 3,61 ns |
+| 2: jako 1, v E2 a E3 jen použité výstupy (19 porovnání) | 557 | 433 | 32 | 3,61 ns |
+
+**Poznatky**
+- Varianta 2 je s variantou 1 totožná ve všech číslech: **syntéza nepoužité výstupy `sort3` odstraní sama**, síť zapsaná jako
+  7 × `sort3` (21 porovnání) má v obvodu 19 porovnání (Paethova síť 20). Ověřeno, ne jen předpoklad.
+- Sdílení porovnání v `sort3` ušetřilo 33 LUT (−5,6 %) a 6 CARRY8 (každé 8bitové porovnání = 1 CARRY8, zbytek CARRY8 jsou čítače
+  v `window_gen`). Původní zápis porovnával `low_ab < c` i `low_ab > c`; kvůli rovnosti je syntéza nesloučí.
+- Rozdíl period 0,1 ns je v rozptylu rozmístění a propojení (sekce 14).
+- Rozhodnutí (Karel, 19. 11.): `sort3` jen s ostrými porovnáními `>` (sdílenými) v C, HLS i VHDL, commit 118f651; ekvivalence
+  se starým `sort3` ověřena na všech 2^24 trojicích (lo, mid, hi). Parametr experimentu odstraněn. Ověření nové verze: fronta
+  `median_porovnani` (sekce doplnit po doběhnutí).

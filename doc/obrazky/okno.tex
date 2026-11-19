@@ -1,0 +1,30 @@
+% Generátor okna 3x3 (window_gen + line_buffer; HLS hls_window.hpp): K-1 řádkových pamětí a K x K registrů
+\begin{tikzpicture}[dp]
+  \def\dx{9mm}\def\dy{13mm}
+  % registry okna p_rc, sloupec 0 = nejnovější pixel
+  \foreach \r in {0,1,2} { \foreach \c in {0,1,2} {
+      \node[registr, minimum width=7mm, minimum height=7mm, font=\scriptsize] (p\r\c) at (60mm+\c*\dx, -\r*\dy) {$p_{\r\c}$};
+  } }
+  \foreach \r in {0,1,2} { \draw[data] (p\r0) -- (p\r1); \draw[data] (p\r1) -- (p\r2); }
+  % vstup a řádkové paměti
+  \node[blok, minimum width=16mm] (in) at (0,0) {vstup\\\scriptsize 1 pixel / takt};
+  \node[pamet, minimum width=30mm] (lb1) at (30mm,-\dy) {řádková paměť 1\\\scriptsize BRAM, 1 řádek};
+  \node[pamet, minimum width=30mm] (lb2) at (30mm,-2*\dy) {řádková paměť 2\\\scriptsize BRAM, 1 řádek};
+  \coordinate (j0) at (lb1.north |- in);
+  \coordinate (j1) at ($(lb1.east)+(4mm,0)$);
+  \draw[data] (in) -- (p00.west);
+  \draw[data] (j0) -- (lb1.north);
+  \draw[data] (lb1.east) -- (p10.west);
+  \draw[data] (j1) |- ($(lb2.north)+(0,3mm)$) -- (lb2.north);
+  \draw[data] (lb2.east) -- (p20.west);
+  \fill[dpAkcent] (j0) circle (0.7mm); \fill[dpAkcent] (j1) circle (0.7mm);
+  % okno a operace
+  \node[ramec, fit=(p00)(p22), label={[maly]above:okno 3 × 3}] (win) {};
+  \node[blokA, minimum width=22mm, minimum height=16mm, right=10mm of win] (op) {operace okna\\\scriptsize konvoluce\\\scriptsize nebo medián};
+  \draw[data] (win) -- (op);
+  \draw[data] (op.east) -- ++(8mm,0) node[right] {$p'$};
+  % ošetření okrajů
+  \node[blok, minimum width=40mm, below=7mm of win, font=\footnotesize] (okr) {ošetření okrajů: opakování krajního\\ pixelu nebo doplnění nulami};
+  \draw[vodic] (okr) -- (win);
+  \node[popis, anchor=north, text width=40mm] at ($(lb2.south)+(0,-3mm)$) {\scriptsize obecně K − 1 řádkových pamětí\\ a K × K registrů (konvoluce 5 × 5 a 7 × 7)};
+\end{tikzpicture}

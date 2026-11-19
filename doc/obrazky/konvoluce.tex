@@ -1,0 +1,15 @@
+% Konvoluce K x K: datová cesta (filter2d_core / hls_filter2d), O = sat_u8(round_shift(acc·s, 14) + delta), README §4
+\begin{tikzpicture}[dp]
+  \node[ramec, minimum width=16mm, minimum height=16mm] (win) at (0,0) {};
+  \node[maly, align=center] at (win) {okno\\ $p_{ij}$};
+  \node[pamet, above=4mm of win, minimum width=16mm] (k) {koeficienty $k_{ij}$\\\scriptsize registry AXI4-Lite};
+  \node[blokA, right=8mm of win, minimum height=16mm] (mul) {$K^2$ násobení\\\scriptsize $k_{ij}\cdot p_{ij}$\\\scriptsize bloky DSP};
+  \node[blokA, right=6mm of mul, minimum height=16mm] (sum) {strom\\ sčítaček\\\scriptsize $\sum k_{ij}\,p_{ij}$};
+  \node[blokA, right=6mm of sum, minimum height=16mm] (sc) {měřítko\\\scriptsize Q.14, zaokrouhlení\\\scriptsize polovin nahoru};
+  \node[blokA, right=6mm of sc, minimum height=16mm] (dl) {$+$ delta};
+  \node[blokA, right=6mm of dl, minimum height=16mm] (sat) {saturace\\\scriptsize 0 až 255};
+  \draw[data] (win) -- (mul); \draw[data] (mul) -- (sum); \draw[data] (sum) -- (sc); \draw[data] (sc) -- (dl); \draw[data] (dl) -- (sat);
+  \draw[data] (sat.east) -- ++(7mm,0) node[right] {$p'$};
+  \draw[rizeni] (k.east) -| (mul.north);
+  \node[popis, below=5mm of sum, text width=60mm] {\scriptsize každý blok = jeden či více stupňů pipeline,\\ propustnost 1 pixel za takt};
+\end{tikzpicture}

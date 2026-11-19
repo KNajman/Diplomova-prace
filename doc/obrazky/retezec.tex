@@ -1,0 +1,43 @@
+% Testovací řetězec: jeden bitstream se 14 jádry (DP/hw/harness/build_harness.tcl), 200 MHz
+\begin{tikzpicture}[dp]
+  % --- jádra mezi přepínači: řádky po 8 mm ---
+  \def\xa{40mm}  % střed sloupce jader
+  \node[blok, minimum width=34mm, minimum height=6.5mm, inner sep=1pt] (k0) at (\xa, 0) {\footnotesize průchod (port 0)};
+  \foreach \i/\t/\s/\j in {1/převod barev/blokA/HLS, 2/převod barev/blokB/VHDL,
+                           3/RGB → HSV/blokA/HLS, 4/RGB → HSV/blokB/VHDL, 5/HSV → RGB/blokA/HLS, 6/HSV → RGB/blokB/VHDL} {
+    \node[\s, minimum width=34mm, minimum height=6.5mm, inner sep=1pt] (k\i) at (\xa, -\i*8mm)
+      {\footnotesize \t\ \ \scriptsize(\j)};
+  }
+  % šedotónová větev
+  \node[blok, fill=dpSeda!8, minimum width=58mm, minimum height=30mm, anchor=north] (gray) at (\xa, -7*8mm+3mm) {};
+  \node[maly, anchor=north] at (gray.north) {šedotónová větev};
+  \node[blok, minimum width=9mm, minimum height=20mm, anchor=west, font=\scriptsize, inner sep=1pt] (gin)  at ($(gray.west)+(2mm,-2mm)$) {RGB\\→\\šedá};
+  \node[blok, minimum width=9mm, minimum height=20mm, anchor=east, font=\scriptsize, inner sep=1pt] (gout) at ($(gray.east)+(-2mm,-2mm)$) {šedá\\→\\RGB};
+  \node[blok, minimum width=4mm, minimum height=20mm, right=2mm of gin, inner sep=0pt] (gsi) {};
+  \node[blok, minimum width=4mm, minimum height=20mm, left=2mm of gout, inner sep=0pt] (gso) {};
+  \node[blokA, text width=21mm, minimum height=20mm, inner sep=1pt, font=\scriptsize] (gk) at ($(gsi.east)!0.5!(gso.west)$) {průchod, prahování,\\ medián 3 × 3,\\ Sobel 3 × 3,\\ histogram\\ (HLS i VHDL)};
+  \draw[data] (gin) -- (gsi); \draw[data] (gso) -- (gout);
+  \draw[data] (gsi.east) -- (gk.west);
+  \draw[data] (gk.east) -- (gso.west);
+  % --- přepínače RGB ---
+  \node[blok, minimum width=7mm, inner sep=0pt, fit={(-3mm,3.5mm) (-3mm,-86mm)}] (swin) {};
+  \node[rotate=90, font=\small] at (swin) {přepínač AXI4-Stream (vstup)};
+  \node[blok, minimum width=7mm, inner sep=0pt, fit={(83mm,3.5mm) (83mm,-86mm)}] (swout) {};
+  \node[rotate=90, font=\small] at (swout) {přepínač AXI4-Stream (výstup)};
+  \foreach \i in {0,...,6} { \draw[data] (swin.east |- k\i) -- (k\i.west); \draw[data] (k\i.east) -- (swout.west |- k\i); }
+  \draw[data] (swin.east |- gin) -- (gin.west);
+  \draw[data] (gout.east) -- (swout.west |- gout);
+  % --- procesor, paměť, VDMA ---
+  \node[blok, minimum width=22mm, minimum height=16mm, anchor=east] (vdma) at ($(swin.west)+(-10mm,-12mm)$) {VDMA\\\footnotesize MM2S čtení\\\footnotesize S2MM zápis};
+  \node[pamet, minimum width=22mm, minimum height=11mm, above=10mm of vdma] (ddr) {DDR4\\\footnotesize snímek 1920 × 1080};
+  \node[blokB, minimum width=22mm, minimum height=12mm, above=6mm of ddr] (ps) {Cortex-A53\\\footnotesize měřicí aplikace};
+  \draw[vodic, <->] (ps) -- (ddr);
+  \draw[vodic, <->] (ddr) -- node[maly, right] {AXI HP} (vdma);
+  \draw[data] ($(vdma.east)+(0,4mm)$) -- node[maly, above] {MM2S} ($(swin.west |- vdma.east)+(0,4mm)$);
+  \draw[data] (swout.east) -- ++(5mm,0) |- ($(swout.south)+(0,-6mm)$) -| node[maly, pos=0.75, right] {S2MM} ($(vdma.south)$);
+  % --- řízení ---
+  \draw[rizeni] (ps.north) |- ($(swin.north)+(0,7mm)$) -- (swin.north);
+  \draw[rizeni] ($(swin.north)+(0,7mm)$) -| node[maly, pos=0.25, above] {AXI4-Lite: registry jader, přepínačů a VDMA} (swout.north);
+  % --- popis ---
+  \node[popis, anchor=north] at ($(swin.south)!0.5!(swout.south)+(0,-11mm)$) {programovatelná logika, hodiny 200 MHz, 1 pixel za takt};
+\end{tikzpicture}

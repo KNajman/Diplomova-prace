@@ -1,0 +1,9 @@
+% Obal pro samostatný překlad jednoho obrázku (export.sh): xelatex -jobname=X "\\def\\obrazek{X}\\input{_samostatny}"
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tikz}
+\input{dp_styl}
+\begin{document}
+\input{\obrazek}
+\end{document}

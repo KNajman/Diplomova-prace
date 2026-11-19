@@ -1,0 +1,27 @@
+% Společný styl diagramů DP (TikZ). V DP.tex: \input{obrazky/dp_styl} v preambuli za \usepackage{tikz}.
+% Barvy podle vizuálního stylu TUL (tul.sty 2.3): tulFM = oranžová FM, tul = fialová TUL, tulgray = 80 % černé.
+% \providecolor nic nepřepíše, pokud tul.sty barvy už definoval (třída tulthesis s volbou FM).
+\usetikzlibrary{positioning,calc,arrows.meta,fit,backgrounds,shapes.geometric,matrix}
+\providecolor{tulFM}{HTML}{EA7603}
+\providecolor{tul}{HTML}{5948AD}
+\providecolor{tulgray}{cmyk}{0,0,0,0.8}
+\colorlet{dpAkcent}{tulFM}          % datová cesta, registry pipeline, to podstatné
+\colorlet{dpDruha}{tul}             % druhá kategorie (např. VHDL proti HLS, řízení)
+\colorlet{dpPozadi}{tulFM!12}       % výplň zvýrazněných bloků
+\colorlet{dpSeda}{tulgray!55}       % pomocné čáry a popisy
+\tikzset{
+  dp/.style={>={Stealth[length=2mm]}, font=\small, line cap=round},
+  blok/.style={draw=tulgray, thick, rounded corners=2pt, align=center, fill=white,
+               minimum height=9mm, minimum width=18mm, inner sep=3pt},
+  blokA/.style={blok, draw=dpAkcent, fill=dpPozadi},          % zvýrazněný blok (jádro, operace)
+  blokB/.style={blok, draw=dpDruha, fill=dpDruha!10},          % druhá kategorie
+  pamet/.style={blok, draw=dpDruha, fill=dpDruha!10, minimum height=6mm},
+  registr/.style={draw=dpAkcent, thick, fill=white, minimum width=3mm, minimum height=9mm, inner sep=0pt},
+  vodic/.style={->, thick, draw=tulgray},
+  data/.style={->, very thick, draw=dpAkcent},                 % obrazová data (AXI4-Stream)
+  rizeni/.style={->, densely dashed, draw=dpDruha},            % řízení (AXI4-Lite)
+  popis/.style={font=\footnotesize, align=center, text=tulgray},
+  maly/.style={font=\scriptsize, text=tulgray},
+  ramec/.style={draw=dpSeda, densely dotted, rounded corners=4pt, inner sep=4mm},
+  takt/.style={densely dashed, dpSeda},
+}

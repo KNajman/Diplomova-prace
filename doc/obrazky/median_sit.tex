@@ -1,0 +1,48 @@
+% Třídicí síť mediánu 3x3 (median_core.vhd, median.c, hls_median.cpp)
+% Styl: obrazky/dp_styl.tex
+\begin{tikzpicture}[dp, blokM/.style={blokA, minimum width=20mm, minimum height=19mm}, vstup/.style={inner sep=1pt, font=\small}]
+% --- vstupní okno 3x3 ---
+\foreach \r in {0,1,2} {
+  \foreach \c in {0,1,2} {
+    \pgfmathtruncatemacro{\y}{-(\r*30 + \c*7)}
+    \node[vstup] (w\r\c) at (0, \y mm) {$p_{\r\c}$};
+  }
+}
+% --- E1: seřazení řádků ---
+\foreach \r in {0,1,2} {
+  \node[blokM] (r\r) at (28mm, -\r*30mm - 7mm) {řádek \r\\[1pt]\footnotesize sort3};
+  \foreach \c/\yy in {0/6,1/0,2/-6} { \draw[data] (w\r\c.east) -- ($(r\r.west)+(0,\yy mm)$); }
+}
+% --- E2: sloupce ---
+\node[blokM] (lo) at (70mm, -7mm)  {minima\\[1pt]\footnotesize max3};
+\node[blokM] (md) at (70mm, -37mm) {mediány\\[1pt]\footnotesize med3};
+\node[blokM] (hi) at (70mm, -67mm) {maxima\\[1pt]\footnotesize min3};
+\foreach \r/\yy in {0/6,1/0,2/-6} {
+  \draw[data] ($(r\r.east)+(0,6mm)$)  to[out=0,in=180] ($(lo.west)+(0,\yy mm)$);
+  \draw[data] ($(r\r.east)+(0,0mm)$)  to[out=0,in=180] ($(md.west)+(0,\yy mm)$);
+  \draw[data] ($(r\r.east)+(0,-6mm)$) to[out=0,in=180] ($(hi.west)+(0,\yy mm)$);
+}
+\foreach \r in {0,1,2} {
+  \node[popis, anchor=south west, inner sep=1pt] at ($(r\r.east)+(0.5mm,6mm)$) {\scriptsize min};
+  \node[popis, anchor=south west, inner sep=1pt] at ($(r\r.east)+(0.5mm,0mm)$) {\scriptsize med};
+  \node[popis, anchor=south west, inner sep=1pt] at ($(r\r.east)+(0.5mm,-6mm)$) {\scriptsize max};
+}
+% --- E3: medián ---
+\node[blokM] (vys) at (106mm, -37mm) {medián\\[1pt]\footnotesize med3};
+\draw[data] (lo.east) to[out=0,in=180] ($(vys.west)+(0,6mm)$);
+\draw[data] (md.east) -- (vys.west);
+\draw[data] (hi.east) to[out=0,in=180] ($(vys.west)+(0,-6mm)$);
+\node[popis, anchor=south west, inner sep=1pt] at ($(lo.east)+(0.5mm,0)$) {\scriptsize max};
+\node[popis, anchor=south west, inner sep=1pt] at ($(md.east)+(0.5mm,0)$) {\scriptsize med};
+\node[popis, anchor=north west, inner sep=1pt] at ($(hi.east)+(0.5mm,0)$) {\scriptsize min};
+\draw[data] (vys.east) -- ++(10mm,0) node[right] {$p'$};
+% --- registry pipeline ---
+\foreach \x/\t in {48/E1, 89/E2, 120/E3} {
+  \draw[takt] (\x mm, 6mm) -- (\x mm, -82mm);
+  \node[popis] at (\x mm, 9mm) {registr};
+}
+% --- takty a počty porovnání ---
+\node[popis] at (28mm, -88mm)  {takt E1\\ $3 \times 3 = 9$ porovnání};
+\node[popis] at (70mm, -88mm)  {takt E2\\ $2 + 3 + 2 = 7$ porovnání};
+\node[popis] at (106mm, -88mm) {takt E3\\ 3 porovnání};
+\end{tikzpicture}
