@@ -1,0 +1,12 @@
+# Finální testovací řetězec (implementace-final): window_gen v3, medián s ostrým sort3, HSV->RGB v DSP (HLS latence 3,
+# VHDL G_USE_DSP=true). Kroky: cosim HLS HSV->RGB dsp_lat, zabalení všech VHDL IP, blokový návrh + bitstream 200 MHz,
+# měřicí aplikace O0/O2/O3, reporty a export blokového návrhu do $RUN_DIR. Pak: ababel.sh board + board_test na desce.
+# @stop_on_error
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg csim && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../hsv/hls_config_hsv2rgb_dsp_lat.cfg syn
+cd DP/vhdl/scripts && for cfg in "csc_axil G_CH_IN=3 G_CH_OUT=3" "csc_axil G_CH_IN=3 G_CH_OUT=1" "csc_axil G_CH_IN=1 G_CH_OUT=3" "hsv_axil G_RGB_TO_HSV=true" "hsv_axil G_RGB_TO_HSV=false G_USE_DSP=true" "threshold_axil" "median_axil" "filter2d_axil G_K=3 G_USE_DSP=true" "histogram_axil G_USE_BRAM=true"; do vivado -mode batch -nojournal -nolog -source package_ip.tcl -tclargs $cfg || exit 1; done
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200 bd_only
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source build_harness.tcl -tclargs 200
+cd DP/sw/harness_app && vitis -s build_app.py O0 O2 O3 && ls -l ../build/workspace/harness_app_O*/build/*.elf
+cp DP/hw/build/harness/{utilization,utilization_hier,timing,power}.rpt DP/hw/build/harness/harness_map.h "$RUN_DIR"/ && grep -A6 'Design Timing Summary' "$RUN_DIR/timing.rpt" | tail -2 && grep -E '^\| (CLB LUTs|CLB Registers|Block RAM Tile|DSPs) ' "$RUN_DIR/utilization.rpt"
+cd DP/hw/harness && timeout 900 xvfb-run -a vivado -mode gui -nojournal -nolog -source export_bd.tcl -tclargs "$RUN_DIR"

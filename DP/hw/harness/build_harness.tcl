@@ -33,6 +33,9 @@ update_ip_catalog -rebuild
 
 # -----------------------------------------------------------------------------
 # Seznam jader: {instance VLNV-jméno větev přerušení}
+#   Finální řetězec (Karel, 19. 11. 2026): násobení v DSP všude, kde je parametr – HSV->RGB HLS varianta
+#   s DSP a latencí 3 (hls_hsv2rgb_dsp_lat), VHDL G_USE_DSP = true. Název instance zůstává hls_hsv2rgb /
+#   vhdl_hsv2rgb, mapa registrů je stejná, měřicí aplikace se nemění.
 #   větev rgb = 24 b, gray = 8 b; přerušení 1 = připojit (okénková jádra a histogram hlásí konec snímku)
 # -----------------------------------------------------------------------------
 set rgb_cores {
@@ -40,8 +43,8 @@ set rgb_cores {
     {vhdl_csc_rgb         tul.cz:dp:vhdl_csc_axil_CH_IN3_CH_OUT3:1.0      0}
     {hls_rgb2hsv          xilinx.com:hls:hls_rgb2hsv:1.0                 0}
     {vhdl_rgb2hsv         tul.cz:dp:vhdl_hsv_axil_RGB_TO_HSVtrue:1.0      0}
-    {hls_hsv2rgb          xilinx.com:hls:hls_hsv2rgb:1.0                 0}
-    {vhdl_hsv2rgb         tul.cz:dp:vhdl_hsv_axil_RGB_TO_HSVfalse:1.0     0}
+    {hls_hsv2rgb          xilinx.com:hls:hls_hsv2rgb_dsp_lat:1.0         0}
+    {vhdl_hsv2rgb         tul.cz:dp:vhdl_hsv_axil_RGB_TO_HSVfalse_USE_DSPtrue:1.0 0}
 }
 set gray_cores {
     {hls_threshold        xilinx.com:hls:hls_threshold:1.0               0}

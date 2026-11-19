@@ -343,7 +343,7 @@ Syntéza mimo kontext měří jádro samostatně. V~testovacím řetězci je 14 
 
 Tohle je příklad, jak se chová jádro HLS navržené na hranu zadané periody. Při 5\,ns vloží HLS mezi registry tolik logiky, kolik se do periody vejde, a~v~hustším návrhu pak rezerva mizí. Jádra ve VHDL s~registrem za každou operací kritickou cestu řetězce netvořila. Nápravou by byla varianta s~latencí násobení 3 takty z~tabulky~\ref{tab:hsvdsp}.
 
-% TODO(Karel): V řetězci zabírá jádro hls_hsv2rgb 232 LUT, 264 FF a 11 DSP, tedy jako varianta s násobením v DSP (OOC 224 LUT, 241 FF, 11 DSP), ne jako výchozí varianta (OOC 556 LUT, 1 DSP). Možné příčiny: (a) všechny tři varianty HSV→RGB mají stejný název IP xilinx.com:hls:hls_hsv2rgb:1.0 a build_harness.tcl přidává do katalogu všechny tři adresáře, Vivado tedy mohl vzít variantu _dsp; (b) syntéza IP v blokovém návrhu sama mapuje násobení 8 × 8 do DSP (sekce 12 z 22. 10., kdy varianta _dsp ještě neexistovala, už ukazovala kritickou cestu v DSP). Do vyjasnění v textu netvrdím, která varianta v řetězci je. Oprava: dát variantám různé názvy IP (package.ip.name) a bitstream přeložit znovu.
+% TODO(text): V řetězci z 25. 10. zabíralo jádro hls_hsv2rgb (výchozí varianta) 232 LUT a 11 DSP, v OOC 556 LUT a 1 DSP: syntéza IP v blokovém návrhu namapovala násobení 8 × 8 do bloků DSP sama (varianty mají odlišné názvy IP od 23. 10., záměna IP to není). Finální řetězec (19. 11.) používá variantu s DSP a latencí 3 výslovně; oddíl přepsat podle finálních reportů.
 
 \section{Diskuse}
 \label{sec:diskuse}

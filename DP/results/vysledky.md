@@ -673,11 +673,10 @@ aktivity, ne o měření.
 **Poznatky**
 - Využití je prakticky stejné jako 22. 10.; rezerva se zlepšila z 0,104 na 0,229 ns (jiné rozmístění po vypnutí auto-rewind
   a přidání UART). Kritická cesta je stále v násobení jádra `hls_hsv2rgb`.
-- **Otevřené:** `hls_hsv2rgb` v řetězci zabírá 232 LUT / 264 FF / 11 DSP, tedy jako varianta `_dsp` (OOC 224 / 241 / 11),
-  ne výchozí (OOC 556 / 296 / 1). Všechny tři varianty mají stejné VLNV `xilinx.com:hls:hls_hsv2rgb:1.0` a `build_harness.tcl`
-  přidává do katalogu všechny adresáře `hls/build/*/hls/impl/ip`, takže výběr IP není jednoznačný. Druhá možnost: syntéza IP
-  v blokovém návrhu mapuje násobení 8 × 8 do DSP sama (sekce 12 z 22. 10., kdy `_dsp` neexistovala, měla kritickou cestu
-  také v DSP). Oprava v každém případě: odlišit názvy IP variant (`package.ip.name`) a bitstream přeložit znovu.
+- **Vyjasněno 19. 11.:** `hls_hsv2rgb` v řetězci zabírá 232 LUT / 264 FF / 11 DSP (jako varianta `_dsp`), ačkoli jde o výchozí
+  IP `xilinx.com:hls:hls_hsv2rgb:1.0` – varianty mají odlišné názvy IP (`package.ip.name`) už od 23. 10., záměna to tedy není.
+  Syntéza IP v blokovém návrhu namapovala násobení 8 × 8 do DSP sama (OOC skript stejného RTL nechal násobení v LUT).
+  Finální řetězec proto bere variantu s DSP a latencí 3 výslovně (rozhodnutí Karla).
 - Ostatní jádra v řetězci odpovídají OOC: LUT nejvýš o 8 % méně (histogram HLS 276 proti 300, konvoluce HLS 606 proti 640), FF nejvýš o 5 %, DSP shodně.
 
 Zdroj: `DP/results/retezec_2026-10-25/*.rpt` (Ababel `DP/hw/build/harness`, 25. 10. 21:34).
