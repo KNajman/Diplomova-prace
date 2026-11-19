@@ -86,21 +86,21 @@
 \ThesisStart{DP_zadani_a_prohlaseni_KN.pdf}
 
 \begin{abstractCZ}
-Český abstrakt
+    Český abstrakt
 \end{abstractCZ}
 
 \begin{keywordsCZ}
-Klíčová slova česky
+    Klíčová slova česky
 \end{keywordsCZ}
 
 \vspace{2cm}
 
 \begin{abstractEN}
-English abstract
+    English abstract
 \end{abstractEN}
 
 \begin{keywordsEN}
-keywords in English
+    keywords in English
 \end{keywordsEN}
 
 \begin{acknowledgement}
@@ -160,9 +160,9 @@ Mezi klíčové vlastnosti, využívané v této práci, patří:
 
 \begin{itemize}
     \item \textbf{Hardwarová akcelerace:} Generování vysoce optimalizovaných \ac{IP} jader (Intellectual Property cores) s možností definovat výkonnostní parametry, jako je propustnost a latence.
-    
+
     \item \textbf{Optimalizační direktivy:} Využití tzv. pragmas pro řízení architektury výsledného hardwaru, včetně paralelizace smyček (loop unrolling), pipeliningu instrukcí a správy paměťových rozhraní.
-    
+
     \item \textbf{Verifikace:} Integrované prostředí pro C-simulaci (ověření funkčnosti algoritmu) a C/RTL ko-simulaci (ověření bitové shody vygenerovaného \ac{RTL} s původním C++ modelem).
 
     \item \textbf{Integrace:} Přímá návaznost na sadu AMD Vivado™ Design Suite pro finální implementaci, syntézu a nahrání bitstreamu do cílového zařízení, např. kitu Kria KV260. a  \cite{amd_vitis}
@@ -171,23 +171,31 @@ Mezi klíčové vlastnosti, využívané v této práci, patří:
 \newpage
 
 \section{AMD Vivado™ Design Suite}
-\textbf{AMD Vivado™} je komplexní integrované vývojové prostředí pro \ac{SoC} a \ac{FPGA}. Které obsahuje: návrh, syntézu, plánování a mapování, verifikační a simulační nástroje. 
+\textbf{AMD Vivado™} je komplexní integrované vývojové prostředí pro \ac{SoC} a \ac{FPGA}. Které obsahuje: návrh, syntézu, plánování a mapování, verifikační a simulační nástroje.
 
-Pro účely této práce slouží Vivado jako centrální integrační platforma, která propojuje hardwarové akcelerátory vyvinuté v nástroji Vitis HLS s procesorovým subsystémem (PS) platformy Kria KV260. Klíčovou komponentou prostředí je nástroj IP Integrator, který umožňuje grafický návrh systému na úrovni bloků (Block Design). Zde jsou jednotlivá IP jádra (Intellectual Property cores) propojena pomocí standardizované sběrnice AMBA® AXI, což zajišťuje efektivní komunikaci mezi programovatelnou logikou a řídicím procesorem ARM.
+Pro účely této práce slouží Vivado jako centrální integrační platforma, která
+propojuje hardwarové akcelerátory vyvinuté v nástroji Vitis HLS s procesorovým
+subsystémem (PS) platformy Kria KV260. Klíčovou komponentou prostředí je
+nástroj IP Integrator, který umožňuje grafický návrh systému na úrovni bloků
+(Block Design). Zde jsou jednotlivá IP jádra (Intellectual Property cores)
+propojena pomocí standardizované sběrnice AMBA® AXI, což zajišťuje efektivní
+komunikaci mezi programovatelnou logikou a řídicím procesorem ARM.
 
 Proces návrhu ve Vivado Design Suite zahrnuje následující klíčové fáze:
 
 \begin{itemize}
     \item \textbf{RTL Syntéza:} Převod zdrojových kódů (VHDL, Verilog) a blokových schémat do seznamu spojů (netlist).
-    
+
     \item \textbf{Implementace:} Fyzický návrh čipu zahrnující rozmístění (Placement) logických elementů a propojení (Routing) signálových tras. Moderní verze Vivado ML (Machine Learning) využívají v této fázi algoritmy strojového učení pro optimalizaci časování a minimalizaci spotřeby.
-    
+
     \item \textbf{Verifikace:} Ověření funkčnosti návrhu pomocí behaviorální a post-implementační simulace.
-    
+
     \item \textbf{Generování bitstreamu:} Vytvoření konfiguračního souboru pro FPGA část a export hardwarové definice (XSA soubor) pro následný vývoj softwaru.
 \end{itemize}
 
-Součástí prostředí je také Vivado Hardware Manager, který umožňuje programování cílového zařízení přes rozhraní JTAG a ladění běžícího hardwaru v reálném čase pomocí integrovaných logických analyzátorů (ILA - Integrated Logic Analyzer).
+Součástí prostředí je také Vivado Hardware Manager, který umožňuje programování
+cílového zařízení přes rozhraní JTAG a ladění běžícího hardwaru v reálném čase
+pomocí integrovaných logických analyzátorů (ILA - Integrated Logic Analyzer).
 
 \section{Vývojová deska kria KV260 Vision AI Starter Kit}
 
@@ -202,24 +210,23 @@ Platforma je určena primárně pro vývoj řešení v oblastech, jako jsou chyt
     \label{tab:kv260-specs}
     \begin{tabular}{@{}ll@{}}
         \toprule
-        \textbf{Komponenta / Rozhraní} & \textbf{Specifikace} \\ \midrule
-        SoC (Čip) & Zynq™ UltraScale+™ MPSoC (modul K26 SOM) \\
-        Obrazový procesor & OnSemi AP1302 13MP ISP\\
-        Programovatelná logika & 256 tisíc logických buněk,
-144 bloků RAM
-64 bloků UltraRAM
-1 176 DSP slices\\
-        Paměť DRR& 4 GB (4 x 512 Mb x 16 bit)\\
-        Kamerová rozhraní & 3$\times$ MIPI CSI-2 (2$\times$ IAS, 1$\times$ RPi) \\
-        Video výstupy & 1$\times$ HDMI 1.4, 1$\times$ DisplayPort 1.2a\\
-        Síťové rozhraní & 1$\times$ 1Gb Ethernet \\
-        Rozšiřující rozhraní & 1$\times$ PMOD (12-pin) \\
-        USB & 4$\times$ USB 3.0/2.0 \\
-        Úložiště dat & Primární  - 512 Mb QSPI (Queued SPI)
-Sekundární - slot pro SDHC kartu\\
+        \textbf{Komponenta / Rozhraní} & \textbf{Specifikace}                                \\ \midrule
+        SoC (Čip)                      & Zynq™ UltraScale+™ MPSoC (modul K26 SOM)            \\
+        Obrazový procesor              & OnSemi AP1302 13MP ISP                              \\
+        Programovatelná logika         & 256 tisíc logických buněk,
+        144 bloků RAM
+        64 bloků UltraRAM
+        1 176 DSP slices                                                                     \\
+        Paměť DRR                      & 4 GB (4 x 512 Mb x 16 bit)                          \\
+        Kamerová rozhraní              & 3$\times$ MIPI CSI-2 (2$\times$ IAS, 1$\times$ RPi) \\
+        Video výstupy                  & 1$\times$ HDMI 1.4, 1$\times$ DisplayPort 1.2a      \\
+        Síťové rozhraní                & 1$\times$ 1Gb Ethernet                              \\
+        Rozšiřující rozhraní           & 1$\times$ PMOD (12-pin)                             \\
+        USB                            & 4$\times$ USB 3.0/2.0                               \\
+        Úložiště dat                   & Primární  - 512 Mb QSPI (Queued SPI)
+        Sekundární - slot pro SDHC kartu                                                     \\
     \end{tabular}
 \end{table}
-
 
 \section{Platforma Zynq UltraScale+ a Kria KV26}
 \subsection{LUT}
@@ -233,24 +240,36 @@ Sekundární - slot pro SDHC kartu\\
 \subsection{BRAM}
 Paměťové bloky (Line Buffery, Histogram).
 
-
-
 % KOSTRA: přesunuto z původní kap. 4 (Metodologie designu): programovací model Vitis HLS patří do popisu nástrojů; oddíl „Problém s 2023 a 2025“ ověřit a upřesnit.
 \section{Metodologie designu}
 
 \subsection{Problém s 2023 a 2025}
 
-Zásadní problém při implementaci ve verzi 2023.2 je nekompletních konfiguračních souborech (Board Files) pro modul Kria KV260, kterým chybělo detailní fyzické mapování hodinových domén (tzv. Clock Regions) na samotném křemíku Zynq UltraScale+. Kvůli tomu interní směrovací algoritmus nedokázal správně alokovat trasy pro časově kritické signály, což vedlo ke kritickému selhání NTD (New Timing Driven) flow hned v úvodu fáze Place \& Route. Upgrade na verzi Vivado 2025.2 tento problém vyřešil architektonicky, jelikož nová verze nativně integruje aktualizované a plně ověřené profily desky přímo z repozitáře AMD. Tyto nové profily již obsahují bezchybně definované mapování pinů i hodinového směrování, díky čemuž nástroj získal přesnou informaci o fyzické topologii čipu a celá implementace, včetně vygenerování bitstreamu, proběhla úspěšně bez nutnosti definovat dodatečná složitá manuální omezení (constraints).
+Zásadní problém při implementaci ve verzi 2023.2 je nekompletních
+konfiguračních souborech (Board Files) pro modul Kria KV260, kterým chybělo
+detailní fyzické mapování hodinových domén (tzv. Clock Regions) na samotném
+křemíku Zynq UltraScale+. Kvůli tomu interní směrovací algoritmus nedokázal
+správně alokovat trasy pro časově kritické signály, což vedlo ke kritickému
+selhání NTD (New Timing Driven) flow hned v úvodu fáze Place \& Route. Upgrade
+na verzi Vivado 2025.2 tento problém vyřešil architektonicky, jelikož nová
+verze nativně integruje aktualizované a plně ověřené profily desky přímo z
+repozitáře AMD. Tyto nové profily již obsahují bezchybně definované mapování
+pinů i hodinového směrování, díky čemuž nástroj získal přesnou informaci o
+fyzické topologii čipu a celá implementace, včetně vygenerování bitstreamu,
+proběhla úspěšně bez nutnosti definovat dodatečná složitá manuální omezení
+(constraints).
 
-Problém ve verzi 2025.2 je změna flow z nějakého souboru s zatím nevím jakou přípomou se přešlo na xml, jenžě to zatím není oddláděné a nefuguje jak má.
-
-
+Problém ve verzi 2025.2 je změna flow z nějakého souboru s zatím nevím jakou
+přípomou se přešlo na xml, jenžě to zatím není oddláděné a nefuguje jak má.
 
 \textbf{Programovací model Vitis HLS}
 
-Zdrojový kód jazyka C pro Vitis HLS je koncipován tak, aby efektivně využíval výhody a specifické vlastnosti architektury adaptivních SoC a hradlových polí (FPGA) společnosti AMD.
+Zdrojový kód jazyka C pro Vitis HLS je koncipován tak, aby efektivně využíval
+výhody a specifické vlastnosti architektury adaptivních SoC a hradlových polí
+(FPGA) společnosti AMD.
 
-Nástroj Vitis HLS podporuje konstrukty paralelního programování, které umožňují modelovat požadovanou hardwarovou implementaci. Mezi tyto konstrukty patří:
+Nástroj Vitis HLS podporuje konstrukty paralelního programování, které umožňují
+modelovat požadovanou hardwarovou implementaci. Mezi tyto konstrukty patří:
 \begin{itemize}
     \item \textbf{HLS tasks (úlohy):} umožňují souběžnost na úrovni procesů (process-level concurrency).
     \item \textbf{HLS vectors (vektory):} umožňují paralelismus na úrovni dat (data-level parallelism).
@@ -258,9 +277,9 @@ Nástroj Vitis HLS podporuje konstrukty paralelního programování, které umo�
 \end{itemize}
 K řízení výsledků syntézy lze využít tzv. \textbf{pragmata} (syntetizační direktivy). Tato pragmata zahrnují instrukce pro zřetězení (pipeline), rozvinutí smyček (unroll), dělení paměťových polí (array partitioning) a definici protokolů rozhraní.
 
-Další podrobnosti naleznete v sekci „HLS Programmers Guide“ v uživatelské příručce \textit{Vitis High-Level Synthesis User Guide}.
+Další podrobnosti naleznete v sekci „HLS Programmers Guide“ v uživatelské
+příručce \textit{Vitis High-Level Synthesis User Guide}.
 
- 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{methodology.png}
@@ -275,42 +294,62 @@ Další podrobnosti naleznete v sekci „HLS Programmers Guide“ v uživatelsk�
 
 \section{Fyzikální podstata obrazu}
 
-Proces zpracování obrazových dat úzce souvisí s fyzikální podstatou světla a způsobem, jakým je vnímáno lidským zrakovým ústrojím a následně technicky reprezentováno v digitálních systémech.
+Proces zpracování obrazových dat úzce souvisí s fyzikální podstatou světla a
+způsobem, jakým je vnímáno lidským zrakovým ústrojím a následně technicky
+reprezentováno v digitálních systémech.
 
 \subsection{Viditelné světlo a jeho vnímání}
-Světlo je elektromagnetické záření, přičemž lidské oko je citlivé pouze na jeho velmi úzkou část, označovanou jako viditelné spektrum. Toto spektrum zahrnuje vlnové délky přibližně v rozsahu od 380\,nm do 750\,nm. Různé vlnové délky v tomto intervalu vyvolávají v mozku vjem různých barev – od fialové na spodní hranici (krátké vlnové délky), přes modrou, zelenou, žlutou až po červenou na horní hranici (dlouhé vlnové délky), jak ilustruje obrázek~\ref{fig:cie1931_exact}.
+Světlo je elektromagnetické záření, přičemž lidské oko je citlivé pouze na jeho
+velmi úzkou část, označovanou jako viditelné spektrum. Toto spektrum zahrnuje
+vlnové délky přibližně v rozsahu od 380\,nm do 750\,nm. Různé vlnové délky v
+tomto intervalu vyvolávají v mozku vjem různých barev – od fialové na spodní
+hranici (krátké vlnové délky), přes modrou, zelenou, žlutou až po červenou na
+horní hranici (dlouhé vlnové délky), jak ilustruje
+obrázek~\ref{fig:cie1931_exact}.
 
 \subsection{Standardní kolorimetrický pozorovatel CIE 1931}
-Základem objektivního popisu barev v digitálním zpracování obrazu je model definovaný Mezinárodní komisí pro osvětlování (CIE) v roce 1931. Tento model popisuje průměrné barevné vnímání lidského oka pomocí tří spektrálních funkcí míchání barev: $\bar{x}(\lambda)$, $\bar{y}(\lambda)$ a $\bar{z}(\lambda)$, které odpovídají imaginárním primárním složkám $X, Y, Z$.
+Základem objektivního popisu barev v digitálním zpracování obrazu je model
+definovaný Mezinárodní komisí pro osvětlování (CIE) v roce 1931. Tento model
+popisuje průměrné barevné vnímání lidského oka pomocí tří spektrálních funkcí
+míchání barev: $\bar{x}(\lambda)$, $\bar{y}(\lambda)$ a $\bar{z}(\lambda)$,
+které odpovídají imaginárním primárním složkám $X, Y, Z$.
 
-Pro libovolné spektrální složení světla $P(\lambda)$ lze vypočítat odpovídající trichromatické složky $X, Y, Z$ integrací (v praxi sumací přes diskrétní kroky, typicky po 5\,nm):
-
-\begin{equation}
-X = k \int_{\lambda} P(\lambda) \bar{x}(\lambda) d\lambda, \quad
-Y = k \int_{\lambda} P(\lambda) \bar{y}(\lambda) d\lambda, \quad
-Z = k \int_{\lambda} P(\lambda) \bar{z}(\lambda) d\lambda
-\end{equation}
-
-Kde $Y$ přímo reprezentuje jasovou složku (luminanci) a $k$ je normalizační konstanta. Často se využívá normalizovaných trichromatických souřadnic $(x, y, z)$, které definují pouze chromatičnost (odstín a sytost) nezávisle na jasu, přičemž platí $x+y+z=1$:
+Pro libovolné spektrální složení světla $P(\lambda)$ lze vypočítat odpovídající
+trichromatické složky $X, Y, Z$ integrací (v praxi sumací přes diskrétní kroky,
+typicky po 5\,nm):
 
 \begin{equation}
-x = \frac{X}{X+Y+Z}, \quad y = \frac{Y}{X+Y+Z}
+    X = k \int_{\lambda} P(\lambda) \bar{x}(\lambda) d\lambda, \quad
+    Y = k \int_{\lambda} P(\lambda) \bar{y}(\lambda) d\lambda, \quad
+    Z = k \int_{\lambda} P(\lambda) \bar{z}(\lambda) d\lambda
 \end{equation}
 
-Následná konverze z absolutního prostoru $XYZ$ do konkrétního lineárního RGB prostoru (např. sRGB před gama korekcí) se provádí pomocí standardizované transformační matice $\mathbf{M}$:
+Kde $Y$ přímo reprezentuje jasovou složku (luminanci) a $k$ je normalizační
+konstanta. Často se využívá normalizovaných trichromatických souřadnic $(x, y,
+    z)$, které definují pouze chromatičnost (odstín a sytost) nezávisle na jasu,
+přičemž platí $x+y+z=1$:
 
 \begin{equation}
-\begin{bmatrix} R \\ G \\ B \end{bmatrix}_{linear} = \mathbf{M}_{XYZ\to RGB} \begin{bmatrix} X \\ Y \\ Z \end{bmatrix}
+    x = \frac{X}{X+Y+Z}, \quad y = \frac{Y}{X+Y+Z}
 \end{equation}
 
-Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obrázku \ref{fig:cie1931_final}.
+Následná konverze z absolutního prostoru $XYZ$ do konkrétního lineárního RGB
+prostoru (např. sRGB před gama korekcí) se provádí pomocí standardizované
+transformační matice $\mathbf{M}$:
+
+\begin{equation}
+    \begin{bmatrix} R \\ G \\ B \end{bmatrix}_{linear} = \mathbf{M}_{XYZ\to RGB} \begin{bmatrix} X \\ Y \\ Z \end{bmatrix}
+\end{equation}
+
+Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obrázku
+\ref{fig:cie1931_final}.
 
 % --- Vlastní LaTeX/TikZ kód obrázku ---
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[xscale=1.4, yscale=1.8]
         % Přepočet X: x = (lambda - 300) / 50
-        
+
         % --- Barevné spektrum (zkráceno přesně na 370nm [x=1.4] až 790nm [x=9.8]) ---
         \shade[left color=black, right color=violet!80]       (1.4, -0.2) rectangle (2.0, -0.05);
         \shade[left color=violet!80, right color=blue]        (2.0, -0.2) rectangle (2.9, -0.05);
@@ -323,15 +362,15 @@ Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obr�
 
         % --- Hlavní Osa X (vlnová délka) z 370 nm (1.4) do 800 nm (10.1 pro šipku) ---
         \draw[thick, ->] (1.4, 0) -- (10.1, 0) node[right] {$\lambda$ [nm]};
-        
+
         % --- Levá Osa Y ukotvená na 370 nm (x=1.4) ---
         \draw[thick, ->] (1.4, 0) -- (1.4, 2.2);
         \node[rotate=90] at (0.7, 1.1) {Tristimulové hodnoty CIE 1931};
 
         % Ticks pro levou osu Y (0 až 2.0)
         \foreach \y/\val in {0/0, 0.5/0.5, 1.0/1.0, 1.5/1.5, 2.0/2.0} {
-            \draw (1.35, \y) -- (1.4, \y) node[left, font=\scriptsize] {\val};
-        }
+                \draw (1.35, \y) -- (1.4, \y) node[left, font=\scriptsize] {\val};
+            }
         % Pomocná linka y=1.0 
         \draw[dashed, gray!30] (1.4, 1.0) -- (9.8, 1.0);
 
@@ -339,39 +378,39 @@ Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obr�
         \draw[gray!30] (9.8, 0) -- (9.8, 2.1);
 
         % --- CIE 1931 Color Matching Functions (přesná data dle CIE 15:2018) ---
-        
+
         % Z (Modrá) - Jeden dominantní vrchol, žádný sekundární pík.
-        \draw[blue, thick, fill=blue, fill opacity=0.1] 
-            plot[smooth, tension=0.6] coordinates {
-                (1.6, 0) (2.0, 0.06) (2.4, 0.47) (2.8, 1.75) 
+        \draw[blue, thick, fill=blue, fill opacity=0.1]
+        plot[smooth, tension=0.6] coordinates {
+                (1.6, 0) (2.0, 0.06) (2.4, 0.47) (2.8, 1.75)
                 (3.2, 1.67) (3.6, 0.35) (4.0, 0.27) (4.4, 0.07) (4.8, 0)
             };
         \node[blue, font=\small] at (2.9, 1.95) {$\bar{z}(\lambda)$};
 
         % Y (Zelená) - Reprezentuje jasovou citlivost oka.
-        \draw[green!60!black, thick, fill=green, fill opacity=0.1] 
-            plot[smooth, tension=0.6] coordinates {
-                (1.6, 0) (3.0, 0.04) (3.6, 0.14) (4.0, 0.32) 
-                (4.6, 0.86) (5.1, 1.0) (5.6, 0.87) (6.0, 0.63) 
+        \draw[green!60!black, thick, fill=green, fill opacity=0.1]
+        plot[smooth, tension=0.6] coordinates {
+                (1.6, 0) (3.0, 0.04) (3.6, 0.14) (4.0, 0.32)
+                (4.6, 0.86) (5.1, 1.0) (5.6, 0.87) (6.0, 0.63)
                 (6.6, 0.26) (7.2, 0.06) (8.0, 0.01) (9.6, 0)
             };
         \node[green!60!black, font=\small] at (5.1, 1.15) {$\bar{y}(\lambda)$};
 
         % X (Červená) - POZOR: Tato křivka má dva vrcholy! 
         % Hlavní vrchol u 595 nm a sekundární vrchol u 440 nm.
-        \draw[red, thick, fill=red, fill opacity=0.1] 
-            plot[smooth, tension=0.5] coordinates {
-                (1.6, 0) (2.0, 0.01) (2.4, 0.13) (2.8, 0.35) 
-                (3.2, 0.29) (3.6, 0.09) (4.0, 0.01) (4.4, 0.06) 
-                (5.0, 0.43) (5.6, 0.91) (5.9, 1.06) (6.4, 0.85) 
+        \draw[red, thick, fill=red, fill opacity=0.1]
+        plot[smooth, tension=0.5] coordinates {
+                (1.6, 0) (2.0, 0.01) (2.4, 0.13) (2.8, 0.35)
+                (3.2, 0.29) (3.6, 0.09) (4.0, 0.01) (4.4, 0.06)
+                (5.0, 0.43) (5.6, 0.91) (5.9, 1.06) (6.4, 0.85)
                 (7.2, 0.16) (8.0, 0.01) (9.6, 0)
             };
         \node[red, font=\small] at (5.9, 1.22) {$\bar{x}(\lambda)$};
 
         % --- Značky na ose X (vlastní uspořádání) ---
         \foreach \x/\val in {1.6/380, 2.0/400, 4.0/500, 6.0/600, 8.0/700, 9.6/780} {
-            \draw (\x, 0) -- (\x, -0.05) node[below, font=\scriptsize, yshift=-4pt] {\val};
-        }
+                \draw (\x, 0) -- (\x, -0.05) node[below, font=\scriptsize, yshift=-4pt] {\val};
+            }
 
         % --- Hranice viditelnosti (380 a 780 nm) ---
         \draw[dashed, gray!50] (1.6, 0) -- (1.6, 1.8);
@@ -388,7 +427,7 @@ Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obr�
         % Přepočet X: x = (lambda - 300) / 50
         % Viditelná oblast je 380 nm (x=1.6) až 780 nm (x=9.6).
         % Graf nyní začíná na 370 nm (x=1.4) a končí na 790 nm (x=9.8).
-        
+
         % --- Barevné spektrum (podkladový pruh 380-780) ---
         \shade[left color=black, right color=violet]         (1.4, -0.2) rectangle (2.0, -0.05);
         \shade[left color=violet, right color=blue]          (2.0, -0.2) rectangle (2.9, -0.05);
@@ -401,15 +440,15 @@ Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obr�
 
         % --- Hlavní Osa X (vlnová délka) z 370 nm do 800 nm (pro přesah šipky) ---
         \draw[thick, ->] (1.4, 0) -- (10.1, 0) node[right] {$\lambda$ [nm]};
-        
+
         % --- Levá Osa Y ukotvená přesně na 370 nm (x=1.4) ---
         \draw[thick, ->] (1.4, 0) -- (1.4, 2.2);
         \node[rotate=90] at (0.7, 1.1) {Tristimulové hodnoty CIE 1931};
 
         % Ticks pro levou osu Y (0 až 2.0)
         \foreach \y/\val in {0/0, 0.5/0.5, 1.0/1.0, 1.5/1.5, 2.0/2.0} {
-            \draw (1.35, \y) -- (1.4, \y) node[left, font=\scriptsize] {\val};
-        }
+                \draw (1.35, \y) -- (1.4, \y) node[left, font=\scriptsize] {\val};
+            }
         % Pomocná linka y=1.0 ukotvená uvnitř nového boxu
         \draw[dashed, gray!30] (1.4, 1.0) -- (9.8, 1.0);
 
@@ -417,38 +456,38 @@ Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obr�
         \draw[gray!30] (9.8, 0) -- (9.8, 2.1);
 
         % --- CIE 1931 Color Matching Functions (přesné tabulkové uzly) ---
-        
+
         % Z (Modrá) 
-        \draw[blue, thick, fill=blue, fill opacity=0.1] 
-            plot[smooth, tension=0.6] coordinates {
-                (1.6, 0) (2.0, 0.06) (2.4, 0.47) (2.8, 1.75) 
+        \draw[blue, thick, fill=blue, fill opacity=0.1]
+        plot[smooth, tension=0.6] coordinates {
+                (1.6, 0) (2.0, 0.06) (2.4, 0.47) (2.8, 1.75)
                 (3.2, 1.67) (3.6, 0.35) (4.0, 0.27) (4.4, 0.07) (4.8, 0)
             };
         \node[blue, font=\small] at (2.9, 1.95) {$\bar{z}(\lambda)$};
 
         % Y (Zelená) 
-        \draw[green!60!black, thick, fill=green, fill opacity=0.1] 
-            plot[smooth, tension=0.6] coordinates {
-                (1.6, 0) (3.0, 0.04) (3.6, 0.14) (4.0, 0.32) 
-                (4.6, 0.86) (5.1, 1.0) (5.6, 0.87) (6.0, 0.63) 
+        \draw[green!60!black, thick, fill=green, fill opacity=0.1]
+        plot[smooth, tension=0.6] coordinates {
+                (1.6, 0) (3.0, 0.04) (3.6, 0.14) (4.0, 0.32)
+                (4.6, 0.86) (5.1, 1.0) (5.6, 0.87) (6.0, 0.63)
                 (6.6, 0.26) (7.2, 0.06) (8.0, 0.01) (9.6, 0)
             };
         \node[green!60!black, font=\small] at (5.1, 1.15) {$\bar{y}(\lambda)$};
 
         % X (Červená)
-        \draw[red, thick, fill=red, fill opacity=0.1] 
-            plot[smooth, tension=0.5] coordinates {
-                (1.6, 0) (2.0, 0.01) (2.4, 0.13) (2.8, 0.35) 
-                (3.2, 0.29) (3.6, 0.09) (4.0, 0.01) (4.4, 0.06) 
-                (5.0, 0.43) (5.6, 0.91) (5.9, 1.06) (6.4, 0.85) 
+        \draw[red, thick, fill=red, fill opacity=0.1]
+        plot[smooth, tension=0.5] coordinates {
+                (1.6, 0) (2.0, 0.01) (2.4, 0.13) (2.8, 0.35)
+                (3.2, 0.29) (3.6, 0.09) (4.0, 0.01) (4.4, 0.06)
+                (5.0, 0.43) (5.6, 0.91) (5.9, 1.06) (6.4, 0.85)
                 (7.2, 0.16) (8.0, 0.01) (9.6, 0)
             };
         \node[red, font=\small] at (5.9, 1.22) {$\bar{x}(\lambda)$};
 
         % --- Značky na ose X (vlastní uspořádání) ---
         \foreach \x/\val in {1.6/380, 2.0/400, 4.0/500, 6.0/600, 8.0/700, 9.6/780} {
-            \draw (\x, 0) -- (\x, -0.05) node[below, font=\scriptsize, yshift=-4pt] {\val};
-        }
+                \draw (\x, 0) -- (\x, -0.05) node[below, font=\scriptsize, yshift=-4pt] {\val};
+            }
 
         % --- Hranice viditelnosti (380 a 780 nm) ---
         \draw[dashed, gray!50] (1.6, 0) -- (1.6, 1.8);
@@ -459,15 +498,31 @@ Průběh spektrálních funkcí míchání barev CIE 1931 je znázorněn na obr�
     \label{fig:cie1931_exact}
 \end{figure}
 
-Lidské vidění je založeno na trichromatické teorii. Sítnice oka obsahuje světlocitlivé buňky (čípky) tří typů, které jsou citlivé na krátké (S -- modrá), střední (M -- zelená) a dlouhé (L -- červená) vlnové délky. Z těchto biologických předpokladů přímo vychází technické zpracování obrazu.
+Lidské vidění je založeno na trichromatické teorii. Sítnice oka obsahuje
+světlocitlivé buňky (čípky) tří typů, které jsou citlivé na krátké (S --
+modrá), střední (M -- zelená) a dlouhé (L -- červená) vlnové délky. Z těchto
+biologických předpokladů přímo vychází technické zpracování obrazu.
 
 \subsection{Akvizice barevného obrazu}
-Běžné obrazové senzory v digitálních kamerách (CMOS nebo CCD) dokážou měřit pouze intenzitu dopadajícího světla, tj. počet fotonů. Samy o sobě tedy generují pouze monochromatický (černobílý) obraz a nerozlišují vlnovou délku. 
+Běžné obrazové senzory v digitálních kamerách (CMOS nebo CCD) dokážou měřit
+pouze intenzitu dopadajícího světla, tj. počet fotonů. Samy o sobě tedy
+generují pouze monochromatický (černobílý) obraz a nerozlišují vlnovou délku.
 
-Aby bylo možné zachytit barevný obraz, umísťuje se před jednotlivé pixely senzoru pole barevných filtrů (Color Filter Array -- CFA). Nejrozšířenějším typem je tzv. \textbf{Bayerova maska}, která propouští ke každému pixelu pouze jednu ze tří základních barev (červenou, zelenou, nebo modrou). Zelených filtrů je na senzoru dvojnásobné množství oproti červeným a modrým, což reflektuje vyšší citlivost lidského oka na zelenou barvu. Ze surových dat senzoru se následně plnobarevný obraz s hodnotami RGB pro každý pixel dopočítává pomocí interpolačních algoritmů, přičemž tento proces se nazývá \textit{demosaicing}.
+Aby bylo možné zachytit barevný obraz, umísťuje se před jednotlivé pixely
+senzoru pole barevných filtrů (Color Filter Array -- CFA). Nejrozšířenějším
+typem je tzv. \textbf{Bayerova maska}, která propouští ke každému pixelu pouze
+jednu ze tří základních barev (červenou, zelenou, nebo modrou). Zelených filtrů
+je na senzoru dvojnásobné množství oproti červeným a modrým, což reflektuje
+vyšší citlivost lidského oka na zelenou barvu. Ze surových dat senzoru se
+následně plnobarevný obraz s hodnotami RGB pro každý pixel dopočítává pomocí
+interpolačních algoritmů, přičemž tento proces se nazývá \textit{demosaicing}.
 
 \subsection{Barevný model RGB}
-Barevný prostor RGB je aditivní barevný model založený na mísení tří základních (primárních) barev: červené (Red), zelené (Green) a modré (Blue). Tento model je absolutním základem digitálního zobrazování a počítačového vidění, neboť přímo odpovídá fyzikální podstatě činnosti obrazovek a výše zmíněných obrazových senzorů.
+Barevný prostor RGB je aditivní barevný model založený na mísení tří základních
+(primárních) barev: červené (Red), zelené (Green) a modré (Blue). Tento model
+je absolutním základem digitálního zobrazování a počítačového vidění, neboť
+přímo odpovídá fyzikální podstatě činnosti obrazovek a výše zmíněných
+obrazových senzorů.
 
 \subsubsection*{Princip aditivního míchání}
 Kombinací tří primárních složek v různých intenzitách vzniká široké spektrum barev. Při nulové intenzitě všech složek nedochází k žádnému vyzařování, čímž získáváme černou barvu. Naopak při jejich maximální a vyvážené intenzitě vzniká barva bílá. Vlnové délky korespondující se základními složkami modelu jsou definovány přibližně následovně:
@@ -486,11 +541,11 @@ V počítačové grafice je barva konkrétního obrazového bodu (pixelu) defino
     \label{tab:rgb_vlastnosti}
     \begin{tabular}{@{}ll@{}}
         \toprule
-        \textbf{Vlastnost} & \textbf{Popis} \\ \midrule
-        Typ modelu & Aditivní (světelný) \\
-        Rozsah hodnot & Celočíselně $0\dots255$ (8-bit) nebo normalizovaně $0,0\dots1,0$ \\
-        Primární využití & Monitory, televizory, digitální kamery, senzory \\
-        Hlavní nevýhoda & Vysoká korelace mezi kanály, neseparovaná složka jasu \\ \bottomrule
+        \textbf{Vlastnost} & \textbf{Popis}                                                   \\ \midrule
+        Typ modelu         & Aditivní (světelný)                                              \\
+        Rozsah hodnot      & Celočíselně $0\dots255$ (8-bit) nebo normalizovaně $0,0\dots1,0$ \\
+        Primární využití   & Monitory, televizory, digitální kamery, senzory                  \\
+        Hlavní nevýhoda    & Vysoká korelace mezi kanály, neseparovaná složka jasu            \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -505,75 +560,81 @@ Samotný model RGB představuje pouze abstraktní matematický rámec. Pro prakt
 \subsubsection*{Omezení modelu RGB při zpracování obrazu}
 Ačkoliv je prostor RGB ideální pro zobrazení a akvizici dat, pro složitější počítačové zpracování obrazu nebo kompresi (např. formát JPEG) nebývá optimální. Na rozdíl od prostorů odvozených z modelu YUV (či YCbCr), kde je obraz matematicky rozdělen na jasovou (luminance) a barvovou (chrominance) složku, je v RGB jasová informace úzce provázána a rozprostřena mezi všechny tři kanály. Změna hodnoty jediného kanálu tak ovlivní nejen odstín, ale i celkový jas pixelu. Absence oddělené jasové složky činí formát RGB značně nevhodným pro efektivní datovou kompresi, u které se s výhodou využívá nedokonalosti lidského zraku a jeho nižší citlivosti na změny barev oproti změnám jasu.
 
-
 \subsection{RGB na HSV}
 
 \[
-\begin{aligned}
-R' &= \frac{R}{255}, \quad G' = \frac{G}{255}, \quad B' = \frac{B}{255} \\
-C_{max} &= \max(R', G', B') \\
-C_{min} &= \min(R', G', B') \\
-\Delta &= C_{max} - C_{min} \\
-\\
-H &= \begin{cases} 
-0^\circ & \Delta = 0 \\
-60^\circ \times \left(\frac{G' - B'}{\Delta} \pmod 6\right) & C_{max} = R' \\
-60^\circ \times \left(\frac{B' - R'}{\Delta} + 2\right) & C_{max} = G' \\
-60^\circ \times \left(\frac{R' - G'}{\Delta} + 4\right) & C_{max} = B'
-\end{cases} \\
-\\
-S &= \begin{cases} 
-0 & C_{max} = 0 \\
-\frac{\Delta}{C_{max}} & C_{max} \neq 0 
-\end{cases} \\
-\\
-V &= C_{max}
-\end{aligned}
+    \begin{aligned}
+        R'      & = \frac{R}{255}, \quad G' = \frac{G}{255}, \quad B' = \frac{B}{255}              \\
+        C_{max} & = \max(R', G', B')                                                               \\
+        C_{min} & = \min(R', G', B')                                                               \\
+        \Delta  & = C_{max} - C_{min}                                                              \\
+        \\
+        H       & = \begin{cases}
+                        0^\circ                                                     & \Delta = 0   \\
+                        60^\circ \times \left(\frac{G' - B'}{\Delta} \pmod 6\right) & C_{max} = R' \\
+                        60^\circ \times \left(\frac{B' - R'}{\Delta} + 2\right)     & C_{max} = G' \\
+                        60^\circ \times \left(\frac{R' - G'}{\Delta} + 4\right)     & C_{max} = B'
+                    \end{cases} \\
+        \\
+        S       & = \begin{cases}
+                        0                      & C_{max} = 0    \\
+                        \frac{\Delta}{C_{max}} & C_{max} \neq 0
+                    \end{cases}                                    \\
+        \\
+        V       & = C_{max}
+    \end{aligned}
 \]
 
-
-
-a zpětná transformace 
+a zpětná transformace
 
 \[\begin{aligned}
-C &= V \times S \\
-X &= C \times (1 - |(H / 60^\circ) \pmod 2 - 1|) \\
-m &= V - C \\
-\\
-(R', G', B') &= \begin{cases} 
-(C, X, 0) & 0^\circ \le H < 60^\circ \\
-(X, C, 0) & 60^\circ \le H < 120^\circ \\
-(0, C, X) & 120^\circ \le H < 180^\circ \\
-(0, X, C) & 180^\circ \le H < 240^\circ \\
-(X, 0, C) & 240^\circ \le H < 300^\circ \\
-(C, 0, X) & 300^\circ \le H < 360^\circ
-\end{cases} \\
-\\
-R &= (R' + m) \times 255 \\
-G &= (G' + m) \times 255 \\
-B &= (B' + m) \times 255 
-\end{aligned}\]
+        C            & = V \times S                                  \\
+        X            & = C \times (1 - |(H / 60^\circ) \pmod 2 - 1|) \\
+        m            & = V - C                                       \\
+        \\
+        (R', G', B') & = \begin{cases}
+                             (C, X, 0) & 0^\circ \le H < 60^\circ    \\
+                             (X, C, 0) & 60^\circ \le H < 120^\circ  \\
+                             (0, C, X) & 120^\circ \le H < 180^\circ \\
+                             (0, X, C) & 180^\circ \le H < 240^\circ \\
+                             (X, 0, C) & 240^\circ \le H < 300^\circ \\
+                             (C, 0, X) & 300^\circ \le H < 360^\circ
+                         \end{cases} \\
+        \\
+        R            & = (R' + m) \times 255                         \\
+        G            & = (G' + m) \times 255                         \\
+        B            & = (B' + m) \times 255
+    \end{aligned}\]
 
 \newpage
 \section{Barevný prostor YUV a jeho využití}
 
-Lidský zrakový systém (HVS -- \textit{Human Visual System}) je evolučně uzpůsoben tak, že vykazuje podstatně vyšší citlivost na změny jasu (luminance) než na změny barvy (chrominance). Zatímco barevný prostor RGB je ideální pro zobrazení na koncových zařízeních (monitory, displeje), pro účely zpracování, přenosu a komprese obrazu je krajně neefektivní kvůli vysoké korelaci mezi jednotlivými barevnými kanály. Z tohoto důvodu byl definován barevný prostor YUV, který jasovou a barevnou informaci odděluje.
+Lidský zrakový systém (HVS -- \textit{Human Visual System}) je evolučně
+uzpůsoben tak, že vykazuje podstatně vyšší citlivost na změny jasu (luminance)
+než na změny barvy (chrominance). Zatímco barevný prostor RGB je ideální pro
+zobrazení na koncových zařízeních (monitory, displeje), pro účely zpracování,
+přenosu a komprese obrazu je krajně neefektivní kvůli vysoké korelaci mezi
+jednotlivými barevnými kanály. Z tohoto důvodu byl definován barevný prostor
+YUV, který jasovou a barevnou informaci odděluje.
 
 Obecný výpočetní vzorec:
 \begin{equation}
-\begin{aligned}
-    Y = Y_R \cdot R + Y_G \cdot G + Y_B \cdot B \\
-    \text{přičemž platí:} \quad Y_R + Y_G + Y_B &= 1 \\[10pt]
-    \text{Odvození } P_B \text{ a } P_R \text{:} \qquad P_B &= 1 - Y_B \\
-    P_R &= 1 - Y_R \\[10pt]
-    C_B &= \frac{B - Y}{2P_B} \\
-    C_R &= \frac{R - Y}{2P_R}
-\end{aligned}
+    \begin{aligned}
+        Y = Y_R \cdot R + Y_G \cdot G + Y_B \cdot B                                    \\
+        \text{přičemž platí:} \quad Y_R + Y_G + Y_B             & = 1                  \\[10pt]
+        \text{Odvození } P_B \text{ a } P_R \text{:} \qquad P_B & = 1 - Y_B            \\
+        P_R                                                     & = 1 - Y_R            \\[10pt]
+        C_B                                                     & = \frac{B - Y}{2P_B} \\
+        C_R                                                     & = \frac{R - Y}{2P_R}
+    \end{aligned}
 \end{equation}
 
 \subsection{Definice složek Y, U a V}
 
-Prostor YUV transformuje obraz do jedné jasové a dvou barvonosných (rozdílových) složek. Toto rozdělení vychází z historických potřeb zpětné kompatibility barevného televizního vysílání s černobílými přijímači a je zakotveno ve standardech Mezinárodní telekomunikační unie (ITU).
+Prostor YUV transformuje obraz do jedné jasové a dvou barvonosných
+(rozdílových) složek. Toto rozdělení vychází z historických potřeb zpětné
+kompatibility barevného televizního vysílání s černobílými přijímači a je
+zakotveno ve standardech Mezinárodní telekomunikační unie (ITU).
 
 \begin{itemize}
     \item \textbf{Y (Jasová složka / Luma):} Reprezentuje monochromatickou (černobílou) verzi obrazu. Udává úroveň jasu každého pixelu nezávisle na jeho barvě.
@@ -581,199 +642,219 @@ Prostor YUV transformuje obraz do jedné jasové a dvou barvonosných (rozdílov
     \item \textbf{V (Chrominance R-Y):} Barevná rozdílová složka reprezentující odchylku červené barvy od celkového jasu.
 \end{itemize}
 
-Rozdílová složka zelené barvy (G-Y) se nepřenáší, jelikož ji lze matematicky odvodit ze složek Y, U a V, čímž se šetří datový tok.
+Rozdílová složka zelené barvy (G-Y) se nepřenáší, jelikož ji lze matematicky
+odvodit ze složek Y, U a V, čímž se šetří datový tok.
 
 \subsection{Matematické matice převodu z RGB}
 
-Převod mezi prostory RGB a YUV není fixní, nýbrž závisí na váhových koeficientech definujících příspěvek jednotlivých základních barev do celkového jasu. Tyto koeficienty se vyvíjely v závislosti na použitých luminoforech a moderních zobrazovacích technologiích. Ve všech případech se však vychází z normovaných hodnot $R, G, B \in [0, 1]$.
+Převod mezi prostory RGB a YUV není fixní, nýbrž závisí na váhových
+koeficientech definujících příspěvek jednotlivých základních barev do celkového
+jasu. Tyto koeficienty se vyvíjely v závislosti na použitých luminoforech a
+moderních zobrazovacích technologiích. Ve všech případech se však vychází z
+normovaných hodnot $R, G, B \in [0, 1]$.
 
 \subsubsection{Standard ITU-R BT.601 (SDTV)}
-Tento standard byl primárně definován pro televizi se standardním rozlišením (SDTV). Matice pro dopřednou transformaci z RGB do YUV je definována následovně:
+Tento standard byl primárně definován pro televizi se standardním rozlišením
+(SDTV). Matice pro dopřednou transformaci z RGB do YUV je definována
+následovně:
 
 \begin{equation}
-\begin{pmatrix}
-Y \\
-U \\
-V
-\end{pmatrix}
-=
-\begin{pmatrix}
-0.299 & 0.587 & 0.114 \\
--0.14713 & -0.28886 & 0.436 \\
-0.615 & -0.51499 & -0.10001
-\end{pmatrix}
-\begin{pmatrix}
-R \\
-G \\
-B
-\end{pmatrix}
-\label{eq:bt601}
+    \begin{pmatrix}
+        Y \\
+        U \\
+        V
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0.299    & 0.587    & 0.114    \\
+        -0.14713 & -0.28886 & 0.436    \\
+        0.615    & -0.51499 & -0.10001
+    \end{pmatrix}
+    \begin{pmatrix}
+        R \\
+        G \\
+        B
+    \end{pmatrix}
+    \label{eq:bt601}
 \end{equation}
 
 \subsubsection{Standard ITU-R BT.709 (HDTV)}
-S nástupem televize s vysokým rozlišením (HDTV) byly koeficienty upraveny tak, aby lépe odpovídaly moderním displejům. Zejména se snížil váhový příspěvek červené a modré složky ve prospěch zelené:
+S nástupem televizí s vysokým rozlišením (HDTV) byly koeficienty upraveny tak,
+aby lépe odpovídaly moderním typům displejů. Zejména se snížil váhový příspěvek
+červené a modré složky ve prospěch té zelené:
 
 \begin{equation}
-\begin{pmatrix}
-Y \\
-U \\
-V
-\end{pmatrix}
-=
-\begin{pmatrix}
-0.2126 & 0.7152 & 0.0722 \\
--0.09991 & -0.33609 & 0.436 \\
-0.615 & -0.55861 & -0.05639
-\end{pmatrix}
-\begin{pmatrix}
-R \\
-G \\
-B
-\end{pmatrix}
-\label{eq:bt709}
+    \begin{pmatrix}
+        Y \\
+        U \\
+        V
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0.2126   & 0.7152   & 0.0722   \\
+        -0.09991 & -0.33609 & 0.436    \\
+        0.615    & -0.55861 & -0.05639
+    \end{pmatrix}
+    \begin{pmatrix}
+        R \\
+        G \\
+        B
+    \end{pmatrix}
+    \label{eq:bt709}
 \end{equation}
 
 \subsection{Standard ITU-R BT.2020 (UHDTV)}
 
 \begin{equation}
-\begin{pmatrix}
-Y \\
-U \\
-V
-\end{pmatrix}
-=
-\begin{pmatrix}
- 0.2627 &  0.6780 &  0.0593 \\
--0.1396 & -0.3604 &  0.5000 \\
- 0.5000 & -0.4598 & -0.0402
-\end{pmatrix}
-\begin{pmatrix}
-R \\
-G \\
-B
-\end{pmatrix}
-\label{eq:bt2020}
+    \begin{pmatrix}
+        Y \\
+        U \\
+        V
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0.2627  & 0.6780  & 0.0593  \\
+        -0.1396 & -0.3604 & 0.5000  \\
+        0.5000  & -0.4598 & -0.0402
+    \end{pmatrix}
+    \begin{pmatrix}
+        R \\
+        G \\
+        B
+    \end{pmatrix}
+    \label{eq:bt2020}
 \end{equation}
 
 \begin{table}[htbp]
-\centering
-\caption{Porovnání primárních převodových koeficientů jasové složky pro standardy ITU-R.}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Standard} & $\mathbf{W_R}$ (Váha červené) & $\mathbf{W_G}$ (Váha zelené) & $\mathbf{W_B}$ (Váha modré) \\
-\midrule
-ITU-R BT.601 (SD)  & 0.2990  & 0.5870  & 0.1140 \\
-ITU-R BT.709 (HD)  & 0.2126  & 0.7152  & 0.0722 \\
-ITU-R BT.2020 (4K) & 0.2627  & 0.6780  & 0.0593 \\
-\bottomrule
-\end{tabular}
-\label{tab:yuv_coeffs}
+    \centering
+    \caption{Porovnání primárních převodových koeficientů jasové složky pro standardy ITU-R.}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Standard}  & $\mathbf{W_R}$ (Váha červené) & $\mathbf{W_G}$ (Váha zelené) & $\mathbf{W_B}$ (Váha modré) \\
+        \midrule
+        ITU-R BT.601 (SD)  & 0.2990                        & 0.5870                       & 0.1140                      \\
+        ITU-R BT.709 (HD)  & 0.2126                        & 0.7152                       & 0.0722                      \\
+        ITU-R BT.2020 (4K) & 0.2627                        & 0.6780                       & 0.0593                      \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:yuv_coeffs}
 \end{table}
 
 \subsection{Diagram U-V barevné roviny}
 
-Vztah mezi jasem a barvou lze vizualizovat v tzv. U-V rovině (při konstantním jasu Y). Na obrázku \ref{fig:uv_plane} je zobrazen vektorový prostor chrominančních složek s vyznačením polohy primárních (RGB) a sekundárních (CMY) barev dle standardu BT.601.
+Vztah mezi jasem a barvou lze vizualizovat v tzv. U-V rovině (při konstantním
+jasu Y). Na obrázku \ref{fig:uv_plane} je zobrazen vektorový prostor
+chrominančních složek s vyznačením polohy primárních (RGB) a sekundárních (CMY)
+barev dle standardu BT.601.
 
 \begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[scale=4.5, every node/.style={scale=0.9}]
-    % Osy
-    \draw[->, thick, gray!80] (-0.7, 0) -- (0.7, 0) node[right, text=black] {$U$ (B-Y)};
-    \draw[->, thick, gray!80] (0, -0.7) -- (0, 0.7) node[above, text=black] {$V$ (R-Y)};
-    
-    % Mrizka
-    \draw[dashed, gray!30, step=0.2] (-0.6,-0.6) grid (0.6,0.6);
-    
-    % Body barev BT.601 (Y,U,V)
-    % Red: U=-0.147, V=0.615
-    \filldraw[red] (-0.147, 0.615) circle (0.6pt) node[above left, text=black] {Červená (R)};
-    % Green: U=-0.289, V=-0.515
-    \filldraw[green!60!black] (-0.289, -0.515) circle (0.6pt) node[below left, text=black] {Zelená (G)};
-    % Blue: U=0.436, V=-0.100
-    \filldraw[blue] (0.436, -0.100) circle (0.6pt) node[below right, text=black] {Modrá (B)};
-    
-    % Cyan: U=0.147, V=-0.615
-    \filldraw[cyan] (0.147, -0.615) circle (0.6pt) node[below right, text=black] {Azurová (C)};
-    % Magenta: U=0.289, V=0.515
-    \filldraw[magenta] (0.289, 0.515) circle (0.6pt) node[above right, text=black] {Purpurová (M)};
-    % Yellow: U=-0.436, V=0.100
-    \filldraw[yellow!80!black] (-0.436, 0.100) circle (0.6pt) node[above left, text=black] {Žlutá (Y)};
-    
-    % Pocatek (šedá/bílá/černá - žádná barevná informace)
-    \filldraw[black] (0, 0) circle (0.6pt) node[below right] {Neutrální osa (Y)};
-    
-    % Polygon hranice
-    \draw[thick, gray!50] (-0.147, 0.615) -- (0.289, 0.515) -- (0.436, -0.100) -- (0.147, -0.615) -- (-0.289, -0.515) -- (-0.436, 0.100) -- cycle;
+    \centering
+    \begin{tikzpicture}[scale=4.5, every node/.style={scale=0.9}]
+        % Osy
+        \draw[->, thick, gray!80] (-0.7, 0) -- (0.7, 0) node[right, text=black] {$U$ (B-Y)};
+        \draw[->, thick, gray!80] (0, -0.7) -- (0, 0.7) node[above, text=black] {$V$ (R-Y)};
 
-\end{tikzpicture}
-\caption{Projekce barevného prostoru do 2D chrominanční roviny U-V (tzv. YUV gamut). Neutrální barvy (odstíny šedi) leží v počátku souřadnic (U=0, V=0).}
-\label{fig:uv_plane}
+        % Mrizka
+        \draw[dashed, gray!30, step=0.2] (-0.6,-0.6) grid (0.6,0.6);
+
+        % Body barev BT.601 (Y,U,V)
+        % Red: U=-0.147, V=0.615
+        \filldraw[red] (-0.147, 0.615) circle (0.6pt) node[above left, text=black] {Červená (R)};
+        % Green: U=-0.289, V=-0.515
+        \filldraw[green!60!black] (-0.289, -0.515) circle (0.6pt) node[below left, text=black] {Zelená (G)};
+        % Blue: U=0.436, V=-0.100
+        \filldraw[blue] (0.436, -0.100) circle (0.6pt) node[below right, text=black] {Modrá (B)};
+
+        % Cyan: U=0.147, V=-0.615
+        \filldraw[cyan] (0.147, -0.615) circle (0.6pt) node[below right, text=black] {Azurová (C)};
+        % Magenta: U=0.289, V=0.515
+        \filldraw[magenta] (0.289, 0.515) circle (0.6pt) node[above right, text=black] {Purpurová (M)};
+        % Yellow: U=-0.436, V=0.100
+        \filldraw[yellow!80!black] (-0.436, 0.100) circle (0.6pt) node[above left, text=black] {Žlutá (Y)};
+
+        % Pocatek (šedá/bílá/černá - žádná barevná informace)
+        \filldraw[black] (0, 0) circle (0.6pt) node[below right] {Neutrální osa (Y)};
+
+        % Polygon hranice
+        \draw[thick, gray!50] (-0.147, 0.615) -- (0.289, 0.515) -- (0.436, -0.100) -- (0.147, -0.615) -- (-0.289, -0.515) -- (-0.436, 0.100) -- cycle;
+
+    \end{tikzpicture}
+    \caption{Projekce barevného prostoru do 2D chrominanční roviny U-V (tzv. YUV gamut). Neutrální barvy (odstíny šedi) leží v počátku souřadnic (U=0, V=0).}
+    \label{fig:uv_plane}
 \end{figure}
 
-\subsection{Chrominanční podvzorkování (Chroma Subsampling)}
+\subsection{Podvzorkování barvonosných složek (Chroma Subsampling)}
 
-Jedním z nejzásadnějších důvodů pro přechod z RGB do YUV v oblasti zpracování obrazu je možnost provedení tzv. \textit{chrominančního podvzorkování} (chroma subsampling). Vzhledem ke zmíněné nižší citlivosti lidského oka na barvu lze prostorové rozlišení složek U a V redukovat, aniž by pozorovatel zaznamenal zjevnou degradaci obrazové kvality.
+Jedním z nejzásadnějších důvodů pro přechod z RGB do YUV v oblasti zpracování
+obrazu je možnost provedení tzv. \textit{chrominančního podvzorkování} (chroma
+subsampling). Vzhledem ke zmíněné nižší citlivosti lidského oka na barvu lze
+prostorové rozlišení složek U a V redukovat, aniž by pozorovatel zaznamenal
+zjevnou degradaci obrazové kvality.
 
-Systém zápisu podvzorkování se nejčastěji vyjadřuje poměrem $J:a:b$, kde $J$ je šířka referenčního bloku (obvykle 4 pixely), $a$ je počet vzorků chrominance v prvním řádku a $b$ počet vzorků chrominance ve druhém řádku.
+Systém zápisu podvzorkování se nejčastěji vyjadřuje poměrem $J:a:b$, kde $J$ je
+šířka referenčního bloku (obvykle 4 pixely), $a$ je počet vzorků chrominance v
+prvním řádku a $b$ počet vzorků chrominance ve druhém řádku.
 
 \begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[scale=0.9, font=\sffamily]
+    \centering
+    \begin{tikzpicture}[scale=0.9, font=\sffamily]
 
-    % Format 4:4:4
-    \begin{scope}[xshift=0cm]
-        \node[above, font=\bfseries] at (2, 4.5) {4:4:4 (Bez redukce)};
-        \foreach \y in {0,1,2,3} {
-            \foreach \x in {0,1,2,3} {
-                % Y sample
-                \draw[thick] (\x, \y) rectangle ++(1,1);
-                % U/V sample matches Y
-                \fill[blue!20] (\x+0.1, \y+0.1) rectangle ++(0.8,0.8);
-                \node at (\x+0.5, \y+0.5) {YUV};
-            }
-        }
-    \end{scope}
+        % Format 4:4:4
+        \begin{scope}[xshift=0cm]
+            \node[above, font=\bfseries] at (2, 4.5) {4:4:4 (Bez redukce)};
+            \foreach \y in {0,1,2,3} {
+                    \foreach \x in {0,1,2,3} {
+                            % Y sample
+                            \draw[thick] (\x, \y) rectangle ++(1,1);
+                            % U/V sample matches Y
+                            \fill[blue!20] (\x+0.1, \y+0.1) rectangle ++(0.8,0.8);
+                            \node[font=\small] at (\x+0.5, \y+0.5) {YUV};
+                        }
+                }
+        \end{scope}
 
-    % Format 4:2:2
-    \begin{scope}[xshift=5.5cm]
-        \node[above, font=\bfseries] at (2, 4.5) {4:2:2 (Redukce 1/2)};
-        \foreach \y in {0,1,2,3} {
-            \foreach \x in {0,1,2,3} {
-                \draw[thick] (\x, \y) rectangle ++(1,1);
-                \node at (\x+0.5, \y+0.5) {Y};
-            }
-            \foreach \x in {0,2} {
-                \fill[blue!20, opacity=0.7] (\x, \y) rectangle ++(2,1);
-                \node[blue!80!black] at (\x+1, \y+0.5) {U/V};
-            }
-        }
-    \end{scope}
+        % Format 4:2:2
+        \begin{scope}[xshift=5.5cm]
+            \node[above, font=\bfseries] at (2, 4.5) {4:2:2 (Redukce 1/2)};
+            \foreach \y in {0,1,2,3} {
+                    \foreach \x in {0,1,2,3} {
+                            \draw[thick] (\x, \y) rectangle ++(1,1);
+                            \node at (\x+0.5, \y+0.5) {Y};
+                        }
+                    \foreach \x in {0,2} {
+                            \fill[blue!20, opacity=0.7] (\x, \y) rectangle ++(2,1);
+                            \node[blue!80!black] at (\x+1, \y+0.5) {U/V};
+                        }
+                }
+        \end{scope}
 
-    % Format 4:2:0
-    \begin{scope}[xshift=11cm]
-        \node[above, font=\bfseries] at (2, 4.5) {4:2:0 (Redukce 3/4)};
-        \foreach \y in {0,1,2,3} {
-            \foreach \x in {0,1,2,3} {
-                \draw[thick] (\x, \y) rectangle ++(1,1);
-                \node at (\x+0.5, \y+0.5) {Y};
-            }
-        }
-        \foreach \y in {0,2} {
-            \foreach \x in {0,2} {
-                \fill[blue!20, opacity=0.7] (\x, \y) rectangle ++(2,2);
-                \node[blue!80!black] at (\x+1, \y+1) {U/V};
-            }
-        }
-    \end{scope}
+        % Format 4:2:0
+        \begin{scope}[xshift=11cm]
+            \node[above, font=\bfseries] at (2, 4.5) {4:2:0 (Redukce 3/4)};
+            \foreach \y in {0,1,2,3} {
+                    \foreach \x in {0,1,2,3} {
+                            \draw[thick] (\x, \y) rectangle ++(1,1);
+                            \node at (\x+0.5, \y+0.5) {Y};
+                        }
+                }
+            \foreach \y in {0,2} {
+                    \foreach \x in {0,2} {
+                            \fill[blue!20, opacity=0.7] (\x, \y) rectangle ++(2,2);
+                            \node[blue!80!black] at (\x+1, \y+1) {U/V};
+                        }
+                }
+        \end{scope}
 
-\end{tikzpicture}
-\caption{Vizualizace principu chrominančního podvzorkování. Každý čtverec v mřížce představuje jeden pixel. Jasová složka (Y) je zachována vždy v plném rozlišení, zatímco barevná informace (U/V) je sdílena pro více sousedících pixelů.}
-\label{fig:subsampling}
+    \end{tikzpicture}
+    \caption{Vizualizace principu chrominančního podvzorkování. Každý čtverec v mřížce představuje jeden pixel. Jasová složka (Y) je zachována vždy v plném rozlišení, zatímco barevná informace (U/V) je sdílena pro více sousedících pixelů.}
+    \label{fig:subsampling}
 \end{figure}
 
 \subsection{Výhody pro kompresi a zpracování obrazu}
 
-Transformace do prostoru YUV poskytuje pro moderní systémy počítačového vidění a kompresní algoritmy (např. JPEG, H.264/AVC, HEVC) následující klíčové benefity:
+Transformace do prostoru YUV poskytuje pro moderní systémy počítačového vidění
+a kompresní algoritmy (např. JPEG, H.264/AVC, HEVC) následující klíčové
+benefity:
 
 \begin{enumerate}
     \item \textbf{Datová úspora bez vizuální ztráty:} Aplikací podvzorkování 4:2:0 dochází k redukci celkového objemu dat nekomprimovaného obrazu na polovinu oproti původnímu RGB formátu, a to ještě před aplikací samotných kompresních algoritmů (např. diskrétní kosinové transformace DCT).
@@ -781,37 +862,34 @@ Transformace do prostoru YUV poskytuje pro moderní systémy počítačového vi
     \item \textbf{Optimalizace kvantizace:} Během kompresního procesu (např. v normě JPEG) jsou používány rozdílné kvantizační matice pro jas a pro barvu. Matice aplikované na chrominanční kanály odstraňují podstatně více vysokofrekvenčních detailů (agresivnější ztrátová komprese) než u kanálu jasového.
 \end{enumerate}
 
-
-dle standardu \textbf{SDTV ITU-R BT.601}
-dle standardu \textbf{SDTV ITU-R BT.709} FULL HP
-dle standardu \textbf{SDTV ITU-R BT.2020} 4K (možná až 8?)
+dle standardu \textbf{SDTV ITU-R BT.601} dle standardu \textbf{SDTV ITU-R
+    BT.709} FULL HP dle standardu \textbf{SDTV ITU-R BT.2020} 4K (možná až 8?)
 
 \[\begin{aligned}
-Y &= 0.299R + 0.587G + 0.114B \\
-U &= -0.14713R - 0.28886G + 0.436B \\
-V &= 0.615R - 0.51499G - 0.10001B
-\end{aligned}\]
+        Y & = 0.299R + 0.587G + 0.114B      \\
+        U & = -0.14713R - 0.28886G + 0.436B \\
+        V & = 0.615R - 0.51499G - 0.10001B
+    \end{aligned}\]
 
 zpětný převod dostaneme inverzní maticí
 
 \[\begin{aligned}
-R &= Y + 1.13983V \\
-G &= Y - 0.39465U - 0.58060V \\
-B &= Y + 2.03211U
-\end{aligned}\]
+        R & = Y + 1.13983V            \\
+        G & = Y - 0.39465U - 0.58060V \\
+        B & = Y + 2.03211U
+    \end{aligned}\]
 
 \subsection{RGB na YUV}
-
-
-
 
 \section{Histogram}
 
 \href{https://docs.opencv.org/3.4/d4/d1b/tutorial_histogram_equalization.html}{Histogram opencv}
 
-
 \section{Filtrace}
-Filtrace obrazových dat je jedním s fundamentálních bloků počítáčového vidění. Ať už pro vyhlazení hran, odstranění zašumění nebo vylepšení obrazových dat pro další rozpoznávání. Filtrování založená na operaci konvoluce najdeme prakticky všude.
+Filtrace obrazových dat je jedním s fundamentálních bloků počítáčového vidění.
+Ať už pro vyhlazení hran, odstranění zašumění nebo vylepšení obrazových dat pro
+další rozpoznávání. Filtrování založená na operaci konvoluce najdeme prakticky
+všude.
 
 https://opencv.org/image-filtering-using-convolution-in-opencv/
 
@@ -821,7 +899,11 @@ https://opencv.org/image-filtering-using-convolution-in-opencv/
     \label{eq:placeholder_label}
 \end{equation}
 
-Ztráta okrajů a zpoždění (Flushing): Pokud chceme režim SAME (výstupní obraz je stejně velký jako vstupní), okno začne generovat platný středový pixel až ve chvíli, kdy do něj nateče celá polovina jádra. Abychom na konci obrazu ze systému "vytlačili" i ty úplně poslední pixely, musí pipelina běžet o něco déle, než je počet pixelů v obraze. Tomuto se říká Flushing.
+Ztráta okrajů a zpoždění (Flushing): Pokud chceme režim SAME (výstupní obraz je
+stejně velký jako vstupní), okno začne generovat platný středový pixel až ve
+chvíli, kdy do něj nateče celá polovina jádra. Abychom na konci obrazu ze
+systému "vytlačili" i ty úplně poslední pixely, musí pipelina běžet o něco
+déle, než je počet pixelů v obraze. Tomuto se říká Flushing.
 
 Identita
 \begin{equation}
@@ -835,7 +917,7 @@ Identita
 \subsection{Průměrovací filtr}
 Průměrovací filtr
 \begin{equation}
-    \frac{1}{9} \cdot 
+    \frac{1}{9} \cdot
     \begin{bmatrix}
         1 & 1 & 1 \\
         1 & 1 & 1 \\
@@ -846,9 +928,9 @@ Průměrovací filtr
 Zostřovací filtr
 \begin{equation}
     \begin{bmatrix}
-        0 & -1 & 0 \\
-        -1 & 5 & -1 \\
-        0 & -1 & 0
+        0  & -1 & 0  \\
+        -1 & 5  & -1 \\
+        0  & -1 & 0
     \end{bmatrix}
 \end{equation}
 
@@ -867,8 +949,8 @@ Prewitt vertikální
 \begin{equation}
     \begin{bmatrix}
         -1 & -1 & -1 \\
-        0 & 0 & 0 \\
-        1 & 1 & 1
+        0  & 0  & 0  \\
+        1  & 1  & 1
     \end{bmatrix}
 \end{equation}
 
@@ -885,8 +967,8 @@ Sobel vertikální
 \begin{equation}
     \begin{bmatrix}
         -1 & -2 & -1 \\
-        0 & 0 & 0 \\
-        1 & 2 & 1
+        0  & 0  & 0  \\
+        1  & 2  & 1
     \end{bmatrix}
 \end{equation}
 
@@ -923,11 +1005,8 @@ Aproximace disku ($5 \times 5$)
     \end{bmatrix}
 \end{equation}
 
-
-
 \section{Prahování}
 % KOSTRA: doplnit: prahování, Otsu z histogramu na ARM; co je pro FPGA obtížné (README.md §3).
-
 
 \section{Mediánový filtr}
 % KOSTRA: doplnit: medián 3×3, třídicí síť místo třídění (README.md §5).
@@ -935,14 +1014,33 @@ Aproximace disku ($5 \times 5$)
 \chapter{Návrh a~metodika srovnání}
 \label{kap:metodika}
 
-Zadání práce má čtyři body: seznámit se s~nástroji AMD a~s~platformou KV260, zpracovat rešerši operací zpracování obrazu s~analýzou jejich realizace v~hardwaru, vybrané algoritmy implementovat v~softwaru a~hardwaru (v~jazyce \ac{VHDL} a~pomocí vysokoúrovňové syntézy) a~výsledky hardwarových implementací porovnat se softwarovým řešením. První dva body jsem zpracoval v~kapitolách \ref{kap:nastroje} a~\ref{kap:operace}, třetí v~kapitole \ref{kap:implementace} a~čtvrtý v~kapitole \ref{kap:vysledky}. Tato kapitola stanoví pravidla, podle kterých jsem implementace navrhoval a~porovnával, aby čísla ve výsledcích byla správná a~navzájem srovnatelná.
+Zadání práce má čtyři body: seznámit se s~nástroji AMD a~s~platformou KV260,
+zpracovat rešerši operací zpracování obrazu s~analýzou jejich realizace
+v~hardwaru, vybrané algoritmy implementovat v~softwaru a~hardwaru (v~jazyce
+\ac{VHDL} a~pomocí vysokoúrovňové syntézy) a~výsledky hardwarových implementací
+porovnat se softwarovým řešením. První dva body jsem zpracoval v~kapitolách
+\ref{kap:nastroje} a~\ref{kap:operace}, třetí v~kapitole \ref{kap:implementace}
+a~čtvrtý v~kapitole \ref{kap:vysledky}. Tato kapitola stanoví pravidla, podle
+kterých jsem implementace navrhoval a~porovnával, aby čísla ve výsledcích byla
+správná a~navzájem srovnatelná.
 
 \section{Cíle a~kritéria srovnání}
 \label{sec:kriteria}
 
-Každý algoritmus jsem implementoval třikrát se stejnou aritmetikou: v~jazyce C, který je zároveň referenčním modelem a~softwarovým řešením pro procesor Cortex-A53, v~nástroji Vitis \ac{HLS} a~ručně v~jazyce VHDL. Obě hardwarové verze mají stejné rozhraní a~stejnou mapu registrů, takže jsou zaměnitelné a~ovládá je jeden ovladač v~jazyce C.
+Každý algoritmus jsem implementoval třikrát se stejnou aritmetikou: v~jazyce C,
+který je zároveň referenčním modelem a~softwarovým řešením pro procesor
+Cortex-A53, v~nástroji Vitis \ac{HLS} a~ručně v~jazyce VHDL. Obě hardwarové
+verze mají stejné rozhraní a~stejnou mapu registrů, takže jsou zaměnitelné
+a~ovládá je jeden ovladač v~jazyce C.
 
-Porovnání má smysl, jen když všechny tři verze počítají totéž. Správnost je proto podmínka: implementace, která se s~referenčním modelem neshoduje bit po bitu, se dál neposuzuje. Správné implementace porovnávám podle kritérií v~tabulce \ref{tab:kriteria}. Prostředky jsou počty buněk \ac{LUT} a~\ac{FF}, bloků \ac{DSP} a~pamětí \ac{BRAM}, které jádro v~obvodu zabere. Prostředky a~maximální frekvence popisují samotné jádro a~měří se na něm odděleně od zbytku návrhu. Propustnost a~rychlost proti softwaru popisují celý řetězec na desce.
+Porovnání má smysl, jen když všechny tři verze počítají totéž. Správnost je
+proto podmínka: implementace, která se s~referenčním modelem neshoduje bit po
+bitu, se dál neposuzuje. Správné implementace porovnávám podle kritérií
+v~tabulce \ref{tab:kriteria}. Prostředky jsou počty buněk \ac{LUT} a~\ac{FF},
+bloků \ac{DSP} a~pamětí \ac{BRAM}, které jádro v~obvodu zabere. Prostředky
+a~maximální frekvence popisují samotné jádro a~měří se na něm odděleně od
+zbytku návrhu. Propustnost a~rychlost proti softwaru popisují celý řetězec na
+desce.
 
 \begin{table}[htbp]
     \centering
@@ -950,13 +1048,13 @@ Porovnání má smysl, jen když všechny tři verze počítají totéž. Správ
     \label{tab:kriteria}
     \begin{tabular}{p{3.3cm}p{5.2cm}p{5.2cm}}
         \toprule
-        Kritérium & Co se měří & Jak a~kde \\
+        Kritérium               & Co se měří                                                               & Jak a~kde                                                              \\
         \midrule
-        Správnost & počet chybných bajtů proti referenčnímu modelu & simulace a~měřicí aplikace na desce (oddíl \ref{sec:overeni}) \\
-        Prostředky & \acs{LUT}, \acs{FF}, \acs{DSP} a~\acs{BRAM} jednoho jádra & syntéza mimo kontext (oddíl \ref{sec:ooc}) \\
-        Maximální frekvence & nejkratší perioda hodin, kterou jádro zvládne & syntéza mimo kontext (oddíl \ref{sec:ooc}) \\
-        Propustnost & doba zpracování snímku 1920\,×\,1080 bodů v~ms a~počet snímků za sekundu & měření na desce (oddíl \ref{sec:deska}) \\
-        Rychlost proti softwaru & poměr doby softwarového a~hardwarového zpracování stejného algoritmu & měření na desce, software na procesoru Cortex-A53 (oddíl \ref{sec:sw}) \\
+        Správnost               & počet chybných bajtů proti referenčnímu modelu                           & simulace a~měřicí aplikace na desce (oddíl \ref{sec:overeni})          \\
+        Prostředky              & \acs{LUT}, \acs{FF}, \acs{DSP} a~\acs{BRAM} jednoho jádra                & syntéza mimo kontext (oddíl \ref{sec:ooc})                             \\
+        Maximální frekvence     & nejkratší perioda hodin, kterou jádro zvládne                            & syntéza mimo kontext (oddíl \ref{sec:ooc})                             \\
+        Propustnost             & doba zpracování snímku 1920\,×\,1080 bodů v~ms a~počet snímků za sekundu & měření na desce (oddíl \ref{sec:deska})                                \\
+        Rychlost proti softwaru & poměr doby softwarového a~hardwarového zpracování stejného algoritmu     & měření na desce, software na procesoru Cortex-A53 (oddíl \ref{sec:sw}) \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -964,15 +1062,32 @@ Porovnání má smysl, jen když všechny tři verze počítají totéž. Správ
 \section{Referenční model v~jazyce C}
 \label{sec:model}
 
-OpenCV počítá část operací v~plovoucí řádové čárce nebo s~jinak zaokrouhlenými koeficienty. Hardware ale potřebuje definici, kterou lze bit po bitu zopakovat v~obvodu. Napsal jsem proto celočíselnou knihovnu v~jazyce C (\texttt{lib\_imgproc}), která zachovává sémantiku OpenCV tam, kde ji lze přesně napodobit, a~ostatní konvence, tedy zaokrouhlení, saturaci a~ošetření okrajů, stanovuje výslovně. Model plní dvě role. Je měřítkem správnosti obou hardwarových verzí a~zároveň je softwarovým řešením, které se na procesoru Cortex-A53 měří proti hardwaru.
+OpenCV počítá část operací v~plovoucí řádové čárce nebo s~jinak zaokrouhlenými
+koeficienty. Hardware ale potřebuje definici, kterou lze bit po bitu zopakovat
+v~obvodu. Napsal jsem proto celočíselnou knihovnu v~jazyce C
+(\texttt{lib\_imgproc}), která zachovává sémantiku OpenCV tam, kde ji lze
+přesně napodobit, a~ostatní konvence, tedy zaokrouhlení, saturaci a~ošetření
+okrajů, stanovuje výslovně. Model plní dvě role. Je měřítkem správnosti obou
+hardwarových verzí a~zároveň je softwarovým řešením, které se na procesoru
+Cortex-A53 měří proti hardwaru.
 
-Konstanty, ve kterých by se verze mohly rozejít, jsem neopisoval ručně. Koeficienty převodu barev a~tabulky pro převod RGB na HSV a~zpět vytváří generátor z~definic jednou a~zapisuje je do hlavičkového souboru pro C a~HLS a~do balíčku pro VHDL. Žádná verze proto nemůže počítat s~jinou hodnotou než ostatní.
+Konstanty, ve kterých by se verze mohly rozejít, jsem neopisoval ručně.
+Koeficienty převodu barev a~tabulky pro převod RGB na HSV a~zpět vytváří
+generátor z~definic jednou a~zapisuje je do hlavičkového souboru pro C a~HLS
+a~do balíčku pro VHDL. Žádná verze proto nemůže počítat s~jinou hodnotou než
+ostatní.
 
-Protože je model měřítkem pro ostatní, ověřoval jsem nejdřív jeho samotný proti OpenCV:
+Protože je model měřítkem pro ostatní, ověřoval jsem nejdřív jeho samotný proti
+OpenCV:
 \begin{itemize}
-    \item bitově se shoduje převod RGB na šedou a~RGB na HSV na všech $2^{24}$ barvách, prahování (pět typů pro šest hodnot prahu), medián 3\,×\,3 s~opakováním krajního pixelu a~konvoluce s~jádrem identity, zostřujícím a~Sobelovým,
-    \item s~odchylkou nejvýše 1 až 2 úrovně se shoduje převod HSV na RGB a~převod RGB na YCbCr a~zpět, protože OpenCV je počítá v~plovoucí řádové čárce nebo s~jinak zaokrouhlenými koeficienty,
-    \item konvoluce průměrem vychází na testovacím obraze shodně, bitová shoda ale není zaručená, protože zlomek 1/9 nelze v~pevné řádové čárce vyjádřit přesně.
+    \item bitově se shoduje převod RGB na šedou a~RGB na HSV na všech $2^{24}$ barvách,
+          prahování (pět typů pro šest hodnot prahu), medián 3\,×\,3 s~opakováním
+          krajního pixelu a~konvoluce s~jádrem identity, zostřujícím a~Sobelovým,
+    \item s~odchylkou nejvýše 1 až 2 úrovně se shoduje převod HSV na RGB a~převod RGB na
+          YCbCr a~zpět, protože OpenCV je počítá v~plovoucí řádové čárce nebo s~jinak
+          zaokrouhlenými koeficienty,
+    \item konvoluce průměrem vychází na testovacím obraze shodně, bitová shoda ale není
+          zaručená, protože zlomek 1/9 nelze v~pevné řádové čárce vyjádřit přesně.
 \end{itemize}
 Odchylky od OpenCV tedy nevznikají v~hardwaru, ale v~definici operace. U~hardwarových verzí se proto vždy požaduje shoda s~modelem, ne s~OpenCV. Další kontrolu tvoří jednotkové testy modelu (aritmetika, převody barev, medián, filtry), které běží i~na procesoru ARM.
 % TODO(citace): dokumentace OpenCV (cvtColor, medianBlur, threshold, filter2D) jako zdroj sémantiky operací; podklad k vložení do citace.bib dodá Karel z Citace PRO.
@@ -980,7 +1095,11 @@ Odchylky od OpenCV tedy nevznikají v~hardwaru, ale v~definici operace. U~hardwa
 \section{Aritmetika s~pevnou řádovou čárkou}
 \label{sec:aritmetika}
 
-Obrazové body jsou osmibitová celá čísla, ale koeficienty převodu barev nebo měřítko filtru jsou zlomky. Aritmetika v~plovoucí řádové čárce by v~obvodu \ac{FPGA} zabrala víc prostředků a~měla by delší latenci než celočíselná, a~bloky \ac{DSP} mají celočíselnou násobičku se vstupy širokými 27 a~18 bitů. Zlomky jsem proto počítal v~pevné řádové čárce.
+Obrazové body jsou osmibitová celá čísla, ale koeficienty převodu barev nebo
+měřítko filtru jsou zlomky. Aritmetika v~plovoucí řádové čárce by v~obvodu
+\ac{FPGA} zabrala víc prostředků a~měla by delší latenci než celočíselná,
+a~bloky \ac{DSP} mají celočíselnou násobičku se vstupy širokými 27 a~18 bitů.
+Zlomky jsem proto počítal v~pevné řádové čárce.
 
 Číslo ve formátu $Q_{m.n}$ je celé číslo se znaménkovým bitem, $m$ bity celé části a~$n$ zlomkovými bity. Uložené celé číslo $X$ představuje hodnotu
 \begin{equation}
@@ -989,7 +1108,9 @@ Obrazové body jsou osmibitová celá čísla, ale koeficienty převodu barev ne
 \end{equation}
 Například formát $Q_{2.15}$ má 18 bitů, rozsah přibližně od $-4$ do $4$ a~rozlišení $2^{-15}$. Koeficient 0,299 se v~něm uloží jako celé číslo $9\,798$, protože $0{,}299 \cdot 2^{15} = 9\,797{,}6$.
 
-Pevná řádová čárka vyžaduje dvě konvence, které jsou ve všech třech implementacích stejné. První je zaokrouhlení polovin nahoru při posunu o~$n$ bitů vpravo, druhá saturace výsledku na rozsah osmibitového obrazového bodu:
+Pevná řádová čárka vyžaduje dvě konvence, které jsou ve všech třech
+implementacích stejné. První je zaokrouhlení polovin nahoru při posunu o~$n$
+bitů vpravo, druhá saturace výsledku na rozsah osmibitového obrazového bodu:
 \begin{equation}
     \mathrm{round\_shift}(X, n) = \left\lfloor \frac{X + 2^{n-1}}{2^{n}} \right\rfloor ,
     \qquad
@@ -998,11 +1119,31 @@ Pevná řádová čárka vyžaduje dvě konvence, které jsou ve všech třech i
 \end{equation}
 V~hardwaru je dělení mocninou dvou jen aritmetický posun, takže zaokrouhlení stojí jednu sčítačku, a~u~bloku DSP48E2 dokonce žádnou, protože se provede v~jeho závěrečné sčítačce.
 
-Příklad ukazuje celý postup. Řádek matice převodu RGB na šedou (BT.601) má v~pořadí složek, v~jakém leží v~paměti, koeficienty $19\,235$ (zelená), $3\,735$ (modrá) a~$9\,798$ (červená). Pro pixel s~červenou 200, zelenou 100 a~modrou 50 vychází součet součinů $19\,235 \cdot 100 + 3\,735 \cdot 50 + 9\,798 \cdot 200 = 4\,069\,850$. Po přičtení poloviny, tedy $2^{14} = 16\,384$, je součet $4\,086\,234$ a~posun o~15 bitů dává $124$ (výsledek před posunem je 124,7, posun zaokrouhlí dolů). Výpočet v~plovoucí řádové čárce dává $0{,}299 \cdot 200 + 0{,}587 \cdot 100 + 0{,}114 \cdot 50 = 124{,}2$, tedy také 124.
+Příklad ukazuje celý postup. Řádek matice převodu RGB na šedou (BT.601) má
+v~pořadí složek, v~jakém leží v~paměti, koeficienty $19\,235$ (zelená),
+$3\,735$ (modrá) a~$9\,798$ (červená). Pro pixel s~červenou 200, zelenou 100
+a~modrou 50 vychází součet součinů $19\,235 \cdot 100 + 3\,735 \cdot 50 +
+    9\,798 \cdot 200 = 4\,069\,850$. Po přičtení poloviny, tedy $2^{14} = 16\,384$,
+je součet $4\,086\,234$ a~posun o~15 bitů dává $124$ (výsledek před posunem je
+124,7, posun zaokrouhlí dolů). Výpočet v~plovoucí řádové čárce dává $0{,}299
+    \cdot 200 + 0{,}587 \cdot 100 + 0{,}114 \cdot 50 = 124{,}2$, tedy také 124.
 
-Koeficienty jednoho řádku matice musí dát v~součtu přesně $2^{15}$, aby se bílá barva převedla na bílou. Prosté zaokrouhlení každého koeficientu zvlášť to nezaručuje, a~proto generátor zbytky po zaokrouhlení rozdělí metodou největšího zbytku: koeficienty se zaokrouhlí dolů a~chybějící jednotky se přidělí těm, které měly největší zlomkovou část. Původně jsem používal formát $Q_{3.14}$. Převod RGB na šedou se v~něm od OpenCV lišil o~jednu úroveň u~0,26\,\% z~$2^{24}$ barev. Přechod na $Q_{2.15}$ spolu s~metodou největšího zbytku odchylku odstranil a~převod je bitově shodný na všech barvách. Rozsah $\pm 4$ přitom pro koeficienty převodů barev stačí.
+Koeficienty jednoho řádku matice musí dát v~součtu přesně $2^{15}$, aby se bílá
+barva převedla na bílou. Prosté zaokrouhlení každého koeficientu zvlášť to
+nezaručuje, a~proto generátor zbytky po zaokrouhlení rozdělí metodou největšího
+zbytku: koeficienty se zaokrouhlí dolů a~chybějící jednotky se přidělí těm,
+které měly největší zlomkovou část. Původně jsem používal formát $Q_{3.14}$.
+Převod RGB na šedou se v~něm od OpenCV lišil o~jednu úroveň u~0,26\,\%
+z~$2^{24}$ barev. Přechod na $Q_{2.15}$ spolu s~metodou největšího zbytku
+odchylku odstranil a~převod je bitově shodný na všech barvách. Rozsah $\pm 4$
+přitom pro koeficienty převodů barev stačí.
 
-Tabulka \ref{tab:formaty} shrnuje formáty a~konvence použité u~jednotlivých operací. Šířky mezivýsledků jsem nikde nepsal jako konstanty. Součin dvou čísel šířky $W_a$ a~$W_b$ má $W_a + W_b$ bitů a~součet $N$ čísel šířky $W$ má $W + \lceil \log_{2} N \rceil$ bitů. Jádra jsou díky tomu generická: například konvoluce se pro jiný rozměr jádra nepřepočítává ručně, a~nehrozí tak chyba v~šířce při změně parametru.
+Tabulka \ref{tab:formaty} shrnuje formáty a~konvence použité u~jednotlivých
+operací. Šířky mezivýsledků jsem nikde nepsal jako konstanty. Součin dvou čísel
+šířky $W_a$ a~$W_b$ má $W_a + W_b$ bitů a~součet $N$ čísel šířky $W$ má $W +
+    \lceil \log_{2} N \rceil$ bitů. Jádra jsou díky tomu generická: například
+konvoluce se pro jiný rozměr jádra nepřepočítává ručně, a~nehrozí tak chyba
+v~šířce při změně parametru.
 
 \begin{table}[htbp]
     \centering
@@ -1010,13 +1151,13 @@ Tabulka \ref{tab:formaty} shrnuje formáty a~konvence použité u~jednotlivých 
     \label{tab:formaty}
     \begin{tabular}{p{3.3cm}p{5.2cm}p{5.2cm}}
         \toprule
-        Operace & Formát a~měřítko & Zaokrouhlení a~saturace \\
+        Operace                       & Formát a~měřítko                                                                                    & Zaokrouhlení a~saturace                        \\
         \midrule
-        Převod barev (matice 3\,×\,3) & koeficienty $Q_{2.15}$, offset se přičítá v~akumulátoru před posunem & zaokrouhlení polovin nahoru, saturace 0 až 255 \\
-        RGB na HSV & celočíselný algoritmus OpenCV, posun o~12 bitů, tabulky podílů a~odstínu, odstín v~rozsahu 0 až 179 & shodné s~OpenCV \\
-        HSV na RGB & vlastní celočíselný algoritmus s~tabulkami převrácených hodnot & zaokrouhlení polovin nahoru, saturace \\
-        Konvoluce $K\,×\,K$ & osmibitové celočíselné jádro, přesná akumulace, měřítko $Q_{.14}$ a~posun hodnoty \texttt{delta} & zaokrouhlení polovin nahoru, saturace \\
-        Medián, prahování, histogram & jen celá čísla (porovnávání a~počítání) & není potřeba \\
+        Převod barev (matice 3\,×\,3) & koeficienty $Q_{2.15}$, offset se přičítá v~akumulátoru před posunem                                & zaokrouhlení polovin nahoru, saturace 0 až 255 \\
+        RGB na HSV                    & celočíselný algoritmus OpenCV, posun o~12 bitů, tabulky podílů a~odstínu, odstín v~rozsahu 0 až 179 & shodné s~OpenCV                                \\
+        HSV na RGB                    & vlastní celočíselný algoritmus s~tabulkami převrácených hodnot                                      & zaokrouhlení polovin nahoru, saturace          \\
+        Konvoluce $K\,×\,K$           & osmibitové celočíselné jádro, přesná akumulace, měřítko $Q_{.14}$ a~posun hodnoty \texttt{delta}    & zaokrouhlení polovin nahoru, saturace          \\
+        Medián, prahování, histogram  & jen celá čísla (porovnávání a~počítání)                                                             & není potřeba                                   \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1025,7 +1166,9 @@ Tabulka \ref{tab:formaty} shrnuje formáty a~konvence použité u~jednotlivých 
 \section{Úrovně ověření}
 \label{sec:overeni}
 
-Bitovou shodu jsem ověřoval na třech úrovních, které se doplňují. První úroveň, referenční model proti OpenCV, je popsána v~oddílu \ref{sec:model}. Druhá a~třetí ověřují hardwarová jádra proti modelu (tabulka \ref{tab:urovne}).
+Bitovou shodu jsem ověřoval na třech úrovních, které se doplňují. První úroveň,
+referenční model proti OpenCV, je popsána v~oddílu \ref{sec:model}. Druhá
+a~třetí ověřují hardwarová jádra proti modelu (tabulka \ref{tab:urovne}).
 
 \begin{table}[htbp]
     \centering
@@ -1033,18 +1176,31 @@ Bitovou shodu jsem ověřoval na třech úrovních, které se doplňují. První
     \label{tab:urovne}
     \begin{tabular}{p{2.4cm}p{3.6cm}p{3.4cm}p{3.7cm}}
         \toprule
-        Úroveň & Co ověřuje & Nástroj & Kritérium \\
+        Úroveň & Co ověřuje                              & Nástroj                                                  & Kritérium                                                         \\
         \midrule
-        HLS & kód C++ a~RTL vygenerované z~něj & C-simulace a~kosimulace C/RTL ve Vitis HLS & shoda dat i~signálů \texttt{TUSER} a~\texttt{TLAST} \\
-        VHDL & ručně psaný RTL kód & simulace v~xsim (Vivado) a~GHDL s~generickým testbenchem & shoda dat i~signálů \texttt{TUSER} a~\texttt{TLAST} \\
-        Deska & celý řetězec s~procesorem, pamětí a~DMA & měřicí aplikace na procesoru Cortex-A53 & nulový počet chybných bajtů proti modelu a~nulový stavový registr \\
+        HLS    & kód C++ a~RTL vygenerované z~něj        & C-simulace a~kosimulace C/RTL ve Vitis HLS               & shoda dat i~signálů \texttt{TUSER} a~\texttt{TLAST}               \\
+        VHDL   & ručně psaný RTL kód                     & simulace v~xsim (Vivado) a~GHDL s~generickým testbenchem & shoda dat i~signálů \texttt{TUSER} a~\texttt{TLAST}               \\
+        Deska  & celý řetězec s~procesorem, pamětí a~DMA & měřicí aplikace na procesoru Cortex-A53                  & nulový počet chybných bajtů proti modelu a~nulový stavový registr \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Vstupní a~očekávané vektory vytváří nástroj z~referenčního modelu, takže se nic neopisuje ručně. Testbench jádra posílá data v~datovém toku \acs{AXI}4-Stream, ve kterém \texttt{TUSER} označuje začátek snímku a~\texttt{TLAST} konec řádku. Zdroj vkládá do toku náhodné mezery a~příjemce náhodně brzdí, aby se ověřilo, že se žádný pixel neztratí ani nezdvojí a~že platí zpětné řízení toku. Každý test běží nejméně na dvou snímcích za sebou, protože jádro nesmí držet stav z~předchozího snímku. Převod RGB na HSV a~zpět jsem navíc v~simulaci ověřil na všech $2^{24}$ vstupech.
+Vstupní a~očekávané vektory vytváří nástroj z~referenčního modelu, takže se nic
+neopisuje ručně. Testbench jádra posílá data v~datovém toku \acs{AXI}4-Stream,
+ve kterém \texttt{TUSER} označuje začátek snímku a~\texttt{TLAST} konec řádku.
+Zdroj vkládá do toku náhodné mezery a~příjemce náhodně brzdí, aby se ověřilo,
+že se žádný pixel neztratí ani nezdvojí a~že platí zpětné řízení toku. Každý
+test běží nejméně na dvou snímcích za sebou, protože jádro nesmí držet stav
+z~předchozího snímku. Převod RGB na HSV a~zpět jsem navíc v~simulaci ověřil na
+všech $2^{24}$ vstupech.
 
-C-simulace hardwarovou chybu nezachytí vždy. Kód C nemá pipeline, a~proto neukáže chybu v~předávání mezivýsledku mezi sousedními pixely. Histogram, který přičítá do paměti \ac{BRAM} v~každém taktu, prošel C-simulací, ale kosimulace ztrácela pixely u~vzorů, kde se stejná hodnota opakuje po jednom nebo dvou pixelech. U~takových jader je proto kosimulace povinná. Test na desce odhalil ještě jiný druh chyby, kterou žádná simulace s~plynulým tokem dat nezachytila. Popisuje ji oddíl \ref{sec:problemy}.
+C-simulace hardwarovou chybu nezachytí vždy. Kód C nemá pipeline, a~proto
+neukáže chybu v~předávání mezivýsledku mezi sousedními pixely. Histogram, který
+přičítá do paměti \ac{BRAM} v~každém taktu, prošel C-simulací, ale kosimulace
+ztrácela pixely u~vzorů, kde se stejná hodnota opakuje po jednom nebo dvou
+pixelech. U~takových jader je proto kosimulace povinná. Test na desce odhalil
+ještě jiný druh chyby, kterou žádná simulace s~plynulým tokem dat nezachytila.
+Popisuje ji oddíl \ref{sec:problemy}.
 
 \section{Metodika měření}
 \label{sec:metodika-mereni}
@@ -1052,7 +1208,11 @@ C-simulace hardwarovou chybu nezachytí vždy. Kód C nemá pipeline, a~proto ne
 \subsection{Syntéza mimo kontext}
 \label{sec:ooc}
 
-Prostředky a~maximální frekvenci jsem měřil syntézou mimo kontext (out-of-context, \acs{OOC}). Je to syntéza, rozmístění a~propojení jednoho jádra samostatně, bez zbytku návrhu (DMA, propojení AXI, procesor). Porty jádra se nepřipojují na piny a~jediným omezením jsou hodiny s~periodou 5\,ns, tedy 200\,MHz. Výsledkem jsou prostředky a~časování jen tohoto jádra.
+Prostředky a~maximální frekvenci jsem měřil syntézou mimo kontext
+(out-of-context, \acs{OOC}). Je to syntéza, rozmístění a~propojení jednoho
+jádra samostatně, bez zbytku návrhu (DMA, propojení AXI, procesor). Porty jádra
+se nepřipojují na piny a~jediným omezením jsou hodiny s~periodou 5\,ns, tedy
+200\,MHz. Výsledkem jsou prostředky a~časování jen tohoto jádra.
 
 Čísla z~celého testovacího řetězce totiž závisí na tom, co leží vedle jádra. Jádro \texttt{hls\_hsv2rgb} mělo samostatně časovou rezervu 1,0\,ns, v~řetězci se 14 jádry už jen 0,10\,ns a~tvořilo jeho kritickou cestu. Jádro se nezměnilo, změnilo se rozmístění a~propojení. Porovnání HLS a~VHDL proto vyžaduje podmínky, které na okolí nezávisejí. RTL vygenerované z~HLS prochází stejným skriptem jako VHDL, pro stejný obvod (xck26-sfvc784-2LV-c) a~se stejným cílem 5\,ns. Použil jsem Vivado 2025.2.
 
@@ -1066,16 +1226,41 @@ Maximální frekvenci vyjadřuji nejkratší periodou hodin, kterou jádro zvlá
 \subsection{Měření na desce}
 \label{sec:deska}
 
-Propustnost jsem měřil na desce KV260 v~testovacím řetězci, ve kterém je všech 14 jader v~jednom bitstreamu na 200\,MHz (podrobně oddíl \ref{sec:retezec}). Procesor nastaví registry vybraného jádra a~\ac{VDMA} přečte snímek z~paměti, pošle ho jádrem a~výsledek zapíše zpět do paměti. Měří se tedy celý řetězec paměť, jádro, paměť, ne samotné jádro.
+Propustnost jsem měřil na desce KV260 v~testovacím řetězci, ve kterém je všech
+14 jader v~jednom bitstreamu na 200\,MHz (podrobně oddíl \ref{sec:retezec}).
+Procesor nastaví registry vybraného jádra a~\ac{VDMA} přečte snímek z~paměti,
+pošle ho jádrem a~výsledek zapíše zpět do paměti. Měří se tedy celý řetězec
+paměť, jádro, paměť, ne samotné jádro.
 
-Testovací snímek má rozlišení 1920\,×\,1080 bodů a~24 bitů na pixel. Aplikace ho při startu vytvoří deterministicky tak, aby obsahoval plynulé přechody (pro převody barev a~HSV), ostré hrany (pro Sobelův filtr) a~šum (pro medián). Doba zpracování je čas od spuštění čtení z~paměti do jeho zastavení po 20 snímcích. Během přenosu se čte jen stav tohoto kanálu, jednou za 100\,µs, což odpovídá nejistotě 5\,µs na snímek, tedy méně než 0,1\,\%. Měření se opakuje pětkrát a~výsledkem je medián.
+Testovací snímek má rozlišení 1920\,×\,1080 bodů a~24 bitů na pixel. Aplikace
+ho při startu vytvoří deterministicky tak, aby obsahoval plynulé přechody (pro
+převody barev a~HSV), ostré hrany (pro Sobelův filtr) a~šum (pro medián). Doba
+zpracování je čas od spuštění čtení z~paměti do jeho zastavení po 20 snímcích.
+Během přenosu se čte jen stav tohoto kanálu, jednou za 100\,µs, což odpovídá
+nejistotě 5\,µs na snímek, tedy méně než 0,1\,\%. Měření se opakuje pětkrát
+a~výsledkem je medián.
 
-Jako strop slouží průchod bez jádra (bypass). Při jednom pixelu za takt a~hodinách 200\,MHz trvá snímek \mbox{$1920 \cdot 1080 / 200\,\mathrm{MHz} = 10{,}368\,\mathrm{ms}$}, tedy přibližně 96 snímků za sekundu. Žádné jádro nemůže být rychlejší, a~rozdíl proti průchodu proto říká, kolik času jádro přidává. Po měření aplikace porovná výstup bajt po bajtu s~referenčním modelem přeloženým pro ARM. Měření je úspěšné, jen když je počet chybných bajtů nulový a~u~jader s~okénkem je nulový i~stavový registr, který hlásí poruchu synchronizace řádků. Výsledky aplikace vypisuje na sériovou linku a~automatický skript je ukládá ve formátu CSV.
+Jako strop slouží průchod bez jádra (bypass). Při jednom pixelu za takt
+a~hodinách 200\,MHz trvá snímek \mbox{$1920 \cdot 1080 / 200\,\mathrm{MHz} =
+        10{,}368\,\mathrm{ms}$}, tedy přibližně 96 snímků za sekundu. Žádné jádro
+nemůže být rychlejší, a~rozdíl proti průchodu proto říká, kolik času jádro
+přidává. Po měření aplikace porovná výstup bajt po bajtu s~referenčním modelem
+přeloženým pro ARM. Měření je úspěšné, jen když je počet chybných bajtů nulový
+a~u~jader s~okénkem je nulový i~stavový registr, který hlásí poruchu
+synchronizace řádků. Výsledky aplikace vypisuje na sériovou linku a~automatický
+skript je ukládá ve formátu CSV.
 
 \subsection{Softwarové řešení na procesoru Cortex-A53}
 \label{sec:sw}
 
-Referenční model, přeložený pro ARM, jsem spouštěl na jednom jádru procesoru Cortex-A53 s~hodinami 1333\,MHz (podle nastavení generovaného ve Vivadu), bez operačního systému a~se zapnutými vyrovnávacími pamětmi. Neběží tak žádný plánovač, který by měření rušil. Kód jsem přeložil s~optimalizací \texttt{-O0}, \texttt{-O2} i~\texttt{-O3} překladačem dodávaným s~nástrojem Vitis 2025.2, protože na úrovni optimalizace závisí, jak výhodné porovnání s~hardwarem vychází. Čas se měří čítačem procesoru a~výsledkem je medián z~10 běhů každého algoritmu na stejném testovacím snímku jako u~hardwaru.
+Referenční model, přeložený pro ARM, jsem spouštěl na jednom jádru procesoru
+Cortex-A53 s~hodinami 1333\,MHz (podle nastavení generovaného ve Vivadu), bez
+operačního systému a~se zapnutými vyrovnávacími pamětmi. Neběží tak žádný
+plánovač, který by měření rušil. Kód jsem přeložil s~optimalizací \texttt{-O0},
+\texttt{-O2} i~\texttt{-O3} překladačem dodávaným s~nástrojem Vitis 2025.2,
+protože na úrovni optimalizace závisí, jak výhodné porovnání s~hardwarem
+vychází. Čas se měří čítačem procesoru a~výsledkem je medián z~10 běhů každého
+algoritmu na stejném testovacím snímku jako u~hardwaru.
 
 % KOSTRA: původní poznámky k aritmetice (Q4.4, MathWorks, tabulka vah bitů) ponechány pro případné použití:
 % \section{Aritmetika s pevnou řádovou čárkou}
@@ -1109,13 +1294,15 @@ Referenční model, přeložený pro ARM, jsem spouštěl na jednom jádru proce
 % KOSTRA: kap. 5 (~11 s) = zbytek původní kapitoly „Hardwarová architektura a implementace algoritmů“. Před kapitolou deklarace AI ke kódu (dp-ai).
 
 \section{Datový tok}
-AXI video stream
-v textu zmínit, že deska podporuje tzv. \textit{overlay} architekturu, což  umožní měnit hardwarovou konfiguraci FPGA bez nutnosti restartu celého systému, to je testování algoritmů zpracování obrazu velmi výhodné. 
+AXI video stream v textu zmínit, že deska podporuje tzv. \textit{overlay}
+architekturu, což umožní měnit hardwarovou konfiguraci FPGA bez nutnosti
+restartu celého systému, to je testování algoritmů zpracování obrazu velmi
+výhodné.
 
 \section{Zpracování video streamu}
 
-Neboli AXI stream video
-signály TLAST a TUSER, tedy EOF (End-of-File) a SOF (Start-of-Frame) 
+Neboli AXI stream video signály TLAST a TUSER, tedy EOF (End-of-File) a SOF
+(Start-of-Frame)
 \begin{lstlisting}[language=C]
 void video_proc(input_video, output_video){
 for(i=0; i < MAX_FRAME_SIZE; i++){
@@ -1136,11 +1323,18 @@ if(DE){
 \section{Architektura a hardwarová implementace generického IP jádra pro zpracování obrazu}
 
 \subsection{Úvod do architektury IP jádra}
-Navržené IP jádro (Intellectual Property Core) pro konverzi barevných prostorů a bodové operace je koncipováno s důrazem na maximální propustnost, škálovatelnost a efektivní využití hardwarových zdrojů hradlového pole (FPGA). Architektura striktně odděluje fyzické rozhraní modulu (Top-Level) od samotného výpočetního algoritmu. Tento přístup, využívající pokročilých vlastností jazyka C++ (zejména šablonového metaprogramování – *Template Metaprogramming*), umožňuje generovat vysoce optimalizovaný RTL (Register-Transfer Level) kód na míru konkrétní aplikaci bez nutnosti zásahu do zdrojového kódu algoritmu.
+Navržené IP jádro (Intellectual Property Core) pro konverzi barevných prostorů
+a bodové operace je koncipováno s důrazem na maximální propustnost,
+škálovatelnost a efektivní využití hardwarových zdrojů hradlového pole (FPGA).
+Architektura striktně odděluje fyzické rozhraní modulu (Top-Level) od samotného
+výpočetního algoritmu. Tento přístup, využívající pokročilých vlastností jazyka
+C++ (zejména šablonového metaprogramování – *Template Metaprogramming*),
+umožňuje generovat vysoce optimalizovaný RTL (Register-Transfer Level) kód na
+míru konkrétní aplikaci bez nutnosti zásahu do zdrojového kódu algoritmu.
 
 \subsection{Rozhraní modulu a datový tok (Dataflow}
-Procesorový systém a okolní periferie komunikují s IP jádrem pomocí standardizovaných sběrnic rodiny AMBA AXI4.
-
+Procesorový systém a okolní periferie komunikují s IP jádrem pomocí
+standardizovaných sběrnic rodiny AMBA AXI4.
 
 \textbf{Datové rozhraní (AXI4-Stream):} Pro kontinuální tok obrazových dat je využito rozhraní AXI4-Stream ($s_axis_video$ pro vstup, $m_axis_video$ pro výstup). Obrazový bod (pixel) je sdružen pomocí direktivy pragma HLS AGGREGATE do jediného datového vodiče (TDATA). Synchronizace snímku je zajištěna postranními signály – začátek snímku (SOF) je indikován signálem TUSER a konec řádku (EOL) signálem TLAST. Díky těmto signálům je jádro navrženo jako datově řízené (\textit{Data-Driven}), což minimalizuje zpoždění a eliminuje nutnost externího stavového automatu (FSM) pro řízení toku.
 
@@ -1148,23 +1342,46 @@ Procesorový systém a okolní periferie komunikují s IP jádrem pomocí standa
 
 \subsection{Výpočetní architektura a paralelizace}
 
-Hlavní výpočetní smyčka je navržena pro plné zřetězení instrukcí (\textit{Pipelining}). Aplikací direktivy \#pragma HLS PIPELINE II=1 je syntezátor Vitis HLS donucen vytvořit hardwarovou strukturu, která je schopna přijmout, zpracovat a odeslat jeden pixel v každém hodinovém taktu (Initiation Interval = 1). 
+Hlavní výpočetní smyčka je navržena pro plné zřetězení instrukcí
+(\textit{Pipelining}). Aplikací direktivy \#pragma HLS PIPELINE II=1 je
+syntezátor Vitis HLS donucen vytvořit hardwarovou strukturu, která je schopna
+přijmout, zpracovat a odeslat jeden pixel v každém hodinovém taktu (Initiation
+Interval = 1).
 
-Aby bylo možné dosáhnout propustnosti jednoho pixelu za takt při maticových operacích, bylo nutné překonat omezení čtecích portů standardních blokových pamětí (BRAM). 
+Aby bylo možné dosáhnout propustnosti jednoho pixelu za takt při maticových
+operacích, bylo nutné překonat omezení čtecích portů standardních blokových
+pamětí (BRAM).
 
 \subsubsection{Destrukce paměťových bloků (Array Partitioning)
 }
-Standardní paměť BRAM v FPGA disponuje pouze dvěma čtecími porty. Maticový výpočet však vyžaduje paralelní přístup ke všem koeficientům (např. 9 koeficientů pro matici 3x3) současně. Z tohoto důvodu byla použita direktiva $\#pragma HLS ARRAY_PARTITION$ variable=coeffs complete. Tato instrukce rozloží logické pole na samostatné klopné obvody (Flip-Flops), čímž vznikne dedikovaný fyzický vodič pro každý koeficient a je zamezeno vzniku úzkého hrdla při čtení dat.
+Standardní paměť BRAM v FPGA disponuje pouze dvěma čtecími porty. Maticový
+výpočet však vyžaduje paralelní přístup ke všem koeficientům (např. 9
+koeficientů pro matici 3x3) současně. Z tohoto důvodu byla použita direktiva
+$\#pragma HLS ARRAY_PARTITION$ variable=coeffs complete. Tato instrukce rozloží
+logické pole na samostatné klopné obvody (Flip-Flops), čímž vznikne dedikovaný
+fyzický vodič pro každý koeficient a je zamezeno vzniku úzkého hrdla při čtení
+dat.
 
 \subsubsection{Využití bloků DSP a ochrana proti přetečení
 }
-Vnitřní cyklus, iterující přes barevné kanály, je plně rozbalen pomocí direktivy \#pragma HLS UNROLL. Tím je zamezeno vzniku sekvenčního stavového automatu a namísto toho je vytvořen paralelní strom násobiček.
+Vnitřní cyklus, iterující přes barevné kanály, je plně rozbalen pomocí
+direktivy \#pragma HLS UNROLL. Tím je zamezeno vzniku sekvenčního stavového
+automatu a namísto toho je vytvořen paralelní strom násobiček.
 
-
-Syntezátor pro tyto operace (Multiply-Accumulate - MAC) automaticky inferuje dedikované DSP řezy (např. DSP48E2 na architektuře UltraScale\+). Pro zajištění numerické stability je akumulační registr definován pomocí datového typu $ap_int<48>$. Šířka 48 bitů přesně mapuje fyzickou architekturu sčítačky uvnitř bloku DSP, čímž je zaručena naprostá odolnost proti přetečení (\textit{Overflow}) i při kaskádním sčítání dílčích součinů. Následná normalizace výpočtu je provedena bitovým posunem vpravo ($\gg 8$), což v hardwaru nepředstavuje žádnou logickou spotřebu, jedná se pouze o přeznačení vodičů.
+Syntezátor pro tyto operace (Multiply-Accumulate - MAC) automaticky inferuje
+dedikované DSP řezy (např. DSP48E2 na architektuře UltraScale\+). Pro zajištění
+numerické stability je akumulační registr definován pomocí datového typu
+$ap_int<48>$. Šířka 48 bitů přesně mapuje fyzickou architekturu sčítačky uvnitř
+bloku DSP, čímž je zaručena naprostá odolnost proti přetečení
+(\textit{Overflow}) i při kaskádním sčítání dílčích součinů. Následná
+normalizace výpočtu je provedena bitovým posunem vpravo ($\gg 8$), což v
+hardwaru nepředstavuje žádnou logickou spotřebu, jedná se pouze o přeznačení
+vodičů.
 
 \subsection{Význam šablonového metaprogramování pro syntézu HW}
-Inovativním prvkem navrženého řešení je definice algoritmu ve formě C\+\+ šablony ($template <int IN_CH, int IN_W, int OUT_CH, int OUT_W>$). Tento přístup přináší zásadní výhody pro finální hardwarovou implementaci:
+Inovativním prvkem navrženého řešení je definice algoritmu ve formě C\+\+
+šablony ($template <int IN_CH, int IN_W, int OUT_CH, int OUT_W>$). Tento
+přístup přináší zásadní výhody pro finální hardwarovou implementaci:
 
 \begin{enumerate}
     \item \textbf{Konstantní propagace v době kompilace:} Parametry šablony (počet kanálů, bitová šířka) jsou vyhodnoceny během kompilace (\textit{Compile-time}). Konstanty pro saturaci obrazu (např. $MAX_VAL$) jsou syntezátorem zadrátovány přímo do komparátorů, čímž odpadá nutnost alokace paměti pro tyto mezní hodnoty.
@@ -1173,7 +1390,11 @@ Inovativním prvkem navrženého řešení je definice algoritmu ve formě C\+\+
 \end{enumerate}
 
 \subsection{Závěr návrhu}
-Kombinací paralelizace na úrovni dat (Data-Level Parallelism), efektivního mapování DSP bloků a generické metaprogramovací architektury bylo vytvořeno robustní IP jádro. Modul bez problémů splňuje požadavky na zpracování video toku v reálném čase (Real-time Video Processing) s minimální latencí, deterministickým časováním a optimální spotřebou zdrojů platformy FPGA.
+Kombinací paralelizace na úrovni dat (Data-Level Parallelism), efektivního
+mapování DSP bloků a generické metaprogramovací architektury bylo vytvořeno
+robustní IP jádro. Modul bez problémů splňuje požadavky na zpracování video
+toku v reálném čase (Real-time Video Processing) s minimální latencí,
+deterministickým časováním a optimální spotřebou zdrojů platformy FPGA.
 
 \section{Moduly pro barevné transformace}
 \subsection{Univerzální barevný převodník pro lineární barevné palety?}
@@ -1183,7 +1404,7 @@ Kombinací paralelizace na úrovni dat (Data-Level Parallelism), efektivního ma
 \subsection{HSV na RGB}
 
 \section{Převody do barevných soustav}
-zminit problém nalezení toho "správného" postupu YCbCr, YUV,  a dalších (
+zminit problém nalezení toho "správného" postupu YCbCr, YUV, a dalších (
 \begin{itemize}
     \item \textbf{Y′UV} is the separation used in PAL.
     \item \href{https://en.wikipedia.org/wiki/YDbDr}{YDbDr} is the format used in \href{https://en.wikipedia.org/wiki/SECAM}{SECAM}, unusually based on non-gamma-corrected (linear) RGB, making the Y component true \href{https://en.wikipedia.org/wiki/Luminance}{luminance}.
@@ -1192,7 +1413,7 @@ zminit problém nalezení toho "správného" postupu YCbCr, YUV,  a dalších (
     \item \href{https://en.wikipedia.org/wiki/YCbCr}{Y′CbCr} is any \href{https://en.wikipedia.org/wiki/Digital_component_video}{digital encoding} of Y'PbPr suited for video and image compression and transmission formats such as \href{https://en.wikipedia.org/wiki/Moving_Picture_Experts_Group}{MPEG} and \href{https://en.wikipedia.org/wiki/JPEG}{JPEG}.\textsuperscript{\href{https://en.wikipedia.org/wiki/Y\%E2\%80\%B2UV\#cite_note-Poynton-2}{[2]}}
     \item \href{https://en.wikipedia.org/wiki/YCoCg}{Y′CoCg} is a similar separation that offers better performance and lossless round-tripping, used in newer video codecs and \href{https://en.wikipedia.org/wiki/JPEG_XR}{JPEG XR}.
 \end{itemize}
- ) takže jsem vytvořil univerzální, kde stačí pouze upravit koeficienty
+) takže jsem vytvořil univerzální, kde stačí pouze upravit koeficienty
 
 \section{RGB na HSV}
 \subsection{VHDL}
@@ -1200,15 +1421,15 @@ zminit problém nalezení toho "správného" postupu YCbCr, YUV,  a dalších (
 \begin{table}[!h]
     \centering
     \begin{tabular}{cccc}\toprule
-         Prostředek&  Syntéza&  Implementace& Procent (\%)\\\midrule
-         LUT&  220&  218& 0,19\\
-         LUTRAM&  14&  14
-& 0,02\\
-         FF&  118&  118
-& 0,05\\ 
-         DSP& 2& 2
-&0,16\\
-         IO& 58& 58&30,69\\ \bottomrule
+        Prostředek & Syntéza & Implementace & Procent (\%) \\\midrule
+        LUT        & 220     & 218          & 0,19         \\
+        LUTRAM     & 14      & 14
+                   & 0,02                                  \\
+        FF         & 118     & 118
+                   & 0,05                                  \\
+        DSP        & 2       & 2
+                   & 0,16                                  \\
+        IO         & 58      & 58           & 30,69        \\ \bottomrule
     \end{tabular}
     \caption{Srovnání prostředků}
     \label{tab:rgb2hsv}
@@ -1223,19 +1444,18 @@ zminit problém nalezení toho "správného" postupu YCbCr, YUV,  a dalších (
 \begin{table}[!h]
     \centering
     \begin{tabular}{cccc}
-        Prostředek& Syntéza& Implementace& Procent (\%)\\\midrule
-        LUT &  385 & 381 & 0,33 \\
-        LUTRAM& 6 & 6 & 0,01 \\
-        FF& 181 & 181 & 0,08\\
-        DSP& 2 & 2 & 0,16\\
-        IO& 58 & 58 & 31,69\\ \bottomrule
+        Prostředek & Syntéza & Implementace & Procent (\%) \\\midrule
+        LUT        & 385     & 381          & 0,33         \\
+        LUTRAM     & 6       & 6            & 0,01         \\
+        FF         & 181     & 181          & 0,08         \\
+        DSP        & 2       & 2            & 0,16         \\
+        IO         & 58      & 58           & 31,69        \\ \bottomrule
     \end{tabular}
     \caption{Srovnání prostředků}
     \label{tab:hsv2rgb}
 \end{table}
 
 \subsection{HLS}
-
 
 \section{Prahování (implementace)}
 % KOSTRA: doplnit podle README.md §3 (HLS i VHDL, ověření).
@@ -1257,66 +1477,57 @@ Vynásob a sečti
 \begin{table}[!h]
     \centering
     \begin{tabular}{cccc}
-        Prostředek& Syntéza& Implementace& Procent (\%\(+-0.1\))\\\midrule
-        LUT &  11368 & 11355 & 9,71 \\
-        LUTRAM& 123 & 123 & 0,21 \\
-        FF& 33161 & 33161 & 14,16\\
-        DSP& 0 & 0 & 0,0\\
-        IO& 98 & 98 & 51,85\\ \bottomrule
+        Prostředek & Syntéza & Implementace & Procent (\%\(+-0.1\)) \\\midrule
+        LUT        & 11368   & 11355        & 9,71                  \\
+        LUTRAM     & 123     & 123          & 0,21                  \\
+        FF         & 33161   & 33161        & 14,16                 \\
+        DSP        & 0       & 0            & 0,0                   \\
+        IO         & 98      & 98           & 51,85                 \\ \bottomrule
     \end{tabular}
     \caption{Srovnání prostředků}
     \label{tab:filter_2d}
 \end{table}
 
- \subsection{Srovnání}
-
- 
+\subsection{Srovnání}
 
 \section{Mediánový filtr (implementace)}
 % KOSTRA: doplnit podle README.md §5 (sorting network, HLS i VHDL).
-
 
 \section{Histogram (implementace)}
 % KOSTRA: doplnit: BRAM s forwardingem proti 256 čítačům (README.md §6, vysledky.md sekce 7).
 
 \section{Testovací řetězec: průchod bez zpracování (bypass)}
-Testovací komponenta, logicky je nejednoduší ale byla důležitá k testování a naučení se ovládání datového streamu, důležitý poznatek je dodržet to co Xillinx uvádí ve své dokumentaci a to je zpracování ve dvou vnořených cyklech, pro výšku a šírku myslím že to je v souboru XAP793 nebo jak se to jmenuje
-
+Testovací komponenta, logicky je nejednoduší ale byla důležitá k testování a
+naučení se ovládání datového streamu, důležitý poznatek je dodržet to co
+Xillinx uvádí ve své dokumentaci a to je zpracování ve dvou vnořených cyklech,
+pro výšku a šírku myslím že to je v souboru XAP793 nebo jak se to jmenuje
 
 \section{Testovací řetězec a měřicí aplikace}
 \label{sec:retezec}
 % KOSTRA: VDMA, AXIS přepínače, bypass jako strop, harness_app na A53, board_test (README.md, vysledky.md sekce 12, 19).
 
-
 \section{Nalezené problémy}
 \label{sec:problemy}
 % KOSTRA: řádková HLS jádra s auto-rewind, chování VDMA S2MM, PS UART (vysledky.md sekce 16 a 17, lessons.md).
-
 
 \chapter{Výsledky a srovnání}
 \label{kap:vysledky}
 % KOSTRA: kap. 6 (~7 s). Tabulky z doc/osnova_kap4-6.md; čísla přesně z DP/results/vysledky.md. Tabulku „Srovnání prostředků“ 2D filtru z kap. 5 přesunout sem.
 
-
 \section{Ověření funkce}
 % KOSTRA: bitová shoda 16 jader na třech úrovních SW (vysledky.md sekce 16 až 18).
-
 
 \section{Prostředky a maximální frekvence (OOC)}
 % KOSTRA: HLS × VHDL po jádrech (README.md Výsledky, vysledky.md sekce 2 až 9, 11, 13).
 
-
 \section{Propustnost na desce}
 % KOSTRA: 10,37 ms na snímek, 96 fps; cena vypnutí auto-rewind (vysledky.md sekce 19).
-
 
 \section{Srovnání HW a SW}
 % KOSTRA: zrychlení 3,4× až 55×, vliv -O0/-O2/-O3 (vysledky.md sekce 18).
 
-
 \section{Využití zařízení celým řetězcem}
 % KOSTRA: obnovit z finálního bitstreamu (vysledky.md sekce 12 je z 22. 10.).
-
 
 \section{Diskuse}
 % KOSTRA: kompromisy HLS × VHDL, limity měření, bez superlativů.
