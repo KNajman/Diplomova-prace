@@ -156,9 +156,11 @@ Koeficienty $\mathbf{C}$ jsou v **Q2.15** (18 b = šířka portu B násobičky D
 Matice se počítají z definic normy ($K_r$, $K_b$), například BT.601:
 
 ```math
-Y = K_r R + (1 - K_r - K_b) G + K_b B ,\qquad
-C_b = 128 + \frac{B - Y}{2(1 - K_b)} ,\qquad
-C_r = 128 + \frac{R - Y}{2(1 - K_r)}
+\begin{aligned}
+Y   &= K_r R + (1 - K_r - K_b)\, G + K_b B \\
+C_b &= 128 + \frac{B - Y}{2(1 - K_b)} \\
+C_r &= 128 + \frac{R - Y}{2(1 - K_r)}
+\end{aligned}
 ```
 
 s $K_r = 0{,}299$, $K_b = 0{,}114$ (BT.709: $0{,}2126$; $0{,}0722$). Zaokrouhlení koeficientů na Q2.15 metodou největšího
@@ -244,15 +246,23 @@ out_pixel(out_ch) <= sat_u8(shift_right(sum012(out_ch), C_CSC_FRAC_W));    -- kr
 Převod **RGB → HSV** podle celočíselného algoritmu z OpenCV (kde je H v rozsahu 0–179, aby se vešel do bajtu). Dělení nahrazují 2 tabulky převrácených hodnot o 256 položkách (`shift` = 12):
 
 ```math
-V = \max(R,G,B),\quad \Delta = V - \min(R,G,B),\quad
-S = \mathrm{round\_shift}\bigl(\Delta \cdot \mathrm{sdiv}[V],\ 12\bigr),\quad
-\mathrm{sdiv}[i] = \mathrm{round}\!\left(\frac{255 \cdot 2^{12}}{i}\right)
+\begin{aligned}
+V &= \max(R,G,B) \\
+\Delta &= V - \min(R,G,B) \\
+S &= \mathrm{round\_shift}\bigl(\Delta \cdot \mathrm{sdiv}[V],\ 12\bigr),
+  & \mathrm{sdiv}[i] &= \mathrm{round}\!\left(\frac{255 \cdot 2^{12}}{i}\right)
+\end{aligned}
 ```
 
 ```math
-H = \mathrm{round\_shift}\bigl(h \cdot \mathrm{hdiv}[\Delta],\ 12\bigr),\quad
-h = \begin{cases} G - B & V = R \\ B - R + 2\Delta & V = G \\ R - G + 4\Delta & V = B \end{cases},\quad
-\mathrm{hdiv}[i] = \mathrm{round}\!\left(\frac{180 \cdot 2^{12}}{6i}\right)
+h = \begin{cases} G - B & V = R \\ B - R + 2\Delta & V = G \\ R - G + 4\Delta & V = B \end{cases}
+```
+
+```math
+\begin{aligned}
+H &= \mathrm{round\_shift}\bigl(h \cdot \mathrm{hdiv}[\Delta],\ 12\bigr),
+  & \mathrm{hdiv}[i] &= \mathrm{round}\!\left(\frac{180 \cdot 2^{12}}{6i}\right)
+\end{aligned}
 ```
 
 a $H < 0 \Rightarrow H + 180$. Výsledek je bitově shodný s `cv::cvtColor(…, COLOR_RGB2HSV)` pro všech $2^{24}$ barev.
@@ -261,16 +271,19 @@ a $H < 0 \Rightarrow H + 180$. Výsledek je bitově shodný s `cv::cvtColor(…,
 $x/255$ přibližným vzorcem $\mathrm{div255}(x) = (x + 1 + (x \gg 8)) \gg 8$:
 
 ```math
-p = \mathrm{div255}\bigl(V(255 - S)\bigr),\quad
-q = \mathrm{div255}\bigl(V(255 - \mathrm{div255}(Sf))\bigr),\quad
-t = \mathrm{div255}\bigl(V(255 - \mathrm{div255}(S(255 - f)))\bigr)
+\begin{aligned}
+p &= \mathrm{div255}\bigl(V\,(255 - S)\bigr) \\
+q &= \mathrm{div255}\bigl(V\,(255 - \mathrm{div255}(S f))\bigr) \\
+t &= \mathrm{div255}\bigl(V\,(255 - \mathrm{div255}(S\,(255 - f)))\bigr)
+\end{aligned}
 ```
 
 $(R,G,B)$ podle sektoru 0–5: $(V,t,p), (q,V,p), (p,V,t), (p,q,V), (t,p,V), (V,p,q)$; pro $S = 0$ šedá $(V,V,V)$.
 
 <table><tr><td>
-s
+
 **C** (`hsv.c`, RGB → HSV, zkráceno)
+
 ```c
 const int32_t v_max = max3(r, g, b);
 const int32_t diff  = v_max - min3(r, g, b);
@@ -281,6 +294,7 @@ else                 h = (r - g) + 4 * diff;
 h = round_shift(h * imgproc_hsv_hdiv180(diff), 12);
 if (h < 0) h += 180;
 ```
+
 </td><td>
 
 **VHDL** (`rgb2hsv_core.vhd`, 8 taktů)
@@ -401,18 +415,26 @@ end if;
 Sémantika `cv::filter2D` (korelace), okno $K \times K$ se středem v $(x, y)$, $r = \lfloor K/2 \rfloor$:
 
 ```math
-\mathrm{acc}(x,y) = \sum_{i=0}^{K-1}\sum_{j=0}^{K-1} c_{ij}\; I\bigl(x + j - r,\ y + i - r\bigr),\qquad
-O(x,y) = \mathrm{sat}_{u8}\bigl(\mathrm{round\_shift}(\mathrm{acc}\cdot s,\ 14) + \delta\bigr)
+\begin{aligned}
+\mathrm{acc}(x,y) &= \sum_{i=0}^{K-1}\sum_{j=0}^{K-1} c_{ij}\; I\bigl(x + j - r,\ y + i - r\bigr) \\
+O(x,y) &= \mathrm{sat}_{u8}\bigl(\mathrm{round\_shift}(\mathrm{acc}\cdot s,\ 14) + \delta\bigr)
+\end{aligned}
 ```
 
 Koeficienty $c_{ij}$ int8, normalizace $s$ v **Q.14** (18 b), $\delta$ int16. Pixely mimo obraz: 0 (*constant*) nebo
 nejbližší pixel na okraji (*replicate*). Šířky: součin $8 + 9 = 17$ b, součet $17 + \lceil\log_2 K^2\rceil$ b.
 
-| jádro | $c$ | $s$ |
+| jádro | koeficienty $c$ | měřítko $s$ |
 | --- | --- | --- |
 | průměr 3×3 | samé 1 | $\mathrm{round}(2^{14}/9) = 1820$ |
-| Sobel $x$ | $\begin{pmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{pmatrix}$ | $2^{14}$ |
-| zostření | $\begin{pmatrix}0&-1&0\\-1&5&-1\\0&-1&0\end{pmatrix}$ | $2^{14}$ |
+| Sobel $x$ | $c_{\mathrm{Sobel}}$ (níže) | $2^{14}$ |
+| zostření | $c_{\mathrm{zostření}}$ (níže) | $2^{14}$ |
+
+```math
+c_{\mathrm{Sobel}} = \begin{pmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{pmatrix}
+\qquad\qquad
+c_{\mathrm{zostření}} = \begin{pmatrix} 0 & -1 & 0 \\ -1 & 5 & -1 \\ 0 & -1 & 0 \end{pmatrix}
+```
 
 <table><tr><td>
 
@@ -542,15 +564,34 @@ median_value   <= sort3(lows_sorted.high, middles_sorted.middle, highs_sorted.lo
 
 `sort3` je ve všech třech jazycích stejná funkce se **3 ostrými porovnáními** (`>`), která sdílí minimum, medián
 i maximum. Při rovnosti hodnot je jedno, která se vybere, výsledek je stejný (ekvivalence s dřívějším zápisem ověřena
-na všech 2^24 trojicích; sdílení porovnání ušetřilo 33 LUT a 6 komparátorů, `vysledky.md` sekce 23):
+na všech 2^24 trojicích; sdílení porovnání ušetřilo 33 LUT a 6 komparátorů, `vysledky.md` sekce 23). Pseudokód:
 
+```text
+function sort3(a, b, c) -> (minimum, median, maximum)
+    a_greater    := a > b                        -- comparison 1
+    smaller_ab   := a_greater ? b : a
+    larger_ab    := a_greater ? a : b
+    larger_gt_c  := larger_ab > c                -- comparison 2
+    c_gt_smaller := c > smaller_ab               -- comparison 3
+
+    minimum := c_gt_smaller ? smaller_ab : c
+    maximum := larger_gt_c  ? larger_ab  : c
+    median  := not larger_gt_c  ? larger_ab      -- smaller_ab <= larger_ab <= c
+             : not c_gt_smaller ? smaller_ab     -- c <= smaller_ab <= larger_ab
+             : c                                 -- smaller_ab < c < larger_ab
+
+function median9(p00 .. p22) -> median
+    row0 := sort3(p00, p01, p02)                 -- clock E1: sort each row
+    row1 := sort3(p10, p11, p12)
+    row2 := sort3(p20, p21, p22)
+    highest_minimum   := sort3(row0.minimum, row1.minimum, row2.minimum).maximum   -- clock E2
+    median_of_medians := sort3(row0.median,  row1.median,  row2.median ).median
+    lowest_maximum    := sort3(row0.maximum, row1.maximum, row2.maximum).minimum
+    return sort3(highest_minimum, median_of_medians, lowest_maximum).median       -- clock E3
 ```
-a_gt_b  = a > b          lo_ab = a_gt_b ? b : a          hi_ab = a_gt_b ? a : b
-hi_gt_c = hi_ab > c      c_gt_lo = c > lo_ab
-lo  = c_gt_lo ? lo_ab : c
-hi  = hi_gt_c ? hi_ab : c
-mid = !hi_gt_c ? hi_ab : (!c_gt_lo ? lo_ab : c)
-```
+
+Z posledních čtyř `sort3` se používá jen jeden výstup (`maximum`, `median`, `minimum`, `median`), proto v obvodu
+zůstane 9 + 2 + 3 + 2 + 3 = 19 porovnání.
 
 ---
 
@@ -700,6 +741,29 @@ z předchozího snímku).
 
 U jader, která čtou a zapisují stejnou paměť v každém taktu (histogram), je kosimulace povinná: C-simulace chybu
 v předávání mezivýsledku neodhalí, protože C kód žádnou pipeline nemá (`DP/hls/README.md`).
+
+### Proč jsou testy zvolené takto a jak úplně ověřují funkci
+
+Úplný test (všechny možné vstupy) je reálný jen tam, kde výstup pixelu závisí jen na tomto pixelu a vstup má málo bitů.
+U okénkových operací je prostor vstupů obrovský (okno 3×3 má 9 × 8 = 72 bitů, tedy 2^72 kombinací), proto se testují
+třídy vstupů, které míří na konkrétní místa, kde může implementace selhat. Pro všechny testy navíc platí:
+
+- **Reference je vždy referenční model v C**, ne ručně opsané hodnoty: vektory generuje `imgproc_cli` z modelu.
+- **Tři implementace se kontrolují navzájem.** HLS i VHDL se porovnávají se stejným modelem a model se porovnává
+  s OpenCV. Když se dvě nezávislé implementace (HLS z C++ a ručně psané VHDL) shodují s modelem bit po bitu, je
+  nepravděpodobné, že by obě měly stejnou chybu. Na desce se obě porovnávají s modelem přeloženým pro A53 na snímku 1080p.
+- **Protokol AXI4-Stream se testuje zvlášť od výpočtu:** náhodné mezery (`TVALID`) a zpětné brzdění (`TREADY`), několik
+  snímků za sebou, pixely před `TUSER`, předčasný a pozdní `TLAST`, reset uprostřed snímku. Tyto chyby se v datech
+  projeví jen náhodně, proto mají vlastní scénáře.
+
+| algoritmus | zvolený test | proč je vhodný | jak úplně ověřuje |
+| --- | --- | --- | --- |
+| RGB ↔ HSV | všech 2^24 vstupů v obou směrech (xsim i C-simulace), k tomu hraniční hodnoty a rampy | bodová funkce 3 × 8 b → 3 × 8 b, prostor je malý a úplný test trvá minuty | **úplně**: každý možný pixel; protokol zvlášť |
+| převod barev | 9 předvoleb na obrazech s hraničními hodnotami, gradientem a šumem; model proti OpenCV na všech 2^24 barvách | jedno jádro s maticí v registrech: test předvoleb ověří datovou cestu i zápis koeficientů | model **úplně** (2^24), HW na vybraných obrazech; úplný test HW by šel doplnit stejně jako u HSV |
+| prahování | všech 256 hodnot pixelu × 5 typů × prahy {0, 1, 127, 254, 255} × maxval {255, 77}, neplatné typy 5–7 | výsledek se mění jen na hranici `x > T`: prahy na krajích a uprostřed pokryjí obě strany hranice i rovnost | **všechny hodnoty pixelu** pro každý typ; prahy jen vybrané (úplně by to bylo 256 × 256 × 256 × 5) |
+| konvoluce K×K | jádra identity (posun okna), průměr (zaokrouhlení), zostření a Sobel (záporné koeficienty, saturace), pseudonáhodná 5×5 a 7×7, rozměry menší než jádro, oba okraje | každé jádro míří na jinou část: identity ověří geometrii okna a okraje, zostření a Sobel saturaci a znaménko, náhodná jádra šířky součtů | **třídy vstupů**; úplně nelze (2^72 pro 3×3), proto cílené případy a náhodná jádra |
+| medián 3×3 | 6 rozměrů včetně výšky 1 a 2 (překryv okrajů), oba okraje, poruchy protokolu; síť zvlášť skriptem `median_network_count.py` | chyby okna jsou na okrajích a malých obrazech; správnost samotné sítě se dá dokázat | síť **úplně** (princip 0-1: všech 2^9 binárních vstupů dokazuje správnost pro libovolná čísla), okno na třídách vstupů |
+| histogram | vzory s opakováním stejné hodnoty po 1 až 4 pixelech, rozměry 9×3 a 8×1, porucha a resynchronizace; video musí projít beze změny | riziková je jen kolize čtení a zápisu stejného koše v po sobě jdoucích taktech (forwarding), vzory míří přesně na ni | **všechny vzdálenosti kolize** v pipeline (1 až 4 takty); hodnoty košů na vybraných obrazech |
 
 ## Testovací řetězec a test na desce KV260
 
