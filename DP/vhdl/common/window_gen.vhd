@@ -32,6 +32,11 @@
 --    provedení se jen čtou - porovnání s rozměry už neleží v cestě fire -> čítač (v1: 7 úrovní,
 --    frame_height -> need_input -> fire -> pos_y). Rozměry se v STATE_WAIT_SOF přebírají průběžně
 --    (spolu s konci a příznaky pozice (0, 0), vše ve stejném taktu), v taktu TUSER se zmrazí.
+--  * v3 (19. 11. 2026, kritická cesta v2: pos_y -> next_y -> porovnání s rozměry a výpočet row_source ->
+--    position_flags, 9 úrovní, 70 % propojení): příznaky se dělí na sloupcové (závisí jen na x) a řádkové
+--    (jen na y). Příznaky pozice x + 1 a y + 1 se počítají porovnáním registru pos_x / pos_y s konstantami
+--    snímku (W - 1, W - 2, ...), které se předpočítají v STATE_WAIT_SOF, bez sčítačky v cestě. Výběr
+--    (další sloupec / první sloupec, stejný řádek / další řádek / první řádek) je až za porovnáním.
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -89,18 +94,42 @@ architecture rtl of window_gen is
         row_source   : t_row_index_array;               -- svislý okraj: zdrojový řádek sloupce
         row_zero     : std_logic_vector(0 to G_K - 1);  -- svislý okraj: řádek mimo obraz -> 0
     end record;
+    -- Příznaky jen podle x (sloupec) a jen podle y (řádek); t_position = jejich kombinace
+    type t_col_flags is record
+        has_column   : std_logic;   -- x < W
+        first_column : std_logic;   -- x = 0
+        last_column  : std_logic;   -- x = W - 1
+        out_col      : std_logic;   -- x >= R
+        sof_col      : std_logic;   -- x = R
+        eol          : std_logic;   -- x = poslední pozice řádku (W - 1 + R)
+    end record;
+    type t_row_flags is record
+        in_rows      : std_logic;   -- y < H
+        out_row      : std_logic;   -- y >= R
+        sof_row      : std_logic;   -- y = R
+        last_row     : std_logic;   -- y = poslední řádek snímku (H - 1 + R)
+        row_source   : t_row_index_array;
+        row_zero     : std_logic_vector(0 to G_K - 1);
+    end record;
+    type t_dim_array is array (0 to G_K - 1) of unsigned(C_DIM_W - 1 downto 0);
     constant C_BUBBLE : t_position := (valid => '0', has_input => '0', has_column => '0', first_column => '0', last_column => '0',
                                        has_output => '0', sof => '0', eol => '0', frame_end => '0',
                                        row_source => (others => 0), row_zero => (others => '0'));
 
     signal state         : t_state := STATE_WAIT_SOF;
     signal pos_x, pos_y  : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
-    signal frame_width   : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
-    signal frame_height  : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
     signal frame_replicate : std_logic := '0';
-    signal x_end, y_end  : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
 
     signal position_flags : t_position := C_BUBBLE;     -- příznaky pozice (pos_x, pos_y), o takt dopředu
+    -- v3: příznaky aktuálního řádku, prvního sloupce a prvního řádku snímku + konstanty snímku pro porovnání
+    signal row_current   : t_row_flags;
+    signal row_first_flags : t_row_flags;
+    signal col_first_flags : t_col_flags;
+    signal width_m1, width_m2, x_end_m1 : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
+    signal height_m1, y_end_m1, height_k3 : unsigned(C_DIM_W - 1 downto 0) := (others => '0');
+    signal height_k      : t_dim_array := (others => (others => '0'));  -- H + K - 2 - k
+    signal col_plus1     : t_col_flags;                 -- příznaky sloupce pos_x + 1 (kombinačně z pos_x)
+    signal row_plus1     : t_row_flags;                 -- příznaky řádku pos_y + 1 (kombinačně z pos_y)
     signal next_x, next_y : unsigned(C_DIM_W - 1 downto 0);
     signal need_input    : boolean;
     signal accept_input  : std_logic;
@@ -129,24 +158,30 @@ architecture rtl of window_gen is
 
     signal buffer_write_enable : std_logic;
 
-    -- Metadata pozice (x, y) pro rozměry snímku (width, height)
-    function make_position(x, y, frame_w, frame_h, last_x, last_y : unsigned; replicate : std_logic)
-        return t_position is
-        variable result    : t_position;
-        variable row_first : integer;               -- index řádku raw_column(0) = y - (K - 1)
-        variable row       : integer;
+    -- Příznaky sloupce x a řádku y pro rozměry snímku (použité v STATE_WAIT_SOF pro pozici (0, 0))
+    function make_col(x, frame_w, last_x : unsigned) return t_col_flags is
+        variable result : t_col_flags;
     begin
-        result.valid        := '1';
-        result.has_input    := to_sl(x < frame_w and y < frame_h);
         -- jen x: i v řádcích flush (y >= H) se sloupec posouvá a řádkové buffery se zapisují (s nulou),
         -- jinak by u K >= 5 další řádek flush četl špatné řádky (stejně jako HLS šablona)
         result.has_column   := to_sl(x < frame_w);
         result.first_column := to_sl(x = 0);
         result.last_column  := to_sl(x = frame_w - 1);
-        result.has_output   := to_sl(x >= C_RADIUS and y >= C_RADIUS);
-        result.sof          := to_sl(x = C_RADIUS and y = C_RADIUS);
+        result.out_col      := to_sl(x >= C_RADIUS);
+        result.sof_col      := to_sl(x = C_RADIUS);
         result.eol          := to_sl(x = last_x);
-        result.frame_end    := to_sl(x = last_x and y = last_y);
+        return result;
+    end function;
+
+    function make_row(y, frame_h, last_y : unsigned; replicate : std_logic) return t_row_flags is
+        variable result    : t_row_flags;
+        variable row_first : integer;               -- index řádku raw_column(0) = y - (K - 1)
+        variable row       : integer;
+    begin
+        result.in_rows  := to_sl(y < frame_h);
+        result.out_row  := to_sl(y >= C_RADIUS);
+        result.sof_row  := to_sl(y = C_RADIUS);
+        result.last_row := to_sl(y = last_y);
         row_first := to_integer(y) - (G_K - 1);
         for k in 0 to G_K - 1 loop
             row := row_first + k;
@@ -163,6 +198,23 @@ architecture rtl of window_gen is
         end loop;
         return result;
     end function;
+
+    function combine(c : t_col_flags; r : t_row_flags) return t_position is
+        variable result : t_position;
+    begin
+        result.valid        := '1';
+        result.has_input    := c.has_column and r.in_rows;
+        result.has_column   := c.has_column;
+        result.first_column := c.first_column;
+        result.last_column  := c.last_column;
+        result.has_output   := c.out_col and r.out_row;
+        result.sof          := c.sof_col and r.sof_row;
+        result.eol          := c.eol;
+        result.frame_end    := c.eol and r.last_row;
+        result.row_source   := r.row_source;
+        result.row_zero     := r.row_zero;
+        return result;
+    end function;
 begin
 
     need_input   <= position_flags.has_input = '1';
@@ -170,6 +222,34 @@ begin
     next_x <= (others => '0') when position_flags.eol = '1' else pos_x + 1;
     next_y <= (others => '0') when position_flags.frame_end = '1' else
               pos_y + 1 when position_flags.eol = '1' else pos_y;
+    -- Příznaky sloupce x + 1 a řádku y + 1 porovnáním pos_x / pos_y s konstantami snímku
+    -- (x + 1 < W  <=>  x < W - 1 atd.); řádek raw_column(k) pro y + 1 je y + 1 - (K - 1) + k
+    process (all)
+    begin
+        col_plus1.has_column   <= to_sl(pos_x < width_m1);
+        col_plus1.first_column <= '0';
+        col_plus1.last_column  <= to_sl(pos_x = width_m2);
+        col_plus1.out_col      <= to_sl(pos_x >= C_RADIUS - 1);
+        col_plus1.sof_col      <= to_sl(pos_x = C_RADIUS - 1);
+        col_plus1.eol          <= to_sl(pos_x = x_end_m1);
+        row_plus1.in_rows      <= to_sl(pos_y < height_m1);
+        row_plus1.out_row      <= to_sl(pos_y >= C_RADIUS - 1);
+        row_plus1.sof_row      <= to_sl(pos_y = C_RADIUS - 1);
+        row_plus1.last_row     <= to_sl(pos_y = y_end_m1);
+        for k in 0 to G_K - 1 loop
+            if to_integer(pos_y) < G_K - 2 - k then                              -- řádek < 0 -> řádek 0
+                row_plus1.row_source(k) <= G_K - 2 - to_integer(pos_y);
+                row_plus1.row_zero(k)   <= not frame_replicate;
+            elsif pos_y >= height_k(k) then                                        -- řádek >= H -> řádek H - 1
+                row_plus1.row_source(k) <= to_integer(resize(height_k3 - pos_y, clog2(G_K) + 1));
+                row_plus1.row_zero(k)   <= not frame_replicate;
+            else
+                row_plus1.row_source(k) <= k;
+                row_plus1.row_zero(k)   <= '0';
+            end if;
+        end loop;
+    end process;
+
     in_ready     <= accept_input;
     accept_input <= pipe_enable and ((to_sl(state = STATE_WAIT_SOF) and run) or to_sl(state = STATE_RUN and need_input));
     start_frame  <= (state = STATE_WAIT_SOF) and (accept_input = '1') and (in_valid = '1') and (in_user = '1');
@@ -202,7 +282,7 @@ begin
     begin
         if rising_edge(aclk) then
             -- Poznámka k volbě: resetují se jen řídicí registry (stav, pozice, příznaky, status). Rozměry
-            -- snímku, x_end/y_end, position_flags a datové registry se neresetují: ve stavu WAIT_SOF se
+            -- snímku, konstanty snímku, příznaky pozice a datové registry se neresetují: ve stavu WAIT_SOF se
             -- přebírají v každém taktu, a první start_frame po resetu nastane až po prázdném vstupním
             -- skid bufferu (out_valid = 0 po resetu), takže se nikdy nepoužije stará hodnota.
             -- Ověřuje tb_filter2d_reset (reset uprostřed snímku, změněné rozměry, run = 1). Sigasi to
@@ -232,15 +312,24 @@ begin
                     else
                         -- rozměry, konce a příznaky pozice (0, 0) se přebírají průběžně, všechny ve stejném
                         -- taktu ze stejných vstupů -> vždy navzájem konzistentní
-                        frame_width     <= width;
-                        frame_height    <= height;
                         frame_replicate <= border_replicate;
-                        x_end           <= width - 1 + C_RADIUS;
-                        y_end           <= height - 1 + C_RADIUS;
                         pos_x           <= (others => '0');
                         pos_y           <= (others => '0');
-                        position_flags  <= make_position(to_unsigned(0, C_DIM_W), to_unsigned(0, C_DIM_W), width, height,
-                                                         width - 1 + C_RADIUS, height - 1 + C_RADIUS, border_replicate);
+                        col_first_flags <= make_col(to_unsigned(0, C_DIM_W), width, width - 1 + C_RADIUS);
+                        row_first_flags <= make_row(to_unsigned(0, C_DIM_W), height, height - 1 + C_RADIUS, border_replicate);
+                        row_current     <= make_row(to_unsigned(0, C_DIM_W), height, height - 1 + C_RADIUS, border_replicate);
+                        position_flags  <= combine(make_col(to_unsigned(0, C_DIM_W), width, width - 1 + C_RADIUS),
+                                                   make_row(to_unsigned(0, C_DIM_W), height, height - 1 + C_RADIUS,
+                                                            border_replicate));
+                        width_m1        <= width - 1;
+                        width_m2        <= width - 2;
+                        x_end_m1        <= width - 2 + C_RADIUS;
+                        height_m1       <= height - 1;
+                        y_end_m1        <= height - 2 + C_RADIUS;
+                        height_k3       <= height + G_K - 3;
+                        for k in 0 to G_K - 1 loop
+                            height_k(k) <= height + G_K - 2 - k;
+                        end loop;
                         if (accept_input = '1') and (in_valid = '1') then
                             skipped_pending <= '1';         -- pixel před TUSER zahozen
                         end if;
@@ -268,8 +357,16 @@ begin
                     -- další pozice a její příznaky (počítané z registrů, ne v cestě fire)
                     pos_x          <= next_x;
                     pos_y          <= next_y;
-                    position_flags <= make_position(next_x, next_y, frame_width, frame_height, x_end, y_end,
-                                                    frame_replicate);
+                    -- příznaky další pozice: výběr až za porovnáním (sloupec x + 1 nebo 0; řádek stejný, y + 1 nebo 0)
+                    if position_flags.eol = '0' then
+                        position_flags <= combine(col_plus1, row_current);
+                    elsif position_flags.frame_end = '0' then
+                        position_flags <= combine(col_first_flags, row_plus1);
+                        row_current    <= row_plus1;
+                    else
+                        position_flags <= combine(col_first_flags, row_first_flags);
+                        row_current    <= row_first_flags;
+                    end if;
                     if position_flags.frame_end = '1' then
                         state <= STATE_WAIT_SOF;
                         status_reg(C_ST_SKIPPED)   <= skipped_pending;
