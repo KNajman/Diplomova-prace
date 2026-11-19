@@ -97,7 +97,7 @@ Vstupní a očekávané vektory vytváří nástroj z modelu, nic se neopisuje r
 
 <!-- Text: Karel (19. 11. 2026); korektura 20. 11. podle Karlových pokynů (termín: mimokontextová / OOC syntéza). -->
 
-OOC syntéza je postup, při kterém se syntetizuje jádro, route & connect samostatně, nezávisle na tom, jak bude nakonec zapojeno v návrhu. Neuvažuje se tak přenos ani režie zápisu dat do a z paměti, výsledek popisuje samotné jádro. Jediným omezením je perioda hodin (5 ns).
+OOC syntéza je postup, při kterém se jádro samostatně syntetizuje, rozmístí a propojí, nezávisle na tom, jak bude nakonec zapojeno v návrhu. Neuvažuje se tak přenos ani režie zápisu dat do a z paměti, výsledek popisuje samotné jádro. Jediným omezením je perioda hodin (5 ns).
 
 <!-- TODO(Karel): úryvek skriptu (ooc_impl.tcl: read_vhdl, create_clock 5 ns, synth_design -mode out_of_context, opt/place/route, report_*) – výpis kódu doplnit v LaTeXu (lstlisting), převodník bloky kódu neumí. -->
 
