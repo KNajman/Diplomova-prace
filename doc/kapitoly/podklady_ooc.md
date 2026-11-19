@@ -32,3 +32,29 @@ medián `sort3` (590 → 549 LUT, V23), `window_gen` v3 (konvoluce 7×7 4,00 →
 - AMD UG906 *Design Analysis and Closure Techniques* – WNS, pulse width (report_timing_summary); ověřit.
 - AMD UG573 (BRAM) a UG579 (DSP) nebo datasheet DS925 (Zynq UltraScale+ AC/DC) – minimální perioda 3,077 / 3,262 ns;
   ověřit, ve kterém dokumentu jsou hodnoty pro -2LV.
+
+---
+Text kapitoly
+
+## OOC - out of context syntéza
+
+Jedná se o (metodu?) kdy se jádro samostaně syntetizuje, nazávisle na tom jak bude v budoucnu zapojeno, neřeší se tedy žádná řežije čtení nebo zápisu, jen funkcionalita. Jedinná závislost je na časování.
+
+```script
+```
+
+### Důvody k užití
+
+Výsledek je nezavislý na předchozím zpracování, ani na chybách. Slouží k odladění, zachycení chyb, bootlenecků(český ekvivalent?) lokalizaci kritické cesty, časování, upravám. A udájům o odhadovaných prostředcích a spotřebě .**Přenosnost** Testovací jednotka lze také ověřit i pro jiné způsoby architektury, hypotézy, já ji používa pro ověření jak VHDL tak syntézy z HLS.
+
+[obrazek v Tikz]
+
+
+
+### Optimalizační parametry
+
+- **G_USE_DSP**
+-
+-
+
+[tabulka]

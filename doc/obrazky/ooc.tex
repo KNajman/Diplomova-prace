@@ -1,0 +1,26 @@
+% Syntéza v kontextu celého návrhu proti syntéze mimo kontext (OOC), ooc_impl.tcl / ooc_impl_hls.tcl
+\begin{tikzpicture}[dp]
+  % ------------------------------------------------ vlevo: v kontextu
+  \node[ramec, minimum width=64mm, minimum height=50mm, label={[popis]above:v kontextu: celý testovací řetězec}] (L) at (0,0) {};
+  \node[blokB, minimum width=16mm, font=\scriptsize] (ps) at ($(L.north west)+(11mm,-9mm)$) {procesor};
+  \node[blok, minimum width=16mm, font=\scriptsize] (vd) at ($(L.south west)+(11mm,9mm)$) {VDMA};
+  \node[blok, minimum width=6mm, minimum height=34mm, inner sep=0pt] (si) at ($(L.center)+(-9mm,0)$) {};
+  \node[blok, minimum width=6mm, minimum height=34mm, inner sep=0pt] (so) at ($(L.center)+(21mm,0)$) {};
+  \foreach \y/\t in {12/jádro, 4/jádro, -12/jádro} { \node[blok, minimum width=14mm, minimum height=6mm, font=\scriptsize] at ($(L.center)+(6mm,\y mm)$) {\t}; }
+  \node[blokA, minimum width=14mm, minimum height=6mm, font=\scriptsize] (jL) at ($(L.center)+(6mm,-4mm)$) {jádro};
+  \draw[data] (vd.east) -| (si.south); \draw[data] (so.south) |- ($(vd.south)+(0,-3mm)$) -- (vd.south);
+  \draw[data] (si.east |- jL) -- (jL); \draw[data] (jL) -- (so.west |- jL);
+  \draw[rizeni] (ps.east) -| (si.north);
+  \node[maly, align=center, anchor=north] at ($(L.south)+(0,-1mm)$) {sousední logika sdílí rozmístění a propojení,\\ časování jádra závisí na okolí};
+  % ------------------------------------------------ vpravo: mimo kontext
+  \node[ramec, minimum width=50mm, minimum height=50mm, label={[popis]above:mimo kontext (OOC): jen jádro}] (R) at (64mm,0) {};
+  \node[blokA, minimum width=22mm, minimum height=16mm] (jR) at (R.center) {jádro\\\scriptsize HLS nebo VHDL};
+  \draw[vodic, densely dashed] ($(jR.west)+(-9mm,3mm)$) -- node[maly, above] {porty} ($(jR.west)+(0,3mm)$);
+  \draw[vodic, densely dashed] ($(jR.east)+(0,3mm)$) -- ($(jR.east)+(9mm,3mm)$);
+  \draw[vodic] ($(jR.west)+(-9mm,-4mm)$) -- node[maly, below, align=center] {aclk\\ 5 ns} ($(jR.west)+(0,-4mm)$);
+  \node[maly, align=center, anchor=north] at ($(jR.south)+(0,-4mm)$) {bez pinů a IO bufferů,\\ jediné omezení: perioda hodin};
+  \node[maly, align=center, anchor=north] at ($(R.south)+(0,-1mm)$) {stejný skript pro HLS i VHDL,\\ výsledek nezávisí na okolí};
+  % ------------------------------------------------ výstup
+  \node[blok, minimum width=30mm, font=\footnotesize, align=center] (out) at ($(R.east)+(22mm,0)$) {LUT, FF, DSP, BRAM\\ WNS, WPWS\\ perioda $T$};
+  \draw[vodic] (R.east) -- (out.west);
+\end{tikzpicture}

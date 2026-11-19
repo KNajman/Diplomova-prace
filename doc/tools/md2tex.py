@@ -27,6 +27,7 @@ ONE_LETTER = 'KkSsVvZzOoUuAaIi'
 ID = '[A-Za-z0-9:_.-]+'
 RE_HEADING = re.compile('^(#{1,3}) (.+?)(?: [{]#(' + ID + ')[}])?$')
 RE_CAPTION = re.compile('^Tabulka: (.+?) [{]#(' + ID + ')(?: widths=([0-9.,]+))?[}]$')
+RE_FIGURE = re.compile('^Obrázek: (.+?) [{]#(' + ID + ') file=([A-Za-z0-9_./-]+)(?: width=([0-9.]+))?[}]$')
 RE_DISPLAY = re.compile('^[$][$](.*)[$][$](?: [{]#(' + ID + ')[}])?$')
 
 
@@ -170,6 +171,23 @@ def convert(markdown, source_name):
                 sys.exit('chyba: neplatná rovnice v ' + source_name + ': ' + ' '.join(block)[:60])
             out.extend(display_math(match.group(1), match.group(2)))
             out.append('')
+            continue
+
+        figure = RE_FIGURE.match(line)
+        if figure:                                        # obrázek: TikZ (.tex) přes \input, jinak \includegraphics
+            path, width = figure.group(3), figure.group(4)
+            out.append(BS + 'begin{figure}[htbp]')
+            out.append('    ' + BS + 'centering')
+            scale = (width or '1') + BS + 'textwidth'
+            if path.endswith('.tex'):
+                out.append('    ' + BS + 'resizebox{' + scale + '}{!}{' + BS + 'input{' + path[:-4] + '}}')
+            else:
+                out.append('    ' + BS + 'includegraphics[width=' + scale + ']{' + path + '}')
+            out.append('    ' + BS + 'caption{' + inline(figure.group(1)) + '}')
+            out.append('    ' + BS + 'label{' + figure.group(2) + '}')
+            out.append(BS + 'end{figure}')
+            out.append('')
+            i += 1
             continue
 
         caption = RE_CAPTION.match(line)

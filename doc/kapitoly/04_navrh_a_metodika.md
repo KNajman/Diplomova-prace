@@ -93,11 +93,27 @@ Tabulka: Úrovně ověření hardwarových jader {#tab:urovne widths=2.4,3.6,3.4
 
 Vstupní a očekávané vektory vytváří nástroj z modelu, nic se neopisuje ručně. U HLS ověřuje C-simulace kód v C++ a kosimulace stejný test nad RTL, které z něj Vitis HLS vytvořil. Testbench posílá data v toku @acs(AXI)4-Stream, kde `TUSER` označuje začátek snímku a `TLAST` konec řádku. Zdroj vkládá náhodné mezery a příjemce náhodně brzdí, aby se pixely neztrácely ani nezdvojovaly a aby fungovalo zpětné řízení toku. Každý test běží na nejméně 2 snímcích za sebou, protože jádro nesmí držet stav z předchozího snímku. Převod RGB a HSV navíc ověřuji v simulaci na všech $2^{24}$ vstupech.
 
-## Metodika měření {#sec:metodika-mereni}
+## OOC - out of context syntéza {#sec:ooc}
 
-### Syntéza mimo kontext {#sec:ooc}
+<!-- Text: Karel (19. 11. 2026), přeneseno z podklady_ooc.md beze změn; návrhy korektury jsou zvlášť (dp-styl). -->
 
-Prostředky a maximální frekvenci měřím syntézou mimo kontext (out-of-context, @acs(OOC)). Jádro se syntetizuje, rozmístí a propojí samo, bez zbytku návrhu (DMA, propojení AXI, procesor). Porty se nepřipojují na piny a jediným omezením jsou hodiny s periodou 5 ns, tedy 200 MHz. Výsledek tak nezávisí na tom, co leží vedle jádra. V celém návrhu by časování jádra záviselo i na tom, jak je zaplněný zbytek obvodu.
+Jedná se o (metodu?) kdy se jádro samostaně syntetizuje, nazávisle na tom jak bude v budoucnu zapojeno, neřeší se tedy žádná řežije čtení nebo zápisu, jen funkcionalita. Jedinná závislost je na časování.
+
+<!-- TODO(Karel): úryvek skriptu (ooc_impl.tcl: read_vhdl, create_clock 5 ns, synth_design -mode out_of_context, opt/place/route, report_*) – výpis kódu doplnit v LaTeXu (lstlisting), převodník bloky kódu neumí. -->
+
+Obrázek: Syntéza jádra v kontextu celého návrhu a mimo kontext {#fig:ooc file=obrazky/ooc.tex width=0.95}
+
+### Důvody k užití
+
+Výsledek je nezavislý na předchozím zpracování, ani na chybách. Slouží k odladění, zachycení chyb, bootlenecků(český ekvivalent?) lokalizaci kritické cesty, časování, upravám. A udájům o odhadovaných prostředcích a spotřebě .**Přenosnost** Testovací jednotka lze také ověřit i pro jiné způsoby architektury, hypotézy, já ji používa pro ověření jak VHDL tak syntézy z HLS.
+
+### Optimalizační parametry
+
+- **G_USE_DSP**
+
+<!-- TODO(Karel): další parametry a tabulka optimalizací (podklady_ooc.md: CSC v1 → v3, G_USE_DSP, sort3, window_gen v3). -->
+
+<!-- PODKLAD (původní text od Clauda, k přepsání vlastními slovy, pak smazat): Prostředky a maximální frekvenci měřím syntézou mimo kontext (out-of-context, @acs(OOC)). Jádro se syntetizuje, rozmístí a propojí samo, bez zbytku návrhu (DMA, propojení AXI, procesor). Porty se nepřipojují na piny a jediným omezením jsou hodiny s periodou 5 ns, tedy 200 MHz. Výsledek tak nezávisí na tom, co leží vedle jádra. V celém návrhu by časování jádra záviselo i na tom, jak je zaplněný zbytek obvodu.
 
 Aby bylo srovnání HLS a VHDL férové, mají obě verze stejný postup. RTL vygenerované z HLS jde do stejného skriptu jako VHDL, pro stejný obvod (xck26-sfvc784-2LV-c) a se stejným cílem 5 ns. Používám Vivado 2025.2 a jen čísla po implementaci, ne odhady z HLS syntézy.
 
@@ -105,7 +121,9 @@ Maximální frekvenci vyjadřuji nejkratší periodou hodin, kterou jádro zvlá
 
 $$ T = \max\left(5 - \mathrm{WNS},\; 5 - \mathrm{WPWS}\right) \quad [\mathrm{ns}] . $$ {#eq:perioda}
 
-@ac(WNS) je časová rezerva nejhorší logické cesty a @ac(WPWS) je rezerva minimální šířky pulzu hodin. Druhý člen je nutný, protože bloky BRAM a DSP mají minimální periodu danou výrobcem (3,077 ns u BRAM a 3,262 ns u DSP) a žádná úprava logiky ji nezkrátí. Vlastní export Vitis HLS počítá periodu jen z WNS. U jader s BRAM nebo DSP by tak vyšla kratší, než obvod skutečně zvládne. Počet bloků BRAM udávám v dlaždicích o velikosti 36 Kb.
+@ac(WNS) je časová rezerva nejhorší logické cesty a @ac(WPWS) je rezerva minimální šířky pulzu hodin. Druhý člen je nutný, protože bloky BRAM a DSP mají minimální periodu danou výrobcem (3,077 ns u BRAM a 3,262 ns u DSP) a žádná úprava logiky ji nezkrátí. Vlastní export Vitis HLS počítá periodu jen z WNS. U jader s BRAM nebo DSP by tak vyšla kratší, než obvod skutečně zvládne. Počet bloků BRAM udávám v dlaždicích o velikosti 36 Kb. -->
+
+## Metodika měření {#sec:metodika-mereni}
 
 ### Měření na desce {#sec:deska}
 

@@ -27,6 +27,7 @@ spustit znovu. Obrázky, vzorce se složitou sazbou a další úpravy se doplňu
 | odkaz na kapitolu, oddíl, tabulku | `@ref(sec:model)` (mezeru před ním převodník změní na nezlomitelnou) | `~\ref{sec:model}` |
 | citace | `@cite(klic)` | `~\cite{klic}` |
 | tabulka | řádek `Tabulka: Popisek {#tab:id widths=3.3,5.2,5.2}`, pod ním tabulka v Markdownu (sloupce oddělené svislou čarou) | `table` s `booktabs`, sloupce `p{...cm}` |
+| obrázek | řádek `Obrázek: Popisek {#fig:id file=obrazky/ooc.tex width=0.9}` (TikZ `.tex` přes `\input`, PDF/PNG přes `\includegraphics`, šířka jako díl `\textwidth`) | `figure` s `\caption` a `\label`; preambule DP.tex potřebuje `tikz` a `\input{obrazky/dp_styl}` |
 | komentář, úkol | `<!-- TODO(citace): ... -->` | `% TODO(citace): ...` |
 
 Převodník doplňuje sám:
@@ -39,7 +40,7 @@ V Markdownu se tedy píše běžným způsobem (`5 ns`, `v kapitole`), bez `~` a
 
 ## Co převodník neumí
 
-Obrázky, výpisy kódu (`lstlisting`), vnořené seznamy, poznámky pod čarou a vícestránkové tabulky. Tyto prvky se vkládají
+Výpisy kódu (`lstlisting`), vnořené seznamy, poznámky pod čarou a vícestránkové tabulky. Tyto prvky se vkládají
 až do vygenerovaného nebo sloučeného LaTeXu, případně se doplní do převodníku, až budou potřeba.
 
 ## Pravidla textu
