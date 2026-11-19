@@ -1,0 +1,2 @@
+# Export rozložení blokového návrhu testovacího řetězce do PDF a SVG (Vivado v GUI režimu pod xvfb)
+cd DP/hw/harness && timeout 900 xvfb-run -a vivado -mode gui -nojournal -nolog -source export_bd.tcl -tclargs "$RUN_DIR" && ls -la "$RUN_DIR"/harness_bd.*
