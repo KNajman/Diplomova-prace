@@ -1,0 +1,6 @@
+# OOC všech 28 konfigurací VHDL (ooc_all.txt) po window_gen v3 a mediánu s ostrým sort3, 4 paralelně.
+# "Před" = DP/vhdl/results/vhdl_results.csv z repa (window_gen v2); "po" = $RUN_DIR/vhdl_results.csv.
+# @stop_on_error
+cp DP/vhdl/results/vhdl_results.csv "$RUN_DIR/vhdl_results_pred.csv"
+cd DP/vhdl/scripts && grep -v '^#' ooc_all.txt | xargs -P 4 -L 1 sh -c 'vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs "$@" > "$RUN_DIR/ooc_$(echo "$@" | tr " =" "__").log" 2>&1 || { echo "OOC SELHAL: $@"; exit 255; }' ooc
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc "$RUN_DIR/vhdl_results.csv"

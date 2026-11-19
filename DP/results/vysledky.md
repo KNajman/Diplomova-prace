@@ -744,3 +744,35 @@ konvoluce 3×3 10, 5×5 a 7×7 12, obálky 3, reset uprostřed snímku K = 3, 5,
   Další krok, pokud bude třeba: duplikovat registr povolení (max_fanout).
 - **Ostatní konfigurace z `ooc_all.txt` (konvoluce bez DSP, 5×5 a 7×7 jádra) běžely ještě s v2** → pro konzistentní tabulky
   přepočítat všech 28 konfigurací (v sobotním finálním sestavení, nebo dřív). Do té doby CSV a tabulky kap. 6 beze změny.
+
+## 25. OOC všech 28 konfigurací VHDL po `window_gen` v3 (19. 11. 2026)
+
+Konfigurace: běh `2026-11-19_1721_vhdl_ooc_all_v3` (commit f00bf4b), `ooc_all.txt`, 4 paralelně, cíl 5 ns. „Před“ = CSV z repa
+(window_gen v2, medián se starým `sort3`), „po“ nahradilo `DP/vhdl/results/vhdl_results.csv`.
+
+- **18 konfigurací beze změny do posledního LUT a ps** (převod barev, HSV, histogram, prahování): bez `window_gen` je OOC
+  deterministické – rozdíly u ostatních jsou tedy způsobené změnou kódu, ne náhodou.
+- Změnily se jen jádra s `window_gen` (konvoluce, medián):
+
+| konfigurace | LUT | FF | perioda před → po | omezení po |
+| --- | --- | --- | --- | --- |
+| konvoluce 3×3 obálka, LUT | 1 283 → 1 274 | 919 → 999 | 3,40 → 3,69 ns | logika |
+| konvoluce 3×3 obálka, DSP | 508 → 506 | 558 → 638 | 3,57 → **3,26 ns** | šířka pulzu DSP |
+| konvoluce 5×5 obálka, DSP | 766 → 724 | 951 → 1 044 | 3,76 → **3,26 ns** | šířka pulzu DSP |
+| konvoluce 7×7 obálka, DSP | 1 232 → 1 435 | 1 489 → 1 565 | 4,00 → **3,26 ns** | logika (3,263) |
+| konvoluce 3×3 jádro, LUT | 1 120 → 1 123 | 679 → 759 | 3,26 → 3,26 ns | šířka pulzu DSP |
+| konvoluce 3×3 jádro, DSP | 350 → 350 | 318 → 398 | 3,55 → **3,26 ns** | šířka pulzu DSP |
+| konvoluce 5×5 jádro, LUT | 2 789 → 2 745 | 1 510 → 1 603 | 4,20 → **3,64 ns** | logika |
+| konvoluce 5×5 jádro, DSP | 603 → 552 | 539 → 632 | 3,82 → 3,98 ns | logika |
+| konvoluce 7×7 jádro, LUT | 5 238 → 5 188 | 2 702 → 2 824 | 4,18 → **3,79 ns** | logika |
+| konvoluce 7×7 jádro, DSP | 1 213 → 1 165 | 837 → 959 | 4,24 → **3,85 ns** | logika |
+| medián obálka | 643 → 602 | 532 → 612 | 4,31 → **3,55 ns** | logika |
+| medián jádro | 549 → 543 | 433 → 513 | 3,66 → **3,40 ns** | logika |
+
+**Poznatky**
+- Perioda se zlepšila u 9 z 12 konfigurací s `window_gen` (o 0,26 až 0,76 ns), u 2 zhoršila (konvoluce 3×3 bez DSP +0,29 ns,
+  5×5 jádro s DSP +0,16 ns) a jedna je na stropu DSP před i po. Všechny obálky konvoluce s DSP jsou na stropu bloku DSP 3,26 ns.
+- FF +80 až +120 (konstanty snímku v registrech), LUT u 9 z 12 stejně nebo méně (−51 až +3), výjimka obálka 7×7 (+203).
+- VHDL má teď **kratší nebo stejnou periodu než HLS u všech 9 jader**, menší LUT u 6 z 9 (výjimky RGB↔HSV a konvoluce 7×7).
+- Pro DP: příklad optimalizace kritické cesty „předpočítat porovnání o takt dřív a vybírat až za ním“ a jejího měření
+  na všech konfiguracích (kap. 5 implementace `window_gen`, kap. 6 tabulka před/po). Kapitola 6 a README aktualizované.

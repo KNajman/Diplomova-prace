@@ -51,13 +51,13 @@ Tabulka: Prostředky a nejkratší perioda jader HLS a VHDL (syntéza mimo konte
 | prahování | HLS | 122 | 118 | 0 | 0 | 2,77 | 360 | šířka pulzu hodin |
 |  | VHDL | 81 | 141 | 0 | 0 | 2,77 | 360 | šířka pulzu hodin |
 | medián 3×3 | HLS | 701 | 472 | 0 | 2 | 3,99 | 251 | logika |
-|  | VHDL | 643 | 532 | 0 | 2 | 4,31 | 232 | logika |
+|  | VHDL | 602 | 612 | 0 | 2 | 3,55 | 282 | logika |
 | konvoluce 3×3 | HLS | 640 | 621 | 10 | 2 | 4,05 | 247 | logika |
-|  | VHDL | 508 | 558 | 14 | 2 | 3,57 | 280 | logika |
+|  | VHDL | 506 | 638 | 14 | 2 | 3,26 | 307 | šířka pulzu DSP |
 | konvoluce 5×5 | HLS | 950 | 861 | 26 | 5 | 4,49 | 223 | logika |
-|  | VHDL | 766 | 951 | 38 | 4 | 3,76 | 266 | logika |
+|  | VHDL | 724 | 1 044 | 38 | 4 | 3,26 | 307 | šířka pulzu DSP |
 | konvoluce 7×7 | HLS | 1 341 | 1 247 | 50 | 7 | 4,35 | 230 | logika |
-|  | VHDL | 1 232 | 1 489 | 72 | 6 | 4,00 | 250 | logika |
+|  | VHDL | 1 435 | 1 565 | 72 | 6 | 3,26 | 306 | logika |
 | histogram | HLS | 300 | 422 | 0 | 1 | 3,08 | 325 | šířka pulzu BRAM |
 |  | VHDL | 183 | 288 | 0 | 1 | 3,08 | 325 | šířka pulzu BRAM |
 
@@ -65,11 +65,9 @@ Tabulka: Prostředky a nejkratší perioda jader HLS a VHDL (syntéza mimo konte
 
 <!-- Data: HLS řádková jádra (převod barev, RGB→HSV, HSV→RGB) jsou bez auto-rewind, tedy stejné RTL jako v bitstreamu (fronta final_hls_rows 16. 11. 2026, vysledky.md sekce 21). -->
 
-Verze ve VHDL má kratší nebo stejnou periodu u 8 jader z 9. Největší rozdíl je u převodu RGB na HSV (3,26 ns proti 4,44 ns), konvoluce 5×5 (3,76 ns proti 4,49 ns) a převodu barev (3,26 ns proti 3,88 ns). U převodu RGB na HSV a převodu barev dosáhlo jádro ve VHDL minimální periody bloku DSP, takže ho dál omezuje obvod, ne logika. Prahování a histogram mají v obou verzích stejnou periodu danou minimální šířkou pulzu hodin. Výjimkou je medián, kde má VHDL periodu 4,31 ns a HLS 3,99 ns. Kritická cesta VHDL ale neleží v síti mediánu, ale v řízení generátoru okna (příznaky pozice v řádku a sloupci), a 70 % jejího zpoždění tvoří propojení. Perioda této obálky se mezi běhy měnila od 3,86 do 4,31 ns, přestože se generátor okna neměnil.
+Verze ve VHDL má kratší nebo stejnou periodu u všech 9 jader. Největší rozdíl je u konvoluce 5×5 (3,26 ns proti 4,49 ns), převodu RGB na HSV (3,26 ns proti 4,44 ns) a konvoluce 7×7 (3,26 ns proti 4,35 ns). U převodu barev, převodu RGB na HSV a konvoluce 3×3 a 5×5 dosáhlo jádro ve VHDL minimální periody bloku DSP, takže ho dál omezuje obvod, ne logika. Prahování a histogram mají v obou verzích stejnou periodu danou minimální šířkou pulzu hodin. Příčina je ve způsobu, jakým obě verze vkládají registry. HLS přidá stupňů pipeline jen tolik, aby splnil zadaných 5 ns (RGB→HSV 7 stupňů), ve VHDL jsem dal registr za každou operaci (8 stupňů). Méně registrů znamená méně FF, ale delší logiku mezi nimi.
 
-<!-- TODO(Karel): zvážit optimalizaci window_gen (příznaky pozice předpočítat o takt dřív, poznámka z 15. 10.) – zlepšila by medián i konvoluci; jinak text nechat takto. --> Příčina je ve způsobu, jakým obě verze vkládají registry. HLS přidá stupňů pipeline jen tolik, aby splnil zadaných 5 ns (RGB→HSV 7 stupňů), ve VHDL jsem dal registr za každou operaci (8 stupňů). Méně registrů znamená méně FF, ale delší logiku mezi nimi.
-
-V počtu @acs(LUT) je verze ve VHDL menší u 7 jader ze 9. Výjimkou jsou oba převody mezi RGB a HSV, kde je HLS menší o 9 % a 8 % LUT a o 16 % a 30 % FF. U převodu barev zabírá VHDL 210 LUT proti 407, u histogramu 183 proti 300. Konvoluce ve VHDL zabírá méně LUT, ale víc bloků DSP (u jádra 7×7 je to 72 proti 50), protože jsem každé násobení umístil do vlastního bloku DSP včetně sčítání v jeho kaskádě. HLS část součinů s malými koeficienty počítá v LUT.
+V počtu @acs(LUT) je verze ve VHDL menší u 6 jader z 9. Výjimkou jsou oba převody mezi RGB a HSV, kde je HLS menší o 9 % a 8 % LUT a o 16 % a 30 % FF, a konvoluce 7×7 (1 341 proti 1 435 LUT). U převodu barev zabírá VHDL 210 LUT proti 407, u histogramu 183 proti 300. Konvoluce ve VHDL zabírá méně LUT, ale víc bloků DSP (u jádra 7×7 je to 72 proti 50), protože jsem každé násobení umístil do vlastního bloku DSP včetně sčítání v jeho kaskádě. HLS část součinů s malými koeficienty počítá v LUT.
 
 ### Jeden parametr: násobení v LUT, nebo v DSP
 
@@ -93,7 +91,7 @@ Ve VHDL stačil jeden parametr (`G_USE_DSP`). Počet LUT klesl o 66 %, FF o 44 %
 
 V HLS jsem stejnou změnu udělal pragmatem `BIND_OP` s implementací v DSP. Plocha klesla podobně (LUT o 60 %, FF o 19 %), ale perioda se prodloužila z 4,05 na 4,23 ns. HLS ponechal 6 stupňů pipeline a blok DSP použil jako kombinační násobičku bez vnitřních registrů. Stejné periody jako ve VHDL jsem v HLS dosáhl až druhým parametrem, latencí násobení 3 takty. Pipeline se tím prodloužila na 10 stupňů a HLS spojil část násobení do 6 bloků DSP. Ve VHDL tedy stačí jeden parametr, v HLS jsou potřeba dva a vývojář musí vědět, že druhý existuje.
 
-Stejný parametr má i konvoluce ve VHDL (tabulka @ref(tab:filtrdsp)). U jádra 7×7 s násobením v LUT zabírá 5 238 LUT a 2 702 FF, s násobením v blocích DSP 1 213 LUT, 837 FF a 72 bloků DSP. Perioda se změnila nejvýš o 0,4 ns, u jádra 3×3 a 7×7 se s bloky DSP mírně prodloužila. U konvoluce tedy přesun do DSP šetří hlavně plochu.
+Stejný parametr má i konvoluce ve VHDL (tabulka @ref(tab:filtrdsp)). U jádra 7×7 s násobením v LUT zabírá 5 188 LUT a 2 824 FF, s násobením v blocích DSP 1 165 LUT, 959 FF a 72 bloků DSP. Perioda se mezi oběma variantami liší nejvýš o 0,34 ns (u jádra 5×5 je s bloky DSP delší). U konvoluce tedy přesun do DSP šetří hlavně plochu.
 
 <!-- TAB tab:filtrdsp -->
 
@@ -101,12 +99,12 @@ Tabulka: Konvoluce K×K ve VHDL: násobení v LUT nebo v blocích DSP (jádro be
 
 | K | Násobení | LUT | FF | DSP | BRAM36 | Perioda [ns] | Omezení |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 3×3 | LUT | 1 120 | 679 | 1 | 2 | 3,26 | šířka pulzu DSP |
-|  | DSP | 350 | 318 | 14 | 2 | 3,55 | logika |
-| 5×5 | LUT | 2 789 | 1 510 | 1 | 4 | 4,20 | logika |
-|  | DSP | 603 | 539 | 38 | 4 | 3,82 | logika |
-| 7×7 | LUT | 5 238 | 2 702 | 1 | 6 | 4,18 | logika |
-|  | DSP | 1 213 | 837 | 72 | 6 | 4,24 | logika |
+| 3×3 | LUT | 1 123 | 759 | 1 | 2 | 3,26 | šířka pulzu DSP |
+|  | DSP | 350 | 398 | 14 | 2 | 3,26 | šířka pulzu DSP |
+| 5×5 | LUT | 2 745 | 1 603 | 1 | 4 | 3,64 | logika |
+|  | DSP | 552 | 632 | 38 | 4 | 3,98 | logika |
+| 7×7 | LUT | 5 188 | 2 824 | 1 | 6 | 3,79 | logika |
+|  | DSP | 1 165 | 959 | 72 | 6 | 3,85 | logika |
 
 <!-- /TAB -->
 
