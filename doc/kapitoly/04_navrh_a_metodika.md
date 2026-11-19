@@ -93,11 +93,11 @@ Tabulka: Úrovně ověření hardwarových jader {#tab:urovne widths=2.4,3.6,3.4
 
 Vstupní a očekávané vektory vytváří nástroj z modelu, nic se neopisuje ručně. U HLS ověřuje C-simulace kód v C++ a kosimulace stejný test nad RTL, které z něj Vitis HLS vytvořil. Testbench posílá data v toku @acs(AXI)4-Stream, kde `TUSER` označuje začátek snímku a `TLAST` konec řádku. Zdroj vkládá náhodné mezery a příjemce náhodně brzdí, aby se pixely neztrácely ani nezdvojovaly a aby fungovalo zpětné řízení toku. Každý test běží na nejméně 2 snímcích za sebou, protože jádro nesmí držet stav z předchozího snímku. Převod RGB a HSV navíc ověřuji v simulaci na všech $2^{24}$ vstupech.
 
-## OOC - out of context syntéza {#sec:ooc}
+## Mimokontextová syntéza (OOC) {#sec:ooc}
 
-<!-- Text: Karel (19. 11. 2026), přeneseno z podklady_ooc.md beze změn; návrhy korektury jsou zvlášť (dp-styl). -->
+<!-- Text: Karel (19. 11. 2026); korektura 20. 11. podle Karlových pokynů (termín: mimokontextová / OOC syntéza). -->
 
-Jedná se o (metodu?) kdy se jádro samostaně syntetizuje, nazávisle na tom jak bude v budoucnu zapojeno, neřeší se tedy žádná řežije čtení nebo zápisu, jen funkcionalita. Jedinná závislost je na časování.
+OOC syntéza je postup, při kterém se syntetizuje jádro, route & connect samostatně, nezávisle na tom, jak bude nakonec zapojeno v návrhu. Neuvažuje se tak přenos ani režie zápisu dat do a z paměti, výsledek popisuje samotné jádro. Jediným omezením je perioda hodin (5 ns).
 
 <!-- TODO(Karel): úryvek skriptu (ooc_impl.tcl: read_vhdl, create_clock 5 ns, synth_design -mode out_of_context, opt/place/route, report_*) – výpis kódu doplnit v LaTeXu (lstlisting), převodník bloky kódu neumí. -->
 
@@ -105,7 +105,7 @@ Obrázek: Syntéza jádra v kontextu celého návrhu a mimo kontext {#fig:ooc fi
 
 ### Důvody k užití
 
-Výsledek je nezavislý na předchozím zpracování, ani na chybách. Slouží k odladění, zachycení chyb, bootlenecků(český ekvivalent?) lokalizaci kritické cesty, časování, upravám. A udájům o odhadovaných prostředcích a spotřebě .**Přenosnost** Testovací jednotka lze také ověřit i pro jiné způsoby architektury, hypotézy, já ji používa pro ověření jak VHDL tak syntézy z HLS.
+Výsledek nezávisí na okolní logice. Slouží k odladění, zachycení chyb, úzkých hrdel, lokalizaci kritické cesty, časování, úpravám a odhadu prostředků a příkonu. **Přenositelnost.** Stejný postup lze použít pro různé architektury i hypotézy. Používal jsem ho pro jádra ve VHDL i pro RTL vygenerované z HLS, vždy stejným skriptem.
 
 ### Optimalizační parametry
 
