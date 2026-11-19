@@ -1,0 +1,30 @@
+== median_core
+  Source:                 window_generator/window_reg_reg[2,1][2]/C
+  Destination:            rows_sorted_reg[2][low][1]/D
+  Data Path Delay:        3.399ns  (logic 1.159ns (34.103%)  route 2.240ns (65.897%))
+  Logic Levels:           6  (CARRY8=2 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
+== median_axil
+  Source:                 core/output_skid/skid_valid_reg_inv/C
+  Destination:            core/window_generator/saved_column_reg[2][3]/CE
+  Data Path Delay:        3.423ns  (logic 0.193ns (5.638%)  route 3.230ns (94.362%))
+  Logic Levels:           1  (LUT5=1)
+== filter2d_core_K3_USE_DSPtrue
+  Source:                 adder_tree_reg[3][1]/DSP_OUTPUT_INST/CLK
+  Destination:            ARG/DSP_A_B_DATA_INST/A[28]
+  Data Path Delay:        2.314ns  (logic 1.357ns (58.647%)  route 0.957ns (41.353%))
+  Logic Levels:           3  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_OUTPUT=1)
+== filter2d_axil_K3_USE_DSPtrue
+  Source:                 core/adder_tree_reg[3][1]/DSP_OUTPUT_INST/CLK
+  Destination:            core/ARG/DSP_A_B_DATA_INST/A[14]
+  Data Path Delay:        2.648ns  (logic 1.378ns (52.039%)  route 1.270ns (47.961%))
+  Logic Levels:           3  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_OUTPUT=1)
+== filter2d_axil_K5_USE_DSPtrue
+  Source:                 core/adder_tree_reg[4][0]/DSP_OUTPUT_INST/CLK
+  Destination:            core/ARG/DSP_A_B_DATA_INST/A[15]
+  Data Path Delay:        2.585ns  (logic 1.358ns (52.534%)  route 1.227ns (47.466%))
+  Logic Levels:           3  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_OUTPUT=1)
+== filter2d_axil_K7_USE_DSPtrue
+  Source:                 core/window_generator/stage_c_reg[valid]/C
+  Destination:            core/adder_tree_reg[1][22]/DSP_A_B_DATA_INST/CEA2
+  Data Path Delay:        2.948ns  (logic 0.270ns (9.158%)  route 2.678ns (90.842%))
+  Logic Levels:           1  (LUT3=1)

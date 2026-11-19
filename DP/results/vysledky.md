@@ -718,3 +718,29 @@ PASS (11 scénářů), xsim `tb_median` 15 scénářů + `tb_median_axil` 2 PASS
   (pomůže mediánu i konvoluci).
 - HLS dává do stupně pipeline víc logiky sítě (kritická cesta je v ní), VHDL má síť rozloženou po taktech.
 - Export blokového návrhu: `write_bd_layout` v batch režimu selhává (BD 5-349, potřebuje GUI) → fronta `bd_export` přes xvfb.
+
+## 24. `window_gen` v3 – příznaky pozice bez sčítačky v cestě (19. 11. 2026)
+
+Konfigurace: commit e609616, běh `2026-11-19_1656_vhdl_window_v3` (`DP/results/runs/`), OOC stejným skriptem, cíl 5 ns.
+Změna: příznaky pozice x + 1 a y + 1 porovnáním `pos_x` / `pos_y` s konstantami snímku předpočítanými před snímkem;
+sloupcové a řádkové příznaky odděleně, výběr další pozice až za porovnáním. Regrese 45 testů xsim PASS (medián 17,
+konvoluce 3×3 10, 5×5 a 7×7 12, obálky 3, reset uprostřed snímku K = 3, 5, 7).
+
+| jádro | LUT v2 → v3 | FF v2 → v3 | perioda v2 → v3 | omezení v3 | kritická cesta v3 |
+| --- | --- | --- | --- | --- | --- |
+| medián `median_core` | 549 → 543 | 433 → 513 | 3,66 → **3,40 ns** | logika | síť mediánu (okno → `rows_sorted`, 6 úrovní) |
+| medián `median_axil` | 643 → 602 | 532 → 612 | 4,31 → **3,55 ns** | logika | povolení hodin z výstupního skid bufferu (1 úroveň, 94 % propojení) |
+| konvoluce 3×3 jádro, DSP | 350 → 350 | 318 → 398 | 3,55 → **3,26 ns** | šířka pulzu DSP | strom sčítaček v DSP |
+| konvoluce 3×3 obálka, DSP | 508 → 506 | 558 → 638 | 3,57 → **3,26 ns** | šířka pulzu DSP | strom sčítaček v DSP |
+| konvoluce 5×5 obálka, DSP | 766 → 724 | 951 → 1 044 | 3,76 → **3,26 ns** | šířka pulzu DSP | strom sčítaček v DSP |
+| konvoluce 7×7 obálka, DSP | 1 232 → 1 435 | 1 489 → 1 565 | 4,00 → **3,26 ns** | logika (3,263) | povolení hodin DSP z `stage_c.valid` (91 % propojení) |
+
+**Poznatky**
+- `window_gen` už kritickou cestu netvoří u žádného jádra. Konvoluce 3×3 a 5×5 jsou na stropu bloku DSP (307 MHz), 7×7 o 1 ps nad ním.
+  Medián se zrychlil o 0,26 až 0,76 ns a VHDL má zase kratší periodu než HLS (3,55 proti 3,99 ns).
+- Cena: +80 FF (konstanty snímku W − 1, W − 2, H + K − 2 − k … jako registry), LUT u 5 z 6 konfigurací stejně nebo méně.
+  Konvoluce 7×7 +203 LUT (+16 %): konstanty H + K − 2 − k pro 7 řádků a porovnání; část může být rozptyl (v1 této obálky měla 1 679 LUT).
+- Nové kritické cesty jsou krátké logicky a dlouhé v propojení (rozvod povolení hodin `pipe_enable` / `valid` na velký počet registrů).
+  Další krok, pokud bude třeba: duplikovat registr povolení (max_fanout).
+- **Ostatní konfigurace z `ooc_all.txt` (konvoluce bez DSP, 5×5 a 7×7 jádra) běžely ještě s v2** → pro konzistentní tabulky
+  přepočítat všech 28 konfigurací (v sobotním finálním sestavení, nebo dřív). Do té doby CSV a tabulky kap. 6 beze změny.

@@ -1,0 +1,14 @@
+# window_gen v3: příznaky pozice x+1 / y+1 porovnáním s konstantami snímku (bez sčítačky v cestě).
+# Regrese všech jader s window_gen (medián, konvoluce 3x3/5x5/7x7, obálky, reset uprostřed snímku), pak OOC.
+# @stop_on_error
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for size in 0 1 2 3 4 5; do for rep in true false; do bash run_xsim.sh tb_median G_SIZE=$size G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median G_GARBAGE=7 && bash run_xsim.sh tb_median G_BAD_EOL_ROW=5 && bash run_xsim.sh tb_median G_SIZE=4 G_GARBAGE=3 G_BAD_EOL_ROW=2 G_VALID_PCT=40 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median_axil G_REPLICATE=true && bash run_xsim.sh tb_median_axil G_REPLICATE=false
+cd DP/vhdl/scripts && for kern in identity mean sharpen sobel_x sobel_y; do for rep in true false; do bash run_xsim.sh tb_filter2d G_KERNEL=$kern G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done
+cd DP/vhdl/scripts && for k in 5 7; do for size in "64 48" "9 3" "8 1"; do set -- $size; for rep in true false; do bash run_xsim.sh tb_filter2d G_K=$k G_KERNEL=k$k G_WIDTH=$1 G_HEIGHT=$2 G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done; done
+cd DP/vhdl/scripts && bash run_xsim.sh tb_filter2d_axil G_KERNEL=sobel_x && bash run_xsim.sh tb_filter2d_axil G_K=5 G_KERNEL=k5 && bash run_xsim.sh tb_filter2d_axil G_K=7 G_KERNEL=k7 G_REPLICATE=false
+cd DP/vhdl/scripts && for k in 3 5 7; do bash run_xsim.sh tb_filter2d_reset G_K=$k || exit 1; done
+cd DP/vhdl/scripts && for cfg in "median_core" "median_axil" "filter2d_core G_K=3 G_USE_DSP=true" "filter2d_axil G_K=3 G_USE_DSP=true" "filter2d_axil G_K=5 G_USE_DSP=true" "filter2d_axil G_K=7 G_USE_DSP=true"; do vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs $cfg || exit 1; done
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc "$RUN_DIR/vhdl_all.csv" > /dev/null && grep -E '^component|^median_(core|axil),|^filter2d_(core_K3|axil_K[357])_USE_DSPtrue,' "$RUN_DIR/vhdl_all.csv" | tee "$RUN_DIR/window_v3.csv"
+cd DP/vhdl/build/ooc && for d in median_core median_axil filter2d_core_K3_USE_DSPtrue filter2d_axil_K3_USE_DSPtrue filter2d_axil_K5_USE_DSPtrue filter2d_axil_K7_USE_DSPtrue; do echo "== $d"; grep -m1 -A12 "Max Delay Paths" $d/timing.rpt | grep -E "Source:|Destination:|Logic Levels|Data Path Delay"; done | tee "$RUN_DIR/kriticke_cesty.txt"
