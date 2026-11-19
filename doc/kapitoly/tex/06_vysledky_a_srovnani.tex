@@ -306,7 +306,7 @@ Syntéza mimo kontext měří jádro samostatně. V~testovacím řetězci je 14 
         \toprule
          & WNS [ns] & WHS [ns] & LUT & FF & BRAM36 & DSP & URAM \\
         \midrule
-        použito & +0,229 & +0,010 & 14 006 (12,0\,\%) & 17 969 (7,7\,\%) & 16 (11,1\,\%) & 64 (5,1\,\%) & 2 (3,1\,\%) \\
+        použito & +0,401 & +0,010 & 13 521 (11,5\,\%) & 17 937 (7,7\,\%) & 16 (11,1\,\%) & 69 (5,5\,\%) & 2 (3,1\,\%) \\
         k~dispozici &  &  & 117 120 & 234 240 & 144 & 1 248 & 64 \\
         \bottomrule
     \end{tabular}
@@ -314,7 +314,7 @@ Syntéza mimo kontext měří jádro samostatně. V~testovacím řetězci je 14 
 
 % /TAB
 
-Řetězec zabírá 12\,\% buněk LUT a~11\,\% bloků BRAM obvodu. Jak se prostředky dělí mezi jednotlivé bloky, ukazuje tabulka~\ref{tab:retezecbloky}. Všech 14 jader zabírá dohromady 37\,\% LUT řetězce, zbytek připadá na přenos dat: VDMA, přepínače a~propojení k~procesoru a~do paměti DDR. Omezením tedy není velikost obvodu, ale časová rezerva.
+Řetězec zabírá 12\,\% buněk LUT a~11\,\% bloků BRAM obvodu. Jak se prostředky dělí mezi jednotlivé bloky, ukazuje tabulka~\ref{tab:retezecbloky}. Všech 14 jader zabírá dohromady 34\,\% LUT řetězce, zbytek připadá na přenos dat: VDMA, přepínače a~propojení k~procesoru a~do paměti DDR. Omezením tedy není velikost obvodu, ale časová rezerva.
 
 % TAB tab:retezecbloky
 
@@ -326,24 +326,26 @@ Syntéza mimo kontext měří jádro samostatně. V~testovacím řetězci je 14 
         \toprule
         Blok & LUT & Podíl LUT & FF & BRAM36 & DSP \\
         \midrule
-        7 jader HLS & 2 647 & 19\,\% & 2 450 & 6 & 32 \\
-        7 jader VHDL & 2 525 & 18\,\% & 2 585 & 5 & 26 \\
-        převod na šedou a~zpět (VHDL) & 371 & 3\,\% & 557 & 0 & 6 \\
-        VDMA & 2 973 & 21\,\% & 4 636 & 5 & 0 \\
-        přepínače AXI4-Stream & 1 436 & 10\,\% & 1 899 & 0 & 0 \\
-        propojení AXI4-Lite (řízení) & 1 962 & 14\,\% & 1 882 & 0 & 0 \\
-        propojení do paměti DDR & 2 097 & 15\,\% & 3 911 & 0 & 0 \\
+        7 jader HLS & 2 635 & 19\,\% & 2 447 & 6 & 27 \\
+        7 jader VHDL & 2 069 & 15\,\% & 2 558 & 5 & 36 \\
+        převod na šedou a~zpět (VHDL) & 373 & 3\,\% & 557 & 0 & 6 \\
+        VDMA & 2 971 & 22\,\% & 4 636 & 5 & 0 \\
+        přepínače AXI4-Stream & 1 436 & 11\,\% & 1 899 & 0 & 0 \\
+        propojení AXI4-Lite (řízení) & 1 951 & 14\,\% & 1 882 & 0 & 0 \\
+        propojení do paměti DDR & 2 096 & 15\,\% & 3 911 & 0 & 0 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 % /TAB
 
-Časová rezerva celého řetězce je při 200\,MHz 0,229\,ns. Kritická cesta leží uvnitř jádra HLS pro převod HSV na RGB, v~násobení saturace a~zlomkové části odstínu. Vivado ho umístil do bloku DSP včetně předsčítačky, ale bez vnitřních registrů. Cesta trvá 4,63\,ns a~prochází 11 úrovněmi logiky, z~toho 8 uvnitř bloku DSP. Při syntéze mimo kontext měly obě varianty jádra (s~násobením v~LUT i~v~DSP) rezervu 0,77 až 0,95\,ns, v~řetězci přibylo směrování a~rozmístění vedle ostatních jader.
+Časová rezerva celého řetězce je při 200\,MHz 0,401\,ns. Kritická cesta leží uvnitř jádra HLS pro konvoluci 3×3, v~násobení a~sčítání s~koeficientem ve dvou blocích DSP. Cesta trvá 4,28\,ns, prochází 7 úrovněmi uvnitř bloků DSP a~70\,\% jejího zpoždění tvoří logika.
 
-Tohle je příklad, jak se chová jádro HLS navržené na hranu zadané periody. Při 5\,ns vloží HLS mezi registry tolik logiky, kolik se do periody vejde, a~v~hustším návrhu pak rezerva mizí. Jádra ve VHDL s~registrem za každou operací kritickou cestu řetězce netvořila. Nápravou by byla varianta s~latencí násobení 3 takty z~tabulky~\ref{tab:hsvdsp}.
+Proti předchozí verzi řetězce z~25. 10. 2026 se rezerva zvětšila z~0,229 na 0,401\,ns a~počet LUT klesl o~485 (z~14 006 na 13 521) za 5 bloků DSP navíc. Mezi verzemi jsem změnil generátor okna (oddíl~\ref{sec:vooc}), porovnání v~síti mediánu a~převod HSV na RGB, který má ve finální verzi násobení v~blocích DSP v~HLS i~ve VHDL. Kritickou cestu předchozí verze tvořilo jádro HLS pro převod HSV na RGB: násobení v~bloku DSP bez vnitřních registrů, 4,63\,ns. Ve finální verzi má toto jádro násobení s~latencí 3 taktů a~kritickou cestu už netvoří.
 
-% TODO(text): V řetězci z 25. 10. zabíralo jádro hls_hsv2rgb (výchozí varianta) 232 LUT a 11 DSP, v OOC 556 LUT a 1 DSP: syntéza IP v blokovém návrhu namapovala násobení 8 × 8 do bloků DSP sama (varianty mají odlišné názvy IP od 23. 10., záměna IP to není). Finální řetězec (19. 11.) používá variantu s DSP a latencí 3 výslovně; oddíl přepsat podle finálních reportů.
+Kritickou cestu řetězce tvoří v~obou verzích jádro HLS. Při 5\,ns vloží HLS mezi registry tolik logiky, kolik se do periody vejde, a~v~hustším návrhu pak rezerva mizí. Jádra ve VHDL s~registrem za každou operací kritickou cestu řetězce netvořila.
+
+% TODO(data): tabulka řetězce před/po (25. 10. proti 19. 11.) je ve vysledky.md sekce 26 – rozhodnout, zda ji dát do kapitoly.
 
 \section{Diskuse}
 \label{sec:diskuse}

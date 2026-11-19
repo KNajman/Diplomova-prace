@@ -34,7 +34,7 @@ HLS_OOC = 'DP/hls/results/hls_ooc_results.csv'
 VHDL_OOC = 'DP/vhdl/results/vhdl_results.csv'
 DESKA = 'DP/results/deska/deska_{beh}_{opt}.csv'
 BEH_VYCHOZI = '2026-10-25_2243'
-RETEZEC = 'DP/results/retezec_2026-10-25'  # reporty Vivada finálního bitstreamu (utilization, timing)
+RETEZEC = 'DP/results/runs/2026-11-19_1955_final_build'  # reporty Vivada finálního bitstreamu (utilization, timing)
 
 # Skupiny instancí testovacího řetězce (utilization_hier.rpt): popisek, funkce instance -> patří do skupiny
 SKUPINY_RETEZCE = (

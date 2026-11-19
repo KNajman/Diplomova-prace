@@ -775,3 +775,28 @@ Konfigurace: běh `2026-11-19_1721_vhdl_ooc_all_v3` (commit f00bf4b), `ooc_all.t
 - VHDL má teď **kratší nebo stejnou periodu než HLS u všech 9 jader**, menší LUT u 6 z 9 (výjimky RGB↔HSV a konvoluce 7×7).
 - Pro DP: příklad optimalizace kritické cesty „předpočítat porovnání o takt dřív a vybírat až za ním“ a jejího měření
   na všech konfiguracích (kap. 5 implementace `window_gen`, kap. 6 tabulka před/po). Kapitola 6 a README aktualizované.
+
+## 26. Finální testovací řetězec – využití a časování před a po optimalizacích (19. 11. 2026)
+
+Konfigurace: běh `2026-11-19_1955_final_build` (commit c39accb, 200 MHz): `window_gen` v3, medián se sdíleným ostrým `sort3`,
+HSV → RGB v DSP (HLS `hls_hsv2rgb_dsp_lat`, kosimulace PASS; VHDL `G_USE_DSP = true`). „Před“ = bitstream z 25. 10. (sekce 22).
+Reporty v `DP/results/runs/2026-11-19_1955_final_build/`, z nich generuje `tabulky_06.py` tabulky 6.5.
+
+| | WNS | LUT | FF | BRAM36 | DSP | příkon (odhad) | kritická cesta |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 25. 10. | +0,229 ns | 14 006 (12,0 %) | 17 969 | 16 | 64 | 3,087 W | `hls_hsv2rgb`: násobení v DSP bez registrů, 4,63 ns, 11 úrovní |
+| **19. 11. (finální)** | **+0,401 ns** | **13 521 (11,5 %)** | 17 937 | 16 | 69 | 3,079 W | `hls_filter3x3`: násobení a MAC ve dvou DSP, 4,28 ns, 7 úrovní |
+
+| jádro v řetězci | LUT 25. 10. → 19. 11. | FF | DSP |
+| --- | --- | --- | --- |
+| `hls_hsv2rgb` (→ dsp_lat) | 232 → 262 | 264 → 273 | 11 → 6 |
+| `vhdl_hsv2rgb` (→ `G_USE_DSP`) | 605 → 198 | 422 → 235 | 1 → 11 |
+| `hls_median` (sort3) | 745 → 706 | 472 → 472 | 0 |
+| `vhdl_median` (sort3 + window_gen v3) | 663 → 602 | 532 → 612 | 0 |
+| `vhdl_filter3x3` (window_gen v3) | 504 → 517 | 558 → 638 | 14 |
+
+**Poznatky**
+- Rezerva řetězce +75 % (0,229 → 0,401 ns), −485 LUT za +5 DSP. Největší úspora je VHDL HSV → RGB v DSP (−407 LUT).
+- Kritická cesta se přesunula z HLS HSV → RGB (po latenci 3 už ne) do HLS konvoluce 3×3 – opět jádro HLS, žádné VHDL.
+- Jádra 34 % LUT řetězce (dřív 37 %), zbytek VDMA a propojení.
+- Další krok: test na desce (`board_test` O0/O2/O3) – soubory staženy `ababel.sh board` 19. 11. 20:53.
