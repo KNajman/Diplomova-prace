@@ -53,8 +53,11 @@ DP/vhdl/                 VHDL jádra, common/ (skid buffer, generátor okna, reg
 DP/hw/harness            testovací řetězec pro KV260 (skriptovaný block design: VDMA, AXIS přepínače, všechna jádra)
 DP/sw/harness_app        měřicí aplikace (bare-metal A53): HW HLS × HW VHDL × SW, kontrola bitové shody na desce
 DP/results/vysledky.md   všechny srovnávací tabulky (prostředky, Fmax, poznatky) + CSV
+DP/results/runs/         stažené běhy front z Ababelu (souhrn, CSV, reporty; jeden adresář na běh)
 DP/scripts/queues        fronty buildů pro server (Vivado/Vitis 2025.2)
-doc/                     text práce (LaTeX)
+doc/kapitoly/            kapitoly práce v Markdownu, převod doc/tools/md2tex.py do doc/kapitoly/tex/
+doc/obrazky/             diagramy v TikZ (barvy FM TUL, dp_styl.tex), export.sh do PDF/SVG/PNG
+doc/                     text práce (LaTeX, DP.tex)
 ```
 
 ---
@@ -73,18 +76,18 @@ doc/                     text práce (LaTeX)
 
 ### Aritmetika s pevnou řádovou čárkou
 
-Formát $Q_{m.n}$ = celé číslo se znaménkem s $n$ zlomkovými bity, hodnota $$x = \frac{X}{2^n}$$.
+Formát $Q_{m.n}$ = celé číslo se znaménkem s $n$ zlomkovými bity, hodnota $x = X / 2^n$.
 
 **Zaokrouhlení half-up** (k $+\infty$) a **saturace** jsou ve všech třech implementacích stejné:
 
-$$
+```math
 \mathrm{round\_shift}(X, n) = \left\lfloor \frac{X + 2^{n-1}}{2^n} \right\rfloor ,
 \qquad
 \mathrm{sat}_{u8}(v) = \min\bigl(\max(v, 0), 255\bigr)
-$$
+```
 
-V HW je $\lfloor \cdot / 2^n \rfloor$ pouhý aritmetický posun, takže zaokrouhlení stojí jednu sčítačku (u DSP48E2 zdarma
-v post-adderu).
+V HW je $\lfloor \cdot / 2^n \rfloor$ pouhý aritmetický posun, takže zaokrouhlení vyžaduje jen jednu sčítačku (v bloku
+DSP48E2 ji provede vestavěná sčítačka za násobičkou).
 
 <table><tr><td>
 
@@ -144,19 +147,19 @@ Jádra jsou díky tomu generická (např. konvoluce pro libovolné K bez ruční
 
 Každá výstupní složka je lineární kombinace vstupních složek plus offset:
 
-$$
+```math
 \begin{pmatrix} o_0 \\ o_1 \\ o_2 \end{pmatrix}
 = \mathrm{sat}_{u8}\!\left( \mathrm{round\_shift}\!\left( \mathbf{C} \begin{pmatrix} i_0 \\ i_1 \\ i_2 \end{pmatrix} + 2^{15} \begin{pmatrix} b_0 \\ b_1 \\ b_2 \end{pmatrix},\ 15 \right) \right)
-$$
+```
 
 Koeficienty $\mathbf{C}$ jsou v **Q2.15** (18 b = šířka portu B násobičky DSP48E2, rozsah ±4), offsety $b$ celá čísla.
 Matice se počítají z definic normy ($K_r$, $K_b$), například BT.601:
 
-$$
+```math
 Y = K_r R + (1 - K_r - K_b) G + K_b B ,\qquad
 C_b = 128 + \frac{B - Y}{2(1 - K_b)} ,\qquad
 C_r = 128 + \frac{R - Y}{2(1 - K_r)}
-$$
+```
 
 s $K_r = 0{,}299$, $K_b = 0{,}114$ (BT.709: $0{,}2126$; $0{,}0722$). Zaokrouhlení koeficientů na Q2.15 metodou největšího
 zbytku zachová součet řádku (šedá zůstane šedá). RGB → šedá (BT.601) je s Q2.15 bitově shodná s `cv::cvtColor` pro všech
@@ -165,12 +168,12 @@ $2^{24}$ barev. Předvolby: RGB → šedá, YCbCr 601/709 plný rozsah, YCbCr 60
 **Zpětný převod YCbCr → RGB** (předvolby BT.601 plný rozsah, BT.601 a BT.709 studio rozsah) běží na stejných jádrech,
 jen s jinou maticí. Je to inverze dopředné matice $\mathbf{M}$ téhož standardu:
 
-$$
+```math
 \begin{pmatrix} R \\ G \\ B \end{pmatrix}
 = \mathbf{M}^{-1} \left( \begin{pmatrix} Y \\ C_b \\ C_r \end{pmatrix} - \begin{pmatrix} y_0 \\ 128 \\ 128 \end{pmatrix} \right)
 = \mathbf{M}^{-1} \begin{pmatrix} Y \\ C_b \\ C_r \end{pmatrix} + \mathbf{b} ,
 \qquad y_0 = 0 \text{ (plný rozsah)},\ 16 \text{ (studio)}
-$$
+```
 
 Koeficienty inverze jsou až 2,11 (BT.709 studio, $C_b \to B$), do Q2.15 se vejdou. Konstantní člen $\mathbf{b}$ ale není
 celé číslo (u R v BT.601 je −179,4) a jádra mají jen celočíselný offset (10 b), proto se zaokrouhlí. Výsledek se od
@@ -238,30 +241,30 @@ out_pixel(out_ch) <= sat_u8(shift_right(sum012(out_ch), C_CSC_FRAC_W));    -- kr
 
 ## 2. RGB → HSV a HSV → RGB
 
-Převod **RGB → HSV** podle celočíselný algoritmus v OpenCV (kde je H v rozsahu 0–179, aby se vešel do bajtu). Dělení nahrazují 2 tabulky převrácených hodnot o 256 položkách (`shift` = 12):
+Převod **RGB → HSV** podle celočíselného algoritmu z OpenCV (kde je H v rozsahu 0–179, aby se vešel do bajtu). Dělení nahrazují 2 tabulky převrácených hodnot o 256 položkách (`shift` = 12):
 
-$$
+```math
 V = \max(R,G,B),\quad \Delta = V - \min(R,G,B),\quad
 S = \mathrm{round\_shift}\bigl(\Delta \cdot \mathrm{sdiv}[V],\ 12\bigr),\quad
 \mathrm{sdiv}[i] = \mathrm{round}\!\left(\frac{255 \cdot 2^{12}}{i}\right)
-$$
+```
 
-$$
+```math
 H = \mathrm{round\_shift}\bigl(h \cdot \mathrm{hdiv}[\Delta],\ 12\bigr),\quad
 h = \begin{cases} G - B & V = R \\ B - R + 2\Delta & V = G \\ R - G + 4\Delta & V = B \end{cases},\quad
 \mathrm{hdiv}[i] = \mathrm{round}\!\left(\frac{180 \cdot 2^{12}}{6i}\right)
-$$
+```
 
 a $H < 0 \Rightarrow H + 180$. Výsledek je bitově shodný s `cv::cvtColor(…, COLOR_RGB2HSV)` pro všech $2^{24}$ barev.
 
 **HSV → RGB** bez dělení: sektor $r = \lfloor H/30 \rfloor$ násobením převrácenou hodnotou, $f = \mathrm{rem}\cdot 255/30$,
 $x/255$ přibližným vzorcem $\mathrm{div255}(x) = (x + 1 + (x \gg 8)) \gg 8$:
 
-$$
+```math
 p = \mathrm{div255}\bigl(V(255 - S)\bigr),\quad
 q = \mathrm{div255}\bigl(V(255 - \mathrm{div255}(Sf))\bigr),\quad
 t = \mathrm{div255}\bigl(V(255 - \mathrm{div255}(S(255 - f)))\bigr)
-$$
+```
 
 $(R,G,B)$ podle sektoru 0–5: $(V,t,p), (q,V,p), (p,V,t), (p,q,V), (t,p,V), (V,p,q)$; pro $S = 0$ šedá $(V,V,V)$.
 
@@ -310,7 +313,7 @@ stejné funkce jako v C (`imgproc_rgb_to_hsv_pixel` / `imgproc_hsv_to_rgb_pixel`
 
 V OpenCV je 5 typů prahování, modelované jako
 
-$$
+```math
 \mathrm{above} = (x > T),\qquad
 y = \begin{cases}
 \mathrm{above}\ ?\ M : 0 & \text{BINARY} \\
@@ -319,7 +322,7 @@ y = \begin{cases}
 \mathrm{above}\ ?\ x : 0 & \text{TOZERO} \\
 \mathrm{above}\ ?\ 0 : x & \text{TOZERO\_INV}
 \end{cases}
-$$
+```
 
 ($T$ = práh, $M$ = maxval; bitově shodné s `cv::threshold`). Práh lze určit automaticky Otsuovou metodou z histogramu
 (maximalizace mezitřídního rozptylu $\sigma_B^2(T) = \omega_0(T)\,\omega_1(T)\,[\mu_0(T) - \mu_1(T)]^2$), počítá ARM.
@@ -397,10 +400,10 @@ end if;
 
 Sémantika `cv::filter2D` (korelace), okno $K \times K$ se středem v $(x, y)$, $r = \lfloor K/2 \rfloor$:
 
-$$
+```math
 \mathrm{acc}(x,y) = \sum_{i=0}^{K-1}\sum_{j=0}^{K-1} c_{ij}\; I\bigl(x + j - r,\ y + i - r\bigr),\qquad
 O(x,y) = \mathrm{sat}_{u8}\bigl(\mathrm{round\_shift}(\mathrm{acc}\cdot s,\ 14) + \delta\bigr)
-$$
+```
 
 Koeficienty $c_{ij}$ int8, normalizace $s$ v **Q.14** (18 b), $\delta$ int16. Pixely mimo obraz: 0 (*constant*) nebo
 nejbližší pixel na okraji (*replicate*). Šířky: součin $8 + 9 = 17$ b, součet $17 + \lceil\log_2 K^2\rceil$ b.
@@ -480,12 +483,16 @@ vydá přesně $W \times H$ pixelů. Režie flush: $(W + r)(H + r) - WH$ taktů 
 
 ## 5. Mediánový filtr 3×3 pomocí třídicí sítě (sorting network)
 
-$$
-O(x, y) = \mathrm{med}\bigl\{ I(x + j, y + i) : i, j \in \{-1, 0, 1\} \bigr\}
-$$
+```math
+O(x, y) = \mathrm{med}\bigl\lbrace I(x + j, y + i) : i, j \in \lbrace -1, 0, 1 \rbrace \bigr\rbrace
+```
 
-Místo řazení devíti hodnot lze použit **třídicí síť 7 × sort3** (21 komparací): seřadit řádky, pak sloupce minim, mediánů a maxim, medián pak bude jedna hodnota z (maximum minim, mediánu mediánů, minimum maxim). Struktura je pravidelná a každá
-vrstva je jeden stupeň pipeline. S okraji které se replikují *replicate* bitově shodné s `cv::medianBlur`.
+Místo řazení devíti hodnot se používá **třídicí síť 7 × sort3**: seřadí se řádky, pak sloupce minim, mediánů a maxim
+a medián je střední hodnota z trojice (maximum minim, medián mediánů, minimum maxim). Struktura je pravidelná a každá
+vrstva je jeden stupeň pipeline (3 takty). Zapsaná síť má 21 porovnání; z posledních čtyř `sort3` se používá jen jeden
+výstup, syntéza zbytek odstraní a v obvodu zůstane **19 porovnání** (Paethova síť v Graphics Gems má 20). Ověřeno skriptem
+`DP/model/lib_imgproc/test/median_network_count.py` (princip 0-1, všech 2^9 binárních vstupů) a OOC (`vysledky.md` sekce 23).
+S replikací okraje (*replicate*) je výsledek bitově shodný s `cv::medianBlur`.
 
 <table><tr><td>
 
@@ -533,16 +540,25 @@ highs_sorted   <= sort3(rows_sorted(0).high, rows_sorted(1).high, rows_sorted(2)
 median_value   <= sort3(lows_sorted.high, middles_sorted.middle, highs_sorted.low).middle;   -- takt E3
 ```
 
-`sort3` je ve všech třech jazycích stejná funkce: $lo_{ab} = \min(a,b)$, $hi_{ab} = \max(a,b)$, $lo = \min(lo_{ab}, c)$,
-$hi = \max(hi_{ab}, c)$, $mid = hi_{ab} < c\ ?\ hi_{ab} : \max(lo_{ab}, c)$.
+`sort3` je ve všech třech jazycích stejná funkce se **3 ostrými porovnáními** (`>`), která sdílí minimum, medián
+i maximum. Při rovnosti hodnot je jedno, která se vybere, výsledek je stejný (ekvivalence s dřívějším zápisem ověřena
+na všech 2^24 trojicích; sdílení porovnání ušetřilo 33 LUT a 6 komparátorů, `vysledky.md` sekce 23):
+
+```
+a_gt_b  = a > b          lo_ab = a_gt_b ? b : a          hi_ab = a_gt_b ? a : b
+hi_gt_c = hi_ab > c      c_gt_lo = c > lo_ab
+lo  = c_gt_lo ? lo_ab : c
+hi  = hi_gt_c ? hi_ab : c
+mid = !hi_gt_c ? hi_ab : (!c_gt_lo ? lo_ab : c)
+```
 
 ---
 
 ## 6. Histogram jasu
 
-$$
+```math
 h[k] = \bigl|\{ (x, y) : I(x, y) = k \}\bigr| ,\qquad k = 0, \dots, 255
-$$
+```
 
 Video prochází jádrem beze změny (bypass), histogram snímku je po jeho konci k dispozici v poli `hist[256]` (AXI4-Lite,
 `0x400–0x7FF`) až do konce dalšího snímku. Čítač koše má $\lceil \log_2 (W_{max} H_{max} + 1) \rceil = 23$ b (4K).
@@ -882,6 +898,10 @@ Plné tabulky, konfigurace a poznatky: [`DP/results/vysledky.md`](DP/results/vys
 
 ¹ omezeno minimální šířkou pulzu hodin BRAM/DSP, ne logikou. Oba sloupce jsou ze stejného OOC skriptu (RTL z HLS
 prohnané stejným postupem jako VHDL, `vysledky.md` sekce 9); perioda = max(5 − WNS, 5 − WPWS). Měření na desce (1080p, HW × SW): všechna jádra 1 px/takt (10,37 ms na snímek), zrychlení proti A53 při -O2 3,4× až 55× (`vysledky.md` sekce 20).
+VHDL konvoluce a medián jsou po optimalizaci generátoru okna (`window_gen` v3: příznaky pozice porovnáním s konstantami
+snímku, bez sčítačky v kritické cestě); konvoluce 3×3 až 7×7 s DSP běží na stropu bloku DSP 3,26 ns (`vysledky.md`
+sekce 24 a 25). Finální testovací řetězec (19. 11. 2026, HSV → RGB v DSP): 13 521 LUT (11,5 %), 69 DSP, rezerva
++0,401 ns při 200 MHz (sekce 26).
 
 ## Sestavení
 
@@ -889,4 +909,13 @@ prohnané stejným postupem jako VHDL, `vysledky.md` sekce 9); perioda = max(5 �
 - **HLS:** `DP/hls/scripts/run_hls.sh <jádro>/hls_config*.cfg csim|syn|cosim|impl` (Vitis 2025.2), viz `DP/hls/README.md`.
 - **VHDL:** vektory `DP/vhdl/tb/gen_vectors.sh`, simulace `DP/vhdl/scripts/run_ghdl.sh` / `run_xsim.sh <tb> [GENERIC=…]`,
   OOC `vivado -mode batch -source DP/vhdl/scripts/ooc_impl.tcl -tclargs <top> [GENERIC=…]`.
-- **Deska:** fronty `hw_ip` → `hw_harness` → `sw_app` (`DP/scripts/queues`), test `DP/sw/harness_app/board_test.bat` (kapitola Testovací řetězec a test na desce).
+- **Deska:** fronta `final_build` (zabalení IP, blokový návrh, bitstream, měřicí aplikace, reporty, export blokového
+  návrhu), stažení `bash .claude/scripts/ababel.sh board`, test `DP/sw/harness_app/board_test.bat` (kapitola Testovací
+  řetězec a test na desce).
+- **Server Ababel:** fronta = soubor `DP/scripts/queues/<oblast>_<téma>.queue`, spuštění `ababel.sh start <fronta>`
+  (synchronizace repa + běh na pozadí). Každý běh má vlastní adresář `~/runs/<datum_čas>_<fronta>/` (souhrn, výstupy kroků,
+  kopie fronty, commit, CSV), přehled všech běhů je v `~/runs/INDEX.md`, `~/logs/<fronta>.log` je odkaz na poslední běh
+  (`tail -f`). Z notebooku: `ababel.sh runs` (posledních 15 běhů), `ababel.sh getrun <adresář>` (stáhne do `DP/results/runs/`).
+- **Tabulky kapitoly 6:** `python doc/tools/tabulky_06.py` je přegeneruje z CSV a reportů (`--check` jen ověří).
+- **Obrázky:** `bash doc/obrazky/export.sh [obrázek]`; blokový návrh z Vivada fronta `bd_export` (`write_bd_layout`
+  pod xvfb, výstup `doc/obrazky/vivado/`).
