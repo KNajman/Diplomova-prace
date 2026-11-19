@@ -700,5 +700,21 @@ data v `DP/results/runs/`). Varianty zápisu, výstup ve všech bitově stejný 
   v `window_gen`). Původní zápis porovnával `low_ab < c` i `low_ab > c`; kvůli rovnosti je syntéza nesloučí.
 - Rozdíl period 0,1 ns je v rozptylu rozmístění a propojení (sekce 14).
 - Rozhodnutí (Karel, 19. 11.): `sort3` jen s ostrými porovnáními `>` (sdílenými) v C, HLS i VHDL, commit 118f651; ekvivalence
-  se starým `sort3` ověřena na všech 2^24 trojicích (lo, mid, hi). Parametr experimentu odstraněn. Ověření nové verze: fronta
-  `median_porovnani` (sekce doplnit po doběhnutí).
+  se starým `sort3` ověřena na všech 2^24 trojicích (lo, mid, hi). Parametr experimentu odstraněn.
+
+**Nová verze (`sort3` jen přes `>`), běh `2026-11-19_1636_median_porovnani`:** unit testy modelu 124/124, HLS C-sim + kosimulace
+PASS (11 scénářů), xsim `tb_median` 15 scénářů + `tb_median_axil` 2 PASS. OOC:
+
+| jádro | LUT před → po | FF | CARRY8 | perioda před → po | kritická cesta po |
+| --- | --- | --- | --- | --- | --- |
+| VHDL `median_core` | 590 → **549** | 433 | 38 → 32 | 3,50 → 3,66 ns | `window_gen`: příznaky pozice (9 úrovní, 69 % propojení) |
+| VHDL `median_axil` | 692 → **643** | 532 | → 33 | 3,86 → **4,31 ns** | `window_gen`: příznaky pozice (9 úrovní, 70 % propojení) |
+| HLS `hls_median` | 740 → **701** | 472 | → 34 | 3,90 → 3,99 ns | síť mediánu (`r_mid`, 10 úrovní) |
+
+- LUT klesly u VHDL o 7 % (obálka), u HLS o 5 %; ostré porovnání ušetřilo proti sdílenému z experimentu dalších 8 LUT (549 proti 557).
+- Perioda VHDL obálky se zhoršila, ale kritická cesta není v síti mediánu – je v řízení `window_gen`, které se neměnilo; jde o
+  rozptyl rozmístění a propojení (obálka s registrovou bankou kolísá 3,86 až 4,31 ns, sekce 14). VHDL tím ztratil u mediánu
+  kratší periodu proti HLS (4,31 proti 3,99 ns). Náprava, pokud bude čas: příznaky pozice ve `window_gen` předpočítat o takt dřív
+  (pomůže mediánu i konvoluci).
+- HLS dává do stupně pipeline víc logiky sítě (kritická cesta je v ní), VHDL má síť rozloženou po taktech.
+- Export blokového návrhu: `write_bd_layout` v batch režimu selhává (BD 5-349, potřebuje GUI) → fronta `bd_export` přes xvfb.

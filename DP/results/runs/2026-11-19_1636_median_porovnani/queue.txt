@@ -1,0 +1,14 @@
+# Medián 3x3: sort3 jen s ostrými porovnáními (>) v C, HLS i VHDL (výsledek bitově stejný, ověřeno na všech 2^24 trojicích).
+# Kroky: unit testy modelu, HLS (csim, syn, cosim, impl) + OOC, VHDL xsim všech scénářů + OOC, CSV, export blokového návrhu.
+# Výstupy v $RUN_DIR: vhdl_all.csv, hls_ooc.csv, harness_bd.pdf/svg
+cd DP/model && make -s test
+cd DP/hls/scripts && bash run_hls.sh ../median/hls_config.cfg all
+cd DP/hls/scripts && vivado -mode batch -nojournal -nolog -source ooc_impl_hls.tcl -tclargs ../build/median hls_median
+cd DP/vhdl/tb && bash gen_vectors.sh
+cd DP/vhdl/scripts && for size in 0 1 2 3 4 5; do for rep in true false; do bash run_xsim.sh tb_median G_SIZE=$size G_REPLICATE=$rep G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median G_GARBAGE=7 && bash run_xsim.sh tb_median G_BAD_EOL_ROW=5 && bash run_xsim.sh tb_median G_SIZE=4 G_GARBAGE=3 G_BAD_EOL_ROW=2 G_VALID_PCT=40 G_READY_PCT=60
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median_axil G_REPLICATE=true && bash run_xsim.sh tb_median_axil G_REPLICATE=false
+cd DP/vhdl/scripts && for top in median_core median_axil; do vivado -mode batch -nojournal -nolog -source ooc_impl.tcl -tclargs $top || exit 1; done
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../build/ooc "$RUN_DIR/vhdl_all.csv" > /dev/null && grep -E '^component|^median_(core|axil),' "$RUN_DIR/vhdl_all.csv"
+cd DP/vhdl/scripts && python3 collect_vhdl.py ../../hls/build/ooc "$RUN_DIR/hls_ooc.csv" > /dev/null && grep -E '^component|^hls_median,' "$RUN_DIR/hls_ooc.csv"
+cd DP/hw/harness && vivado -mode batch -nojournal -nolog -source export_bd.tcl -tclargs "$RUN_DIR"

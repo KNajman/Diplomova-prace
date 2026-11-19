@@ -94,7 +94,6 @@ HISTOGRAM = (
 # Jen jádra, jejichž RTL se od exportu nezměnilo (řádková jádra po vypnutí auto-rewind export nemají).
 EXPORT_HLS = (
     ('histogram', 'hls_histogram', 302, 422, '2.73'),
-    ('medián 3×3', 'hls_median', 768, 472, '4.06'),
     ('konvoluce 3×3', 'hls_filter_3x3', 655, 621, '3.92'),
     ('konvoluce 5×5', 'hls_filter_5x5', 959, 863, '4.17'),
     ('konvoluce 7×7', 'hls_filter_7x7', 1306, 1244, '4.37'),
