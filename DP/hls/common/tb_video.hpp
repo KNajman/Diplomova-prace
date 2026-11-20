@@ -40,8 +40,8 @@ struct Image
  * @brief Vyplní obraz testovacím vzorem: rohy a okraje rozsahu, gradient, pseudonáhodný šum.
  *
  * Šum pokrývá náhodné kombinace, gradient spojité přechody a první řádek obsahuje
- * hraniční hodnoty (0, 1, 127, 128, 254, 255 ve všech složkách), kde se chyby saturace
- * a zaokrouhlení projeví nejčastěji.
+ * hraniční hodnoty (0, 1, 127, 128, 254, 255 ve všech složkách), kde se chyby způsobené
+ * saturací a zaokrouhlení projevují nejčastěji.
  *
  * @param image Obraz
  * @param seed  Semínko generátoru
@@ -56,21 +56,21 @@ inline void fill_pattern(Image& image, uint32_t seed)
     {
         for (uint32_t x = 0u; x < image.img.width; x++)
         {
-            uint8_t* px = imgproc_image_pixel(&image.img, x, y);
+            uint8_t* pixel = imgproc_image_pixel(&image.img, x, y);
             for (uint8_t c = 0u; c < image.img.channels; c++)
             {
                 state = (state * 1103515245u) + 12345u;
                 if (y == 0u)
                 {
-                    px[c] = EDGES[(x + (c * 2u)) % n_edges];
+                    pixel[c] = EDGES[(x + (c * 2u)) % n_edges];
                 }
                 else if (y < (image.img.height / 2u))
                 {
-                    px[c] = static_cast<uint8_t>((x * (c + 1u)) + y);
+                    pixel[c] = static_cast<uint8_t>((x * (c + 1u)) + y);
                 }
                 else
                 {
-                    px[c] = static_cast<uint8_t>(state >> 16u);
+                    pixel[c] = static_cast<uint8_t>(state >> 16u);
                 }
             }
         }
@@ -78,43 +78,44 @@ inline void fill_pattern(Image& image, uint32_t seed)
 }
 
 /**
- * @brief Zapíše obraz do streamu jako AXI4-Stream Video (TUSER na prvním pixelu, TLAST na konci řádku).
+ * @brief Převede obraz do datového proudu/streamu jako AXI4-Stream Video (TUSER na prvním pixelu, TLAST na konci řádku).
  * @param image     Zdrojový obraz
- * @param stream    Cílový stream
+ * @param stream    Cílový datový stream (1 nebo vícesložkový)
  */
-template <int CH>
-void push_frame(const Image& image, hlsv::stream_t<CH>& stream)
+template <int CHANNELS>
+void push_frame(const Image& image, hlsv::stream_t<CHANNELS>& stream)
 {
     for (uint32_t y = 0u; y < image.img.height; y++)
     {
         for (uint32_t x = 0u; x < image.img.width; x++)
         {
             const uint8_t* src = imgproc_image_pixel(&image.img, x, y);
-            hlsv::Pixel<CH> px;
-            for (int c = 0; c < CH; c++)
+            hlsv::Pixel<CHANNELS> pixel;
+            for (int c = 0; c < CHANNELS; c++)
             {
-                px.ch[c] = src[c];
+                pixel.ch[c] = src[c];
             }
-            hlsv::axis_t<CH> pkt;
-            pkt.data = hlsv::pack<CH>(px);
-            pkt.keep = -1;
-            pkt.strb = -1;
-            pkt.user = ((x == 0u) && (y == 0u)) ? 1 : 0;
-            pkt.last = (x == (image.img.width - 1u)) ? 1 : 0;
-            stream.write(pkt);
+
+            hlsv::axis_t<CHANNELS> packet;
+            packet.data = hlsv::pack<CHANNELS>(pixel);
+            packet.keep = -1;
+            packet.strb = -1;
+            packet.user = ((x == 0u) && (y == 0u)) ? 1 : 0;
+            packet.last = (x == (image.img.width - 1u)) ? 1 : 0;
+            stream.write(packet);
         }
     }
 }
 
 /**
- * @brief Přečte snímek ze streamu a porovná ho s očekávaným obrazem včetně TUSER/TLAST.
+ * @brief Přečte snímek ze streamu a porovná ho s očekávaným obrazem včetně signálů TUSER/TLAST.
  * @param stream    Výstupní stream jádra
  * @param expected  Očekávaný obraz (golden model)
  * @param name      Název testu pro výpis
  * @return Počet chyb (0 = bitová shoda)
  */
-template <int CH>
-uint32_t check_frame(hlsv::stream_t<CH>& stream, const Image& expected, const char* name)
+template <int CHANNELS>
+uint32_t check_frame(hlsv::stream_t<CHANNELS>& stream, const Image& expected, const char* name)
 {
     uint32_t errors = 0u;
 
@@ -127,16 +128,19 @@ uint32_t check_frame(hlsv::stream_t<CH>& stream, const Image& expected, const ch
                 std::printf("FAIL  %-40s chybí pixel [%u, %u]\n", name, x, y);
                 return errors + 1u;
             }
-            const hlsv::axis_t<CH> pkt = stream.read();
-            const hlsv::Pixel<CH> px = hlsv::unpack<CH>(pkt.data);
+
+            const hlsv::axis_t<CHANNELS> packet = stream.read();
+            const hlsv::Pixel<CHANNELS> pixel = hlsv::unpack<CHANNELS>(packet.data);
             const uint8_t* exp = imgproc_image_pixel(&expected.img, x, y);
-            const bool user_ok = (pkt.user == (((x == 0u) && (y == 0u)) ? 1 : 0));
-            const bool last_ok = (pkt.last == ((x == (expected.img.width - 1u)) ? 1 : 0));
+            const bool user_ok = (packet.user == (((x == 0u) && (y == 0u)) ? 1 : 0));
+            const bool last_ok = (packet.last == ((x == (expected.img.width - 1u)) ? 1 : 0));
             bool data_ok = true;
-            for (int c = 0; c < CH; c++)
+
+            for (int c = 0; c < CHANNELS; c++)
             {
-                data_ok = data_ok && (px.ch[c] == exp[c]);
+                data_ok = data_ok && (pixel.ch[c] == exp[c]);
             }
+            
             if ((!data_ok) || (!user_ok) || (!last_ok))
             {
                 if (errors < 5u)
@@ -148,6 +152,7 @@ uint32_t check_frame(hlsv::stream_t<CH>& stream, const Image& expected, const ch
             }
         }
     }
+
     if (!stream.empty())
     {
         std::printf("      jádro vydalo víc pixelů, než je ve snímku\n");

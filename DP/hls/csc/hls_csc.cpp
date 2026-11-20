@@ -35,22 +35,24 @@ using csc_acc_t = ap_int<CSC_ACC_BITS>;
  * @param p     Koeficienty a offsety
  * @return Výstupní složky
  */
-template <int CH_IN, int CH_OUT>
-hlsv::Pixel<CH_OUT> csc_pixel(const hlsv::Pixel<CH_IN>& in, const CscParams& p)
+template <int CHANNELS_IN, int CHANNELS_OUT>
+hlsv::Pixel<CHANNELS_OUT> csc_pixel(const hlsv::Pixel<CHANNELS_IN>& in, const CscParams& p)
 {
-#pragma HLS INLINE
-    hlsv::Pixel<CH_OUT> out;
-    for (int o = 0; o < CH_OUT; o++)
+    #pragma HLS INLINE
+    hlsv::Pixel<CHANNELS_OUT> out;
+    for (int o = 0; o < CHANNELS_OUT; o++)
     {
-#pragma HLS UNROLL
+        #pragma HLS UNROLL
         csc_acc_t acc = static_cast<csc_acc_t>(p.offset[o]) << CSC_FRAC_BITS;
-        for (int i = 0; i < CH_IN; i++)
+        for (int i = 0; i < CHANNELS_IN; i++)
         {
-#pragma HLS UNROLL
+            #pragma HLS UNROLL
             acc += static_cast<csc_acc_t>(p.coeff[o][i]) * static_cast<csc_acc_t>(in.ch[i]);
         }
+
         out.ch[o] = hlsv::saturate_u8(hlsv::round_shift<CSC_FRAC_BITS>(acc));
     }
+
     return out;
 }
 
@@ -60,17 +62,17 @@ hlsv::Pixel<CH_OUT> csc_pixel(const hlsv::Pixel<CH_IN>& in, const CscParams& p)
  * @param out_stream    Výstupní stream
  * @param p             Koeficienty a offsety
  */
-template <int CH_IN, int CH_OUT>
-void csc_stream(hlsv::stream_t<CH_IN>& in_stream, hlsv::stream_t<CH_OUT>& out_stream, const CscParams& p)
+template <int CHANNELS_IN, int CHANNELS_OUT>
+void csc_stream(hlsv::stream_t<CHANNELS_IN>& in_stream, hlsv::stream_t<CHANNELS_OUT>& out_stream, const CscParams& p)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     bool last = false;
     do
     {
-#pragma HLS PIPELINE II=1
-        const hlsv::axis_t<CH_IN> in = in_stream.read();
-        const hlsv::Pixel<CH_OUT> px = csc_pixel<CH_IN, CH_OUT>(hlsv::unpack<CH_IN>(in.data), p);
-        out_stream.write(hlsv::make_packet<CH_OUT, CH_IN>(hlsv::pack<CH_OUT>(px), in));
+        #pragma HLS PIPELINE II=1
+        const hlsv::axis_t<CHANNELS_IN> in = in_stream.read();
+        const hlsv::Pixel<CHANNELS_OUT> px = csc_pixel<CHANNELS_IN, CHANNELS_OUT>(hlsv::unpack<CHANNELS_IN>(in.data), p);
+        out_stream.write(hlsv::make_packet<CHANNELS_OUT, CHANNELS_IN>(hlsv::pack<CHANNELS_OUT>(px), in));
         last = (in.last == 1);
     } while (!last);
 }
@@ -83,21 +85,21 @@ void hls_csc_rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_vi
                  csc_coeff_t c20, csc_coeff_t c21, csc_coeff_t c22,
                  csc_offset_t o0, csc_offset_t o1, csc_offset_t o2)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=c00 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c01 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c02 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c10 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c11 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c12 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c20 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c21 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c22 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o1 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=c00 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c01 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c02 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c10 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c11 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c12 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c20 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c21 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c22 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o1 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, c01, c02 }, { c10, c11, c12 }, { c20, c21, c22 } }, { o0, o1, o2 } };
     csc_stream<hlsv::RGB_CHANNELS, hlsv::RGB_CHANNELS>(s_axis_video, m_axis_video, p);
 }
@@ -105,13 +107,13 @@ void hls_csc_rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_vi
 void hls_csc_rgb_to_gray(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_gray_t& m_axis_video,
                          csc_coeff_t c00, csc_coeff_t c01, csc_coeff_t c02, csc_offset_t o0)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=c00 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c01 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c02 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=c00 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c01 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c02 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, c01, c02 }, { 0, 0, 0 }, { 0, 0, 0 } }, { o0, 0, 0 } };
     csc_stream<hlsv::RGB_CHANNELS, 1>(s_axis_video, m_axis_video, p);
 }
@@ -120,15 +122,15 @@ void hls_csc_gray_to_rgb(hlsv::stream_gray_t& s_axis_video, hlsv::stream_rgb_t& 
                          csc_coeff_t c00, csc_coeff_t c10, csc_coeff_t c20,
                          csc_offset_t o0, csc_offset_t o1, csc_offset_t o2)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=c00 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c10 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=c20 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o1 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=c00 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c10 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=c20 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o1 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, 0, 0 }, { c10, 0, 0 }, { c20, 0, 0 } }, { o0, o1, o2 } };
     csc_stream<1, hlsv::RGB_CHANNELS>(s_axis_video, m_axis_video, p);
 }

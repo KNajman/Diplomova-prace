@@ -73,6 +73,7 @@ int main()
             }
         }
     }
+
     std::printf("\nVYSLEDEK: %s (%u kombinaci, %u chyb)\n", (errors == 0u) ? "PASS" : "FAIL", combinations, errors);
     return (errors == 0u) ? 0 : 1;
 }

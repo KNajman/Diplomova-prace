@@ -74,7 +74,7 @@ using product_t = ap_uint<HSV_PRODUCT_BITS>;
  */
 hsv_pixel_t rgb_to_hsv_pixel(const hsv_pixel_t& rgb)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     const hlsv::pixel_t red = rgb.ch[IMGPROC_RGB_IDX_R];
     const hlsv::pixel_t green = rgb.ch[IMGPROC_RGB_IDX_G];
     const hlsv::pixel_t blue = rgb.ch[IMGPROC_RGB_IDX_B];
@@ -126,7 +126,7 @@ hsv_pixel_t rgb_to_hsv_pixel(const hsv_pixel_t& rgb)
  */
 hlsv::pixel_t div255(const product_t& x)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     const ap_uint<HSV_PRODUCT_BITS + 1> biased = x + 1 + (x >> hlsv::PIXEL_BITS);
     return static_cast<hlsv::pixel_t>(biased >> hlsv::PIXEL_BITS);
 }
@@ -138,7 +138,7 @@ hlsv::pixel_t div255(const product_t& x)
  */
 hsv_pixel_t hsv_to_rgb_pixel(const hsv_pixel_t& hsv)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     const hlsv::pixel_t hue_in = hsv.ch[IMGPROC_HSV_IDX_H];
     const hlsv::pixel_t saturation = hsv.ch[IMGPROC_HSV_IDX_S];
     const hlsv::pixel_t value = hsv.ch[IMGPROC_HSV_IDX_V];
@@ -208,7 +208,7 @@ struct RgbToHsv
 {
     static hsv_pixel_t convert(const hsv_pixel_t& in)
     {
-#pragma HLS INLINE
+        #pragma HLS INLINE
         return rgb_to_hsv_pixel(in);
     }
 };
@@ -218,7 +218,7 @@ struct HsvToRgb
 {
     static hsv_pixel_t convert(const hsv_pixel_t& in)
     {
-#pragma HLS INLINE
+        #pragma HLS INLINE
         return hsv_to_rgb_pixel(in);
     }
 };
@@ -235,11 +235,11 @@ struct HsvToRgb
 template <typename Converter>
 void convert_stream(hlsv::stream_rgb_t& in_stream, hlsv::stream_rgb_t& out_stream)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     bool last = false;
     do
     {
-#pragma HLS PIPELINE II=1
+        #pragma HLS PIPELINE II=1
         const hlsv::axis_rgb_t in = in_stream.read();
         const hsv_pixel_t px = Converter::convert(hlsv::unpack<hlsv::RGB_CHANNELS>(in.data));
         out_stream.write(hlsv::make_packet<hlsv::RGB_CHANNELS, hlsv::RGB_CHANNELS>(hlsv::pack<hlsv::RGB_CHANNELS>(px), in));
@@ -251,16 +251,16 @@ void convert_stream(hlsv::stream_rgb_t& in_stream, hlsv::stream_rgb_t& out_strea
 
 void hls_rgb2hsv(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_video)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     convert_stream<RgbToHsv>(s_axis_video, m_axis_video);
 }
 
 void hls_hsv2rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_video)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     convert_stream<HsvToRgb>(s_axis_video, m_axis_video);
 }

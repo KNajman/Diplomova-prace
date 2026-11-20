@@ -45,6 +45,7 @@ void push_faulty(const tbv::Image& image, const Fault& fault, hlsv::stream_gray_
         pkt.last = (i == (fault.garbage_before - 1u)) ? 1 : 0;
         in.write(pkt);
     }
+
     const uint32_t w = image.img.width;
     for (uint32_t y = 0u; y < image.img.height; y++)
     {

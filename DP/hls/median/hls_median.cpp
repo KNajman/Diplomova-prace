@@ -28,7 +28,7 @@ struct Sorted3
  */
 Sorted3 sort3(hlsv::pixel_t a, hlsv::pixel_t b, hlsv::pixel_t c)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     const bool a_gt_b = (a > b);
     const hlsv::pixel_t lo_ab = a_gt_b ? b : a;
     const hlsv::pixel_t hi_ab = a_gt_b ? a : b;
@@ -46,7 +46,7 @@ struct Median3x3
 {
     hlsv::pixel_t operator()(const hlsv::pixel_t win[3][3]) const
     {
-#pragma HLS INLINE
+        #pragma HLS INLINE
         const Sorted3 row0 = sort3(win[0][0], win[0][1], win[0][2]);
         const Sorted3 row1 = sort3(win[1][0], win[1][1], win[1][2]);
         const Sorted3 row2 = sort3(win[2][0], win[2][1], win[2][2]);
@@ -62,13 +62,13 @@ struct Median3x3
 void hls_median(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::win_dim_t width,
                 hlsv::win_dim_t height, ap_uint<1> border, hlsv::win_status_t& status)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=width bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=height bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=border bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=status bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=width bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=height bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=border bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=status bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
 
     const Median3x3 op;
     hlsv::window_frame<3>(s_axis_video, m_axis_video, width, height, border == 1, status, op);

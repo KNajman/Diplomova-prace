@@ -39,24 +39,24 @@ constexpr int HIST_FWD_DEPTH = 3;     ///< Hloubka forwardingu (vzdálenost záp
 void hls_histogram(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hist_height_t height,
                    hist_count_t hist[HIST_BINS], hist_status_t& status)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=height bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=hist bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=status bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=height bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=hist bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=status bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
 
     static hist_count_t bins[HIST_BINS];
-#pragma HLS BIND_STORAGE variable=bins type=ram_s2p impl=bram
+    #pragma HLS BIND_STORAGE variable=bins type=ram_s2p impl=bram
     // Mezi iteracemi se závislost přes BRAM řeší forwardingem (fwd_bin/fwd_cnt), ne plánovačem HLS
-#pragma HLS DEPENDENCE variable=bins type=inter dependent=false
+    #pragma HLS DEPENDENCE variable=bins type=inter dependent=false
 
     const hist_height_t last_row = (height == 0) ? hist_height_t(0) : hist_height_t(height - 1);
 
 clear_bins:
     for (int i = 0; i < HIST_BINS; i++)
     {
-#pragma HLS PIPELINE II=1
+        #pragma HLS PIPELINE II=1
         bins[i] = 0;
     }
 
@@ -68,7 +68,7 @@ clear_bins:
 init_fwd:
     for (int k = 0; k < HIST_FWD_DEPTH; k++)
     {
-#pragma HLS UNROLL
+        #pragma HLS UNROLL
         fwd_bin[k] = 0;
         fwd_cnt[k] = 0;
     }
@@ -81,7 +81,7 @@ init_fwd:
 count_pixels:
     do
     {
-#pragma HLS PIPELINE II=1
+        #pragma HLS PIPELINE II=1
         const hlsv::axis_gray_t in = s_axis_video.read();
         m_axis_video.write(in);     // bypass: paket beze změny včetně TUSER/TLAST/TKEEP
 
@@ -102,20 +102,22 @@ count_pixels:
             hist_count_t cnt = bins[val];
             for (int k = HIST_FWD_DEPTH - 1; k >= 0; k--)
             {
-#pragma HLS UNROLL
+                #pragma HLS UNROLL
                 if (fwd_bin[k] == val)
                 {
                     cnt = fwd_cnt[k];
                 }
             }
+
             cnt++;
             bins[val] = cnt;
             for (int k = HIST_FWD_DEPTH - 1; k > 0; k--)
             {
-#pragma HLS UNROLL
+                #pragma HLS UNROLL
                 fwd_bin[k] = fwd_bin[k - 1];
                 fwd_cnt[k] = fwd_cnt[k - 1];
             }
+
             fwd_bin[0] = val;
             fwd_cnt[0] = cnt;
             if (in.last == 1)
@@ -130,7 +132,7 @@ count_pixels:
 copy_bins:
     for (int i = 0; i < HIST_BINS; i++)
     {
-#pragma HLS PIPELINE II=1
+        #pragma HLS PIPELINE II=1
         hist[i] = bins[i];
     }
 

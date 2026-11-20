@@ -127,6 +127,7 @@ uint32_t test_direction(Direction direction, bool full)
         std::snprintf(name, sizeof(name), "%s rozmitani slozka2 = %u", direction_name, third_value);
         errors += run_and_check(direction, sweep, name);     // check_frame vypíše PASS/FAIL
     }
+
     std::printf("%s: %s, %u chyb\n", direction_name, full ? "uplny test 2^24" : "zkraceny test", errors);
     return errors;
 }

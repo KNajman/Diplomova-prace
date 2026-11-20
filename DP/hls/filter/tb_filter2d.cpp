@@ -43,6 +43,7 @@ void make_random_kernel(uint8_t size, uint32_t seed, imgproc_kernel_t& kernel)
             kernel.coeff[row][col] = static_cast<int8_t>(static_cast<int32_t>((state >> 16u) % 17u) - 8);
         }
     }
+
     kernel.scale_q14 = 1500 + (700 * size);
     kernel.delta = static_cast<int16_t>(40 - (10 * size));
 }
@@ -76,6 +77,7 @@ uint32_t run_test(const imgproc_kernel_t& kernel, const TestSize& size, imgproc_
         {
             coeff[tap] = kernel.coeff[tap / kernel.size][tap % kernel.size];
         }
+
         if (kernel.size == 5u)
         {
             hls_filter2d_5x5(in, out, size.width, size.height, replicate, kernel.scale_q14, kernel.delta, coeff, status);
@@ -120,6 +122,7 @@ int main()
             }
         }
     }
+
     for (const uint8_t kernel_size : { static_cast<uint8_t>(5u), static_cast<uint8_t>(7u) })
     {
         imgproc_kernel_t kernel = {};

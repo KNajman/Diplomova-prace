@@ -40,7 +40,7 @@ struct ThresholdSources
 
 ThresholdSources decode_type(thresh_type_t type)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     ThresholdSources sources = { SOURCE_ZERO, SOURCE_ZERO };
     switch (type.to_uint())
     {
@@ -56,7 +56,7 @@ ThresholdSources decode_type(thresh_type_t type)
 
 hlsv::pixel_t select_source(ap_uint<2> source, hlsv::pixel_t value, hlsv::pixel_t thresh, hlsv::pixel_t maxval)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     hlsv::pixel_t result = 0;
     switch (source.to_uint())
     {
@@ -73,17 +73,17 @@ hlsv::pixel_t select_source(ap_uint<2> source, hlsv::pixel_t value, hlsv::pixel_
 void hls_threshold(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::pixel_t thresh,
                    hlsv::pixel_t maxval, thresh_type_t type)
 {
-#pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
-#pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
-#pragma HLS INTERFACE mode=s_axilite port=thresh bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=maxval bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=type bundle=control
-#pragma HLS INTERFACE mode=s_axilite port=return bundle=control
+    #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
+    #pragma HLS INTERFACE mode=s_axilite port=thresh bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=maxval bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=type bundle=control
+    #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const ThresholdSources sources = decode_type(type);
     bool last = false;
     do
     {
-#pragma HLS PIPELINE II=1
+        #pragma HLS PIPELINE II=1
         const hlsv::axis_gray_t in = s_axis_video.read();
         const hlsv::pixel_t value = hlsv::unpack<1>(in.data).ch[0];
         const bool above = (value > thresh);

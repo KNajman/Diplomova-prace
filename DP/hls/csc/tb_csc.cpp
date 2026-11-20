@@ -100,6 +100,7 @@ int main()
             errors += test_preset(static_cast<imgproc_csc_preset_t>(p), (frame * 7919u) + static_cast<uint32_t>(p));
         }
     }
+
     std::printf("\nVYSLEDEK: %s (%u chyb)\n", (errors == 0u) ? "PASS" : "FAIL", errors);
     return (errors == 0u) ? 0 : 1;
 }

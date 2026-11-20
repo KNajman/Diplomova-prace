@@ -1,6 +1,6 @@
 /**
  * @file    hls_video.hpp
- * @brief   Společné typy a pomocné funkce pro HLS jádra (AXI4-Stream Video podle UG934)
+ * @brief   Společné typy a pomocné funkce pro HLS jádra (podle AXI4-Stream Video - UG934)
  * @author  Bc. Karel Najman
  * @date    2026-10-02
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
@@ -11,9 +11,9 @@
  *  - TKEEP/TSTRB jsou vždy samé jedničky (celý pixel je platný)
  *
  * Poznámka k volbě ap_axiu: Vitis HLS vytvoří skutečné porty TUSER/TLAST JEN pro typy ap_axiu
- * a hls::axis. Vlastní struktura {data, user, last} s pragmou AGGREGATE (původní
- * axi_stream_video<>) se celá zabalí do TDATA (26 bitů) a TUSER/TLAST na rozhraní chybí.
- * Takové jádro pak nespolupracuje s VDMA ani s Video Frame Buffer.
+ * a hls::axis. Vlastní struktura {data, user, last} s pragmou AGGREGATE (můj původní návrh pro
+ * axi_stream_video<>) se celá zabalí do TDATA (26 bitů) a signály TUSER/TLAST na rozhraní chybí.
+ * Takové jádro pak totiž nespolupracuje s Video DMA ani s Video Frame Buffer.
  */
 
 #ifndef HLS_COMMON_HLS_VIDEO_HPP_
@@ -23,83 +23,85 @@
 #include <ap_int.h>
 #include <hls_stream.h>
 
-namespace hlsv
+namespace hls_video
 {
 
-constexpr int PIXEL_BITS = 8;                       ///< Bity na složku
-constexpr int RGB_CHANNELS = 3;                     ///< Složky RGB/YCbCr/HSV pixelu
+constexpr int PIXEL_BITS = 8;                       ///< Počet bitů barevné složky
+constexpr int PIXEL_CHANNELS = 3;                     ///< Počet barevných kanálů pixelu
 
 using pixel_t = ap_uint<PIXEL_BITS>;                ///< Jedna 8bitová složka
 
-template <int CH>
-using axis_t = ap_axiu<CH * PIXEL_BITS, 1, 0, 0>;  ///< Paket AXI4-Stream s CH složkami (TUSER 1 b)
+template <int CHANNELS>                                   /// 
+using axis_t = ap_axiu<CHANNELS * PIXEL_BITS, 1, 0, 0>;  ///< Paket AXI4-Stream s CH složkami (TUSER 1 b)
 
-template <int CH>
-using stream_t = hls::stream<axis_t<CH>>;           ///< Stream paketů s CH složkami
+template <int CHANNELS>
+using stream_t = hls::stream<axis_t<CHANNELS>>;           ///< Stream paketů s CH složkami
 
-using axis_rgb_t = axis_t<RGB_CHANNELS>;            ///< 24bitový pixel (RGB, YCbCr, HSV)
+using axis_rgb_t = axis_t<PIXEL_CHANNELS>;            ///< 24bitový pixel (RGB, YCbCr, HSV)
 using axis_gray_t = axis_t<1>;                      ///< 8bitový pixel (šedá)
-using stream_rgb_t = stream_t<RGB_CHANNELS>;
+using stream_rgb_t = stream_t<PIXEL_CHANNELS>;
 using stream_gray_t = stream_t<1>;
 
 /// Pixel rozbalený na složky; index = pozice bajtu v TDATA (0 = bity [7:0])
-template <int CH>
+template <int CHANNELS>
 struct Pixel
 {
-    pixel_t ch[CH];
+    pixel_t ch[CHANNELS];
 };
 
 /**
- * @brief Rozbalí TDATA na složky (čisté přeznačení vodičů, v HW nic nestojí).
+ * @brief Rozbalí TDATA na složky (čisté přeznačení vodičů pro lepší, v HW nic nestojí, nic se pro HW nestalo).
  * @param data TDATA
  * @return Pixel se složkami
  */
-template <int CH>
-inline Pixel<CH> unpack(const ap_uint<CH * PIXEL_BITS>& data)
+template <int CHANNELS>
+inline Pixel<CHANNELS> unpack(const ap_uint<CHANNELS * PIXEL_BITS>& data)
 {
-#pragma HLS INLINE
-    Pixel<CH> px;
-    for (int i = 0; i < CH; i++)
+    #pragma HLS INLINE
+    Pixel<CHANNELS> px;
+    for (int i = 0; i < CHANNELS; i++)
     {
-#pragma HLS UNROLL
+        #pragma HLS UNROLL
         px.ch[i] = data((i * PIXEL_BITS) + PIXEL_BITS - 1, i * PIXEL_BITS);
     }
+
     return px;
 }
 
 /**
- * @brief Sbalí složky do TDATA.
+ * @brief Sbalí složky do TDATA. (Opak unpack, v HW se nic neděje)
  * @param px Pixel
  * @return TDATA
  */
-template <int CH>
-inline ap_uint<CH * PIXEL_BITS> pack(const Pixel<CH>& px)
+template <int CHANNELS>
+inline ap_uint<CHANNELS * PIXEL_BITS> pack(const Pixel<CHANNELS>& px)
 {
-#pragma HLS INLINE
-    ap_uint<CH * PIXEL_BITS> data = 0;
-    for (int i = 0; i < CH; i++)
+    #pragma HLS INLINE
+    ap_uint<CHANNELS * PIXEL_BITS> data = 0;
+    for (int i = 0; i < CHANNELS; i++)
     {
-#pragma HLS UNROLL
+        #pragma HLS UNROLL
         data((i * PIXEL_BITS) + PIXEL_BITS - 1, i * PIXEL_BITS) = px.ch[i];
     }
+
     return data;
 }
 
 /**
  * @brief Sestaví výstupní paket a převezme postranní signály ze vstupu.
  *
- * Bodová jádra nemají čítače: TUSER a TLAST jen putují s daty, takže resynchronizace
- * i libovolné rozlišení jsou automatické (jedno volání jádra = jeden řádek do TLAST).
+ * Bodová jádra nemají čítače: signály TUSER a TLAST jen putují s daty, takže resynchronizace
+ * i libovolné rozlišení se dějí automaticky (jedno volání jádra = jeden řádek do TLAST).
  *
  * @param data  TDATA výstupu
  * @param in    Vstupní paket (zdroj TUSER/TLAST)
  * @return Výstupní paket
  */
-template <int CH_OUT, int CH_IN>
-inline axis_t<CH_OUT> make_packet(const ap_uint<CH_OUT * PIXEL_BITS>& data, const axis_t<CH_IN>& in)
+template <int CHANNELS_OUT, int CHANNELS_IN>
+inline axis_t<CHANNELS_OUT> make_packet(const ap_uint<CHANNELS_OUT * PIXEL_BITS>& data, const axis_t<CHANNELS_IN>& in)
 {
-#pragma HLS INLINE
-    axis_t<CH_OUT> out;
+    #pragma HLS INLINE
+    axis_t<CHANNELS_OUT> out;
     out.data = data;
     out.keep = -1;
     out.strb = -1;
@@ -109,14 +111,14 @@ inline axis_t<CH_OUT> make_packet(const ap_uint<CH_OUT * PIXEL_BITS>& data, cons
 }
 
 /**
- * @brief Saturace na 0..255.
- * @param value Vstup se znaménkem
+ * @brief Saturace na inteval <0..255>.
+ * @param value Znaménkový vstup
  * @return Saturovaná složka
  */
-template <int W>
-inline pixel_t saturate_u8(const ap_int<W>& value)
+template <int IN_BITS>
+inline pixel_t saturate_u8(const ap_int<IN_BITS>& value)
 {
-#pragma HLS INLINE
+    #pragma HLS INLINE
     pixel_t result = 0;
     if (value < 0)
     {
@@ -142,14 +144,14 @@ inline pixel_t saturate_u8(const ap_int<W>& value)
  * @param value Vstup se znaménkem
  * @return Zaokrouhlený podíl
  */
-template <int SHIFT, int W>
-inline ap_int<W - SHIFT + 1> round_shift(const ap_int<W>& value)
+template <int SHIFT, int IN_BITS>
+inline ap_int<IN_BITS - SHIFT + 1> round_shift(const ap_int<IN_BITS>& value)
 {
-#pragma HLS INLINE
-    const ap_int<W + 1> biased = static_cast<ap_int<W + 1>>(value) + (ap_int<W + 1>(1) << (SHIFT - 1));
-    return static_cast<ap_int<W - SHIFT + 1>>(biased >> SHIFT);
+    #pragma HLS INLINE
+    const ap_int<IN_BITS + 1> biased = static_cast<ap_int<IN_BITS + 1>>(value) + (ap_int<IN_BITS + 1>(1) << (SHIFT - 1));
+    return static_cast<ap_int<IN_BITS - SHIFT + 1>>(biased >> SHIFT);
 }
 
-} // namespace hlsv
+} // namespace hls_video
 
 #endif // HLS_COMMON_HLS_VIDEO_HPP_

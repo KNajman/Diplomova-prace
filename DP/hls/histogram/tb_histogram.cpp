@@ -105,6 +105,7 @@ uint32_t run_and_check(hlsv::stream_gray_t& in, hlsv::stream_gray_t& out, const 
             errors++;
         }
     }
+
     if (status != exp_status)
     {
         std::printf("      status %u, očekáváno %u\n", static_cast<unsigned>(status), exp_status);
@@ -139,6 +140,7 @@ uint32_t check_bypass(hlsv::stream_gray_t& out, const packets_t& sent, const cha
             errors++;
         }
     }
+
     if (!out.empty())
     {
         std::printf("      jádro vydalo víc pixelů, než přišlo\n");
