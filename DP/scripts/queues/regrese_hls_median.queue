@@ -1,0 +1,2 @@
+# Zkrácená regrese HLS po přejmenování v mediánu (lo/hi -> min/max): C-simulace, syntéza, kosimulace.
+cd DP/hls/scripts && bash run_hls.sh ../median/hls_config.cfg csim && bash run_hls.sh ../median/hls_config.cfg syn && bash run_hls.sh ../median/hls_config.cfg cosim

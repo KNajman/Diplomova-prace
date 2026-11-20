@@ -18,26 +18,26 @@ namespace // anonymní namespace, jen pro vnitřní linkování
 /// Seřazená trojice
 struct Sorted3
 {
-    hls_video::pixel_t lo;
+    hls_video::pixel_t min;
     hls_video::pixel_t mid;
-    hls_video::pixel_t hi;
+    hls_video::pixel_t max;
 };
 
 /**
- * @brief Seřadí tři hodnoty (3 ostrá porovnání >, sdílená mezi low, mid a high), shodné se sort3() v median.c.
+ * @brief Seřadí tři hodnoty (3 ostrá porovnání >, sdílená mezi min, mid a max), shodné se sort3() v median.c.
  */
 Sorted3 sort3(hls_video::pixel_t a, hls_video::pixel_t b, hls_video::pixel_t c)
 {
     #pragma HLS INLINE
     const bool a_gt_b = (a > b);
-    const hls_video::pixel_t lo_ab = a_gt_b ? b : a;
-    const hls_video::pixel_t hi_ab = a_gt_b ? a : b;
-    const bool hi_gt_c = (hi_ab > c);
-    const bool c_gt_lo = (c > lo_ab);
+    const hls_video::pixel_t min_ab = a_gt_b ? b : a;
+    const hls_video::pixel_t max_ab = a_gt_b ? a : b;
+    const bool max_gt_c = (max_ab > c);
+    const bool c_gt_min = (c > min_ab);
     Sorted3 r;
-    r.lo = c_gt_lo ? lo_ab : c;
-    r.hi = hi_gt_c ? hi_ab : c;
-    r.mid = (!hi_gt_c) ? hi_ab : ((!c_gt_lo) ? lo_ab : c);
+    r.min = c_gt_min ? min_ab : c;
+    r.max = max_gt_c ? max_ab : c;
+    r.mid = (!max_gt_c) ? max_ab : ((!c_gt_min) ? min_ab : c);
     return r;
 }
 
@@ -50,10 +50,10 @@ struct Median3x3
         const Sorted3 row0 = sort3(win[0][0], win[0][1], win[0][2]);
         const Sorted3 row1 = sort3(win[1][0], win[1][1], win[1][2]);
         const Sorted3 row2 = sort3(win[2][0], win[2][1], win[2][2]);
-        const Sorted3 lows = sort3(row0.lo, row1.lo, row2.lo);
+        const Sorted3 mins = sort3(row0.min, row1.min, row2.min);
         const Sorted3 mids = sort3(row0.mid, row1.mid, row2.mid);
-        const Sorted3 highs = sort3(row0.hi, row1.hi, row2.hi);
-        return sort3(lows.hi, mids.mid, highs.lo).mid;
+        const Sorted3 maxs = sort3(row0.max, row1.max, row2.max);
+        return sort3(mins.max, mids.mid, maxs.min).mid;
     }
 };
 
