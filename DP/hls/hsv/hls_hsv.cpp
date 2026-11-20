@@ -28,12 +28,12 @@ namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 constexpr int HSV_SHIFT = static_cast<int>(IMGPROC_HSV_SHIFT);      ///< Zlomkové bity tabulek (12)
-constexpr int HSV_HUE_RANGE = static_cast<int>(IMGPROC_HSV_HUE_RANGE); ///< Rozsah H 0..179
-constexpr int HSV_SDIV_BITS = 20;       ///< max sdiv = round((255 << 12) / 1) = 1 044 480 < 2^20
-constexpr int HSV_HDIV_BITS = 17;       ///< max hdiv180 = round((180 << 12) / 6) = 122 880 < 2^17
+constexpr int HSV_HUE_RANGE = static_cast<int>(IMGPROC_HSV_HUE_RANGE); ///< Rozsah Hue 0..179
+constexpr int HSV_SAT_DIV_BITS = 20;    ///< max sdiv = round((255 << 12) / 1) = 1 044 480 < 2^20
+constexpr int HSV_HUE_DIV_BITS = 17;    ///< max hdiv180 = round((180 << 12) / 6) = 122 880 < 2^17
 constexpr int HSV_HUE_NUM_BITS = 12;    ///< čitatel odstínu -255 .. 255 + 4 * 255 = 1275, se znaménkem
-constexpr int HSV_SAT_PRODUCT_BITS = hls_video::PIXEL_BITS + HSV_SDIV_BITS + 1;  ///< diff * sdiv + znaménko pro round_shift
-constexpr int HSV_HUE_PRODUCT_BITS = HSV_HUE_NUM_BITS + HSV_HDIV_BITS + 1;  ///< se znaménkem x bez znaménka
+constexpr int HSV_SAT_PRODUCT_BITS = hls_video::PIXEL_BITS + HSV_SAT_DIV_BITS + 1;  ///< diff * sdiv + znaménko pro round_shift
+constexpr int HSV_HUE_PRODUCT_BITS = HSV_HUE_NUM_BITS + HSV_HUE_DIV_BITS + 1;  ///< se znaménkem x bez znaménka
 constexpr int HSV_HUE_BITS = HSV_HUE_PRODUCT_BITS - HSV_SHIFT + 1;         ///< po zaokrouhlení (round_shift)
 constexpr int HSV_SECTOR_G = 2;         ///< offset sektoru pro maximum v G (x diff)
 constexpr int HSV_SECTOR_B = 4;         ///< offset sektoru pro maximum v B (x diff)
@@ -46,12 +46,12 @@ constexpr int HSV_FRACT_INT_SHIFT = 3;          ///< f = zbytek * 8,5 = (zbytek 
 constexpr int HSV_PRODUCT_BITS = 2 * hls_video::PIXEL_BITS;  ///< součin dvou 8bitových složek (max 65 025)
 
 /**
- * Volba implementace násobení HSV -> RGB (obdoba generiku G_USE_DSP ve VHDL hsv2rgb_core):
+ * Volba implementace násobení HSV -> RGB (obdoba generiky G_USE_DSP ve VHDL hsv2rgb_core):
  *   0 (výchozí) - rozhodne HLS / syntéza (malá násobení 8 x 8 b skončí v LUT),
  *   1           - BIND_OP impl=dsp vynutí všech pět násobení do DSP (hls_config_hsv2rgb_dsp.cfg),
  *   2           - navíc latency=3: HLS smí použít vnitřní registry DSP48E2 (A/B, M, P), jako je využije
  *                 VHDL s ruční pipeline (hls_config_hsv2rgb_dsp_lat.cfg). Bez latence HLS nechá DSP
- *                 kombinační a perioda se zhorší (vysledky.md sekce 13).
+ *                 kombinační a perioda je horší (vysledky.md sekce 13).
  * Volba přes makro, ne argument funkce: implementace je vlastnost hardwaru, ne registr za běhu.
  */
 #ifndef HSV_MUL_IMPL_DSP
@@ -59,8 +59,8 @@ constexpr int HSV_PRODUCT_BITS = 2 * hls_video::PIXEL_BITS;  ///< součin dvou 8
 #endif
 
 using hsv_pixel_t = hls_video::Pixel<hls_video::PIXEL_CHANNELS>;
-using sdiv_t = ap_uint<HSV_SDIV_BITS>;
-using hdiv_t = ap_int<HSV_HDIV_BITS + 1>;       ///< kladná hodnota, znaménkový typ kvůli násobení
+using sat_div_t = ap_uint<HSV_SAT_DIV_BITS>;
+using hue_div_t = ap_int<HSV_HUE_DIV_BITS + 1>;    ///< kladná hodnota, znaménkový typ kvůli násobení
 using hue_num_t = ap_int<HSV_HUE_NUM_BITS>;
 using product_t = ap_uint<HSV_PRODUCT_BITS>;
 
@@ -86,7 +86,7 @@ hsv_pixel_t rgb_to_hsv_pixel(const hsv_pixel_t& rgb)
     const hls_video::pixel_t diff = value_max - value_min;
 
     // Saturace: S = round(diff * 255 / V) = round_shift(diff * sdiv[V], 12)
-    const sdiv_t saturation_recip = IMGPROC_HSV_SDIV[value_max.to_uint()];
+    const sat_div_t saturation_recip = IMGPROC_HSV_SDIV[value_max.to_uint()];
     const ap_int<HSV_SAT_PRODUCT_BITS> saturation_product = diff * saturation_recip;
     const hls_video::pixel_t saturation = hls_video::round_shift<HSV_SHIFT>(saturation_product);   // vždy <= 255
 
@@ -106,7 +106,7 @@ hsv_pixel_t rgb_to_hsv_pixel(const hsv_pixel_t& rgb)
         hue_numerator = (static_cast<hue_num_t>(red) - static_cast<hue_num_t>(green))
                         + (static_cast<hue_num_t>(diff) * HSV_SECTOR_B);
     }
-    const hdiv_t hue_recip = IMGPROC_HSV_HDIV180[diff.to_uint()];
+    const hue_div_t hue_recip = IMGPROC_HSV_HDIV180[diff.to_uint()];
     const ap_int<HSV_HUE_PRODUCT_BITS> hue_product = hue_numerator * hue_recip;
     const ap_int<HSV_HUE_BITS> hue_rounded = hls_video::round_shift<HSV_SHIFT>(hue_product);
     const ap_int<HSV_HUE_BITS> hue = (hue_rounded < 0) ? static_cast<ap_int<HSV_HUE_BITS>>(hue_rounded + HSV_HUE_RANGE)

@@ -1,0 +1,4 @@
+# Zkrácená regrese HLS po přejmenování v HSV (sdiv_t/hdiv_t -> sat_div_t/hue_div_t, šířky tabulek) a úpravě komentářů:
+# C-simulace, syntéza a kosimulace všech tří konfigurací HSV, nakonec úplný test 2^24 vstupů (jen C-sim).
+cd DP/hls/scripts && for c in hsv/hls_config_rgb2hsv hsv/hls_config_hsv2rgb hsv/hls_config_hsv2rgb_dsp_lat; do bash run_hls.sh ../$c.cfg csim && bash run_hls.sh ../$c.cfg syn && bash run_hls.sh ../$c.cfg cosim || exit 1; done
+cd DP/hls/scripts && TB_HSV_FULL=1 bash run_hls.sh ../hsv/hls_config_rgb2hsv.cfg csim

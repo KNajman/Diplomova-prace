@@ -20,10 +20,10 @@
 
 #include "../common/hls_video.hpp"
 
-/// Převod RGB -> HSV, jedno volání je zpracování jednoho řádku (do TLAST)
+/// Převod RGB -> HSV, jedním voláním se zpracuje jeden řádek (do signálu TLAST)
 void hls_rgb2hsv(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video);
 
-/// Převod HSV -> RGB, jedno volání je zpracování jednoho řádku (do TLAST)
+/// Převod HSV -> RGB, jedním voláním se zpracuje jeden řádek (do signálu TLAST)
 void hls_hsv2rgb(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video);
 
 #endif // HLS_HSV_HLS_HSV_HPP_
