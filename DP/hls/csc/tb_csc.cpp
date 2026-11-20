@@ -42,7 +42,7 @@ void run_rgb(const imgproc_csc_matrix_t& m, const tbv::Image& src, hls_video::st
 /**
  * @brief Otestuje jednu předvolbu proti golden modelu.
  * @param preset    Předvolba převodu
- * @param seed      Semínko testovacího obrazu
+ * @param seed      Seed testovacího obrazu
  * @return Počet chyb
  */
 uint32_t test_preset(imgproc_csc_preset_t preset, uint32_t seed)

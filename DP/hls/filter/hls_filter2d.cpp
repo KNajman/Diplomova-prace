@@ -7,7 +7,7 @@
  *
  * Poznámky k návrhu:
  *  - Funktor FilterOp<K> počítá jeden výstupní pixel z okna; rámec (řádkové buffery, okraje,
- *    flush, resync) je hls_video::window_frame - stejný jako u mediánu, takže HLS i VHDL sdílí
+ *    flush, resynchronizace) je hls_video::window_frame - stejný jako u mediánu, takže HLS i VHDL sdílí
  *    sémantiku okénkových jader.
  *  - Šířky vzorcem: součin 8 b x 9 b = 17 b, součet K*K členů 17 + clog2(K*K) b, škálovaný
  *    součet + 18 b. HLS si strom sčítaček a umístění násobení (LUT/DSP) zvolí sám - to je
@@ -26,16 +26,16 @@ template <int KERNEL_SIZE>
 struct FilterOp
 {
     static constexpr int PIXEL_SIGNED_BITS = hls_video::PIXEL_BITS + 1;
-    static constexpr int PRODUCT_BITS = hlsf::COEFF_BITS + PIXEL_SIGNED_BITS;
-    static constexpr int SUM_BITS = PRODUCT_BITS + hlsf::clog2(KERNEL_SIZE * KERNEL_SIZE);
-    static constexpr int SCALED_BITS = SUM_BITS + hlsf::SCALE_BITS;
-    static constexpr int OFFSET_BITS = ((SCALED_BITS - hlsf::SCALE_FRAC + 1) > hlsf::DELTA_BITS
-                                            ? (SCALED_BITS - hlsf::SCALE_FRAC + 1)
-                                            : hlsf::DELTA_BITS) + 1;
+    static constexpr int PRODUCT_BITS = hls_filter::COEFF_BITS + PIXEL_SIGNED_BITS;
+    static constexpr int SUM_BITS = PRODUCT_BITS + hls_filter::clog2(KERNEL_SIZE * KERNEL_SIZE);
+    static constexpr int SCALED_BITS = SUM_BITS + hls_filter::SCALE_BITS;
+    static constexpr int OFFSET_BITS = ((SCALED_BITS - hls_filter::SCALE_FRAC + 1) > hls_filter::DELTA_BITS
+                                            ? (SCALED_BITS - hls_filter::SCALE_FRAC + 1)
+                                            : hls_filter::DELTA_BITS) + 1;
 
-    hlsf::coeff_t coeff[KERNEL_SIZE][KERNEL_SIZE];
-    hlsf::scale_t scale;
-    hlsf::delta_t delta;
+    hls_filter::coeff_t coeff[KERNEL_SIZE][KERNEL_SIZE];
+    hls_filter::scale_t scale;
+    hls_filter::delta_t delta;
 
     hls_video::pixel_t operator()(const hls_video::pixel_t win[KERNEL_SIZE][KERNEL_SIZE]) const
     {
@@ -54,7 +54,7 @@ struct FilterOp
 
         const ap_int<SCALED_BITS> scaled = static_cast<ap_int<SCALED_BITS>>(sum) * scale;
         const ap_int<OFFSET_BITS> offset_value = static_cast<ap_int<OFFSET_BITS>>(
-                                                     hls_video::round_shift<hlsf::SCALE_FRAC>(scaled))
+                                                     hls_video::round_shift<hls_filter::SCALE_FRAC>(scaled))
                                                  + static_cast<ap_int<OFFSET_BITS>>(delta);
         return hls_video::saturate_u8(offset_value);
     }
@@ -65,8 +65,8 @@ struct FilterOp
  */
 template <int KERNEL_SIZE>
 void filter_from_array(hls_video::stream_gray_t& in_stream, hls_video::stream_gray_t& out_stream, hls_video::win_dim_t width,
-                       hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
-                       const hlsf::coeff_t coeff[KERNEL_SIZE * KERNEL_SIZE], hls_video::win_status_t& status)
+                       hls_video::win_dim_t height, ap_uint<1> border, hls_filter::scale_t scale, hls_filter::delta_t delta,
+                       const hls_filter::coeff_t coeff[KERNEL_SIZE * KERNEL_SIZE], hls_video::win_status_t& status)
 {
     #pragma HLS INLINE
     FilterOp<KERNEL_SIZE> op;
@@ -86,9 +86,9 @@ copy_coeff:
 } // namespace
 
 void hls_filter2d_3x3(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
-                      hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
-                      hlsf::coeff_t c0, hlsf::coeff_t c1, hlsf::coeff_t c2, hlsf::coeff_t c3, hlsf::coeff_t c4,
-                      hlsf::coeff_t c5, hlsf::coeff_t c6, hlsf::coeff_t c7, hlsf::coeff_t c8,
+                      hls_video::win_dim_t height, ap_uint<1> border, hls_filter::scale_t scale, hls_filter::delta_t delta,
+                      hls_filter::coeff_t c0, hls_filter::coeff_t c1, hls_filter::coeff_t c2, hls_filter::coeff_t c3, hls_filter::coeff_t c4,
+                      hls_filter::coeff_t c5, hls_filter::coeff_t c6, hls_filter::coeff_t c7, hls_filter::coeff_t c8,
                       hls_video::win_status_t& status)
 {
     #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
@@ -121,8 +121,8 @@ void hls_filter2d_3x3(hls_video::stream_gray_t& s_axis_video, hls_video::stream_
 }
 
 void hls_filter2d_5x5(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
-                      hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
-                      hlsf::coeff_t coeff[25], hls_video::win_status_t& status)
+                      hls_video::win_dim_t height, ap_uint<1> border, hls_filter::scale_t scale, hls_filter::delta_t delta,
+                      hls_filter::coeff_t coeff[25], hls_video::win_status_t& status)
 {
     #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
     #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
@@ -138,8 +138,8 @@ void hls_filter2d_5x5(hls_video::stream_gray_t& s_axis_video, hls_video::stream_
 }
 
 void hls_filter2d_7x7(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
-                      hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
-                      hlsf::coeff_t coeff[49], hls_video::win_status_t& status)
+                      hls_video::win_dim_t height, ap_uint<1> border, hls_filter::scale_t scale, hls_filter::delta_t delta,
+                      hls_filter::coeff_t coeff[49], hls_video::win_status_t& status)
 {
     #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
     #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both

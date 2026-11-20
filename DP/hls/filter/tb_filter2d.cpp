@@ -72,7 +72,7 @@ uint32_t run_test(const imgproc_kernel_t& kernel, const TestSize& size, imgproc_
     }
     else
     {
-        hlsf::coeff_t coeff[49];
+        hls_filter::coeff_t coeff[49];
         for (uint32_t tap = 0u; tap < static_cast<uint32_t>(kernel.size * kernel.size); tap++)
         {
             coeff[tap] = kernel.coeff[tap / kernel.size][tap % kernel.size];

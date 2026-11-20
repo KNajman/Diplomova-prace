@@ -1,0 +1,2 @@
+# Zkrácená regrese HLS po úpravě filtru (namespace hls_filter, komentáře) a komentářů CSC: C-simulace + kosimulace.
+cd DP/hls/scripts && for c in filter/hls_config_3x3 filter/hls_config_5x5 filter/hls_config_7x7 csc/hls_config_rgb; do bash run_hls.sh ../$c.cfg csim && bash run_hls.sh ../$c.cfg syn && bash run_hls.sh ../$c.cfg cosim || exit 1; done

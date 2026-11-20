@@ -5,10 +5,10 @@
  * @date    2026-10-02
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
  *
- * Aritmetika je bitově shodná s golden modelem (lib_imgproc/imgproc/csc.c):
+ * Aritmetika je shodná s golden modelem (lib_imgproc/imgproc/csc.c):
  *   acc = sum_i(coeff[o][i] * in[i]) + (offset[o] << 15)
  *   out = saturate_0_255((acc + 2^14) >> 15)
- * Koeficienty a offsety jsou registry AXI4-Lite (mění se za běhu z ARM, bez nového buildu).
+ * Koeficienty a offsety jsou registry AXI4-Lite (mohou se tak měnit za běhu, bez nutnosti nového buildu).
  */
 
 #ifndef HLS_CSC_HLS_CSC_HPP_
