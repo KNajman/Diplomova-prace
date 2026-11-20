@@ -83,21 +83,21 @@ inline void fill_pattern(Image& image, uint32_t seed)
  * @param stream    Cílový datový stream (1 nebo vícesložkový)
  */
 template <int CHANNELS>
-void push_frame(const Image& image, hlsv::stream_t<CHANNELS>& stream)
+void push_frame(const Image& image, hls_video::stream_t<CHANNELS>& stream)
 {
     for (uint32_t y = 0u; y < image.img.height; y++)
     {
         for (uint32_t x = 0u; x < image.img.width; x++)
         {
             const uint8_t* src = imgproc_image_pixel(&image.img, x, y);
-            hlsv::Pixel<CHANNELS> pixel;
+            hls_video::Pixel<CHANNELS> pixel;
             for (int c = 0; c < CHANNELS; c++)
             {
                 pixel.ch[c] = src[c];
             }
 
-            hlsv::axis_t<CHANNELS> packet;
-            packet.data = hlsv::pack<CHANNELS>(pixel);
+            hls_video::axis_t<CHANNELS> packet;
+            packet.data = hls_video::pack<CHANNELS>(pixel);
             packet.keep = -1;
             packet.strb = -1;
             packet.user = ((x == 0u) && (y == 0u)) ? 1 : 0;
@@ -115,7 +115,7 @@ void push_frame(const Image& image, hlsv::stream_t<CHANNELS>& stream)
  * @return Počet chyb (0 = bitová shoda)
  */
 template <int CHANNELS>
-uint32_t check_frame(hlsv::stream_t<CHANNELS>& stream, const Image& expected, const char* name)
+uint32_t check_frame(hls_video::stream_t<CHANNELS>& stream, const Image& expected, const char* name)
 {
     uint32_t errors = 0u;
 
@@ -129,8 +129,8 @@ uint32_t check_frame(hlsv::stream_t<CHANNELS>& stream, const Image& expected, co
                 return errors + 1u;
             }
 
-            const hlsv::axis_t<CHANNELS> packet = stream.read();
-            const hlsv::Pixel<CHANNELS> pixel = hlsv::unpack<CHANNELS>(packet.data);
+            const hls_video::axis_t<CHANNELS> packet = stream.read();
+            const hls_video::Pixel<CHANNELS> pixel = hls_video::unpack<CHANNELS>(packet.data);
             const uint8_t* exp = imgproc_image_pixel(&expected.img, x, y);
             const bool user_ok = (packet.user == (((x == 0u) && (y == 0u)) ? 1 : 0));
             const bool last_ok = (packet.last == ((x == (expected.img.width - 1u)) ? 1 : 0));

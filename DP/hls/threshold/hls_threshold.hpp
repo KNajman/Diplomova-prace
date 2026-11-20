@@ -23,7 +23,7 @@ constexpr int THRESH_TYPE_BITS = 3;     ///< Šířka registru type (5 typů Ope
 using thresh_type_t = ap_uint<THRESH_TYPE_BITS>;
 
 /// Prahování šedého obrazu, jedno volání = jeden řádek (do TLAST)
-void hls_threshold(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::pixel_t thresh,
-                   hlsv::pixel_t maxval, thresh_type_t type);
+void hls_threshold(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::pixel_t thresh,
+                   hls_video::pixel_t maxval, thresh_type_t type);
 
 #endif // HLS_THRESHOLD_HLS_THRESHOLD_HPP_

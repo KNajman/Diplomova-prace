@@ -6,7 +6,7 @@
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
  *
  * Bitově shodné s imgproc_median3x3() golden modelu; s replikací okraje i s cv::medianBlur(src, dst, 3).
- * Rámec (řádkové buffery, okraje, flush, resynchronizace) je společná šablona hlsv::window_frame.
+ * Rámec (řádkové buffery, okraje, flush, resynchronizace) je společná šablona hls_video::window_frame.
  */
 
 #ifndef HLS_MEDIAN_HLS_MEDIAN_HPP_
@@ -21,9 +21,9 @@
  * @param width         Šířka snímku (8 .. 3840)
  * @param height        Výška snímku
  * @param border        0 = nuly, 1 = replikace okraje
- * @param status        Výstup: příznaky hlsv::WIN_STATUS_*
+ * @param status        Výstup: příznaky hls_video::WIN_STATUS_*
  */
-void hls_median(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::win_dim_t width,
-                hlsv::win_dim_t height, ap_uint<1> border, hlsv::win_status_t& status);
+void hls_median(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
+                hls_video::win_dim_t height, ap_uint<1> border, hls_video::win_status_t& status);
 
 #endif // HLS_MEDIAN_HLS_MEDIAN_HPP_

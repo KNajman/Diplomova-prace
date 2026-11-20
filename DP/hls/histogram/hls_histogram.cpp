@@ -36,7 +36,7 @@ namespace
 constexpr int HIST_FWD_DEPTH = 3;     ///< Hloubka forwardingu (vzdálenost zápis -> čtení v pipeline je ~2 takty, 1 rezerva)
 } // namespace
 
-void hls_histogram(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hist_height_t height,
+void hls_histogram(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hist_height_t height,
                    hist_count_t hist[HIST_BINS], hist_status_t& status)
 {
     #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
@@ -61,7 +61,7 @@ clear_bins:
     }
 
     // Posledních HIST_FWD_DEPTH zápisů; počáteční (koš 0, počet 0) odpovídá vynulované BRAM
-    hlsv::pixel_t fwd_bin[HIST_FWD_DEPTH];
+    hls_video::pixel_t fwd_bin[HIST_FWD_DEPTH];
     hist_count_t fwd_cnt[HIST_FWD_DEPTH];
 #pragma HLS ARRAY_PARTITION variable=fwd_bin type=complete
 #pragma HLS ARRAY_PARTITION variable=fwd_cnt type=complete
@@ -82,10 +82,10 @@ count_pixels:
     do
     {
         #pragma HLS PIPELINE II=1
-        const hlsv::axis_gray_t in = s_axis_video.read();
+        const hls_video::axis_gray_t in = s_axis_video.read();
         m_axis_video.write(in);     // bypass: paket beze změny včetně TUSER/TLAST/TKEEP
 
-        const hlsv::pixel_t val = in.data;
+        const hls_video::pixel_t val = in.data;
         const bool sof = (in.user == 1);
         if (sof && started)
         {

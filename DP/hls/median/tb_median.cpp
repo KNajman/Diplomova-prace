@@ -5,7 +5,7 @@
  * @date    2026-10-15
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
  *
- * Testuje zároveň společnou šablonu hlsv::window_frame (okraje, flush, resynchronizace):
+ * Testuje zároveň společnou šablonu hls_video::window_frame (okraje, flush, resynchronizace):
  *  1. 64x48, replikace, dva snímky za sebou; nulový okraj,
  *  2. malé a liché rozměry včetně výšky 1 a 2 (horní a dolní okraj se překrývají), oba okraje,
  *  3. 7 pixelů bez TUSER před snímkem -> zahozeny, status SKIPPED, výstup správný,
@@ -33,11 +33,11 @@ struct Fault
  * @param fault Porucha
  * @param in    Stream
  */
-void push_faulty(const tbv::Image& image, const Fault& fault, hlsv::stream_gray_t& in)
+void push_faulty(const tbv::Image& image, const Fault& fault, hls_video::stream_gray_t& in)
 {
     for (uint32_t i = 0u; i < fault.garbage_before; i++)
     {
-        hlsv::axis_gray_t pkt;
+        hls_video::axis_gray_t pkt;
         pkt.data = 0xA5;
         pkt.keep = -1;
         pkt.strb = -1;
@@ -51,7 +51,7 @@ void push_faulty(const tbv::Image& image, const Fault& fault, hlsv::stream_gray_
     {
         for (uint32_t x = 0u; x < w; x++)
         {
-            hlsv::axis_gray_t pkt;
+            hls_video::axis_gray_t pkt;
             pkt.data = *imgproc_image_pixel(&image.img, x, y);
             pkt.keep = -1;
             pkt.strb = -1;
@@ -82,10 +82,10 @@ uint32_t run_test(uint32_t width, uint32_t height, imgproc_border_t border, uint
     tbv::fill_pattern(src, seed);
     imgproc_median3x3(&src.img, &expected.img, border);
 
-    hlsv::stream_gray_t in;
-    hlsv::stream_gray_t out;
+    hls_video::stream_gray_t in;
+    hls_video::stream_gray_t out;
     push_faulty(src, fault, in);
-    hlsv::win_status_t status = 0;
+    hls_video::win_status_t status = 0;
     hls_median(in, out, width, height, (border == IMGPROC_BORDER_REPLICATE) ? 1 : 0, status);
 
     char label[64];
@@ -124,10 +124,10 @@ int main()
     }
 
     const Fault garbage = { 7u, -1 };
-    errors += run_test(32u, 16u, IMGPROC_BORDER_REPLICATE, 5u, garbage, hlsv::WIN_STATUS_SKIPPED, "resync");
+    errors += run_test(32u, 16u, IMGPROC_BORDER_REPLICATE, 5u, garbage, hls_video::WIN_STATUS_SKIPPED, "resync");
     const Fault bad_eol = { 0u, 5 };
     errors += run_test(32u, 16u, IMGPROC_BORDER_REPLICATE, 6u, bad_eol,
-                       hlsv::WIN_STATUS_EARLY_EOL | hlsv::WIN_STATUS_LATE_EOL, "TLAST mimo");
+                       hls_video::WIN_STATUS_EARLY_EOL | hls_video::WIN_STATUS_LATE_EOL, "TLAST mimo");
 
     std::printf("\nVYSLEDEK: %s (%u chyb)\n", (errors == 0u) ? "PASS" : "FAIL", errors);
     return (errors == 0u) ? 0 : 1;

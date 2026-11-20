@@ -58,10 +58,10 @@ uint32_t run_test(const imgproc_kernel_t& kernel, const TestSize& size, imgproc_
     tbv::fill_pattern(src, size.width * 31u + size.height);
     imgproc_filter2d(&src.img, &expected.img, &kernel, border);
 
-    hlsv::stream_gray_t in;
-    hlsv::stream_gray_t out;
+    hls_video::stream_gray_t in;
+    hls_video::stream_gray_t out;
     tbv::push_frame<1>(src, in);
-    hlsv::win_status_t status = 0;
+    hls_video::win_status_t status = 0;
     const ap_uint<1> replicate = (border == IMGPROC_BORDER_REPLICATE) ? 1 : 0;
     if (kernel.size == 3u)
     {

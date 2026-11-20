@@ -34,7 +34,7 @@ using hist_status_t = ap_uint<2>;
  * @param hist          Výstup: histogram snímku (pole v AXI4-Lite)
  * @param status        Výstup: příznaky HIST_STATUS_* posledního snímku
  */
-void hls_histogram(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hist_height_t height,
+void hls_histogram(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hist_height_t height,
                    hist_count_t hist[HIST_BINS], hist_status_t& status);
 
 #endif // HLS_HISTOGRAM_HLS_HISTOGRAM_HPP_

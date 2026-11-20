@@ -40,8 +40,8 @@ uint32_t test_combination(uint32_t type, uint8_t thresh, uint8_t maxval, uint32_
         std::memset(expected.buf.data(), 0, expected.buf.size());     // neplatný typ -> 0
     }
 
-    hlsv::stream_gray_t in;
-    hlsv::stream_gray_t out;
+    hls_video::stream_gray_t in;
+    hls_video::stream_gray_t out;
     tbv::push_frame<1>(src, in);
     while (!in.empty())
     {

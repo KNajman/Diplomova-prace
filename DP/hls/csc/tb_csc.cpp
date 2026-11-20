@@ -27,10 +27,10 @@ constexpr uint32_t TB_FRAMES = 2u;      ///< Dva snímky za sebou ověří, že 
  * @param src   Vstupní obraz
  * @param out   Výstupní stream
  */
-void run_rgb(const imgproc_csc_matrix_t& m, const tbv::Image& src, hlsv::stream_rgb_t& out)
+void run_rgb(const imgproc_csc_matrix_t& m, const tbv::Image& src, hls_video::stream_rgb_t& out)
 {
-    hlsv::stream_rgb_t in;
-    tbv::push_frame<hlsv::RGB_CHANNELS>(src, in);
+    hls_video::stream_rgb_t in;
+    tbv::push_frame<hls_video::PIXEL_CHANNELS>(src, in);
     while (!in.empty())
     {
         hls_csc_rgb(in, out, m.coeff[0][0], m.coeff[0][1], m.coeff[0][2], m.coeff[1][0], m.coeff[1][1],
@@ -57,15 +57,15 @@ uint32_t test_preset(imgproc_csc_preset_t preset, uint32_t seed)
     uint32_t errors = 0u;
     if ((m.ch_in == 3u) && (m.ch_out == 3u))
     {
-        hlsv::stream_rgb_t out;
+        hls_video::stream_rgb_t out;
         run_rgb(m, src, out);
-        errors = tbv::check_frame<hlsv::RGB_CHANNELS>(out, expected, imgproc_csc_name(preset));
+        errors = tbv::check_frame<hls_video::PIXEL_CHANNELS>(out, expected, imgproc_csc_name(preset));
     }
     else if (m.ch_out == 1u)
     {
-        hlsv::stream_rgb_t in;
-        hlsv::stream_gray_t out;
-        tbv::push_frame<hlsv::RGB_CHANNELS>(src, in);
+        hls_video::stream_rgb_t in;
+        hls_video::stream_gray_t out;
+        tbv::push_frame<hls_video::PIXEL_CHANNELS>(src, in);
         while (!in.empty())
         {
             hls_csc_rgb_to_gray(in, out, m.coeff[0][0], m.coeff[0][1], m.coeff[0][2], m.offset[0]);
@@ -74,15 +74,15 @@ uint32_t test_preset(imgproc_csc_preset_t preset, uint32_t seed)
     }
     else
     {
-        hlsv::stream_gray_t in;
-        hlsv::stream_rgb_t out;
+        hls_video::stream_gray_t in;
+        hls_video::stream_rgb_t out;
         tbv::push_frame<1>(src, in);
         while (!in.empty())
         {
             hls_csc_gray_to_rgb(in, out, m.coeff[0][0], m.coeff[1][0], m.coeff[2][0], m.offset[0], m.offset[1],
                                 m.offset[2]);
         }
-        errors = tbv::check_frame<hlsv::RGB_CHANNELS>(out, expected, imgproc_csc_name(preset));
+        errors = tbv::check_frame<hls_video::PIXEL_CHANNELS>(out, expected, imgproc_csc_name(preset));
     }
     return errors;
 }

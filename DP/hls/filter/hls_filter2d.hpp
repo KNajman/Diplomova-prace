@@ -7,7 +7,7 @@
  *
  * Aritmetika bitově shodná s imgproc_filter2d() golden modelu (sémantika cv::filter2D, korelace):
  *   acc = sum_{r,c}(coeff[r][c] * win[r][c]),  out = saturate_0_255(((acc * scale + 2^13) >> 14) + delta)
- * Okno, okraje, flush a resynchronizace: společná šablona hlsv::window_frame (jako medián).
+ * Okno, okraje, flush a resynchronizace: společná šablona hls_video::window_frame (jako medián).
  *
  * Top funkce:
  *  - hls_filter2d_3x3: koeficienty jako 9 skalárních registrů c0..c8 - mapa registrů shodná s VHDL
@@ -42,20 +42,20 @@ using delta_t = ap_int<DELTA_BITS>;
 } // namespace hlsf
 
 /// 2D konvoluce 3x3, koeficienty c0..c8 = řádky jádra za sebou (registry jako VHDL filter2d_axil)
-void hls_filter2d_3x3(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::win_dim_t width,
-                      hlsv::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
+void hls_filter2d_3x3(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
+                      hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
                       hlsf::coeff_t c0, hlsf::coeff_t c1, hlsf::coeff_t c2, hlsf::coeff_t c3, hlsf::coeff_t c4,
                       hlsf::coeff_t c5, hlsf::coeff_t c6, hlsf::coeff_t c7, hlsf::coeff_t c8,
-                      hlsv::win_status_t& status);
+                      hls_video::win_status_t& status);
 
 /// 2D konvoluce 5x5 (koeficienty jako pole v AXI4-Lite, jen OOC srovnání)
-void hls_filter2d_5x5(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::win_dim_t width,
-                      hlsv::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
-                      hlsf::coeff_t coeff[25], hlsv::win_status_t& status);
+void hls_filter2d_5x5(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
+                      hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
+                      hlsf::coeff_t coeff[25], hls_video::win_status_t& status);
 
 /// 2D konvoluce 7x7 (koeficienty jako pole v AXI4-Lite, jen OOC srovnání)
-void hls_filter2d_7x7(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::win_dim_t width,
-                      hlsv::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
-                      hlsf::coeff_t coeff[49], hlsv::win_status_t& status);
+void hls_filter2d_7x7(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
+                      hls_video::win_dim_t height, ap_uint<1> border, hlsf::scale_t scale, hlsf::delta_t delta,
+                      hlsf::coeff_t coeff[49], hls_video::win_status_t& status);
 
 #endif // HLS_FILTER_HLS_FILTER2D_HPP_

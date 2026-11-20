@@ -44,8 +44,8 @@ a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`
 
 ## Pravidla pro všechna jádra
 
-1. **Stream jen přes `hlsv::axis_t<CH>`** (= `ap_axiu`). Vlastní struktura s `AGGREGATE` zabalí TUSER/TLAST do TDATA.
-2. **Bodová jádra:** jedno volání = jeden řádek (`do { … } while (!last)` s `PIPELINE II=1`), řízení `ap_ctrl_hs` (`s_axilite port=return`) a v HW auto-restart (ARM zapíše `0x81` na offset `0x00`). TUSER/TLAST se kopírují ze vstupu (`hlsv::make_packet`). Žádná šířka, výška ani čítače. `ap_ctrl_none` **ne**: Vitis 2025.2 jádro se skalárními registry neumí co-simulovat (cosim visí na 0 transakcích).
+1. **Stream jen přes `hls_video::axis_t<CHANNELS>`** (= `ap_axiu`). Vlastní struktura s `AGGREGATE` zabalí TUSER/TLAST do TDATA.
+2. **Bodová jádra:** jedno volání = jeden řádek (`do { … } while (!last)` s `PIPELINE II=1`), řízení `ap_ctrl_hs` (`s_axilite port=return`) a v HW auto-restart (ARM zapíše `0x81` na offset `0x00`). TUSER/TLAST se kopírují ze vstupu (`hls_video::make_packet`). Žádná šířka, výška ani čítače. `ap_ctrl_none` **ne**: Vitis 2025.2 jádro se skalárními registry neumí co-simulovat (cosim visí na 0 transakcích).
 3. **Parametry = skalární registry `s_axilite`** (ne pole). Stejná mapa registrů pak poslouží VHDL verzi.
 4. **Aritmetika = golden model** (`DP/model/lib_imgproc`). Konstanty (tabulky HSV, matice) brát z `DP/model/generated/imgproc_coeffs.h`, nikdy je neopisovat ručně.
 5. **Testbench:** `tbv::fill_pattern` → golden model → jádro → `tbv::check_frame`. `main()` vrací 0 jen při bitové shodě dat i TUSER/TLAST. Testují se dva snímky za sebou.
@@ -58,7 +58,7 @@ a čísla po implementaci ve Vivadu (`impl_*`). **Do tabulek DP patří `impl_*`
 2. Tělo pixelu nahraď funkcí podle golden modelu:
    - prahování: `imgproc_threshold_pixel()`, registry `thresh`, `maxval`, `type` (3 b, 5 typů OpenCV),
    - RGB→HSV: `imgproc_rgb_to_hsv_pixel()`. Tabulky `IMGPROC_HSV_SDIV` / `IMGPROC_HSV_HDIV180` vlož z `generated/imgproc_coeffs.h`, v HW z nich bude ROM. Bez registrů.
-   - HSV→RGB: `imgproc_hsv_to_rgb_pixel()` (tvoje původní HLS logika, jen přes `hlsv::Pixel`). Bez registrů.
+   - HSV→RGB: `imgproc_hsv_to_rgb_pixel()` (tvoje původní HLS logika, jen přes `hls_video::Pixel`). Bez registrů.
 3. V testbenchi zavolej odpovídající funkci golden modelu místo `imgproc_csc()`.
 4. `./run_hls.sh ../<jádro>/hls_config.cfg csim`. Teprve když projde, spusť `syn` a `cosim`.
 5. Pozor na pořadí složek: index 0 = TDATA[7:0] = **G** u RGB (UG934). V `Pixel` používej konstanty `IMGPROC_RGB_IDX_*`.

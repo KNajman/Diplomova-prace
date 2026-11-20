@@ -52,9 +52,9 @@ enum Direction
  */
 uint32_t run_and_check(Direction direction, const tbv::Image& src, const char* name)
 {
-    tbv::Image expected(src.img.width, src.img.height, hlsv::RGB_CHANNELS);
-    hlsv::stream_rgb_t in;
-    hlsv::stream_rgb_t out;
+    tbv::Image expected(src.img.width, src.img.height, hls_video::PIXEL_CHANNELS);
+    hls_video::stream_rgb_t in;
+    hls_video::stream_rgb_t out;
 
     if (direction == DIRECTION_RGB_TO_HSV)
     {
@@ -64,7 +64,7 @@ uint32_t run_and_check(Direction direction, const tbv::Image& src, const char* n
     {
         imgproc_hsv_to_rgb(&src.img, &expected.img);
     }
-    tbv::push_frame<hlsv::RGB_CHANNELS>(src, in);
+    tbv::push_frame<hls_video::PIXEL_CHANNELS>(src, in);
     while (!in.empty())
     {
         if (direction == DIRECTION_RGB_TO_HSV)
@@ -76,7 +76,7 @@ uint32_t run_and_check(Direction direction, const tbv::Image& src, const char* n
             hls_hsv2rgb(in, out);
         }
     }
-    return tbv::check_frame<hlsv::RGB_CHANNELS>(out, expected, name);
+    return tbv::check_frame<hls_video::PIXEL_CHANNELS>(out, expected, name);
 }
 
 /**
@@ -112,13 +112,13 @@ uint32_t test_direction(Direction direction, bool full)
 
     for (uint32_t frame = 0u; frame < TB_FRAMES; frame++)
     {
-        tbv::Image pattern(TB_WIDTH, TB_HEIGHT, hlsv::RGB_CHANNELS);
+        tbv::Image pattern(TB_WIDTH, TB_HEIGHT, hls_video::PIXEL_CHANNELS);
         tbv::fill_pattern(pattern, (frame * 7919u) + static_cast<uint32_t>(direction));
         std::snprintf(name, sizeof(name), "%s vzor snimek %u", direction_name, frame);
         errors += run_and_check(direction, pattern, name);
     }
 
-    tbv::Image sweep(TB_SWEEP_SIZE, TB_SWEEP_SIZE, hlsv::RGB_CHANNELS);
+    tbv::Image sweep(TB_SWEEP_SIZE, TB_SWEEP_SIZE, hls_video::PIXEL_CHANNELS);
     const uint32_t sweep_count = full ? TB_SWEEP_SIZE : static_cast<uint32_t>(sizeof(TB_SWEEP_REDUCED));
     for (uint32_t sweep_idx = 0u; sweep_idx < sweep_count; sweep_idx++)
     {

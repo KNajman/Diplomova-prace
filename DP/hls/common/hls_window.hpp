@@ -33,7 +33,7 @@
 
 #include "hls_video.hpp"
 
-namespace hlsv
+namespace hls_video
 {
 
 constexpr int WIN_MAX_WIDTH = 3840;         ///< Maximální šířka snímku (hloubka řádkových bufferů, 4K UHD)
@@ -242,6 +242,6 @@ frame_loop:
              | (early_eol ? WIN_STATUS_EARLY_EOL : 0u) | (late_eol ? WIN_STATUS_LATE_EOL : 0u);
 }
 
-} // namespace hlsv
+} // namespace hls_video
 
 #endif // HLS_COMMON_HLS_WINDOW_HPP_

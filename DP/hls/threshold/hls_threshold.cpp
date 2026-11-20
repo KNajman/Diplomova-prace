@@ -54,10 +54,10 @@ ThresholdSources decode_type(thresh_type_t type)
     return sources;
 }
 
-hlsv::pixel_t select_source(ap_uint<2> source, hlsv::pixel_t value, hlsv::pixel_t thresh, hlsv::pixel_t maxval)
+hls_video::pixel_t select_source(ap_uint<2> source, hls_video::pixel_t value, hls_video::pixel_t thresh, hls_video::pixel_t maxval)
 {
     #pragma HLS INLINE
-    hlsv::pixel_t result = 0;
+    hls_video::pixel_t result = 0;
     switch (source.to_uint())
     {
         case SOURCE_MAXVAL: result = maxval; break;
@@ -70,8 +70,8 @@ hlsv::pixel_t select_source(ap_uint<2> source, hlsv::pixel_t value, hlsv::pixel_
 
 } // namespace
 
-void hls_threshold(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axis_video, hlsv::pixel_t thresh,
-                   hlsv::pixel_t maxval, thresh_type_t type)
+void hls_threshold(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::pixel_t thresh,
+                   hls_video::pixel_t maxval, thresh_type_t type)
 {
     #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
     #pragma HLS INTERFACE mode=axis port=m_axis_video register_mode=both
@@ -84,12 +84,12 @@ void hls_threshold(hlsv::stream_gray_t& s_axis_video, hlsv::stream_gray_t& m_axi
     do
     {
         #pragma HLS PIPELINE II=1
-        const hlsv::axis_gray_t in = s_axis_video.read();
-        const hlsv::pixel_t value = hlsv::unpack<1>(in.data).ch[0];
+        const hls_video::axis_gray_t in = s_axis_video.read();
+        const hls_video::pixel_t value = hls_video::unpack<1>(in.data).ch[0];
         const bool above = (value > thresh);
-        hlsv::Pixel<1> out;
+        hls_video::Pixel<1> out;
         out.ch[0] = select_source(above ? sources.above : sources.below, value, thresh, maxval);
-        m_axis_video.write(hlsv::make_packet<1, 1>(hlsv::pack<1>(out), in));
+        m_axis_video.write(hls_video::make_packet<1, 1>(hls_video::pack<1>(out), in));
         last = (in.last == 1);
     } while (!last);
 }

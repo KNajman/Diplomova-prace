@@ -26,7 +26,7 @@ namespace
 constexpr uint32_t TB_WIDTH = 64u;
 constexpr uint32_t TB_HEIGHT = 48u;
 
-using packets_t = std::vector<hlsv::axis_gray_t>;
+using packets_t = std::vector<hls_video::axis_gray_t>;
 
 /**
  * @brief Zapíše řádky [row_begin, row_end) obrazu do streamu a uloží kopii paketů (TUSER jen na pixelu [0, 0]).
@@ -36,14 +36,14 @@ using packets_t = std::vector<hlsv::axis_gray_t>;
  * @param stream    Cílový stream
  * @param sent      Záznam odeslaných paketů (pro kontrolu bypassu)
  */
-void push_rows(const tbv::Image& image, uint32_t row_begin, uint32_t row_end, hlsv::stream_gray_t& stream,
+void push_rows(const tbv::Image& image, uint32_t row_begin, uint32_t row_end, hls_video::stream_gray_t& stream,
                packets_t& sent)
 {
     for (uint32_t y = row_begin; y < row_end; y++)
     {
         for (uint32_t x = 0u; x < image.img.width; x++)
         {
-            hlsv::axis_gray_t pkt;
+            hls_video::axis_gray_t pkt;
             pkt.data = *imgproc_image_pixel(&image.img, x, y);
             pkt.keep = -1;
             pkt.strb = -1;
@@ -84,7 +84,7 @@ void golden_rows(const tbv::Image& image, uint32_t row_begin, uint32_t row_end, 
  * @param name      Název testu
  * @return Počet chyb
  */
-uint32_t run_and_check(hlsv::stream_gray_t& in, hlsv::stream_gray_t& out, const std::vector<uint32_t>& expected,
+uint32_t run_and_check(hls_video::stream_gray_t& in, hls_video::stream_gray_t& out, const std::vector<uint32_t>& expected,
                        unsigned exp_status, const char* name)
 {
     hist_count_t hist[HIST_BINS];
@@ -123,7 +123,7 @@ uint32_t run_and_check(hlsv::stream_gray_t& in, hlsv::stream_gray_t& out, const 
  * @param name  Název testu
  * @return Počet chyb
  */
-uint32_t check_bypass(hlsv::stream_gray_t& out, const packets_t& sent, const char* name)
+uint32_t check_bypass(hls_video::stream_gray_t& out, const packets_t& sent, const char* name)
 {
     uint32_t errors = 0u;
     for (size_t i = 0u; i < sent.size(); i++)
@@ -133,7 +133,7 @@ uint32_t check_bypass(hlsv::stream_gray_t& out, const packets_t& sent, const cha
             std::printf("FAIL  %-40s výstup má jen %zu z %zu pixelů\n", name, i, sent.size());
             return errors + 1u;
         }
-        const hlsv::axis_gray_t pkt = out.read();
+        const hls_video::axis_gray_t pkt = out.read();
         if ((pkt.data != sent[i].data) || (pkt.user != sent[i].user) || (pkt.last != sent[i].last)
             || (pkt.keep != sent[i].keep))
         {
@@ -186,8 +186,8 @@ void fill_stress(tbv::Image& image)
  */
 uint32_t test_frame(const tbv::Image& image, const char* name)
 {
-    hlsv::stream_gray_t in;
-    hlsv::stream_gray_t out;
+    hls_video::stream_gray_t in;
+    hls_video::stream_gray_t out;
     packets_t sent;
     std::vector<uint32_t> expected(IMGPROC_HIST_BINS, 0u);
     push_rows(image, 0u, TB_HEIGHT, in, sent);
@@ -211,8 +211,8 @@ uint32_t test_resync()
     tbv::fill_pattern(c, 33u);
     const uint32_t half = TB_HEIGHT / 2u;
 
-    hlsv::stream_gray_t in;
-    hlsv::stream_gray_t out;
+    hls_video::stream_gray_t in;
+    hls_video::stream_gray_t out;
     packets_t sent;
     push_rows(a, 0u, half, in, sent);          // A useknutý v polovině
     push_rows(b, 0u, TB_HEIGHT, in, sent);

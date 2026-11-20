@@ -36,10 +36,10 @@ using csc_acc_t = ap_int<CSC_ACC_BITS>;
  * @return Výstupní složky
  */
 template <int CHANNELS_IN, int CHANNELS_OUT>
-hlsv::Pixel<CHANNELS_OUT> csc_pixel(const hlsv::Pixel<CHANNELS_IN>& in, const CscParams& p)
+hls_video::Pixel<CHANNELS_OUT> csc_pixel(const hls_video::Pixel<CHANNELS_IN>& in, const CscParams& p)
 {
     #pragma HLS INLINE
-    hlsv::Pixel<CHANNELS_OUT> out;
+    hls_video::Pixel<CHANNELS_OUT> out;
     for (int o = 0; o < CHANNELS_OUT; o++)
     {
         #pragma HLS UNROLL
@@ -50,7 +50,7 @@ hlsv::Pixel<CHANNELS_OUT> csc_pixel(const hlsv::Pixel<CHANNELS_IN>& in, const Cs
             acc += static_cast<csc_acc_t>(p.coeff[o][i]) * static_cast<csc_acc_t>(in.ch[i]);
         }
 
-        out.ch[o] = hlsv::saturate_u8(hlsv::round_shift<CSC_FRAC_BITS>(acc));
+        out.ch[o] = hls_video::saturate_u8(hls_video::round_shift<CSC_FRAC_BITS>(acc));
     }
 
     return out;
@@ -63,23 +63,23 @@ hlsv::Pixel<CHANNELS_OUT> csc_pixel(const hlsv::Pixel<CHANNELS_IN>& in, const Cs
  * @param p             Koeficienty a offsety
  */
 template <int CHANNELS_IN, int CHANNELS_OUT>
-void csc_stream(hlsv::stream_t<CHANNELS_IN>& in_stream, hlsv::stream_t<CHANNELS_OUT>& out_stream, const CscParams& p)
+void csc_stream(hls_video::stream_t<CHANNELS_IN>& in_stream, hls_video::stream_t<CHANNELS_OUT>& out_stream, const CscParams& p)
 {
     #pragma HLS INLINE
     bool last = false;
     do
     {
         #pragma HLS PIPELINE II=1
-        const hlsv::axis_t<CHANNELS_IN> in = in_stream.read();
-        const hlsv::Pixel<CHANNELS_OUT> px = csc_pixel<CHANNELS_IN, CHANNELS_OUT>(hlsv::unpack<CHANNELS_IN>(in.data), p);
-        out_stream.write(hlsv::make_packet<CHANNELS_OUT, CHANNELS_IN>(hlsv::pack<CHANNELS_OUT>(px), in));
+        const hls_video::axis_t<CHANNELS_IN> in = in_stream.read();
+        const hls_video::Pixel<CHANNELS_OUT> px = csc_pixel<CHANNELS_IN, CHANNELS_OUT>(hls_video::unpack<CHANNELS_IN>(in.data), p);
+        out_stream.write(hls_video::make_packet<CHANNELS_OUT, CHANNELS_IN>(hls_video::pack<CHANNELS_OUT>(px), in));
         last = (in.last == 1);
     } while (!last);
 }
 
 } // namespace
 
-void hls_csc_rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_video,
+void hls_csc_rgb(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video,
                  csc_coeff_t c00, csc_coeff_t c01, csc_coeff_t c02,
                  csc_coeff_t c10, csc_coeff_t c11, csc_coeff_t c12,
                  csc_coeff_t c20, csc_coeff_t c21, csc_coeff_t c22,
@@ -101,10 +101,10 @@ void hls_csc_rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_vi
     #pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
     #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, c01, c02 }, { c10, c11, c12 }, { c20, c21, c22 } }, { o0, o1, o2 } };
-    csc_stream<hlsv::RGB_CHANNELS, hlsv::RGB_CHANNELS>(s_axis_video, m_axis_video, p);
+    csc_stream<hls_video::PIXEL_CHANNELS, hls_video::PIXEL_CHANNELS>(s_axis_video, m_axis_video, p);
 }
 
-void hls_csc_rgb_to_gray(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_gray_t& m_axis_video,
+void hls_csc_rgb_to_gray(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_gray_t& m_axis_video,
                          csc_coeff_t c00, csc_coeff_t c01, csc_coeff_t c02, csc_offset_t o0)
 {
     #pragma HLS INTERFACE mode=axis port=s_axis_video register_mode=both
@@ -115,10 +115,10 @@ void hls_csc_rgb_to_gray(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_gray_t& 
     #pragma HLS INTERFACE mode=s_axilite port=o0 bundle=control
     #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, c01, c02 }, { 0, 0, 0 }, { 0, 0, 0 } }, { o0, 0, 0 } };
-    csc_stream<hlsv::RGB_CHANNELS, 1>(s_axis_video, m_axis_video, p);
+    csc_stream<hls_video::PIXEL_CHANNELS, 1>(s_axis_video, m_axis_video, p);
 }
 
-void hls_csc_gray_to_rgb(hlsv::stream_gray_t& s_axis_video, hlsv::stream_rgb_t& m_axis_video,
+void hls_csc_gray_to_rgb(hls_video::stream_gray_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video,
                          csc_coeff_t c00, csc_coeff_t c10, csc_coeff_t c20,
                          csc_offset_t o0, csc_offset_t o1, csc_offset_t o2)
 {
@@ -132,5 +132,5 @@ void hls_csc_gray_to_rgb(hlsv::stream_gray_t& s_axis_video, hlsv::stream_rgb_t& 
     #pragma HLS INTERFACE mode=s_axilite port=o2 bundle=control
     #pragma HLS INTERFACE mode=s_axilite port=return bundle=control
     const CscParams p = { { { c00, 0, 0 }, { c10, 0, 0 }, { c20, 0, 0 } }, { o0, o1, o2 } };
-    csc_stream<1, hlsv::RGB_CHANNELS>(s_axis_video, m_axis_video, p);
+    csc_stream<1, hls_video::PIXEL_CHANNELS>(s_axis_video, m_axis_video, p);
 }

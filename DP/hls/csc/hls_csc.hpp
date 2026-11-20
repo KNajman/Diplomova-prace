@@ -26,23 +26,23 @@ using csc_offset_t = ap_int<CSC_OFFSET_BITS>;
 /// Koeficienty jednoho převodu [výstup][vstup] a offsety výstupů
 struct CscParams
 {
-    csc_coeff_t coeff[hlsv::RGB_CHANNELS][hlsv::RGB_CHANNELS];
-    csc_offset_t offset[hlsv::RGB_CHANNELS];
+    csc_coeff_t coeff[hls_video::PIXEL_CHANNELS][hls_video::PIXEL_CHANNELS];
+    csc_offset_t offset[hls_video::PIXEL_CHANNELS];
 };
 
 /// Převod 3 -> 3 kanály (RGB -> YCbCr), registry c<výstup><vstup> a o<výstup>
-void hls_csc_rgb(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_rgb_t& m_axis_video,
+void hls_csc_rgb(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video,
                  csc_coeff_t c00, csc_coeff_t c01, csc_coeff_t c02,
                  csc_coeff_t c10, csc_coeff_t c11, csc_coeff_t c12,
                  csc_coeff_t c20, csc_coeff_t c21, csc_coeff_t c22,
                  csc_offset_t o0, csc_offset_t o1, csc_offset_t o2);
 
 /// Převod 3 -> 1 kanál (RGB -> šedá)
-void hls_csc_rgb_to_gray(hlsv::stream_rgb_t& s_axis_video, hlsv::stream_gray_t& m_axis_video,
+void hls_csc_rgb_to_gray(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_gray_t& m_axis_video,
                          csc_coeff_t c00, csc_coeff_t c01, csc_coeff_t c02, csc_offset_t o0);
 
 /// Převod 1 -> 3 kanály (šedá -> RGB)
-void hls_csc_gray_to_rgb(hlsv::stream_gray_t& s_axis_video, hlsv::stream_rgb_t& m_axis_video,
+void hls_csc_gray_to_rgb(hls_video::stream_gray_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video,
                          csc_coeff_t c00, csc_coeff_t c10, csc_coeff_t c20,
                          csc_offset_t o0, csc_offset_t o1, csc_offset_t o2);
 
