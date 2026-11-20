@@ -62,6 +62,8 @@ Každé jádro prochází 4 kroky: C-simulace ověří kód v C++, syntéza z n�
 
 Při práci jsem narazil na vlastnosti nástroje, které v dokumentaci nejsou zřejmé. Jádro bez řídicího protokolu (`ap_ctrl_none`) se skalárními registry nešlo kosimulovat, kosimulace se zastavila. Jádra proto používají řízení `ap_ctrl_hs` se samočinným restartem. Syntéza příkazem `v++` jádro nezabalí jako IP, k tomu je potřeba další příkaz (`vitis-run --package`).
 
+<!-- TODO(Karel, 20. 11. 2026): přehled všech použitých pragmat HLS s vysvětlením, co dělají (tabulka). Podklad: README, oddíl „Použitá pragmata HLS“ (9 druhů, počty výskytů, kde a proč). Rozhodnout, zda tabulka patří sem (kap. 2.4), nebo do kap. 5.1 Společné bloky. -->
+
 ## Vitis a software pro procesor {#sec:vitis-sw}
 
 Vitis (prostředí pro software) z exportu XSA vytvoří platformu, tedy ovladače a knihovny pro daný návrh, a nad ní přeloží aplikaci pro procesor. Měřicí aplikace běží bez operačního systému (bare-metal) na jednom jádru A53. Překlad pro 3 úrovně optimalizace jsem napsal jako skript přes rozhraní Pythonu (`build_app.py`), takže se platforma i aplikace dají sestavit bez grafického prostředí.

@@ -50,3 +50,5 @@ Osnova schválena beze změny (2.1 KV260, 2.2 prostředky PL, 2.3 Vivado, 2.4 Vi
 5. **Ababel:** v kapitole 2 (oddíl Pracovní prostředí a pomůcky), kvůli reprodukovatelnosti.
 6. **Obrázek metodiky (`doc/methodology.png`):** převzatý ze stránky AMD Vitis HLS („Vitis HLS programming model“),
    citovat `amd_vitis` v popisku.
+7. **Přehled pragmat HLS (Karel 20. 11.):** do práce tabulka všech použitých pragmat s vysvětlením (podklad README „Použitá pragmata HLS“); umístění 2.4 nebo 5.1.
+8. **Pojem floor (Karel 20. 11.):** v textu aspoň jednou česky matematicky „dolní celá část“ (⌊x⌋), v IT kontextu lze floor.

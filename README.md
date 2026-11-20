@@ -86,6 +86,8 @@ Formát $Q_{m.n}$ = celé číslo se znaménkem s $n$ zlomkovými bity, hodnota 
 \mathrm{sat}_{u8}(v) = \min\bigl(\max(v, 0), 255\bigr)
 ```
 
+Symbol $\lfloor x \rfloor$ je **dolní celá část** čísla $x$ (anglicky *floor*): největší celé číslo, které není větší než $x$
+(např. $\lfloor 2{,}7 \rfloor = 2$, $\lfloor -2{,}3 \rfloor = -3$). Obdobně $\lceil x \rceil$ je horní celá část (*ceil*).
 V HW je $\lfloor \cdot / 2^n \rfloor$ pouhý aritmetický posun, takže zaokrouhlení vyžaduje jen jednu sčítačku (v bloku
 DSP48E2 ji provede vestavěná sčítačka za násobičkou).
 
@@ -140,6 +142,28 @@ out_pixel <= sat_u8(rounded);
 Šířky mezivýsledků se nikde nepíšou jako konstanty, ale odvozují se: součin $W_a \cdot W_b \Rightarrow W_a + W_b$ bitů,
 součet $N$ čísel šířky $W \Rightarrow W + \lceil \log_2 N \rceil$ bitů (VHDL `sum_w`, `clog2`; HLS `constexpr`).
 Jádra jsou díky tomu generická (např. konvoluce pro libovolné K bez ručních úprav).
+
+### Použitá pragmata HLS
+
+Vitis HLS se řídí direktivami (pragmaty) přímo v kódu C++. V jádrech této práce se používá 9 druhů (v závorce počet výskytů
+v `DP/hls`); co z kódu vznikne, ověřuje kosimulace a syntéza mimo kontext.
+
+| pragma | co dělá | kde a proč ho používám |
+| --- | --- | --- |
+| `INTERFACE mode=axis register_mode=both` (22×) | port je AXI4-Stream; `register_mode=both` vloží registr do dopředné cesty (`TDATA`, `TVALID`) i do zpětné (`TREADY`) | vstup a výstup videa u všech 11 jader; registry přeruší kombinační cestu mezi jádry jako skid buffer ve VHDL |
+| `INTERFACE mode=s_axilite port=return bundle=control` (11×) | řídicí registry `ap_start`, `ap_done`, `ap_idle`, auto-restart na AXI4-Lite | spouštění jader z procesoru, stejná mapa registrů jako ve VHDL |
+| `INTERFACE mode=s_axilite port=<parametr>` (61×) | skalární argument se stane registrem v mapě AXI4-Lite | rozměry snímku, okraj, koeficienty, práh, status, okno `hist` |
+| `PIPELINE II=1` (9×) | zřetězení smyčky, nová iterace začne každý takt (interval II = 1) | hlavní smyčka přes pixely každého jádra: propustnost 1 pixel za takt |
+| `UNROLL` (17×) | úplné rozvinutí smyčky na paralelní hardware | smyčky přes složky pixelu, přes okno K × K (násobení, strom sčítaček), posun okna |
+| `INLINE` (20×) | funkce se vloží do volající funkce, nevznikne samostatný blok | pomocné funkce (`sort3`, `round_shift`, `saturate_u8`, operace okna), aby se daly zřetězit spolu se smyčkou |
+| `ARRAY_PARTITION type=complete` (9×) | pole se rozdělí na jednotlivé registry (nebo s `dim=1` na samostatné paměti) | okno a koeficienty (všechny prvky v jednom taktu), řádkové paměti (každý řádek vlastní BRAM), registry předávání u histogramu |
+| `BIND_STORAGE type=ram_s2p impl=bram` (2×) | pole se umístí do BRAM se dvěma porty (jedno čtení a jeden zápis za takt) | řádkové paměti okénkových jader a koše histogramu |
+| `BIND_OP op=mul impl=dsp [latency=3]` (10×) | násobení se provede v bloku DSP; `latency` určí počet registrů uvnitř DSP | 5 násobení v převodu HSV → RGB (varianty `_dsp` a `_dsp_lat`, `vysledky.md` sekce 13) |
+| `DEPENDENCE type=inter dependent=false` (2×) | nástroj nepočítá se závislostí přes pole mezi iteracemi, takže může držet II = 1 | řádková paměť (stejná adresa se znovu čte až za celý řádek) a koše histogramu (kolizi řeší ručně psané předávání mezivýsledku) |
+| `LOOP_TRIPCOUNT` (1×) | jen pro odhad latence v reportu syntézy u smyčky s proměnnou mezí, na obvod nemá vliv | smyčka přes snímek v šabloně okénkových jader |
+
+Kromě pragmat se v konfiguraci (`hls_config*.cfg`) u řádkových jader nastavuje `syn.compile.enable_auto_rewind=0`
+(důvod v `vysledky.md` sekce 17).
 
 ---
 
