@@ -22,7 +22,7 @@
 
 #include "hls_csc.hpp"
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 constexpr int CSC_ACC_BITS = 30;        ///< Šířka akumulátoru (viz poznámka výše)
@@ -77,7 +77,7 @@ void csc_stream(hls_video::stream_t<CHANNELS_IN>& in_stream, hls_video::stream_t
     } while (!last);
 }
 
-} // namespace
+} // anonymní namespace
 
 void hls_csc_rgb(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video,
                  csc_coeff_t c00, csc_coeff_t c01, csc_coeff_t c02,

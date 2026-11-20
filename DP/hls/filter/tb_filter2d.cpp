@@ -17,7 +17,7 @@
 
 #include <cstdio>
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 struct TestSize
@@ -100,7 +100,7 @@ uint32_t run_test(const imgproc_kernel_t& kernel, const TestSize& size, imgproc_
     return errors;
 }
 
-} // namespace
+} // anonymní namespace
 
 int main()
 {

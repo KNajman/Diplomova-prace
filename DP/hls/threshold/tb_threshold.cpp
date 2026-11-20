@@ -16,7 +16,7 @@
 #include <cstdio>
 #include <cstring>
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 constexpr uint32_t TB_WIDTH = 64u;
@@ -52,7 +52,7 @@ uint32_t test_combination(uint32_t type, uint8_t thresh, uint8_t maxval, uint32_
     return tbv::check_frame<1>(out, expected, name);
 }
 
-} // namespace
+} // anonymní namespace
 
 int main()
 {

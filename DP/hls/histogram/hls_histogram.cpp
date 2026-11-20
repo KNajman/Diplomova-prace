@@ -1,6 +1,6 @@
 /**
  * @file    hls_histogram.cpp
- * @brief   HLS jádro histogramu jasu (256 košů) s průchozím videem (bypass)
+ * @brief   HLS jádro histogramu jasu s intervalem o velikosti 256 s průchozím videem (bypass)
  * @author  Bc. Karel Najman
  * @date    2026-10-15
  * @copyright Bc. Karel Najman, Technická univerzita v Liberci
@@ -10,19 +10,19 @@
  *    poznat konec snímku, aby mohlo histogram předat, proto má registr výšky. Šířku nepotřebuje,
  *    řádky ohraničuje TLAST. Konec volání (ap_done) = histogram je platný (přerušení pro ARM).
  *  - Počítá se do interní BRAM (simple dual port: 1 čtení + 1 zápis za takt), každý pixel dělá
- *    read-modify-write bins[x]++. Mezi čtením a zápisem téhož koše jsou v pipeline ~2 takty
+ *    read-modify-write bins[x]++. Mezi čtením a zápisem též přihrádky jsou v pipeline ~2 takty
  *    (latence BRAM + sčítačka), takže dva blízké pixely stejné hodnoty by četly ještě nezapsanou
- *    hodnotu. Řešení: posledních HIST_FWD_DEPTH zápisů (koš + hodnota) se drží v registrech
+ *    hodnotu. Řešení: posledních HIST_FWD_DEPTH zápisů (bin + value) se drží v registrech
  *    a při shodě koše se hodnota vezme z nich (forwarding). Závislost přes BRAM je pak pro HLS
  *    vypnutá (DEPENDENCE inter false) a smyčka běží s II=1.
  *  - Poučení: původní technika z UG1399 (přičítání v registru do změny hodnoty, závislost nechaná
- *    na HLS) prošla C-simulací, ale v cosim ztrácela pixely u vzorů a,b,a. C-sim časování
- *    pipeline neověří - proto testbench obsahuje vzory se vzdáleností opakování 1 až 4.
+ *    na HLS) prošla C-simulací, ale v cosim ztrácela pixely u vzorů a,b,a.
+*     C-sim časování pipeline neověří - proto testbench obsahuje vzory se vzdáleností opakování 1 až 4.
  *  - Před snímkem se interní BRAM nuluje (256 taktů), po snímku se kopíruje do pole hist[]
  *    v AXI4-Lite (256 taktů). Režie 512 taktů na snímek = 0,025 % při 1080p. Nulování na začátku
  *    (ne až po kopii) zaručí správný první snímek i po resetu uprostřed snímku - statické pole
  *    v BRAM resetem nezmizí.
- *  - Dvojí buffer zadarmo: ARM čte hist[] celý další snímek, přepíše se až po jeho konci.
+ *  - Double buffer "zadarmo": procesor čte hist[] celý další snímek, přepíše se až po jeho konci.
  *  - Resynchronizace: jádro čeká na TUSER, pixely před ním jen propustí (status bit0). TUSER
  *    uprostřed snímku jen označí snímek jako neplatný (status bit1), počítání pokračuje do
  *    výšky snímku; další volání pak čeká na nejbližší TUSER. Nejpozději druhý snímek po poruše
@@ -31,10 +31,10 @@
 
 #include "hls_histogram.hpp"
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 constexpr int HIST_FWD_DEPTH = 3;     ///< Hloubka forwardingu (vzdálenost zápis -> čtení v pipeline je ~2 takty, 1 rezerva)
-} // namespace
+} // anonymní namespace
 
 void hls_histogram(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hist_height_t height,
                    hist_count_t hist[HIST_BINS], hist_status_t& status)
@@ -60,11 +60,11 @@ clear_bins:
         bins[i] = 0;
     }
 
-    // Posledních HIST_FWD_DEPTH zápisů; počáteční (koš 0, počet 0) odpovídá vynulované BRAM
+    // Posledních HIST_FWD_DEPTH zápisů; počáteční (bin 0, počet 0) odpovídá vynulované BRAM
     hls_video::pixel_t fwd_bin[HIST_FWD_DEPTH];
     hist_count_t fwd_cnt[HIST_FWD_DEPTH];
-#pragma HLS ARRAY_PARTITION variable=fwd_bin type=complete
-#pragma HLS ARRAY_PARTITION variable=fwd_cnt type=complete
+    #pragma HLS ARRAY_PARTITION variable=fwd_bin type=complete
+    #pragma HLS ARRAY_PARTITION variable=fwd_cnt type=complete
 init_fwd:
     for (int k = 0; k < HIST_FWD_DEPTH; k++)
     {

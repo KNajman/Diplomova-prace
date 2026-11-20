@@ -18,7 +18,7 @@
 
 #include "hls_filter2d.hpp"
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 /// Výpočet jednoho pixelu z okna K x K (shodný s imgproc_filter_point + delta + saturace)
@@ -83,7 +83,7 @@ copy_coeff:
     hls_video::window_frame<KERNEL_SIZE>(in_stream, out_stream, width, height, border == 1, status, op);
 }
 
-} // namespace
+} // anonymní namespace
 
 void hls_filter2d_3x3(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
                       hls_video::win_dim_t height, ap_uint<1> border, hls_filter::scale_t scale, hls_filter::delta_t delta,

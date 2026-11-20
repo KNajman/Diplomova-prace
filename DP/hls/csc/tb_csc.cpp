@@ -14,7 +14,7 @@
 
 #include <cstdio>
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 constexpr uint32_t TB_WIDTH = 64u;      ///< Malé rozlišení = rychlá C-sim i cosim
@@ -87,7 +87,7 @@ uint32_t test_preset(imgproc_csc_preset_t preset, uint32_t seed)
     return errors;
 }
 
-} // namespace
+} // anonymní namespace
 
 int main()
 {

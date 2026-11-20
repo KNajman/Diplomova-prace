@@ -22,7 +22,7 @@ constexpr int HIST_HEIGHT_BITS = 12;    ///< Šířka registru výšky (max 4095
 constexpr unsigned HIST_STATUS_SKIPPED = 1u;    ///< bit0: před SOF přišly pixely (resynchronizace), do histogramu se nepočítaly
 constexpr unsigned HIST_STATUS_EARLY_SOF = 2u;  ///< bit1: TUSER uprostřed snímku, histogram tohoto snímku je neplatný
 
-using hist_count_t = ap_uint<HIST_COUNT_BITS>;
+using hist_count_t  = ap_uint<HIST_COUNT_BITS>;
 using hist_height_t = ap_uint<HIST_HEIGHT_BITS>;
 using hist_status_t = ap_uint<2>;
 
@@ -34,7 +34,10 @@ using hist_status_t = ap_uint<2>;
  * @param hist          Výstup: histogram snímku (pole v AXI4-Lite)
  * @param status        Výstup: příznaky HIST_STATUS_* posledního snímku
  */
-void hls_histogram(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hist_height_t height,
-                   hist_count_t hist[HIST_BINS], hist_status_t& status);
+void hls_histogram(hls_video::stream_gray_t& s_axis_video,
+                   hls_video::stream_gray_t& m_axis_video,
+                   hist_height_t height,
+                   hist_count_t hist[HIST_BINS],
+                   hist_status_t& status);
 
 #endif // HLS_HISTOGRAM_HLS_HISTOGRAM_HPP_

@@ -20,7 +20,7 @@
 #include <cstdio>
 #include <vector>
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 constexpr uint32_t TB_WIDTH = 64u;
@@ -235,7 +235,7 @@ uint32_t test_resync()
     return errors;
 }
 
-} // namespace
+} // anonymní namespace
 
 int main()
 {

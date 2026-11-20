@@ -24,7 +24,7 @@
 #include <imgproc/hsv.h>        // IMGPROC_HSV_SHIFT, IMGPROC_*_IDX_*, IMGPROC_HSV_HUE_RANGE
 #include <imgproc_coeffs.h>     // IMGPROC_HSV_SDIV, IMGPROC_HSV_HDIV180 (generováno, NEOPISOVAT)
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 constexpr int HSV_SHIFT = static_cast<int>(IMGPROC_HSV_SHIFT);      ///< Zlomkové bity tabulek (12)
@@ -247,7 +247,7 @@ void convert_stream(hls_video::stream_rgb_t& in_stream, hls_video::stream_rgb_t&
     } while (!last);
 }
 
-} // namespace
+} // anonymní namespace
 
 void hls_rgb2hsv(hls_video::stream_rgb_t& s_axis_video, hls_video::stream_rgb_t& m_axis_video)
 {

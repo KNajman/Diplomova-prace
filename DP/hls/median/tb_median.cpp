@@ -17,7 +17,7 @@
 
 #include <cstdio>
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 /// Porucha vstupního streamu pro testy resynchronizace
@@ -105,7 +105,7 @@ uint32_t run_test(uint32_t width, uint32_t height, imgproc_border_t border, uint
     return errors;
 }
 
-} // namespace
+} // anonymní namespace
 
 int main()
 {

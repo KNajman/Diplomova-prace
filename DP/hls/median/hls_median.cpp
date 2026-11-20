@@ -12,7 +12,7 @@
 
 #include "hls_median.hpp"
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 /// Seřazená trojice
@@ -57,7 +57,7 @@ struct Median3x3
     }
 };
 
-} // namespace
+} // anonymní namespace
 
 void hls_median(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::win_dim_t width,
                 hls_video::win_dim_t height, ap_uint<1> border, hls_video::win_status_t& status)

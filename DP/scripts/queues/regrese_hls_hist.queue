@@ -1,0 +1,4 @@
+# Zkrácená regrese HLS po úpravě histogramu a komentářů anonymních namespace: C-simulace, syntéza, kosimulace histogramu,
+# u ostatních jader jen C-simulace (změnily se jen komentáře).
+cd DP/hls/scripts && bash run_hls.sh ../histogram/hls_config.cfg csim && bash run_hls.sh ../histogram/hls_config.cfg syn && bash run_hls.sh ../histogram/hls_config.cfg cosim
+cd DP/hls/scripts && for c in csc/hls_config_rgb hsv/hls_config_rgb2hsv hsv/hls_config_hsv2rgb_dsp_lat threshold/hls_config median/hls_config filter/hls_config_3x3; do bash run_hls.sh ../$c.cfg csim || exit 1; done

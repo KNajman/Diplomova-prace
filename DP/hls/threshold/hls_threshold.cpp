@@ -19,7 +19,7 @@
 
 #include "hls_threshold.hpp"
 
-namespace
+namespace // anonymní namespace, jen pro vnitřní linkování
 {
 
 /// Zdroj výsledku pixelu
@@ -68,7 +68,7 @@ hls_video::pixel_t select_source(ap_uint<2> source, hls_video::pixel_t value, hl
     return result;
 }
 
-} // namespace
+} // anonymní namespace
 
 void hls_threshold(hls_video::stream_gray_t& s_axis_video, hls_video::stream_gray_t& m_axis_video, hls_video::pixel_t thresh,
                    hls_video::pixel_t maxval, thresh_type_t type)
