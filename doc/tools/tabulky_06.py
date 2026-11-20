@@ -33,7 +33,7 @@ KAPITOLA = 'doc/kapitoly/06_vysledky_a_srovnani.md'
 HLS_OOC = 'DP/hls/results/hls_ooc_results.csv'
 VHDL_OOC = 'DP/vhdl/results/vhdl_results.csv'
 DESKA = 'DP/results/deska/deska_{beh}_{opt}.csv'
-BEH_VYCHOZI = '2026-10-25_2243'
+BEH_VYCHOZI = '2026-11-20_1240'
 RETEZEC = 'DP/results/runs/2026-11-19_1955_final_build'  # reporty Vivada finálního bitstreamu (utilization, timing)
 
 # Skupiny instancí testovacího řetězce (utilization_hier.rpt): popisek, funkce instance -> patří do skupiny

@@ -164,8 +164,8 @@ Tabulka: Doba zpracování snímku 1920 × 1080 na desce KV260 (200 MHz, 20 sní
 | průchod RGB | – | 10 371 | – | 96,4 | 0 |
 | průchod šedá | – | 10 371 | – | 96,4 | 0 |
 | převod barev RGB→YCbCr | 10 401 | 10 371 | 96,1 | 96,4 | +30 / 0 |
-| RGB→HSV | 10 412 | 10 371 | 96,0 | 96,4 | +41 / 0 |
-| HSV→RGB | 10 407 | 10 371 | 96,0 | 96,4 | +36 / 0 |
+| RGB→HSV | 10 411 | 10 371 | 96,0 | 96,4 | +40 / 0 |
+| HSV→RGB | 10 431 | 10 371 | 95,8 | 96,4 | +60 / 0 |
 | prahování (Otsu) | 10 371 | 10 371 | 96,4 | 96,4 | 0 / 0 |
 | medián 3×3 | 10 386 | 10 386 | 96,2 | 96,2 | +15 / +15 |
 | Sobel X 3×3 | 10 386 | 10 386 | 96,2 | 96,2 | +15 / +15 |
@@ -173,15 +173,15 @@ Tabulka: Doba zpracování snímku 1920 × 1080 na desce KV260 (200 MHz, 20 sní
 
 <!-- /TAB -->
 
-Při zpracování 1 pixelu za takt trvá snímek 1920 × 1080 / 200 MHz = 10 368 µs. Průchod řetězcem bez jádra trval 10 371 µs, tedy o 0,03 % déle. Všechna jádra pracují na tomto stropu. Okénková jádra (medián a Sobel) přidávají 15 µs, což je latence přibližně dvou řádků, než se naplní okno 3 × 3. Jádra HLS pro převod barev a převod mezi RGB a HSV jsou pomalejší o 30 až 41 µs. To je cena za vypnutí auto-rewind (oddíl @ref(sec:problemy)): mezi řádky přibude přibližně 5 taktů, u převodu barev 5 × 1080 taktů = 27 µs na snímek.
+Při zpracování 1 pixelu za takt trvá snímek 1920 × 1080 / 200 MHz = 10 368 µs. Průchod řetězcem bez jádra trval 10 371 µs, tedy o 0,03 % déle. Všechna jádra pracují na tomto stropu. Okénková jádra (medián a Sobel) přidávají 15 µs, což je latence přibližně dvou řádků, než se naplní okno 3 × 3. Jádra HLS pro převod barev a převod mezi RGB a HSV jsou pomalejší o 30 až 60 µs. To je cena za vypnutí auto-rewind (oddíl @ref(sec:problemy)): mezi řádky přibude tolik taktů, kolik je stupňů pipeline, u převodu barev přibližně 5 × 1080 taktů = 27 µs na snímek. Převod HSV na RGB má ve finální verzi násobení s latencí 3 takty a pipeline delší o 4 stupně, proto je pomalejší o 60 µs místo 36 µs.
 
 <!-- TODO(odkaz): oddíl Nalezené problémy v kap. 5 má mít návěští sec:problemy (kap. 4 na něj odkazuje jako na 5.14). -->
 
-Propustnost tedy jádra HLS a VHDL nerozlišuje. Obě verze zpracují 1 pixel za takt a rozdíl mezi nimi je nejvýš 0,4 % doby snímku. Rozdíl mezi verzemi je v prostředcích a maximální frekvenci (oddíl @ref(sec:vooc)), ne v propustnosti při 200 MHz.
+Propustnost tedy jádra HLS a VHDL nerozlišuje. Obě verze zpracují 1 pixel za takt a rozdíl mezi nimi je nejvýš 0,6 % doby snímku. Rozdíl mezi verzemi je v prostředcích a maximální frekvenci (oddíl @ref(sec:vooc)), ne v propustnosti při 200 MHz.
 
 ## Srovnání hardwaru a softwaru {#sec:vhwsw}
 
-Softwarovou verzí je referenční model `lib_imgproc` přeložený pro procesor Cortex-A53 na 1333 MHz bez operačního systému, se zapnutou cache (oddíl @ref(sec:sw)). Doba je medián z 10 běhů na snímku 1920 × 1080. Tabulka @ref(tab:hwsw) uvádí dobu softwarového a hardwarového zpracování a jejich poměr. Hardwarový čas je u jader VHDL, jádra HLS jsou pomalejší nejvýš o 0,4 %, což poměr na uvedenou přesnost nemění.
+Softwarovou verzí je referenční model `lib_imgproc` přeložený pro procesor Cortex-A53 na 1333 MHz bez operačního systému, se zapnutou cache (oddíl @ref(sec:sw)). Doba je medián z 10 běhů na snímku 1920 × 1080. Tabulka @ref(tab:hwsw) uvádí dobu softwarového a hardwarového zpracování a jejich poměr. Hardwarový čas je u jader VHDL, jádra HLS jsou pomalejší nejvýš o 0,6 %, což poměr na uvedenou přesnost nemění.
 
 <!-- TAB tab:hwsw -->
 
@@ -193,15 +193,15 @@ Tabulka: Doba zpracování snímku 1920 × 1080 v softwaru na Cortex-A53 (1333 M
 | RGB→HSV | 544,5 | 182,1 | 182,1 | 10,37 | 52× | 18× | 18× |
 | HSV→RGB | 521,6 | 115,8 | 115,8 | 10,37 | 50× | 11× | 11× |
 | prahování (Otsu) | 206,9 | 57,9 | 43,4 | 10,37 | 20× | 5,6× | 4,2× |
-| medián 3×3 | 2 728,1 | 549,9 | 561,1 | 10,39 | 263× | 53× | 54× |
+| medián 3×3 | 2 999,5 | 549,0 | 560,6 | 10,39 | 289× | 53× | 54× |
 | Sobel X 3×3 | 2 334,1 | 567,4 | 538,5 | 10,39 | 225× | 55× | 52× |
-| histogram | 91,1 | 35,2 | 35,1 | 10,37 | 8,8× | 3,4× | 3,4× |
+| histogram | 91,1 | 35,1 | 35,1 | 10,37 | 8,8× | 3,4× | 3,4× |
 
 <!-- /TAB -->
 
-Při překladu s -O2 je hardware rychlejší 3,4krát (histogram) až 55krát (Sobel). Velikost zrychlení odpovídá tomu, kolik práce připadá v softwaru na jeden pixel. Histogram v softwaru jen přičte jedničku do koše, takže procesor zpracuje snímek za 35,2 ms. Medián a Sobel počítají pro každý pixel okno 3 × 3, medián navíc třídí 9 hodnot, a procesor na snímek potřebuje 550 a 567 ms. Hardware zpracuje všechny algoritmy za stejnou dobu, protože každé jádro zpracuje 1 pixel za takt bez ohledu na to, kolik operací pro něj provede.
+Při překladu s -O2 je hardware rychlejší 3,4krát (histogram) až 55krát (Sobel). Velikost zrychlení odpovídá tomu, kolik práce připadá v softwaru na jeden pixel. Histogram v softwaru jen přičte jedničku do koše, takže procesor zpracuje snímek za 35,1 ms. Medián a Sobel počítají pro každý pixel okno 3 × 3, medián navíc třídí 9 hodnot, a procesor na snímek potřebuje 549 a 567 ms. Hardware zpracuje všechny algoritmy za stejnou dobu, protože každé jádro zpracuje 1 pixel za takt bez ohledu na to, kolik operací pro něj provede.
 
-Vliv optimalizace překladače ukazuje tabulka @ref(tab:prekladac). Přechod z -O0 na -O2 zrychlil software 2,6krát až 5,0krát. Přechod z -O2 na -O3 pomohl jen převodu barev (o 17,7 %), prahování (o 25,0 %) a Sobelovi (o 5,1 %), medián se zpomalil o 2,0 %. Pro srovnání s hardwarem proto beru jako výchozí -O2 a -O3 uvádím jako nejrychlejší software. Rozdíly pod 1 % mezi úrovněmi nepovažuji za skutečné.
+Vliv optimalizace překladače ukazuje tabulka @ref(tab:prekladac). Přechod z -O0 na -O2 zrychlil software 2,6krát až 5,5krát. Přechod z -O2 na -O3 pomohl jen převodu barev (o 17,7 %), prahování (o 25,0 %) a Sobelovi (o 5,1 %), medián se zpomalil o 2,1 %. Pro srovnání s hardwarem proto beru jako výchozí -O2 a -O3 uvádím jako nejrychlejší software. Rozdíly pod 1 % mezi úrovněmi nepovažuji za skutečné.
 
 <!-- TAB tab:prekladac -->
 
@@ -213,13 +213,13 @@ Tabulka: Vliv optimalizace překladače na dobu softwarového zpracování {#tab
 | RGB→HSV | 3,0× | 0,0 % |
 | HSV→RGB | 4,5× | 0,0 % |
 | prahování (Otsu) | 3,6× | −25,0 % |
-| medián 3×3 | 5,0× | +2,0 % |
+| medián 3×3 | 5,5× | +2,1 % |
 | Sobel X 3×3 | 4,1× | −5,1 % |
-| histogram | 2,6× | −0,1 % |
+| histogram | 2,6× | 0,0 % |
 
 <!-- /TAB -->
 
-<!-- TODO(Karel): SW čas je z jednoho běhu aplikace na úroveň (medián z 10 běhů funkce). Chceš ještě 2 další běhy board_test pro rozptyl? Zabere to asi 15 minut s deskou. -->
+<!-- Rozptyl: dva běhy 20. 11. 2026 (11:47 a 12:40) dávají stejný HW čas a SW čas se liší nejvýš o 0,01 % (vysledky.md sekce 27). -->
 
 ## Využití obvodu celým řetězcem {#sec:vretezec}
 
@@ -266,7 +266,7 @@ Kritickou cestu řetězce tvoří v obou verzích jádro HLS. Při 5 ns vloží 
 
 <!-- TODO(text): diskusi napíšu po kontrole čísel a tvém schválení tónu. Body podle osnovy a podkladů: -->
 
-<!-- 1. Propustnost HLS a VHDL nerozlišuje: obě 1 px/takt, rozdíl ≤ 0,4 % (cena vypnutí auto-rewind). -->
+<!-- 1. Propustnost HLS a VHDL nerozlišuje: obě 1 px/takt, rozdíl ≤ 0,6 % (cena vypnutí auto-rewind a latence násobení). -->
 <!-- 2. VHDL: kratší nebo stejná perioda u všech 9 jader, menší LUT u 7 z 9; HLS: méně FF u převodů RGB↔HSV, rychlejší vývoj (doplnit tvou zkušenost – kolik času zabralo jádro v HLS a ve VHDL, pokud to víš). -->
 <!-- 3. Architektura rozhoduje víc než jazyk (histogram 35× LUT). -->
 <!-- 4. Jeden parametr LUT ↔ DSP: ve VHDL stačí jeden, v HLS dva a je potřeba vědět o latenci. -->

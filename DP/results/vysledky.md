@@ -800,3 +800,19 @@ Reporty v `DP/results/runs/2026-11-19_1955_final_build/`, z nich generuje `tabul
 - Kritická cesta se přesunula z HLS HSV → RGB (po latenci 3 už ne) do HLS konvoluce 3×3 – opět jádro HLS, žádné VHDL.
 - Jádra 34 % LUT řetězce (dřív 37 %), zbytek VDMA a propojení.
 - Další krok: test na desce (`board_test` O0/O2/O3) – soubory staženy `ababel.sh board` 19. 11. 20:53.
+
+## 27. Test finálního řetězce na desce KV260 (20. 11. 2026)
+
+Konfigurace: finální bitstream `final_build` (sekce 26), měřicí aplikace -O0/-O2/-O3, UART, 1080p RGB, HW 20 snímků × 5 měření,
+SW medián z 10 běhů. Dva úplné běhy `board_test`: 11:47 a 12:40 (`DP/results/deska/deska_2026-11-20_*`).
+**Všech 96 měření (2 běhy × 3 úrovně × 16) bitově shodných.** Tabulky kap. 6 jsou z běhu 12:40 (`tabulky_06.py`, `BEH_VYCHOZI`).
+
+- **Opakovatelnost:** HW čas v obou bězích totožný do µs, SW čas se liší nejvýš o 0,45 % (při -O2 nejvýš 0,01 %).
+- **HLS HSV → RGB 10 431 µs** (dřív 10 407): varianta s latencí násobení 3 takty má pipeline o 4 stupně delší a bez
+  auto-rewind se latence projeví na každém řádku (4 × 1080 taktů ≈ 22 µs). Ostatní jádra beze změny proti sekci 20
+  (VHDL vše 10 371 µs, okénková 10 386 µs) – optimalizace `window_gen` a mediánu propustnost nemění (1 px/takt).
+- **SW medián:** -O2 549,0 ms (dřív 549,9), ale **-O0 2 999,5 ms (dřív 2 728,1, +10 %)**. Nový `sort3` se sdílenými
+  porovnáními je v neoptimalizovaném překladu pomalejší (víc proměnných v paměti), s optimalizací stejný. Zrychlení HW/SW
+  při -O0 je proto u mediánu 289× (dřív 263×).
+- Poměry HW/SW při -O2 beze změny: 3,4× (histogram) až 55× (Sobel).
+- `board_test.ps1` nově vypíše, že výpis tabulky po hlavičce stojí po dobu SW měření (-O0 asi 3,5 min).

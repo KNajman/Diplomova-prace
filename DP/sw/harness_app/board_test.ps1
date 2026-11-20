@@ -161,6 +161,7 @@ function Invoke-BoardRun([string]$level, [string]$xsdbPath, [string[]]$portNames
                     if ($opened[$name].Text.ToString().Contains($appHeader)) {
                         $active = $name
                         Write-Host "  aplikace běží, výstup na $name"
+                        Write-Host "  (aplikace nejdřív změří software, výpis tabulky pak stojí: -O2 asi 1 min, -O3 asi 1 min, -O0 asi 3,5 min)" -ForegroundColor DarkGray
                     }
                 }
             }

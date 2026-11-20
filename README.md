@@ -965,7 +965,7 @@ prohnané stejným postupem jako VHDL, `vysledky.md` sekce 9); perioda = max(5 �
 VHDL konvoluce a medián jsou po optimalizaci generátoru okna (`window_gen` v3: příznaky pozice porovnáním s konstantami
 snímku, bez sčítačky v kritické cestě); konvoluce 3×3 až 7×7 s DSP běží na stropu bloku DSP 3,26 ns (`vysledky.md`
 sekce 24 a 25). Finální testovací řetězec (19. 11. 2026, HSV → RGB v DSP): 13 521 LUT (11,5 %), 69 DSP, rezerva
-+0,401 ns při 200 MHz (sekce 26).
++0,401 ns při 200 MHz (sekce 26), na desce všech 48 měření -O0/-O2/-O3 bitově shodných ve dvou bězích (sekce 27).
 
 ## Sestavení
 
