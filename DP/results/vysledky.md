@@ -816,3 +816,30 @@ SW medián z 10 běhů. Dva úplné běhy `board_test`: 11:47 a 12:40 (`DP/resul
   při -O0 je proto u mediánu 289× (dřív 263×).
 - Poměry HW/SW při -O2 beze změny: 3,4× (histogram) až 55× (Sobel).
 - `board_test.ps1` nově vypíše, že výpis tabulky po hlavičce stojí po dobu SW měření (-O0 asi 3,5 min).
+
+## 28. Propust (passthrough) a medián na fotografii se šumem salt-and-pepper (22. 11. 2026)
+
+Běh `2026-11-22_1601_passthrough` (commit fcd8e19), všech 10 kroků exit 0. Propust: data 24 b beze změny, resynchronizace
+na TUSER, snímek W × H z čítačů, status jako okénková jádra (`vhdl/passthrough`, `hls/passthrough`).
+
+| test | VHDL (xsim) | HLS |
+| --- | --- | --- |
+| 64x48, 2 snímky, mezery a zpětný tlak 100/100, 50/50 | PASS (6 144 / 14 098 taktů) | csim + cosim PASS |
+| 7 px před TUSER → SKIPPED | PASS (status 0001) | PASS |
+| TLAST o 3 px dřív → EARLY_EOL \| LATE_EOL | PASS (1100) | PASS |
+| TUSER uprostřed snímku → EARLY_SOF | PASS (0010) | PASS |
+| zastavení vstupu i výstupu na 20 000 taktů uprostřed snímku | PASS | – |
+| rozměry 1x1, 1x8, 8x1 | PASS (1x1) | PASS |
+| AXI4-Lite: 1 snímek bez auto_restart, pauza 2 000 taktů, znovuspuštění | PASS (2 px dalšího snímku ve skid bufferu) | – |
+| maximum 3840x2160 | PASS (8 294 400 taktů = 1 px/takt) | csim PASS |
+| všech 2^24 barev, 4 × 2048x2048 | PASS (4 × 4 194 304 taktů) | csim PASS |
+
+HLS odhad syntézy propusti: 553 LUT, 235 FF, 0 DSP, 0 BRAM.
+
+**Medián na vlastní fotografii** (`DP/model/data/posed_les.jpg`, šedá BT.601, výřez středu 1666 × 2160, šum 5 %):
+- VHDL `tb_median` bitově shodné s golden modelem pro výřez 64x48 (šum 0/5/10/20 %, oba okraje) i celý snímek
+  (3 600 719 taktů); HLS csim celý snímek PASS, výstup `sp_5_1666x2160_hls_median.pgm` (náhled do práce).
+- Šumem zasaženo 180 285 px (5,01 %), po mediánu zůstalo 15 nových pixelů 0/255.
+- Medián zašuměného snímku se od mediánu čistého snímku liší průměrně o 1,59 úrovně (80,9 % pixelů shodných).
+  Proti původnímu čistému snímku je ale odchylka 12,78 (zašuměný 6,39): medián 3x3 rozmaže jemnou texturu (tráva,
+  listí), 80 % pixelů se proti čistému snímku změní – do diskuse (cena za odstranění impulzního šumu).
