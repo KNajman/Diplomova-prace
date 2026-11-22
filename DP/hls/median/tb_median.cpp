@@ -10,12 +10,17 @@
  *  2. malé a liché rozměry včetně výšky 1 a 2 (horní a dolní okraj se překrývají), oba okraje,
  *  3. 7 pixelů bez TUSER před snímkem -> zahozeny, status SKIPPED, výstup správný,
  *  4. TLAST v řádku 5 o 3 pixely dřív -> status EARLY_EOL | LATE_EOL, geometrie z čítačů, výstup správný.
+ * TB_MEDIAN_IMAGE=<soubor.pgm> v prostředí: navíc vlastní snímek (např. šum salt-and-pepper z gen_test_images.py),
+ * výstup jádra se uloží vedle jako <soubor>_hls_median.pgm (náhled do práce).
  */
 
 #include "hls_median.hpp"
 #include "../common/tb_video.hpp"
 
 #include <cstdio>
+#include <cstdlib>
+#include <string>
+#include <vector>
 
 namespace // anonymní namespace, jen pro vnitřní linkování
 {
@@ -105,6 +110,97 @@ uint32_t run_test(uint32_t width, uint32_t height, imgproc_border_t border, uint
     return errors;
 }
 
+/**
+ * @brief Načte binární šedý snímek PGM (P5, maxval 255).
+ * @param path   Cesta
+ * @param width  Výstup: šířka
+ * @param height Výstup: výška
+ * @param pixels Výstup: pixely po řádcích
+ * @return true při úspěchu
+ */
+bool read_pgm(const char* path, uint32_t& width, uint32_t& height, std::vector<uint8_t>& pixels)
+{
+    FILE* file = std::fopen(path, "rb");
+    if (file == nullptr)
+    {
+        return false;
+    }
+
+    unsigned maxval = 0u;
+    const bool header_ok = (std::fscanf(file, "P5 %u %u %u", &width, &height, &maxval) == 3) && (maxval == 255u)
+                           && (std::fgetc(file) != EOF);
+    pixels.resize(static_cast<size_t>(width) * height);
+    const bool data_ok = header_ok && (std::fread(pixels.data(), 1u, pixels.size(), file) == pixels.size());
+    std::fclose(file);
+    return data_ok;
+}
+
+/**
+ * @brief Medián vlastního snímku (replikace okraje) proti golden modelu, výstup jádra uloží jako PGM.
+ * @param path Cesta ke vstupnímu PGM
+ * @return Počet chyb
+ */
+uint32_t run_image(const char* path)
+{
+    uint32_t width = 0u;
+    uint32_t height = 0u;
+    std::vector<uint8_t> pixels;
+    if (!read_pgm(path, width, height, pixels))
+    {
+        std::printf("FAIL    nelze načíst %s\n", path);
+        return 1u;
+    }
+
+    tbv::Image src(width, height, 1u);
+    tbv::Image expected(width, height, 1u);
+    for (uint32_t y = 0u; y < height; y++)
+    {
+        for (uint32_t x = 0u; x < width; x++)
+        {
+            *imgproc_image_pixel(&src.img, x, y) = pixels[(static_cast<size_t>(y) * width) + x];
+        }
+    }
+    imgproc_median3x3(&src.img, &expected.img, IMGPROC_BORDER_REPLICATE);
+
+    hls_video::stream_gray_t in;
+    hls_video::stream_gray_t out;
+    tbv::push_frame<1>(src, in);
+    hls_video::win_status_t status = 0;
+    hls_median(in, out, width, height, 1, status);
+
+    // výstup jádra: kopie streamu do PGM a zpět do streamu pro porovnání
+    std::string out_path(path);
+    out_path = out_path.substr(0u, out_path.rfind('.')) + "_hls_median.pgm";
+    FILE* file = std::fopen(out_path.c_str(), "wb");
+    hls_video::stream_gray_t checked;
+    if (file != nullptr)
+    {
+        std::fprintf(file, "P5\n%u %u\n255\n", width, height);
+    }
+    while (!out.empty())
+    {
+        const hls_video::axis_gray_t packet = out.read();
+        if (file != nullptr)
+        {
+            std::fputc(static_cast<int>(packet.data.to_uint()), file);
+        }
+        checked.write(packet);
+    }
+    if (file != nullptr)
+    {
+        std::fclose(file);
+    }
+
+    uint32_t errors = tbv::check_frame<1>(checked, expected, "vlastní snímek repl");
+    if (status != 0u)
+    {
+        std::printf("FAIL    status %u, očekáváno 0\n", static_cast<unsigned>(status));
+        errors++;
+    }
+    std::printf("        %s -> %s\n", path, out_path.c_str());
+    return errors;
+}
+
 } // anonymní namespace
 
 int main()
@@ -128,6 +224,12 @@ int main()
     const Fault bad_eol = { 0u, 5 };
     errors += run_test(32u, 16u, IMGPROC_BORDER_REPLICATE, 6u, bad_eol,
                        hls_video::WIN_STATUS_EARLY_EOL | hls_video::WIN_STATUS_LATE_EOL, "TLAST mimo");
+
+    const char* image_path = std::getenv("TB_MEDIAN_IMAGE");
+    if ((image_path != nullptr) && (image_path[0] != '\0'))
+    {
+        errors += run_image(image_path);
+    }
 
     std::printf("\nVYSLEDEK: %s (%u chyb)\n", (errors == 0u) ? "PASS" : "FAIL", errors);
     return (errors == 0u) ? 0 : 1;

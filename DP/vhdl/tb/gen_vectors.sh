@@ -150,6 +150,34 @@ for k in 5 7; do
     done
 done
 
+# Medián na skutečném snímku se šumem salt-and-pepper (vlastní fotografie, DP/model/data/posed_les.jpg):
+# výřez 64x48 se šumem 5, 10 a 20 % (rychlá simulace), celý snímek v --full
+GEN="python3 $MODEL/tools/gen_test_images.py"
+PHOTO="$MODEL/data/posed_les.jpg"
+salt_pepper_vectors() {   # $1 = rozměr WxH, další = hustoty šumu v %
+    local size="$1"; shift
+    $GEN saltpepper "$PHOTO" . --size "$size" --density "$@"
+    for name in clean "$@"; do
+        "$CLI" tohex "sp_${name}_$size.pgm" "in_sp${name}_$size"
+        for border in constant replicate; do
+            "$CLI" median "sp_${name}_$size.pgm" "median_sp${name}_${size}_$border" "$border"
+        done
+    done
+}
+salt_pepper_vectors 64x48 5 10 20
+
+# Propust: vstup = očekávaný výstup, stačí HEX (in_rgb.hex výše); maximální rozměr 3840x2160 v --full
+if [ "$FULL" = "--full" ]; then
+    salt_pepper_vectors 1666x2160 5
+    python3 - <<'PY2'
+import random
+random.seed(11)
+with open("in_rgb_3840x2160.hex", "w") as h:
+    for _ in range(2160):
+        h.write("".join("%06X\n" % random.getrandbits(24) for _ in range(3840)))
+PY2
+fi
+
 # Úplný test: všech 2^24 barev ve 4 částech 2048x2048 (golden model má max. 3840x2160).
 # Část k: pixel i -> R = 64k + (i >> 16), G = (i >> 8) & 255, B = i & 255. Tytéž bajty čtené jako H, S, V
 # dávají všechny kombinace H 0..255 x S x V pro HSV -> RGB.

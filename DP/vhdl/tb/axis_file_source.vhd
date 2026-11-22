@@ -1,15 +1,17 @@
 --------------------------------------------------------------------------------
--- Projekt:   DP - Implementace vybraných algoritmů zpracování obrazu pixel_data hradlovém poli
+-- Projekt:   DP - Implementace vybraných algoritmů zpracování obrazu v hradlovém poli
 -- Autor:     Bc. Karel Najman (TUL), vedoucí Ing. Martin Rozkovec, Ph.D.
 -- Soubor:    axis_file_source.vhd   (jen simulace)
 -- Popis:     Zdroj AXI4-Stream Video ze souboru HEX (imgproc_cli: 1 pixel na řádek)
 --
 --  * Generuje TUSER na prvním pixelu snímku a TLAST na konci řádku (z G_WIDTH).
---  * Náhodné mezery: pixel_data každém taktu je TVALID = 1 s pravděpodobností G_VALID_PCT %.
+--  * Náhodné mezery: v každém taktu je TVALID = 1 s pravděpodobností G_VALID_PCT %.
 --    Jednou nastavené TVALID se drží až do přijetí (pravidlo AXI4-Stream).
 --  * Soubor se pro každý snímek čte znovu od začátku (G_FRAMES stejných snímků).
 --  * Porucha pro test resynchronizace: G_GARBAGE pixelů bez TUSER před prvním snímkem.
 --  * Porucha TLAST: v řádku G_BAD_EOL_ROW (jen první snímek) je TLAST na x = W - 4 místo W - 1.
+--  * Porucha TUSER: v řádku G_EXTRA_SOF_ROW (jen první snímek) má první pixel TUSER = 1 (nový snímek uprostřed).
+--  * Zastavení streamu: po pixelu G_PAUSE_AT (počítáno přes všechny snímky) je TVALID = 0 po G_PAUSE_CYCLES taktů.
 --------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -27,6 +29,9 @@ entity axis_file_source is
         G_VALID_PCT : natural  := 100;  -- 0..100
         G_GARBAGE   : natural  := 0;
         G_BAD_EOL_ROW : integer := -1;  -- porucha: v tomto řádku TLAST o 3 pixely dřív (-1 = žádná)
+        G_EXTRA_SOF_ROW : integer := -1;  -- porucha: TUSER i na prvním pixelu tohoto řádku (jen 1. snímek, -1 = žádná)
+        G_PAUSE_AT     : integer  := -1;  -- po tolikátém pixelu snímků (od 0) zastavit stream (-1 = nikdy)
+        G_PAUSE_CYCLES : natural  := 0;   -- délka zastavení v taktech (TVALID = 0)
         G_SEED      : positive := 1
     );
     port (
@@ -52,6 +57,7 @@ begin
         variable random_value : real;
         variable is_sof       : std_logic;
         variable is_eol       : std_logic;
+        variable pixel_count  : natural := 0;
 
         -- Jeden přenos s náhodnou mezerou před ním
         procedure send(data : std_logic_vector; p_user, p_last : std_logic) is
@@ -87,13 +93,21 @@ begin
                     assert not endfile(stimulus_file) report "axis_file_source: soubor je kratsi nez snimek" severity failure;
                     readline(stimulus_file, text_line);
                     hread(text_line, pixel_data);
-                    is_sof := '1' when (x = 0 and y = 0) else '0';
+                    is_sof := '1' when (x = 0 and (y = 0 or (frame = 1 and y = G_EXTRA_SOF_ROW))) else '0';
                     if (frame = 1) and (y = G_BAD_EOL_ROW) and (G_WIDTH >= 4) then
                         is_eol := '1' when (x = G_WIDTH - 4) else '0';
                     else
                         is_eol := '1' when (x = G_WIDTH - 1) else '0';
                     end if;
                     send(pixel_data, is_sof, is_eol);
+                    if pixel_count = G_PAUSE_AT then
+                        -- zastavení streamu (např. výpadek kamery), pak pokračování stejným snímkem
+                        m_tvalid <= '0';
+                        for k in 1 to G_PAUSE_CYCLES loop
+                            wait until rising_edge(aclk);
+                        end loop;
+                    end if;
+                    pixel_count := pixel_count + 1;
                 end loop;
             end loop;
             file_close(stimulus_file);

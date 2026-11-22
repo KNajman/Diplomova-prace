@@ -1,0 +1,216 @@
+--------------------------------------------------------------------------------
+-- Projekt:   DP - Implementace vybraných algoritmů zpracování obrazu v hradlovém poli
+-- Autor:     Bc. Karel Najman (TUL), vedoucí Ing. Martin Rozkovec, Ph.D.
+-- Soubor:    tb_passthrough_axil.vhd
+-- Popis:     Test top-level IP passthrough_axil: řízení přes AXI4-Lite, zastavení a znovuspuštění
+--
+--  1. před ap_start nesmí jádro přijmout žádný pixel,
+--  2. zápis width/height, zpětné čtení, GIE + IER(ap_done), ap_ctrl = 0x01 (jeden snímek, bez auto_restart),
+--  3. po snímku: přerušení, ISR(ap_done), status = 0, status_ap_vld = 1 (po přečtení 0 - COR),
+--  4. jádro je zastavené: po dobu C_PAUSE taktů nesmí přijmout žádný pixel (zdroj má data připravená);
+--     pixely přijaté do vstupního skid bufferu před ap_done se nesmí ztratit (kontroluje příjemce),
+--  5. znovuspuštění ap_ctrl = 0x81 (auto_restart): zbylé snímky proti očekávaným datům.
+--------------------------------------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.video_pkg.all;
+
+entity tb_passthrough_axil is
+    generic(
+        G_FRAMES    : positive := 3;
+        G_VALID_PCT : natural  := 80;
+        G_READY_PCT : natural  := 80
+    );
+end entity;
+
+architecture sim of tb_passthrough_axil is
+    constant C_PERIOD : time     := 5 ns;
+    constant C_WIDTH  : positive := 64;
+    constant C_HEIGHT : positive := 48;
+    constant C_PAUSE  : positive := 2000;
+
+    function pass_fail(error_count : natural) return string is
+    begin
+        if error_count = 0 then
+            return "PASS";
+        end if;
+        return "FAIL";
+    end function;
+
+    signal aclk    : std_logic := '0';
+    signal aresetn : std_logic := '0';
+
+    signal awaddr, araddr                                : std_logic_vector(7 downto 0)  := (others => '0');
+    signal awvalid, wvalid, bready, arvalid, rready      : std_logic                     := '0';
+    signal awready, wready, bvalid, arready, rvalid, irq : std_logic;
+    signal wdata, rdata                                  : std_logic_vector(31 downto 0) := (others => '0');
+    signal bresp, rresp                                  : std_logic_vector(1 downto 0);
+
+    signal s_data, m_data                      : std_logic_vector(C_RGB_W - 1 downto 0);
+    signal s_user, m_user                      : std_logic_vector(0 downto 0);
+    signal s_last, s_valid, s_ready            : std_logic;
+    signal m_last, m_valid, m_ready, sink_done : std_logic;
+    signal error_count, cycle_count            : natural;
+    signal started                             : boolean := false;
+    signal control_errors                      : natural := 0;
+    signal accepted_pixels                     : natural := 0;
+    signal early_pixels                        : natural := 0;
+    signal cpu_done                            : boolean := false;
+begin
+    aclk    <= not aclk after C_PERIOD / 2;
+    aresetn <= '1' after 4 * C_PERIOD;
+
+    cpu : process
+        variable error_total : natural := 0;
+        variable read_value  : std_logic_vector(31 downto 0);
+        variable paused_at   : natural;
+        procedure axil_write(addr : natural; data : integer) is
+        begin
+            awaddr  <= std_logic_vector(to_unsigned(addr, 8));
+            wdata   <= std_logic_vector(to_signed(data, 32));
+            awvalid <= '1';
+            wvalid  <= '1';
+            bready  <= '1';
+            wait until rising_edge(aclk) and awready = '1';
+            awvalid <= '0';
+            if wready = '0' then
+                wait until rising_edge(aclk) and wready = '1';
+            end if;
+            wvalid  <= '0';
+            wait until rising_edge(aclk) and bvalid = '1';
+            if bresp /= "00" then
+                report "AXI-Lite: BRESP /= OKAY" severity error;
+                error_total := error_total + 1;
+            end if;
+            bready  <= '0';
+        end procedure;
+        procedure axil_read(addr : natural; result : out std_logic_vector(31 downto 0)) is
+        begin
+            araddr  <= std_logic_vector(to_unsigned(addr, 8));
+            arvalid <= '1';
+            rready  <= '1';
+            wait until rising_edge(aclk) and arready = '1';
+            arvalid <= '0';
+            wait until rising_edge(aclk) and rvalid = '1';
+            if rresp /= "00" then
+                report "AXI-Lite: RRESP /= OKAY" severity error;
+                error_total := error_total + 1;
+            end if;
+            result  := rdata;
+            rready  <= '0';
+        end procedure;
+        procedure expect(condition : boolean; message : string) is
+        begin
+            if not condition then
+                report "AXI-Lite: " & message severity error;
+                error_total := error_total + 1;
+            end if;
+        end procedure;
+    begin
+        wait until rising_edge(aclk) and aresetn = '1';
+        for k in 1 to 200 loop
+            wait until rising_edge(aclk);
+        end loop;
+        axil_write(16#10#, C_WIDTH);
+        axil_write(16#18#, C_HEIGHT);
+        axil_read(16#10#, read_value);
+        expect(unsigned(read_value) = C_WIDTH, "zpetne cteni width");
+        axil_read(16#18#, read_value);
+        expect(unsigned(read_value) = C_HEIGHT, "zpetne cteni height");
+        axil_read(16#00#, read_value);
+        expect(read_value(2) = '1', "pred startem neni ap_idle");
+        axil_write(16#04#, 1);          -- GIE
+        axil_write(16#08#, 1);          -- IER: ap_done
+        started <= true;
+        axil_write(16#00#, 16#01#);     -- ap_start, jeden snímek
+        -- po prvním snímku
+        wait until irq = '1' for 5 ms;
+        expect(irq = '1', "po snimku nebylo preruseni");
+        axil_read(16#0C#, read_value);
+        expect(read_value(0) = '1', "ISR ap_done neni nastaveny");
+        axil_write(16#0C#, 1);          -- TOW: smazat ap_done v ISR
+        axil_read(16#24#, read_value);
+        expect(read_value(0) = '1', "status_ap_vld neni nastaveny");
+        axil_read(16#24#, read_value);
+        expect(read_value(0) = '0', "status_ap_vld neni COR");
+        axil_read(16#20#, read_value);
+        expect(unsigned(read_value) = 0, "status po bezchybnem snimku neni 0");
+        -- zastavené jádro nesmí přijímat
+        paused_at := accepted_pixels;
+        -- run spadne až s ap_done, pixely dalšího snímku přijaté mezitím drží vstupní skid buffer (neztratí se)
+        report "Po prvnim snimku prijato " & integer'image(paused_at - C_WIDTH * C_HEIGHT) & " px dalsiho snimku (ve skid bufferu)";
+        expect(paused_at >= C_WIDTH * C_HEIGHT, "po prvnim snimku prijato jen " & integer'image(paused_at) & " px");
+        for k in 1 to C_PAUSE loop
+            wait until rising_edge(aclk);
+        end loop;
+        expect(accepted_pixels = paused_at, "zastavene jadro prijalo " & integer'image(accepted_pixels - paused_at) & " px");
+        axil_read(16#00#, read_value);
+        expect(read_value(2) = '1', "zastavene jadro neni ap_idle");
+        -- znovuspuštění
+        axil_write(16#00#, 16#81#);     -- ap_start + auto_restart
+        control_errors <= error_total;
+        cpu_done       <= true;
+        wait;
+    end process;
+
+    pixel_monitor : process(aclk)
+    begin
+        if rising_edge(aclk) then
+            if (s_valid = '1') and (s_ready = '1') then
+                accepted_pixels <= accepted_pixels + 1;
+                if not started then
+                    early_pixels <= early_pixels + 1;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    source : entity work.axis_file_source
+        generic map(G_FILE      => "data/in_rgb.hex", G_WIDTH => C_WIDTH, G_HEIGHT => C_HEIGHT,
+                    G_FRAMES    => G_FRAMES, G_DATA_W => C_RGB_W, G_VALID_PCT => G_VALID_PCT, G_SEED => 71)
+        port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user(0), m_tlast => s_last,
+                 m_tvalid => s_valid, m_tready => s_ready, done => open);
+
+    dut : entity work.passthrough_axil
+        port map(aclk                  => aclk, aresetn => aresetn,
+                 s_axi_control_awaddr  => awaddr, s_axi_control_awvalid => awvalid, s_axi_control_awready => awready,
+                 s_axi_control_wdata   => wdata, s_axi_control_wstrb => "1111", s_axi_control_wvalid => wvalid,
+                 s_axi_control_wready  => wready, s_axi_control_bresp => bresp, s_axi_control_bvalid => bvalid,
+                 s_axi_control_bready  => bready, s_axi_control_araddr => araddr, s_axi_control_arvalid => arvalid,
+                 s_axi_control_arready => arready, s_axi_control_rdata => rdata, s_axi_control_rresp => rresp,
+                 s_axi_control_rvalid  => rvalid, s_axi_control_rready => rready, interrupt => irq,
+                 s_axis_video_tdata    => s_data, s_axis_video_tuser => s_user, s_axis_video_tlast => s_last,
+                 s_axis_video_tvalid   => s_valid, s_axis_video_tready => s_ready,
+                 m_axis_video_tdata    => m_data, m_axis_video_tuser => m_user, m_axis_video_tlast => m_last,
+                 m_axis_video_tvalid   => m_valid, m_axis_video_tready => m_ready);
+
+    sink : entity work.axis_file_sink
+        generic map(G_FILE      => "data/in_rgb.hex", G_WIDTH => C_WIDTH, G_HEIGHT => C_HEIGHT,
+                    G_FRAMES    => G_FRAMES, G_DATA_W => C_RGB_W, G_READY_PCT => G_READY_PCT, G_SEED => 73,
+                    G_NAME      => "passthrough_axil")
+        port map(aclk     => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user(0), s_tlast => m_last,
+                 s_tvalid => m_valid, s_tready => m_ready, errors => error_count, cycles => cycle_count,
+                 done     => sink_done);
+
+    check : process
+        variable total_errors : natural;
+    begin
+        wait until sink_done = '1' for 20 ms;
+        assert sink_done = '1' report "TIMEOUT: prijemce nedostal vsechny pixely" severity failure;
+        if not cpu_done then
+            wait until cpu_done for 1 ms;
+        end if;
+        if early_pixels /= 0 then
+            report "Jadro prijalo " & integer'image(early_pixels) & " px pred ap_start" severity error;
+        end if;
+        total_errors := error_count + control_errors + early_pixels;
+        if not cpu_done then
+            total_errors := total_errors + 1;
+        end if;
+        report "VYSLEDEK passthrough_axil: " & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb dat, " & integer'image(control_errors) & " chyb AXI-Lite, " & integer'image(early_pixels) & " px pred startem)";
+        assert total_errors = 0 severity failure;
+        std.env.stop;
+        wait;
+    end process;
+end architecture;

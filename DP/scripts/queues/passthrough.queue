@@ -1,0 +1,11 @@
+# Propust (passthrough) VHDL + HLS a medián na fotografii se šumem salt-and-pepper (22. 11. 2026).
+# Vektory včetně --full (všech 2^24 barev, 3840x2160, celý snímek se šumem). Těžké simulace jsou na konci.
+cd DP/vhdl/tb && bash gen_vectors.sh --full
+cd DP/vhdl/scripts && bash run_xsim.sh tb_passthrough && bash run_xsim.sh tb_passthrough G_VALID_PCT=50 G_READY_PCT=50 && bash run_xsim.sh tb_passthrough G_GARBAGE=7 G_VALID_PCT=70 G_READY_PCT=70 && bash run_xsim.sh tb_passthrough G_BAD_EOL_ROW=5 && bash run_xsim.sh tb_passthrough G_EXTRA_SOF_ROW=7 && bash run_xsim.sh tb_passthrough G_STALL_AT=1000 G_STALL_CYCLES=20000 G_VALID_PCT=70 G_READY_PCT=70 && bash run_xsim.sh tb_passthrough G_INPUT=in_rgb G_WIDTH=1 G_HEIGHT=1 G_FRAMES=4 G_VALID_PCT=50 G_READY_PCT=50 && bash run_xsim.sh tb_passthrough_axil
+cd DP/vhdl/scripts && for n in clean 5 10 20; do for b in true false; do bash run_xsim.sh tb_median G_IMAGE=sp${n}_64x48 G_REPLICATE=$b G_VALID_PCT=70 G_READY_PCT=70 || exit 1; done; done
+cd DP/hls/scripts && bash run_hls.sh ../passthrough/hls_config.cfg csim && bash run_hls.sh ../passthrough/hls_config.cfg syn && bash run_hls.sh ../passthrough/hls_config.cfg cosim
+cd DP/hls/scripts && bash run_hls.sh ../median/hls_config.cfg csim && TB_MEDIAN_IMAGE=$(realpath ../../vhdl/tb/data/sp_5_1666x2160.pgm) bash run_hls.sh ../median/hls_config.cfg csim
+cd DP/hls/scripts && TB_PASSTHROUGH_FULL=1 bash run_hls.sh ../passthrough/hls_config.cfg csim
+cd DP/vhdl/scripts && bash run_xsim.sh tb_median G_IMAGE=sp5_1666x2160 G_IMG_WIDTH=1666 G_IMG_HEIGHT=2160 G_FRAMES=1
+cd DP/vhdl/scripts && bash run_xsim.sh tb_passthrough G_INPUT=in_rgb_3840x2160 G_WIDTH=3840 G_HEIGHT=2160 G_FRAMES=1
+cd DP/vhdl/scripts && for k in 0 1 2 3; do bash run_xsim.sh tb_passthrough G_INPUT=in_all_colors_$k G_WIDTH=2048 G_HEIGHT=2048 G_FRAMES=1 || exit 1; done

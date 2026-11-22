@@ -9,6 +9,7 @@
 --   G_REPLICATE: okraj replikací / nulami
 --   G_GARBAGE > 0: pixely bez TUSER před prvním snímkem -> zahozeny, status SKIPPED
 --   G_BAD_EOL_ROW >= 0: TLAST v tomto řádku o 3 px dřív -> status EARLY_EOL | LATE_EOL, geometrie z čítačů
+--   G_IMAGE /= "": vlastní snímek G_IMG_WIDTH x G_IMG_HEIGHT (např. šum salt-and-pepper z gen_test_images.py)
 --  Status se kontroluje po prvním snímku (frame_done), data a TUSER/TLAST u všech snímků.
 --------------------------------------------------------------------------------
 library ieee;
@@ -24,7 +25,10 @@ entity tb_median is
         G_VALID_PCT   : natural  := 100;
         G_READY_PCT   : natural  := 100;
         G_GARBAGE     : natural  := 0;
-        G_BAD_EOL_ROW : integer  := -1
+        G_BAD_EOL_ROW : integer  := -1;
+        G_IMAGE       : string   := "";     -- vlastní snímek: data/in_<G_IMAGE>.hex, golden median_<G_IMAGE>_<okraj>.hex
+        G_IMG_WIDTH   : positive := 64;     -- rozměr vlastního snímku
+        G_IMG_HEIGHT  : positive := 48
     );
 end entity;
 
@@ -38,12 +42,36 @@ architecture sim of tb_median is
     type     t_size_array is array (natural range <>) of t_size;
     constant C_SIZES      : t_size_array := ((64, 48), (8, 1), (8, 2), (9, 3), (17, 5), (33, 4));
 
-    constant C_WIDTH  : positive := C_SIZES(G_SIZE).width;
-    constant C_HEIGHT : positive := C_SIZES(G_SIZE).height;
+    function select_dim(image_dim, size_dim : positive) return positive is
+    begin
+        if G_IMAGE'length > 0 then
+            return image_dim;
+        end if;
+        return size_dim;
+    end function;
+
+    constant C_WIDTH  : positive := select_dim(G_IMG_WIDTH, C_SIZES(G_SIZE).width);
+    constant C_HEIGHT : positive := select_dim(G_IMG_HEIGHT, C_SIZES(G_SIZE).height);
+    constant C_PIXELS : positive := C_WIDTH * C_HEIGHT;
 
     function size_name return string is
     begin
         return integer'image(C_WIDTH) & "x" & integer'image(C_HEIGHT);
+    end function;
+    -- jméno vstupu a golden výstupu (bez přípony): výchozí sada gray_WxH, nebo vlastní snímek
+    function input_file return string is
+    begin
+        if G_IMAGE'length > 0 then
+            return "data/in_" & G_IMAGE & ".hex";
+        end if;
+        return "data/in_gray_" & size_name & ".hex";
+    end function;
+    function golden_file(border : string) return string is
+    begin
+        if G_IMAGE'length > 0 then
+            return "data/median_" & G_IMAGE & "_" & border & ".hex";
+        end if;
+        return "data/median_" & size_name & "_" & border & ".hex";
     end function;
     function border_name return string is
     begin
@@ -88,7 +116,7 @@ begin
     aresetn <= '1' after 4 * C_PERIOD;
 
     source : entity work.axis_file_source
-        generic map(G_FILE        => "data/in_gray_" & size_name & ".hex", G_WIDTH => C_WIDTH, G_HEIGHT => C_HEIGHT,
+        generic map(G_FILE        => input_file, G_WIDTH => C_WIDTH, G_HEIGHT => C_HEIGHT,
                     G_FRAMES      => G_FRAMES, G_DATA_W => C_PIX_W, G_VALID_PCT => G_VALID_PCT, G_GARBAGE => G_GARBAGE,
                     G_BAD_EOL_ROW => G_BAD_EOL_ROW, G_SEED => 41)
         port map(aclk     => aclk, aresetn => aresetn, m_tdata => s_data, m_tuser => s_user, m_tlast => s_last,
@@ -103,7 +131,7 @@ begin
                  m_axis_tvalid    => m_valid, m_axis_tready => m_ready);
 
     sink : entity work.axis_file_sink
-        generic map(G_FILE      => "data/median_" & size_name & "_" & border_name & ".hex", G_WIDTH => C_WIDTH,
+        generic map(G_FILE      => golden_file(border_name), G_WIDTH => C_WIDTH,
                     G_HEIGHT    => C_HEIGHT, G_FRAMES => G_FRAMES, G_DATA_W => C_PIX_W, G_READY_PCT => G_READY_PCT,
                     G_SEED      => 43, G_NAME => "median")
         port map(aclk     => aclk, aresetn => aresetn, s_tdata => m_data, s_tuser => m_user, s_tlast => m_last,
@@ -125,7 +153,7 @@ begin
     check : process
         variable total_errors : natural;
     begin
-        wait until sink_done = '1' for 10 ms;
+        wait until sink_done = '1' for C_PERIOD * (10 * C_PIXELS * G_FRAMES + 100000);
         assert sink_done = '1' report "TIMEOUT: prijemce nedostal vsechny pixely" severity failure;
         wait for 10 * C_PERIOD;
         total_errors := error_count;
@@ -138,7 +166,7 @@ begin
             severity error;
             total_errors := total_errors + 1;
         end if;
-        report "VYSLEDEK median " & size_name & " " & border_name & " " & integer'image(G_VALID_PCT) & "/" & integer'image(G_READY_PCT) & " garbage " & integer'image(G_GARBAGE) & " bad_eol " & integer'image(G_BAD_EOL_ROW) & ": " & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb dat, status " & to_string(first_status) & ", " & integer'image(cycle_count + 1) & " taktu)";
+        report "VYSLEDEK median " & G_IMAGE & " " & size_name & " " & border_name & " " & integer'image(G_VALID_PCT) & "/" & integer'image(G_READY_PCT) & " garbage " & integer'image(G_GARBAGE) & " bad_eol " & integer'image(G_BAD_EOL_ROW) & ": " & pass_fail(total_errors) & " (" & integer'image(error_count) & " chyb dat, status " & to_string(first_status) & ", " & integer'image(cycle_count + 1) & " taktu)";
         assert total_errors = 0 severity failure;
         std.env.stop;
         wait;
