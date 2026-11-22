@@ -3,6 +3,7 @@
 #  - IndentPPDirectives: Leave   #pragma HLS zůstane odsazené s kódem (ručně, clang-format ho neposouvá)
 #  - PointerAlignment/ReferenceAlignment: Left   const T& x, T* p (zavedený zápis v kódu)
 #  - FixNamespaceComments: false   ponechá komentář "} // anonymní namespace"
+# Odsazení pragma, která už stojí ve sloupci 0, opraví DP/scripts/clangformat.py (spouštět místo clang-format).
 # Pozn.: clang-format formátuje i obsah #pragma (mode=axis -> mode = axis); Vitis HLS 2025.2 to přijímá stejně
 # (ověřeno syntézou hls_median, 22. 11. 2026). Úsek lze vynechat: // clang-format off ... // clang-format on
 BasedOnStyle: Microsoft
