@@ -1,0 +1,25 @@
+# clang-format pro C/C++ v DP (HLS, golden model, SW harness) - vyžaduje clang-format 22 nebo novější
+# Základ: Jablotron C coding standard (kap. 11 Clang format), doplněno pro Vitis HLS:
+#  - IndentPPDirectives: Leave   #pragma HLS zůstane odsazené s kódem (ručně, clang-format ho neposouvá)
+#  - PointerAlignment/ReferenceAlignment: Left   const T& x, T* p (zavedený zápis v kódu)
+#  - FixNamespaceComments: false   ponechá komentář "} // anonymní namespace"
+# Pozn.: clang-format formátuje i obsah #pragma (mode=axis -> mode = axis); Vitis HLS 2025.2 to přijímá stejně
+# (ověřeno syntézou hls_median, 22. 11. 2026). Úsek lze vynechat: // clang-format off ... // clang-format on
+BasedOnStyle: Microsoft
+AlignArrayOfStructures: Left
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: 'true'
+IndentCaseLabels: 'true'
+IndentWidth: '4'
+SpaceAfterCStyleCast: 'false'
+AlignConsecutiveMacros: AcrossEmptyLines
+InsertBraces: true
+IndentExternBlock: NoIndent
+SpaceBeforeCpp11BracedList: true
+BreakBeforeBraces: Allman
+AlwaysBreakTemplateDeclarations: Yes
+ColumnLimit: 120
+PointerAlignment: Left
+ReferenceAlignment: Left
+IndentPPDirectives: Leave
+FixNamespaceComments: false

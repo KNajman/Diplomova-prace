@@ -1,0 +1,11 @@
+# Adresáře vynechané z formátování (generované, převzaté nebo výstupy nástrojů)
+Vitis/**
+Vivado/**
+axi_video_1_0/**
+ip_repo/**
+lab05_axi_stream/**
+xsa/**
+model/build/**
+model/generated/**
+sw/build/**
+hls/**/build/**
